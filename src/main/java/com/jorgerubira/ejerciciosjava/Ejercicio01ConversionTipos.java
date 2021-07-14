@@ -1,0 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.jorgerubira.ejerciciosjava;
+
+/**
+ *
+ * @author PC
+ */
+public class Ejercicio01ConversionTipos {
+
+    //Convierte de String a int.
+    public int textoAEntero(String valor) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    //Convierte de Float a int.
+    public int decimalesAEntero(Float valor){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    //Convierte de int a Float.
+    public Float enteroAFloat(int valor){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
+    public char siguienteCaracter(char valor){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    //Devuelve el código ascii del caracter 
+    public int obtenerAscii(char valor){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    //Convierte de String a Double. Devuelve null si no se puede convertir
+    public Double textoADouble(String valor){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+}
