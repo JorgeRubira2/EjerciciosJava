@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.jorgerubira.ejerciciosjava;
 
-/**
- *
- * @author PC
- */
 public class Ejercicio01ConversionTipos {
 
+    //Devuelve la suma a+b;
+    public int ejemploSuma(int a, int b){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+    
     //Convierte de String a int.
     public int textoAEntero(String valor) {
         throw new RuntimeException("Pendiente de hacer");
