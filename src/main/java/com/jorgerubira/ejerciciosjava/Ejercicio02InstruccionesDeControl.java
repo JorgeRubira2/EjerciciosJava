@@ -38,16 +38,5 @@ public class Ejercicio02InstruccionesDeControl {
     public int contarVocales(String texto){
         throw new RuntimeException("Pendiente de hacer");
     }
-
-    public static void main(String arg[]){
-        int[] vector={3,4,2,5};
-        int contador=0;
-        for (int val:vector){
-            if (val>3){
-                contador++;
-            }
-        }
-        System.out.println("Elementos mayores de tres :" + contador);
-    }
     
 }
