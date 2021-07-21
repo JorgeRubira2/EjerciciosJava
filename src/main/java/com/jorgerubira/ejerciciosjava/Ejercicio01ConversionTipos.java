@@ -24,9 +24,9 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor) {
-        return String.valueOf(valor + 1).charAt(0);
+        return ++valor;     
     }
-
+    
     //Devuelve el código ascii del caracter. 
     public int obtenerAscii(char valor) {
         return (int) valor;
