@@ -1,6 +1,7 @@
 package com.jorgerubira.ejerciciosjava;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Ejercicio01ConversionTiposTest {
     
@@ -18,7 +19,7 @@ public class Ejercicio01ConversionTiposTest {
     @org.junit.jupiter.api.Test
     public void testDecimalesAEntero() {
         Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(24, instance.decimalesAEntero(-24.2f));
+        assertEquals(-24, instance.decimalesAEntero(-24.2f));
         assertEquals(44, instance.decimalesAEntero(44.8f));
     }
 
@@ -26,7 +27,7 @@ public class Ejercicio01ConversionTiposTest {
     public void testEnteroAFloat() {
         Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
         assertEquals(2f, instance.enteroAFloat(2));
-        assertEquals(-2f, instance.enteroAFloat(-5));
+        assertEquals(-5f, instance.enteroAFloat(-5));
     }
 
     @org.junit.jupiter.api.Test
