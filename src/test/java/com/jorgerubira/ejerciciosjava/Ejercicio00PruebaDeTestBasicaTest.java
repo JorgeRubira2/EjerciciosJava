@@ -1,8 +1,9 @@
 
 package com.jorgerubira.ejerciciosjava;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class Ejercicio00PruebaDeTestBasicaTest {
@@ -19,13 +20,13 @@ public class Ejercicio00PruebaDeTestBasicaTest {
     @Test
     public void testRestar() {
         Ejercicio00PruebaDeTestBasica instance = new Ejercicio00PruebaDeTestBasica();
-        assertEquals(2, instance.sumar(6, 4));
+        assertEquals(2, instance.restar(6, 4));
     }
 
     @Test
     public void testMultiplicar() {
         Ejercicio00PruebaDeTestBasica instance = new Ejercicio00PruebaDeTestBasica();
-        assertEquals(24, instance.sumar(6, 4));
+        assertEquals(24, instance.multiplicar(6, 4));
     }
     
 }
