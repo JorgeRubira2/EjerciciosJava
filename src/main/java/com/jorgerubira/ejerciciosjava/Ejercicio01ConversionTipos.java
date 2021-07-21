@@ -16,8 +16,8 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de Float a int.
     public int decimalesAEntero(Float valor){
-        return Math.round(valor);
-       
+        
+        return valor.intValue();
     }
 
     //Convierte de int a Float.
@@ -36,8 +36,10 @@ public class Ejercicio01ConversionTipos {
     //Devuelve el código ascii del caracter 
     public int obtenerAscii(char valor){
         
+     int valorAscii = valor; 
+     return valorAscii;
+     
         
-        throw new RuntimeException("Pendiente de hacer");
     }
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
