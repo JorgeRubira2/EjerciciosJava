@@ -1,11 +1,14 @@
 package com.jorgerubira.ejerciciosjava;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class Ejercicio01ConversionTiposTest {
     
     public Ejercicio01ConversionTiposTest() {
     }
+    
+    
 
     @org.junit.jupiter.api.Test
     public void testTextoAEntero() {
@@ -18,7 +21,7 @@ public class Ejercicio01ConversionTiposTest {
     @org.junit.jupiter.api.Test
     public void testDecimalesAEntero() {
         Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(24, instance.decimalesAEntero(-24.2f));
+        assertEquals(-24, instance.decimalesAEntero(-24.2f));
         assertEquals(44, instance.decimalesAEntero(44.8f));
     }
 
