@@ -39,7 +39,8 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor){
-        throw new RuntimeException("Pendiente de hacer");
+    	
+        return Double.parseDouble(valor);
     }
 
 }
