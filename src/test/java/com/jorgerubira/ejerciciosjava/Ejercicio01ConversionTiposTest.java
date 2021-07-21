@@ -41,7 +41,6 @@ public class Ejercicio01ConversionTiposTest {
         Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
         assertEquals(65, instance.obtenerAscii('A'));
         assertEquals(97, instance.obtenerAscii('a'));
-        
     }
 
     @org.junit.jupiter.api.Test
@@ -51,5 +50,4 @@ public class Ejercicio01ConversionTiposTest {
         assertEquals(-22.9, instance.textoADouble("-22.9"));
         assertEquals(null,  instance.textoADouble("aaa"));
     }
-    
 }
