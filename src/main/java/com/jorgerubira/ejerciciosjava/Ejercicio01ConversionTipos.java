@@ -34,12 +34,13 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor) {
-
+        Double a;
         try {
-            return Double.parseDouble(valor);
+           a = Double.parseDouble(valor);
         } catch (Exception e) {
             return null;
         }
+        return a;
     }
 
 }
