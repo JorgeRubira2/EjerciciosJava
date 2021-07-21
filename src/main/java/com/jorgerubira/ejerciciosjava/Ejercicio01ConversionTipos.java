@@ -4,37 +4,42 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve la suma a+b;
     public int ejemploSuma(int a, int b){
-        throw new RuntimeException("Pendiente de hacer");
+        return a + b;
     }
     
     //Convierte de String a int.
     public int textoAEntero(String valor) {
-        throw new RuntimeException("Pendiente de hacer");
+        return (int)Integer.parseInt(valor);
     }
 
     //Convierte de Float a int.
     public int decimalesAEntero(Float valor){
-        throw new RuntimeException("Pendiente de hacer");
+        return valor.intValue();
     }
 
     //Convierte de int a Float.
     public Float enteroAFloat(int valor){
-        throw new RuntimeException("Pendiente de hacer");
+        return new Float(valor);
     }
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor){
-        throw new RuntimeException("Pendiente de hacer");
+        return  ++valor ;
     }
 
     //Devuelve el código ascii del caracter 
     public int obtenerAscii(char valor){
-        throw new RuntimeException("Pendiente de hacer");
+        return (int)valor;
     }
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor){
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+            return Double.valueOf(valor);    
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        
     }
 
 }
