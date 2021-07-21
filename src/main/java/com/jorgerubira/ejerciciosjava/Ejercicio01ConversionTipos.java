@@ -9,7 +9,7 @@ public class Ejercicio01ConversionTipos {
     
     //Convierte de String a int.
     public int textoAEntero(String valor) {
-        return (int)Integer.parseInt(valor);
+        return Integer.parseInt(valor);
     }
 
     //Convierte de Float a int.
@@ -19,7 +19,7 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de int a Float.
     public Float enteroAFloat(int valor){
-        return new Float(valor);
+           return (float)valor;
     }
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
