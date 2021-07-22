@@ -97,7 +97,7 @@ public class Ventana extends javax.swing.JFrame {
                 if (n.getVelocidad()<200 && Math.abs(n.getAngulo())<20){
                     goal=1;
                 }else{
-                    goal=2;
+                    goal=2; 
                 }
             }
             if (goal==1){
