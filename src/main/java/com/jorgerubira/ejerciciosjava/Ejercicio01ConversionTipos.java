@@ -9,6 +9,8 @@ public class Ejercicio01ConversionTipos {
     
     //Convierte de String a int.
     public int textoAEntero(String valor) {
+        String Valor=valor;
+        Integer.parseInt(Valor);
         throw new RuntimeException("Pendiente de hacer");
     }
 
