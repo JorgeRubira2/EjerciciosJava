@@ -42,10 +42,10 @@ public class Ventana extends javax.swing.JFrame {
         String path="com/jorgerubira/practicas/naves";
         try {
             path=getClass().getClassLoader().getResource(path).toString().replaceAll("target/classes", "src/main/java");
-            iFondo=ImageIO.read(new URL(path + "/Fondo.png"));
-            iNave=ImageIO.read(new URL(path + "/NaveBase.png"));
-            iNaveSin=ImageIO.read(new URL(path + "/NaveSin.png"));
-            iExplosion=ImageIO.read(new URL(path + "/Explosion.png"));
+            iFondo=ImageIO.read(new URL(path + "/imagenes/Fondo.png"));
+            iNave=ImageIO.read(new URL(path + "/imagenes/NaveBase.png"));
+            iNaveSin=ImageIO.read(new URL(path + "/imagenes/NaveSin.png"));
+            iExplosion=ImageIO.read(new URL(path + "/imagenes/Explosion.png"));
         } catch (Exception ex) {
         }
         iniciarHilo();
