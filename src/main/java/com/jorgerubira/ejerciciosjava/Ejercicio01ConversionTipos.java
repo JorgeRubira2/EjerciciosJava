@@ -36,14 +36,15 @@ public class Ejercicio01ConversionTipos {
     //Devuelve el código ascii del caracter 
     public int obtenerAscii(char valor){
         
-     int valorAscii = valor; 
-     return valorAscii;
+     return (int)valor;
      
         
     }
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor){
+        
+        
         throw new RuntimeException("Pendiente de hacer");
     }
 
