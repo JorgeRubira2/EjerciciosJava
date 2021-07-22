@@ -16,3 +16,4 @@ de Optional<Envoltorio> a tipo primitivo si son tipos distintos:  primitivo = op
 
 de tipo primitivo a Optional<Envoltorio>:  Optional.of(valor); o Optional.of((tipoPrimitivoDelEnvoltorio)valor);
 de tipo primitivo a Optional<Envoltorio> poniendo null:  Optional.ofNullable(null);
+...
