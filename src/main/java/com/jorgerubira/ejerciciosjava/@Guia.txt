@@ -1,4 +1,4 @@
-.Resumen de tranformaciones.
+Resumen de tranformaciones.
 de String a tipo primitivo:  Utilizar Envoltorio.parseTipo. por ejemplo de int -> Integer.parseInt(String);
 
 de Envoltorio a tipo primitivo si son tipos iguales:  primitivo = envoltorio;
