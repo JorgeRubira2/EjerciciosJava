@@ -42,10 +42,10 @@ public class Ventana extends javax.swing.JFrame {
         String path="com/jorgerubira/practicas/naves";
         try {
             path=getClass().getClassLoader().getResource(path).toString().replaceAll("target/classes", "src/main/java");
-            iFondo=ImageIO.read(new URL(path + "/Fondo.png"));
-            iNave=ImageIO.read(new URL(path + "/NaveBase.png"));
-            iNaveSin=ImageIO.read(new URL(path + "/NaveSin.png"));
-            iExplosion=ImageIO.read(new URL(path + "/Explosion.png"));
+            iFondo=ImageIO.read(new URL(path + "/imagenes/Fondo.png"));
+            iNave=ImageIO.read(new URL(path + "/imagenes/NaveBase.png"));
+            iNaveSin=ImageIO.read(new URL(path + "/imagenes/NaveSin.png"));
+            iExplosion=ImageIO.read(new URL(path + "/imagenes/Explosion.png"));
         } catch (Exception ex) {
         }
         iniciarHilo();
@@ -93,11 +93,11 @@ public class Ventana extends javax.swing.JFrame {
             g2d.translate(x, y);
             g2d.rotate(angulo);
             int goal=0;
-            if (n.getMetrosRecorridos()>=900 && n.getMetrosRecorridos()<=1080 && n.getAltura()>=50 && n.getAltura()<=90){
+            if (n.getMetrosRecorridos()>=950 && n.getMetrosRecorridos()<=1050 && n.getAltura()>=50 && n.getAltura()<=80){
                 if (n.getVelocidad()<200 && Math.abs(n.getAngulo())<20){
                     goal=1;
                 }else{
-                    goal=2;
+                    goal=2; 
                 }
             }
             if (goal==1){
