@@ -93,7 +93,7 @@ public class Ventana extends javax.swing.JFrame {
             g2d.translate(x, y);
             g2d.rotate(angulo);
             int goal=0;
-            if (n.getMetrosRecorridos()>=900 && n.getMetrosRecorridos()<=1080 && n.getAltura()>=50 && n.getAltura()<=80){
+            if (n.getMetrosRecorridos()>=950 && n.getMetrosRecorridos()<=1050 && n.getAltura()>=50 && n.getAltura()<=80){
                 if (n.getVelocidad()<200 && Math.abs(n.getAngulo())<20){
                     goal=1;
                 }else{
