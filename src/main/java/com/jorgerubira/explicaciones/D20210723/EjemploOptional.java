@@ -85,12 +85,12 @@ public class EjemploOptional {
             Ciudad ciu=c1.get();    //Objeto
             ciu.getNombre();
         }
-        if (c1.isEmpty()){
+        if (c1.empty() != null){
             System.out.println("c1 es nulo");
         }
         //JPA
         
-        Ciudad ciu1=c1.orElseThrow();    //get
+        Ciudad ciu1=c1.orElseThrow(null);    //get
         
         Ciudad ciu2=c1.orElse(new Ciudad("Ciudad desconocida"));    //get. Null
         ciu2.getNombre();   //Guadalajara. Ciudad desco
