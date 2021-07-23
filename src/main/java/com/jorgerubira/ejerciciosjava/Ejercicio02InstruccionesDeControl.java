@@ -13,17 +13,32 @@ public class Ejercicio02InstruccionesDeControl {
     
     //Devolver el número más alto
     public int maximoValor(int a, int b, int c){
-        throw new RuntimeException("Pendiente de hacer");
+        if(a >= b && a >= b) {
+        	return a;
+        }else if(b >= a && b >= c) {
+        	return b;
+        }else
+        	return c;
     }
     
     //Devolver la suma de todos los elementos del vector
     public int sumarElementos(int[] vector){
-        throw new RuntimeException("Pendiente de hacer");
+    	int valor = 0;
+        for(int i = 0; i < vector.length;i++) {
+        	valor += vector[i];
+        }
+        return valor;
     }    
     
     //Devolver cuantos elementos son pares
     public int contarPares(int[] vector){
-        throw new RuntimeException("Pendiente de hacer");
+    	int pares = 0;
+        for(int i = 0; i < vector.length;i++) {
+        	if(vector[i] % 2 == 0) {
+        		pares++;
+        	}
+        }
+        return pares;
     }    
     
     //Devolver el maximo comun divisor.
