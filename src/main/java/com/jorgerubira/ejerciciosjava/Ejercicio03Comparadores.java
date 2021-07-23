@@ -25,7 +25,13 @@ public class Ejercicio03Comparadores {
     public boolean compararEnteroConLong(Integer i1, Long i2){
         
         try {
+            if(i1!=null && i2!=null){
+                
             return Long.valueOf(i1).equals(i2);
+            
+            }else{
+                return false;
+            }
         } catch (Exception e) {
             return false;
         }
@@ -36,8 +42,14 @@ public class Ejercicio03Comparadores {
     //Si se envia null devuelve false
     public boolean comprobarNumero(String numero){
         try {
-            Integer.parseInt(numero);
+            if(numero!=null){
+                return false;
+            }else{
+                Integer.parseInt(numero);
             return true;
+                
+            }
+                
         } catch (NumberFormatException e) {
             return false;
         }
