@@ -39,6 +39,7 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor){
+
         Double numero=0.0;
         try{
          numero = Double.parseDouble(valor);
@@ -47,7 +48,9 @@ public class Ejercicio01ConversionTipos {
         }catch(Exception e){
             throw e;
         }
-        return numero;
+
+     return numero;
+
     }
 
 }
