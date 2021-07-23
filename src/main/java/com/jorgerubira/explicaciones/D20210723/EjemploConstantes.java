@@ -100,10 +100,6 @@ public class EjemploConstantes {
         } */
         //Gimnasio Pulgar
         //Gimnasio Bici carita
-
-      
-        
-       
     }
     
 }

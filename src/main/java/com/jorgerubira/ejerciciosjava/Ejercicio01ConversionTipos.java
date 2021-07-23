@@ -18,7 +18,7 @@ public class Ejercicio01ConversionTipos {
         return valor.intValue();
     }
 
-    //**************Convierte de int a Float.
+    //Convierte de int a Float.
     public Float enteroAFloat(int valor){
         return (float)valor;
     }
