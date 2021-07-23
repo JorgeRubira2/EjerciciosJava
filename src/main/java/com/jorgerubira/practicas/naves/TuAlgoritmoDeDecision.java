@@ -13,7 +13,11 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+        throw new RuntimeException("w");
+        
+        //Velocidad < 200
+        //Angulo [-20,20]
     }
+    
     
 }

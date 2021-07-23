@@ -11,4 +11,6 @@ package com.jorgerubira.ejerciciosjava;
  */
 public class Ejercicio04Colecciones {
     
+    //public void incluirPersona
+    
 }
