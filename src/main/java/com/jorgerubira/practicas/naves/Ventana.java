@@ -125,6 +125,9 @@ public class Ventana extends javax.swing.JFrame {
         g2d.drawString("Metros " + n.getMetrosRecorridos(), 30, 200);
         g2d.drawString("Velocidad " + n.getVelocidad(), 30, 250);
         g2d.drawString("Angulo " + n.getAngulo(), 30, 300);
+        if (n.isViento()){
+            g2d.drawString("Viento " + Math.round(n.getFuerzaViento()*500), 30, 350);
+        }
         g.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), this);
 
         

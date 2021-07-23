@@ -10,5 +10,6 @@ package com.jorgerubira.practicas.naves;
  * @author PC
  */
 public interface IDecision {
+    
     public void decision(INave n, int segundos);
 }
