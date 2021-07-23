@@ -24,23 +24,23 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor) {
-        return ++valor;     
+        return ++valor;
     }
-    
+
     //Devuelve el código ascii del caracter. 
     public int obtenerAscii(char valor) {
         return (int) valor;
     }
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
+
     public Double textoADouble(String valor) {
         Double a;
         try {
-           a = Double.parseDouble(valor);
+            a = Double.parseDouble(valor);
         } catch (Exception e) {
             return null;
         }
         return a;
     }
-
 }

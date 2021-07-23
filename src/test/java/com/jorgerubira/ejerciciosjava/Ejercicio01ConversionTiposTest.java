@@ -27,6 +27,7 @@ public class Ejercicio01ConversionTiposTest {
         Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
         assertEquals(2f, instance.enteroAFloat(2));
         assertEquals(5f, instance.enteroAFloat(5));
+        assertEquals(-5f, instance.enteroAFloat(-5));
     }
 
     @org.junit.jupiter.api.Test
