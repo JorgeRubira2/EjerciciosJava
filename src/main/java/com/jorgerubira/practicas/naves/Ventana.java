@@ -77,6 +77,7 @@ public class Ventana extends javax.swing.JFrame {
     
     Font font=new Font ("TimesRoman", Font.BOLD | Font.ITALIC, 50);
     boolean mensaje=false;
+    boolean explosion=false;
     @Override
     public void paint(Graphics g) {
         //super.paint(g); 
@@ -100,15 +101,16 @@ public class Ventana extends javax.swing.JFrame {
                     goal=2; 
                 }
             }
-            if (goal==1){
+            if (goal==1 && explosion==false){
                 ses.shutdown();
                 if (mensaje==false){
                     mensaje=true;
                     JOptionPane.showMessageDialog(this, "Felicidades! Lo has conseguido");    
                 }
                 
-            }else if (goal==2 || n.getMetrosRecorridos()>1150 || n.getAltura()<0){
+            }else if (goal==2 || explosion || n.getMetrosRecorridos()>1150 || n.getAltura()<0){
                 g2d.drawImage(iExplosion, 0, 0,iNave.getWidth()/4,iNave.getHeight()/4,this);    
+                explosion=true;
             }else if (n.getPropulsion()){
                 g2d.drawImage(iNave, 0, 0,iNave.getWidth()/4,iNave.getHeight()/4,this);    
             }else{
@@ -125,6 +127,9 @@ public class Ventana extends javax.swing.JFrame {
         g2d.drawString("Metros " + n.getMetrosRecorridos(), 30, 200);
         g2d.drawString("Velocidad " + n.getVelocidad(), 30, 250);
         g2d.drawString("Angulo " + n.getAngulo(), 30, 300);
+        if (n.isViento()){
+            g2d.drawString("Viento " + Math.round(n.getFuerzaViento()*500), 30, 350);
+        }
         g.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), this);
 
         
