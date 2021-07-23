@@ -13,7 +13,22 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+        //velocidad < 200
+        //Angulo [-20, 20]
+        //Una vez conseguido, se activa el modo viento
+        
+        n.setPropulsion(true);
+        n.girarMando(45);
+        if (n.getAltura()>300){
+            n.setPropulsion(false);
+            n.girarMando(-45);
+        }
+        
+        if (n.getMetrosRecorridos()>132){
+            n.setPropulsion(false);
+            n.girarMando(-45);
+        }
+        
     }
     
 }
