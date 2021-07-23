@@ -40,5 +40,4 @@ public class Ejercicio01ConversionTipos {
             return null;
         }
     }
-
 }
