@@ -5,15 +5,31 @@
  */
 package com.jorgerubira.practicas.naves;
 
+import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author PC
+ * 
  */
 public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+       n.setPropulsion(true);
+       boolean exit= false;
+       LocalTime currentTime= LocalTime.now();
+        try {
+            while (!exit){
+                Thread.sleep(100L);
+                LocalTime local = LocalTime.now();
+                Thread.sleep(10000L);
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TuAlgoritmoDeDecision.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
