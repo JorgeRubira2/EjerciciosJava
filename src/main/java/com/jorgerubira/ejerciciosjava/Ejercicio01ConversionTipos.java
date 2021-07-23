@@ -1,6 +1,7 @@
 package com.jorgerubira.ejerciciosjava;
 
 public class Ejercicio01ConversionTipos {
+    public static final String MARRON = "marron";
 
     //Devuelve la suma a+b;
     public int ejemploSuma(int a, int b){
