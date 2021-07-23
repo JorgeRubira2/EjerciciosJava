@@ -44,7 +44,7 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si se envia null en cualquier de ellos devuelve false
     public boolean comprobarOptionalConInteger(Optional<Integer> valor1, Integer valor2){
-    	if(valor1 != null && valor2 != null && (valor1.equals(valor2))) {
+    	if(valor1.isPresent() && valor2 != null && (valor1.get().equals(valor2))) {
     		return true;
     	}else{
     		return false;		
@@ -56,7 +56,11 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si los dos tienen null devuelve false.
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2){
-        throw new RuntimeException("Pendiente de hacer");
+    	if(valor1.isPresent() && valor2.isPresent() && (valor1.get().equals(valor2.get()))) {
+    		return true;
+    	}else{
+    		return false;		
+    	}
     }    
 
 }
