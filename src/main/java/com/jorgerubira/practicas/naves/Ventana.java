@@ -42,10 +42,10 @@ public class Ventana extends javax.swing.JFrame {
         String path="com/jorgerubira/practicas/naves";
         try {
             path=getClass().getClassLoader().getResource(path).toString().replaceAll("target/classes", "src/main/java");
-            iFondo=ImageIO.read(new URL(path + "/Fondo.png"));
-            iNave=ImageIO.read(new URL(path + "/NaveBase.png"));
-            iNaveSin=ImageIO.read(new URL(path + "/NaveSin.png"));
-            iExplosion=ImageIO.read(new URL(path + "/Explosion.png"));
+            iFondo=ImageIO.read(new URL(path + "/imagenes/Fondo.png"));
+            iNave=ImageIO.read(new URL(path + "/imagenes/NaveBase.png"));
+            iNaveSin=ImageIO.read(new URL(path + "/imagenes/NaveSin.png"));
+            iExplosion=ImageIO.read(new URL(path + "/imagenes/Explosion.png"));
         } catch (Exception ex) {
         }
         iniciarHilo();
@@ -77,6 +77,7 @@ public class Ventana extends javax.swing.JFrame {
     
     Font font=new Font ("TimesRoman", Font.BOLD | Font.ITALIC, 50);
     boolean mensaje=false;
+    boolean explosion=false;
     @Override
     public void paint(Graphics g) {
         //super.paint(g); 
@@ -93,22 +94,23 @@ public class Ventana extends javax.swing.JFrame {
             g2d.translate(x, y);
             g2d.rotate(angulo);
             int goal=0;
-            if (n.getMetrosRecorridos()>=900 && n.getMetrosRecorridos()<=1080 && n.getAltura()>=50 && n.getAltura()<=90){
+            if (n.getMetrosRecorridos()>=950 && n.getMetrosRecorridos()<=1050 && n.getAltura()>=50 && n.getAltura()<=80){
                 if (n.getVelocidad()<200 && Math.abs(n.getAngulo())<20){
                     goal=1;
                 }else{
-                    goal=2;
+                    goal=2; 
                 }
             }
-            if (goal==1){
+            if (goal==1 && explosion==false){
                 ses.shutdown();
                 if (mensaje==false){
                     mensaje=true;
                     JOptionPane.showMessageDialog(this, "Felicidades! Lo has conseguido");    
                 }
                 
-            }else if (goal==2 || n.getMetrosRecorridos()>1150 || n.getAltura()<0){
+            }else if (goal==2 || explosion || n.getMetrosRecorridos()>1150 || n.getAltura()<0){
                 g2d.drawImage(iExplosion, 0, 0,iNave.getWidth()/4,iNave.getHeight()/4,this);    
+                explosion=true;
             }else if (n.getPropulsion()){
                 g2d.drawImage(iNave, 0, 0,iNave.getWidth()/4,iNave.getHeight()/4,this);    
             }else{
@@ -125,6 +127,9 @@ public class Ventana extends javax.swing.JFrame {
         g2d.drawString("Metros " + n.getMetrosRecorridos(), 30, 200);
         g2d.drawString("Velocidad " + n.getVelocidad(), 30, 250);
         g2d.drawString("Angulo " + n.getAngulo(), 30, 300);
+        if (n.isViento()){
+            g2d.drawString("Viento " + Math.round(n.getFuerzaViento()*500), 30, 350);
+        }
         g.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), this);
 
         

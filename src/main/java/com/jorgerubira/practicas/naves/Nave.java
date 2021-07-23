@@ -4,6 +4,9 @@ package com.jorgerubira.practicas.naves;
 
 public class Nave implements INave{
 
+    private boolean viento=false;
+    private double fuerzaViento=(Math.random()-0.5)/3;
+    
     private double altura=0;
     private double metrosRecorridos=0;
     private int velocidad=0;
@@ -19,6 +22,9 @@ public class Nave implements INave{
         if (propulsion){
             dy+=Math.cos(-anguloNave*Math.PI*2/360);
             dx-=Math.sin(-anguloNave*Math.PI*2/360);
+            if (viento){
+                dx+=fuerzaViento;
+            }
         }
         dy-=0.5;
         velocidad=(int)Math.sqrt(dx*dx+dy*dy);
@@ -27,6 +33,16 @@ public class Nave implements INave{
         altura+=dy/100;
         metrosRecorridos+=dx/100;
     }
+
+    public boolean isViento() {
+        return viento;
+    }
+
+    public double getFuerzaViento() {
+        return fuerzaViento;
+    }
+    
+    
     
     @Override
     public int getAltura() {
