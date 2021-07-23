@@ -11,3 +11,10 @@
 
 - GIT (Add>Commit>Push) (Add>Commit>Pull) (Todos dias Add>Commit>Pull>Merge>(Conflict>Add>Commit)>Push)  Switch Branch, Merge Revision
 
+- Generico (ArrayList<Integer>, ArrayList<Persona> , o clases hechas por vosotros class Nombre<T> )
+- Metodos y clases abstractas. Clase abstract (No new), Metodo abstract (No lleva codigo, obligacion de implementarlo clases derivada)
+- Metodos y clases final. No queremos que hagan @Override. Clases final (No se pueden crear clases derivadas)
+- Interface. Obligar a tener unos metodos. Una clase puede implementar muchas interface. API
+             default-> No es importante. Para casos muy concretos.
+
+- Constantes. Hoy
