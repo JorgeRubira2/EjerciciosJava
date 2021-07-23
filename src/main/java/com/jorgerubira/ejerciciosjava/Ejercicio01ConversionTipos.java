@@ -25,8 +25,7 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor) {
-        int bin = ++valor;
-        return (char) bin;
+        return (char) ++valor;
     }
 
     //Devuelve el código ascii del caracter 
@@ -36,18 +35,13 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor) {
-        char[] vector = valor.toCharArray();
-        Double numero = null;
-        for (int i = 0; i <= vector.length-1; i++) {
-           int valorAscii = vector[i];
-           if(valorAscii >= 48 && valorAscii <= 57){
-               numero = Double.parseDouble(valor); 
-           } else {
-               numero = null;
-           }
+        Double a;
+        try{
+        a = Double.parseDouble(valor);
+        } catch (NumberFormatException e){
+        return null;
         }
-
-        return numero; 
+        return a;
     }
 
 }
