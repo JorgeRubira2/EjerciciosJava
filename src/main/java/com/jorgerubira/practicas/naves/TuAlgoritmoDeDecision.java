@@ -15,17 +15,9 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) { // esto se repite 
-        //la base entre 950,1050 de latura
-        //velodicdad <200 para aparcar
-        //angulo entre -20 y 20 de angulo para aterrizar 
-        //segundo 6 altura  parar que caiga en el angulo de 20 y velocidad??
+        //la base entre 950,1050 de altura
+        //velodicdad <200 para aterrizar && angulo entre -20 y 20 de angulo para aterrizar 
 
-        //TODOS: aterrizar nave
-        //- 1º subir e inclinar nave
-        // - poner recta nave y mantener
-        // - frenar nave y mantener
-        // - bajar 
-        // 3 etapas ( iniciar mantener y aterrizar)
         n.setPropulsion(true);
         n.girarMando(20);
         if (n.getAltura() > 410) {

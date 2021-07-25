@@ -75,7 +75,6 @@ public class Ejercicio03Comparadores {
             if (valor1.get().intValue() == valor2.get().doubleValue()) {
                 return true;
             }
-
         }
         return false;
     }
