@@ -12,6 +12,8 @@ public class Ejercicio03Comparadores {
         if (i1 != null && i2 != null) {
             return i1.equals(i2);
         }
+        return false;
+    }
         //Debe devolver true si los dos enteros contienen el mismo valor.
         //Si no devuelve false
         //Si se envia null en cualquiera de ellos devuelve false
@@ -20,7 +22,7 @@ public class Ejercicio03Comparadores {
         if (i1 != null && i2 != null) {
             return i1.equals(i2.intValue());
         }
-
+        return false;
     }
 
     //Debe devolver true si el texto que se ha enviado en un número. 
@@ -58,9 +60,11 @@ public class Ejercicio03Comparadores {
     //Si los dos tienen null devuelve false.
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2) {
 
+        boolean sonIguales = (double)valor1.get()==valor2.get();
+        
         if (valor1.isEmpty() || valor2.isEmpty()) {
             return false;
-        } else if (valor1.get().intValue().equals(valor2.get().doubleValue())){    
+        } else if (sonIguales){    
             return true;
         } else {
             return false;

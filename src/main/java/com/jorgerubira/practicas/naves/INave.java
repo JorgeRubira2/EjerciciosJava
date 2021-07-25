@@ -40,7 +40,7 @@ public interface INave {
      */
     public void setPropulsion(boolean valor);
     
-//    public double getFuerzaViento();
+    public double getFuerzaViento();
     
     
 }

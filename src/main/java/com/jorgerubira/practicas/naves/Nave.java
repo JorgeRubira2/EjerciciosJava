@@ -4,7 +4,7 @@ package com.jorgerubira.practicas.naves;
 
 public class Nave implements INave{
 
-    private boolean viento=false;
+    private boolean viento=true;
     private double fuerzaViento=(Math.random()-0.5)/3;
     
     private double altura=0;
