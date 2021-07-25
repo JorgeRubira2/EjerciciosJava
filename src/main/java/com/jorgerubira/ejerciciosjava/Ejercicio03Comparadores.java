@@ -53,14 +53,11 @@ public class Ejercicio03Comparadores {
     //Si se envia null en cualquier de ellos devuelve false
     public boolean comprobarOptionalConInteger(Optional<Integer> valor1, Integer valor2) {
 
-        if (valor1.isPresent() && valor2 != null) {
+// isPresent
+        if (!valor1.isEmpty() && valor2 != null) {
 
-            if (valor1.get().equals(valor2)) {
-                return true;
+            return (valor1.get().equals(valor2));
 
-            } else {
-                return false;
-            }
         }
         return false;
 
