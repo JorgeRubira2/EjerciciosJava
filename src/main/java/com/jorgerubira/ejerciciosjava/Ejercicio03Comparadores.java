@@ -71,7 +71,12 @@ public class Ejercicio03Comparadores {
     //Si los dos tienen null devuelve false.
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2) {
 
-        throw new RuntimeException("Pendiente de hacer");
+       if(valor1.isPresent() && valor2.isPresent()){
+           if(valor1.get().intValue()== valor2.get().doubleValue()){
+               return true;
+           }
+           
+       }return false;
     }
 
 }
