@@ -21,7 +21,7 @@ public class Ejercicio05Strings {
 
     /**
      * Recibe una frase y devuelve la segunda palabra.
-     * Pista: Utilizar split para trocear la palabra.
+     * Pista: Utilizar split para trocear la frase.
      */
     public String segundaPalabra(String palabra1){
         throw new RuntimeException("Pendiente de hacer");
@@ -51,8 +51,32 @@ public class Ejercicio05Strings {
      * Ejemplo. Debe convertir "minerales_importados" a "MineralesImportados"
      * Pista. Primero trocear la frase con split y cada elemento obtener el primer caracter o el resto con substring
      */
-    public String convertir(String palabra1){
+    public String convertirCamelCase(String palabra1){
         throw new RuntimeException("Pendiente de hacer");
     }
     
+    /**
+     * Contar palabras. Toma un texto que puede tener comas y puntos y dice cuantas palabras hay.
+     * Ejemplo. "Hola.Este es un relato  con texto mas complicado, hasta el momento, que puedes encontrar." -> 15 palabras
+     * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
+     */
+    public int contarPalabras(String texto){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Cuenta cuantas líneas hay en el texto. Se considera una línea si tiene algún carácter. El salto de línea se realiza con el carácter \n o, en algunos textos, con \r\n.
+     */
+    public int contarLineas(String texto){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+    
+    /**
+     * Cuenta cuantas vocales hay en un texto (con tildes incluidas á).
+     */
+    public int contarVocales(String texto){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+    
+
 }
