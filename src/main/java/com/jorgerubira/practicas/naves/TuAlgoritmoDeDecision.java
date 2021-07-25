@@ -19,16 +19,20 @@ public class TuAlgoritmoDeDecision implements IDecision {
         
         n.setPropulsion(true);
         n.girarMando(45);
-        if (n.getAltura()>300){
+        
+//        if (n.getFuerzaViento()<0){
+//            
+//        }
+                        
+        if (n.getAltura()>235){
             n.setPropulsion(false);
             n.girarMando(-45);
         }
         
-        if (n.getMetrosRecorridos()>132){
-            n.setPropulsion(false);
-            n.girarMando(-45);
+        if (n.getAltura()<100){
+            n.setPropulsion(true);              
         }
-        
+                      
     }
     
 }
