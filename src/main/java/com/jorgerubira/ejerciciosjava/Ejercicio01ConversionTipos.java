@@ -29,8 +29,11 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor){
+        
+        valor++;
+        return valor;
        
-        throw new RuntimeException("Pendiente de hacer");
+      //  throw new RuntimeException("Pendiente de hacer");
     }
 
     //Devuelve el código ascii del caracter 
@@ -45,10 +48,11 @@ public class Ejercicio01ConversionTipos {
     public Double textoADouble(String valor){
         try{
             //Algoritmo 
+           return Double.parseDouble(valor);
         }catch(Exception e){
             return null;
         }
-        throw new RuntimeException("Pendiente de hacer");
+       
     }
 
 }
