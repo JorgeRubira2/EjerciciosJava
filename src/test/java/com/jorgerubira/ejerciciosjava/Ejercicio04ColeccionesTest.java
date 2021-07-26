@@ -36,7 +36,7 @@ public class Ejercicio04ColeccionesTest {
         instance.insertarElementoEnLista(-4, destino);
         instance.insertarElementoEnLista(0, destino);
         instance.insertarElementoEnLista(5, destino);
-        assertEquals(3, destino.size() );
+        assertEquals(3, destino.size());
         assertEquals(4L, destino.get(0) );
         assertEquals(0L, destino.get(1) );
         assertEquals(5L, destino.get(2) );

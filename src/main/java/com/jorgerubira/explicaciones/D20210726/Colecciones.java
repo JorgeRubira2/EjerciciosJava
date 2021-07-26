@@ -45,7 +45,6 @@ public class Colecciones {
         
         lista4.push("Apilar");
         lista4.pop();
-
         
         
 
