@@ -255,7 +255,7 @@ public class Ejercicio04ColeccionesTest {
     @Test
     public void testAnnadirElementosMultiples() {
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        List<Integer> destino=new ArrayList();
+        List<Integer> destino=new ArrayList<>();
         destino.add(1);
         instance.annadirElementosMultiples(destino, 2,3,4);
         assertEquals(4, destino.size());
