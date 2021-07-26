@@ -174,7 +174,7 @@ public class Ejercicio04Colecciones {
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
         Set<String> cjto=  new HashSet<>();
         cjto.addAll(frutas);
-        cjto.addAll(colores);
+        cjto.retainAll(colores);
         return cjto;
     }        
 
@@ -200,7 +200,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-        Map<String,Integer> mapa = new HashMap<>();
+        HashMap<String,Integer> mapa = new HashMap<>();
         for (Persona p: personas){
             if (p.getCesta().isPresent()){
                 mapa.put(p.getNombre(),p.getCesta().get().getTotalArticulos());
@@ -215,9 +215,9 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public void annadirElementosMultiples(List<Integer> destino, int ... valores){
-        
-        
-        
+        for (int i = 0; i<valores.length; i++){
+            destino.add(valores[i]);
+        }
     }
 
 }
