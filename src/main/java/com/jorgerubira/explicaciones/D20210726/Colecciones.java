@@ -42,10 +42,10 @@ public class Colecciones {
 
         List<String> lista7=new ArrayList<>(List.of("Ana", "Juan", "Pepe"));
         
-        
+       
         lista4.push("Apilar");
         lista4.pop();
-
+        
         
         
 
