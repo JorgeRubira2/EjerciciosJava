@@ -31,7 +31,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for (Double ori: origen){
+            if (ori >= 0){
+                destino.add(ori);
+            }
+        }
     }
     
     /**
