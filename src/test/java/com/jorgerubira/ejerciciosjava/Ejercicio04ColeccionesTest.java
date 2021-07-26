@@ -5,8 +5,8 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.pojo.Compra;
-import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,8 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
+import com.jorgerubira.ejerciciosjava.pojo.Persona;
 
 /**
  *
@@ -51,7 +54,7 @@ public class Ejercicio04ColeccionesTest {
         instance.insertarElementoEnTabla("Juan", 6, destino);
         assertEquals(2, destino.size() );
         assertEquals(4, destino.get("Juan") );
-        assertEquals(6, destino.get("Pedro") );
+        assertEquals(2, destino.get("Pedro") );
     }
 
     @Test
