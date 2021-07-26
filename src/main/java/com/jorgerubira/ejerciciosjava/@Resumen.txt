@@ -1,4 +1,4 @@
-- Tipo primitivos, Envoltorios. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
+- Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
 - Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
 - Modificadores. (Public, Protected (derivadas y paquete), (Nada) (paquete), Private)
 - Herencia. (Reutilización codigo, Base y derivada, las derivadas tienen todo lo de la clase base).
@@ -17,4 +17,6 @@
 - Interface. Obligar a tener unos metodos. Una clase puede implementar muchas interface. API
              default-> No es importante. Para casos muy concretos.
 
-- Constantes. Hoy
+- Nomenclatura. CamelCase: Clase,Interface->PrimeraMayuscula.  metodos, atributos y variables->primeraMinuscula.
+- Enumeraciones (No es tan importante). Constantes (public final static int CONSTANTE) -> enum 
+- Switch. (No es tan importante). if (a==4) {  ... } else if ( a > 3 && a< 10) { ... }.
