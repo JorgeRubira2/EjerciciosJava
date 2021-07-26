@@ -78,6 +78,8 @@ class Persona{
 
 public class EjemploConstantes {
     
+    
+    
     public static void main(String[] args) {
         Persona p1=new Persona(Persona.Color.MARRON);
         Persona p2=new Persona(Persona.Color.VERDE);
@@ -101,5 +103,4 @@ public class EjemploConstantes {
         //Gimnasio Pulgar
         //Gimnasio Bici carita
     }
-    
 }

@@ -51,6 +51,11 @@ class Repositorio{
     Ciudad variable;
     
     public Optional<Ciudad> buscarCiudadEspanya(){
+        Optional<Ciudad> elemento=Optional.empty();
+        if(elemento.isEmpty()){ //No utilizar elemento.get()==null
+            
+        }
+        
         //Optional.ofNullable(variable);
         
         return Optional.of(new Ciudad("Guadalajara"));   //Conecta contra la base de datos
