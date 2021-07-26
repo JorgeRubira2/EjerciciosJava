@@ -102,5 +102,9 @@ public class EjemploConstantes {
         } */
         //Gimnasio Pulgar
         //Gimnasio Bici carita
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     }
 }

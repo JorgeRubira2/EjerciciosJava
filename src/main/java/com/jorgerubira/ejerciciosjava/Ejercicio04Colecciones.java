@@ -14,6 +14,7 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
+
         List<Long> lista = new ArrayList<>();
         
         if(valor!=0){
@@ -21,6 +22,7 @@ public class Ejercicio04Colecciones {
         }else{
             System.out.println("No se puede añadir el dato");
         }
+
     }
 
     /**
