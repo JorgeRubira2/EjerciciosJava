@@ -14,7 +14,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if(valor>=0){
+            destino.add(valor);
+        }
     }
 
     /**
@@ -22,7 +24,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if(destino.containsKey(clave)==false){
+            destino.put(clave, valor);
+        }
     }
 
 
@@ -31,7 +35,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for(double valor:origen){
+            if(valor>=0){
+                destino.add(valor);
+            }
+        }
     }
     
     /**
@@ -56,24 +64,42 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador=0;
+        for(Object o:tabla.values()){
+            if(o instanceof Integer){
+                contador++;
+            }
+        }
+        return contador;
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        for(int i=listaPersonas.size()-1;i>0; i--){
+            if((listaPersonas.get(i)).getCiudad().equals("Huesca")){
+                listaPersonas.remove(i);
+            }
+        }
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> clavesABorrar = new ArrayList<>();
+        for(String clave:listaPersonas.keySet()){
+            if((listaPersonas.get(clave).getCiudad()).equals("Huesca")){
+                clavesABorrar.add(clave);
+            }
+        }
+        for(int i=0; i<clavesABorrar.size(); i++){
+            listaPersonas.remove(clavesABorrar.get(i));
+        }
     }
     
     /**
