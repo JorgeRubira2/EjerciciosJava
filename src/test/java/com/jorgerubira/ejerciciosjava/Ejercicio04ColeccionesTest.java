@@ -51,7 +51,7 @@ public class Ejercicio04ColeccionesTest {
         instance.insertarElementoEnTabla("Juan", 6, destino);
         assertEquals(2, destino.size() );
         assertEquals(4, destino.get("Juan") );
-        assertEquals(6, destino.get("Pedro") );
+        assertEquals(2, destino.get("Pedro") ); //Pedro es un 2
     }
 
     @Test
