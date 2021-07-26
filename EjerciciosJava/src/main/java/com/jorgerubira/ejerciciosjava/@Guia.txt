@@ -1,0 +1,18 @@
+---------------------------------------------------------------------
+--- Conversiones tipos primitivos, Envoltorio y Optional<Envoltorio> 
+---------------------------------------------------------------------
+
+Resumen de tranformaciones.
+de String a tipo primitivo:  Utilizar Envoltorio.parseTipo. por ejemplo de int -> Integer.parseInt(String);
+
+de Envoltorio a tipo primitivo si son tipos iguales:  primitivo = envoltorio;
+de Envoltorio a tipo primitivo si son tipos diferentes:  primitivo = envoltorio.tipoValue(); //Utilizar intValue, doubleValue, etc
+
+de tipo primitivo a Envoltorio si son tipos iguales:  envoltorio = primitivo;
+de tipo primitivo a Envoltorio si son tipos diferentes:  envoltorio = (tipoEnvotorioEnPrimitivo)primitivo;
+
+de Optional<Envoltorio> a tipo primitivo si son tipos iguales:  primitivo = opcional.get(); //Recomendable antes verificar si está vacio con .isEmpty()
+de Optional<Envoltorio> a tipo primitivo si son tipos distintos:  primitivo = opcional.get().tipoValue();    //Recomendable antes verificar si está vacio con .isEmpty()
+
+de tipo primitivo a Optional<Envoltorio>:  Optional.of(valor); o Optional.of((tipoPrimitivoDelEnvoltorio)valor);
+de tipo primitivo a Optional<Envoltorio> poniendo null:  Optional.ofNullable(null);
