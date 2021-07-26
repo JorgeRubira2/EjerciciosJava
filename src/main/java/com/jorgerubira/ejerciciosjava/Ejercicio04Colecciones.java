@@ -4,6 +4,7 @@ import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -95,11 +96,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
+        List<Persona> oscenses = new LinkedList<>();
         for (Persona p : listaPersonas){
-            if (p.getCiudad().equals("Huesca")){
-                listaPersonas.remove(p);
+            if (p.getCiudad().equals("Huesca") == false){
+                oscenses.add(p);
             }
         }
+        listaPersonas.retainAll(oscenses);
             
     }
     
@@ -109,11 +112,13 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
+        Map<String,Persona> oscenses = new HashMap<>();
         for (String clave : listaPersonas.keySet()){
-            if (listaPersonas.get(clave).getCiudad().equals("Huesca")){
-                listaPersonas.remove(clave);
+            if (listaPersonas.get(clave).getCiudad().equals("Huesca") == false){
+                oscenses.put(clave,listaPersonas.get(clave));
             }
         }
+        listaPersonas = oscenses;
     }
     
     /**
@@ -123,7 +128,7 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        if (personaNueva.getCesta().get().getTotalArticulos() <=5){
+        if (personaNueva.getCesta().isEmpty() || personaNueva.getCesta().get().getTotalArticulos() <=5){
             colaPersonas.add(personaNueva);
         }
     }
@@ -202,8 +207,15 @@ public class Ejercicio04Colecciones {
     public Map<String, Integer> totalProductos(List<Persona> personas){
         HashMap<String,Integer> mapa = new HashMap<>();
         for (Persona p: personas){
+            System.out.println(p.getNombre() + " ");
+            System.out.println(p.getNombre() + " cesta " +p.getCesta().isEmpty());
             if (p.getCesta().isPresent()){
-                mapa.put(p.getNombre(),p.getCesta().get().getTotalArticulos());
+                System.out.println(p.getNombre() + " " + p.getCesta().get().getTotalArticulos() );
+                    int aux = 0;
+                    if (mapa.containsKey(p.getNombre()) ){
+                        aux = mapa.get(p.getNombre());
+                    }
+                mapa.put(p.getNombre(),p.getCesta().get().getTotalArticulos() + aux);
             }
         }
         return mapa;
