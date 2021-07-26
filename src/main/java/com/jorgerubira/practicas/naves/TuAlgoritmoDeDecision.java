@@ -10,16 +10,35 @@ package com.jorgerubira.practicas.naves;
  * @author PC
  */
 public class TuAlgoritmoDeDecision implements IDecision {
-
+	public double fuerzaViento=(Math.random()-0.5)/3;
     @Override
     public void decision(INave n, int segundos) {
        n.setPropulsion(true);
        n.girarMando(45);
-       if(n.getAltura()>90) {
-    	   n.setPropulsion(false);
-    	   n.girarMando(-45);
-    	   n.getAltura();
+       
+       if (fuerzaViento <0) {
+    	   if(n.getAltura()>200) {
+        	   n.setPropulsion(false);
+        	   n.girarMando(-45);
+        	   n.getAltura();
+           }
+    	   
+       }else if(fuerzaViento==0) {
+    	   if(n.getAltura()>90) {
+        	   n.setPropulsion(false);
+        	   n.girarMando(-45);
+        	   n.getAltura();
+           }
+    	   
+       }else if(fuerzaViento >0){
+    	   if(n.getAltura()>100) {
+        	   n.setPropulsion(false);
+        	   n.girarMando(-45);
+        	   n.getAltura();
+           }
        }
+       }
+       
     }
     
-}
+
