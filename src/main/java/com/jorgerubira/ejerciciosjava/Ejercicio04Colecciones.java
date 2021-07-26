@@ -14,7 +14,13 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Long> lista = new ArrayList<>();
+        
+        if(valor!=0){
+            lista.add(2l);
+        }else{
+            System.out.println("No se puede añadir el dato");
+        }
     }
 
     /**

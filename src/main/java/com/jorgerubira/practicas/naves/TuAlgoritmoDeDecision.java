@@ -9,23 +9,30 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-       n.setPropulsion(true);
-       boolean exit= false;
-       LocalTime currentTime= LocalTime.now();
+ 
+    if(segundos>2){
+//            n.setPropulsion(false);
+//            n.girarMando(-45);
+//        }
+//        if(segundos>5){
+//            n.girarMando(0);
+//            n.setPropulsion(true);
+//        }
+//        if(segundos>6){
+//            n.setPropulsion(false);
+//        }
 
-            while (!exit){
-           try {
-               Thread.sleep(100L);
-           } catch (InterruptedException ex) {
-               java.util.logging.Logger.getLogger(TuAlgoritmoDeDecision.class.getName()).log(Level.SEVERE, null, ex);
-           }
-                LocalTime local = LocalTime.now();
-           try {
-               Thread.sleep(10000L);
-           } catch (InterruptedException ex) {
-               java.util.logging.Logger.getLogger(TuAlgoritmoDeDecision.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            }
-       
+        if(n.getAltura()<100 || n.getMetrosRecorridos()<200){
+            n.setPropulsion(true);
+        } else {
+            n.setPropulsion(false);
+        }
+        if(segundos<3){
+            n.girarMando(45);
+        }else {
+            n.girarMando(-45);
+        }
     }
+        
     }
+}
