@@ -52,7 +52,7 @@ class Repositorio{
     
     public Optional<Ciudad> buscarCiudadEspanya(){
         Optional<Ciudad> elemento=Optional.empty();
-        if(elemento.isEmpty()){ //No utilizar elemento.get()==null
+        if(!elemento.isPresent()){ //No utilizar elemento.get()==null
             
         }
         
