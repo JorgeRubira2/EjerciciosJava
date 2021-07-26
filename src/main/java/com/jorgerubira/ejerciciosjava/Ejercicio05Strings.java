@@ -16,7 +16,7 @@ public class Ejercicio05Strings {
      * 
      */
     public String convertirAMinusculas(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        return palabra1.toLowerCase();
     }
 
     /**
@@ -24,7 +24,8 @@ public class Ejercicio05Strings {
      * Pista: Utilizar split para trocear la frase.
      */
     public String segundaPalabra(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] res = palabra1.split(" ");
+        return res[1];
     }    
 
     /**
@@ -33,8 +34,9 @@ public class Ejercicio05Strings {
      * Ejemplo: Si tenemos "Hola Pepe" y buscamos "pepe" debe devolver 5
      * Tener en cuenta que las posiciones empiezan desde 0.
      */
-    public String buscar(String frase, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+    public int buscar(String frase, String palabra){
+        Integer res = frase.toLowerCase().indexOf(palabra);
+        return res;
     }    
 
     /**
@@ -43,7 +45,12 @@ public class Ejercicio05Strings {
      * Pista. Para quitar las tildes utilizar replaceAll
      */
     public boolean equalsInsensibleMayusculasYTildes(String palabra1, String palabra2){
-        throw new RuntimeException("Pendiente de hacer");
+        String sup = palabra1.replaceAll("\\p{InCombiningDiacriticalMarks}", palabra1);
+        String sup2 = palabra2.replaceAll("\\p{InCombiningDiacriticalMarks}", palabra2);
+        if (sup.equalsIgnoreCase(sup2)){
+            return true;
+        }
+        return false;
     }
     
     /**
@@ -61,7 +68,13 @@ public class Ejercicio05Strings {
      * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        int cont = 0;
+        for (int i=0; i<texto.length(); i++){
+            if (texto.indexOf(" ")!= -1 || texto.indexOf(",")!= -1 || texto.indexOf(".")!= -1){
+                cont++;
+            }
+        }
+        return cont;
     }
 
     /**

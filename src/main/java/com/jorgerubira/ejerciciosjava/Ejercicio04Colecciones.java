@@ -14,7 +14,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if (valor>=0){
+            destino.add(valor);
+        }
     }
 
     /**
@@ -22,7 +24,7 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
-        throw new RuntimeException("Pendiente de hacer");
+            destino.putIfAbsent(clave, valor); //test mal?
     }
 
 
@@ -31,7 +33,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for (Double aux:origen){
+            if (aux>=0){
+                destino.add(aux);
+            }
+        }
     }
     
     /**
@@ -39,7 +45,15 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
+        int c = 0;
+        for (Integer pri:lista){
+            for (Integer sec:enLista){
+                if (pri == sec){
+                    c++;
+                }
+            }
+        }
+        return c;
     }
     
     /**
@@ -48,7 +62,13 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
+        int c = 0;
+        for (Integer pri:enLista){
+            if (lista.contains(pri)){
+                c++;
+            }
+        }
+        return c;
     }    
     
     /**
@@ -56,7 +76,7 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        throw new RuntimeException("Pendiente de hacer");
+        
     }
     
     /**
