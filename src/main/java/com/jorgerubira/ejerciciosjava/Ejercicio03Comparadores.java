@@ -8,7 +8,12 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
     public boolean compararEnteros(Integer i1, Integer i2){
-        throw new RuntimeException("Pendiente de hacer");
+        if(i1!=null && i2!=null){
+            return i1.equals(i2);
+        }
+        else{
+            return false;
+        }
     }
     
     //Debe devolver true si los dos enteros contienen el mismo valor.
