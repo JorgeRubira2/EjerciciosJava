@@ -13,7 +13,29 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+//        if(segundos>2){
+//            n.setPropulsion(false);
+//            n.girarMando(-45);
+//        }
+//        if(segundos>5){
+//            n.girarMando(0);
+//            n.setPropulsion(true);
+//        }
+//        if(segundos>6){
+//            n.setPropulsion(false);
+//        }
+
+        if(n.getAltura()<100 || n.getMetrosRecorridos()<200){
+            n.setPropulsion(true);
+        } else {
+            n.setPropulsion(false);
+        }
+        if(segundos<3){
+            n.girarMando(45);
+        }else {
+            n.girarMando(-45);
+        }
+        
     }
-    
+
 }
