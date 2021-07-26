@@ -59,13 +59,14 @@ public class Ejercicio03Comparadores {
     //Si los dos tienen null devuelve false.
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2){
         if(valor1.isPresent() && valor2.isPresent()){
-            Integer va1=valor1.get();
+            int va1=valor1.get();
             double va2=valor2.get();
-            return va1.equals(va2);
+            return va1==va2; 
             
             
             
         }
+        return false;
     }    
 
 }
