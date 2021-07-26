@@ -21,11 +21,11 @@ public class TuAlgoritmoDeDecision implements IDecision {
         n.girarMando(45);
         double altura = 235;
         
-//        if (n.getFuerzaViento()<0){
-//          altura = altura + (n.getFuerzaViento()*5.5);
-//        }else{
-//          altura = altura - (n.getFuerzaViento()*2.0);
-//        }
+        if (n.getFuerzaViento()<0){
+          altura = altura + (n.getFuerzaViento()*5.5);
+        }else{
+          altura = altura - (n.getFuerzaViento()*2.0);
+        }
                         
         if (n.getAltura()>altura){
             n.setPropulsion(false);
