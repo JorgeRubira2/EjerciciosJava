@@ -11,9 +11,26 @@ package com.jorgerubira.practicas.naves;
  */
 public class TuAlgoritmoDeDecision implements IDecision {
 
+    //velocidad <200
+    //angulo -20,20
+    
+    
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+       n.setPropulsion(true);
+       n.girarMando(45);
+       if(n.getAltura() > 500){
+           n.setPropulsion(false);
+           n.girarMando(-45);
+       }
+       if(segundos > 5){
+     n.setPropulsion(false);
+    
+       } if(n.getVelocidad() >130){
+     n.setPropulsion(false);
+    
+       }
+       
     }
     
 }
