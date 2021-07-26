@@ -122,6 +122,7 @@ public class Ejercicio04ColeccionesTest {
         personas.put("Gutierrez", new Persona("Gutierrez", "Teruel"));
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         instance.borrarPersonasHuescaDeMapa(personas);
+        //System.out.println("control "+ personas.size() + personas.toString() );
         assertEquals(2, personas.size() );
         assertEquals("Juan", personas.get("Juan").getNombre() );
         assertEquals("Gutierrez", personas.get("Gutierrez").getNombre() );
@@ -142,7 +143,7 @@ public class Ejercicio04ColeccionesTest {
         
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         instance.entrarPersonaALaCola(colaPersonas, p1);    
-        assertEquals(1, colaPersonas.size());
+        assertEquals(0, colaPersonas.size());
         instance.entrarPersonaALaCola(colaPersonas, p2); //No debe insertar porque tiene mas de 5 productos
         assertEquals(1, colaPersonas.size());
         colaPersonas.poll();    //Sacamos p1

@@ -114,11 +114,13 @@ public class Ejercicio04Colecciones {
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
         Map<String,Persona> oscenses = new HashMap<>();
         for (String clave : listaPersonas.keySet()){
-            if (listaPersonas.get(clave).getCiudad().equals("Huesca") == false){
+            if (listaPersonas.get(clave).getCiudad().equals("Huesca")){
                 oscenses.put(clave,listaPersonas.get(clave));
             }
         }
-        listaPersonas = oscenses;
+        for (String clave: oscenses.keySet()){
+            listaPersonas.remove(clave);
+        }
     }
     
     /**
@@ -128,9 +130,11 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        if (personaNueva.getCesta().isEmpty() || personaNueva.getCesta().get().getTotalArticulos() <=5){
-            colaPersonas.add(personaNueva);
+        if (personaNueva.getCesta().isEmpty() || personaNueva.getCesta().get().getTotalArticulos() < 5){
+            System.out.println("entra " + personaNueva.toString());
+            colaPersonas.offer(personaNueva);
         }
+        System.out.println("colaPersonas "+ colaPersonas.toString());
     }
 
     /**

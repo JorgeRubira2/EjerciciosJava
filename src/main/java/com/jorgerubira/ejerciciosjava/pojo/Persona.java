@@ -17,6 +17,7 @@ public class Persona {
     public Persona(String nombre, String ciudad){
         this.nombre = nombre;
         this.ciudad = ciudad;
+        this.cesta = Optional.empty();
     }
     
     public Persona(String nombre, String ciudad, int edad, Date fechaNacimiento, int altura, int peso) {
@@ -26,6 +27,7 @@ public class Persona {
         this.fechaNacimiento = fechaNacimiento;
         this.altura = altura;
         this.peso = peso;
+        this.cesta = Optional.empty();
     }
 
     public String getNombre() {
