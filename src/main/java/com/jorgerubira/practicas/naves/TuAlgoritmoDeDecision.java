@@ -13,7 +13,7 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+        n.setPropulsion(true);
     }
     
 }
