@@ -33,7 +33,7 @@ public class Ejercicio05Strings {
      * Ejemplo: Si tenemos "Hola Pepe" y buscamos "pepe" debe devolver 5
      * Tener en cuenta que las posiciones empiezan desde 0.
      */
-    public String buscar(String frase, String palabra){
+    public int buscar(String frase, String palabra){
         throw new RuntimeException("Pendiente de hacer");
     }    
 
