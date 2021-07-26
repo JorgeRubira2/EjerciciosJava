@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -169,7 +170,12 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico){
-        throw new RuntimeException("Pendiente de hacer");
+        if (minerales.contains(objeto)){
+            return "Mineral";
+        }else if (organico.contains(objeto)){
+            return "Organico";
+        }
+        return "";
     }    
 
     /**
@@ -177,8 +183,15 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      * Pista: Para la interseccion utilizar retainAll. 
      */    
-    public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
-        throw new RuntimeException("Pendiente de hacer");
+    public Set<String> coincidencias(Set<String> frutas, Set<String> colores){ //Por hacer
+        Set<String> res = new HashSet<>();
+        for (String fru:frutas){
+            if (colores.contains(fru)){
+                res.add(fru);
+            }
+        }
+        
+        return res;
     }        
 
     /**
@@ -187,7 +200,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> res = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : notas.entrySet()) {
+            if (entry.getValue()>=5){
+                res.add(entry.getKey());
+            }  
+        }
+        return res;
     } 
 
     
@@ -196,8 +215,19 @@ public class Ejercicio04Colecciones {
      * Nota la persona puede aparecer varias veces en la lista, en ese caso se irá sumando 
      * No hace falta verificar si valen nulo.
      */    
-    public Map<String, Integer> totalProductos(List<Persona> personas){
-        throw new RuntimeException("Pendiente de hacer");
+    public Map<String, Integer> totalProductos(List<Persona> personas){ //Por hacer, peta al pasar persona sin cesta :/
+        Map<String, Integer> res = new HashMap<>();
+        for (Persona p:personas){           
+            if (res.containsKey(p.getNombre())){
+                if (p.getCesta().isPresent()){
+                    int aux = res.get(p.getNombre());
+                    res.replace(p.getNombre(), aux + p.getCesta().get().getTotalArticulos());
+                }
+            }else{
+                res.put(p.getNombre(), p.getCesta().get().getTotalArticulos()); 
+            }
+        }
+        return res;
     }     
     
     
@@ -206,7 +236,9 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public void annadirElementosMultiples(List<Integer> destino, int ... valores){
-        throw new RuntimeException("Pendiente de hacer");
+        for (int aux:valores){
+            destino.add(aux);
+        }
     }
 
 }
