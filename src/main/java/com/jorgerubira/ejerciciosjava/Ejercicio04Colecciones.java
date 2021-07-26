@@ -215,7 +215,7 @@ public class Ejercicio04Colecciones {
             if (res.containsKey(p.getNombre())){
                 if (p.getCesta().isPresent()){
                     int aux = res.get(p.getNombre());
-                    res.replace(p.getNombre(), aux + p.getCesta().get().getTotalArticulos());
+                    res.put(p.getNombre(), aux + p.getCesta().get().getTotalArticulos());
                 }
             }else{
                 res.put(p.getNombre(), p.getCesta().get().getTotalArticulos()); 
