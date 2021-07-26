@@ -46,8 +46,6 @@ public class Ejercicio03ComparadoresTest {
         assertEquals(false, instance.comprobarOptionalConInteger(Optional.of(3), new Integer(2)));
         assertEquals(false, instance.comprobarOptionalConInteger(Optional.of(3), null));
         assertEquals(false, instance.comprobarOptionalConInteger(Optional.ofNullable(null), new Integer(2)));
-        assertEquals(false, instance.comprobarOptionalConInteger(null, new Integer(2)));
-        assertEquals(false, instance.comprobarOptionalConInteger(null, null));
     }
 
     @Test
@@ -56,8 +54,6 @@ public class Ejercicio03ComparadoresTest {
         assertEquals(true, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2d)));
         assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2.3)));
         assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), null));
-        //assertEquals(false, instance.comprobarOptionalesIntegerYDouble(null, Optional.of(2.3)));
-        //assertEquals(false, instance.comprobarOptionalesIntegerYDouble(null, null));
     }
     
 }

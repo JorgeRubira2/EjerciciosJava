@@ -27,23 +27,26 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor){
-        
-        return caracter;
+        int ascii = (int) valor;
+        ascii++;
+        return (char) ascii;
     }
 
     //Devuelve el código ascii del caracter 
     public int obtenerAscii(char valor){
-        throw new RuntimeException("Pendiente de hacer");
+        int ascii = (int) valor;
+        return ascii;
     }
 
     //Convierte de String a Double. Devuelve null si no se puede convertir
     public Double textoADouble(String valor){
         try{
-            //Algoritmo 
-        }catch(Exception e){
+            double texto = Double.parseDouble(valor);
+            return texto;
+        }catch(NumberFormatException e){
             return null;
         }
-        throw new RuntimeException("Pendiente de hacer");
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
 }
