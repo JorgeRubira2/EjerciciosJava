@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -43,12 +44,12 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-    	for (int n = 0; n < origen.size(); n++) {
-    		origen.get(n);
-    		
-			
-		}
-    	origen.addAll(origen);
+    	for (int i = 0; i < origen.size(); i++) {
+            if (origen.get(i) >= 0) {
+                destino.add(origen.get(i));
+
+            }
+        }
     }
     
     /**
@@ -56,7 +57,15 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-    	throw new RuntimeException("Pendiente de hacer");
+    	int contador=0;
+
+        for (int i = 0; i <lista.size(); i++) {
+ 
+            if (enLista.contains(lista.get(i))) {
+                contador++;
+            }
+        }
+        return contador;
     }
     
     /**
@@ -65,7 +74,13 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-    	throw new RuntimeException("Pendiente de hacer");
+    	int contador = 0;
+        for (Integer pri:enLista){
+            if (lista.contains(pri)){
+                contador++;
+            }
+        }
+        return contador;
     }    
     
     /**
@@ -73,7 +88,13 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        throw new RuntimeException("Pendiente de hacer");
+    	int contador = 0;
+        for (Map.Entry<String, Object> entry : tabla.entrySet()) {
+            if (entry.getValue() instanceof Integer){
+                contador++;
+            } 
+        }
+        return contador;
     }
     
     /**
@@ -81,7 +102,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+    	for (int i=listaPersonas.size()-1;i>=0;i--){
+            if (listaPersonas.get(i).getCiudad()=="Huesca"){
+               listaPersonas.remove(i);
+            }
+        }
     }
     
     /**
@@ -90,7 +115,15 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+    	 Map<String,Persona> aux = new HashMap();
+         for (Map.Entry<String, Persona> entry : listaPersonas.entrySet()) {
+             if (entry.getValue().getCiudad().equals("Huesca")){
+                aux.put(entry.getKey(), entry.getValue());
+             }
+         }
+         for (String s:aux.keySet()){
+             listaPersonas.remove(s);
+         }
     }
     
     /**
