@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -14,7 +15,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if((int)valor >= 0){
+            destino.add(valor);
+        }
     }
 
     /**
@@ -22,7 +25,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
-        throw new RuntimeException("Pendiente de hacer");
+       if(!destino.containsKey(clave)){
+           destino.put(clave, valor);
+       }
     }
 
 
@@ -31,7 +36,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for(Double num : origen){
+            if( num >= 0){
+                destino.add(num);
+            }
+        }
     }
     
     /**
@@ -39,7 +48,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador = 0;
+        for(int num : lista){
+            if(enLista.contains(num)){
+                contador++;
+            }
+        }
+        return contador;
     }
     
     /**
@@ -48,7 +63,14 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador = 0;
+        for(int num : lista){
+            if(enLista.contains(num)){
+                enLista.remove(num);
+                contador++;
+            }
+        }
+        return contador;
     }    
     
     /**
@@ -56,15 +78,25 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador = 0;
+        for(Object i : tabla.values()){
+            if(i instanceof Integer){
+                contador++;
+            }
+        }
+        return contador;
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        for(int i = listaPersonas.size(); i >= 0; i--){
+            if(listaPersonas.get(i).equals("Huesca")){
+                listaPersonas.remove(i);
+            }
+        }
     }
     
     /**
@@ -73,7 +105,17 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        Set<String> personas = new HashSet<>();
+        
+        for (String s : listaPersonas.keySet()) {
+            if(listaPersonas.get(s).getCiudad().equals("Huesca")){
+                personas.add(s);
+            }
+        }
+        
+        for (String p : personas) {
+            listaPersonas.remove(p);
+        }
     }
     
     /**
@@ -83,7 +125,7 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        throw new RuntimeException("Pendiente de hacer");
+        
     }
 
     /**
