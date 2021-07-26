@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -100,7 +101,16 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-       throw new RuntimeException("Pendiente de hacer");
+        ArrayList<String> aux=new ArrayList<>();
+        for (String a:listaPersonas.keySet()){
+            if(listaPersonas.get(a).getCiudad().equals("Huesca")){
+                aux.add(a);
+            }
+        }
+        for(String a:aux){
+            listaPersonas.remove(a);
+        }
+       
     }
     
     /**
@@ -110,7 +120,9 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        throw new RuntimeException("Pendiente de hacer");
+        //No entiendo bien que es lo que me pide
+         throw new RuntimeException("Pendiente de hacer");
+
     }
 
     /**
@@ -119,7 +131,12 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Integer> resultado=new ArrayList<>();
+        for(int a:valores){
+            resultado.add(Integer.valueOf(a));
+        }
+        return resultado;
+        //Arrays.asList no funciona con primitivos. 
     }
     
     /**
@@ -127,7 +144,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+        ArrayList<Integer> resultado=new ArrayList<>();
+        for(int a:valores){
+            resultado.add(Integer.valueOf(a));
+        }
+        return resultado;
     }
 
     /**
@@ -136,7 +157,14 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico){
-        throw new RuntimeException("Pendiente de hacer");
+        if(minerales.contains(objeto)){
+            return "Mineral";
+        }
+        else if(organico.contains(objeto)){
+            return "Organico";
+        }
+        else
+            return "";
     }    
 
     /**
@@ -145,7 +173,8 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
-        throw new RuntimeException("Pendiente de hacer");
+      frutas.retainAll(colores);
+        return frutas;
     }        
 
     /**
@@ -154,7 +183,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> aprobados=new ArrayList<>();
+        for(String a:notas.keySet()){
+            if(notas.get(a)>=5){
+                aprobados.add(a);
+            }
+        }
+        return aprobados;
     } 
 
     
@@ -164,14 +199,22 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-       /* Map<String, Integer> resultado=new HashMap<>();
+      /* Map<String, Integer> resultado=new HashMap<>();
         Integer a=0;
         for(Persona p:personas){
+            if(p.getCesta().isPresent() || p.getCesta().get()!=null){
             a=p.getCesta().get().getTotalArticulos();
-            resultado.put(p.getNombre(), a);
+            if(resultado.containsKey(p.getNombre())){
+                a+=resultado.get(p.getNombre());
+                resultado.put(p.getNombre(), a);
+            }
+            else
+                resultado.put(p.getNombre(), a);
+            }
         }
         return resultado;*/
-        throw new RuntimeException("Pendiente de hacer");
+      throw new RuntimeException("Pendiente de hacer");
+        
     }     
     
     
