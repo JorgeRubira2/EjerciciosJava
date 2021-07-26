@@ -102,5 +102,7 @@ public class EjemploOptional {
         //Son iguales Pulgar
         //Son diferentes Cara
         //Excepction Fiesta
+        
+     
     }
 }
