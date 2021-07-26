@@ -131,14 +131,20 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        if (personaNueva.getCesta().isPresent()){
-            Compra com = personaNueva.getCesta().get();
-
-            if (com.getTotalArticulos()>5){
+        //if (personaNueva.getCesta()!= null && personaNueva.getCesta().isPresent()){
+            if (!colaPersonas.isEmpty()){
+                if (colaPersonas.peek().getCesta()!=null){
+                    Compra com = colaPersonas.peek().getCesta().get();
+                    if (com.getTotalArticulos()<5){
+                        colaPersonas.add(personaNueva);
+                    }
+                }else{
+                    colaPersonas.add(personaNueva);
+                }
+            }else{
                 colaPersonas.add(personaNueva);
             }
-
-        }
+        //}
     }
 
     /**
@@ -209,19 +215,24 @@ public class Ejercicio04Colecciones {
      * Nota la persona puede aparecer varias veces en la lista, en ese caso se irá sumando 
      * No hace falta verificar si valen nulo.
      */    
-    public Map<String, Integer> totalProductos(List<Persona> personas){ //Por hacer, peta al pasar persona sin cesta :/
+    public Map<String, Integer> totalProductos(List<Persona> personas){ 
         Map<String, Integer> res = new HashMap<>();
         for (Persona p:personas){           
             if (res.containsKey(p.getNombre())){
-                if (p.getCesta().isPresent()){
+                if (p.getCesta() != null && p.getCesta().isPresent()){
                     int aux = res.get(p.getNombre());
-                    res.put(p.getNombre(), aux + p.getCesta().get().getTotalArticulos());
+                    res.replace(p.getNombre(), aux + p.getCesta().get().getTotalArticulos());
                 }
             }else{
-                res.put(p.getNombre(), p.getCesta().get().getTotalArticulos()); 
+                if (p.getCesta() != null && p.getCesta().isPresent()){
+                    res.put(p.getNombre(), p.getCesta().get().getTotalArticulos()); 
+                }/*else {
+                    res.put(p.getNombre(),0); //Persona sin productos, test mal?
+                }*/
             }
         }
         return res;
+        
     }     
     
     
