@@ -21,3 +21,10 @@ de Optional<Envoltorio> a tipo primitivo si son tipos distintos:  primitivo = op
 
 de tipo primitivo a Optional<Envoltorio>:  Optional.of(valor); o Optional.of((tipoPrimitivoDelEnvoltorio)valor);
 de tipo primitivo a Optional<Envoltorio> poniendo null:  Optional.ofNullable(null);
+
+-------------------------------------------------------------------------------------
+--- Conversiones vectores primitivos, colleciones mutables y colleciones inmutables
+-------------------------------------------------------------------------------------
+Creación.
+int[] arrayPrimitivo={2,3,4,2};
+int[] arrayPrimitivo=new int[]{2,3,4,2};
