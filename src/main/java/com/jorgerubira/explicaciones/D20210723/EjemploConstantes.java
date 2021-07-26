@@ -23,7 +23,7 @@ class Persona{
     public enum DiasSemana{
         LUNES,MARTES,MIERCOLES,JUEVES,VIERNES
     }
-
+    
     private Color colorOjos;
     private Animo animo;
 
