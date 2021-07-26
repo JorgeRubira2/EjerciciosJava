@@ -184,14 +184,8 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){ //Por hacer
-        Set<String> res = new HashSet<>();
-        for (String fru:frutas){
-            if (colores.contains(fru)){
-                res.add(fru);
-            }
-        }
-        
-        return res;
+        frutas.retainAll(colores);
+        return frutas;
     }        
 
     /**
