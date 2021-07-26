@@ -9,12 +9,9 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
     public boolean compararEnteros(Integer i1, Integer i2){
-        if(i1==null && i2==null){
-            return false;
-        }
-        try {
-            return i1.equals(i2);
-        } catch (Exception e) {
+        if(i1!=null && i2!=null && i1.equals(i2)){
+            return true;
+        }else{
             return false;
         }
 }
@@ -24,15 +21,13 @@ public class Ejercicio03Comparadores {
     //Si se envia null en cualquiera de ellos devuelve false
     public boolean compararEnteroConLong(Integer i1, Long i2){
         
-        try {
-            if(i1!=null && i2!=null){
-                
-            return Long.valueOf(i1).equals(i2);
-            
+        if(i1!=null && i2!=null){
+            if(i1.longValue()==i2){
+                return true;
             }else{
                 return false;
             }
-        } catch (Exception e) {
+        } else {
             return false;
         }
     }    
@@ -71,7 +66,14 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si los dos tienen null devuelve false.
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
-
-}
+        if(valor1.isPresent() && valor2.isPresent()){
+            if((double)valor1.get()==valor2.get()){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
+    }
+}    

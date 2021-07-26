@@ -1,19 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.jorgerubira.practicas.naves;
 
-/**
- *
- * @author PC
- */
+import java.lang.System.Logger;
+import java.time.LocalTime;
+import java.util.logging.Level;
+
+
 public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        throw new UnsupportedOperationException("Pendiente de hacer."); 
+       n.setPropulsion(true);
+       boolean exit= false;
+       LocalTime currentTime= LocalTime.now();
+
+            while (!exit){
+           try {
+               Thread.sleep(100L);
+           } catch (InterruptedException ex) {
+               java.util.logging.Logger.getLogger(TuAlgoritmoDeDecision.class.getName()).log(Level.SEVERE, null, ex);
+           }
+                LocalTime local = LocalTime.now();
+           try {
+               Thread.sleep(10000L);
+           } catch (InterruptedException ex) {
+               java.util.logging.Logger.getLogger(TuAlgoritmoDeDecision.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            }
+       
     }
-    
-}
+    }
