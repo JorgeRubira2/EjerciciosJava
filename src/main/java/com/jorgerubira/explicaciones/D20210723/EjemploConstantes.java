@@ -78,6 +78,7 @@ class Persona{
 
 public class EjemploConstantes {
     
+<<<<<<< HEAD
     public static void main(String[] args) {
         Persona p1=new Persona(Persona.Color.MARRON);
         Persona p2=new Persona(Persona.Color.VERDE);
@@ -106,4 +107,32 @@ public class EjemploConstantes {
        
     }
     
+
+    
+    
+    public static void main(String[] args) {
+        Persona p1=new Persona(Persona.Color.MARRON);
+        Persona p2=new Persona(Persona.Color.VERDE);
+        Persona p3=new Persona(Persona.Color.AZUL);
+
+        for(Persona.DiasSemana dia : Persona.DiasSemana.values()){
+            p1.hacerCosas(dia);    
+        }
+        
+        /*int a=1; //long, float, double
+        switch(a){
+            case 1:
+            case 2:
+            case 3:
+                System.out.println("Bici");
+                break;
+            default:    //else
+                System.out.println("No hacer nada");
+                break;                  
+        } */
+        //Gimnasio Pulgar
+        //Gimnasio Bici carita
+
+    }
+
 }

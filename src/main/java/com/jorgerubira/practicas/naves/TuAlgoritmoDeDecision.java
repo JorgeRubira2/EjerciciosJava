@@ -13,7 +13,6 @@ public class TuAlgoritmoDeDecision implements IDecision {
 
     @Override
     public void decision(INave n, int segundos) {
-        n.setPropulsion(true);
     }
     
 }

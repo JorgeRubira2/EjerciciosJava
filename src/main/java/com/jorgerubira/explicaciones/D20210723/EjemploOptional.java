@@ -51,6 +51,7 @@ class Repositorio{
     Ciudad variable;
     
     public Optional<Ciudad> buscarCiudadEspanya(){
+
         //Optional.ofNullable(variable);
         
         return Optional.of(new Ciudad("Guadalajara"));   //Conecta contra la base de datos
@@ -104,5 +105,63 @@ public class EjemploOptional {
         //Excepction Fiesta
         
      
+=======
+        Optional<Ciudad> elemento=Optional.empty();
+        if(elemento.isEmpty()){ //No utilizar elemento.get()==null
+            
+        }
+        
+        //Optional.ofNullable(variable);
+        
+        return Optional.of(new Ciudad("Guadalajara"));   //Conecta contra la base de datos
+        //        return new Ciudad("Guadalajara");   //Conecta contra la base de datos
+        
+    }
+    
+    public Optional<Ciudad> buscarCiudadMexico(){
+        return Optional.empty();            //Null;
+    }
+
+}
+
+public class EjemploOptional {
+
+
+    public static void main(String[] args) {
+        //Java 8. Optional 
+        
+        Repositorio rep=new Repositorio();
+        Optional<Ciudad> c1=rep.buscarCiudadEspanya();
+        Optional<Ciudad> c2=rep.buscarCiudadMexico();
+        if (c1.equals(c2)){
+            System.out.println("Son iguales");
+        }else{
+            System.out.println("Son diferentes");
+        }
+        System.out.println(c1);
+        System.out.println(c2);
+        
+        if (c1.isPresent()){        //c1.isEmpty
+            Ciudad ciu=c1.get();    //Objeto
+            ciu.getNombre();
+        }
+        if (c1.isEmpty()){
+            System.out.println("c1 es nulo");
+        }
+        //JPA
+        
+        Ciudad ciu1=c1.orElseThrow();    //get
+        
+        Ciudad ciu2=c1.orElse(new Ciudad("Ciudad desconocida"));    //get. Null
+        ciu2.getNombre();   //Guadalajara. Ciudad desco
+        
+        
+        //Optional[Guadalajara]
+        //Optional.empty
+        
+        //Son iguales Pulgar
+        //Son diferentes Cara
+        //Excepction Fiesta
+
     }
 }
