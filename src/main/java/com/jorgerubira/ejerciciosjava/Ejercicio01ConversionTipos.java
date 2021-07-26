@@ -14,7 +14,7 @@ public class Ejercicio01ConversionTipos {
 
     //Convierte de Float a int.
     public int decimalesAEntero(Float valor){
-        throw new RuntimeException("Pendiente de hacer");
+        return valor.intValue();
     }
 
     //Convierte de int a Float.
@@ -24,7 +24,8 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
     public char siguienteCaracter(char valor){
-        throw new RuntimeException("Pendiente de hacer");
+        return (char)(valor + 1);
+       
     }
 
     //Devuelve el código ascii del caracter 

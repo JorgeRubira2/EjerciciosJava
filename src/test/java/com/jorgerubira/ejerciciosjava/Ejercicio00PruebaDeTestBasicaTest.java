@@ -1,4 +1,3 @@
-
 package com.jorgerubira.ejerciciosjava;
 
 import org.junit.jupiter.api.Test;
