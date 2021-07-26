@@ -1,5 +1,6 @@
 package com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -163,12 +164,14 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-        Map<String, Integer> resultado=new HashMap<>();
-        
-       /* for(Persona p:personas){
-            resultado.put(p.getNombre(),p.getCesta().getTotalArticulos());
-        }*/
-        return resultado;
+       /* Map<String, Integer> resultado=new HashMap<>();
+        Integer a=0;
+        for(Persona p:personas){
+            a=p.getCesta().get().getTotalArticulos();
+            resultado.put(p.getNombre(), a);
+        }
+        return resultado;*/
+        throw new RuntimeException("Pendiente de hacer");
     }     
     
     
