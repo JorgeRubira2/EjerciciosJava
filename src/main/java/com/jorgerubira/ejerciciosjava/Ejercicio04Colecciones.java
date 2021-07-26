@@ -1,7 +1,10 @@
 package com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -47,11 +50,15 @@ public class Ejercicio04Colecciones {
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
         int c = 0;
         for (Integer pri:lista){
+            if (enLista.contains(pri)){
+                c++;
+            }
+            /*
             for (Integer sec:enLista){
                 if (pri == sec){
                     c++;
                 }
-            }
+            }*/
         }
         return c;
     }
@@ -76,24 +83,44 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        
+        int c = 0;
+        for (Map.Entry<String, Object> entry : tabla.entrySet()) {
+            if (entry.getValue() instanceof Integer){
+                c++;
+            }
+            
+        }
+        return c;
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        for (int i=listaPersonas.size()-1;i>=0;i--){
+            if (listaPersonas.get(i).getCiudad()=="Huesca"){
+               listaPersonas.remove(i);
+            }
+        }
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String,Persona> aux = new HashMap();
+        for (Map.Entry<String, Persona> entry : listaPersonas.entrySet()) {
+            if (entry.getValue().getCiudad().equals("Huesca")){
+               aux.put(entry.getKey(), entry.getValue());
+            }
+        }
+        for (String s:aux.keySet()){
+            listaPersonas.remove(s);
+        }
+        
     }
     
     /**
@@ -103,7 +130,14 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        throw new RuntimeException("Pendiente de hacer");
+        if (personaNueva.getCesta().isPresent()){
+            Compra com = personaNueva.getCesta().get();
+
+            if (com.getTotalArticulos()>5){
+                colaPersonas.add(personaNueva);
+            }
+
+        }
     }
 
     /**
@@ -112,7 +146,9 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+        Integer[] a= Arrays.stream(valores).boxed().toArray(Integer[]::new);
+        List<Integer> c = Arrays.asList(a);
+        return c;
     }
     
     /**
@@ -120,7 +156,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+        ArrayList<Integer> c = new ArrayList();
+        for (int i:valores){
+            c.add(i);
+        }
+        return c;
     }
 
     /**
