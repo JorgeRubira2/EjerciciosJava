@@ -26,6 +26,8 @@ public class Ejercicio03Comparadores {
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
+    
+    //todas validas
     public boolean compararEnteroConLong(Integer i1, Long i2){
           //opcion c
           
@@ -66,6 +68,7 @@ public class Ejercicio03Comparadores {
     //Debe devolver true si los dos números son iguales. 
     //Si no devuelve false
     //Si se envia null en cualquier de ellos devuelve false
+    //todas validas
     public boolean comprobarOptionalConInteger(Optional<Integer> valor1, Integer valor2){
         try {
             int i = (valor1.get()).intValue();
@@ -84,6 +87,7 @@ public class Ejercicio03Comparadores {
     //Debe devolver true si los dos números son iguales. 
     //Si no devuelve false
     //Si los dos tienen null devuelve false.
+    //todas válidas
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2){
         try{
             int i = (valor1.get()).intValue();
