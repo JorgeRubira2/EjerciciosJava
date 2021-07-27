@@ -38,7 +38,7 @@ public class Ejercicio05Strings {
      * Tener en cuenta que las posiciones empiezan desde 0.
      */
     public int buscar(String frase, String palabra){
-        Integer res = frase.toLowerCase().indexOf(palabra);
+        Integer res = frase.toLowerCase().indexOf(palabra.toLowerCase());
         return res;
     }    
 
@@ -85,14 +85,25 @@ public class Ejercicio05Strings {
      * Cuenta cuantas líneas hay en el texto. Se considera una línea si tiene algún carácter. El salto de línea se realiza con el carácter \n o, en algunos textos, con \r\n.
      */
     public int contarLineas(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] c;
+        c = texto.split("\\r|\\n");
+        int aux = 0;
+        for (String s:c){
+            if (!s.isEmpty()){
+                aux++;
+            }
+        }
+        return aux;
     }
     
     /**
      * Cuenta cuantas vocales hay en un texto (con tildes incluidas á).
      */
     public int contarVocales(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] c;
+        texto = texto.toLowerCase();
+        c = texto.split("[aeiouáéíóú]");
+        return c.length;
     }
 
     /**

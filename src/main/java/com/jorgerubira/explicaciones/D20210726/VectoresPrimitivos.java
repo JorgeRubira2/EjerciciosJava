@@ -42,6 +42,8 @@ public class VectoresPrimitivos {
                 contador++;
             }
         }
+        //Lambdas, Streams
+        
         //System.out.print(contador);
         //3    Pulgar
         //2    Carita
