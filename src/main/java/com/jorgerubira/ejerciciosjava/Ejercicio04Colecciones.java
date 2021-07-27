@@ -129,7 +129,19 @@ public class Ejercicio04Colecciones {
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
         //No entiendo bien que es lo que me pide
-        throw new RuntimeException("Pendiente de hacer");
+        if(colaPersonas.isEmpty()){
+            colaPersonas.add(personaNueva);
+        }
+        else{
+            if(colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos()<=5){
+
+                colaPersonas.add(personaNueva);
+            }
+            else{
+                colaPersonas.poll();
+                colaPersonas.add(personaNueva);
+            }
+        }
 
     }
 
@@ -210,6 +222,18 @@ public class Ejercicio04Colecciones {
        Map<String, Integer> result=new HashMap<>();
        Integer a=0;
        for(Persona p:personas){
+           if(p.getCesta().isPresent()){
+               a=p.getCesta().get().getTotalArticulos();
+           }
+           else{
+               a=0;
+           }
+           if(result.containsKey(p.getNombre())){
+               result.put(p.getNombre(), result.get(p.getNombre())+a);
+           }
+           else{
+               result.put(p.getNombre(),a);
+           }
            
        }
        return result;
