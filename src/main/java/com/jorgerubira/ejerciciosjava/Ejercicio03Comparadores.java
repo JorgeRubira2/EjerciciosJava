@@ -20,7 +20,7 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
     public boolean compararEnteroConLong(Integer i1, Long i2){
-    	if(i1 != null && (Long)i2 != null && (i1.intValue()==i2.longValue())) {
+    	if(i1 != null && i2 != null && (i1.intValue()==i2.longValue())) {
     		return true;
     	}else{
     		return false;		
