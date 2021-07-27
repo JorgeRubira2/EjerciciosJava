@@ -98,7 +98,7 @@ public class Ejercicio04Colecciones {
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
@@ -110,7 +110,7 @@ public class Ejercicio04Colecciones {
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      * 
      */
