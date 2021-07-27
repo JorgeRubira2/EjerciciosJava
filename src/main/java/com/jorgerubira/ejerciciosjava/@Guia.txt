@@ -1,3 +1,6 @@
+---------------------------------------------------------------------
+--- Conversiones tipos primitivos, Envoltorio y Optional<Envoltorio>
+---------------------------------------------------------------------
 Resumen de tranformaciones.
 de String a tipo primitivo:  Utilizar Envoltorio.parseTipo. por ejemplo de int -> Integer.parseInt(String);
 
