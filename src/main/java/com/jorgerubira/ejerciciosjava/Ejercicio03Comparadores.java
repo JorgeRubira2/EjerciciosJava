@@ -3,7 +3,7 @@
 import java.util.Optional;
 
 public class Ejercicio03Comparadores {
-    
+
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
@@ -14,7 +14,7 @@ public class Ejercicio03Comparadores {
             return false;
         }
     }
-    
+
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
@@ -27,6 +27,9 @@ public class Ejercicio03Comparadores {
     //Debe devolver true si el texto que se ha enviado en un número. 
     //Si no devuelve false
     //Si se envia null devuelve false
+    //Debe devolver true si los dos números son iguales. 
+    //Si no devuelve false
+    //Si se envia null en cualquier de ellos devuelve false
     public boolean comprobarNumero(String numero){
         try{
             Double.parseDouble(numero);
@@ -36,10 +39,7 @@ public class Ejercicio03Comparadores {
         }
     }    
     
-    //Debe devolver true si los dos números son iguales. 
-    //Si no devuelve false
-    //Si se envia null en cualquier de ellos devuelve false
-    public boolean comprobarOptionalConInteger(Optional<Integer> valor1, Integer valor2){
+ public boolean comprobarOptionalConInteger(Optional<Integer> valor1, Integer valor2){
         try{
             if((int)valor1.get()== (int)valor2)
             return true;
@@ -49,7 +49,6 @@ public class Ejercicio03Comparadores {
             return false;
         }
     }    
-
     //Debe devolver true si los dos números son iguales. 
     //Si no devuelve false
     //Si los dos tienen null devuelve false.

@@ -123,7 +123,9 @@ public class Ejercicio04Colecciones {
      * para ver que persona va a salir pero sin sacarla utilizar peek
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
-        throw new RuntimeException("Pendiente de hacer");
+        if(colaPersonas.peek()==null||colaPersonas.peek().getCesta().isEmpty()|| colaPersonas.peek().getCesta().get().getTotalArticulos()<5){
+            colaPersonas.add(personaNueva);
+        }
     }
 
     /**
