@@ -2,6 +2,8 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -24,7 +26,13 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino) {
-        throw new RuntimeException("Pendiente de hacer");
+                
+        for (String c : destino.keySet()){
+            if (!destino.containsKey(c)){
+                destino.put(c, valor);
+            }
+        }    
+        
     }
 
     /**
@@ -33,13 +41,12 @@ public class Ejercicio04Colecciones {
      */
     public void copiar(List<Double> origen, List<Double> destino) {
        
-        double[] destino = Arrays.copyOf(origen, origen.length);
-        
-        CopyOf() 
-                //          * for(int n=0; n <> lista1.size();n++){ //para modificar, añadir... SI VAMOS A BORRAR MEJOR IR DE DETRÁS HACIA DELANTE
-                //*   if (lista1.get(n).equals("que ")){
-                //*   lista1.remove(n);
-                //*   }      
+        for(int n=0;n<origen.size();n++){
+            if (origen.get(n)>=0){
+                Collections.copy(destino, origen);
+            }
+        }
+         
     }
 
     /**
@@ -47,7 +54,15 @@ public class Ejercicio04Colecciones {
      * resultado. No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista) {
-        throw new RuntimeException("Pendiente de hacer");
+        int numElementos = 0;    
+        
+        for(int n=0;n<lista.size();n++){
+            if (enLista.contains(lista.get(n))){
+                numElementos++;
+            }
+        }
+           
+        return numElementos;
     }
 
     /**
@@ -64,24 +79,44 @@ public class Ejercicio04Colecciones {
      * comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla) {
-        throw new RuntimeException("Pendiente de hacer");
+        int numElementos = 0;
+        
+        for(Map.Entry<String, Object> entry : tabla.entrySet()) {
+            if(entry.getValue() instanceof Integer) {
+                numElementos++;
+            }
+        }
+        
+        return numElementos;
     }
 
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa. No hace
+     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
      * falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
         //for del final hacia el principio
+        
+        for (int n=listaPersonas.size(); n == 0;n--) {
+            if(listaPersonas.get(n).equals("Huesca")) {
+                listaPersonas.remove(n);
+            }
+        }
     }
 
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa. No hace
+     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
      * falta verificar si valen nulo.
      *
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas) {
-        throw new RuntimeException("Pendiente de hacer");
+        Set<String> setListaPersonas = listaPersonas.keySet();
+        
+        for(String persona : setListaPersonas) {
+            if(persona.contains("Huesca")) {
+                setListaPersonas.remove(persona);
+            }
+        }
     }
 
     /**
@@ -101,7 +136,11 @@ public class Ejercicio04Colecciones {
      * <<Devuelve una lista inmutable
      */
     public List<Integer> generarLista(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+        //Este segons he buscat deuría de ser aixina pero a estes hores ja no se perque falla, tens lo que he buscat
+        //en chrome, he conseguit fer 2, altres estàn fets pero no se perque tampoc no van.
+       List<Integer> list = Arrays.asList(valores);
+       
+       return list;
     }
 
     /**
