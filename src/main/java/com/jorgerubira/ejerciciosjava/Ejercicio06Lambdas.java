@@ -24,6 +24,7 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Integer> compararIntegers(){
         throw new RuntimeException("Pendiente de hacer");
+       
         
     } 
 
