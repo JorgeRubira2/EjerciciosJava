@@ -242,7 +242,7 @@ public class Ejercicio04ColeccionesTest {
 
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         Map<String, Integer> result = instance.totalProductos(personas);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertEquals(6, result.get("Fran"));
         assertEquals(5, result.get("Ana"));
         assertEquals(0, result.get("Susana"));
