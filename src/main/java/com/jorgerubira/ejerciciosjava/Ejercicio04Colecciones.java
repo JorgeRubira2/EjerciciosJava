@@ -71,6 +71,42 @@ public class Ejercicio04Colecciones {
      * comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
+     * falta verificar si valen nulo.
+     */
+    public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
+     * falta verificar si valen nulo.
+     *
+     */
+    public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Si la persona que va a ser atendida en la cola tiene menos de 5 artículos
+     * en la compra o no tiene compra, añadimos la persona personaNueva al
+     * final. La persona tiene una compra como atributo pero puede valer null
+     * también si no tiene compra. No hace falta verificar si valen nulo. Pista:
+     * para ver que persona va a salir pero sin sacarla utilizar peek
+     */
+    public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Contar cuantos elementos del Hashtable son de tipo Integer. Para
+     * comprobar si un valor es de tipo Integer utilizar instanceOf
+     */
+    public int contarIntegers(Map<String, Object> tabla) {
         int contador = 0;
 
         for (Object o : tabla.values()) {
@@ -96,16 +132,17 @@ public class Ejercicio04Colecciones {
 
         }
     }
-        /**
-         * Borrar todas las personas del Map que sean de la ciudad Huesca. No
-         * hace falta verificar si valen nulo.
-         *
-         */
-        /**
-         * Borrar todas las personas del Map que sean de la ciudad Huesca.No
-         * hace falta verificar si valen nulo.
-         *
-         */
+
+    /**
+     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
+     * falta verificar si valen nulo.
+     *
+     */
+    /**
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.No hace
+     * falta verificar si valen nulo.
+     *
+     */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas) {
         List<String> borrarPersonas = new ArrayList<>();
         for (String clave : listaPersonas.keySet()) {
@@ -118,14 +155,14 @@ public class Ejercicio04Colecciones {
         }
     }
 
-/**
- * Si la persona que va a ser atendida en la cola tiene menos de 5 artículos en
- * la compra o no tiene compra, añadimos la persona personaNueva al final. La
- * persona tiene una compra como atributo pero puede valer null también si no
- * tiene compra. No hace falta verificar si valen nulo. Pista: para ver que
- * persona va a salir pero sin sacarla utilizar peek
- */
-public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
+    /**
+     * Si la persona que va a ser atendida en la cola tiene menos de 5 artículos
+     * en la compra o no tiene compra, añadimos la persona personaNueva al
+     * final. La persona tiene una compra como atributo pero puede valer null
+     * también si no tiene compra. No hace falta verificar si valen nulo. Pista:
+     * para ver que persona va a salir pero sin sacarla utilizar peek
+     */
+    public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
         throw new RuntimeException("Pendiente de hacer");
     }
 
