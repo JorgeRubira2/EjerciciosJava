@@ -80,6 +80,8 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
+        
+        
         throw new RuntimeException("Pendiente de hacer");
     }
     
