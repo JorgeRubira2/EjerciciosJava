@@ -15,7 +15,8 @@ public class Ejercicio05Strings {
      * Recibe una palabra y devuelve esta en minusculas
      */
     public String convertirAMinusculas(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        String palabra = palabra1.toLowerCase();
+        return palabra;
     }
 
     /**
