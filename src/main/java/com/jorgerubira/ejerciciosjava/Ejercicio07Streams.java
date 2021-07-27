@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 
-public class Ejercicio06Streams {
+public class Ejercicio07Streams {
 
     /**
      * Devolver los elementos positivos >=0 del Array origen

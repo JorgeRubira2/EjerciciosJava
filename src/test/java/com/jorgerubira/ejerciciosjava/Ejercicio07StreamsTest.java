@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author PC
  */
-public class Ejercicio06StreamsTest {
+public class Ejercicio07StreamsTest {
     
-    public Ejercicio06StreamsTest() {
+    public Ejercicio07StreamsTest() {
     }
 
     @Test
     public void testElementosPositivos() {
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Double> res=instance.elementosPositivos(List.of(4.2d,-2d,4d,-2d,12d,0d));
         assertEquals(4, res.size());
         assertEquals(4.2d, res.get(0));
@@ -38,14 +38,14 @@ public class Ejercicio06StreamsTest {
 
     @Test
     public void testMaximoElemento() {
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         assertEquals(4, instance.maximoElemento(List.of(2,3,4,1)));
         assertEquals(3, instance.maximoElemento(List.of(2,3,-4,1)));
     }
 
     @Test
     public void testContarElementosNoRepetidos() {
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         assertEquals(2, instance.contarElementosNoRepetidos(List.of(2,3,2,1)));
         assertEquals(3, instance.contarElementosNoRepetidos(List.of(2,3,2,5,2,1)));
     }
@@ -58,7 +58,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Fran", "Huesca"));
         lista.add(new Persona("Pepe", "Teruel"));
         
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Persona> result = instance.personasDeHuescaALista(lista);
         assertEquals(2, result.size());
         assertEquals("Juan", result.get(0).getNombre());
@@ -73,7 +73,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Fran", "Huesca"));
         lista.add(new Persona("Pepe", "Teruel"));
         
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         Persona[] result = instance.personasDeHuescaAArrayBasico(lista);
         assertEquals(2, result.length);
         assertEquals("Juan", result[0].getNombre());
@@ -88,7 +88,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Fran", new Compra(15, true)));
         lista.add(new Persona("Pepe", new Compra(2, true)));
 
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         Optional<Persona> result=instance.personasConMasArticulo(lista);
         assertEquals(true, result.isPresent());
         assertEquals("Fran", result.get().getNombre());
@@ -111,7 +111,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Fran", new Compra(15, false)));
         lista.add(new Persona("Pepe", new Compra(2, true)));
         
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Compra> result = instance.cestasDeLasPersonas(lista);
         assertEquals(3, result.size());
         assertEquals(10, result.get(0).getTotalArticulos());
@@ -128,7 +128,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Ana", 24));
         lista.add(new Persona("Fran", 25));
         lista.add(new Persona("Pepe", 21));
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         int[] result = instance.edadesDeLasPersonas(lista);
         assertArrayEquals(new int[]{23,24,25,21}, result);
     }
@@ -140,7 +140,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Ana", "Zaragoza"));
         lista.add(new Persona("Fran", "Zaragoza"));
         lista.add(new Persona("Pepe", "Teruel"));
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Ciudad> result = instance.cuantasPersonasHayPorCiudad(lista);
         assertEquals(3, result.size());
         for (Ciudad c:result){
@@ -166,7 +166,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Tony", new Compra(1, true)));
         lista.add(new Persona("Pepe", new Compra(2, true)));
 
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Persona> result = instance.top3Personas(lista);
         assertEquals(3, result.size());
         assertEquals("Fran", result.get(0).getNombre());
@@ -201,7 +201,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Josefina", "Cuenca"));
         lista.add(new Persona("Ania", "Madrid"));
 
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         Set<String> result = instance.top3Ciudades(lista);
         assertEquals(3, result.size());
         assertEquals(true, result.contains("Zaragoza"));
@@ -232,7 +232,7 @@ public class Ejercicio06StreamsTest {
         lista.add(new Persona("Fran", 60));
         lista.add(new Persona("Pepe", 61));
         
-        Ejercicio06Streams instance = new Ejercicio06Streams();
+        Ejercicio07Streams instance = new Ejercicio07Streams();
         List<RangoEdad> result = instance.clasificacionPorRangoDeEdad(lista);
         assertEquals(3, result.size());
         assertEquals(1, result.get(0).getPersonas());

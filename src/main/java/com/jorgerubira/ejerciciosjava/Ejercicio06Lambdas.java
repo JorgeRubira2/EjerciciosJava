@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 
-public class Ejercicio07Lambdas {
+public class Ejercicio06Lambdas {
     
     /**
      * Devolver una función Comparator con Lambdas que compare dos enteros 
