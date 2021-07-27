@@ -38,9 +38,9 @@ public class Ejercicio04Colecciones {
 	 * No hace falta verificar si valen nulo.
 	 */
 	public void copiar(List<Double> origen, List<Double> destino){
-		for (Double d : origen){
-			if(d>=0){
-				destino.add(d);
+		for (int i = 0; i < origen.size(); i++) {
+			if (origen.get(i) >= 0) {
+				destino.add(origen.get(i).doubleValue());
 			}
 		}
 	}
@@ -185,6 +185,11 @@ public class Ejercicio04Colecciones {
      */    
     public List<String> aprobados(Map<String, Integer> notas){
     	List<String> alumnos = new ArrayList<>();
+    	for (String nota : notas.keySet()) {
+    		if (notas.get(nota) >= 5) {
+    			alumnos.add(nota);
+    		}
+    	}
     	return alumnos;
     }
 
@@ -197,8 +202,11 @@ public class Ejercicio04Colecciones {
     public Map<String, Integer> totalProductos(List<Persona> personas){
     	Map<String, Integer> mapa = new HashMap<>();
     	for(Persona p: personas) {
-    		if(p.getCesta().isPresent() && p.getNombre().equals(p.getNombre())) {
+    		if(p.getCesta().isPresent()) {
     			mapa.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+    		}
+    		if(p.getCesta().isEmpty() && !p.getNombre().equals(mapa.keySet())) {
+    			mapa.put(p.getNombre(),p.getCesta().get().getTotalArticulos());
     		}
     	}
     	return mapa;
