@@ -97,8 +97,9 @@ public class Ejercicio04Colecciones {
     }
 
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
-     * falta verificar si valen nulo.
+     * Borrar todas las personas del Map que sean de la ciudad Huesca.
+     * No hace falta verificar si valen nulo.
+     * 
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
         for (int n = listaPersonas.size() - 1; n > 0; n--) {

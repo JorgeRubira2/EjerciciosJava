@@ -13,7 +13,6 @@ public class Ejercicio05Strings {
 
     /**
      * Recibe una palabra y devuelve esta en minusculas
-     *
      */
     public String convertirAMinusculas(String palabra1) {
         throw new RuntimeException("Pendiente de hacer");
@@ -33,7 +32,7 @@ public class Ejercicio05Strings {
      * tenemos "Hola Pepe" y buscamos "pepe" debe devolver 5 Tener en cuenta que
      * las posiciones empiezan desde 0.
      */
-    public String buscar(String frase, String palabra) {
+    public int buscar(String frase, String palabra){
         throw new RuntimeException("Pendiente de hacer");
     }
 
@@ -80,6 +79,13 @@ public class Ejercicio05Strings {
      * Cuenta cuantas vocales hay en un texto (con tildes incluidas á).
      */
     public int contarVocales(String texto) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Eliminación de espacios a izquierda y derecha
+     */
+    public String quitarEspacios(String frase){
         throw new RuntimeException("Pendiente de hacer");
     }
 
