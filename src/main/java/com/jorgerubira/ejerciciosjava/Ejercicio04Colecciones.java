@@ -226,9 +226,9 @@ public class Ejercicio04Colecciones {
             }else{
                 if (p.getCesta() != null && p.getCesta().isPresent()){
                     res.put(p.getNombre(), p.getCesta().get().getTotalArticulos()); 
-                }/*else {
-                    res.put(p.getNombre(),0); //Persona sin productos, test mal?
-                }*/
+                }else {
+                    res.put(p.getNombre(),0); 
+                }
             }
         }
         return res;
