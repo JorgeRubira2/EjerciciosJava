@@ -16,7 +16,7 @@ import java.util.function.UnaryOperator;
 
 
 public class Ejercicio06Lambdas {
-    
+
     /**
      * Devolver una función Comparator con Lambdas que compare dos enteros 
      * y devuelva si el primero parametro1 es menor que el parametro2
@@ -24,7 +24,6 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Integer> compararIntegers(){
         throw new RuntimeException("Pendiente de hacer");
-        
     } 
 
     /**
