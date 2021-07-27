@@ -13,7 +13,6 @@ public class Ejercicio05Strings {
     
     /**
      * Recibe una palabra y devuelve esta en minusculas
-     * 
      */
     public String convertirAMinusculas(String palabra1){
         throw new RuntimeException("Pendiente de hacer");
@@ -25,7 +24,7 @@ public class Ejercicio05Strings {
      */
     public String segundaPalabra(String palabra1){
         throw new RuntimeException("Pendiente de hacer");
-    }    
+    }     
 
     /**
      * Buscar en una frase una palabra concreta. Debe ser insensible a mayusculas y minusculas.
@@ -77,6 +76,12 @@ public class Ejercicio05Strings {
     public int contarVocales(String texto){
         throw new RuntimeException("Pendiente de hacer");
     }
-    
+
+    /**
+     * Eliminación de espacios a izquierda y derecha
+     */
+    public String quitarEspacios(String frase){
+        throw new RuntimeException("Pendiente de hacer");
+    }
 
 }
