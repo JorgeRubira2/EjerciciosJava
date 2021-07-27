@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class Ejercicio04Colecciones {
 
@@ -225,8 +226,17 @@ public class Ejercicio04Colecciones {
      * sacado >=5 No hace falta verificar si valen nulo.
      */
     public List<String> aprobados(Map<String, Integer> notas) {
-throw new RuntimeException("Pendiente de hacer");
-       
+
+        List<String> lista = new ArrayList<>();
+
+        for (String i : notas.keySet()) {
+            if (notas.get(i) >= 5) {
+                lista.add(i);
+
+            }
+
+        }
+        return lista;
 
     }
 
@@ -237,7 +247,16 @@ throw new RuntimeException("Pendiente de hacer");
      * verificar si valen nulo.
      */
     public Map<String, Integer> totalProductos(List<Persona> personas) {
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Integer> lista = new TreeMap<String, Integer>();
+
+        for (Persona p : personas) {
+            lista.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+            if (lista.containsKey(p.getNombre()) == false) {
+                lista.put(p.getNombre(), p.getCesta().get().getTotalArticulos() + p.getCesta().get().getTotalArticulos());
+            }
+        }
+
+        return lista;
     }
 
     /**
@@ -245,7 +264,11 @@ throw new RuntimeException("Pendiente de hacer");
      * nulo.
      */
     public void annadirElementosMultiples(List<Integer> destino, int... valores) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        for (int v : valores) {
+            destino.add(v);
+        }
+
     }
 
 }
