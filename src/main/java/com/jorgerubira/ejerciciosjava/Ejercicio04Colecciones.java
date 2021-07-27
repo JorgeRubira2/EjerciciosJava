@@ -2,11 +2,14 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
@@ -61,7 +64,7 @@ public class Ejercicio04Colecciones {
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista) {
         int cont = 0;
         for (int i = 0; i < lista.size(); i++) {
-            if(enLista.contains(lista.get(i))){
+            if (enLista.contains(lista.get(i))) {
                 cont++;
             }
         }
@@ -74,10 +77,10 @@ public class Ejercicio04Colecciones {
      * encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista) {
-        
+
         int cont = 0;
         for (int i = 0; i < lista.size(); i++) {
-            if(enLista.contains(lista.get(i))){
+            if (enLista.contains(lista.get(i))) {
                 enLista.remove(lista.get(i));
                 cont++;
             }
@@ -98,21 +101,21 @@ public class Ejercicio04Colecciones {
         });*/
         Iterator<Object> val = tabla.values().iterator();
         for (int i = 0; i < tabla.size(); i++) {
-            if(val.next() instanceof Integer){
+            if (val.next() instanceof Integer) {
                 cont++;
             }
         }
-       
-        
+
         return cont;
     }
 
     /**
      * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
      * falta verificar si valen nulo.
+     *
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
-       /* List<Persona> aux=new ArrayList<>();
+        /* List<Persona> aux=new ArrayList<>();
         aux.addAll(listaPersonas);
         
         aux.forEach((t) -> {
@@ -120,18 +123,16 @@ public class Ejercicio04Colecciones {
                 listaPersonas.remove(t);
             }
         });
-        */
-        
+         */
+
         Iterator<Persona> it = listaPersonas.iterator();
-        
-        while (it.hasNext()) {            
-            if(it.next().getCiudad().equals("Huesca")){
+
+        while (it.hasNext()) {
+            if (it.next().getCiudad().equals("Huesca")) {
                 it.remove();
             }
         }
-        
-        
-        
+
     }
 
     /**
@@ -140,11 +141,11 @@ public class Ejercicio04Colecciones {
      *
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas) {
-          Map<String, Persona> aux=new HashMap<>();
+        Map<String, Persona> aux = new HashMap<>();
         aux.putAll(listaPersonas);
-        
+
         aux.forEach((clave, persona) -> {
-            if(persona.getCiudad().equals("Huesca")){
+            if (persona.getCiudad().equals("Huesca")) {
                 listaPersonas.remove(clave);
             }
         });
@@ -158,7 +159,42 @@ public class Ejercicio04Colecciones {
      * para ver que persona va a salir pero sin sacarla utilizar peek
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
-        throw new RuntimeException("Pendiente de hacer");
+
+
+        if (colaPersonas.isEmpty()) {
+            colaPersonas.add(personaNueva);
+        }else if(!colaPersonas.peek().getCesta().isPresent()
+                || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5){
+             colaPersonas.add(personaNueva);
+        }
+
+        /*if(colaPersonas.isEmpty()){
+            colaPersonas.add(personaNueva);
+        }
+        
+        Iterator<Persona> it = colaPersonas.iterator();
+        
+        while (it.hasNext()) {            
+            var persona = it.next();
+            if(persona.getCesta().isPresent() && persona.getCesta().get().getTotalArticulos() < 5){
+                colaPersonas.add(personaNueva);
+            }
+            
+        }*/
+ /*
+        colaPersonas.forEach((persona) -> {
+            if(persona.getCesta().get().getTotalArticulos()<5){
+                colaPersonas.add(personaNueva);
+            }
+        });*/
+ /*if(colaPersonas.isEmpty()){
+            colaPersonas.add(personaNueva);
+        }
+        for (Persona per : colaPersonas) {
+            if (!per.getCesta().isPresent() || per.getCesta().get().getTotalArticulos() < 5) {
+                colaPersonas.add(personaNueva);
+            }
+        }*/
     }
 
     /**
@@ -167,7 +203,13 @@ public class Ejercicio04Colecciones {
      * <<Devuelve una lista inmutable
      */
     public List<Integer> generarLista(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+        //Duda
+        List<Integer> lista = new ArrayList<>();
+        for (Integer val : valores) {
+            lista.add(val);
+        }
+        return lista;
+
     }
 
     /**
@@ -175,7 +217,13 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public ArrayList<Integer> generarArrayList(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+        ArrayList<Integer> lista = new ArrayList<>();
+
+        for (Integer val : valores) {
+            lista.add(val);
+        }
+        return lista;
+
     }
 
     /**
@@ -184,7 +232,14 @@ public class Ejercicio04Colecciones {
      * mineral y orgánico. No hace falta verificar si valen nulo.
      */
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        if (minerales.contains(objeto)) {
+            return "Mineral";
+        } else if (organico.contains(objeto)) {
+            return "Organico";
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -193,7 +248,8 @@ public class Ejercicio04Colecciones {
      * interseccion utilizar retainAll.
      */
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return frutas.retainAll(colores) ? frutas : null;
     }
 
     /**
@@ -203,7 +259,13 @@ public class Ejercicio04Colecciones {
      * sacado >=5 No hace falta verificar si valen nulo.
      */
     public List<String> aprobados(Map<String, Integer> notas) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> lista = new ArrayList<>();
+        notas.forEach((nombre, nota) -> {
+            if (nota >= 5) {
+                lista.add(nombre);
+            }
+        });
+        return lista;
     }
 
     /**
@@ -213,7 +275,25 @@ public class Ejercicio04Colecciones {
      * verificar si valen nulo.
      */
     public Map<String, Integer> totalProductos(List<Persona> personas) {
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Integer> mapa = new HashMap<>();
+
+        personas.forEach((persona) -> {
+            if (!mapa.containsKey(persona.getNombre())) {
+
+                mapa.put(persona.getNombre(),
+                        persona.getCesta().isPresent()
+                        ? persona.getCesta().get().getTotalArticulos()
+                        : 0);
+
+            } else {
+                if (persona.getCesta().isPresent()) {
+                    int suma = mapa.get(persona.getNombre()) + persona.getCesta().get().getTotalArticulos();
+                    mapa.replace(persona.getNombre(), suma);
+                }
+            }
+        });
+
+        return mapa;
     }
 
     /**
@@ -221,7 +301,9 @@ public class Ejercicio04Colecciones {
      * nulo.
      */
     public void annadirElementosMultiples(List<Integer> destino, int... valores) {
-        throw new RuntimeException("Pendiente de hacer");
+        for (int val : valores) {
+            destino.add(val);
+        }
     }
 
 }
