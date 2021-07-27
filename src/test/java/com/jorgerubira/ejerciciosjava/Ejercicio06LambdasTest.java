@@ -106,8 +106,8 @@ public class Ejercicio06LambdasTest {
         Ejercicio06Lambdas instance = new Ejercicio06Lambdas();
         Function<Persona, Optional<Compra>> result = instance.obtenerCompraOpcionalDePersonas();
         Compra res=new Compra(2,true);
-        assertEquals(Optional.of(res), new Persona("A", res));
-        assertEquals(Optional.empty(), new Persona("A"));
+        assertEquals(Optional.of(res),result.apply(new Persona("A", res)));
+        assertEquals(Optional.empty(),result.apply( new Persona("A")));
     }
 
     @Test
@@ -115,7 +115,7 @@ public class Ejercicio06LambdasTest {
         Ejercicio06Lambdas instance = new Ejercicio06Lambdas();
         Function<Persona, Compra> result = instance.obtenerCompraDePersonas();
         Compra res=new Compra(2,true);
-        assertEquals(res, new Persona("A", res));
+        assertEquals(res,result.apply(new Persona("A", res)));
         assertNull(result.apply(new Persona("A")));
     }
 
