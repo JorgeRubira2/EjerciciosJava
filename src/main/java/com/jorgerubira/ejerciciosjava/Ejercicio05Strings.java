@@ -16,7 +16,7 @@ public class Ejercicio05Strings {
      * 
      */
     public String convertirAMinusculas(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        return palabra1.toLowerCase();
     }
 
     /**
@@ -24,7 +24,7 @@ public class Ejercicio05Strings {
      * Pista: Utilizar split para trocear la frase.
      */
     public String segundaPalabra(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        return palabra1.split(" ")[1];
     }    
 
     /**
@@ -34,7 +34,7 @@ public class Ejercicio05Strings {
      * Tener en cuenta que las posiciones empiezan desde 0.
      */
     public int buscar(String frase, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        return frase.toLowerCase().indexOf(palabra.toLowerCase());
     }    
 
     /**
@@ -42,8 +42,15 @@ public class Ejercicio05Strings {
      * Ejemplo. "Balón" y "balon" deberían ser la misma palabra.
      * Pista. Para quitar las tildes utilizar replaceAll
      */
+     private String insensible (String palabra1){
+        return palabra1.toLowerCase().replaceAll("á","a").replaceAll("é","e").replaceAll("í","i").replaceAll("ó","o").replaceAll("ú","u");
+    }
     public boolean equalsInsensibleMayusculasYTildes(String palabra1, String palabra2){
-        throw new RuntimeException("Pendiente de hacer");
+        Ejercicio05Strings ejer05 = new Ejercicio05Strings();
+        
+        palabra1 = ejer05.insensible(palabra1);
+        palabra2 = ejer05.insensible(palabra2);
+        return palabra1.equals(palabra2);
     }
     
     /**
@@ -52,7 +59,13 @@ public class Ejercicio05Strings {
      * Pista. Primero trocear la frase con split y cada elemento obtener el primer caracter o el resto con substring
      */
     public String convertirCamelCase(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        StringBuffer strBuff = new StringBuffer();
+        String[] separado = palabra1.split("_");
+        for (int i = 0; i < separado.length ; i++){
+            separado[i] = separado[i].substring(0,1).toUpperCase() + separado[i].substring(1,separado[i].length()).toLowerCase();
+            strBuff.append(separado[i]);
+        }
+        return strBuff.toString();
     }
     
     /**
@@ -61,14 +74,14 @@ public class Ejercicio05Strings {
      * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        return texto.split("[' ']|['.']|[',']|[':']").length;
     }
 
     /**
      * Cuenta cuantas líneas hay en el texto. Se considera una línea si tiene algún carácter. El salto de línea se realiza con el carácter \n o, en algunos textos, con \r\n.
      */
     public int contarLineas(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        return texto.split("[\n]|[\r]").length;
     }
     
     /**
