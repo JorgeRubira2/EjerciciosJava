@@ -134,7 +134,6 @@ public class Ejercicio04Colecciones {
             System.out.println("entra " + personaNueva.toString());
             colaPersonas.offer(personaNueva);
         }
-        System.out.println("colaPersonas "+ colaPersonas.toString());
     }
 
     /**
@@ -211,10 +210,7 @@ public class Ejercicio04Colecciones {
     public Map<String, Integer> totalProductos(List<Persona> personas){
         HashMap<String,Integer> mapa = new HashMap<>();
         for (Persona p: personas){
-            System.out.println(p.getNombre() + " ");
-            System.out.println(p.getNombre() + " cesta " +p.getCesta().isEmpty());
             if (p.getCesta().isPresent()){
-                System.out.println(p.getNombre() + " " + p.getCesta().get().getTotalArticulos() );
                     int aux = 0;
                     if (mapa.containsKey(p.getNombre()) ){
                         aux = mapa.get(p.getNombre());
