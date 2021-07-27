@@ -27,8 +27,8 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-        
-        throw new RuntimeException("Pendiente de hacer");
+        int i = lista.stream().reduce(Integer.MIN_VALUE, (a,b) -> (a>b)?a:b);
+        return i;
     }
     
     /**
