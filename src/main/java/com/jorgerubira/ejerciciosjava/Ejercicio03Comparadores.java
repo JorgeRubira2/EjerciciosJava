@@ -34,16 +34,16 @@ public class Ejercicio03Comparadores {
     //Si no devuelve false
     //Si se envia null devuelve false
     public boolean comprobarNumero(String numero){
-            if(numero!=null){
-                try {
-                    Double.parseDouble(numero);
-                    return true;
-                }catch (Exception e){
-                    return false;
-                }
-            } else {
+        if(numero!=null){
+            try {
+                Double.parseDouble(numero);
+                return true;
+            }catch (Exception e){
                 return false;
             }
+        } else {
+            return false;
+        }
     }    
     
     //Debe devolver true si los dos números son iguales. 
