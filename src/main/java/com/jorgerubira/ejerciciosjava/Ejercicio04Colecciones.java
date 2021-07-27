@@ -1,7 +1,9 @@
 package com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -122,7 +124,6 @@ public class Ejercicio04Colecciones {
                 guardarClaves.add(claves);
             }
         }
-        
         for (String clave : guardarClaves) {
             listaPersonas.remove(clave);
         }
@@ -145,7 +146,13 @@ public class Ejercicio04Colecciones {
      * <<Devuelve una lista inmutable
      */
     public List<Integer> generarLista(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+
+//con  .asList me da error mirarlo
+        List<Integer> lista = new ArrayList<Integer>(valores.length);
+        for (int a : valores) {
+            lista.add(a);
+        }
+        return lista;
     }
 
     /**
@@ -153,7 +160,13 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public ArrayList<Integer> generarArrayList(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        ArrayList<Integer> lista = new ArrayList<Integer>(valores.length);
+        for (int a : valores) {
+            lista.add(a);
+        }
+        return lista;
+
     }
 
     /**
@@ -162,6 +175,7 @@ public class Ejercicio04Colecciones {
      * mineral y orgánico. No hace falta verificar si valen nulo.
      */
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico) {
+
         throw new RuntimeException("Pendiente de hacer");
     }
 
