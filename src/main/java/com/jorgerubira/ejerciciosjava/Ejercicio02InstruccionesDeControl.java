@@ -9,7 +9,7 @@ package com.jorgerubira.ejerciciosjava;
  *
  * @author PC
  */
-public class Ejercicio02InstruccionesDeControl {
+public class Ejercicio02InstruccionesDeControl { 
     
     //Devolver el número más alto
     public int maximoValor(int a, int b, int c){

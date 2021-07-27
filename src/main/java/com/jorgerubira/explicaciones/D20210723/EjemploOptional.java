@@ -105,7 +105,7 @@ public class EjemploOptional {
         //Excepction Fiesta
         
      
-=======
+
         Optional<Ciudad> elemento=Optional.empty();
         if(elemento.isEmpty()){ //No utilizar elemento.get()==null
             
@@ -113,7 +113,7 @@ public class EjemploOptional {
         
         //Optional.ofNullable(variable);
         
-        return Optional.of(new Ciudad("Guadalajara"));   //Conecta contra la base de datos
+        //return Optional.of(new Ciudad("Guadalajara"));   //Conecta contra la base de datos
         //        return new Ciudad("Guadalajara");   //Conecta contra la base de datos
         
     }
@@ -124,7 +124,7 @@ public class EjemploOptional {
 
 }
 
-public class EjemploOptional {
+/*public class EjemploOptional {
 
 
     public static void main(String[] args) {
@@ -164,4 +164,4 @@ public class EjemploOptional {
         //Excepction Fiesta
 
     }
-}
+}*/

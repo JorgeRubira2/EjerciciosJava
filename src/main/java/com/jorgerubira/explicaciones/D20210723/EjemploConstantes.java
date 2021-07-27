@@ -78,7 +78,7 @@ class Persona{
 
 public class EjemploConstantes {
     
-<<<<<<< HEAD
+
     public static void main(String[] args) {
         Persona p1=new Persona(Persona.Color.MARRON);
         Persona p2=new Persona(Persona.Color.VERDE);
@@ -110,7 +110,7 @@ public class EjemploConstantes {
 
     
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Persona p1=new Persona(Persona.Color.MARRON);
         Persona p2=new Persona(Persona.Color.VERDE);
         Persona p3=new Persona(Persona.Color.AZUL);
@@ -135,4 +135,4 @@ public class EjemploConstantes {
 
     }
 
-}
+

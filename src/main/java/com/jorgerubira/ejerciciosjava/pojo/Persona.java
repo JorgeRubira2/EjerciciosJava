@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 
 public class Persona { 
-    private String nombre;
+    private String nombre; 
     private String ciudad;
     private int edad;
     private Date fechaNacimiento;

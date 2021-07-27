@@ -11,7 +11,7 @@ public class Ejercicio03ComparadoresTest {
     public Ejercicio03ComparadoresTest() {
     }
 
-    @Test
+    @Test 
     public void testCompararEnteros() {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
         assertEquals(true, instance.compararEnteros(new Integer(3), new Integer(3)));

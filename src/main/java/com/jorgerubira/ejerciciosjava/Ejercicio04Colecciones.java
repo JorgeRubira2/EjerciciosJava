@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
+import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Queue;
 
 /**
  *
@@ -18,7 +23,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if(valor >= 0){
+         destino.add(valor);   
+        }     
     }
 
     /**
@@ -26,7 +33,12 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for (Map.Entry<String,Integer> entrada : destino.entrySet()) {
+            //if(entrada.getKey().isEmpty())
+            if(entrada.getKey() == null){
+                entrada.setValue(valor);
+            }
+    }
     }
 
 
@@ -35,7 +47,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for (int i = 0; i < origen.size(); i++) {
+            if(origen.get(i) >= 0){
+                destino.set(i, origen.get(i));
+            }
+        }
     }
     
     /**
@@ -43,7 +59,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador=0;
+        for(int i=0;i < lista.size();i++){
+                if(enLista.contains(lista.get(i))){
+                    contador++;                    
+                }   
+        }
+        return contador;
     }
     
     /**
@@ -52,23 +74,44 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
+   int contador=0;
+   int control=0;
+        for(int i=0;i < lista.size();i++){
+                if(enLista.contains(lista.get(i))){
+                    control=lista.get(i);
+                    contador++;
+                    enLista.remove(i);
+                }   
+        }
+        return contador;
+    }
+   
     
     /**
      * Contar cuantos elementos del Hashtable son de tipo Integer.
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador=0;
+        for (Map.Entry<String, Object> entrada : tabla.entrySet()) {
+          if(entrada.getValue() instanceof Integer){
+              contador++;
+          }
+           
+    }
+       return contador; 
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Lisboa.
+     * Borrar todas las personas del List que sean de la ciudad Huesca .
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        for(int i=listaPersonas.size()-1; i >=0; i--){
+            if (listaPersonas.get(i).getCiudad().equalsIgnoreCase("Huesca")) {
+                listaPersonas.remove(i);
+            }
+        }
     }
     
     /**
@@ -77,7 +120,14 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String,Persona> noborrar = new HashMap<>(); 
+        for (Map.Entry<String, Persona> entrada : listaPersonas.entrySet()) { 
+            if (!entrada.getValue().getCiudad().equalsIgnoreCase("Huesca")) {
+                noborrar.put(entrada.getKey(), entrada.getValue());
+            }
+        }
+        listaPersonas=noborrar;
+       
     }
     
     /**

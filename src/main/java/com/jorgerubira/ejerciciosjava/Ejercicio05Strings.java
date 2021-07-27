@@ -9,7 +9,7 @@ package com.jorgerubira.ejerciciosjava;
  *
  * @author PC
  */
-public class Ejercicio05Strings {
+public class Ejercicio05Strings { 
     
     /**
      * Recibe una palabra y devuelve esta en minusculas

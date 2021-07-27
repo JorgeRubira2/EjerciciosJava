@@ -7,7 +7,7 @@ public class Ejercicio00PruebaDeTestBasica {
         return a+b;
     }
 
-    public int restar(int a, int b){
+    public int restar(int a, int b){ 
         return a-b;
     }
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.jorgerubira.ejerciciosjava;
-
+import com.jorgerubira.ejerciciosjava.Ejercicio05Strings;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
