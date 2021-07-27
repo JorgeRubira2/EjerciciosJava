@@ -5,6 +5,10 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
+import java.text.Collator;
+import java.text.Normalizer;
+import java.util.Locale;
+
 /**
  *
  * @author PC
@@ -44,9 +48,9 @@ public class Ejercicio05Strings {
      * Pista. Para quitar las tildes utilizar replaceAll
      */
     public boolean equalsInsensibleMayusculasYTildes(String palabra1, String palabra2){
-        String sup = palabra1.replaceAll("\\p{InCombiningDiacriticalMarks}", palabra1);
-        String sup2 = palabra2.replaceAll("\\p{InCombiningDiacriticalMarks}", palabra2);
-        if (sup.equalsIgnoreCase(sup2)){
+        Collator c = Collator.getInstance(new Locale("es"));
+        c.setStrength(Collator.PRIMARY);
+        if (c.equals(palabra1,palabra2)){
             return true;
         }
         return false;
@@ -58,7 +62,12 @@ public class Ejercicio05Strings {
      * Pista. Primero trocear la frase con split y cada elemento obtener el primer caracter o el resto con substring
      */
     public String convertirCamelCase(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] texto2 = palabra1.split("_");
+        String res = "";
+        for (String pal:texto2){
+            res += pal.substring(0, 1).toUpperCase() + pal.substring(1).toLowerCase();
+        }
+        return res;
     }
     
     /**
@@ -67,13 +76,9 @@ public class Ejercicio05Strings {
      * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto){
-        int cont = 0;
-        for (int i=0; i<texto.length(); i++){
-            if (texto.indexOf(" ")!= -1 || texto.indexOf(",")!= -1 || texto.indexOf(".")!= -1){
-                cont++;
-            }
-        }
-        return cont;
+        texto = texto.replaceAll("\\,|\\.\\s{2,}|\\.|\\s{2,}", " ");
+        String[] texto2 = texto.split(" ");
+        return texto2.length;
     }
 
     /**
@@ -94,7 +99,7 @@ public class Ejercicio05Strings {
      * Eliminación de espacios a izquierda y derecha
      */
     public String quitarEspacios(String frase){
-        throw new RuntimeException("Pendiente de hacer");
+        return frase.replaceAll("^\\s*|\\s*$","");
     }
 
 }

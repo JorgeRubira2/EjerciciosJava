@@ -71,9 +71,9 @@ public class Ejercicio05StringsTest {
     }
     
     @Test
-    public void testQuitarEspacios(String frase){
+    public void testQuitarEspacios(){
         Ejercicio05Strings instance = new Ejercicio05Strings();
-        assertEquals("Texto a probar", instance.contarLineas("   Texto a probar   "));
+        assertEquals("Texto a probar", instance.quitarEspacios("   Texto a probar   "));
     }    
     
 }
