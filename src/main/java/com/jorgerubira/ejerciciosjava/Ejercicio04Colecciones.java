@@ -134,8 +134,9 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-    	if (personaNueva.getCesta()!= null && personaNueva.getCesta().isPresent()){
-    		if (colaPersonas.peek().getCesta()!=null){
+    if (personaNueva.getCesta()!= null && personaNueva.getCesta().isPresent()){
+        if (!colaPersonas.isEmpty()){
+            if (colaPersonas.peek().getCesta()!=null){
                 Compra com = colaPersonas.peek().getCesta().get();
                 if (com.getTotalArticulos()<5){
                     colaPersonas.add(personaNueva);
@@ -147,6 +148,7 @@ public class Ejercicio04Colecciones {
             colaPersonas.add(personaNueva);
         }
     }
+   }
     
 
     /**

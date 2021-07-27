@@ -129,7 +129,7 @@ public class Ejercicio04ColeccionesTest {
 
     @Test
     public void testEntrarPersonaALaCola() {
-        Persona p1=new Persona("Ana", "Zaragoza");
+    	Persona p1=new Persona("Ana", "Zaragoza");
         p1.setCesta(new Compra(10, true));
         Persona p2=new Persona("Alberto", "Zaragoza");
         Persona p3=new Persona("Fran", "Zaragoza");
@@ -158,7 +158,6 @@ public class Ejercicio04ColeccionesTest {
         colaPersonas.poll();    //Sacamos p3
         instance.entrarPersonaALaCola(colaPersonas, p1);    //No debe poder insertar porque p4 tiene mas de 5 productos.
         assertEquals(2, colaPersonas.size());
-
     }
 
     @Test
