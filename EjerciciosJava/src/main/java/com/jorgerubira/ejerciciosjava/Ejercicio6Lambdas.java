@@ -20,7 +20,7 @@ public class Ejercicio6Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        throw new RuntimeException("Pendiente de hacer");
+        (Integer n1, Integer n2)-> if(n1<n2) System.out.println("n2 mayor") else System.out.println("n1 mayor");
     } 
 
     /**
@@ -29,7 +29,7 @@ public class Ejercicio6Lambdas {
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings(){
-        throw new RuntimeException("Pendiente de hacer");
+        (String n1, String n2) ->if(n1.lenght<n2.lenght) System.out.println("n2 mayor") else System.out.println("n1 mayor");
     } 
 
     /**
@@ -38,7 +38,7 @@ public class Ejercicio6Lambdas {
      * No hace falta comprobar personas con valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente(){
-        throw new RuntimeException("Pendiente de hacer");
+        (Persona p1, Persona p2) -> if(p1.edad < p2.edad) System.out.println("p2 mayor") else System.out.println("p1 mayor");
     } 
     
     /**
@@ -46,7 +46,7 @@ public class Ejercicio6Lambdas {
      * para ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente(){
-        throw new RuntimeException("Pendiente de hacer");
+    	 (Persona p1, Persona p2) -> if(p1.edad > p2.edad) System.out.println("n1 menor") else System.out.println("n2 menor");
     }     
     
     /**
@@ -55,7 +55,7 @@ public class Ejercicio6Lambdas {
      * No hace falta comprobar los nulos.
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre(){
-        throw new RuntimeException("Pendiente de hacer");
+    	(Persona p1, Persona p2) -> if( p1.getNombre().equals(p2.getNombre()) && p1.getDireccion().equals(p2.getDireccion())) System.out.println("son iguales") else System.out.println("son diferentes")
     }     
     
     /**
@@ -63,7 +63,7 @@ public class Ejercicio6Lambdas {
      * tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca(){
-        throw new RuntimeException("Pendiente de hacer");
+        (Persona p1) -> if(p1.getDireccion().equals("Huesca")) System.out.println("es de Huesca") else System.out.println("no es de Huesca")
     }
 
     /**
@@ -71,21 +71,21 @@ public class Ejercicio6Lambdas {
      * Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral(){
-        throw new RuntimeException("Pendiente de hacer");
+    	 (Persona p1) -> if(p1.getEdad()>16 && p1.getEdad()<64) System.out.println("En edad laboral") else System.out.println("No en edad laboral");
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+    	  return (p1)->p1.getNombre();
     }
 
     /**
      * Devolver una función Function que devuelva la compra (Opcional) de las personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+    	  return (p1)->p1.getCesta();
     }
 
     /**
@@ -93,14 +93,17 @@ public class Ejercicio6Lambdas {
      * Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+    	return(p1)->{
+        	Optional<Compra> primeraComparacion = p1.getCesta();
+			return null;
+        };
     }
 
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad(){
-        throw new RuntimeException("Pendiente de hacer");
+    	(Persona p1)-> p1.edad++;
     }
 
     /**
