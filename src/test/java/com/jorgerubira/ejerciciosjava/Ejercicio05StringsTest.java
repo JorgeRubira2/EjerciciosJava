@@ -63,6 +63,8 @@ public class Ejercicio05StringsTest {
         assertEquals(3, instance.contarPalabras("Hola.        Que Tal"));
     }
 
+     
+    
     @Test
     public void testContarLineas() {
         Ejercicio05Strings instance = new Ejercicio05Strings();
@@ -70,5 +72,12 @@ public class Ejercicio05StringsTest {
         assertEquals(0, instance.contarLineas(""));
         assertEquals(2, instance.contarLineas("Prueba de salto con dos carácteres\r\n\r\nEste es un texto random\r\n"));
     }
+    
+    @Test
+    public void testQuitarEspacios(){
+        Ejercicio05Strings instance = new Ejercicio05Strings();
+        assertEquals("Texto a probar", instance.quitarEspacios("   Texto a probar   "));
+    }    
+   
     
 }
