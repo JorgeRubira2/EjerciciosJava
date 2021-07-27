@@ -5,6 +5,7 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.Ejercicio02InstruccionesDeControl;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
