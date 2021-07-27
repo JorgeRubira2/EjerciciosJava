@@ -23,7 +23,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        throw new RuntimeException("Pendiente de hacer");
+       return (p1,p2)->p1.compareTo(p2);
         
     } 
 
@@ -33,7 +33,18 @@ public class Ejercicio06Lambdas {
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1,p2)->{
+        	if(p1== null && p2==null) {
+        		return 0;
+        	}else if(p1==null){
+        		return -1;
+        		
+        	}else if(p2==null) {
+        		return 1;
+        	}
+        	return p1.compareTo(p2);
+        	
+        };
     } 
 
     /**
@@ -42,7 +53,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar personas con valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1,p2)->p1.getEdad()-p2.getEdad();
     } 
     
     /**
@@ -50,7 +61,9 @@ public class Ejercicio06Lambdas {
      * para ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente(){
-        throw new RuntimeException("Pendiente de hacer");
+    	 return (p1,p2)->p2.getEdad()-p1.getEdad();
+    
+    	
     }     
     
     /**
@@ -59,7 +72,14 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los nulos.
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre(){
-        throw new RuntimeException("Pendiente de hacer");
+    	return ((p1,p2)->{
+    		int primeraComparacion=p1.getCiudad().compareTo(p2.getCiudad());
+            if (primeraComparacion!=0){
+                return primeraComparacion;
+            }else{
+                return (p1.getNombre().compareTo(p2.getNombre()));
+            }
+    	});
     }     
     
     /**
@@ -67,7 +87,14 @@ public class Ejercicio06Lambdas {
      * tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca(){
-        throw new RuntimeException("Pendiente de hacer");
+       return (p1)->{
+    	   String primeraComparacion = p1.getCiudad();
+    	   if(primeraComparacion == "Huesca") {
+    		   return true;
+    	   }else {
+    		   return false;
+    	   }
+       };
     }
 
     /**
@@ -75,21 +102,29 @@ public class Ejercicio06Lambdas {
      * Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1)->{
+        	int primeraComparacion =p1.getEdad();
+        	if(primeraComparacion < 16 || primeraComparacion >=64) {
+        		return false;
+        	}else {
+        		return true;
+        	}
+			
+        };
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1)->p1.getNombre();
     }
 
     /**
      * Devolver una función Function que devuelva la compra (Opcional) de las personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1)->p1.getCesta();
     }
 
     /**
@@ -97,7 +132,10 @@ public class Ejercicio06Lambdas {
      * Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+        return(p1)->{
+        	Optional<Compra> primeraComparacion = p1.getCesta();
+			return null;
+        };
     }
 
     /**
