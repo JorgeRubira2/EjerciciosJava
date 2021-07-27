@@ -16,6 +16,14 @@ import java.util.function.UnaryOperator;
 
 
 public class Ejercicio06Lambdas {
+    //Comparator = dos parametros
+    //Predicate - un parametro y devuelve un boolean
+    //function - recibe un parametro y devuelve un paratro
+    //BiConsumer -recibe dos parametros y llega void
+    //Suplier -  no lleva y devuelve una compra
+    //Unary - 
+    //IntBinaryOperator - dos parametros int y devuelve un parametro int
+   
     
     /**
      * Devolver una función Comparator con Lambdas que compare dos enteros 
@@ -23,7 +31,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        throw new RuntimeException("Pendiente de hacer");
+        return(p1,p2)-> p1-p2;
     } 
 
     /**
@@ -118,7 +126,7 @@ public class Ejercicio06Lambdas {
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia(){
-        throw new RuntimeException("Pendiente de hacer");
+        Supplier s =()->Optional.empty();
     }
 
     /**
@@ -133,7 +141,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar valores nulos.
      */
     public UnaryOperator<String> convertirAMayusculas(){
-        throw new RuntimeException("Pendiente de hacer");
+        return UnaryOperator<String> transformar=(palabra)->palabra.toUpperCase();
     }    
     
     /**

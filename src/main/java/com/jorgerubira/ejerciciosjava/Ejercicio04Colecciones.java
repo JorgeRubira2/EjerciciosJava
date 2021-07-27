@@ -106,7 +106,7 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
->>>>>>> origin/master
+
         throw new RuntimeException("Pendiente de hacer");
     }
 
