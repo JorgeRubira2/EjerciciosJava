@@ -61,6 +61,7 @@ public class Colecciones {
         lista3c.addFirst("Ana");
         lista3c.addFirst("Juan");
         lista3c.addFirst("Pepe");
+        System.out.println("Carla");
         System.out.println(lista3c.poll());
         
         //Ana pulgar

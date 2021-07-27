@@ -23,7 +23,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (Integer a, Integer b)->a-b;
     } 
 
     /**
@@ -32,7 +32,7 @@ public class Ejercicio06Lambdas {
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (String a, String b)-> a.length()-b.length();
     } 
 
     /**
@@ -66,7 +66,7 @@ public class Ejercicio06Lambdas {
      * tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (Persona a)-> a.getCiudad().equals("Huesca");
     }
 
     /**
@@ -79,9 +79,10 @@ public class Ejercicio06Lambdas {
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
+     * return (Persona a, String b) -> a.getNombre();
      */
     public Function<Persona, String> obtenerNombreDePersonas(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (Persona a) -> a.getNombre();
     }
 
     /**
@@ -103,7 +104,7 @@ public class Ejercicio06Lambdas {
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (Persona a) -> a.getEdad();
     }
 
     /**
@@ -133,14 +134,14 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar valores nulos.
      */
     public UnaryOperator<String> convertirAMayusculas(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (String a) -> a.toUpperCase();
     }    
     
     /**
      * Devuelve la suma de dos enteros.
      */
     public IntBinaryOperator sumar(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (int a, int b)->a+b;
     }    
     
     /**
