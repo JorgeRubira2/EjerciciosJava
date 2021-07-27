@@ -21,8 +21,8 @@ public class Ejercicio06Lambdas {
      * falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers() {
-        Comparator<Integer> comparador = (a, b) -> a - b;
-        return comparador;
+        Comparator<Integer> comparadorIntegers = (a, b) -> a - b;
+        return comparadorIntegers;
     }
 
     /**
