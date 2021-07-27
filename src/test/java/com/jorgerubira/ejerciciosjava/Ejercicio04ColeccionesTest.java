@@ -52,7 +52,6 @@ public class Ejercicio04ColeccionesTest {
         assertEquals(2, destino.size() );
         assertEquals(4, destino.get("Juan") );
         assertEquals(2, destino.get("Pedro") );     //2 
-
     }
 
     @Test

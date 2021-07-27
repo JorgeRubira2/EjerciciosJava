@@ -27,4 +27,4 @@ de tipo primitivo a Optional<Envoltorio> poniendo null:  Optional.ofNullable(nul
 -------------------------------------------------------------------------------------
 Creación.
 int[] arrayPrimitivo={2,3,4,2};
-int[] arrayPrimitivo=new int[]{2,3,4,2};
+int[] arrayPrimitivo=new int[]{2,3,4,2};.
