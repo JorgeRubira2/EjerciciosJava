@@ -31,12 +31,8 @@ class Persona implements Comparable{
     }
 
     @Override
-    public int hashCode() {
-        return edad;
-    }
-
-    @Override
     public int compareTo(Object o) {
+        System.out.print("D");
         //return edad-((Persona)o).edad;
         //"Ana".comparteTo("Juan")     -1 -> Ana va antes que Juan
         return this.nombre.compareTo(((Persona)o).nombre);
@@ -51,7 +47,9 @@ public class PruebasSet {
         Set<String> conjunto2=new HashSet<>();
         Set<String> conjunto3=new LinkedHashSet<>();
         
-        
+        conjunto1.add("Val");
+        conjunto1.add("Val");
+        conjunto1.add("Val");
         conjunto1.add("Val");
         conjunto1.add("Pepe");
         conjunto1.add("Juan");
