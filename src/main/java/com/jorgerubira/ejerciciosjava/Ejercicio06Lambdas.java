@@ -23,9 +23,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        throw new RuntimeException("Pendiente de hacer");
-       
-        
+        return (a, b)-> a.compareTo(b);
     } 
 
     /**
@@ -33,8 +31,12 @@ public class Ejercicio06Lambdas {
      * y devuelva si el primero parametro1 es menor que el parametro2
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
+    
     public Comparator<String> compararStrings(){
         throw new RuntimeException("Pendiente de hacer");
+        /*return (a, b)->(
+                if(){
+                    )}*/
     } 
 
     /**
