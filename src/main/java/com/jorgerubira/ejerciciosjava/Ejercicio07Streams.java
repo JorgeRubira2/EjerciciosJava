@@ -8,6 +8,7 @@ import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class Ejercicio07Streams {
@@ -17,7 +18,8 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Double> flujo= origen.stream().filter((i)->i>=0).collect(Collectors.toList());
+        return flujo;
     }
     
     /**
@@ -25,6 +27,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
+        
         throw new RuntimeException("Pendiente de hacer");
     }
     
