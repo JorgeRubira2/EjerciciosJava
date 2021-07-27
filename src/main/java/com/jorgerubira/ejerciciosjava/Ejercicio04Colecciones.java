@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -114,22 +115,17 @@ public class Ejercicio04Colecciones {
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas) {
 
-       /* Set<Persona> guardar = new HashSet<Persona>();
+        Set<String> guardarClaves = new HashSet<String>();
 
-        for (String a : listaPersonas.keySet()) {
-            if (listaPersonas.get(a).getCiudad().equals("Huesca")) {
-                guardar.add(listaPersonas.get(a));
-
+        for (String claves : listaPersonas.keySet()) {
+            if (listaPersonas.get(claves).getCiudad().equals("Huesca")) {
+                guardarClaves.add(claves);
             }
-
         }
-
-        for (int i = 0; i < guardar.size(); i++) {
-            listaPersonas.remove(i);
-
+        
+        for (String clave : guardarClaves) {
+            listaPersonas.remove(clave);
         }
-*/
-       
     }
 
     /**
@@ -140,8 +136,6 @@ public class Ejercicio04Colecciones {
      * para ver que persona va a salir pero sin sacarla utilizar peek
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
-        
-        
         throw new RuntimeException("Pendiente de hacer");
     }
 
