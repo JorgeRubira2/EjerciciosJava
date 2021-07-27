@@ -94,8 +94,8 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
-        for (int i = listaPersonas.size(); i >= 0; i--) {
-            if (listaPersonas.get(i).equals("Huesca")) {
+        for (int i = listaPersonas.size()-1; i >= 0; i--) {
+            if (listaPersonas.get(i).getCiudad().equals("Huesca")) {
                 listaPersonas.remove(i);
             }
         }
@@ -128,13 +128,8 @@ public class Ejercicio04Colecciones {
      * para ver que persona va a salir pero sin sacarla utilizar peek
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
-        if (!colaPersonas.isEmpty()) {
-            if (colaPersonas.peek().getCesta() != null) {
-
-                if (colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
-                    colaPersonas.add(personaNueva);
-                }
-            } else {
+        if(!colaPersonas.isEmpty()) {
+            if (colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
                 colaPersonas.add(personaNueva);
             }
         } else {
@@ -218,9 +213,15 @@ public class Ejercicio04Colecciones {
         Map<String, Integer> map = new HashMap<>();
         for (Persona p : personas) {
             if (map.containsKey(p.getNombre())) {
-                map.replace(p.getNombre(), map.get(p.getNombre()) + p.getCesta().get().getTotalArticulos());
+                if(p.getCesta() != null && p.getCesta().isPresent()){
+                    map.replace(p.getNombre(), map.get(p.getNombre()) + p.getCesta().get().getTotalArticulos());
+                }
             } else {
-                map.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+                if(p.getCesta() != null && p.getCesta().isPresent()){
+                    map.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+                }else{
+                    map.put(p.getNombre(), 0);
+                }
             }
         }
         return map;
@@ -231,7 +232,9 @@ public class Ejercicio04Colecciones {
      * nulo.
      */
     public void annadirElementosMultiples(List<Integer> destino, int... valores) {
-        throw new RuntimeException("Pendiente de hacer");
+        for(int i = 0 ; i < valores.length; i++){
+            destino.add(valores[i]);
+        }
     }
 
 }
