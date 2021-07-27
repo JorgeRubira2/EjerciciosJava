@@ -36,9 +36,9 @@ public class Ejercicio05Strings {
      * las posiciones empiezan desde 0.
      */
     public int buscar(String frase, String palabra) {
-        String auxFrase = frase.toLowerCase();
-        String auxPalabra = palabra.toLowerCase();
-        return auxFrase.indexOf(auxPalabra);
+        frase = frase.toLowerCase();
+        palabra = palabra.toLowerCase();
+        return frase.indexOf(palabra);
         //throw new RuntimeException("Pendiente de hacer");
     }
 
@@ -48,9 +48,16 @@ public class Ejercicio05Strings {
      * Pista. Para quitar las tildes utilizar replaceAll
      */
     public boolean equalsInsensibleMayusculasYTildes(String palabra1, String palabra2) {
-        //palabra1=palabra1.replaceAll("[ÁáÉéÍíÓóÚú]", "[AaEeIiOoUu]");
-        //return palabra1.equalsIgnoreCase(palabra2)?true:false;
-        throw new RuntimeException("Pendiente de hacer");
+        String [] sinTildes={"a","e","i","o","u"};
+        String [] conTildes={"á","é","í","ó","ú"};
+        palabra1=palabra1.toLowerCase();
+        palabra2=palabra2.toLowerCase();
+        for(int i=0; i<sinTildes.length;i++){
+            palabra1=palabra1.replaceAll(conTildes[i], sinTildes[i]);
+            palabra2=palabra2.replaceAll(conTildes[i], sinTildes[i]);
+        }
+        return palabra1.equalsIgnoreCase(palabra2);
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -82,7 +89,13 @@ public class Ejercicio05Strings {
      * espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto) {
-        throw new RuntimeException("Pendiente de hacer");
+        String[] result;
+     
+        texto=texto.replaceAll("(  ).,"," ");
+        
+        result=texto.split(" ");
+        return result.length;
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -91,21 +104,36 @@ public class Ejercicio05Strings {
      * algunos textos, con \r\n.
      */
     public int contarLineas(String texto) {
-        throw new RuntimeException("Pendiente de hacer");
+        String[]aux=texto.split("\n");
+        return aux.length;
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Cuenta cuantas vocales hay en un texto (con tildes incluidas á).
      */
     public int contarVocales(String texto) {
-        throw new RuntimeException("Pendiente de hacer");
+        String aux="aáeéiíoóuú";
+        int contador=0;
+        texto=texto.toLowerCase();
+        for (int i=0;i<aux.length();i++){
+            if(texto.contains(""+aux.charAt(i))){
+                for(int j=0; j<texto.length();j++){
+                    if(texto.charAt(j)==aux.charAt(i)){
+                        contador++;
+                    }
+                }
+            }
+        }
+        return contador;
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Eliminación de espacios a izquierda y derecha
      */
     public String quitarEspacios(String frase) {
-        throw new RuntimeException("Pendiente de hacer");
+       return frase.trim();
     }
 
 }
