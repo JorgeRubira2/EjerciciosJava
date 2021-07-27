@@ -1,6 +1,5 @@
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.Ejercicio03Comparadores;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +53,8 @@ public class Ejercicio03ComparadoresTest {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
         assertEquals(true, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2d)));
         assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2.3)));
+        assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.empty()));
+        //assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), null));
     }
     
 }

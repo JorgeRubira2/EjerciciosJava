@@ -1,6 +1,5 @@
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.Ejercicio01ConversionTipos;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Ejercicio01ConversionTiposTest {

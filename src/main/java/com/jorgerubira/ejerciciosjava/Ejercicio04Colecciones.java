@@ -13,46 +13,33 @@ public class Ejercicio04Colecciones {
      * Si el valor no es negativo (>=0) insertarlo a la lista de destino.
      * No hace falta comprobar si destino es nulo.
      */
-    public void insertarElementoEnLista(long valor, List<Long> destino) {
-        if (valor >= 0) {
-            destino.add(valor);
-        }
+    public void insertarElementoEnLista(long valor, List<Long> destino){
+        throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Si no está la clave en el Map lo inserta. Si ya estuviese no hace nada.
      * No hace falta comprobar si destino es nulo.
      */
-    public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino) {
-        if (!destino.containsKey(clave)) {
-            destino.put(clave, valor);
-        }
+    public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
+        throw new RuntimeException("Pendiente de hacer");
     }
 
-    /**
-     * Copiar los elementos positivos >=0 del Array Origen al Array Destino No
-     * hace falta verificar si valen nulo.
-     */
-    public void copiar(List<Double> origen, List<Double> destino) {
-        for(int n=0;n<origen.size();n++){
-            if (origen.get(n)>=0){
-                destino.add(origen.get(n));
-            }
-        }
-    }
 
     /**
-     * Contar cuantos elementos del List lista están en el Set. Devolver el
-     * resultado. No hace falta verificar si valen nulo.
+     * Copiar los elementos positivos >=0 del Array Origen al Array Destino
+     * No hace falta verificar si valen nulo.
      */
-    public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista) {
-        int resultado = 0;
-         for(int n=0;n<lista.size();n++){
-             if (enLista.contains(lista.get(n))) {
-                resultado++;
-             }
-        }
-         return resultado;
+    public void copiar(List<Double> origen, List<Double> destino){
+        throw new RuntimeException("Pendiente de hacer");
+    }
+    
+    /**
+     * Contar cuantos elementos del List lista están en el Set. Devolver el resultado.
+     * No hace falta verificar si valen nulo.
+     */
+    public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
+        throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
