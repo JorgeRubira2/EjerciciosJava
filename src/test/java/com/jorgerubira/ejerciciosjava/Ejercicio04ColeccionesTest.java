@@ -27,7 +27,7 @@ public class Ejercicio04ColeccionesTest {
     
     public Ejercicio04ColeccionesTest() {
     }
-
+ 
     @Test
     public void testInsertarElementoEnLista() {
         List<Long> destino = new ArrayList<>();
@@ -92,11 +92,11 @@ public class Ejercicio04ColeccionesTest {
     }    
 
     @Test
-    public void testContarIntegers() {
+     public void testContarIntegers() {
         Map<String, Object> tabla = Map.of("A", 4L, "B", 1, "C", "Hola", "D", 4, "E", 4.4);
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         int result = instance.contarIntegers(tabla);
-        assertEquals(2, result);
+         assertEquals(2, result);
     }
 
     @Test

@@ -123,7 +123,7 @@ public class Ejercicio04Colecciones {
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
 
-        for (int i = listaPersonas.size() - 1; i > 0; i--) {
+        for (int i = listaPersonas.size()-1; i>0; i--) {
             if ((listaPersonas.get(i)).getCiudad().equals("Huesca")) {
                 {
                     listaPersonas.remove(i);
@@ -133,11 +133,6 @@ public class Ejercicio04Colecciones {
         }
     }
 
-    /**
-     * Borrar todas las personas del Map que sean de la ciudad Huesca. No hace
-     * falta verificar si valen nulo.
-     *
-     */
     /**
      * Borrar todas las personas del Map que sean de la ciudad Huesca.No hace
      * falta verificar si valen nulo.
