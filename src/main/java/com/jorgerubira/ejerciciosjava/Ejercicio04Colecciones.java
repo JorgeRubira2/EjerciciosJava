@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -37,9 +38,9 @@ public class Ejercicio04Colecciones {
 	 * No hace falta verificar si valen nulo.
 	 */
 	public void copiar(List<Double> origen, List<Double> destino){
-		for (Double i:origen){
-			if(i>=0){
-				destino.add(i);
+		for (Double d : origen){
+			if(d>=0){
+				destino.add(d);
 			}
 		}
 	}
@@ -146,7 +147,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+    	Integer[] vector = new Integer[valores.length];
+    	for (int i = 0; i < valores.length; i++) {
+			vector[i] = Integer.valueOf(valores[i]);
+		}
+    	return new ArrayList<>(Arrays.asList(vector));
     }
 
     /**
@@ -181,7 +186,7 @@ public class Ejercicio04Colecciones {
     public List<String> aprobados(Map<String, Integer> notas){
     	List<String> alumnos = new ArrayList<>();
     	return alumnos;
-    } 
+    }
 
     
     /**
@@ -190,16 +195,24 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-        throw new RuntimeException("Pendiente de hacer");
+    	Map<String, Integer> mapa = new HashMap<>();
+    	for(Persona p: personas) {
+    		if(p.getCesta().isPresent() && p.getNombre().equals(p.getNombre())) {
+    			mapa.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+    		}
+    	}
+    	return mapa;
     }     
-    
-    
+
+
     /**
      * Añade multiples valores a la lista.
      * No hace falta verificar si valen nulo.
      */    
     public void annadirElementosMultiples(List<Integer> destino, int ... valores){
-        throw new RuntimeException("Pendiente de hacer");
+       for(int v: valores) {
+    	   destino.add(Integer.valueOf(v));
+       }
     }
 
 }

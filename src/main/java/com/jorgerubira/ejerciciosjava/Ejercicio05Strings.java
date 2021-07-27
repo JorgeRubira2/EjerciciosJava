@@ -15,7 +15,8 @@ public class Ejercicio05Strings {
      * Recibe una palabra y devuelve esta en minusculas
      */
     public String convertirAMinusculas(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        palabra1 = palabra1.toLowerCase();
+        return palabra1;
     }
 
     /**
@@ -23,7 +24,8 @@ public class Ejercicio05Strings {
      * Pista: Utilizar split para trocear la frase.
      */
     public String segundaPalabra(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] palabra2 = palabra1.split(" ");
+        return palabra2[1];
     }    
 
     /**
@@ -33,7 +35,10 @@ public class Ejercicio05Strings {
      * Tener en cuenta que las posiciones empiezan desde 0.
      */
     public int buscar(String frase, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        if(palabra.equalsIgnoreCase(frase)) {
+        	return palabra.compareToIgnoreCase(frase);
+        }else
+        	return -1;
     }    
 
     /**
