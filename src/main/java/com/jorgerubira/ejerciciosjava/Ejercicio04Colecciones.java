@@ -43,8 +43,8 @@ public class Ejercicio04Colecciones {
     }
 
     /**
-     * Contar cuantos elementos del List lista están en el Set. Devolver el
-     * resultado. No hace falta verificar si valen nulo.
+     * Copiar los elementos positivos >=0 del Array Origen al Array Destino
+     * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista) {
         int resultado = 0;

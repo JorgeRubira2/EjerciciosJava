@@ -5,7 +5,6 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.Ejercicio05Strings;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,6 +47,12 @@ public class Ejercicio05StringsTest {
         assertEquals(false, instance.equalsInsensibleMayusculasYTildes("rr", "çrr"));
     }
 
+    @Test
+    public void testContarVocales() {
+        Ejercicio05Strings instance = new Ejercicio05Strings();
+        assertEquals(5, instance.contarVocales("MurCIÉlagó"));
+    }    
+    
     @Test
     public void testConvertirCamelCase() {
         Ejercicio05Strings instance = new Ejercicio05Strings();
