@@ -71,6 +71,18 @@ public class EjemploPredicates {
         
         //BiConsumer visualiza dos objetos
         BiConsumer<Persona, Persona> mostrar2Per=(p1,p2)->System.out.println(p1.getNombre() + " " + p1.getNombre());
+        
+
+
+        List<Persona> lista2=new ArrayList<>();
+        lista.add(new Persona("Juan", 20));
+        lista.add(new Persona("Ana", 70));        
+        lista.add(new Persona("Fran", 10));
+        lista.add(new Persona("Ana", 20));
+        
+        //List<Compra> compra=lista2.stream().map(transformador3);
+        
+        
     }
 
 
