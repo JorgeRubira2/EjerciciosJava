@@ -1,4 +1,4 @@
-package com.jorgerubira.explicaciones.D20210722b;
+package main.java.com.jorgerubira.explicaciones.D20210722b;
 
 
 public class Susana implements Mecatronico {

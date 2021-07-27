@@ -1,5 +1,5 @@
 
-package com.jorgerubira.explicaciones.D20210723;
+package main.java.com.jorgerubira.explicaciones.D20210723;
 
 
 class Persona{

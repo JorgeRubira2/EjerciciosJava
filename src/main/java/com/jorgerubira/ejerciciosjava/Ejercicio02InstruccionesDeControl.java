@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jorgerubira.ejerciciosjava;
+package main.java.com.jorgerubira.ejerciciosjava;
 
 /**
  *
@@ -11,32 +11,65 @@ package com.jorgerubira.ejerciciosjava;
  */
 public class Ejercicio02InstruccionesDeControl {
     
-    //Devolver el número más alto
-    public int maximoValor(int a, int b, int c){
-        throw new RuntimeException("Pendiente de hacer");
+	public Ejercicio02InstruccionesDeControl() {
     }
     
-    //Devolver la suma de todos los elementos del vector
-    public int sumarElementos(int[] vector){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
-    
-    //Devolver cuantos elementos son pares
-    public int contarPares(int[] vector){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
-    
-    //Devolver el maximo comun divisor.
-    //Recibir dos elementos a, b. Restar repetidamente el valor mas pequeño al más grande. Parar cuando son iguales.
-    public int maximoComunDivisor(int a, int b){
-        throw new RuntimeException("Pendiente de hacer");
+    public int suma(int a,int b){
+        int c=a+b;
+        return c;
     }
 
-    //Contar vocales. Recibe una cadena y cuenta cuantas vocales hay.
-    //1. Transformar el String y convertirlo a minúsculas toLowerCase(). 
-    //2. Después recorrer los elementos hasta el final y obtener los caracteres con charAt(n). 
-    public int contarVocales(String texto){
-        throw new RuntimeException("Pendiente de hacer");
-    }
-    
+	public int maximoValor(int i, int j, int k) {
+		return Math.max(i,Math.max(i, k));
+	}
+
+	public int sumarElementos(int[] vector) {
+		int suma=0;
+        for (int i = 0; i <= vector.length; i++) {
+            suma+=vector[i];
+        }
+        return suma;
+	}
+
+	public Integer contarPares(int[] vector) {
+		int pares = 0;
+		for (int i = 0; i <= vector.length; i++) {
+			if(vector[i]%2==0) pares++;
+		}
+		return pares;
+	}
+
+	public Integer contarVocales(String string) {
+		int vocales = 0;
+		for(int i=0;i<string.length();i++) {
+			if(string.charAt(i)=='a'||string.charAt(i)=='e'||string.charAt(i)=='i'||string.charAt(i)=='o'||string.charAt(i)=='u') {
+				vocales++;
+			}
+		}
+		return vocales;
+	}
+
+	public Integer maximoComunDivisor(int a, int b) {
+		int max = a;
+	       int min = b;
+	       int aux = 0;
+	       if (b>a) {
+	           max = b;
+	           min = a;
+	       } 
+	       while (max > min)
+	       {
+	            max-=min;
+	            if (min>max) {
+	               aux = max;
+	               max = min;
+	               min = aux;
+	           } 
+	       }
+	       return max;
+	}
+
+
+   
+
 }

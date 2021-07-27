@@ -1,5 +1,4 @@
-package com.jorgerubira.ejerciciosjava;
-
+package main.java.com.jorgerubira.ejerciciosjava;
 public class Ejercicio01ConversionTipos {
 
     //Devuelve la suma a+b;

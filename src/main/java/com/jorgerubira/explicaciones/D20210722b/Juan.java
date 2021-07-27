@@ -1,6 +1,6 @@
-package com.jorgerubira.explicaciones.D20210722b;
+package main.java.com.jorgerubira.explicaciones.D20210722b;
 
-import com.jorgerubira.explicaciones.D20210722.Persona;
+import main.java.com.jorgerubira.explicaciones.D20210722.Persona;
 
 
 //Alt + Intro (Cursor final Clase)

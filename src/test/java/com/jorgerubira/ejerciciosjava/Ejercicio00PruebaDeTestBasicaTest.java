@@ -1,6 +1,9 @@
-package com.jorgerubira.ejerciciosjava;
+package test.java.com.jorgerubira.ejerciciosjava;
 
 import org.junit.jupiter.api.Test;
+
+import main.java.com.jorgerubira.ejerciciosjava.Ejercicio00PruebaDeTestBasica;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 

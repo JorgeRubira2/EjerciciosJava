@@ -1,5 +1,5 @@
 
-package com.jorgerubira.explicaciones.D20210722b;
+package main.java.com.jorgerubira.explicaciones.D20210722b;
 
 public interface Abogado {
     public void protestar();

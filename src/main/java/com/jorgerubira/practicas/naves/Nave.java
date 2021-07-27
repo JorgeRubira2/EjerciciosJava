@@ -1,4 +1,4 @@
-package com.jorgerubira.practicas.naves;
+package main.java.com.jorgerubira.practicas.naves;
 
 
 

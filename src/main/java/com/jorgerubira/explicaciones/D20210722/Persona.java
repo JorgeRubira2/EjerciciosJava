@@ -1,4 +1,4 @@
-package com.jorgerubira.explicaciones.D20210722;
+package main.java.com.jorgerubira.explicaciones.D20210722;
 
 import java.util.Date;
 

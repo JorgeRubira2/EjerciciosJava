@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jorgerubira.ejerciciosjava.entities;
+package main.java.com.jorgerubira.ejerciciosjava.entities;
 
 import java.util.Optional;
 

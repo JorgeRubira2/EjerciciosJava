@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jorgerubira.ejerciciosjava;
+package test.java.com.jorgerubira.ejerciciosjava;
 
 import org.junit.jupiter.api.Test;
+
+import main.java.com.jorgerubira.ejerciciosjava.Ejercicio02InstruccionesDeControl;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Ejercicio02InstruccionesDeControlTest {
     
     public Ejercicio02InstruccionesDeControlTest() {
     }
-    
+   
     public int suma(int a,int b){
         int c=a+b;
         return c;
