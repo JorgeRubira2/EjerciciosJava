@@ -23,9 +23,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        return (o1, o2) -> {
-            return o1.compareTo(o2);
-        };
+        throw new RuntimeException("Pendiente de hacer");
     } 
 
     /**
