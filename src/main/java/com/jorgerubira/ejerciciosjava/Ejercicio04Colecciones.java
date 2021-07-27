@@ -40,7 +40,7 @@ public class Ejercicio04Colecciones {
 	public void copiar(List<Double> origen, List<Double> destino){
 		for (int i = 0; i < origen.size(); i++) {
 			if (origen.get(i) >= 0) {
-				destino.add(origen.get(i).doubleValue());
+				destino.add(origen.get(i));
 			}
 		}
 	}
@@ -125,7 +125,18 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        throw new RuntimeException("Pendiente de hacer");
+    	if(colaPersonas.isEmpty()){
+    		colaPersonas.add(personaNueva);
+    	}
+    	else{
+    		if(colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos()<=5){
+    			colaPersonas.add(personaNueva);
+    		}
+    		else{
+    			colaPersonas.poll();
+    			colaPersonas.add(personaNueva);
+    		}
+    	}
     }
 
     /**
@@ -201,13 +212,20 @@ public class Ejercicio04Colecciones {
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
     	Map<String, Integer> mapa = new HashMap<>();
-    	for(Persona p: personas) {
-    		if(p.getCesta().isPresent()) {
-    			mapa.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+    	Integer a=0;
+    	for(Persona p:personas){
+    		if(p.getCesta().isPresent()){
+    			a=p.getCesta().get().getTotalArticulos();
     		}
-    		if(p.getCesta().isEmpty() && !p.getNombre().equals(mapa.keySet())) {
-    			mapa.put(p.getNombre(),p.getCesta().get().getTotalArticulos());
+    		else{
+    			a=0;
     		}
+    		if(mapa.containsKey(p.getNombre())){
+    			mapa.put(p.getNombre(), mapa.get(p.getNombre())+a);
+    		}
+    		else{
+    			mapa.put(p.getNombre(),a);
+    		} 
     	}
     	return mapa;
     }     

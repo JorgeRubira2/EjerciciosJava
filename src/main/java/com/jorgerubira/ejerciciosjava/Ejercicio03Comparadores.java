@@ -52,7 +52,7 @@ public class Ejercicio03Comparadores {
 	//Si no devuelve false
 	//Si los dos tienen null devuelve false.
 	public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2){
-		if((valor1.isPresent() || valor2.isPresent()) && (valor2.get().doubleValue() == valor1.get().doubleValue())) {
+		if((valor1.isPresent() && valor2.isPresent()) && (valor2.get().doubleValue() == valor1.get().doubleValue())) {
 			return true;
 		}else
 			return false;
