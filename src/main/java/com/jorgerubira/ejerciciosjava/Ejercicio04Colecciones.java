@@ -133,7 +133,8 @@ public class Ejercicio04Colecciones {
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
 
-        /*if (personaNueva.getCesta()!=null && personaNueva.getCesta().isPresent()) {   
+        throw new RuntimeException("Pendiente de hacer");
+        /*  
             if (colaPersonas.peek().getCesta()!=null) {
                 
                 Compra compra = colaPersonas.peek().getCesta().get();
@@ -144,9 +145,7 @@ public class Ejercicio04Colecciones {
             } else {
                 colaPersonas.add(personaNueva);
             }
-        } else {
-            colaPersonas.add(personaNueva);
-        }*/
+        */
     }
 
     /**
