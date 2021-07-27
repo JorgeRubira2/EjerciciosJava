@@ -43,7 +43,7 @@ class Persona implements Comparable{
 
 public class PruebasSet {
     public static void main(String[] args) {
-        Set<String> conjunto1=new TreeSet<>();
+        Set<String> conjunto1=new HashSet<>();
         Set<String> conjunto2=new HashSet<>();
         Set<String> conjunto3=new LinkedHashSet<>();
         
