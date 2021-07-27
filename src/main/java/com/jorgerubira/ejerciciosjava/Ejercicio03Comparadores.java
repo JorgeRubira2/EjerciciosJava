@@ -58,12 +58,12 @@ public class Ejercicio03Comparadores {
         if (valor1.isPresent() && valor2.isPresent()) {
             int var1 = valor1.get().intValue();
             double var2 = valor2.get().doubleValue();
-            if (var1==var2) {
+            if (var1 == var2) {
                 return true;
             } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
