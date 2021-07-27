@@ -1,9 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
-import com.jorgerubira.ejerciciosjava.Ejercicio04Colecciones;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -48,7 +51,7 @@ public class Ejercicio04ColeccionesTest {
         instance.insertarElementoEnTabla("Juan", 6, destino);
         assertEquals(2, destino.size() );
         assertEquals(4, destino.get("Juan") );
-        assertEquals(2, destino.get("Pedro") );
+        assertEquals(2, destino.get("Pedro") );     //2 
     }
 
     @Test
@@ -238,7 +241,7 @@ public class Ejercicio04ColeccionesTest {
 
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         Map<String, Integer> result = instance.totalProductos(personas);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertEquals(6, result.get("Fran"));
         assertEquals(5, result.get("Ana"));
         assertEquals(0, result.get("Susana"));
