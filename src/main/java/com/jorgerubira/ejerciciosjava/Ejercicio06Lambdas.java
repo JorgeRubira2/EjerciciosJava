@@ -142,8 +142,10 @@ public class Ejercicio06Lambdas {
         return (p1,p2) -> {
                 if (p2.getCesta().isPresent()){
                     p1.setCesta(p2.getCesta().get());
-                    p2.setCesta(null);
+                } else {
+                    p1.setCesta(null);
                 }
+                 p2.setCesta(null);
         };
     }
 
@@ -151,7 +153,7 @@ public class Ejercicio06Lambdas {
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-        return () ->  Optional.of(new Compra(0,true)); 
+        return () ->  Optional.ofNullable((Compra)null); 
         
     }
 
@@ -204,7 +206,17 @@ public class Ejercicio06Lambdas {
      * unidades.
      */
     public IComparadorPersonaCompra igualNumeroDeUnidades() {
-        return (p,c) -> true;
+        return (p,c) -> {
+            int i =0; 
+            int j= 0;
+            if (p.getCesta().isPresent()){
+                i = p.getCesta().get().getTotalArticulos();
+            } 
+            if (c.isPresent()){
+                j = c.get().getTotalArticulos();
+            }
+            return i == j;
+        };
     }
 
 }
