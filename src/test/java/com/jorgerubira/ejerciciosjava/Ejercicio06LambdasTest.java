@@ -139,7 +139,7 @@ public class Ejercicio06LambdasTest {
         Persona p2=new Persona("B", c2);
         bi.accept(p1, p2);
         assertEquals(c2, p1.getCesta().get());
-        assertEquals(Optional.empty(), p2.getCesta().get());
+        assertEquals(true, p2.getCesta().isEmpty());
         assertEquals("A", p1.getNombre());
         assertEquals("B", p2.getNombre());
         
@@ -147,8 +147,8 @@ public class Ejercicio06LambdasTest {
         p1=new Persona("A", c1);
         p2=new Persona("B");
         bi.accept(p1, p2);
-        assertEquals(Optional.empty(), p1.getCesta().get());
-        assertEquals(Optional.empty(), p2.getCesta().get());
+        assertEquals(true, p1.getCesta().isEmpty());
+        assertEquals(true, p2.getCesta().isEmpty());
         assertEquals("A", p1.getNombre());
         assertEquals("B", p2.getNombre());
     }
