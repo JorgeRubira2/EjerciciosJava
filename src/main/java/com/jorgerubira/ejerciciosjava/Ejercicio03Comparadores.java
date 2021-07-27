@@ -6,7 +6,7 @@ public class Ejercicio03Comparadores {
 
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
-    //Si se envia null en cualquiera de ellos devuelve false
+    //Si se envia null en cualquiera de ellos devuelve false 
     public boolean compararEnteros(Integer i1, Integer i2) {
         if (i1 != null && i2 != null && i1.equals(i2)) {
             return true;
