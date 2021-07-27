@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -14,7 +15,10 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if(valor>=0){  
+            List<Long> destino1=new ArrayList<>();
+            destino.add(valor);
+        }
     }
 
     /**
@@ -22,7 +26,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        if(destino.containsKey(clave)==false){
+            destino.put(clave, valor);
+        }
     }
 
 
@@ -31,7 +37,9 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        throw new RuntimeException("Pendiente de hacer");
+        for(double i=0; i>=0;){
+            destino.addAll(origen);
+        }
     }
     
     /**
