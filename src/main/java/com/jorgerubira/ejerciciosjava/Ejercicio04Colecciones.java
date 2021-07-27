@@ -44,8 +44,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-        enLista.retainAll(lista);
-        return enLista.size();
+        int contador = 0;
+        for(int v:lista){
+            if(enLista.contains(v)){
+                contador++;
+            }
+        }
+        return contador;
     }
     
     /**
@@ -54,7 +59,14 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-        throw new RuntimeException("Pendiente de hacer");
+        int contador = 0;
+        for(int v:lista){
+            if(enLista.contains(v)){
+                contador++;
+                enLista.remove(v);
+            }
+        }
+        return contador;
     }    
     
     /**
@@ -107,7 +119,13 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        throw new RuntimeException("Pendiente de hacer");
+        if(!colaPersonas.isEmpty()) {
+            if (colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
+                colaPersonas.add(personaNueva);
+            }
+        } else {
+            colaPersonas.add(personaNueva);
+        }
     }
 
     /**
@@ -116,7 +134,11 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Integer> lista = new ArrayList<>();
+        for(int v:valores){
+            lista.add(v);
+        }
+        return lista;
     }
     
     /**
@@ -124,7 +146,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        throw new RuntimeException("Pendiente de hacer");
+        ArrayList<Integer> lista = new ArrayList<>();
+        for(int v:valores){
+            lista.add(v);
+        }
+        return lista;
     }
 
     /**
@@ -133,7 +159,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico){
-        throw new RuntimeException("Pendiente de hacer");
+        if(minerales.contains(objeto)){
+            return "Mineral";
+        } else if(organico.contains(objeto)){
+            return "Organico";
+        } else {
+            return "";
+        }
     }    
 
     /**
@@ -142,7 +174,8 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
-        throw new RuntimeException("Pendiente de hacer");
+        frutas.retainAll(colores);
+        return frutas;
     }        
 
     /**
@@ -151,7 +184,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> aprobados = new ArrayList<>();
+        for(String nombre:notas.keySet()){
+            if(notas.get(nombre)>=5){
+                aprobados.add(nombre);
+            }
+        }
+        return aprobados;
     } 
 
     
@@ -161,7 +200,24 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Integer> lista = new HashMap<>();
+        for(Persona p:personas) {
+            if(lista.containsKey(p.getNombre())) {
+                int cesta = lista.get(p.getNombre());
+                if(p.getCesta().isPresent()) {
+                    lista.replace(p.getNombre(), cesta + p.getCesta().get().getTotalArticulos());
+                } else {
+                    lista.replace(p.getNombre(), cesta + 0);
+                }
+            } else {
+                if(p.getCesta().isPresent()) {
+                    lista.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+                }else {
+                    lista.put(p.getNombre(), 0);
+                }
+            }
+        }
+        return lista;
     }     
     
     
@@ -170,7 +226,8 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public void annadirElementosMultiples(List<Integer> destino, int ... valores){
-        throw new RuntimeException("Pendiente de hacer");
+        for(int valor:valores){
+            destino.add(valor);
+        }
     }
-
 }
