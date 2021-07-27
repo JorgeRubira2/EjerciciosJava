@@ -1,5 +1,6 @@
 package com.jorgerubira.ejerciciosjava;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Ejercicio03Comparadores {
@@ -62,8 +63,8 @@ public class Ejercicio03Comparadores {
 
         if(valor1.isEmpty()==false && valor2.isEmpty()==false){
             try{
-                System.out.println(valor1.get());
-                System.out.println(valor2.get());
+                System.out.println(Objects.equals(valor1.get(), valor2.get()));
+                System.out.println(valor1.get() + " - " + valor2.get());
                 return true;
             } catch (Exception e) {
                 return false;
