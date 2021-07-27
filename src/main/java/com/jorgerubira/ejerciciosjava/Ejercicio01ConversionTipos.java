@@ -25,7 +25,7 @@ public class Ejercicio01ConversionTipos {
 	//Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
 	public char siguienteCaracter(char valor){
 		valor+=1;
-        return valor;
+		return valor;
 	}
 
 	//Devuelve el código ascii del caracter 
@@ -35,10 +35,11 @@ public class Ejercicio01ConversionTipos {
 
 	//Convierte de String a Double. Devuelve null si no se puede convertir
 	public Double textoADouble(String valor){
-        try{
-            return Double.parseDouble(valor);
-        }catch (NumberFormatException e){
-        	return null;}
+		try{
+			return Double.parseDouble(valor);
+		}catch (NumberFormatException e){
+			return null;
+		}
 	}
 
 }
