@@ -5,6 +5,7 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.Ejercicio04Colecciones;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class Ejercicio04ColeccionesTest {
         instance.insertarElementoEnTabla("Juan", 6, destino);
         assertEquals(2, destino.size() );
         assertEquals(4, destino.get("Juan") );
-        assertEquals(2, destino.get("Pedro") );     //2 
+        assertEquals(6, destino.get("Pedro") );
     }
 
     @Test
