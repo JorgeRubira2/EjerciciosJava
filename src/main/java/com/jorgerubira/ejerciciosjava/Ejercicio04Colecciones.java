@@ -12,7 +12,7 @@ import java.util.Queue;
 import java.util.Set;
 
 public class Ejercicio04Colecciones {
-
+ 
     /**
      * Si el valor no es negativo (>=0) insertarlo a la lista de destino. No
      * hace falta comprobar si destino es nulo.
@@ -207,21 +207,13 @@ public class Ejercicio04Colecciones {
      * verificar si valen nulo.
      */
     public Map<String, Integer> totalProductos(List<Persona> personas) {
-        /* Map<String, Integer> resultado=new HashMap<>();
-        Integer a=0;
-        for(Persona p:personas){
-            if(p.getCesta().isPresent() || p.getCesta().get()!=null){
-            a=p.getCesta().get().getTotalArticulos();
-            if(resultado.containsKey(p.getNombre())){
-                a+=resultado.get(p.getNombre());
-                resultado.put(p.getNombre(), a);
-            }
-            else
-                resultado.put(p.getNombre(), a);
-            }
-        }
-        return resultado;*/
-        throw new RuntimeException("Pendiente de hacer");
+       Map<String, Integer> result=new HashMap<>();
+       Integer a=0;
+       for(Persona p:personas){
+           
+       }
+       return result;
+       //throw new RuntimeException("Pendiente de hacer");
 
     }
 
