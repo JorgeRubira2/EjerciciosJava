@@ -52,7 +52,7 @@ public class Ejercicio03ComparadoresTest {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
         assertEquals(true, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2d)));
         assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2.3)));
-        //assertEquals(true, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2.0)));
+        assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.empty()));
         //assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), null));
     }
 

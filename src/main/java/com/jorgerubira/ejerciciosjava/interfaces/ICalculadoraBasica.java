@@ -18,4 +18,3 @@ public interface ICalculadoraBasica {
     public ICalculadoraBasica dividir(double valor);
     public double getResultado();
 }
-  

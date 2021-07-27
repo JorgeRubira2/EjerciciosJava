@@ -26,7 +26,7 @@ public class Ejercicio07Streams {
      */
     public int maximoElemento(List<Integer> lista){
         throw new RuntimeException("Pendiente de hacer");
-    } 
+    }
     
     /**
      * Devuelve cuantos elementos no hay repetidos.

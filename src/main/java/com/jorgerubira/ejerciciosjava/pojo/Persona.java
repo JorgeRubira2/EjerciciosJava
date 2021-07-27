@@ -25,13 +25,13 @@ public class Persona {
     public Persona(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
-    } 
+    }
     
     public Persona(String nombre, Compra cesta) {
         this.nombre = nombre;
         this.cesta = Optional.ofNullable(cesta);
     }
-    
+     
     public Persona(String nombre, String ciudad, int edad, Date fechaNacimiento, int altura, int peso) {
         this.nombre = nombre;
         this.ciudad = ciudad;
@@ -96,5 +96,5 @@ public class Persona {
     public void setCesta(Compra cesta) {
         this.cesta = Optional.ofNullable(cesta);
     }
-       
+    
 }
