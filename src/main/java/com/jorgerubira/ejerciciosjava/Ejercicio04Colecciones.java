@@ -225,7 +225,7 @@ public class Ejercicio04Colecciones {
         return lista;
 
     }
-
+ 
     /**
      * Devuelve el texto "Mineral" si el objeto está en el conjunto de minerales
      * o "Organico" si esta en el conjunto de orgánico. Devuelve "" si no es ni
