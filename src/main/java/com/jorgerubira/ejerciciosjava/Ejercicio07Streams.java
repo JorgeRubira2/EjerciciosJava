@@ -107,10 +107,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
-        /*int[] res = lista.stream()
-                .map(x->x.getEdad())
-                .toArray(int[]::new);*/
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .mapToInt(x->x.getEdad())
+                .toArray();
     }      
     
     /**
