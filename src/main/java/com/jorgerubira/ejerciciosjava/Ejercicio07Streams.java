@@ -55,7 +55,15 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Persona[] hues = lista.stream()
+                .filter(x->x.getCiudad().equalsIgnoreCase("Huesca"))
+                .toArray(x->new Persona[x]);
+                //.collect(toList());
+        /*Persona[] per = new Persona[hues.size()]; //preguntar
+        for (int i = 0; i < per.length; i++) {
+            per[i] = hues.get(i);
+        }*/
+        return hues;
     }
     
     /**
@@ -64,7 +72,19 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        if (!lista.isEmpty()){
+            Optional<Persona> res = lista.stream()
+                    .filter(x->x.getCesta().isPresent())
+                    .max((x,y)->x.getCesta().get().getTotalArticulos()-y.getCesta().get().getTotalArticulos())
+                    ;
+            if (res.isEmpty()){
+                res = lista.stream().findFirst();
+            }
+            return res;
+        }
+        return Optional.empty();
+        
+        
     }    
     
     /**
@@ -73,7 +93,12 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Compra> res = lista.stream()
+                .filter(x->x.getCesta().isPresent())
+                .map(x->x.getCesta().get())
+                .collect(toList())
+                ;
+        return res;
     }    
     
     /**
@@ -82,6 +107,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
+        /*int[] res = lista.stream()
+                .map(x->x.getEdad())
+                .toArray(int[]::new);*/
         throw new RuntimeException("Pendiente de hacer");
     }      
     
