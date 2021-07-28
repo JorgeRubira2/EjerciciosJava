@@ -61,8 +61,8 @@ public class Ejercicio07StreamsTest {
         Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Persona> result = instance.personasDeHuescaALista(lista);
         assertEquals(2, result.size());
-        assertEquals("Juan", result.get(0).getNombre());
-        assertEquals("Pepe", result.get(1).getNombre());
+        assertEquals("Ana", result.get(0).getNombre());
+        assertEquals("Fran", result.get(1).getNombre());
     }
 
     @Test
@@ -76,8 +76,8 @@ public class Ejercicio07StreamsTest {
         Ejercicio07Streams instance = new Ejercicio07Streams();
         Persona[] result = instance.personasDeHuescaAArrayBasico(lista);
         assertEquals(2, result.length);
-        assertEquals("Juan", result[0].getNombre());
-        assertEquals("Pepe", result[1].getNombre());
+        assertEquals("Ana", result[0].getNombre());
+        assertEquals("Fran", result[1].getNombre());
     }
 
     @Test
