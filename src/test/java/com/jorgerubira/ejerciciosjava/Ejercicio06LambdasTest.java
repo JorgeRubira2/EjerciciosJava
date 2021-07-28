@@ -148,7 +148,7 @@ public class Ejercicio06LambdasTest {
         p1=new Persona("A", c1);
         p2=new Persona("B");
         bi.accept(p1, p2);
-        assertEquals(false, p1.getCesta().isEmpty());
+        assertEquals(true, p1.getCesta().isEmpty());
         assertEquals(true, p2.getCesta().isEmpty());
         assertEquals("A", p1.getNombre());
         assertEquals("B", p2.getNombre());
