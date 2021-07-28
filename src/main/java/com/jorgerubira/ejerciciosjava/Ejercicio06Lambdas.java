@@ -23,8 +23,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        throw new RuntimeException("Pendiente de hacer");
-        
+        return (a, b)-> a.compareTo(b);
     } 
 
     /**
@@ -33,7 +32,15 @@ public class Ejercicio06Lambdas {
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (a,b)-> {
+            if((a != null)&& (b != null)){
+                if(!a.isEmpty() & !b.isEmpty()){
+                    
+                }
+                return a.compareTo(b);
+            }
+            return 0;
+        };
     } 
 
     /**
