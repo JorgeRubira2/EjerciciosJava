@@ -1,0 +1,6 @@
+Resumen
+Comparator                                                //Recibe dos objetos y devuelve un entero
+Predicate<Per3> condicion=(p)->p.getEdad()>=16;           //Recibe un objeto y devuelve un boolean
+Function<Per3,String> transformador=(p)->p.getNombre();   //Recube un objeto y devuelve otro objeto
+Consumer<Persona> ponerA18=(p)->p.setEdad(18);            //Recibe un objeto y lo trata sin devolver nada
+Supplier s=()->Optional.empty();                          //Genera un objeto.
