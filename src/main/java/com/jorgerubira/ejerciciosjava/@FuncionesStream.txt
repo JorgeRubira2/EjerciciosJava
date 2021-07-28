@@ -1,0 +1,40 @@
+-------------------------------------------------------------------
+Metodos intermedios -----------------------------------------------
+-------------------------------------------------------------------
+Stream filter(Predicate)            Filtra el stream
+Stream map(Function)                Convierte un objeto en otro.
+Stream sorted(Comparator)           Devuelve la información ordenada según un comparator
+
+Stream distinct()                   Quita elementos repetidos
+Stream limit(int)                   Se queda solo con n elementos
+Stream skip(int)                    Quita los primeros n elementos
+
+Stream mapToInt(ToIntFunction)      Devuelve un Stream de tipos primitivos 
+Stream flapMap(Function<T,Stream>)) Funcion que devuelve un Stream
+Stream sorted()                     Devuelve la información ordenada
+        
+        
+---------------------------------------------------------------
+Metodos finales -----------------------------------------------
+---------------------------------------------------------------
+R collect(Collector)                  Devuelve un List,Map o Set con los datos del stream. Collectors.toList(), Collectors.toMap(), Collectors.toSet()
+Optional<T> findFirst()               Devuelve el primer elemento.
+long count()                           Cuenta los elementos
+void forEach(Consumer)                Ejecuta un consumer
+boolean anyMatch(Predicate)           Devuelve si encuentra alguna condicion
+//toArray()   []
+
+
+Collector groupingBy                  Sirve para agrupar la información.
+
+
+boolean allMatch(Predicate)           Devuelve si todos cumplen una condicion
+boolean noneMatch(Predicate)          Devuelve si ningún elemento cumple una condicion.
+Optional<T> findAny()                 Devuelve uno cualquier, normalmente el primer elemento.
+Optional<T> max(Comparator)           Devuelve el valor máximo que utiliza el comparator
+Optional<T> min(Comparator)           Devuelve el valor min que utiliza el comparator
+Optional<T> reduce(BinaryOperator)    Sirve para reducir el elemento.
+Collector partitioningBy              Sirve para 
+Collector averagingDouble             Saca la media por grupo.
+Collector summingInt                  Saca la suma por grupo.
+Collector joining                     Concatena los valores de un grupo.
