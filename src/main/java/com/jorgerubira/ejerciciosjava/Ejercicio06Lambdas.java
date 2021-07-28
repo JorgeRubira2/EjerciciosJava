@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosjava.interfaces.IComparadorPersonaCompra;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -33,8 +34,9 @@ public class Ejercicio06Lambdas {
      */
     
     public Comparator<String> compararStrings(){
-        throw new RuntimeException("Pendiente de hacer");
-        /*return (a, b)->(
+                throw new RuntimeException("Pendiente de hacer");
+
+       /* return (a, b)->(
                 if(){
                     )}*/
     } 
@@ -45,15 +47,16 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar personas con valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente(){
-        throw new RuntimeException("Pendiente de hacer");
-    } 
+        return (a, b) -> a.getEdad() - b.getEdad();
+        }
+
     
     /**
      * Devolver una función Comparator con Lambdas que compare dos Personas 
      * para ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (a, b) -> b.getEdad() - a.getEdad();
     }     
     
     /**
@@ -63,6 +66,8 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre(){
         throw new RuntimeException("Pendiente de hacer");
+        
+               
     }     
     
     /**
