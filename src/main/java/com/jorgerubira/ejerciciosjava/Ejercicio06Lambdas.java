@@ -16,7 +16,7 @@ import java.util.function.UnaryOperator;
 public class Ejercicio06Lambdas {
     //Comparator = dos parametros
     //Predicate - un parametro y devuelve un boolean
-    //function - recibe un parametro y devuelve un paratro
+    //function - recibe un parametro y devuelve un parametro
     //BiConsumer -recibe dos parametros y llega void
     //Suplier -  no lleva y devuelve una compra
     //Unary - 
@@ -29,30 +29,6 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Integer> compararIntegers() {
         return (p1, p2) -> p1 - p2;
-
-//          public static void main(String[] args) {
-//        List<Per3> lista=new ArrayList<>();
-//        lista.add(new Per3("Juan", 20));
-//        lista.add(new Per3("Ana", 70));        
-//        lista.add(new Per3("Fran", 10));
-//        lista.add(new Per3("Ana", 20));        
-//        
-//        //lista.sort((p1,p2)-> p1.getEdad()-p2.getEdad() );
-//        //lista.sort((p1,p2)-> p1.getNombre().compareTo(p2.getNombre()));
-//        lista.sort((p1,p2)-> {
-//            int primeraComparacion=p1.getNombre().compareTo(p2.getNombre());
-//            if (primeraComparacion!=0){
-//                return primeraComparacion;
-//            }else{
-//                return (p1.getEdad()-p2.getEdad());
-//            }
-//        });
-//        
-//        for (Per3 per3 : lista) {
-//            System.out.println(per3.getNombre() + " " + per3.getEdad());
-//        }
-//
-//    }
     }
 
     /**
@@ -70,7 +46,7 @@ public class Ejercicio06Lambdas {
      * valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1, p2) -> p1.getEdad() - p2.getEdad();
     }
 
     /**
@@ -78,7 +54,7 @@ public class Ejercicio06Lambdas {
      * ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1, p2) -> p2.getEdad() - p1.getEdad();
     }
 
     /**
@@ -87,7 +63,16 @@ public class Ejercicio06Lambdas {
      * por nombre. No hace falta comprobar los nulos.
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1, p2) -> {
+            var compararCiudad = p1.getCiudad().compareTo(p2.getCiudad());
+            var compararNombre = p1.getNombre().compareTo(p2.getNombre());
+
+            if (compararCiudad == 0) {
+                return compararNombre;
+            } else {
+                return compararCiudad;
+            }
+        };
     }
 
     /**
@@ -95,6 +80,12 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
+        //if ((listaPersonas.get(n)).getCiudad().equals("Huesca"))
+//        if (p.getCiudad()=="Huesca") {
+//            return true;
+//        } else {
+//            return false;
+//        };
         throw new RuntimeException("Pendiente de hacer");
     }
 
@@ -150,7 +141,7 @@ public class Ejercicio06Lambdas {
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
         Supplier s = () -> Optional.empty();
-         throw new RuntimeException("Pendiente de hacer");
+        throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -166,7 +157,7 @@ public class Ejercicio06Lambdas {
      */
     public UnaryOperator<String> convertirAMayusculas() {
         //return UnaryOperator < String > transformar = (palabra) -> palabra.toUpperCase();
-         throw new RuntimeException("Pendiente de hacer");
+        throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
