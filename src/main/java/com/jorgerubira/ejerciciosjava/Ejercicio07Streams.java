@@ -1,6 +1,7 @@
 
 package com.jorgerubira.ejerciciosjava;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -40,10 +41,12 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-        long noRepetidos = lista.stream()
-        		.distinct()
-        		.count();
-        return (int) noRepetidos;
+    	Set<Integer> hSet = new HashSet<Integer>();
+    	for (Integer x : lista) {
+    		hSet.add(x);
+    	}
+    	long noRepetidos = lista.stream().filter((x) -> hSet.contains(x)).count();
+    	return (int)noRepetidos;
     }
     
     /**
