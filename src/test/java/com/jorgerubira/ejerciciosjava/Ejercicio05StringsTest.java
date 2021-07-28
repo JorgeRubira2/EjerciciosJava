@@ -68,11 +68,6 @@ public class Ejercicio05StringsTest {
         assertEquals(3, instance.contarPalabras("Hola.        Que Tal"));
     }
 
-    @Test
-    public void testContarVocales() {
-        Ejercicio05Strings instance = new Ejercicio05Strings();
-        assertEquals(5, instance.contarVocales("MurCIÉlagó"));;
-    }
     
     @Test
     public void testContarLineas() {
