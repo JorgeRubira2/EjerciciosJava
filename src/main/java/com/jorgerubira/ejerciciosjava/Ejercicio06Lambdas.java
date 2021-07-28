@@ -31,7 +31,19 @@ public class Ejercicio06Lambdas {
      * null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings() {
-      throw new RuntimeException("Pendiente de hacer");
+        Comparator<String> comparador = (a, b) -> {
+            if (a == null && b != null) {
+                return -1;
+            } else if (b == null && a != null) {
+                return 1;
+
+            } else if (a == null && b == null) {
+                return 0;
+            } else {
+                return a.compareToIgnoreCase(b);
+            }
+        };
+        return comparador;
     }
 
     /**
@@ -60,21 +72,27 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
         Comparator<Persona> comparador = (a, b) -> {
-           if (a.getCiudad().equalsIgnoreCase(b.getCiudad())) {
-              return a.getNombre().compareToIgnoreCase(b.getNombre());
-            }else{
-              return  a.getCiudad().compareToIgnoreCase(b.getCiudad());
+            if (a.getCiudad().equalsIgnoreCase(b.getCiudad())) {
+                return a.getNombre().compareToIgnoreCase(b.getNombre());
+            } else {
+                return a.getCiudad().compareToIgnoreCase(b.getCiudad());
             }
         };
-           return comparador;
-        }
+        return comparador;
+    }
 
     /**
      * Devolver una función Predicate que permita saber si la persona es de
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-        throw new RuntimeException("Pendiente de hacer");
+        Predicate<Persona> condicion = (p) -> {
+            if (!p.getCiudad().equals(null)) {
+                return p.getCiudad().equalsIgnoreCase("Huesca");
+            }
+            return false;
+        };
+        return condicion;
     }
 
     /**
@@ -82,14 +100,24 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-        throw new RuntimeException("Pendiente de hacer");
+        Predicate<Persona> mostrarPersona = (p) -> {
+            if (p.getEdad() >= 16 && p.getEdad() < 64) {
+
+                return true;
+            }
+            return false;
+
+        };
+        return mostrarPersona;
     }
 
     /**
+     *
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+        Function<Persona, String> devolver = (p) -> p.getNombre();
+        return devolver;
     }
 
     /**
@@ -97,7 +125,8 @@ public class Ejercicio06Lambdas {
      * personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+        Function<Persona, Optional<Compra>> devolver = (p) -> p.getCesta();
+        return devolver;
     }
 
     /**
@@ -105,14 +134,23 @@ public class Ejercicio06Lambdas {
      * personas. Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+        Function<Persona, Compra> devolver = (p) -> {
+            if (p.getCesta().isPresent()) {
+                return p.getCesta().get();
+            } else {
+                return null;
+            }
+        };
+
+        return devolver;
     }
 
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        throw new RuntimeException("Pendiente de hacer");
+        Consumer<Persona> incremento = (p) -> p.setEdad(p.getEdad() + 1);
+        return incremento;
     }
 
     /**

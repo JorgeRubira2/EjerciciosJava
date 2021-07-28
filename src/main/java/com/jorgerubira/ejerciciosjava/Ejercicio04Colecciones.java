@@ -141,7 +141,8 @@ public class Ejercicio04Colecciones {
 
         if (colaPersonas.isEmpty()) {
             colaPersonas.add(personaNueva);
-        } else if (colaPersonas.peek().getCesta().get().getTotalArticulos() < 5 || colaPersonas.peek().getCesta().isEmpty()) {
+     
+        } else if (colaPersonas.peek().getCesta().isEmpty() ||colaPersonas.peek().getCesta().get().getTotalArticulos() < 5  ) {
             colaPersonas.add(personaNueva);
         }
     }
