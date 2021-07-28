@@ -46,7 +46,7 @@ public class Ejercicio04Colecciones {
 
     /**
      * Contar cuantos elementos del List lista están en el Set. Devolver el
-     * resultado. No hace falta verificar si valen nulo.
+     * resultado. No hace falta verificar si valen nulo. Hacer un for y un contains
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista) {
         int contador = 0;
@@ -79,7 +79,13 @@ public class Ejercicio04Colecciones {
      * comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla) {
-        throw new RuntimeException("Pendiente de hacer");
+        
+        for (Object c:tabla.values()) {
+            if (tabla.get(i)==tabla.get(i).) {
+                contador++;
+            }
+        }
+        return contador;
     }
 
     /**
