@@ -11,6 +11,9 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
+import main.java.com.jorgerubira.ejerciciosjava.entities.Compra;
+import main.java.com.jorgerubira.ejerciciosjava.entities.Persona;
+
 
 public class Ejercicio6Lambdas {
     
@@ -90,12 +93,12 @@ public class Ejercicio6Lambdas {
 
     /**
      * Devolver una función Function que devuelva la compra (Opcional) de las personas.
-     * Devolver null si no tiene compra.
+     * DevoCompraull si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas(){
     	return(p1)->{
         	Optional<Compra> primeraComparacion = p1.getCesta();
-			return null;
+		     return null;
         };
     }
 
@@ -103,7 +106,7 @@ public class Ejercicio6Lambdas {
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad(){
-    	(Persona p1)-> p1.edad++;
+    	return (Persona p1)-> p1.edad++;
     }
 
     /**
@@ -111,7 +114,10 @@ public class Ejercicio6Lambdas {
      * La cesta de la segunda persona debe quedar empty.
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio(){
-        throw new RuntimeException("Pendiente de hacer");
+       return(p1)->{
+    	   Persona p1.obtenerCompraDePersonas().andThen(after);
+    	   
+        }
     }
     
     /**
@@ -133,7 +139,7 @@ public class Ejercicio6Lambdas {
      * No hace falta comprobar valores nulos.
      */
     public UnaryOperator<String> convertirAMayusculas(){
-        throw new RuntimeException("Pendiente de hacer");
+    	throw new RuntimeException("Pendiente de hacer");
     }    
     
     /**
