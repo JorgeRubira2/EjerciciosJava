@@ -60,10 +60,11 @@ public class Ejercicio07Streams {
      * primario. No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista) {
-//        Persona[] pers = lista.stream()
-//                .filter(p -> (p.getCiudad() == "Huesca") ? true : false)
-//                .toArray();
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> pers = lista.stream()
+                .filter(p -> (p.getCiudad() == "Huesca") ? true : false)
+                .collect(Collectors.toList());
+        return null;
+        
     }
 
     /**
@@ -71,7 +72,19 @@ public class Ejercicio07Streams {
      * si no hay personas. No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        Optional<Persona> per = lista.stream()
+                                     .max((x,y) -> {
+                                            int x1 = 0;
+                                            int y1 = 0; 
+                                            if (x.getCesta().isPresent()){
+                                                   x1 = x.getCesta().get().getTotalArticulos();
+                                            }
+                                            if (y.getCesta().isPresent()){
+                                                   y1 = y.getCesta().get().getTotalArticulos();
+                                            }
+                                            return x1-y1;
+                           });
+        return per;
     }
 
     /**
@@ -80,7 +93,11 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<Compra> compras = lista.stream()
+                                    .filter(p->p.getCesta().isPresent())
+                .collect(collector);
+                                    
+        return compras;
     }
 
     /**
