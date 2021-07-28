@@ -11,6 +11,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 
 
@@ -71,9 +72,21 @@ public class EjemploPredicates {
         
         //BiConsumer visualiza dos objetos
         BiConsumer<Persona, Persona> mostrar2Per=(p1,p2)->System.out.println(p1.getNombre() + " " + p1.getNombre());
+
+        List<Persona> lista2=new ArrayList<>();
+        lista.add(new Persona("Juan", 20));
+        lista.add(new Persona("Ana", 70));        
+        lista.add(new Persona("Fran", 10));
+        lista.add(new Persona("Ana", 20));
+        
+        //List<Compra> compra=lista2.stream().map(transformador3);
+        
+        //Ejemplo de conversión.
+        List<Compra> filtered = lista2.stream()
+                                      .filter(p->p.getCiudad().equals("Huesca") )
+                                      .map(transformador3)
+                                      .collect(Collectors.toList());
+        
+        
     }
-
-
-
-
 }
