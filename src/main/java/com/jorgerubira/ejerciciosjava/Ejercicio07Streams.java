@@ -184,11 +184,11 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista){
-        Map  res = lista.stream()
-                .collect(Collectors.groupingBy(x->x.getEdad()<18 && x.getEdad()>60 ,
+       /* Map<RangoEdad.Rango, Integer>  res = lista.stream()
+                .collect(Collectors.groupingBy(x->Rango ,
                          Collectors.mapping(x->x.getEdad(), Collectors.toList())))
                 ;
-        System.out.println(res);
+        System.out.println(res);*/
         throw new RuntimeException("Pendiente de hacer"); //Ni idea de como hacerlo aun :/
     }    
 
