@@ -6,8 +6,8 @@ Stream map(Function)                Convierte un objeto en otro.
 Stream sorted(Comparator)           Devuelve la información ordenada según un comparator
 
 Stream distinct()                   Quita elementos repetidos
-Stream limit()                      Se queda solo con n elementos
-Stream skip()                       Quita los primeros n elementos
+Stream limit(int)                   Se queda solo con n elementos
+Stream skip(int)                    Quita los primeros n elementos
 
 Stream mapToInt(ToIntFunction)      Devuelve un Stream de tipos primitivos 
 Stream flapMap(Function<T,Stream>)) Funcion que devuelve un Stream

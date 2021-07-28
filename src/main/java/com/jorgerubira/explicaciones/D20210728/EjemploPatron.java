@@ -1,5 +1,6 @@
 package com.jorgerubira.explicaciones.D20210728;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,12 +29,13 @@ class Persona2{
 public class EjemploPatron {
     
     public static void main(String[] args) {
+        String a;
+        
         List<Persona2> persona=List.of(new Persona2("Ana", "MAdrid"), 
                                       new Persona2("Ana Belen", "Bilbao"),
                                       new Persona2("Juan", "Murcia"),
                                       new Persona2("Juana", "Murcia")
                                       );
-        
         String filtroCiudad="Ma";
         long i=persona.stream()
                 .filter(x->x.getNombre().charAt(1)=='n')
@@ -58,8 +60,6 @@ public class EjemploPatron {
         System.out.println(i);
         //0 Pulgar
         //2 Carita
-        
-        
         
         
     }
