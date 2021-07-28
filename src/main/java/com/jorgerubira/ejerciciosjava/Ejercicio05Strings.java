@@ -15,8 +15,7 @@ public class Ejercicio05Strings {
      * Recibe una palabra y devuelve esta en minusculas
      */
     public String convertirAMinusculas(String palabra1){
-        palabra1 = palabra1.toLowerCase();
-        return palabra1;
+        return palabra1.toLowerCase();
     }
 
     /**
