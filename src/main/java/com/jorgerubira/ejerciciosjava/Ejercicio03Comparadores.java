@@ -2,7 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import java.util.Optional;
 
-public class Ejercicio03Comparadores {
+ public class Ejercicio03Comparadores {
 
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
