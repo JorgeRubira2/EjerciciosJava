@@ -35,7 +35,8 @@ public class Ejercicio06Lambdas {
     public Comparator<String> compararStrings(){
         return (s1,s2)->{
             if (s1 != null && s2 != null){
-                return Integer.valueOf(s1)-Integer.valueOf(s2);
+                //return Integer.valueOf(s1)-Integer.valueOf(s2);
+                return s1.compareTo(s2);
             }
             if (s1 == null && s2 != null){
                 return -1;
