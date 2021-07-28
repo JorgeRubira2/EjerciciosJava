@@ -148,7 +148,7 @@ public class Ejercicio04Colecciones {
     public List<Integer> generarLista(int valores[]) {
 
 //con  .asList me da error mirarlo
-        List<Integer> lista = new ArrayList<Integer>(valores.length);
+        List<Integer> lista = new ArrayList();
         for (int a : valores) {
             lista.add(a);
         }
@@ -161,7 +161,7 @@ public class Ejercicio04Colecciones {
      */
     public ArrayList<Integer> generarArrayList(int valores[]) {
 
-        ArrayList<Integer> lista = new ArrayList<Integer>(valores.length);
+        ArrayList<Integer> lista = new ArrayList();
         for (int a : valores) {
             lista.add(a);
         }
