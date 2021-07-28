@@ -20,3 +20,6 @@
 - Nomenclatura. CamelCase: Clase,Interface->PrimeraMayuscula.  metodos, atributos y variables->primeraMinuscula.
 - Enumeraciones (No es tan importante). Constantes (public final static int CONSTANTE) -> enum 
 - Switch. (No es tan importante). if (a==4) {  ... } else if ( a > 3 && a< 10) { ... }.
+
+- Collections -> List (ArrayList), Map (HashMap), Set (HashSet).  Add, Remove, Put
+- Lambdas -> Interface 1 metodo abstract. Almacenar en un código en una variable. Pasar por parámetro una función.

@@ -65,7 +65,7 @@ public class Ejercicio03Comparadores {
     //Si los dos tienen null devuelve false.
     public boolean comprobarOptionalesIntegerYDouble(Optional<Integer> valor1, Optional<Double> valor2) {
         
-        if(Optional.ofNullable(valor2).isEmpty() || Optional.ofNullable(valor1).isEmpty()){
+        if(valor2.isEmpty() || valor1.isEmpty()){
             return false;
         }
         

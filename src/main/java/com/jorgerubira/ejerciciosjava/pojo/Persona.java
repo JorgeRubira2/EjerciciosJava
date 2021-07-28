@@ -9,7 +9,7 @@ public class Persona {
     private int edad;
     private Date fechaNacimiento;
     private int altura;
-    private int peso;
+    private int peso; 
     
     //Solo para el supermercado.
     private Optional<Compra> cesta=Optional.empty();
@@ -96,5 +96,5 @@ public class Persona {
     public void setCesta(Compra cesta) {
         this.cesta = Optional.ofNullable(cesta);
     }
-       
+    
 }

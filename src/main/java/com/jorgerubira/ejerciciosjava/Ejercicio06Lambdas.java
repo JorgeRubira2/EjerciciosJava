@@ -152,11 +152,14 @@ public class Ejercicio06Lambdas {
         return (p1, p2) -> {
             if (!p2.getCesta().isEmpty()) {
                 p1.setCesta(p2.getCesta().get());
+                p2.setCesta(null);
+            }else{
+                p1.setCesta(null);
             }
 
             //Optional<Compra> c = Optional.empty();
             //compra = Optional.of(new Compra(0, true));
-            p2.setCesta(null);
+            
 
         };
     }

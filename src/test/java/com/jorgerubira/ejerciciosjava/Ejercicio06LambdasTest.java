@@ -108,7 +108,6 @@ public class Ejercicio06LambdasTest {
         Compra res=new Compra(2,true);
         assertEquals(Optional.of(res), result.apply(new Persona("A", res)));
         assertEquals(Optional.empty(), result.apply(new Persona("A")));
-        
     }
 
     @Test
