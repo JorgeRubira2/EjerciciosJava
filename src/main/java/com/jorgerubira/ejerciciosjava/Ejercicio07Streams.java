@@ -1,7 +1,6 @@
 
 package com.jorgerubira.ejerciciosjava;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -21,7 +20,7 @@ public class Ejercicio07Streams {
      */
     public List<Double> elementosPositivos(List<Double> origen){
         List<Double> dobles = origen.stream()
-        		.filter((d) -> d >= 0)
+        		.filter(d -> d >= 0)
         		.collect(Collectors.toList());
         return dobles;
     }
@@ -41,12 +40,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-    	Set<Integer> hSet = new HashSet<Integer>();
-    	for (Integer x : lista) {
-    		hSet.add(x);
-    	}
-    	long noRepetidos = lista.stream().filter((x) -> hSet.contains(x)).count();
-    	return (int)noRepetidos;
+        throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
@@ -78,11 +72,17 @@ public class Ejercicio07Streams {
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista){
     	Optional<Persona> persona = lista.stream()
-    			.max((x, y) -> x.getCesta().get().getTotalArticulos() - y.getCesta().get().getTotalArticulos())
+    			.max((x, y) -> {
+    				{
+    					int x1= (x.getCesta().isEmpty() ? 0: x.getCesta().get().getTotalArticulos());
+    					int y1= (y.getCesta().isEmpty() ? 0: y.getCesta().get().getTotalArticulos());
+    					return (x1-y1);
+    				}
+    			})
     			.or(() -> Optional.empty());
     	return persona;
     }    
-    
+
     /**
      * Devuelve las compras que tienen las personas.
      * Puede haber personas sin Cesta, estos casos no hay que devolverlos.
@@ -113,8 +113,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista){
-    	//List<Ciudad> poblacion = lista.stream().
-    	return null;
+        throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -124,7 +123,11 @@ public class Ejercicio07Streams {
      */
     public List<Persona> top3Personas(List<Persona> lista){
     	List<Persona>  personas = lista.stream()
-    			.sorted((x,y) -> x.getCesta().get().getTotalArticulos() - y.getCesta().get().getTotalArticulos())
+    			.sorted((x,y) ->{
+                    int x1= (x.getCesta().isEmpty() ? 0: x.getCesta().get().getTotalArticulos());
+                    int y1= (y.getCesta().isEmpty() ? 0: y.getCesta().get().getTotalArticulos());
+                    return (y1-x1);
+                })
     			.limit(3)
     			.collect(Collectors.toList());
     	return personas;
