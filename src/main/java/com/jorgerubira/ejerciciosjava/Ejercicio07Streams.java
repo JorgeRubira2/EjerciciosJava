@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
-import javax.transaction.xa.Xid;
 
 
 public class Ejercicio07Streams {
