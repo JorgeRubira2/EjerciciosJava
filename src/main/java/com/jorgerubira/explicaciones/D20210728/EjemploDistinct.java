@@ -56,6 +56,9 @@ public class EjemploDistinct {
         
         ciudades.stream().forEach(System.out::println);
         ciudades.stream().forEach(x->System.out.println(x));
+        
+        //ciudades.forEach(action);
+        
 
         
         
