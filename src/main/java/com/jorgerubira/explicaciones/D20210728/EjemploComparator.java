@@ -12,13 +12,25 @@ import java.util.stream.Collectors;
  *
  * @author PC
  */
+interface ICalculo{
+    public void IPrueba(int a, int b);
+}
+
 public class EjemploComparator {
     public static void main(String[] args) {
+        
+        //ICalculo ob=(a,b)->a+b;
+        
         List<Persona4> personas=List.of(
                     new Persona4("Juan"),
                     new Persona4("Ana", new Compra2(4, true)),
                     new Persona4("Pepe", new Compra2(2, false))
         ); 
+        
+        Math.max(2, 3);
+        
+        Persona4 p4[]= personas.toArray(x->new Persona4[x]);
+        Persona4 p4b[]= personas.toArray(Persona4[]::new);
         
         /*List<Persona4> orden=personas.stream()
                                      .sorted((x,y)->x.getNombre().compareTo(y.getNombre()))
