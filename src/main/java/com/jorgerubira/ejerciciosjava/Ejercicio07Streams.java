@@ -5,9 +5,12 @@ import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class Ejercicio07Streams {
@@ -17,7 +20,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-        throw new RuntimeException("Pendiente de hacer");
+        return origen.stream()
+                     .filter(val -> val.intValue()>=0)
+                     .collect(Collectors.toList());
     }
     
     /**
@@ -25,7 +30,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream().max((o1, o2) -> o1.compareTo(o2)).get();
     }
     
     /**
@@ -33,7 +38,10 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+       // return lista.stream().collect(Collectors.toSet()).size();
+       // return (int)lista.stream().distinct().count();
+       return 0;
+       
     }
     
     /**
@@ -41,7 +49,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream().filter((t) -> {
+            return t.getCiudad().equals("Huesca");
+        }).collect(Collectors.toList());
     }
     
     /**
@@ -49,7 +59,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream().filter((t) -> {
+            return t.getCiudad().equals("Huesca");
+        }).toArray(Persona[]::new);
     }
     
     /**
@@ -58,7 +70,16 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+          
+        return lista.stream().filter((t) -> {            
+            return t.getCesta().isPresent();
+        })
+                .max((o1, o2) -> {
+                    int cant1 =o1.getCesta().get().getTotalArticulos();
+                    int cant2 =o2.getCesta().get().getTotalArticulos();
+            return cant1-cant2;
+        });
+        
     }    
     
     /**
