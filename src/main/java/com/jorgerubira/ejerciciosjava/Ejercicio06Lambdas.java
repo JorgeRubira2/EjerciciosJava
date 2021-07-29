@@ -23,6 +23,7 @@ public class Ejercicio06Lambdas {
      * falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers() {
+
         return (a, b) -> a.compareTo(b);
     }
 
@@ -54,6 +55,7 @@ public class Ejercicio06Lambdas {
      * valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente() {
+
         return (a, b) -> a.getEdad() - b.getEdad();
     }
 
@@ -62,6 +64,7 @@ public class Ejercicio06Lambdas {
      * ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
+
         return (a, b) -> b.getEdad() - a.getEdad();
     }
 
@@ -71,6 +74,7 @@ public class Ejercicio06Lambdas {
      * por nombre. No hace falta comprobar los nulos.
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
+
         return (a, b) -> {
             if (a.getCiudad().compareTo(b.getCiudad()) != 0) {
                 return a.getCiudad().compareTo(b.getCiudad());
@@ -85,9 +89,9 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-        
+
         return a -> a.getCiudad().equals("Huesca") && a.getCiudad() != null;
-           
+
     }
 
     /**
@@ -95,15 +99,15 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-       // throw new RuntimeException("Pendiente de hacer");
-       return a -> a.getEdad() >= 16 && a.getEdad() < 64;
+        
+        return a -> a.getEdad() >= 16 && a.getEdad() < 64;
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
-        
+
         return a -> a.getNombre();
     }
 
@@ -112,7 +116,7 @@ public class Ejercicio06Lambdas {
      * personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas() {
-        
+
         return a -> a.getCesta();
     }
 
@@ -121,21 +125,21 @@ public class Ejercicio06Lambdas {
      * personas. Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas() {
-        
+
         return a -> {
-            if(a.getCesta().isPresent()){
+            if (a.getCesta().isPresent()) {
                 return a.getCesta().get();
-            }else{
+            } else {
                 return null;
             }
         };
     }
-    
+
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        return a -> a.setEdad(a.getEdad()+1);
+        return a -> a.setEdad(a.getEdad() + 1);
     }
 
     /**
@@ -144,12 +148,12 @@ public class Ejercicio06Lambdas {
      * recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio() {
-        
-        return (a, b) ->{
-            if(b.getCesta().isPresent()){
+
+        return (a, b) -> {
+            if (b.getCesta().isPresent()) {
                 a.setCesta(b.getCesta().get());
                 b.setCesta(null);
-            }else{
+            } else {
                 a.setCesta(null);
                 b.setCesta(null);
             }
@@ -160,7 +164,7 @@ public class Ejercicio06Lambdas {
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-        
+
         return () -> Optional.empty();
     }
 
@@ -168,7 +172,7 @@ public class Ejercicio06Lambdas {
      * Devuelve una compra con 0 unidades y false en el carro.
      */
     public Supplier<Compra> generarCompra0Unidades() {
-         
+
         return () -> new Compra(0, false);
     }
 
@@ -177,7 +181,7 @@ public class Ejercicio06Lambdas {
      * nulos.
      */
     public UnaryOperator<String> convertirAMayusculas() {
-        
+
         return a -> a.toUpperCase();
     }
 
@@ -186,8 +190,8 @@ public class Ejercicio06Lambdas {
      * parametro int
      */
     public IntBinaryOperator sumar() {
-        
-        return (a, b) -> a =a+b;
+
+        return (a, b) -> a = a + b;
     }
 
     /**
