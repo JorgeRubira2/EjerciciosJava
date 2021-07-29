@@ -37,7 +37,17 @@ public class Ejercicio06Lambdas {
      * null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (p1, p2) -> {
+
+            if (p1 == null && p2 == null) {
+                return 0;
+            } else if (p1 == null) {
+                return -1;
+            } else if (p2 == null){
+                return 1;
+            }
+            return p1.compareTo(p2);
+        };
     }
 
     /**
@@ -80,13 +90,10 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-        //if ((listaPersonas.get(n)).getCiudad().equals("Huesca"))
-//        if (p.getCiudad()=="Huesca") {
-//            return true;
-//        } else {
-//            return false;
-//        };
-        throw new RuntimeException("Pendiente de hacer");
+
+        Predicate<Persona> esDeHuesca = (p) -> p.getCiudad() == "Huesca";
+        return esDeHuesca;
+
     }
 
     /**
@@ -94,14 +101,17 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-        throw new RuntimeException("Pendiente de hacer");
+        Predicate<Persona> edad = (p) -> p.getEdad() >= 16 && p.getEdad() < 64;
+        return edad;
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+        Function<Persona, String> nombre = (p) -> p.getNombre();
+        return nombre;
+
     }
 
     /**
@@ -109,7 +119,11 @@ public class Ejercicio06Lambdas {
      * personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Function<Persona, Optional<Compra>> compraOpcional = (p) -> p.getCesta();
+
+        return compraOpcional;
+
     }
 
     /**
@@ -117,14 +131,19 @@ public class Ejercicio06Lambdas {
      * personas. Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Function<Persona, Compra> compraPersonas = (p)
+                -> p.getCesta().isPresent() ? p.getCesta().get() : null;
+
+        return compraPersonas;
     }
 
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        throw new RuntimeException("Pendiente de hacer");
+        Consumer<Persona> edad = (p) -> p.setEdad(p.getEdad() + 1);
+        return edad;
     }
 
     /**
@@ -133,22 +152,30 @@ public class Ejercicio06Lambdas {
      * recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (p1, p2) -> {
+            if (p2.getCesta().isPresent()) {
+                p1.setCesta(p2.getCesta().get());
+                p2.setCesta(null);
+            } else {
+                p1.setCesta(null);
+                p2.setCesta(null);
+            }
+        };
     }
 
     /**
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-        Supplier s = () -> Optional.empty();
-        throw new RuntimeException("Pendiente de hacer");
+        return () -> Optional.empty();
     }
 
     /**
      * Devuelve una compra con 0 unidades y false en el carro.
      */
     public Supplier<Compra> generarCompra0Unidades() {
-        throw new RuntimeException("Pendiente de hacer");
+        return () -> new Compra(0, false);
     }
 
     /**
@@ -156,8 +183,7 @@ public class Ejercicio06Lambdas {
      * nulos.
      */
     public UnaryOperator<String> convertirAMayusculas() {
-        //return UnaryOperator < String > transformar = (palabra) -> palabra.toUpperCase();
-        throw new RuntimeException("Pendiente de hacer");
+        return (palabra) -> palabra.toUpperCase();
     }
 
     /**
@@ -165,7 +191,7 @@ public class Ejercicio06Lambdas {
      * parametro int
      */
     public IntBinaryOperator sumar() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (a, b) -> a + b;
     }
 
     /**
@@ -175,7 +201,20 @@ public class Ejercicio06Lambdas {
      * será equivalente a 0 unidades.
      */
     public IComparadorPersonaCompra miCompraEsMayorQueOtra() {
-        throw new RuntimeException("Pendiente de hacer");
+        // a -> compra de las personas
+        // c -> compra recibida
+
+        return (a, b) -> {
+            if ((a.getCesta().isEmpty())) {
+                a.setCesta(new Compra(0, false));
+            }
+
+            if (b.isEmpty()) {
+                b = Optional.of(new Compra(0, false));
+            }
+
+            return a.getCesta().get().getTotalArticulos() > b.get().getTotalArticulos();
+        };
     }
 
     /**
@@ -184,7 +223,20 @@ public class Ejercicio06Lambdas {
      * unidades.
      */
     public IComparadorPersonaCompra igualNumeroDeUnidades() {
-        throw new RuntimeException("Pendiente de hacer");
+        // p1 -> persona 1
+        // p2 -> persona 2
+
+        return (p1, p2) -> {
+            if ((p1.getCesta().isEmpty())) {
+                p1.setCesta(new Compra(0, false));
+            }
+
+            if (p2.isEmpty()) {
+                p2 = Optional.of(new Compra(0, false));
+            }
+
+            return p1.getCesta().get().getTotalArticulos() == p2.get().getTotalArticulos();
+        };
     }
 
 }

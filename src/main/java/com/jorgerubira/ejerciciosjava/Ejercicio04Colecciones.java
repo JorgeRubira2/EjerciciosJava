@@ -138,10 +138,7 @@ public class Ejercicio04Colecciones {
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
         if (!colaPersonas.isEmpty()) {
             
-            boolean cestaVaciaProximaPersona = colaPersonas.peek().getCesta().isEmpty();
-            int totalArticulos = colaPersonas.peek().getCesta().get().getTotalArticulos(); 
-            
-            if (cestaVaciaProximaPersona || totalArticulos < 5) {
+            if (colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
                 colaPersonas.add(personaNueva);
             }
         } else {
