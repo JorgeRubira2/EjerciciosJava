@@ -36,7 +36,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-        return (int)lista.stream().
+        throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
