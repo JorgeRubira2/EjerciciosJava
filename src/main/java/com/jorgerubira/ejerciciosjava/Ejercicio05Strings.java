@@ -15,7 +15,7 @@ public class Ejercicio05Strings {
      * Recibe una palabra y devuelve esta en minusculas
      */
     public String convertirAMinusculas(String palabra1) {
-        throw new RuntimeException("Pendiente de hacer");
+        return palabra1.toLowerCase();
     }
 
     /**
@@ -23,7 +23,8 @@ public class Ejercicio05Strings {
      * para trocear la frase.
      */
     public String segundaPalabra(String palabra1) {
-        throw new RuntimeException("Pendiente de hacer");
+        String[] pa = palabra1.split(" ");
+        return pa[1];
     }
 
     /**
@@ -32,7 +33,8 @@ public class Ejercicio05Strings {
      * tenemos "Hola Pepe" y buscamos "pepe" debe devolver 5 Tener en cuenta que
      * las posiciones empiezan desde 0.
      */
-    public int buscar(String frase, String palabra){
+    public int buscar(String frase, String palabra) {
+
         throw new RuntimeException("Pendiente de hacer");
     }
 
@@ -52,7 +54,13 @@ public class Ejercicio05Strings {
      * elemento obtener el primer caracter o el resto con substring
      */
     public String convertirCamelCase(String palabra1) {
-        throw new RuntimeException("Pendiente de hacer");
+        String[] pa = palabra1.split("_");
+        for (int i = 0; i < pa.length; i++) {
+
+            //System.out.print(pa[i]);
+        }
+
+        return pa[0];
     }
 
     /**
@@ -63,7 +71,12 @@ public class Ejercicio05Strings {
      * espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto) {
-        throw new RuntimeException("Pendiente de hacer");
+        String frase = texto.replace(".", " ");
+        String frase2 = frase.replace(",", " ");
+        String frase3 = frase2.replaceAll("\\s+", " ");
+        String[] resultado = frase3.split(" ");
+
+        return resultado.length;
     }
 
     /**
@@ -85,7 +98,7 @@ public class Ejercicio05Strings {
     /**
      * Eliminación de espacios a izquierda y derecha
      */
-    public String quitarEspacios(String frase){
+    public String quitarEspacios(String frase) {
         throw new RuntimeException("Pendiente de hacer");
     }
 

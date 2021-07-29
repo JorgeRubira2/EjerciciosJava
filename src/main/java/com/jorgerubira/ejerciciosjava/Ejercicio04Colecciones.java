@@ -145,8 +145,9 @@ public class Ejercicio04Colecciones {
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
 
-        if (colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
-
+        if (colaPersonas.peek() == null || colaPersonas.peek().getCesta().isEmpty()
+                || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
+            colaPersonas.add(personaNueva);
         }
     }
 
@@ -250,12 +251,24 @@ public class Ejercicio04Colecciones {
         Map<String, Integer> lista = new TreeMap<String, Integer>();
 
         for (Persona p : personas) {
-            lista.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
-            if (lista.containsKey(p.getNombre()) == false) {
-                lista.put(p.getNombre(), p.getCesta().get().getTotalArticulos() + p.getCesta().get().getTotalArticulos());
+            if (p.getCesta().isPresent()) {
+
+                if (lista.containsKey(p.getNombre()) == true) {
+                    Integer p1 = lista.get(p.getNombre());
+
+                    p1 += p.getCesta().get().getTotalArticulos();
+                    lista.put(p.getNombre(), p1);
+
+                } else {
+                    lista.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+
+                }
+            } else {
+                if (lista.containsKey(p.getNombre()) == false) {
+                    lista.put(p.getNombre(), 0);
+                }
             }
         }
-
         return lista;
     }
 
