@@ -53,7 +53,8 @@ public class Ejercicio07Streams {
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista) {
         List<Persona> oscenses = lista.stream()
-                .filter(p -> (p.getCiudad() == "Huesca") ? true : false)
+                //.filter(p -> (p.getCiudad() == "Huesca") ? true : false)
+                .filter(p -> (p.getCiudad() == "Huesca") )
                 .collect(Collectors.toList());
 
         return oscenses;
