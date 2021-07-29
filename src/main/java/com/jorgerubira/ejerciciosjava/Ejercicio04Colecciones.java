@@ -62,13 +62,11 @@ public class Ejercicio04Colecciones {
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
         int cont=0;
-        for(Integer i:lista){
-            for(Integer j:enLista)
-                if(enLista.equals(i)){
-                    enLista.remove(i);
-                    cont++;
-                }
-                    
+        for(int i=0;i<lista.size();i++){
+            if(enLista.contains(lista.get(i))){
+                enLista.remove(lista.get(i));  
+                cont++;
+            }  
         }
         return cont;
     }    
@@ -91,12 +89,10 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        List<Persona> oscense=new LinkedList<>();
-        for(Persona p:listaPersonas){
-            if(p.getCiudad().equals("Huesca"))
-                oscense.add(p);
+        for(int i=listaPersonas.size()-1;i>=0;i--){
+            if(listaPersonas.get(i).getCiudad()=="Huesca")
+                listaPersonas.remove(i);
         }
-        listaPersonas.retainAll(oscense);
     }
     
     /**
@@ -105,12 +101,13 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        Map<String, Persona> oscense=new HashMap<>();
+        Set<String> oscense=new HashSet<String>();
         for(String s:listaPersonas.keySet()){
             if(listaPersonas.get(s).getCiudad().equals("Huesca"))
-                oscense.put(s,listaPersonas.get(s));
+                oscense.add(s);
         }
-        listaPersonas=oscense;
+        for(String s:oscense)
+            listaPersonas.remove(s);
     }
     
     /**
@@ -120,7 +117,7 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        if(colaPersonas.peek()==null||personaNueva.getCesta().isEmpty()||personaNueva.getCesta().get().getTotalArticulos()<5)
+        if(colaPersonas.isEmpty() || colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos()<5)
             colaPersonas.add(personaNueva);
     }
 
@@ -171,10 +168,8 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
-        Set<String> coin=new HashSet<>();
-        coin.retainAll(frutas);
-        coin.retainAll(colores);
-        return coin;
+        frutas.retainAll(colores);
+        return frutas;
     }        
 
     /**
@@ -198,11 +193,17 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-        Map<String,Integer> total=new TreeMap<>();
+        Map<String,Integer> total=new HashMap<>();
         for(Persona p:personas){
-            total.put(p.getNombre(),p.getCesta().get().getTotalArticulos());
-            if(total.containsKey(p.getNombre()))
-                total.put(p.getNombre(),p.getCesta().get().getTotalArticulos()+p.getCesta().get().getTotalArticulos());
+            if(total.containsKey(p.getNombre())){
+                if(p.getCesta() != null && p.getCesta().isPresent())
+                    total.replace(p.getNombre(), total.get(p.getNombre())+p.getCesta().get().getTotalArticulos());
+            }else{
+                if(p.getCesta() != null && p.getCesta().isPresent())
+                    total.put(p.getNombre(), p.getCesta().get().getTotalArticulos());
+                else
+                    total.put(p.getNombre(),0);
+            }
         }
         return total;
     }     
