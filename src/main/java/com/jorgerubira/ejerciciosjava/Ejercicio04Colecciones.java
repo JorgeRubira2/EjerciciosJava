@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Ejercicio04Colecciones {
 
@@ -46,7 +47,8 @@ public class Ejercicio04Colecciones {
 
     /**
      * Contar cuantos elementos del List lista están en el Set. Devolver el
-     * resultado. No hace falta verificar si valen nulo. Hacer un for y un contains
+     * resultado. No hace falta verificar si valen nulo. Hacer un for y un
+     * contains
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista) {
         int contador = 0;
@@ -80,12 +82,10 @@ public class Ejercicio04Colecciones {
      */
     public int contarIntegers(Map<String, Object> tabla) {
         
-        for (Object c:tabla.values()) {
-            if (tabla.get(i)==tabla.get(i).) {
-                contador++;
-            }
-        }
-        return contador;
+        long devuelve=tabla.values().stream()
+             .filter((x)->x instanceof Integer)
+             .count();
+        return (int)devuelve;
     }
 
     /**
@@ -93,7 +93,9 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
-        throw new RuntimeException("Pendiente de hacer");
+        listaPersonas.stream()
+                     .filter(x->x.getCiudad().matches("Huesca"))
+                     .collect(Collectors.);
     }
 
     /**
