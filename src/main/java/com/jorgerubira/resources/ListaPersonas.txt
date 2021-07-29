@@ -1,0 +1,7 @@
+Nombre;Ciudad
+Ana;Madrid
+Fran;Huesca
+Alfredo;Zaragoza
+Alberto;Madrid
+Juan;Almeria
+

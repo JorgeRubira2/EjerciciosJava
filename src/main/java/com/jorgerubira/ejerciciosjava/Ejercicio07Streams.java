@@ -19,8 +19,8 @@ public class Ejercicio07Streams {
      */
     public List<Double> elementosPositivos(List<Double> origen) {
         List<Double> flujo = origen.stream()
-                                   .filter((i) -> i >= 0)
-                                   .collect(Collectors.toList());
+                .filter((i) -> i >= 0)
+                .collect(Collectors.toList());
         return flujo;
     }
 
@@ -38,13 +38,12 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista) {
-        
 
-        Map<Integer,List<Integer>> poblacionCiudades = lista.stream()
-                                      .collect(Collectors.groupingBy(lista::get));
-        long  salida = poblacionCiudades.entrySet().stream()
-                                                   .filter(x -> x.getValue().size() == 1)
-                                                   .count();
+        Map<Integer, List<Integer>> poblacionCiudades = lista.stream()
+                .collect(Collectors.groupingBy(lista::get));
+        long salida = poblacionCiudades.entrySet().stream()
+                .filter(x -> x.getValue().size() == 1)
+                .count();
         return (int) salida;
     }
 
@@ -69,7 +68,7 @@ public class Ejercicio07Streams {
                 .filter(p -> (p.getCiudad() == "Huesca") ? true : false)
                 .toArray(Persona[]::new);
         return pers;
-        
+
     }
 
     /**
@@ -78,17 +77,17 @@ public class Ejercicio07Streams {
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista) {
         Optional<Persona> per = lista.stream()
-                                     .max((x,y) -> {
-                                            int x1 = 0;
-                                            int y1 = 0; 
-                                            if (x.getCesta().isPresent()){
-                                                   x1 = x.getCesta().get().getTotalArticulos();
-                                            }
-                                            if (y.getCesta().isPresent()){
-                                                   y1 = y.getCesta().get().getTotalArticulos();
-                                            }
-                                            return x1-y1;
-                           });
+                .max((x, y) -> {
+                    int x1 = 0;
+                    int y1 = 0;
+                    if (x.getCesta().isPresent()) {
+                        x1 = x.getCesta().get().getTotalArticulos();
+                    }
+                    if (y.getCesta().isPresent()) {
+                        y1 = y.getCesta().get().getTotalArticulos();
+                    }
+                    return x1 - y1;
+                });
         return per;
     }
 
@@ -99,10 +98,10 @@ public class Ejercicio07Streams {
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista) {
         List<Compra> compras = lista.stream()
-                                    .filter(p->p.getCesta().isPresent())
-                                    .map(x->x.getCesta().get())
-                                    .collect(Collectors.toList());
-                                    
+                .filter(p -> p.getCesta().isPresent())
+                .map(x -> x.getCesta().get())
+                .collect(Collectors.toList());
+
         return compras;
     }
 
@@ -111,12 +110,12 @@ public class Ejercicio07Streams {
      * casos no hay que devolverlos. No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista) {
-       int[] edades = lista.stream()
-                           .map(p->p.getEdad())
-                           .mapToInt(Integer::intValue)
-                           .toArray();
+        int[] edades = lista.stream()
+                .map(p -> p.getEdad())
+                .mapToInt(Integer::intValue)
+                .toArray();
 
-       return edades ;
+        return edades;
     }
 
     /**
@@ -125,36 +124,33 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista) {
-        
-        
-        Map<String,List<Persona>> poblacionCiudades = lista.stream()
-                                      .collect(Collectors.groupingBy(Persona::getCiudad));
+
+        Map<String, List<Persona>> poblacionCiudades = lista.stream()
+                .collect(Collectors.groupingBy(Persona::getCiudad));
         //Map
         List<Ciudad> ciudades = poblacionCiudades.entrySet()
-                                                 .stream()
-                                                 .map(x -> new Ciudad(x.getKey(),x.getValue().size()))
-                                                 .collect(Collectors.toList());
+                .stream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().size()))
+                .collect(Collectors.toList());
         return ciudades;
-
-                
-    }
+ }
 
     /**
      * Top 3 clientes. Devuelve los tres clientes que más articulos en la cesta
      * tienen. No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista) {
-       List<Persona> mejoresCompradores = lista.stream()
-                                    .sorted((x,y)-> {
-                                                        int ax = (x.getCesta().isPresent())? x.getCesta().get().getTotalArticulos() : 0;
-                                                        int ay = (y.getCesta().isPresent())? y.getCesta().get().getTotalArticulos() : 0;
-                                                        return ay-ax;
-                                                    }
-                                                    )
-                                    .limit(3)
-                                    .collect(Collectors.toList());
-       return mejoresCompradores;
-                
+        List<Persona> mejoresCompradores = lista.stream()
+                .sorted((x, y) -> {
+                    int ax = (x.getCesta().isPresent()) ? x.getCesta().get().getTotalArticulos() : 0;
+                    int ay = (y.getCesta().isPresent()) ? y.getCesta().get().getTotalArticulos() : 0;
+                    return ay - ax;
+                }
+                )
+                .limit(3)
+                .collect(Collectors.toList());
+        return mejoresCompradores;
+
     }
 
     /**
@@ -163,18 +159,18 @@ public class Ejercicio07Streams {
      */
     public Set<String> top3Ciudades(List<Persona> lista) {
         //debería sacarse a metodo
-        Map<String,List<Persona>> poblacionCiudades = lista.stream()
-                                      .collect(Collectors.groupingBy(Persona::getCiudad));
+        Map<String, List<Persona>> poblacionCiudades = lista.stream()
+                .collect(Collectors.groupingBy(Persona::getCiudad));
         //
         Set<String> ciudades = poblacionCiudades.entrySet()
-                                                 .stream()
-                                                 .map(x -> new Ciudad(x.getKey(),x.getValue().size()))
-                                                 .sorted((x,y) -> y.getPersonas() -x.getPersonas())
-                                                 .limit(3)
-                                                 .map(x -> x.getNombre())
-                                                 .collect(Collectors.toSet());
+                .stream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().size()))
+                .sorted((x, y) -> y.getPersonas() - x.getPersonas())
+                .limit(3)
+                .map(x -> x.getNombre())
+                .collect(Collectors.toSet());
         return ciudades;
-        
+
     }
 
     /**
@@ -183,19 +179,21 @@ public class Ejercicio07Streams {
      * años. Posicion 2-Cuantas personas hay mayores de 60 años. No hace falta
      * verificar si valen nulo.
      */
-    
-    public static int rango (Persona per){
-        if (per.getEdad()< 18) { 
+    public static int rango(Persona per) {
+        if (per.getEdad() < 18) {
             return 0;
-                }
-        else if (per.getEdad()> 60){
+        } else if (per.getEdad() > 60) {
             return 2;
         } else {
             return 1;
         }
     }
+
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
-         throw new UnsupportedOperationException("Pendiente Implementar");
+        throw new UnsupportedOperationException("Pendiente Implementar");
     }
 
+    public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
 }
