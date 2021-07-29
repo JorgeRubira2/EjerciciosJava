@@ -159,21 +159,28 @@ public class Ejercicio06Lambdas {
      * recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (v1, v2) -> {
+            if (v2.getCesta().isPresent()) {
+                v1.setCesta(v2.getCesta().get());
+                v2.setCesta(null);
+            } else {
+                v1.setCesta(null);
+            }
+        };
     }
 
     /**
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-        throw new RuntimeException("Pendiente de hacer");
+        return () -> Optional.empty();
     }
 
     /**
      * Devuelve una compra con 0 unidades y false en el carro.
      */
     public Supplier<Compra> generarCompra0Unidades() {
-        throw new RuntimeException("Pendiente de hacer");
+        return () -> new Compra(0, false);
     }
 
     /**
@@ -181,7 +188,7 @@ public class Ejercicio06Lambdas {
      * nulos.
      */
     public UnaryOperator<String> convertirAMayusculas() {
-        throw new RuntimeException("Pendiente de hacer");
+        return v -> v.toUpperCase();
     }
 
     /**
@@ -189,7 +196,7 @@ public class Ejercicio06Lambdas {
      * parametro int
      */
     public IntBinaryOperator sumar() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (v1, v2) -> v1 + v2;
     }
 
     /**
@@ -199,7 +206,18 @@ public class Ejercicio06Lambdas {
      * será equivalente a 0 unidades.
      */
     public IComparadorPersonaCompra miCompraEsMayorQueOtra() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (v1, v2) -> {
+            if (v1.getCesta().isPresent() && v2.isEmpty()) {
+                return true;
+            }
+
+            if (v1.getCesta().isPresent() && v1.getCesta().isPresent()) {
+                if (v1.getCesta().get().getTotalArticulos() > v2.get().getTotalArticulos()) {
+                    return true;
+                }
+            }
+            return false;
+        };
     }
 
     /**
@@ -208,7 +226,18 @@ public class Ejercicio06Lambdas {
      * unidades.
      */
     public IComparadorPersonaCompra igualNumeroDeUnidades() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (v1, v2) -> {
+            if (v1.getCesta().isPresent() && v2.isPresent()) {
+                if (v1.getCesta().get().getTotalArticulos() == v2.get().getTotalArticulos()) {
+                    return true;
+                }
+            }
+
+            if (v1.getCesta().isEmpty() && v2.isEmpty()) {
+                return true;
+            }
+            return false;
+        };
     }
 
 }
