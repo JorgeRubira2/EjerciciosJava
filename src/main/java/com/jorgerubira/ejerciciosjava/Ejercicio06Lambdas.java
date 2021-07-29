@@ -32,15 +32,15 @@ public class Ejercicio06Lambdas {
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings(){
-        return (p1, p2) -> {
-            if(p1==null && p2!=null){
+        return (o1, o2) -> {
+            if(o1==null && o2!=null){
                 return -1;
-            } else if (p1!=null && p2==null){
+            } else if (o1!=null && o2==null){
                 return 1;
-            } else if (p1==null && p2==null){
+            } else if (o1==null && o2==null){
                 return 0;
             } else {
-                return p1.compareTo(p2);
+                return o1.compareTo(o2);
             }
         };
     } 
