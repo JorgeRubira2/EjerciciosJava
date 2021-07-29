@@ -3,9 +3,11 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class Ejercicio07StreamsNivelDificil {
@@ -16,7 +18,22 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> pers1 = new ArrayList<Persona>();
+        personasGradoMedio.stream().forEach(x->pers1.add(x));
+        personasCertificado.stream().forEach(x->pers1.add(x));
+        personasUniversidad.stream().forEach(x->pers1.add(x));
+        
+        Set<Persona> salida = pers1.stream()
+                .collect(Collectors.groupingBy(Persona::getNombre, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(x -> x.getValue() > 1)
+                .map(x -> new Persona(x.getKey()))
+                .collect(Collectors.toSet());
+                
+        
+//        List<Set<Persona>> personas = List.of(personasCertificado,personasGradoMedio,personasUniversidad);
+        return salida ;
     }
     /**
      * Realización de una compra conjunta. Se ha realizado una compra conjunta y se debe distribuir los articulos entre las personas que llegan a la lista.
@@ -25,7 +42,14 @@ public class Ejercicio07StreamsNivelDificil {
      * Si la persona en el mapa no se le dará ningún artículo y se le pondrá la compra a Empty
      */
     public void repartoDeCompraPersona(Compra compraConjunta, List<Persona> personasARepartirLaCompra, Map<String,Integer> porcentajes){
-        throw new RuntimeException("Pendiente de hacer");
+        
+        porcentajes.entrySet().stream()
+                .forEach(x-> {
+                    personasARepartirLaCompra.stream()
+                            .filter(y -> y.getNombre().equals(x.getKey()))
+                            .forEach(y-> y.setCesta(new Compra( x.getValue() * compraConjunta.getTotalArticulos() / 100 ,true )));
+                        });
+                
     }    
 
     /**

@@ -54,7 +54,7 @@ public class Ejercicio07Streams {
     public List<Persona> personasDeHuescaALista(List<Persona> lista) {
         List<Persona> oscenses = lista.stream()
                 //.filter(p -> (p.getCiudad() == "Huesca") ? true : false)
-                .filter(p -> (p.getCiudad() == "Huesca") )
+                .filter(p -> (p.getCiudad() == "Huesca"))
                 .collect(Collectors.toList());
 
         return oscenses;
@@ -134,7 +134,7 @@ public class Ejercicio07Streams {
                 .map(x -> new Ciudad(x.getKey(), x.getValue().size()))
                 .collect(Collectors.toList());
         return ciudades;
- }
+    }
 
     /**
      * Top 3 clientes. Devuelve los tres clientes que más articulos en la cesta
@@ -180,21 +180,35 @@ public class Ejercicio07Streams {
      * años. Posicion 2-Cuantas personas hay mayores de 60 años. No hace falta
      * verificar si valen nulo.
      */
-    public static int rango(Persona per) {
-        if (per.getEdad() < 18) {
-            return 0;
-        } else if (per.getEdad() > 60) {
-            return 2;
-        } else {
-            return 1;
-        }
-    }
-
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
-        throw new UnsupportedOperationException("Pendiente Implementar");
+        List<Persona> persMenor = lista.stream()
+                .filter(x -> x.getEdad() < 18)
+                .collect(Collectors.toList());
+        List<Persona> persMayor = lista.stream()
+                .filter(x -> x.getEdad() > 60)
+                .collect(Collectors.toList());
+        List<Persona> persAdulto = lista.stream()
+                .filter(x -> x.getEdad() <= 60 && x.getEdad() >= 18)
+                .collect(Collectors.toList());
+    
+        List<RangoEdad> rango = List.of(
+               new  RangoEdad(RangoEdad.Rango.Menor18, persMenor.size()),
+               new  RangoEdad(RangoEdad.Rango.Entre18y60, persAdulto.size()),
+               new  RangoEdad(RangoEdad.Rango.Mayor60, persMayor.size())
+        );
+        return rango;
     }
 
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Long> mapa = lista.stream()
+                .filter(x -> x.getEdad() > 17)
+                .collect(Collectors.groupingBy(
+                        x -> x.getCiudad(),
+                        Collectors.counting()
+                ));
+
+        Map<String, Integer> mapa2 = mapa.entrySet().stream()
+                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue().intValue()));
+        return mapa2;
     }
 }
