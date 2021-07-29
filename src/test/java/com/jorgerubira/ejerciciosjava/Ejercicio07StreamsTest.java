@@ -10,7 +10,9 @@ import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -61,8 +63,8 @@ public class Ejercicio07StreamsTest {
         Ejercicio07Streams instance = new Ejercicio07Streams();
         List<Persona> result = instance.personasDeHuescaALista(lista);
         assertEquals(2, result.size());
-        assertEquals("Juan", result.get(0).getNombre());
-        assertEquals("Pepe", result.get(1).getNombre());
+        assertEquals("Ana", result.get(0).getNombre());
+        assertEquals("Fran", result.get(1).getNombre());
     }
 
     @Test
@@ -76,8 +78,8 @@ public class Ejercicio07StreamsTest {
         Ejercicio07Streams instance = new Ejercicio07Streams();
         Persona[] result = instance.personasDeHuescaAArrayBasico(lista);
         assertEquals(2, result.length);
-        assertEquals("Juan", result[0].getNombre());
-        assertEquals("Pepe", result[1].getNombre());
+        assertEquals("Ana", result[0].getNombre());
+        assertEquals("Fran", result[1].getNombre());
     }
 
     @Test
@@ -268,6 +270,21 @@ public class Ejercicio07StreamsTest {
         assertEquals(RangoEdad.Rango.Mayor60, result.get(2).getRango());
 
         
+    }
+
+    @Test
+    public void testCuantasPersonasMayoresDeEdadPorCiudad() {
+        List<Persona> lista=new ArrayList<>();
+        lista.add(new Persona("Juan","Zaragoza", 17, new Date(2004,1,1),  170, 70));
+        lista.add(new Persona("Ana","Madrid", 18, new Date(2003,1,1),  160, 60));
+        lista.add(new Persona("Fran","Madrid", 27, new Date(1994,1,1),  200, 110));
+        lista.add(new Persona("Pepe","Huesca", 73, new Date(1948,1,1),  160, 70));
+
+        Ejercicio07Streams instance = new Ejercicio07Streams();
+        Map<String, Integer> result = instance.cuantasPersonasMayoresDeEdadPorCiudad(lista);
+        assertEquals(2, result.size());
+        assertEquals(2, result.get("Madrid"));
+        assertEquals(1, result.get("Zaragoza"));
     }
     
 }
