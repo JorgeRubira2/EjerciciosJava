@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -269,6 +271,21 @@ public class Ejercicio07StreamsTest {
         assertEquals(RangoEdad.Rango.Mayor60, result.get(2).getRango());
 
         
+    }
+
+    @Test
+    public void testCuantasPersonasMayoresDeEdadPorCiudad() {
+        List<Persona> lista=new ArrayList<>();
+        lista.add(new Persona("Juan","Zaragoza", 17, new Date(2004,1,1),  170, 70));
+        lista.add(new Persona("Ana","Madrid", 18, new Date(2003,1,1),  160, 60));
+        lista.add(new Persona("Fran","Madrid", 27, new Date(1994,1,1),  200, 110));
+        lista.add(new Persona("Pepe","Huesca", 73, new Date(1948,1,1),  160, 70));
+
+        Ejercicio07Streams instance = new Ejercicio07Streams();
+        Map<String, Integer> result = instance.cuantasPersonasMayoresDeEdadPorCiudad(lista);
+        assertEquals(2, result.size());
+        assertEquals(2, result.get("Madrid"));
+        assertEquals(1, result.get("Huesca"));
     }
     
 }
