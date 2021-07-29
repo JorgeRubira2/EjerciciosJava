@@ -3,9 +3,13 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 
 public class Ejercicio07StreamsNivelDificil {
@@ -16,7 +20,20 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> res = new ArrayList<>();
+        res.addAll(personasCertificado);
+        res.addAll(personasGradoMedio);
+        res.addAll(personasUniversidad);
+        
+        Set<Persona> res2 = res.stream()    
+                .collect(Collectors.groupingBy(x->x.getNombre()))
+                .entrySet()
+                .stream()
+                .filter(x->x.getValue().size()>=2)
+                .map(x->x.getValue().get(0))
+                .collect(Collectors.toSet())
+                ;
+        return res2;
     }
     /**
      * Realización de una compra conjunta. Se ha realizado una compra conjunta y se debe distribuir los articulos entre las personas que llegan a la lista.
