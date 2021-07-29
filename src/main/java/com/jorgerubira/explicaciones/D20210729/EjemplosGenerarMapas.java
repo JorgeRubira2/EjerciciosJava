@@ -26,23 +26,20 @@ public class EjemplosGenerarMapas {
                 new Persona("Fran", "Madrid", 23)
         );
 
+        
+        //Obtener la media directamente
         Map<String, Double> mapaContarPersonas3=
                                 lista.stream()
                                      .collect(Collectors.groupingBy(
                                              x->x.getCiudad(),
                                              Collectors.averagingLong(x->x.getEdad())
                                      ));
-        int cont=0;
-        HashSet<String> l=new HashSet<String>();
-        mapaContarPersonas3.values().forEach(x->{
-            l.add("H");
-            System.out.print(cont + " " + x + " ");
-        });
+        mapaContarPersonas3.values().forEach(x-> System.out.print( x + " "));
 
         //52.0 23.0 32.5 52.0  
 
         
-        //Generico (Sum, Count, Promedio)
+        //Obtener summary (Sum, Count, Promedio)
         Map<String, LongSummaryStatistics> mapaContarPersonas2=
                                 lista.stream()
                                      .collect(Collectors.groupingBy(
@@ -50,7 +47,7 @@ public class EjemplosGenerarMapas {
                                              Collectors.summarizingLong(x->x.getEdad())
                                      ));
         mapaContarPersonas2.values().forEach(
-                x->System.out.println(x.getAverage() + x.)
+                x->System.out.println(x.getAverage())
         );
         
         
