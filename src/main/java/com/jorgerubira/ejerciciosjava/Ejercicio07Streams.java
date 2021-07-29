@@ -8,6 +8,7 @@ import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -92,8 +93,7 @@ public class Ejercicio07Streams {
     }    
     
     /**
-     * Devuelve las edades de las personas
-     * Puede haber personas sin Cesta, estos casos no hay que devolverlos.
+     * Devuelve las edades de las personas.
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
@@ -138,5 +138,14 @@ public class Ejercicio07Streams {
         throw new RuntimeException("Pendiente de hacer");
     }    
 
+    /**
+     * Devuelve cuantas personas mayores de edad hay en cada ciudad.
+     * Si una ciudad no tiene personas mayores de edad no hace falta devolver ese dato.
+     * Devolver un mapa donde la clave sería la ciudad y el número el número de personas.
+     * No hace falta verificar si valen nulo.
+     */
+    public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista){
+        throw new RuntimeException("Pendiente de hacer");
+    }     
     
 }
