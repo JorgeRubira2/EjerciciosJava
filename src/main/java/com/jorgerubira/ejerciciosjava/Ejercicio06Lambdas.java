@@ -139,6 +139,7 @@ public class Ejercicio06Lambdas {
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
+        
         return a -> a.setEdad(a.getEdad() + 1);
     }
 
