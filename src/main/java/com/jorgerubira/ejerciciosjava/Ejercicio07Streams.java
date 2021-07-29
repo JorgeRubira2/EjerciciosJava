@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import static java.util.stream.Collectors.toList;
 
 
 public class Ejercicio07Streams {
@@ -18,7 +19,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-        throw new RuntimeException("Pendiente de hacer");
+        return origen.stream().filter((x)->x >= 0).collect(toList());
     }
     
     /**
@@ -26,7 +27,8 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Optional<Integer> valorMax =  lista.stream().max((x,y)-> x-y);
+        return valorMax.get();
     }
     
     /**
@@ -34,7 +36,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return (int)lista.stream().
     }
     
     /**
