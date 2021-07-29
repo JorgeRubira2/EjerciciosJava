@@ -70,7 +70,7 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
 
-        throw new RuntimeException("Pendiente de hacer");
+       return (o1, o2) -> o2.getEdad() - o1.getEdad();
     }
 
     /**
@@ -93,9 +93,16 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-        
-        
-        throw new RuntimeException("Pendiente de hacer");
+   
+        return (o1)->{
+            
+            if(o1.getCiudad()!=null&&o1.getCiudad().equals("Huesca")){
+                return true;
+            }else{
+                return false;
+            }    
+        };
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -103,13 +110,21 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-        throw new RuntimeException("Pendiente de hacer");
+        
+        return(o1)->
+            o1.getEdad()>= 16 && o1.getEdad()<64;
+
+       // throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
+            
+      
+       
+        
         throw new RuntimeException("Pendiente de hacer");
     }
 
