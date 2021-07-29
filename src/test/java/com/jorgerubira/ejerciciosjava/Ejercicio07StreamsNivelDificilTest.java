@@ -32,7 +32,7 @@ public class Ejercicio07StreamsNivelDificilTest {
                                             new Persona("Juan"),
                                             new Persona("Fran"),
                                             new Persona("Susana")
-                                          );
+                                           );
         Set<Persona> personasUniversidad = Set.of(
                                             new Persona("Alberto"),
                                             new Persona("Juan"),

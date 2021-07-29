@@ -1,6 +1,7 @@
 package com.jorgerubira.ejerciciosjava.pojo;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Persona { 
@@ -112,5 +113,30 @@ public class Persona {
     public void setCesta(Compra cesta) {
         this.cesta = Optional.ofNullable(cesta);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persona other = (Persona) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    }
+    
     
 }
