@@ -83,11 +83,7 @@ public class Ejercicio05StringsTest {
         Ejercicio05Strings instance = new Ejercicio05Strings();
         assertEquals("Texto a probar", instance.quitarEspacios("   Texto a probar   "));
     }    
-    @Test
-    public void testContarVocales(){
-        Ejercicio05Strings instance=new Ejercicio05Strings();
-        assertEquals(5, instance.contarVocales("MurCIÉlagó"));
-    }
+   
    
     
 }
