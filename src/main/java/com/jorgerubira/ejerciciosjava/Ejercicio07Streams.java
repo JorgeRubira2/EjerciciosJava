@@ -217,14 +217,6 @@ public class Ejercicio07Streams {
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista){
         Map<String, Integer> res = new HashMap<>();
-        /*res = lista.stream()
-                .collect(Collectors.groupingBy(x->x.getCiudad()))
-                .entrySet()
-                .stream()
-                .filter(x->x.getValue().get)
-                .filter(x->x.getValue().size()>=1)
-                .collect(Collectors.toMap(x->x.getKey(), x->x.getValue().size()))
-                ;*/
         res = lista.stream()
                 .filter(x->x.getEdad()>=18)
                 .collect(Collectors.groupingBy(x->x.getCiudad()))
