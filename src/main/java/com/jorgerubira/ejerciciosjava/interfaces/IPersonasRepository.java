@@ -6,6 +6,7 @@
 package com.jorgerubira.ejerciciosjava.interfaces;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +17,11 @@ import java.util.Optional;
 public interface IPersonasRepository {
     
     List<Persona> buscarPersona(String ciudad);
+    List<Persona> buscarPersonaEntreFechas(Date fechaDesde, Date fechaHasta);
+    List<Persona> buscarPersonasDeUnaCiudad(String ciudad);
     Optional<Persona> leerPersona(String nombre);
     boolean altaPersona(Persona persona);   //Devuelve si ha sido insertada la persona
     boolean modificarPersona(String nombre, Persona persona);   //Devuelve si ha sido insertada la persona
     
-    
 }
+
