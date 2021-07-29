@@ -143,7 +143,7 @@ public class Ejercicio04Colecciones {
      * <<Devuelve una lista inmutable
      */
     public List<Integer> generarLista(int valores[]) {
-
+        //Integer[] a = new Integer[valores.length];
         Integer[] a = Arrays.stream(valores).boxed().toArray(Integer[]::new);
 
         List<Integer> list = Arrays.asList(a);

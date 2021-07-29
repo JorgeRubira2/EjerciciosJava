@@ -32,14 +32,17 @@ public class Ejercicio06Lambdas {
      * Los valores null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings(){
-        return (a,b)-> {
-            if((a != null)&& (b != null)){
-                if(!a.isEmpty() & !b.isEmpty()){
-                    
-                }
-                return a.compareTo(b);
+        return (x,y)-> {
+            if(x != null && y != null){
+                return x.compareTo(y);
             }
-            return 0;
+            if(x != null && y == null){
+                return 1; 
+            }
+            if(x == null && y != null){
+                return -1; 
+            }
+            return 0;    
         };
     } 
 
@@ -49,7 +52,7 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar personas con valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (x,y)->x.getEdad() - y.getEdad();
     } 
     
     /**
@@ -57,7 +60,7 @@ public class Ejercicio06Lambdas {
      * para ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (x,y)->y.getEdad() - x.getEdad();
     }     
     
     /**
@@ -66,7 +69,13 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los nulos.
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre(){
-        throw new RuntimeException("Pendiente de hacer");
+        return (x,y)-> {
+            if(x.getCiudad().compareToIgnoreCase(y.getCiudad()) != 0){
+               return x.getCiudad().compareToIgnoreCase(y.getCiudad());
+            }else{
+                return x.getNombre().compareToIgnoreCase(y.getNombre());
+            }
+        };
     }     
     
     /**
