@@ -284,7 +284,7 @@ public class Ejercicio07StreamsTest {
         Map<String, Integer> result = instance.cuantasPersonasMayoresDeEdadPorCiudad(lista);
         assertEquals(2, result.size());
         assertEquals(2, result.get("Madrid"));
-        assertEquals(1, result.get("Zaragoza"));
+        assertEquals(1, result.get("Huesca"));
     }
     
 }
