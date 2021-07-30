@@ -1,130 +1,143 @@
-
 package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 public class Ejercicio07Streams {
 
     /**
-     * Devolver los elementos positivos >=0 del Array origen
-     * No hace falta verificar si valen nulo.
+     * Devolver los elementos positivos >=0 del Array origen No hace falta
+     * verificar si valen nulo.
      */
-    public List<Double> elementosPositivos(List<Double> origen){
-        throw new RuntimeException("Pendiente de hacer");
+    public List<Double> elementosPositivos(List<Double> origen) {
+        return origen.stream().filter(t -> t >= 0).collect(toList());
     }
-    
+
     /**
-     * Devuelve el valor maximo de la lista.
-     * No hace falta verificar si valen nulo.
+     * Devuelve el valor maximo de la lista. No hace falta verificar si valen
+     * nulo.
      */
-    public int maximoElemento(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+    public int maximoElemento(List<Integer> lista) {
+        Optional<Integer> maxLista = lista.stream()
+                .max((x, y) -> x - y);
+        return maxLista.get();
+
     }
-    
+
     /**
-     * Devuelve cuantos elementos no hay repetidos.
-     * No hace falta verificar si valen nulo.
+     * Devuelve cuantos elementos no hay repetidos. No hace falta verificar si
+     * valen nulo.
      */
-    public int contarElementosNoRepetidos(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+    public int contarElementosNoRepetidos(List<Integer> lista) {
+        Map<Integer, Long> result = lista.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        
+        long x = result.values().stream().filter(y -> y == 1).count();
+        
+        return (int) x;
+
     }
-    
+
     /**
-     * Devuelve una lista de las personas que son de Huesca.
-     * No hace falta verificar si valen nulo.
+     * Devuelve una lista de las personas que son de Huesca. No hace falta
+     * verificar si valen nulo.
      */
-    public List<Persona> personasDeHuescaALista(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+    public List<Persona> personasDeHuescaALista(List<Persona> lista) {
+        List<Persona> listaPersonasHuesca = lista.stream()
+                .filter(x -> x.getCiudad()=="Huesca")
+                .collect(Collectors.toList());
+        
+        return listaPersonasHuesca;
     }
-    
+
     /**
-     * Devuelve una lista de las personas que son de Huesca en array de tipo primario.
-     * No hace falta verificar si valen nulo.
+     * Devuelve una lista de las personas que son de Huesca en array de tipo
+     * primario. No hace falta verificar si valen nulo.
      */
-    public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+    public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista) {
+//        List<Persona> personasHuesca=new ArrayList<>(List.of(x -> x.getCiudad()=="Huesca"));
+         throw new RuntimeException("Pendiente de hacer");
+
     }
-    
+
     /**
-     * Devuelve la persona que tenga más articulos en la cesta.
-     * Devuelve empty si no hay personas.
-     * No hace falta verificar si valen nulo.
+     * Devuelve la persona que tenga más articulos en la cesta. Devuelve empty
+     * si no hay personas. No hace falta verificar si valen nulo.
      */
-    public Optional<Persona> personasConMasArticulo(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
-    
-    /**
-     * Devuelve las compras que tienen las personas.
-     * Puede haber personas sin Cesta, estos casos no hay que devolverlos.
-     * No hace falta verificar si valen nulo.
-     */
-    public List<Compra> cestasDeLasPersonas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
-    
-    /**
-     * Devuelve las edades de las personas.
-     * No hace falta verificar si valen nulo.
-     */
-    public int[] edadesDeLasPersonas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
-    }      
-    
-    /**
-     * Devuelve cuantas personas hay en cada ciudad. 
-     * Ciudad contiene dos campos Nombre de la ciudad y cuantas personas hay de la lista.
-     * No hace falta verificar si valen nulo.
-     */
-    public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista){
+    public Optional<Persona> personasConMasArticulo(List<Persona> lista) {
         throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
-     * Top 3 clientes. 
-     * Devuelve los tres clientes que más articulos en la cesta tienen.
-     * No hace falta verificar si valen nulo.
+     * Devuelve las compras que tienen las personas. Puede haber personas sin
+     * Cesta, estos casos no hay que devolverlos. No hace falta verificar si
+     * valen nulo.
      */
-    public List<Persona> top3Personas(List<Persona> lista){
+    public List<Compra> cestasDeLasPersonas(List<Persona> lista) {
         throw new RuntimeException("Pendiente de hacer");
-    }    
-    
-    /**
-     * Top 3 ciudades. 
-     * Devuelve las tres ciudades con más personas en un Set.
-     * No hace falta verificar si valen nulo.
-     */
-    public Set<String> top3Ciudades(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
-    }    
+    }
 
     /**
-     * Devuelve una lista con 3 objetos RangoEdad.
-     * Posicion 0-Cuantas personas hay menores de 18 años.
-     * Posicion 1-Cuantas personas hay entre 18 y 60 años.
-     * Posicion 2-Cuantas personas hay mayores de 60 años.
-     * No hace falta verificar si valen nulo.
+     * Devuelve las edades de las personas. No hace falta verificar si valen
+     * nulo.
      */
-    public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista){
+    public int[] edadesDeLasPersonas(List<Persona> lista) {
         throw new RuntimeException("Pendiente de hacer");
-    }    
+    }
 
     /**
-     * Devuelve cuantas personas mayores de edad hay en cada ciudad.
-     * Si una ciudad no tiene personas mayores de edad no hace falta devolver ese dato.
-     * Devolver un mapa donde la clave sería la ciudad y el número el número de personas.
-     * No hace falta verificar si valen nulo.
+     * Devuelve cuantas personas hay en cada ciudad. Ciudad contiene dos campos
+     * Nombre de la ciudad y cuantas personas hay de la lista. No hace falta
+     * verificar si valen nulo.
      */
-    public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista){
+    public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista) {
         throw new RuntimeException("Pendiente de hacer");
-    }     
-    
+    }
+
+    /**
+     * Top 3 clientes. Devuelve los tres clientes que más articulos en la cesta
+     * tienen. No hace falta verificar si valen nulo.
+     */
+    public List<Persona> top3Personas(List<Persona> lista) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Top 3 ciudades. Devuelve las tres ciudades con más personas en un Set. No
+     * hace falta verificar si valen nulo.
+     */
+    public Set<String> top3Ciudades(List<Persona> lista) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Devuelve una lista con 3 objetos RangoEdad. Posicion 0-Cuantas personas
+     * hay menores de 18 años. Posicion 1-Cuantas personas hay entre 18 y 60
+     * años. Posicion 2-Cuantas personas hay mayores de 60 años. No hace falta
+     * verificar si valen nulo.
+     */
+    public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
+    /**
+     * Devuelve cuantas personas mayores de edad hay en cada ciudad. Si una
+     * ciudad no tiene personas mayores de edad no hace falta devolver ese dato.
+     * Devolver un mapa donde la clave sería la ciudad y el número el número de
+     * personas. No hace falta verificar si valen nulo.
+     */
+    public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
+        throw new RuntimeException("Pendiente de hacer");
+    }
+
 }
