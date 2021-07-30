@@ -235,7 +235,7 @@ public class Ejercicio04Colecciones {
     public Map<String, Integer> totalProductos(List<Persona> personas) {
 
         Map<String, Integer> nuevoMapa = new HashMap<>();
-/*
+//no entiendo por que no funciona
         String clave = "";
         Integer productos = 0;
 
@@ -243,32 +243,28 @@ public class Ejercicio04Colecciones {
             if (persona.getCesta().isPresent()) {
                 clave = persona.getNombre();
                 productos = persona.getCesta().get().getTotalArticulos();
-                               
-            }else{
-                productos=0;
-                
-                if (nuevoMapa.containsKey(persona.getNombre())) {
-                                     
-                    nuevoMapa.put(clave, nuevoMapa.get(persona.getNombre())+ productos);
-                     nuevoMapa.put(persona.getNombre(), nuevoMapa.get(persona.getNombre())+productos);
-                   
-                } else {
-                    nuevoMapa.put(clave, productos);
 
-                }
+            } else {
+                productos = 0;
             }
+            if (nuevoMapa.containsKey(persona.getNombre())) {
 
+               nuevoMapa.put(clave, nuevoMapa.get(persona.getNombre()) + productos);
+               //nuevoMapa.put(persona.getNombre(), nuevoMapa.get(persona.getNombre()) + productos);
+
+            } else {
+                nuevoMapa.put(clave, productos);
+
+            }
         }
-        return nuevoMapa;*/
-throw new RuntimeException("Pendiente de hacer");
+        return nuevoMapa;
 
-    }
+}
 
-    /**
-     * Añade multiples valores a la lista. No hace falta verificar si valen
-     * nulo.
-     */
-    public void annadirElementosMultiples(List<Integer> destino, int... valores) {
+/**
+ * Añade multiples valores a la lista. No hace falta verificar si valen nulo.
+ */
+public void annadirElementosMultiples(List<Integer> destino, int... valores) {
         for (int a : valores) {
             destino.add(a);
         }

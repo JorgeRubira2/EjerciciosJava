@@ -4,7 +4,10 @@ import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
+import java.util.ArrayList;
 import static java.util.Collections.list;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -43,10 +46,6 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista) {
-        //map despues de agrupar
-        //gruopingby
-        //contar  cuantas veces aparece cada nuemro
-        //agruparlo por numero
 
         Map<Integer, Long> agruparRepetidos = lista.stream()
                 .collect(Collectors.groupingBy((x) -> x, Collectors.counting()));
@@ -142,8 +141,8 @@ public class Ejercicio07Streams {
                 .map(x -> new Ciudad(x.getKey(), x.getValue().intValue()))
                 .collect(Collectors.toList());
 
-        // throw new RuntimeException("Pendiente de hacer");
         return personasEnCiudad;
+        // throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -164,24 +163,33 @@ public class Ejercicio07Streams {
                         y1 = y.getCesta().get().getTotalArticulos();
                     }
                     //return x1 - y1;
-                    return y1-x1;
+                    return y1 - x1;
                 })
                 .limit(3)
                 .collect(Collectors.toList());
-                    
-                
-                    
+
     }
 
+    /**
+     * Top 3 ciudades. Devuelve las tres ciudades con más personas en un Set. No
+     * hace falta verificar si valen nulo.
+     */
+    public Set<String> top3Ciudades(List<Persona> lista) {
 
+        Map<String, Long> ciudades = lista.stream()
+                .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
 
-/**
- * Top 3 ciudades. Devuelve las tres ciudades con más personas en un Set. No
- * hace falta verificar si valen nulo.
- */
-public Set<String> top3Ciudades(List<Persona> lista) {
+        Set<String> topCiudades = (Set<String>) ciudades.entrySet().stream()
+                .sorted((x, y) -> {
+                    int x1 = x.getValue().intValue();
+                    int y1 = y.getValue().intValue();
+                    return y1 - x1;
+                })
+                .limit(3)
+                .map(x -> x.getKey())
+                .collect(Collectors.toSet());
 
-        throw new RuntimeException("Pendiente de hacer");
+        return topCiudades;
     }
 
     /**
@@ -189,9 +197,29 @@ public Set<String> top3Ciudades(List<Persona> lista) {
      * hay menores de 18 años. Posicion 1-Cuantas personas hay entre 18 y 60
      * años. Posicion 2-Cuantas personas hay mayores de 60 años. No hace falta
      * verificar si valen nulo.
+     *
      */
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        List<RangoEdad> clasificacion = new ArrayList<>();
+        long menor18 = lista.stream()
+                .filter(x -> x.getEdad() < 18)
+                .count();
+
+        long entre18y60 = lista.stream()
+                .filter(x -> x.getEdad() >= 18)
+                .filter(x -> x.getEdad() <= 60).count();
+
+        long mayor60 = lista.stream()
+                .filter(x -> x.getEdad() > 60)
+                .count();
+
+        clasificacion.add(0, new RangoEdad(RangoEdad.Rango.Menor18, (int) menor18));
+        clasificacion.add(1, new RangoEdad(RangoEdad.Rango.Entre18y60, (int) entre18y60));
+        clasificacion.add(2, new RangoEdad(RangoEdad.Rango.Mayor60, (int) mayor60));
+
+        return clasificacion;
+
     }
 
     /**
@@ -201,7 +229,17 @@ public Set<String> top3Ciudades(List<Persona> lista) {
      * personas. No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Map<String, Integer> mayoresEdad = new HashMap<>();
+
+        Map<String, Long> agrupados = lista.stream()
+                .filter(x -> x.getEdad() >= 18)
+                .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        return mayoresEdad = agrupados.entrySet().stream()
+                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue().intValue()));
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
 }

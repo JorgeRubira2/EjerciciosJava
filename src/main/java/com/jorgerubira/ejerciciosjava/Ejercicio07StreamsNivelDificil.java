@@ -16,6 +16,8 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
+        
+        
         throw new RuntimeException("Pendiente de hacer");
     }
     /**
