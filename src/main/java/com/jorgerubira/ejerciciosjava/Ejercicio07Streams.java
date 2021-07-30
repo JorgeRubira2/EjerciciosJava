@@ -104,7 +104,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
-        List<Persona>;
+        throw new RuntimeException("Pendiente de hacer");
     }      
     
     /**
