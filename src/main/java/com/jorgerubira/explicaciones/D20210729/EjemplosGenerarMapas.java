@@ -26,6 +26,7 @@ public class EjemplosGenerarMapas {
                 new Persona("Fran", "Madrid", 23)
         );
 
+
         
         //Obtener la media directamente
         Map<String, Double> mapaContarPersonas3=

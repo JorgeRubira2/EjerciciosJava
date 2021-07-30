@@ -5,6 +5,8 @@
  */
 package com.jorgerubira.ejerciciosjava.pojo;
 
+import java.util.List;
+
 /**
  *
  * @author PC
@@ -12,10 +14,16 @@ package com.jorgerubira.ejerciciosjava.pojo;
 public class Compra {
     private int totalArticulos;
     private boolean carro;
+    private List<Producto> listaProductos;
 
     public Compra(int totalArticulos, boolean carro) {
         this.totalArticulos = totalArticulos;
         this.carro = carro;
+    }
+
+    public Compra(List<Producto> listaProductos) {
+        this.totalArticulos = listaProductos.size();
+        this.listaProductos = listaProductos;
     }
 
     public int getTotalArticulos() {
@@ -32,6 +40,14 @@ public class Compra {
 
     public void setCarro(boolean carro) {
         this.carro = carro;
+    }
+    
+    public boolean contieneDetalleDeProductos(){
+        return !listaProductos.isEmpty();
+    }
+    
+    public Producto getProducto(int index){
+        return listaProductos.get(index);
     }
     
 }
