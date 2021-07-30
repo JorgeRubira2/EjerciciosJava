@@ -21,7 +21,7 @@ public class EjemploComparator {
         
         //ICalculo ob=(a,b)->a+b;
         
-        List<Persona4> personas=List.of(
+       /* List<Persona4> personas=List.of(
                     new Persona4("Juan"),
                     new Persona4("Ana", new Compra2(4, true)),
                     new Persona4("Pepe", new Compra2(2, false))
@@ -30,13 +30,13 @@ public class EjemploComparator {
         Math.max(2, 3);
         
         Persona4 p4[]= personas.toArray(x->new Persona4[x]);
-        Persona4 p4b[]= personas.toArray(Persona4[]::new);
+        Persona4 p4b[]= personas.toArray(Persona4[]::new);*/
         
         /*List<Persona4> orden=personas.stream()
                                      .sorted((x,y)->x.getNombre().compareTo(y.getNombre()))
                                      .collect(Collectors.toList());*/
         
-        List<Persona4> orden=personas.stream()
+       /* List<Persona4> orden=personas.stream()
                                      .sorted((x,y)->{
                                          int x1=0;//No tuvieran compra
                                          int y1=0;//No tuvieran compra
@@ -48,9 +48,10 @@ public class EjemploComparator {
                                          }
                                          return (y1-x1);
                                      })
-                                     .collect(Collectors.toList());
+                                     .collect(Collectors.toList());*/
         //Ana 4 Juan Pepe 2
         //Ana 4 Pepe 2 Juan 
+        /*
         orden.stream()
              .forEach(x-> {
                  System.out.print(x.getNombre() + " ");
@@ -58,7 +59,7 @@ public class EjemploComparator {
                      System.out.print(x.getCompra().get().getTotalProductos() + " ");
                  }
               });
-
+*/
         //Ana Juan Pepe 
         //Juan Pepe 2 Ana 4 
         

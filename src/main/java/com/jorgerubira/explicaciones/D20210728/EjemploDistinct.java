@@ -41,14 +41,14 @@ public class EjemploDistinct {
         EjemploDistinct obj=new EjemploDistinct();
         obj.mostrarLista2(lista);
         
-        
+       /* 
         List<Persona5> personas=List.of(
                     new Persona5("Juan", 20),
                     new Persona5("Ana", 64, new Compra3(4, true)),
                     new Persona5("Pepe", 54, new Compra3(2, false)),
                     new Persona5("Ana", 24, new Compra3(4, true)),
                     new Persona5("Ana", 34, new Compra3(4, true))
-        ); 
+        ); */
         
         List<String> ciudades=List.of("Madrid", "Almeria", "Zaragoza", "Madrid");
         
@@ -67,10 +67,10 @@ public class EjemploDistinct {
                 .forEach(x->System.out.println(x));*/
         //5 Pulgar 3 carita
         //equals ->
-        personas.stream()
+       /* personas.stream()
                 .distinct() //Persona p1, Persona p2  hashcode - equals
                 .forEach(x->System.out.println(x.getNombre() + " " + x.getEdad()));        
-        
+        */
         //Juan 20
         //Ana 64
         //Pepe 54
