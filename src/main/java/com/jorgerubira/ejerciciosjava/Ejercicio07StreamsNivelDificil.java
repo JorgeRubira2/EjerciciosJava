@@ -4,6 +4,8 @@ import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -58,7 +60,12 @@ public class Ejercicio07StreamsNivelDificil {
      * Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> personas = Arrays.asList(new Persona[totalPersonas]);
+        List<Persona> salida = personas.stream()
+                .map(x -> new Persona(nombres.get((int) ((Math.random())*nombres.size()))))
+                                .collect(Collectors.toList());
+        
+        return  salida;
     }
 
     
@@ -68,7 +75,14 @@ public class Ejercicio07StreamsNivelDificil {
      * Pair esta creado en el código pero existe una librería llamada Javatuples que funciona igual
      */
     public Pair<List<Persona>,List<Persona>> obtenerTuplaPorEdad(List<Persona> nombres, Set<String> descartes){
-        throw new RuntimeException("Pendiente de hacer");
+       //Pair Pair<List<Persona>,List<Persona>> tuplas =
+       List<Persona> personas =  nombres.stream()
+               .filter(x -> !descartes.contains(x.getNombre()) )
+               .collect(Collectors.toList());
+     
+       return new Pair(personas.stream().filter(x->x.getEdad() <18).collect(Collectors.toList())
+                        ,personas.stream().filter(x->x.getEdad() >=18 ).collect(Collectors.toList()) );
+        
     }    
     
     /**
@@ -78,21 +92,40 @@ public class Ejercicio07StreamsNivelDificil {
      * Devolver la información ordenada por Nombre
      */
     public List<Persona> devolverDeQuePersonasCorrespondenLasCompras(List<Persona> nombres, Set<Compra> descartes){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> personas = nombres.stream()
+                .filter(x->x.getCesta().isPresent())
+                .filter(x -> descartes.contains((x.getCesta().get())))
+                .collect(Collectors.toList());
+        
+        
+        return personas;
     }
 
     /*
      * Devolver una lista de personas pero en caso de tener menos de 5 productos dejar la compra a empty.
      */
     public List<Persona> eliminarCompraDePersonas(List<Persona> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+          nombres.forEach(x -> { 
+              if (x.getCesta().isPresent() && x.getCesta().get().getTotalArticulos()<5 ){
+                                  x.setCesta(null);}
+                                }
+                  );
+          return nombres;
     }
 
     /*
      * Crea un clone de la lista recibida. Duplica los objetos copiando los valores con la misma información.
      */
     public List<Persona> clone(List<Persona> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> personas = nombres.stream()
+                .map(x-> new Persona(x.getNombre()
+                        , x.getCiudad()
+                        , x.getEdad()
+                        ,(Date) x.getFechaNacimiento().clone()
+                        , x.getAltura(), x.getPeso()
+                        , ((x.getCesta().isPresent())? new Compra(x.getCesta().get().getTotalArticulos(),x.getCesta().get().isCarro()):null)))
+                .collect(Collectors.toList());
+        return personas;
     }
 
     /**
@@ -100,7 +133,8 @@ public class Ejercicio07StreamsNivelDificil {
      * La clave del mapa será la ciudad y la lista de Personas de cada ciudad .
      */
     public Map<String, List<Persona>> obtenerPersonasDeCadaCiudad(List<Persona> persona){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, List<Persona>>  poblaciones = persona.stream().collect(Collectors.groupingBy(Persona::getCiudad));
+        return poblaciones;
     }
     
     
@@ -109,16 +143,41 @@ public class Ejercicio07StreamsNivelDificil {
      * La clave del mapa será la ciudad y Persona será la persona con edad mas alta.
      */
     public Map<String, Persona> obtenerPersonaMasMayorDeCadaCiudad(List<Persona> persona){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Persona>  poblaciones = persona.stream()
+                .filter(x -> x.equals( (persona.stream()
+                                            .filter( y-> y.getCiudad()== x.getCiudad())
+                                            .max((a,b) ->a.getEdad()- b.getEdad())
+                                            .get()
+                                )
+                            )
+                )
+                .collect(Collectors.groupingBy(Persona::getCiudad))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(x->x.getKey(), x->x.getValue().get(0)));
+
+        
+         
+         return poblaciones;
+        
     }
+    
     
     /**
      * Devuelve en un mapa con las 3 las personas con más edad de cada ciudad.
      * La clave del mapa será la ciudad y la lista de tres personas de cada ciudad con mas edad.
      */
     public Map<String, List<Persona>> obtenerLasTresPersonasMasMayoresDeCadaCiudad(List<Persona> persona){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, List<Persona>>  poblaciones = persona.stream()
+                .collect(Collectors.groupingBy(Persona::getCiudad))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(x->x.getKey()
+                                        , x->x.getValue().stream()
+                                                        .sorted((a,b) ->b.getEdad()- a.getEdad())
+                                                        .limit(3)
+                                                        .collect(Collectors.toList())));
+   
+    return poblaciones;
     }
-    
-    
 }
