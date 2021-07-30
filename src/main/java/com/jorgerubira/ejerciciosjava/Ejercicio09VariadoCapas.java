@@ -10,6 +10,8 @@ import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class Ejercicio09VariadoCapas {
@@ -28,6 +30,7 @@ public class Ejercicio09VariadoCapas {
     
     /**
      * Busca las personas en el repository que hayan nacido entre dos fecha introducidas y devuelve las ciudades donde están estas personas.
+     * Incluir el número de personas que hay en cada ciudad
      * Utilizar StreamsParalelos para optimizar el rendimiento de servidores si es posible.
      * Las ciudades no se deben repetir.
      * Devolver la información ordenada por el número de personas de mayor a menor.
@@ -36,6 +39,7 @@ public class Ejercicio09VariadoCapas {
         throw new RuntimeException("Pendiente de hacer");
     }
     
+           
     
     /**
      * Calcular el total de productos comprados por las personas de una ciudad.
