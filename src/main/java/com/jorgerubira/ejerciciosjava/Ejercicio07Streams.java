@@ -39,7 +39,9 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        long norepetidos = lista.stream().distinct().count();
+        System.out.println(norepetidos);
+        return (int) norepetidos;
     }
 
     /**
@@ -47,7 +49,15 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> lista2 = List.of(new Persona("Ana", 40),
+                new Persona("Juan", 30),
+                new Persona("Alberto",24),
+                new Persona("Pepe", 40)
+        );
+             Set<String> per = Set.of("Ana","Alberto","Juan");
+             System.out.println(lista.stream().filter(x->per.contains(x.getNombre())).count() + "AHORA");
+
+        return null;
     }
 
     /**
