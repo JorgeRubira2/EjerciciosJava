@@ -13,6 +13,9 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Ejercicio07Streams {
 
@@ -115,7 +118,13 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+    	 return lista.stream()
+                 .collect(Collectors.groupingBy(x->x.getCiudad()))
+                 .entrySet()
+                 .stream()
+                 .map(x->new Ciudad(x.getKey(),x.getValue().size()))
+                 .collect(Collectors.toList())
+                 ;
     }
 
     /**
@@ -166,7 +175,25 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+    	 List<RangoEdad> resultado = new ArrayList<>();//Lista de objetos
+         long menos18 = lista.stream()//Posicion 0
+                 .filter(x->x.getEdad()<18)
+                 .count()
+                 ;
+         long mas18 = lista.stream()//Posicion1
+                 .filter(x->x.getEdad()>=18 && x.getEdad()<=60)
+                 .count()
+                 ;
+         long mas60 = lista.stream()/*Posicion 2*/
+                 .filter(x->x.getEdad()>60)
+                 .count()
+                 ;
+         //Lista con 3 objetos RangoEdad
+         resultado.add(new RangoEdad(RangoEdad.Rango.Menor18,(int)menos18));
+         resultado.add(new RangoEdad(RangoEdad.Rango.Entre18y60,(int)mas18));
+         resultado.add(new RangoEdad(RangoEdad.Rango.Mayor60,(int)mas60));
+         
+         return resultado;
     }    
 
     /**
@@ -176,7 +203,14 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
-    }     
+    	Map<String, Integer> resultado = new HashMap<>();//Creamos el mapa
+        resultado = lista.stream()
+                .filter(x->x.getEdad()>=18)//Filtra las personas mayores de 18
+                .collect(Collectors.groupingBy(x->x.getCiudad()))//Los recoge y los agrupa por su ciudad como clave
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(x->x.getKey(), x->x.getValue().size()))//Devuelve el mapa  con las claves
+                ;
+        return resultado;    }     
     
 }
