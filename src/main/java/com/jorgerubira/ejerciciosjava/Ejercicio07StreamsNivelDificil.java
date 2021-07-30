@@ -62,11 +62,9 @@ public class Ejercicio07StreamsNivelDificil {
      * nombre de la persona es suficiente. Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres) {
-        //List<Persona> resultado=new ArrayList<>();
-        //resultado.
-        //nombres.stream().limit(totalPersonas).map(x->new Persona(x)).collect(Collectors.toList());
-        //return resultado;
-        throw new RuntimeException("Pendiente de hacer");
+        
+        return  nombres.stream().map(x->new Persona(x)).collect(Collectors.toList());
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
