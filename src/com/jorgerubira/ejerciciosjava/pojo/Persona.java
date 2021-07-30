@@ -30,7 +30,12 @@ public class Persona {
         this.peso = peso;
     }
 
-    public String getNombre() {
+    public Persona(String nombre2, int i) {
+		this.nombre=nombre2;
+		this.edad=i;
+	}
+
+	public String getNombre() {
         return nombre;
     }
 

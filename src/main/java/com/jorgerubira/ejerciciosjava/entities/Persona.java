@@ -20,21 +20,18 @@ public class Persona {
     private int altura;
     private int peso;
     
+    
     //Solo para el supermercado.
-    private Optional<Compra> cesta=Optional.empty();
-
-    public Persona(String nombre, String ciudad){
-        this.nombre = nombre;
-        this.ciudad = ciudad;
-        this.cesta = Optional.empty();
-    }
+    private Optional<Compra> cesta=Optional.empty();  
+    
     public Persona(String nombre) {
         this.nombre = nombre;
     }
 
-    public Persona(String nombre, int edad) {
+    public Persona(String nombre, com.jorgerubira.ejerciciosjava.pojo.Compra res) {
         this.nombre = nombre;
-        this.edad = edad;
+       // this.cesta = Optional.of(res);
+        		
     }
     
     public Persona(String nombre, String ciudad, int edad) {
@@ -68,7 +65,19 @@ public class Persona {
         this.cesta = Optional.ofNullable(compra);
     }
 
-    public String getNombre() {
+ 
+
+	public Persona(String nombre, int edad) {
+		this.nombre = nombre;
+		this.edad = edad;
+	}
+
+	public Persona(String ciudad, String nombre) {
+		this.nombre = nombre;
+		this.ciudad = ciudad;
+	}
+
+	public String getNombre() {
         return nombre;
     }
 
