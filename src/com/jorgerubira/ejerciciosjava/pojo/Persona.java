@@ -1,12 +1,12 @@
-package main.java.com.jorgerubira.ejerciciosjava;
-
-
+package com.jorgerubira.ejerciciosjava.pojo;
 
 import java.util.Date;
 import java.util.Optional;
 
-public class Persona { 
-    private String nombre;
+
+
+public class Persona {
+	private String nombre;
     private String ciudad;
     private int edad;
     private Date fechaNacimiento;

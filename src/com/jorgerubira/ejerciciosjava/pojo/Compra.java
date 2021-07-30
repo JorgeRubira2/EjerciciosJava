@@ -1,4 +1,4 @@
-package main.java.com.jorgerubira.ejerciciosjava;
+package com.jorgerubira.ejerciciosjava.pojo;
 
 public class Compra {
 	 private int totalArticulos;
@@ -24,4 +24,7 @@ public class Compra {
 	    public void setCarro(boolean carro) {
 	        this.carro = carro;
 	    }
+
+		
 }
+
