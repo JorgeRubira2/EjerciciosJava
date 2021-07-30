@@ -10,8 +10,9 @@ import java.util.List;
 /**
  *
  * @author PC
+ * @param <Producto>
  */
-public class Compra {
+public class Compra<Producto> {
     private int totalArticulos;
     private boolean carro;
     private List<Producto> listaProductos;
