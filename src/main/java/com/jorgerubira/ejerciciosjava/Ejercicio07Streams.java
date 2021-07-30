@@ -132,20 +132,17 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista) {
-        
-        
-        Map<String,Long> ciudades= lista.stream()
-                .collect(Collectors.groupingBy(x-> x.getCiudad(), Collectors.counting()));
-        
-        //System.out.println(ciudades);
-        
-        List<Ciudad> personasEnCiudad= ciudades.entrySet()
-                .stream()
-                .map(x-> new Ciudad(x.getKey(), x.getValue().intValue()))
-                .collect(Collectors.toList());
-        
 
-       // throw new RuntimeException("Pendiente de hacer");
+        Map<String, Long> ciudades = lista.stream()
+                .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        //System.out.println(ciudades);
+        List<Ciudad> personasEnCiudad = ciudades.entrySet()
+                .stream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().intValue()))
+                .collect(Collectors.toList());
+
+        // throw new RuntimeException("Pendiente de hacer");
         return personasEnCiudad;
     }
 
@@ -154,22 +151,36 @@ public class Ejercicio07Streams {
      * tienen. No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista) {
-        
-      /*  lista.stream()
-                .sorted((x,y)->{
-                    if(x.getCesta.isPresent)
-                    
+
+        return (List<Persona>) lista.stream()
+                .sorted((x, y) -> {
+                    int x1 = 0;
+                    int y1 = 0;
+                    if (x.getCesta().isPresent()) {
+                        x1 = x.getCesta().get().getTotalArticulos();
+                    }
+                    if (y.getCesta().isPresent()) {
+
+                        y1 = y.getCesta().get().getTotalArticulos();
+                    }
+                    //return x1 - y1;
+                    return y1-x1;
                 })
-        */
-        throw new RuntimeException("Pendiente de hacer");
+                .limit(3)
+                .collect(Collectors.toList());
+                    
+                
+                    
     }
 
-    /**
-     * Top 3 ciudades. Devuelve las tres ciudades con más personas en un Set. No
-     * hace falta verificar si valen nulo.
-     */
-    public Set<String> top3Ciudades(List<Persona> lista) {
-        
+
+
+/**
+ * Top 3 ciudades. Devuelve las tres ciudades con más personas en un Set. No
+ * hace falta verificar si valen nulo.
+ */
+public Set<String> top3Ciudades(List<Persona> lista) {
+
         throw new RuntimeException("Pendiente de hacer");
     }
 
