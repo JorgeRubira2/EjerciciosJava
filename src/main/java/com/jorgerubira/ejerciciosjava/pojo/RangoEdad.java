@@ -10,6 +10,10 @@ package com.jorgerubira.ejerciciosjava.pojo;
  * @author PC
  */
 public class RangoEdad {
+
+    public RangoEdad(Rango rango, Long pos1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public enum Rango{
         Menor18, Entre18y60, Mayor60
     }
