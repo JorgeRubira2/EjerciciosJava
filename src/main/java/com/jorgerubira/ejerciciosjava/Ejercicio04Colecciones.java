@@ -122,11 +122,9 @@ public class Ejercicio04Colecciones {
 
         Set<String> guardarClaves = new HashSet<String>();
 
-        for (String claves : listaPersonas.keySet()) {
-            if (listaPersonas.get(claves).getCiudad().equals("Huesca")) {
-                guardarClaves.add(claves);
-            }
-        }
+        listaPersonas.keySet().stream().filter(claves -> (listaPersonas.get(claves).getCiudad().equals("Huesca"))).forEachOrdered(claves -> {
+            guardarClaves.add(claves);
+        });
         for (String clave : guardarClaves) {
             listaPersonas.remove(clave);
         }
