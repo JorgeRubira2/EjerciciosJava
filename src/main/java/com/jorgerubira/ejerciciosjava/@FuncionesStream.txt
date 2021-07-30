@@ -22,7 +22,7 @@ Optional<T> findFirst()               Devuelve el primer elemento.
 long count()                           Cuenta los elementos
 void forEach(Consumer)                Ejecuta un consumer
 boolean anyMatch(Predicate)           Devuelve si encuentra alguna condicion
-//toArray()   []
+//toArray()   []                        toArray(tam->new Persona [tam]); hay que indicarle el tamaño
 
 
 Collector groupingBy                  Sirve para agrupar la información.

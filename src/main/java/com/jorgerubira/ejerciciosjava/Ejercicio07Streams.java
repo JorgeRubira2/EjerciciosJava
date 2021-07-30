@@ -4,6 +4,7 @@ import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,9 +40,12 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista) {
-        long norepetidos = lista.stream().distinct().count();
-        System.out.println(norepetidos);
-        return (int) norepetidos;
+
+        Map<Integer, Long> list = lista.stream()
+                .collect(Collectors.groupingBy(x -> x, Collectors.counting()));
+
+        return (int) list.values().stream().filter(x -> x == 1).count();
+
     }
 
     /**
@@ -49,9 +53,13 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista) {
-     throw new RuntimeException("Pendiente de hacer");
 
-        
+        List<Persona> list = lista.stream()
+                .filter(p -> "Huesca".equals(p.getCiudad()))
+                .collect(Collectors.toList());
+
+        return list;
+
     }
 
     /**
@@ -59,7 +67,12 @@ public class Ejercicio07Streams {
      * primario. No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Persona[] list = lista.stream()
+                .filter(p -> "Huesca".equals(p.getCiudad()))
+                .toArray(tam -> new Persona[tam]);
+
+        return list;
     }
 
     /**
@@ -67,7 +80,12 @@ public class Ejercicio07Streams {
      * si no hay personas. No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        Optional<Persona> list = lista.stream()
+                .max((x, y) -> x.getCesta().orElse(new Compra(0, false)).getTotalArticulos()
+                - y.getCesta().orElse(new Compra(0, false)).getTotalArticulos());
+
+        return list;
+
     }
 
     /**
@@ -76,7 +94,12 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<Compra> list = lista.stream()
+                .filter(x -> x.getCesta().isPresent())
+                .map((x) -> x.getCesta().get())
+                .collect(Collectors.toList());
+
+        return list;
     }
 
     /**
@@ -84,7 +107,10 @@ public class Ejercicio07Streams {
      * nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        int[] edades = lista.stream().mapToInt(x -> x.getEdad()).toArray();
+
+        return edades;
     }
 
     /**
@@ -93,7 +119,14 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Map<String, Long> list = lista.stream().collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        List<Ciudad> cuantas = list.entrySet().stream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().intValue()))
+                .collect(Collectors.toList());
+
+        return cuantas;
     }
 
     /**
@@ -101,7 +134,14 @@ public class Ejercicio07Streams {
      * tienen. No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        List<Persona> list = lista.stream().sorted((x, y) -> y.getCesta().orElse(new Compra(0, false)).getTotalArticulos()
+                - x.getCesta().orElse(new Compra(0, false)).getTotalArticulos())
+                .limit(3)
+                .collect(Collectors.toList());
+
+        return list;
+
     }
 
     /**
@@ -109,7 +149,15 @@ public class Ejercicio07Streams {
      * hace falta verificar si valen nulo.
      */
     public Set<String> top3Ciudades(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Long> list = lista.stream().collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        Set<String> li = list.entrySet().stream()
+                .sorted((x, y) -> y.getValue().intValue() - x.getValue().intValue())
+                .limit(3)
+                .map(x -> x.getKey())
+                .collect(Collectors.toSet());
+
+        return li;
     }
 
     /**
@@ -119,7 +167,13 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Integer aux = (int) (long) lista.stream().filter(x -> x.getEdad() < 18).count();
+        Integer aux2 = (int) (long) lista.stream().filter(x -> x.getEdad() >= 18 && x.getEdad() <= 60).count();
+        Integer aux3 = (int) (long) lista.stream().filter(x -> x.getEdad() > 60).count();
+        List<RangoEdad> listaBuena
+                = List.of(new RangoEdad(RangoEdad.Rango.Menor18, aux), new RangoEdad(RangoEdad.Rango.Entre18y60, aux2), new RangoEdad(RangoEdad.Rango.Mayor60, aux3));
+        return listaBuena;
     }
 
     /**
@@ -129,7 +183,14 @@ public class Ejercicio07Streams {
      * personas. No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+
+        Map<String, Long> list = lista.stream().filter(x -> x.getEdad() >= 18)
+                .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        Map<String, Integer> listabuena = list.entrySet().stream()
+                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue().intValue()));
+
+        return listabuena;
     }
 
 }
