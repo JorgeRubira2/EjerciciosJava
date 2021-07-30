@@ -70,7 +70,7 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
 
-       return (o1, o2) -> o2.getEdad() - o1.getEdad();
+        return (o1, o2) -> o2.getEdad() - o1.getEdad();
     }
 
     /**
@@ -80,12 +80,12 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
         return (o1, o2) -> {
-            if(o1.getCiudad().compareTo(o2.getCiudad())!=0){
+            if (o1.getCiudad().compareTo(o2.getCiudad()) != 0) {
                 return o1.getCiudad().compareTo(o2.getCiudad());
-            }else{
+            } else {
                 return o1.getNombre().compareTo(o2.getNombre());
             }
-        };        
+        };
     }
 
     /**
@@ -93,14 +93,14 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-   
-        return (o1)->{
-            
-            if(o1.getCiudad()!=null&&o1.getCiudad().equals("Huesca")){
+
+        return (o1) -> {
+
+            if (o1.getCiudad() != null && o1.getCiudad().equals("Huesca")) {
                 return true;
-            }else{
+            } else {
                 return false;
-            }    
+            }
         };
         //throw new RuntimeException("Pendiente de hacer");
     }
@@ -110,22 +110,20 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-        
-        return(o1)->
-            o1.getEdad()>= 16 && o1.getEdad()<64;
 
-       // throw new RuntimeException("Pendiente de hacer");
+        return (o1)
+                -> o1.getEdad() >= 16 && o1.getEdad() < 64;
+
+        // throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
-            
-      
-       
-        
-        throw new RuntimeException("Pendiente de hacer");
+        return (nombre1) -> nombre1.getNombre();
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -133,7 +131,10 @@ public class Ejercicio06Lambdas {
      * personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (compra1) -> compra1.getCesta();
+
+        //  throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -141,14 +142,24 @@ public class Ejercicio06Lambdas {
      * personas. Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (compra1) -> {
+            if (compra1.getCesta().isEmpty()) {
+                return null;
+            }
+            return compra1.getCesta().get();
+
+        };
+
     }
 
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (edad) -> edad.setEdad(edad.getEdad() + 1);
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -157,21 +168,35 @@ public class Ejercicio06Lambdas {
      * recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (c1, c2) -> {
+            if (c2.getCesta().isPresent()) {
+                c1.setCesta(c2.getCesta().get());
+            } else {
+                c1.setCesta(null);
+            }
+            c2.setCesta(null);
+        };
+
     }
 
     /**
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-        throw new RuntimeException("Pendiente de hacer");
+        return () -> Optional.empty();
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Devuelve una compra con 0 unidades y false en el carro.
      */
     public Supplier<Compra> generarCompra0Unidades() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return () -> new Compra(0, false);
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -179,7 +204,10 @@ public class Ejercicio06Lambdas {
      * nulos.
      */
     public UnaryOperator<String> convertirAMayusculas() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (cadena) -> cadena.toUpperCase();
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -187,7 +215,9 @@ public class Ejercicio06Lambdas {
      * parametro int
      */
     public IntBinaryOperator sumar() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (o1, o2) -> o1 + o2;
+
+        // throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -197,7 +227,21 @@ public class Ejercicio06Lambdas {
      * será equivalente a 0 unidades.
      */
     public IComparadorPersonaCompra miCompraEsMayorQueOtra() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (p, c) -> {
+            if (p.getCesta().isPresent() && c.isPresent()) {
+                if (p.getCesta().get().getTotalArticulos() > c.get().getTotalArticulos()) {
+                    return true;
+                }
+
+            } else if (p.getCesta().isPresent() && c.isEmpty()) {
+                return true;
+            }
+            return false;
+
+        };
+
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -206,7 +250,23 @@ public class Ejercicio06Lambdas {
      * unidades.
      */
     public IComparadorPersonaCompra igualNumeroDeUnidades() {
-        throw new RuntimeException("Pendiente de hacer");
+
+        return (p, c) -> {
+            if (p.getCesta().isPresent() && c.isPresent()) {
+                if (p.getCesta().get().getTotalArticulos() == c.get().getTotalArticulos()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            if (p.getCesta().isEmpty() && c.isEmpty()) {
+                return true;
+            }
+            return false;
+
+        };
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
 }

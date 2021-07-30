@@ -223,7 +223,7 @@ public class Ejercicio04ColeccionesTest {
 
     @Test
     public void testTotalProductos() {
-        System.out.println("totalProductos");
+        //System.out.println("totalProductos");
         List<Persona> personas = new ArrayList<Persona>();
         Persona p1=new Persona("Fran", "Zaragoza");
         p1.setCesta(new Compra(4,true));

@@ -141,6 +141,7 @@ public class Ejercicio04Colecciones {
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
 
+        //no lo termino de entender
         throw new RuntimeException("Pendiente de hacer");
     }
 
@@ -217,7 +218,7 @@ public class Ejercicio04Colecciones {
         List<String> aprobados = new ArrayList<String>();
 
         for (String a : notas.keySet()) {
-            if (notas.get(a).intValue() >= 5) {
+            if (notas.get(a) >= 5) {
                 //System.out.println("notas: "+ notas.get(a));
                 aprobados.add(a);
             }
@@ -232,11 +233,35 @@ public class Ejercicio04Colecciones {
      * verificar si valen nulo.
      */
     public Map<String, Integer> totalProductos(List<Persona> personas) {
-        
- 
-       
-       throw new RuntimeException("Pendiente de hacer"); 
-       
+
+        Map<String, Integer> nuevoMapa = new HashMap<>();
+/*
+        String clave = "";
+        Integer productos = 0;
+
+        for (Persona persona : personas) {
+            if (persona.getCesta().isPresent()) {
+                clave = persona.getNombre();
+                productos = persona.getCesta().get().getTotalArticulos();
+                               
+            }else{
+                productos=0;
+                
+                if (nuevoMapa.containsKey(persona.getNombre())) {
+                                     
+                    nuevoMapa.put(clave, nuevoMapa.get(persona.getNombre())+ productos);
+                     nuevoMapa.put(persona.getNombre(), nuevoMapa.get(persona.getNombre())+productos);
+                   
+                } else {
+                    nuevoMapa.put(clave, productos);
+
+                }
+            }
+
+        }
+        return nuevoMapa;*/
+throw new RuntimeException("Pendiente de hacer");
+
     }
 
     /**
@@ -246,10 +271,8 @@ public class Ejercicio04Colecciones {
     public void annadirElementosMultiples(List<Integer> destino, int... valores) {
         for (int a : valores) {
             destino.add(a);
-            
         }
-        
-       // throw new RuntimeException("Pendiente de hacer");
+        // throw new RuntimeException("Pendiente de hacer");
     }
 
 }

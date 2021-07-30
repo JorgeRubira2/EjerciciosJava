@@ -19,6 +19,7 @@ public class Ejercicio07Streams {
      */
     public List<Double> elementosPositivos(List<Double> origen){
         throw new RuntimeException("Pendiente de hacer");
+        
     }
     
     /**
