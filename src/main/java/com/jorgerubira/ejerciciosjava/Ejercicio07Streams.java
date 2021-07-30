@@ -81,7 +81,7 @@ public class Ejercicio07Streams {
     public Optional<Persona> personasConMasArticulo(List<Persona> lista){
         Optional<Persona> masArticulos = lista.stream()
                                               .max((x,y)-> x.getCesta().orElse(new Compra(0, false)).getTotalArticulos()-y.getCesta().orElse(new Compra(0, false)).getTotalArticulos());
-        
+                                              //El orElse de arriba es para que se trague los posibles nulos y los ponga a 0.
         return masArticulos;
     }    
     
@@ -104,7 +104,11 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        int[] edades = lista.stream()
+                                .mapToInt(x->x.getEdad())
+                                .toArray();
+        
+        return edades;
     }      
     
     /**
@@ -113,7 +117,13 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Map <String, Long> personas = lista.stream()
+                                           .collect(Collectors.groupingBy(x->x.getCiudad(), Collectors.counting()));
+        
+        List<Ciudad> listaCiudades = personas.entrySet().stream()
+                                             .map(x-> new Ciudad(x.getKey(), (int)(long)x.getValue()))//Damos la clave y el valor de Map, por eso hay que convertir a Long el x.getValue
+                                             .collect(Collectors.toList());
+        return listaCiudades;
     }
 
     /**
@@ -123,6 +133,7 @@ public class Ejercicio07Streams {
      */
     public List<Persona> top3Personas(List<Persona> lista){
         throw new RuntimeException("Pendiente de hacer");
+        //Parecido al de orElse de arriba
     }    
     
     /**
