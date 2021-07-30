@@ -35,6 +35,31 @@ public class Persona {
 		this.edad=i;
 	}
 
+	public Persona(String nombre2) {
+		this.nombre=nombre2;
+	}
+
+	public Persona(String nombre, String ciudad, int edad) {
+		this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.edad = edad;
+	}
+
+	public Persona(String nombre, Compra c1) {
+		this.nombre = nombre;
+		cesta=Optional.ofNullable(c1);
+	}
+
+	public Persona(String nombre, String ciudad, int edad, Date fechaNacimiento, int altura, int peso, Compra compra) {
+		 this.nombre = nombre;
+	        this.ciudad = ciudad;
+	        this.edad = edad;
+	        this.fechaNacimiento = fechaNacimiento;
+	        this.altura = altura;
+	        this.peso = peso;
+	        this.cesta = Optional.ofNullable(compra);
+	}
+
 	public String getNombre() {
         return nombre;
     }

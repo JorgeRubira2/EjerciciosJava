@@ -1,5 +1,7 @@
 package com.jorgerubira.ejerciciosjava.pojo;
 
+import java.util.List;
+
 public class Compra {
 	 private int totalArticulos;
 	    private boolean carro;
@@ -9,7 +11,13 @@ public class Compra {
 	        this.carro = carro;
 	    }
 
-	    public int getTotalArticulos() {
+	    public Compra(List<Producto> of) {
+			// TODO Auto-generated constructor stub
+		}
+
+	
+
+		public int getTotalArticulos() {
 	        return totalArticulos;
 	    }
 
