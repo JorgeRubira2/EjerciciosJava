@@ -132,7 +132,17 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> top = lista.stream()
+                                              .sorted((x,y)-> y.getCesta()
+                                                            .orElse(new Compra(0, false)).getTotalArticulos()
+                                                      - x.getCesta()//El orElse de arriba es para que se trague los posibles nulos y los ponga a 0.
+                                                            .orElse(new Compra(0, false)).getTotalArticulos())
+                                              .limit(3)
+                                              .collect(Collectors.toList());
+                                              
+        return top;
+
+        //throw new RuntimeException("Pendiente de hacer");
         //Parecido al de orElse de arriba
     }    
     
