@@ -5,16 +5,20 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.pojo.Compra;
-import com.jorgerubira.ejerciciosjava.pojo.Pair;
-import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
+import com.jorgerubira.ejerciciosjava.pojo.Pair;
+import com.jorgerubira.ejerciciosjava.pojo.Persona;
 
 /**
  *
@@ -160,7 +164,7 @@ public class Ejercicio07StreamsNivelDificilTest {
         
         Ejercicio07StreamsNivelDificil instance = new Ejercicio07StreamsNivelDificil();
         List<Persona> result = instance.clone(lista);
-        assertEquals(2, lista.size());
+        assertEquals(3, lista.size());
         
         assertEquals(result.get(0).getNombre(), lista.get(0).getNombre());
         lista.get(0).setNombre("A");
