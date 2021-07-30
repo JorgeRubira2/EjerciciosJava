@@ -33,7 +33,10 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        int resultado = lista.stream()
+                            .max(Integer::compareTo)
+                            .get();
+        return resultado;
     }
     
     /**
@@ -41,7 +44,11 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<Integer,Long> resultado = lista.stream()
+                             .collect(Collectors.groupingBy(x->x, Collectors.counting()));
+                             
+        Long resultado1 = resultado.values().stream().filter(x->x==1).count();
+        return resultado1.intValue();
     }
     
     /**
