@@ -1,5 +1,6 @@
 package com.jorgerubira.ejerciciosjava.pojo;
 
+//Simulación de la librería javatuples 
 public class Pair<T,U> {
     
     private T value0;
