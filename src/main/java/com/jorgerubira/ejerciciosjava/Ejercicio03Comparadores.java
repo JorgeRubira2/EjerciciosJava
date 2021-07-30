@@ -33,7 +33,7 @@ public class Ejercicio03Comparadores {
         try {
             Double.parseDouble(numero);
             return true;
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             return false;
         }
     }
