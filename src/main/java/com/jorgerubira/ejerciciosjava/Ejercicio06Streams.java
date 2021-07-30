@@ -26,7 +26,7 @@ public class Ejercicio06Streams {
      */
     public int maximoElemento(List<Integer> lista){
        int max = 0; 
-    	//max = lista.stream().map(lista);
+    	
     	
        return max;
     }
