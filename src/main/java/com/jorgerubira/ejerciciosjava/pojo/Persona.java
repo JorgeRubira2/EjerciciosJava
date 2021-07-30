@@ -57,6 +57,18 @@ public class Persona {
         this.cesta = Optional.ofNullable(compra);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this.nombre.equals(((Persona)obj).nombre); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode() {
+        return 22; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }

@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -93,9 +94,13 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas) {
-        listaPersonas.stream()
-                     .filter(x->x.getCiudad().matches("Huesca"))
-                     .collect(Collectors.);
+        
+        List <Persona> borrar = listaPersonas.stream()
+                     .filter(x->x.getCiudad().equals("Huesca"))
+                     .collect(Collectors.toList());
+        
+        borrar.stream()
+              .forEach(x->listaPersonas.remove(x));
     }
 
     /**
@@ -104,7 +109,12 @@ public class Ejercicio04Colecciones {
      *
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> borrar1=listaPersonas.values().stream()
+                                                      .filter(x->x.getCiudad().equals("Huesca"))
+                                                      .map(x->x.getNombre())
+                                                      .collect(Collectors.toList());
+        borrar1.stream()
+               .forEach(x->listaPersonas.remove(x));
     }
 
     /**
@@ -115,7 +125,13 @@ public class Ejercicio04Colecciones {
      * para ver que persona va a salir pero sin sacarla utilizar peek
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
-        throw new RuntimeException("Pendiente de hacer");
+       
+        if(colaPersonas.isEmpty() || 
+                colaPersonas.peek().getCesta().isEmpty() || 
+                colaPersonas.peek().getCesta().get().getTotalArticulos()<5){
+            colaPersonas.add(personaNueva);
+        }
+        
     }
 
     /**
