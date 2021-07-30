@@ -41,7 +41,13 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Set<Integer> set = lista.stream()
+        		.collect(Collectors.toSet());
+        
+        long contar = set.stream()
+        		.filter(z -> z != lista.get(z))
+        		.count();
+        return (int) contar;
     }
     
     /**

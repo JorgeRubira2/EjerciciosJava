@@ -1,11 +1,13 @@
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.pojo.Compra;
-import com.jorgerubira.ejerciciosjava.pojo.Pair;
-import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.jorgerubira.ejerciciosjava.pojo.Compra;
+import com.jorgerubira.ejerciciosjava.pojo.Pair;
+import com.jorgerubira.ejerciciosjava.pojo.Persona;
 
 
 public class Ejercicio07StreamsNivelDificil {
@@ -34,7 +36,10 @@ public class Ejercicio07StreamsNivelDificil {
      * Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> personas = nombres.stream()
+        		.map( (x) -> new Persona(x))
+        		.collect(Collectors.toList());
+        return personas;
     }
 
     
