@@ -36,6 +36,7 @@ public class Ejercicio09VariadoCapas {
      * Devolver la información ordenada por el número de personas de mayor a menor.
      */
     public List<Ciudad> buscarCiudadesDePersonasNacidasEntreFechas(Date fechaDesde, Date fechaHasta){
+        List<Ciudad> lista = buscarCiudadesDePersonasNacidasEntreFechas(fechaDesde, fechaHasta);
         throw new RuntimeException("Pendiente de hacer");
     }
     
