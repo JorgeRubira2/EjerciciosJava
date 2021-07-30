@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 public interface IPersonasRepository {
     
-    List<Persona> buscarPersona(String ciudad);
+    List<Persona> buscarPersona(String nombrePersona);
     List<Persona> buscarPersonaEntreFechas(Date fechaDesde, Date fechaHasta);
     List<Persona> buscarPersonasDeUnaCiudad(String ciudad);
     Optional<Persona> leerPersona(String nombre);
