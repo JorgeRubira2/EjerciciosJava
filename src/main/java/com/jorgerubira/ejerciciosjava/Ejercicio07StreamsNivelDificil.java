@@ -194,12 +194,10 @@ public class Ejercicio07StreamsNivelDificil {
         Map<String, List<Persona>> res = new HashMap<>();
         res = persona.stream()
                 .sorted((x,y)->y.getEdad()-x.getEdad())
-                .collect(Collectors.groupingBy(x->x.getCiudad()))
-                .entrySet()
+                .collect(Collectors.groupingBy(x->x.getCiudad(),Collectors.toList()));
+        res.entrySet()
                 .stream()
-                .limit(3)
-                //.forEach(x->System.out.println(x.getKey() + " " + x.getValue()));
-                .collect(Collectors.toMap(x->x.getKey(), x->x.getValue()));
+                .forEach(x->x.setValue(x.getValue().stream().limit(3).collect(Collectors.toList())));
         return res;
     }
     
