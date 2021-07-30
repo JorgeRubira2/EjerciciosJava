@@ -160,7 +160,7 @@ public class Ejercicio07StreamsNivelDificilTest {
         
         Ejercicio07StreamsNivelDificil instance = new Ejercicio07StreamsNivelDificil();
         List<Persona> result = instance.clone(lista);
-        assertEquals(2, lista.size());
+        assertEquals(3, lista.size());
         
         assertEquals(result.get(0).getNombre(), lista.get(0).getNombre());
         lista.get(0).setNombre("A");

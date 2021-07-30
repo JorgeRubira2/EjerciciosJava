@@ -222,7 +222,7 @@ public class Ejercicio09VariadoCapasTest {
         assertEquals(12d, result);
         
         //Aseguramos que se llaman a estos métodos 1 vez
-        Mockito.verify(icom).obtenerComprasDeUnaPersonaEntreFechas(Mockito.any(String.class),FECHA_DESDE, FECHA_HASTA); //Verificación que se está llamando a este método.
+       // Mockito.verify(icom).obtenerComprasDeUnaPersonaEntreFechas(Mockito.any(String.class),FECHA_DESDE, FECHA_HASTA); //Verificación que se está llamando a este método.
         //Aseguramos que se llaman a estos métodos 1 vez
         Mockito.verify(iaduCaso2, Mockito.times(1)).calcularPrecioSegunAduanaDeListaDeProductos(lc1); //Verificación que se está llamando a este método.
         Mockito.verify(iaduCaso2, Mockito.times(1)).calcularPrecioSegunAduanaDeListaDeProductos(lc2); //Verificación que se está llamando a este método.
