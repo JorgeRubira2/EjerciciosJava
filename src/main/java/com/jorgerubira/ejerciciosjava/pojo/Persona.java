@@ -124,5 +124,23 @@ public class Persona {
     public void setCesta(Compra cesta) {
         this.cesta = Optional.ofNullable(cesta);
     }
+
+    @Override
+    public int hashCode() {
+        return 1113245;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return nombre.equals(((Persona)obj).nombre);
+    }
+    
+    public void obtenerDNI(){
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){}
+        System.out.println("DNI de " + nombre);
+    }
+    
     
 }
