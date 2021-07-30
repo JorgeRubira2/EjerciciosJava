@@ -105,7 +105,12 @@ public class Ejercicio07StreamsNivelDificil {
      * Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> lst = new ArrayList<>();
+        for (int i = 0; i < totalPersonas; i++) {
+            int num = (int)(Math.random()*nombres.size());
+            lst.add(new Persona(nombres.get(num)));
+        }
+        return lst;
     }
 
     
@@ -115,7 +120,27 @@ public class Ejercicio07StreamsNivelDificil {
      * Pair esta creado en el código pero existe una librería llamada Javatuples que funciona igual
      */
     public Pair<List<Persona>,List<Persona>> obtenerTuplaPorEdad(List<Persona> nombres, Set<String> descartes){
-        throw new RuntimeException("Pendiente de hacer");
+        Pair tupla = new Pair(nombres, nombres);
+        List<Persona> list1 = new ArrayList<>();
+        List<Persona> list2 = new ArrayList<>();
+        
+        nombres.stream().filter((t) -> {            
+            return !descartes.contains(t.getNombre());
+        }).forEach((t) -> {
+            if(t.getEdad()>=18){
+                System.out.println(t.getNombre());
+                list1.add(t);
+            }else{
+                System.out.println(t.getNombre());
+                list2.add(t);
+            }
+        });
+        
+        tupla.setAt0(list2);
+        tupla.setAt1(list1);
+        
+        return tupla;
+        
     }    
     
     /**
@@ -125,14 +150,22 @@ public class Ejercicio07StreamsNivelDificil {
      * Devolver la información ordenada por Nombre
      */
     public List<Persona> devolverDeQuePersonasCorrespondenLasCompras(List<Persona> nombres, Set<Compra> descartes){
-        throw new RuntimeException("Pendiente de hacer");
+        return nombres.stream().filter(t->t.getCesta().isPresent())
+                        .filter(t->descartes.contains(t.getCesta().get())).collect(Collectors.toList());
     }
 
     /*
      * Devolver una lista de personas pero en caso de tener menos de 5 productos dejar la compra a empty.
      */
     public List<Persona> eliminarCompraDePersonas(List<Persona> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        nombres.stream().filter(t->t.getCesta().isPresent())
+                        .forEach((t) -> {
+                            if(t.getCesta().get().getTotalArticulos()<5){
+                                t.setCesta(null);
+                            }
+                });
+        
+        return nombres;
     }
 
     /*
