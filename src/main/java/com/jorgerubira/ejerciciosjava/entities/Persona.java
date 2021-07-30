@@ -5,6 +5,7 @@
  */
 package main.java.com.jorgerubira.ejerciciosjava.entities;
 
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -12,31 +13,126 @@ import java.util.Optional;
  * @author PC
  */
 public class Persona {
-    private String nombre;
+	private String nombre;
+    private String ciudad;
     private int edad;
-    private String direccion;
+    private Date fechaNacimiento;
+    private int altura;
+    private int peso;
     
-    public void formas(){
-        Optional<Integer> i1=Optional.of(2);
-        Optional<Integer> i2=Optional.empty();
-        Optional<Integer> i3=Optional.ofNullable(null);
-        
+    //Solo para el supermercado.
+    private Optional<Compra> cesta=Optional.empty();
+
+    public Persona(String nombre, String ciudad){
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.cesta = Optional.empty();
+    }
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
     }
     
-    public static void main(String[] args) {
-        int a=2;
-        long b=2;
-        if (a==b){
-            
-        }
-        Optional<Integer> i1=Optional.of(2);
-        Optional<Long> i2=Optional.of(3L);
-        if (i1.get().intValue() == i2.get().longValue() ){
-            
-        }
-        
+    public Persona(String nombre, String ciudad, int edad) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.edad = edad;
+    }    
+    
+    public Persona(String nombre, Compra cesta) {
+        this.nombre = nombre;
+        this.cesta = Optional.ofNullable(cesta);
     }
     
+    public Persona(String nombre, String ciudad, int edad, Date fechaNacimiento, int altura, int peso) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.altura = altura;
+        this.peso = peso;
+        this.cesta = Optional.empty();
+    }
+
+    public Persona(String nombre, String ciudad, int edad, Date fechaNacimiento, int altura, int peso, Compra compra) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.altura = altura;
+        this.peso = peso;
+        this.cesta = Optional.ofNullable(compra);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public Optional<Compra> getCesta() {
+        return cesta;
+    }
+
+    public void setCesta(Compra cesta) {
+        this.cesta = Optional.ofNullable(cesta);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1113245;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return nombre.equals(((Persona)obj).nombre);
+    }
     
     
 }

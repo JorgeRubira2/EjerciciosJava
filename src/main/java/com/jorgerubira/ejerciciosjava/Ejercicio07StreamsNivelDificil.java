@@ -16,7 +16,8 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
-        throw new RuntimeException("Pendiente de hacer");
+		return personasCertificado;
+        
     }
     /**
      * Realización de una compra conjunta. Se ha realizado una compra conjunta y se debe distribuir los articulos entre las personas que llegan a la lista.
@@ -42,11 +43,11 @@ public class Ejercicio07StreamsNivelDificil {
      * Devolver una tupla que contenga las personas menores de edad en uno y las mayores de edad (18 años) en el otro valor
      * No deberán aparecer los nombres de las personas que esten en descartes.
      * Pair esta creado en el código pero existe una librería llamada Javatuples que funciona igual
-     
+    
     public Pair<List<Persona>,List<Persona>> obtenerTuplaPorEdad(List<Persona> nombres, Set<String> descartes){
         throw new RuntimeException("Pendiente de hacer");
     }  
-    */  
+      */
     
     /**
      * Devolver de que personas son las compras.
