@@ -124,6 +124,12 @@ public class Persona {
         return nombre.equals(((Persona)obj).nombre);
     }
     
+    public void obtenerDNI(){
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){}
+        System.out.println("DNI de " + nombre);
+    }
     
     
 }
