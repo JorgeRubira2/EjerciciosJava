@@ -8,6 +8,7 @@ import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 
 public class Ejercicio07Streams {
