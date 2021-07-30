@@ -130,7 +130,13 @@ public class Ejercicio07StreamsNivelDificil {
      */
     public List<Persona> clone(List<Persona> nombres) {
         return nombres.stream()
-                .map(x -> new Persona(x.getNombre(), x.getCiudad(), x.getEdad(), new Date(x.getFechaNacimiento().getYear(), x.getFechaNacimiento().getMonth(), x.getFechaNacimiento().getDate()), x.getAltura(), x.getPeso(), x.getCesta().isPresent() ? new Compra(x.getCesta().get().getTotalArticulos(), x.getCesta().get().isCarro()) : null))
+                .map(x -> new Persona(  x.getNombre(), 
+                                        x.getCiudad(), 
+                                        x.getEdad(), 
+                                        new Date(x.getFechaNacimiento().getYear(), x.getFechaNacimiento().getMonth(), x.getFechaNacimiento().getDate()), 
+                                        x.getAltura(), 
+                                        x.getPeso(), 
+                                        x.getCesta().isPresent() ? new Compra(x.getCesta().get().getTotalArticulos(), x.getCesta().get().isCarro()) : null))
                 .collect(Collectors.toList());
         //throw new RuntimeException("Pendiente de hacer");
     }
@@ -162,7 +168,8 @@ public class Ejercicio07StreamsNivelDificil {
      */
     public Map<String, List<Persona>> obtenerLasTresPersonasMasMayoresDeCadaCiudad(List<Persona> persona) {
         Map<String, List<Persona>> resultado = persona.stream().collect(Collectors.groupingByConcurrent(x -> x.getCiudad(), Collectors.toList()));
-        return resultado.entrySet().stream().collect(Collectors.toConcurrentMap(x -> x.getKey(), x -> x.getValue().stream().sorted((z, y) -> y.getEdad() - z.getEdad()).limit(3).collect(Collectors.toList())));
+        return resultado.entrySet().stream()
+                        .collect(Collectors.toConcurrentMap(x -> x.getKey(), x -> x.getValue().stream().sorted((z, y) -> y.getEdad() - z.getEdad()).limit(3).collect(Collectors.toList())));
         //throw new RuntimeException("Pendiente de hacer");
     }
 
