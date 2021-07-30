@@ -116,27 +116,14 @@ public class Persona {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return 1113245;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Persona other = (Persona) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        return true;
+        return nombre.equals(((Persona)obj).nombre);
     }
+    
     
     
 }

@@ -48,10 +48,10 @@ public class Ejercicio07StreamsNivelDificilTest {
         Ejercicio07StreamsNivelDificil instance = new Ejercicio07StreamsNivelDificil();
         Set<Persona> result = instance.personaEnDosGrupos(personasGradoMedio, personasUniversidad, personasCertificado);
         assertEquals(4, result.size());
-        assertEquals(true, result.contains("Susana"));
-        assertEquals(true, result.contains("Alberto"));
-        assertEquals(true, result.contains("Juan"));
-        assertEquals(true, result.contains("Fran"));
+        assertEquals(true, result.contains(new Persona("Susana")));
+        assertEquals(true, result.contains(new Persona("Alberto")));
+        assertEquals(true, result.contains(new Persona("Juan")));
+        assertEquals(true, result.contains(new Persona("Fran")));
 
     }
 
