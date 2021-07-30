@@ -44,9 +44,9 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        for (Double ori: origen){
-            if (ori >= 0){
-                destino.add(ori);
+        for (Double o: origen){
+            if (o >= 0){
+                destino.add(o);
             }
         }
     }
@@ -59,7 +59,9 @@ public class Ejercicio04Colecciones {
         int count =0;
         for (Integer i : lista){
             for (Integer j: enLista){
-                if (i.equals(j)){ count++;}
+                if (i.equals(j)){ 
+                	count++;
+                	}
             }
         }
         return count;
@@ -88,8 +90,8 @@ public class Ejercicio04Colecciones {
      */
     public int contarIntegers(Map<String, Object> tabla){
         int count=0;
-        for (Object obj: tabla.values())
-            if (obj instanceof Integer){
+        for (Object objeto: tabla.values())
+            if (objeto instanceof Integer){
                 count++;
             }
         return count;
@@ -101,9 +103,11 @@ public class Ejercicio04Colecciones {
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
         List<Persona> oscenses = new LinkedList<>();
-        for (Persona p : listaPersonas){
-            if (p.getCiudad().equals("Huesca") == false){
-                oscenses.add(p);
+        for (Persona per : listaPersonas){
+            if (per.getCiudad().equals("Huesca") == false){
+            	
+                oscenses.add(per);
+                
             }
         }
         listaPersonas.retainAll(oscenses);
@@ -118,8 +122,11 @@ public class Ejercicio04Colecciones {
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
         Map<String,Persona> oscenses = new HashMap<>();
         for (String clave : listaPersonas.keySet()){
+        	
             if (listaPersonas.get(clave).getCiudad().equals("Huesca") == false){
+            	
                 oscenses.put(clave,listaPersonas.get(clave));
+                
             }
         }
         listaPersonas = oscenses;
@@ -143,11 +150,11 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-        List<Integer> lista = new ArrayList();
+        List<Integer> miLista = new ArrayList();
         for (int i =0; i<valores.length ; i++) {
-            lista.add(valores[i]);    
+            miLista.add(valores[i]);    
         }
-        return lista;
+        return miLista;
     }
     
     /**
@@ -155,11 +162,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        ArrayList<Integer> lista = new ArrayList();
+        ArrayList<Integer> miLista = new ArrayList();
         for (int i =0; i<valores.length ; i++) {
-            lista.add(valores[i]);    
+            miLista.add(valores[i]);    
         }
-        return lista;
+        return miLista;
     }
 
     /**
@@ -170,7 +177,7 @@ public class Ejercicio04Colecciones {
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico){
         String salida ="";
         if(minerales.contains(objeto)){salida= "Mineral";}
-        if(organico.contains(objeto)){salida="Organico";}
+        else if(organico.contains(objeto)){salida="Organico";}
         return salida;
         
     }    
@@ -181,10 +188,10 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
-        Set<String> cjto=  new HashSet<>();
-        cjto.addAll(frutas);
-        cjto.retainAll(colores);
-        return cjto;
+        Set<String> miSet=  new HashSet<>();
+        miSet.addAll(frutas);
+        miSet.retainAll(colores);
+        return miSet;
     }        
 
     /**
@@ -193,13 +200,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
-        List<String> lista = new ArrayList<>();
+        List<String> miLista = new ArrayList<>();
         for (String persona : notas.keySet()){
             if(notas.get(persona) >= 5){ 
-                lista.add(persona);
+                miLista.add(persona);
             }
         }
-        return lista;
+        return miLista;
     } 
 
     
