@@ -138,6 +138,9 @@ public class Ejercicio06Lambdas {
             if(p2.getCesta().isPresent()) {
                 p1.setCesta(p2.getCesta().get());
                 p2.setCesta(null);
+            } else {
+                p1.setCesta(null);
+                p2.setCesta(null);
             }
         };
     }

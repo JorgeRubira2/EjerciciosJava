@@ -5,10 +5,10 @@ import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Ejercicio07Streams {
@@ -18,7 +18,10 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-        throw new RuntimeException("Pendiente de hacer");
+
+        return origen.stream()
+                        .filter(x->x>=0)
+                        .collect(Collectors.toList());
     }
     
     /**
@@ -26,7 +29,8 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-        throw new RuntimeException("Pendiente de hacer");
+
+        return lista.stream().max((x,y)->x-y).get();
     }
     
     /**
@@ -34,7 +38,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
+
         throw new RuntimeException("Pendiente de hacer");
+
     }
     
     /**
@@ -42,7 +48,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                        .filter(p->p.getCiudad().equals("Huesca"))
+                        .collect(Collectors.toList());
     }
     
     /**
@@ -50,7 +58,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .filter(p->p.getCiudad().equals("Huesca"))
+                .toArray(p->new Persona[p]);
     }
     
     /**
@@ -59,7 +69,13 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Optional<Persona> per = lista.stream()
+                .max((p1,p2)->p1.getCesta().get().getTotalArticulos()-p2.getCesta().get().getTotalArticulos());
+        if(per.isEmpty()){
+            return Optional.empty();
+        } else {
+            return per;
+        }
     }    
     
     /**
@@ -68,7 +84,10 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                        .filter(p->p.getCesta().isPresent())
+                        .map(p-> p.getCesta().get())
+                        .collect(Collectors.toList());
     }    
     
     /**
@@ -76,7 +95,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                        .mapToInt(p->p.getEdad())
+                        .toArray();
     }      
     
     /**
@@ -94,7 +115,21 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                        .sorted((p1,p2)->{
+                            if(p1.getCesta().isPresent() && p2.getCesta().isPresent()){
+                                return p2.getCesta().get().getTotalArticulos()-p1.getCesta().get().getTotalArticulos();
+                            } else if (p1.getCesta().isEmpty() && p2.getCesta().isPresent()){
+                                return 1;
+                            } else if (p1.getCesta().isPresent() && p2.getCesta().isEmpty()){
+                                return -1;
+                            } else {
+                                return 0;
+                            }
+                        })
+                        .limit(3)
+                        .collect(Collectors.toList());
+
     }    
     
     /**
