@@ -3,9 +3,15 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Ejercicio07StreamsNivelDificil {
@@ -16,7 +22,25 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> pList = new ArrayList<>();
+        pList.addAll(personasCertificado);
+        pList.addAll(personasUniversidad);
+        pList.addAll(personasGradoMedio);
+        
+        Set<Persona> sp = new HashSet<>();
+        
+        pList.stream().collect(Collectors.groupingBy(
+                                x->x.getNombre(),
+                                Collectors.counting()
+                )).entrySet().stream().filter((t) -> {
+            return t.getValue()>1;
+        }).forEach((t) -> {
+            sp.add(new Persona(t.getKey()));
+        });
+        
+                
+        
+        return sp;
     }
     /**
      * Realización de una compra conjunta. Se ha realizado una compra conjunta y se debe distribuir los articulos entre las personas que llegan a la lista.
@@ -25,7 +49,54 @@ public class Ejercicio07StreamsNivelDificil {
      * Si la persona en el mapa no se le dará ningún artículo y se le pondrá la compra a Empty
      */
     public void repartoDeCompraPersona(Compra compraConjunta, List<Persona> personasARepartirLaCompra, Map<String,Integer> porcentajes){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> lst = new LinkedList<>();
+        //int del = personasARepartirLaCompra.size()-1;
+       /* porcentajes.entrySet().stream().forEach((t) -> {
+            int total = compraConjunta.getTotalArticulos();
+            if(personasARepartirLaCompra.contains(new Persona(t.getKey()))){
+                
+                int cantidad = (total*t.getValue())/100;
+                
+                Persona p = new Persona(t.getKey());
+                p.setCesta( new Compra(cantidad, true));
+               lst.add(p);
+               
+            }else{
+                Persona a = new Persona(t.getKey());
+                a.setCesta(new Compra(0,false));
+                lst.add(a);
+                
+            }
+                //personasARepartirLaCompra.remove(new Persona(t.getKey()));
+            
+        });*/
+        
+        personasARepartirLaCompra.stream().forEach(
+                (t) -> {
+            int total = compraConjunta.getTotalArticulos();
+            if(porcentajes.containsKey(t.getNombre())){
+                
+                int cantidad = (total*porcentajes.get(t.getNombre()))/100;
+                
+                Persona p = new Persona(t.getNombre());
+                p.setCesta( new Compra(cantidad, true));
+               lst.add(p);
+               
+            }else{
+                Persona a = new Persona(t.getNombre());
+                //a.setCesta(new Compra(0,false));
+                lst.add(a);
+                
+            }
+        });
+        
+        
+        /*lst.stream().filter((t) -> {
+            return t.getCesta().isPresent();
+        }).forEach(x->System.out.println(x.getNombre()+" "+x.getCesta().get().getTotalArticulos()));*/
+        personasARepartirLaCompra.clear();
+        personasARepartirLaCompra.addAll(lst);
+        //personasARepartirLaCompra.forEach(x->System.out.println(x.getNombre()+" "+x.getCesta().get().getTotalArticulos()));
     }    
 
     /**

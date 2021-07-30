@@ -5,10 +5,13 @@ import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosjava.pojo.RangoEdad;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,8 +43,25 @@ public class Ejercicio07Streams {
     public int contarElementosNoRepetidos(List<Integer> lista) {
         // return lista.stream().collect(Collectors.toSet()).size();
         // return (int)lista.stream().distinct().count();
-        return 0;
+        List<Integer> list = new ArrayList<>();
+        List<Integer> listAux = new ArrayList<>();
+        lista.stream().forEach((t) -> {
+            boolean ex = false;
+            if (!list.contains(t)) {
+                list.add(t);
+                listAux.add(t);
+            } else {
+                ex=true;
+            }
 
+            if (ex) {
+                list.stream().forEach((n) -> {
+                    if(Objects.equals(n, t))
+                    listAux.remove(n);
+                });
+            }
+        });
+        return listAux.size();
     }
 
     /**
@@ -109,7 +129,7 @@ public class Ejercicio07Streams {
      * nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista) {
-        return lista.stream().mapToInt(p->p.getEdad()).toArray();
+        return lista.stream().mapToInt(p -> p.getEdad()).toArray();
     }
 
     /**
@@ -119,17 +139,17 @@ public class Ejercicio07Streams {
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista) {
         List<Ciudad> lst = new LinkedList<>();
-            lista.stream()
-                    .collect(Collectors.groupingBy(
-                            x->x.getCiudad(),
-                            Collectors.counting()
-                            )).forEach((ciudad, cant) -> {
-                                int personas = Math.toIntExact(cant);
-                                Ciudad c = new Ciudad(ciudad, personas);
-                                lst.add(c);
-            });
-            
-            return lst;
+        lista.stream()
+                .collect(Collectors.groupingBy(
+                        x -> x.getCiudad(),
+                        Collectors.counting()
+                )).forEach((ciudad, cant) -> {
+            int personas = Math.toIntExact(cant);
+            Ciudad c = new Ciudad(ciudad, personas);
+            lst.add(c);
+        });
+
+        return lst;
     }
 
     /**
@@ -139,14 +159,14 @@ public class Ejercicio07Streams {
     public List<Persona> top3Personas(List<Persona> lista) {
         return lista.stream()
                 .sorted((o1, o2) -> {
-                    if(!o1.getCesta().isPresent()){
+                    if (!o1.getCesta().isPresent()) {
                         o1.setCesta(new Compra(0, true));
-                    }else if(!o2.getCesta().isPresent()){
+                    } else if (!o2.getCesta().isPresent()) {
                         o2.setCesta(new Compra(0, true));
                     }
-                    return o2.getCesta().get().getTotalArticulos()-o1.getCesta().get().getTotalArticulos();
-            
-        }).limit(3).collect(Collectors.toList());
+                    return o2.getCesta().get().getTotalArticulos() - o1.getCesta().get().getTotalArticulos();
+
+                }).limit(3).collect(Collectors.toList());
     }
 
     /**
@@ -154,7 +174,25 @@ public class Ejercicio07Streams {
      * hace falta verificar si valen nulo.
      */
     public Set<String> top3Ciudades(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        /* List<Ciudad> lst = new LinkedList<>();
+            lista.stream()
+                    .collect(Collectors.groupingBy(
+                            x->x.getCiudad(),
+                            Collectors.counting()
+                            )).forEach((ciudad, cant) -> {
+                                int personas = Math.toIntExact(cant);
+                                Ciudad c = new Ciudad(ciudad, personas);
+                                lst.add(c);
+            });*/
+
+        return lista.stream()
+                .collect(Collectors.groupingBy(
+                        x -> x.getCiudad(),
+                        Collectors.counting()
+                )).keySet().stream()
+                .limit(3)
+                .collect(Collectors.toSet());
+
     }
 
     /**
@@ -164,7 +202,28 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<RangoEdad> lst = new ArrayList<>();
+        lst.add(new RangoEdad(RangoEdad.Rango.Menor18, 0));
+        lst.add(new RangoEdad(RangoEdad.Rango.Entre18y60, 0));
+        lst.add(new RangoEdad(RangoEdad.Rango.Mayor60, 0));
+
+        lista.stream().map((t) -> {
+            return t.getEdad();
+        }).forEach((edad) -> {
+            System.out.println(edad);
+            if (edad < 18) {
+                int a = lst.get(0).getPersonas();
+                lst.set(0, new RangoEdad(RangoEdad.Rango.Menor18, ++a));
+            } else if (edad >= 18 && edad <= 60) {
+                int b = lst.get(1).getPersonas();
+                lst.set(1, new RangoEdad(RangoEdad.Rango.Entre18y60, ++b));
+            } else if (edad > 60) {
+                int c = lst.get(2).getPersonas();
+                lst.set(2, new RangoEdad(RangoEdad.Rango.Mayor60, ++c));
+            }
+        });
+
+        return lst;
     }
 
     /**
@@ -174,7 +233,24 @@ public class Ejercicio07Streams {
      * personas. No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Integer> map = new HashMap<>();
+
+        Map<String, LongSummaryStatistics> map2
+                = lista.stream()
+                        .collect(Collectors.groupingBy(
+                                x -> x.getCiudad(),
+                                Collectors.summarizingLong(x -> x.getEdad() > 18 ? x.getEdad() : 0)
+                        ));
+        // System.out.println(map2.entrySet());
+        map2.entrySet().stream()
+                .forEach((t) -> {
+                    if (t.getValue().getSum() != 0) {
+                        map.put(t.getKey(), (int) t.getValue().getCount());
+                    }
+                });
+
+        return map;
+
     }
 
 }
