@@ -34,14 +34,14 @@ public class Colecciones {
         Stack<String> lista4 = new Stack<>();  //Versión antigua
 
         List<String> lista5 = List.of("Ana", "Juan", "Pepe");    //List inmutable
-        lista5.add("H"); //Excepcion.
+        lista5.add("H"); //Excepcion.estamos añadiendo en un list , que es inmutable
 
         List<String> lista6 = new ArrayList<>();
         lista6.add("R");
         lista6.add("R2");
         lista6.add("R4");
 
-        List<String> lista7=new ArrayList<>(List.of("Ana", "Juan", "Pepe"));
+        List<String> lista7=new ArrayList<>(List.of("Ana", "Juan", "Pepe")); //este es mutable, desde un array inmutable 
         
        
         lista4.push("Apilar");
