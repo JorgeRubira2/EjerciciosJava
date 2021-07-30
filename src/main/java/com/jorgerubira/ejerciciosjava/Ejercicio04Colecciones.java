@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -134,7 +135,15 @@ public class Ejercicio04Colecciones {
      * <<Devuelve una lista inmutable
      */
     public List<Integer> generarLista(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+        Integer[] aux = new Integer[valores.length];
+        
+  
+        for(int i= 0; i<aux.length;i++){
+            aux[i]=valores[i];
+        }
+        List<Integer> a =(Arrays.asList(aux));
+        
+        return a;
     }
 
     /**
@@ -142,7 +151,14 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public ArrayList<Integer> generarArrayList(int valores[]) {
-        throw new RuntimeException("Pendiente de hacer");
+       Integer[] aux = new Integer[valores.length];
+       
+        for(int i= 0; i<aux.length;i++){
+            aux[i]=valores[i];
+        }
+        ArrayList<Integer> a =new ArrayList(Arrays.asList(aux));
+        
+        return a;
     }
 
     /**
