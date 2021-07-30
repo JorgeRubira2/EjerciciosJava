@@ -27,6 +27,12 @@ public class Persona {
         this.edad = edad;
     }
     
+    public Persona(String nombre, String ciudad, int edad) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.edad = edad;
+    }    
+    
     public Persona(String nombre, Compra cesta) {
         this.nombre = nombre;
         this.cesta = Optional.ofNullable(cesta);
@@ -39,6 +45,16 @@ public class Persona {
         this.fechaNacimiento = fechaNacimiento;
         this.altura = altura;
         this.peso = peso;
+    }
+
+    public Persona(String nombre, String ciudad, int edad, Date fechaNacimiento, int altura, int peso, Compra compra) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.altura = altura;
+        this.peso = peso;
+        this.cesta = Optional.ofNullable(compra);
     }
 
     public String getNombre() {
@@ -96,5 +112,29 @@ public class Persona {
     public void setCesta(Compra cesta) {
         this.cesta = Optional.ofNullable(cesta);
     }
-       
+
+    @Override
+    public int hashCode() {
+        return 1113245;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return nombre.equals(((Persona)obj).nombre);
+    }
+    
+    public void obtenerDNI(){
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){}
+        System.out.println("DNI de " + nombre);
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
+    
+    
 }

@@ -134,6 +134,7 @@ public class Ejercicio06Lambdas {
     /**
      * Crear una función BiConsumer que copie la compra de la segunda persona a la primera.
      * La cesta de la segunda persona debe quedar empty.
+     * BiConsumer recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio(){
         return(p1,p2)->{
@@ -171,6 +172,7 @@ public class Ejercicio06Lambdas {
     
     /**
      * Devuelve la suma de dos enteros.
+     * Recibe dos parametros int y devuelve un parametro int
      */
     public IntBinaryOperator sumar(){
         return(n1,n2)->n1+n2;

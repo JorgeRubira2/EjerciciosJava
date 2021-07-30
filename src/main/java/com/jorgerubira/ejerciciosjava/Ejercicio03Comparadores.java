@@ -3,9 +3,10 @@ package com.jorgerubira.ejerciciosjava;
 import java.util.Optional;
 
 public class Ejercicio03Comparadores {
-    
+
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
+
     //Si se envia null en cualquiera de ellos devuelve false
     public boolean compararEnteros(Integer i1, Integer i2){
         if(i1!=null && i2!=null && i1.equals(i2))
@@ -13,10 +14,11 @@ public class Ejercicio03Comparadores {
         else
             return false;
     }
-    
+
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
+
     public boolean compararEnteroConLong(Integer i1, Long i2){
         if(i1==null || i2==null)
             return false;
@@ -38,7 +40,6 @@ public class Ejercicio03Comparadores {
             return false;
         }
     }    
-    
     //Debe devolver true si los dos números son iguales. 
     //Si no devuelve false
     //Si se envia null en cualquier de ellos devuelve false
@@ -64,6 +65,5 @@ public class Ejercicio03Comparadores {
             return true;
         else
             return false;
-    }    
-
+    }
 }
