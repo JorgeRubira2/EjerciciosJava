@@ -41,11 +41,10 @@ public class Ejercicio07Streams {
     public int contarElementosNoRepetidos(List<Integer> lista) {
         Map<Integer, Long> result = lista.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        
-        long x = result.values().stream().filter(y -> y == 1).count();
-        
-        return (int) x;
 
+        long x = result.values().stream().filter(y -> y == 1).count();
+
+        return (int) x;
     }
 
     /**
@@ -54,9 +53,9 @@ public class Ejercicio07Streams {
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista) {
         List<Persona> listaPersonasHuesca = lista.stream()
-                .filter(x -> x.getCiudad()=="Huesca")
+                .filter(x -> x.getCiudad().equals("Huesca"))
                 .collect(Collectors.toList());
-        
+
         return listaPersonasHuesca;
     }
 
@@ -65,9 +64,9 @@ public class Ejercicio07Streams {
      * primario. No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista) {
-//        List<Persona> personasHuesca=new ArrayList<>(List.of(x -> x.getCiudad()=="Huesca"));
-         throw new RuntimeException("Pendiente de hacer");
-
+        return lista.stream()
+                .filter(x -> x.getCiudad().equals("Huesca"))
+                .toArray(p -> new Persona[p]);
     }
 
     /**
@@ -75,7 +74,14 @@ public class Ejercicio07Streams {
      * si no hay personas. No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        Optional<Persona> maxArticulos = lista.stream()
+                .filter(p -> p.getCesta().isPresent())
+                .max((p1, p2) -> p1.getCesta().get().getTotalArticulos() - p2.getCesta().get().getTotalArticulos());
+        if (maxArticulos.isEmpty()) {
+            return lista.stream().findFirst();
+        } else {
+            return maxArticulos;
+        }
     }
 
     /**
@@ -84,7 +90,10 @@ public class Ejercicio07Streams {
      * valen nulo.
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .filter(x -> x.getCesta().isPresent())
+                .map(x -> x.getCesta().get())
+                .collect(Collectors.toList());
     }
 
     /**
@@ -92,7 +101,10 @@ public class Ejercicio07Streams {
      * nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .mapToInt(x -> x.getEdad())
+                .toArray();
+
     }
 
     /**
@@ -101,7 +113,12 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .collect(Collectors.groupingBy(x -> x.getCiudad()))
+                .entrySet()
+                .stream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().size()))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -109,7 +126,27 @@ public class Ejercicio07Streams {
      * tienen. No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .sorted((p1, p2) -> {
+
+                    if (p1.getCesta().isPresent() && p2.getCesta().isPresent()) {
+                        return p2.getCesta().get().getTotalArticulos() - p1.getCesta().get().getTotalArticulos();
+                    }
+
+                    if (p1.getCesta().isEmpty()) {
+                        return 1;
+                    }
+
+                    if (p2.getCesta().isEmpty()) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+
+                })
+                .limit(3)
+                .collect(Collectors.toList());
+
     }
 
     /**
@@ -117,7 +154,14 @@ public class Ejercicio07Streams {
      * hace falta verificar si valen nulo.
      */
     public Set<String> top3Ciudades(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        return lista.stream()
+                .collect(Collectors.groupingBy(c -> c.getCiudad()))
+                .entrySet()
+                .stream()
+                .sorted((c1, c2) -> c2.getValue().size() - c1.getValue().size())
+                .limit(3)
+                .map(c -> c.getKey())
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -127,17 +171,42 @@ public class Ejercicio07Streams {
      * verificar si valen nulo.
      */
     public List<RangoEdad> clasificacionPorRangoDeEdad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+        
+        long menor18 = lista.stream()
+                .filter(x -> x.getEdad() < 18)
+                .count();
+        
+        long entre18y60 = lista.stream()
+                .filter(x -> x.getEdad() >= 18 && x.getEdad() <= 60)
+                .count();
+        
+        long mayor60 = lista.stream()
+                .filter(x -> x.getEdad() > 60)
+                .count();
+        
+        List<RangoEdad> edadesPersonas = new ArrayList<>();
+        edadesPersonas.add(new RangoEdad(RangoEdad.Rango.Menor18,(int)menor18));
+        edadesPersonas.add(new RangoEdad(RangoEdad.Rango.Entre18y60,(int)entre18y60));
+        edadesPersonas.add(new RangoEdad(RangoEdad.Rango.Mayor60,(int)mayor60));
+        
+        return edadesPersonas;
     }
 
     /**
      * Devuelve cuantas personas mayores de edad hay en cada ciudad. Si una
      * ciudad no tiene personas mayores de edad no hace falta devolver ese dato.
-     * Devolver un mapa donde la clave sería la ciudad y el número el número de
+     * Devolver un mapa donde la clave sería la ciudad y el número de
      * personas. No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista) {
-        throw new RuntimeException("Pendiente de hacer");
+         Map<String, Integer> result = lista.stream()
+                .filter(x -> x.getEdad() >= 18)
+                .collect(Collectors.groupingBy(x -> x.getCiudad()))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue().size())); 
+                
+                return result;
     }
 
 }
