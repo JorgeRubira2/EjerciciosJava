@@ -5,8 +5,8 @@
  */
 package test.java.com.jorgerubira.ejerciciosjava;
 
-import main.java.com.jorgerubira.ejerciciosjava.pojo.Compra;
-import main.java.com.jorgerubira.ejerciciosjava.pojo.Persona;
+import main.java.com.jorgerubira.ejerciciosjava.Compra;
+import main.java.com.jorgerubira.ejerciciosjava.Persona;
 
 import main.java.com.jorgerubira.ejerciciosjava.Ejercicio04Colecciones;
 

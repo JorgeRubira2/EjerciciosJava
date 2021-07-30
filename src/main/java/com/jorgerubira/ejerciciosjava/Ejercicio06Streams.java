@@ -25,7 +25,9 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-       int max = lista.stream().max(lista);
+       int max = 0; 
+    	//max = lista.stream().map(lista);
+    	
        return max;
     }
     
