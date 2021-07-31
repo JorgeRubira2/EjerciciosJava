@@ -11,7 +11,9 @@ import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 
 public class Ejercicio09VariadoCapas {
@@ -36,8 +38,16 @@ public class Ejercicio09VariadoCapas {
      * Devolver la información ordenada por el número de personas de mayor a menor.
      */
     public List<Ciudad> buscarCiudadesDePersonasNacidasEntreFechas(Date fechaDesde, Date fechaHasta){
-        List<Ciudad> lista = buscarCiudadesDePersonasNacidasEntreFechas(fechaDesde, fechaHasta);
-        throw new RuntimeException("Pendiente de hacer");
+         List<Ciudad> lista = repoPersonas.buscarPersonaEntreFechas(fechaDesde, fechaHasta)
+                .parallelStream()
+                .collect(Collectors.groupingBy(Persona::getCiudad))
+                .entrySet()
+                .parallelStream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().size()))
+                .sequential()
+                .sorted((x, y) -> y.getPersonas() - x.getPersonas())
+                .collect(Collectors.toList());
+        return lista;
     }
     
            
@@ -48,7 +58,20 @@ public class Ejercicio09VariadoCapas {
      * Utilizar StreamsParalelos para optimizar el rendimiento de servidores si es posible.
      */
     public Long calcularComprasDeUnaCiudad(String ciudad){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> per = repoPersonas.buscarPersonasDeUnaCiudad(ciudad);
+        Long res = per.parallelStream()
+                .filter(x->x.getCiudad().equals(ciudad))
+                .map(x->{
+                    List<Compra> com = repoCompras.obtenerComprasDeUnaPersona(x.getNombre());
+                    Long totalProductos = com.parallelStream()
+                                            .mapToLong(art->art.getTotalArticulos())
+                                            .reduce(0L,(a, y) -> a+y);
+                    return totalProductos;
+                })
+                .reduce(0L,(a,y)->a+y)
+                ;
+        return res;
+        //throw new RuntimeException("Pendiente de hacer");
     }    
     
     /**
@@ -57,8 +80,22 @@ public class Ejercicio09VariadoCapas {
      * Las compras se pueden obtener utilizando 
      * Utilizar StreamsParalelos para optimizar el rendimiento de servidores si es posible.
      */
-    public Long calcularComprasDeUnaCiudadEntreFechas(String ciudad, Date fechaDesde, Date fechaHasta){
-        throw new RuntimeException("Pendiente de hacer");
+    public Long calcularComprasDeUnaCiudadEntreFechas(String ciudad, Date fechaDesde, Date fechaHasta){ //en ello
+        List<Persona> per = repoPersonas.buscarPersonasDeUnaCiudad(ciudad);
+        Long res = per.parallelStream()
+                .filter(x->x.getCiudad().equals(ciudad))
+                .map(x->{
+                    List<Compra> com = repoCompras.obtenerComprasDeUnaPersonaEntreFechas(x.getNombre(), fechaDesde, fechaHasta);
+                    Long totalProductos = com.parallelStream()
+                                            .mapToLong(art->art.getTotalArticulos())
+                                            .reduce(0L,(a, y) -> a+y);
+                    return totalProductos;
+                })
+                .reduce(0L,(a,y)->a+y)
+                ;
+        return res;
+        
+        //throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
