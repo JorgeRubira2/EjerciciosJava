@@ -1,6 +1,9 @@
 package com.jorgerubira.ejerciciosjava;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,9 +21,20 @@ public class Ejercicio07StreamsNivelDificil {
      * Recibimos tres listas con las personas que han estudiado GradoMedio, Universidad o un Certificado.
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
-    public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
-        //Set<Persona> personas = 
-        throw new RuntimeException("Pendiente de hacer");
+	public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
+		List<Persona> personas = new ArrayList<>();
+		personas.addAll(personasCertificado);
+		personas.addAll(personasGradoMedio);
+		personas.addAll(personasUniversidad);
+
+		Set<Persona> setFiltrado = personas.stream()    
+				.collect(Collectors.groupingBy(x->x.getNombre()))
+				.entrySet()
+				.stream()
+				.filter(x->x.getValue().size()>=2)
+				.map(x->x.getValue().get(0))
+				.collect(Collectors.toSet());
+		return setFiltrado;
     }
     /**
      * Realización de una compra conjunta. Se ha realizado una compra conjunta y se debe distribuir los articulos entre las personas que llegan a la lista.
@@ -38,11 +52,11 @@ public class Ejercicio07StreamsNivelDificil {
      * Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres){
-    	List<Persona> personas = Arrays.asList(new Persona[totalPersonas]);
+        List<Persona> personas = new ArrayList<>();
     	int aleatorio = (int) (nombres.size() * Math.random());
-    	personas = nombres.stream()
-        		.map( (x) -> new Persona(nombres.get(aleatorio)))
-        		.collect(Collectors.toList());
+        Collections.nCopies(totalPersonas, new Persona(""))
+                .stream()
+                .forEach(x -> personas.add(new Persona(nombres.get(aleatorio))));
         return personas;
     }
 
@@ -77,17 +91,18 @@ public class Ejercicio07StreamsNivelDificil {
      * Crea un clone de la lista recibida. Duplica los objetos copiando los valores con la misma información.
      */
     public List<Persona> clone(List<Persona> nombres){
-//    	List<Persona> clon = nombres.stream()
-//    			.map(x -> new Persona(x.getNombre(),
-//    					x.getCiudad(),
-//    					x.getEdad(),
-//    					x.getFechaNacimiento().clone(),
-//    					x.getAltura(),
-//    					x.getPeso(),
-//    					new Compra((x.getCesta().isPresent() ? x.getCesta().get(): Optional.empty()))
-//    			.collect(Collectors.toList())));
-//    	return clon;
-        throw new RuntimeException("Pendiente de hacer");
+    	List<Persona> clon = new ArrayList<>();
+    	clon = nombres.stream()
+    			.map(x -> new Persona(x.getNombre(),
+    					x.getCiudad(),
+    					x.getEdad(),
+    					(Date) x.getFechaNacimiento().clone(),
+    					x.getAltura(),
+    					x.getPeso(),
+    					x.getCesta().isPresent() ? new Compra(x.getCesta().get().getTotalArticulos(), true) : null)
+    					)
+    			.collect(Collectors.toList());
+    	return clon;
     }
     /**
      * Devuelve en un mapa las personas que hay en cada ciudad.
@@ -97,8 +112,7 @@ public class Ejercicio07StreamsNivelDificil {
     	Map<String, List<Persona>> mapa = persona.stream()
     			.collect(Collectors.groupingBy(
     					x->x.getCiudad(),
-    					Collectors.toList())
-    					);
+    					Collectors.toList()));
     	return mapa;
 
     }
@@ -109,11 +123,14 @@ public class Ejercicio07StreamsNivelDificil {
      * La clave del mapa será la ciudad y Persona será la persona con edad mas alta.
      */
     public Map<String, Persona> obtenerPersonaMasMayorDeCadaCiudad(List<Persona> persona){
-//    	Map<String, Persona> mapa = persona.stream()
-//    			.max((x,y) -> x.getEdad() - y.getEdad())
-//    			.collect(Collectors.groupingBy(x->x.getCiudad()));				
-//    	return mapa;
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Persona> mapa = new HashMap<>();
+        mapa = persona.stream()
+                .sorted((x,y)->y.getEdad()-x.getEdad())
+                .collect(Collectors.groupingBy(x->x.getCiudad()))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(x->x.getKey(), x->x.getValue().get(0)));
+        return mapa;
     }
     
     /**
