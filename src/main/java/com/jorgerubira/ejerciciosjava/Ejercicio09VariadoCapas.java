@@ -57,19 +57,18 @@ public class Ejercicio09VariadoCapas {
      * Será necesario leer personas utilizando IPersonasRepository y las compras utilizando IComprasRepository 
      * Utilizar StreamsParalelos para optimizar el rendimiento de servidores si es posible.
      */
-    public Long calcularComprasDeUnaCiudad(String ciudad){
+    public Long calcularComprasDeUnaCiudad(String ciudad){ //a veces funciona otras no, no entiendo fallo
         List<Persona> per = repoPersonas.buscarPersonasDeUnaCiudad(ciudad);
         Long res = per.parallelStream()
-                .filter(x->x.getCiudad().equals(ciudad))
-                .map(x->{
+                .filter(x -> x.getCiudad().equals(ciudad))
+                .map(x -> {
                     List<Compra> com = repoCompras.obtenerComprasDeUnaPersona(x.getNombre());
                     Long totalProductos = com.parallelStream()
-                                            .mapToLong(art->art.getTotalArticulos())
-                                            .reduce(0L,(a, y) -> a+y);
+                            .mapToLong(art -> art.getTotalArticulos())
+                            .reduce(0L, (a, y) -> a + y);
                     return totalProductos;
                 })
-                .reduce(0L,(a,y)->a+y)
-                ;
+                .reduce(0L, (a, y) -> a + y);
         return res;
         //throw new RuntimeException("Pendiente de hacer");
     }    
@@ -80,19 +79,18 @@ public class Ejercicio09VariadoCapas {
      * Las compras se pueden obtener utilizando 
      * Utilizar StreamsParalelos para optimizar el rendimiento de servidores si es posible.
      */
-    public Long calcularComprasDeUnaCiudadEntreFechas(String ciudad, Date fechaDesde, Date fechaHasta){ //en ello
-        List<Persona> per = repoPersonas.buscarPersonasDeUnaCiudad(ciudad);
+    public Long calcularComprasDeUnaCiudadEntreFechas(String ciudad, Date fechaDesde, Date fechaHasta){ //no entiendo el fallo
+        List<Persona> per = repoPersonas.buscarPersonaEntreFechas(fechaDesde,fechaHasta);
         Long res = per.parallelStream()
-                .filter(x->x.getCiudad().equals(ciudad))
-                .map(x->{
-                    List<Compra> com = repoCompras.obtenerComprasDeUnaPersonaEntreFechas(x.getNombre(), fechaDesde, fechaHasta);
+                .filter(x -> x.getCiudad().equals(ciudad))
+                .map(x -> {
+                    List<Compra> com = repoCompras.obtenerComprasDeUnaPersona(x.getNombre());
                     Long totalProductos = com.parallelStream()
-                                            .mapToLong(art->art.getTotalArticulos())
-                                            .reduce(0L,(a, y) -> a+y);
+                            .mapToLong(art -> art.getTotalArticulos())
+                            .reduce(0L, (a, y) -> a + y);
                     return totalProductos;
                 })
-                .reduce(0L,(a,y)->a+y)
-                ;
+                .reduce(0L, (a, y) -> a + y);
         return res;
         
         //throw new RuntimeException("Pendiente de hacer");
@@ -103,7 +101,8 @@ public class Ejercicio09VariadoCapas {
      * Para el cálculo del precio utilizar el servicio IAduanaService.
      */
     public Double calcularImpuestoPorAduanaCompras(List<Compra> compras){
-        throw new RuntimeException("Pendiente de hacer");
+        return serAduana.calcularPrecioSegunAduanaDeListaDeProductos(compras);
+        //throw new RuntimeException("Pendiente de hacer");
     }    
     
     /**
@@ -112,7 +111,14 @@ public class Ejercicio09VariadoCapas {
      * Para el cálculo del precio utilizar el servicio IAduanaService.
      */
     public Double calcularImpuestoPorAduanaDeComprasDeListaDePersonasEntreFechas(List<Persona> personas, Date fechaDesde, Date fechaHasta){
-        throw new RuntimeException("Pendiente de hacer");
+        Double res = 0D;
+        res = personas.parallelStream()
+                .map(x -> repoCompras.obtenerComprasDeUnaPersonaEntreFechas(x.getNombre(), fechaDesde, fechaHasta))
+                .map(x -> serAduana.calcularPrecioSegunAduanaDeListaDeProductos(x))
+                .reduce(0D, (a, z) -> a + z);
+        
+        return res;
+        //throw new RuntimeException("Pendiente de hacer");
     } 
     
     /**
