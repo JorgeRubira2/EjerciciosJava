@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        input{
+            width:100px;
+        }
+        button{
+            margin-top:10px;
+        }
+        div{
+            border:1px solid black;
+            width:100px;
+            height:auto;
+            position:absolute;
+            margin-left:130px;
+            margin-top:-15px;
+            display:none;
+            padding:10px;
+            text-align: center;
+        }
+        .visible{
+            display:inline;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    <input type="number" id="numero" value="0"/><br/>
+    <button id="enviar" type="button">Enviar</button>
+
+    <div id="tabla">
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        function calcularTabla(num){
+            var html = '<div id="tabla">\n';
+            var calculo = 0;
+            for (let i = 1; i < 11; i++) {
+                calculo = num*i;
+                html += "<p>" + num + " x " + i + " = " + calculo +"</p>\n";
+            }
+            html += "</div>";
+            return html;
+        }
+
+        $('#enviar').click(function(){
+            var valor =  $('#numero').val();
+            if (valor>0){
+                $('#tabla').replaceWith(calcularTabla(valor));
+                $('#tabla').addClass("visible");
+            }else{
+                alert("Introduce un numero mayor de 0");
+            }
+        });
+    </script>
+</body>
+</html>

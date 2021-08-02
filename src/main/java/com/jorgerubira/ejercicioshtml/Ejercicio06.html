@@ -9,20 +9,24 @@
             text-align: center;
             padding:10px;
             margin-top:5px;
-            background-color: grey;
+            background-color: grey
         }
         ul{
             display:block;
             background-color:darkgray;
             list-style-type:none
         }
+        li{
+            margin-left:-30px;
+            margin-bottom: 4px
+        }
         .canciones{
             text-align: left;
             color:white;
-            text-decoration: underline;
+            text-decoration: underline
         }
         .visitado{
-            color:aqua
+            color:aqua;
         }
     </style>
     <meta charset="UTF-8">
@@ -32,24 +36,23 @@
 </head>
 <body>
     <div class="repro">
-        <audio controls>
-            <source src="" type="audio/mpeg" />
+        <audio controls autoplay loop id="mp3" src="cosas/Ring01.wav" type="audio/mpeg">
         </audio>
     </div>
     <div class="canciones">
         <ul>
-            <li class="selector" value="src1">Cancion 1</li>
-            <li class="selector" value="src2">Cancion 2</li>
-            <li class="selector" value="src3">Cancion 3</li>
-            <li class="selector" value="src4">Cancion 4</li>
+            <li class="selector" value="cosas/Ring01.wav">Cancion 1</li>
+            <li class="selector" value="cosas/Ring02.wav">Cancion 2</li>
+            <li class="selector" value="cosas/Ring03.wav">Cancion 3</li>
+            <li class="selector" value="cosas/Ring04.wav">Cancion 4</li>
         </ul>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
         $('.selector').click(function(){
-            var imagen =  $(this).attr("value");
+            var valor =  $(this).attr("value");
             $(this).addClass("visitado");
-            alert(imagen);
+            $('#mp3').attr('src',valor).trigger();
         });
     </script>
 </body>
