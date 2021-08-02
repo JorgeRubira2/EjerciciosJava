@@ -131,6 +131,12 @@ public class Persona {
         }catch(Exception e){}
         System.out.println("DNI de " + nombre);
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
     
     
 }

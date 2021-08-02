@@ -1,4 +1,5 @@
 - Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
+- Optional<Envoltorio> -> get(), isPresent(), isEmpty(), orElse(T) "es como el get pero darmo un valor por defecto si no tiene"
 - Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
 - Modificadores. (Public, Protected (derivadas y paquete), (Nada) (paquete), Private)
 - Herencia. (Reutilización codigo, Base y derivada, las derivadas tienen todo lo de la clase base).
