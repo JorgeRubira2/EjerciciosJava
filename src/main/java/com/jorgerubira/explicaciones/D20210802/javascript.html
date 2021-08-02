@@ -35,7 +35,36 @@ and open the template in the editor.
         <button onclick="alternarRojo()" >Alternar rojo</button>  
         <button onclick="incSpan()" >AddSpan</button>  
         
-        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>            
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+
+        <script>
+            var r;
+            var lambdas=function(nombre, direccion){
+                alert("Hola " + nombre + " " + direccion);
+            }
+            lambdas("Pepe", "Direccion", "424");            
+            
+            if (r===undefined){
+                alert("No definido");
+            }else{
+                alert(r);    
+            }
+            
+
+            
+            var e=3;
+            if (e==3){
+                alert("Es tres");
+            }else{
+                alert("No es tres");
+            }
+            
+            for (var n=0;n<10;n++){
+                $('div').append("A").append("A").prepend("A").addClass('colorRojo');
+            }
+        </script>
+            
+        
         <script src="link">
             $(document).ready(function(){   //Al cargar TODO el documento
                 $('#rer').html();   //Al principio
