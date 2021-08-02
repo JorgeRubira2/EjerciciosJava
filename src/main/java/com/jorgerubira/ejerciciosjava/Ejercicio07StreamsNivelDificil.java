@@ -36,8 +36,7 @@ public class Ejercicio07StreamsNivelDificil {
         		.stream()
         		.filter(x->x.getValue().size()>1)
                 .map(x->x.getValue().get(0))
-                .collect(Collectors.toSet())
-                ;
+                .collect(Collectors.toSet());
         return resultado2;
         
         
