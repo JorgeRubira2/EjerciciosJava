@@ -1,4 +1,5 @@
 - Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
+- Optional<Envoltorio> -> get(), isPresent(), isEmpty(), orElse(T) "es como el get pero darmo un valor por defecto si no tiene"
 - Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
 - Modificadores. (Public, Protected (derivadas y paquete), (Nada) (paquete), Private)
 - Herencia. (Reutilización codigo, Base y derivada, las derivadas tienen todo lo de la clase base).
@@ -26,3 +27,6 @@
 - Streams -> (Importante). Lambdas -> boolean Predicate<T>, void Consumer<T>, U Function<T,U>.
           -> Intermedios: filter, map, sorted (limit, skip)   
           -> Finales: List/Map/Set collect, long count(), Optional<T> anyMatch(Predicate), forEach
+- Parallel Streams -> Ejecutar un accion concurrente.
+- Exceptions -> try{ } catch(Exception e){ } -> try (Recurso) Autocloseable
+             -> throw metodo () throw Exception . El que llama es el que se responabiliza.
