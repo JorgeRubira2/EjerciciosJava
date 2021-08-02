@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>1. Mostrar una paleta de colores con su valor RGB en hexadefical dentro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>  
+        <style>
+            #cuadro{
+                display: inline-block;
+                color: White;
+                text-indent: 10px;
+                padding-top: 8px;
+                margin:0;
+                margin-bottom: 4;
+                width:100px;  
+                height: 90px;
+            }
+            H3{
+                font-family: Arial;
+                font-weight: Normal;
+                margin-bottom: 5;
+            }
+            p{
+                margin-top: 0;
+                color: Grey;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function () {
+                $('div').each(function () {
+                    this.setAttribute("style", "background-color:" + this.innerHTML)
+                });
+            });
+        </script>
+
+        <h3>Aquí hay una paleta de colores</h3>
+        <p>En el siguiente ejemplo se muestra una paleta de colores</p>
+        <div>
+            <div id="cuadro">#396AB1</div>
+            <div id="cuadro">#82A3DB</div>
+            <div id="cuadro">#3E9651</div>
+            <div id="cuadro">#94CA6B</div>
+            <div id="cuadro">#948B3D</div>
+            <div id="cuadro">#DCD280</div>
+            <div id="cuadro">#DA7C30</div>
+            <div id="cuadro">#F1A75C</div>
+        </div>
+         <div>
+            <div id="cuadro">#922428</div>
+            <div id="cuadro">#B68570</div>
+            <div id="cuadro">#CC2529</div>
+            <div id="cuadro">#E36E90</div>
+            <div id="cuadro">#6B4C9A</div>
+            <div id="cuadro">#B087C7</div>
+            <div id="cuadro">#535154</div>
+            <div id="cuadro">#909595</div>
+        </div>
+    </body>
+</html>
