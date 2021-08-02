@@ -136,16 +136,14 @@ public class Ejercicio04Colecciones {
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
     	if(colaPersonas.isEmpty()){
             colaPersonas.add(personaNueva);
-        }else{
-            if(colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos()<=5){
-
-                colaPersonas.add(personaNueva);
+        }else if(colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos()<=5){
+             colaPersonas.add(personaNueva);
             }else{
                 colaPersonas.poll();
                 colaPersonas.add(personaNueva);
             }
         }
-   }
+   
     
 
     /**
@@ -154,9 +152,11 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-    	Integer[] a= Arrays.stream(valores).boxed().toArray(Integer[]::new);
-        List<Integer> c = Arrays.asList(a);
-        return c;
+    	List<Integer> lista=new ArrayList();
+        for(int a:valores){
+            lista.add(a);
+        }
+        return lista;
     }
     
     /**

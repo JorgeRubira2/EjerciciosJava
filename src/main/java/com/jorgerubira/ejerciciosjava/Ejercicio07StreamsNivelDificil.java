@@ -25,14 +25,16 @@ public class Ejercicio07StreamsNivelDificil {
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
         List<Persona> resultado = new ArrayList();
+        
         resultado.addAll(personasGradoMedio);
         resultado.addAll(personasUniversidad);
         resultado.addAll(personasCertificado);
+        
         Set<Persona> resultado2 = resultado.stream()
         		.collect(Collectors.groupingBy(x->x.getNombre()))
         		.entrySet()
         		.stream()
-        		.filter(x->x.getValue().size()>=2)
+        		.filter(x->x.getValue().size()>1)
                 .map(x->x.getValue().get(0))
                 .collect(Collectors.toSet())
                 ;
@@ -65,13 +67,12 @@ public class Ejercicio07StreamsNivelDificil {
      * Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres){
-    	List<Persona> resultado = new ArrayList<>();
-        Collections.nCopies(totalPersonas, new Persona(""))
-                .stream()
-                .forEach(x -> resultado.add(new Persona(nombres.get((int) (Math.random() * nombres.size())))));
-        ;
-        return resultado;
-    	
+    	List<Persona> resultado = Arrays.asList(new Persona[totalPersonas]);
+        return resultado.parallelStream()
+                .map(x -> {
+                    int a = (int) (Math.random() * nombres.size());
+                    return new Persona(nombres.get(a));
+                }).collect(Collectors.toList());
         
         
     }

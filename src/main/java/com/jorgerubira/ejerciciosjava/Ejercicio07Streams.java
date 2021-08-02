@@ -24,7 +24,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-    	return origen.stream().filter(x-> x>=0).collect(toList());
+    	return origen.stream()
+                .filter((x) -> x >= 0)
+                .collect(toList());
     }
     
     /**
@@ -32,8 +34,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int maximoElemento(List<Integer> lista){
-    	 Optional<Integer> max = lista.stream().max((x,y)->x-y);
-         return max.get().intValue();
+    	 Optional<Integer> max = lista.stream()
+    			 .max((x,y)->x-y);
+         return max.get();
     }
     
     /**
@@ -41,12 +44,13 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-    	 return (int)lista.stream()
-                 .collect(Collectors.groupingBy(x->x))
-                 .entrySet()
-                 .stream()
-                 .filter(x-> x.getValue().size() == 1)
-                 .count();
+    	Map<Integer, Long> Repetidos = lista.stream()
+                .collect(Collectors.groupingBy((x) -> x, Collectors.counting()));
+        long contar = Repetidos.values().stream()
+                .filter((x) -> x == 1)
+                .count();
+
+        return (int) contar;
  }
     
     
@@ -55,9 +59,11 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Persona> personasDeHuescaALista(List<Persona> lista){
-    	 return lista.stream()
-                 .filter(x->x.getCiudad().equalsIgnoreCase("Huesca"))
-                 .collect(toList());
+    	List<Persona> personasHuesca = lista.stream()
+                .filter(x -> x.getCiudad().equals("Huesca"))
+                .collect(Collectors.toList());
+    
+    return personasHuesca;
     }
     
     /**
@@ -65,10 +71,11 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Persona[] personasDeHuescaAArrayBasico(List<Persona> lista){
-    	 Persona[] huesca = lista.stream()
-                 .filter(x->x.getCiudad().equalsIgnoreCase("Huesca"))
-                 .toArray(x->new Persona[x]);
-    	 return huesca;
+    	Persona[] per = lista.stream()
+                .filter(x -> x.getCiudad().equals("Huesca"))
+                .toArray(x -> new Persona[x]);
+    
+    return per;
     }
     
     /**
@@ -77,16 +84,9 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Optional<Persona> personasConMasArticulo(List<Persona> lista){
-    	if (!lista.isEmpty()){
-            Optional<Persona> resultado = lista.stream()
-                    .filter(x->x.getCesta().isPresent())
-                    .max((x,y)->x.getCesta().get().getTotalArticulos()-y.getCesta().get().getTotalArticulos());
-            if (resultado.isEmpty()){
-                resultado = lista.stream().findFirst();
-            }
-            return resultado;
-        }
-        return Optional.empty();
+    	Optional<Persona> resultado = lista.stream()
+                .max((p1, p2) -> p1.getCesta().orElse(new Compra(0, false)).getTotalArticulos() - p2.getCesta().orElse(new Compra(0, false)).getTotalArticulos());
+        return resultado;
     }    
     
     /**
@@ -95,21 +95,22 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Compra> cestasDeLasPersonas(List<Persona> lista){
-    	 List<Compra> resultado = lista.stream()
-                 .filter(x->x.getCesta().isPresent())
-                 .map(x->x.getCesta().get())
-                 .collect(toList());
-         return resultado;
-    }    
+    	return lista.stream()
+                .filter(x -> x.getCesta().isPresent())
+                .map(x -> x.getCesta().get())
+                .collect(toList());
+    }
+      
     
     /**
      * Devuelve las edades de las personas.
      * No hace falta verificar si valen nulo.
      */
     public int[] edadesDeLasPersonas(List<Persona> lista){
-    	return lista.stream()
-                .mapToInt(x->x.getEdad())
-                .toArray();
+    	 int[] resultado = lista.stream()
+                 .mapToInt(x -> x.getEdad())
+                 .toArray();
+         return resultado;
     }      
     
     /**
@@ -118,13 +119,14 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Ciudad> cuantasPersonasHayPorCiudad(List<Persona> lista){
-    	 return lista.stream()
-                 .collect(Collectors.groupingBy(x->x.getCiudad()))
-                 .entrySet()
-                 .stream()
-                 .map(x->new Ciudad(x.getKey(),x.getValue().size()))
-                 .collect(Collectors.toList())
-                 ;
+    	Map<String, Long> persona = lista.stream()
+                .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        List<Ciudad> resultado = persona.entrySet().stream()
+                .map(x -> new Ciudad(x.getKey(), x.getValue().intValue()))
+                .collect(Collectors.toList());
+
+        return resultado;
     }
 
     /**
@@ -133,21 +135,16 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Persona> top3Personas(List<Persona> lista){
-    	return lista.stream()
-                .sorted((x,y)->{
-                    if (x.getCesta().isPresent() && y.getCesta().isPresent()){
-                        return y.getCesta().get().getTotalArticulos()-x.getCesta().get().getTotalArticulos();
-                    }
-                    if (x.getCesta().isEmpty()){
-                        return 1;
-                    }
-                    if (y.getCesta().isEmpty()){
-                        return -1;
-                    }
-                    return 0;
-                })
+    	List<Persona> resultado = lista.stream()
+                .sorted((x,y)->y.getCesta()
+                .orElse(new Compra(0,false))
+                .getTotalArticulos()-x.getCesta()
+                .orElse(new Compra(0,false))
+                .getTotalArticulos())
                 .limit(3)
-                .collect(toList());
+                .collect(Collectors.toList());
+    	
+return resultado;
     }    
     
     /**
@@ -156,15 +153,15 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Set<String> top3Ciudades(List<Persona> lista){
-        return lista.stream()
-                .collect(Collectors.groupingBy(x->x.getCiudad()))
-                .entrySet()
-                .stream()
-                .sorted((x,y)->y.getValue().size()-x.getValue().size())
-                .limit(3)
-                .map(x->x.getKey())
-                .collect(Collectors.toSet())
-                ;
+    	Set<String> ciudades = lista.stream()
+				.collect(Collectors.groupingBy(x->x.getCiudad()))
+				.entrySet()
+				.stream()
+				.sorted((x,y)->y.getValue().size()-x.getValue().size())
+				.limit(3)
+				.map(x->x.getKey())
+				.collect(Collectors.toSet());
+		return ciudades;
     }    
 
     /**
@@ -178,8 +175,7 @@ public class Ejercicio07Streams {
     	 List<RangoEdad> resultado = new ArrayList<>();//Lista de objetos
          long menos18 = lista.stream()//Posicion 0
                  .filter(x->x.getEdad()<18)
-                 .count()
-                 ;
+                 .count();
          long mas18 = lista.stream()//Posicion1
                  .filter(x->x.getEdad()>=18 && x.getEdad()<=60)
                  .count()
@@ -203,14 +199,15 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista){
-    	Map<String, Integer> resultado = new HashMap<>();//Creamos el mapa
-        resultado = lista.stream()
-                .filter(x->x.getEdad()>=18)//Filtra las personas mayores de 18
-                .collect(Collectors.groupingBy(x->x.getCiudad()))//Los recoge y los agrupa por su ciudad como clave
-                .entrySet()
-                .stream()
-                .collect(Collectors.toMap(x->x.getKey(), x->x.getValue().size()))//Devuelve el mapa  con las claves
-                ;
-        return resultado;    }     
+    	Map<String, Integer> mayores = new HashMap<>();
+
+        Map<String, Long> grupo = lista.stream()
+                .filter(x -> x.getEdad() >= 18)
+                .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
+
+        return mayores = grupo.entrySet().stream()
+                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()
+                		.intValue()));
+        }     
     
 }
