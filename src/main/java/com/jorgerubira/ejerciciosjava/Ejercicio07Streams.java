@@ -152,7 +152,12 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Set<String> top3Ciudades(List<Persona> lista){
-        throw new RuntimeException("Pendiente de hacer");
+        Map<String, Long> contarPersonas = lista.stream()
+                                .collect(Collectors.groupingBy(x->x.getCiudad(), Collectors.counting()));
+        
+        Set<String> topCiudades = contarPersonas.values().stream()
+                                                .collect(Collectors.toSet());
+                           
     }    
 
     /**
