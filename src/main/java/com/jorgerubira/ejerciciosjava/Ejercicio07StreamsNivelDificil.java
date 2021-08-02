@@ -53,6 +53,7 @@ public class Ejercicio07StreamsNivelDificil {
      * nombre de la persona es suficiente. Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres) {
+        
         throw new RuntimeException("Pendiente de hacer");
     }
 
