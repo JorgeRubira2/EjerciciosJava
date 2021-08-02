@@ -188,7 +188,7 @@ public class Ejercicio09VariadoCapasTest {
     @Test
     public void testCalcularComprasDeUnaCiudadEntreFechas() {
         Ejercicio09VariadoCapas instance = new Ejercicio09VariadoCapas(iper, null, icom, null) ;
-        Long result = instance.calcularComprasDeUnaCiudad(CIUDAD);
+        Long result = instance.calcularComprasDeUnaCiudadEntreFechas(CIUDAD, FECHA_DESDE, FECHA_HASTA);
         assertEquals(20+2*RND, result);
         
         //Aseguramos que se llaman a estos métodos 1 vez
