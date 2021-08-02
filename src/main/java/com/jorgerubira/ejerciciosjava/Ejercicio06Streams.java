@@ -19,7 +19,7 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-    	
+    	throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
@@ -27,7 +27,7 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public Optional<Integer> maximoElemento(List<Integer> lista){
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
@@ -35,7 +35,7 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-    	
+    	throw new RuntimeException("Pendiente de hacer");
     }
     
     /**

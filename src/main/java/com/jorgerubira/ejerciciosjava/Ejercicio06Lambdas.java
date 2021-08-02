@@ -20,7 +20,7 @@ public class Ejercicio06Lambdas {
      * falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers() {
-      
+    	throw new RuntimeException("Pendiente de hacer");
 
     }
 
@@ -30,7 +30,7 @@ public class Ejercicio06Lambdas {
      * null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -39,7 +39,7 @@ public class Ejercicio06Lambdas {
      * valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -47,7 +47,7 @@ public class Ejercicio06Lambdas {
      * ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -57,7 +57,7 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
        
-        
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -65,7 +65,7 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-        
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -73,14 +73,14 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-      
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
-      
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -88,7 +88,7 @@ public class Ejercicio06Lambdas {
      * personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas() {
-        
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -96,14 +96,14 @@ public class Ejercicio06Lambdas {
      * personas. Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -112,14 +112,14 @@ public class Ejercicio06Lambdas {
      * recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio() {
-        
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
         
     }
 
@@ -127,7 +127,7 @@ public class Ejercicio06Lambdas {
      * Devuelve una compra con 0 unidades y false en el carro.
      */
     public Supplier<Compra> generarCompra0Unidades() {
-      
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -135,7 +135,7 @@ public class Ejercicio06Lambdas {
      * nulos.
      */
     public UnaryOperator<String> convertirAMayusculas() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -143,7 +143,7 @@ public class Ejercicio06Lambdas {
      * parametro int
      */
     public IntBinaryOperator sumar() {
-       
+    	throw new RuntimeException("Pendiente de hacer");
     }
 
     /**

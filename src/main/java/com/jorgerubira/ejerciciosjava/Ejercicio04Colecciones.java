@@ -6,6 +6,7 @@
 package main.java.com.jorgerubira.ejerciciosjava;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -57,7 +58,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-       
+    	int num=0;
+       for(int i=0;i<lista.size();i++) {
+    	   if(enLista.contains(lista.get(i))) {
+    		   num++;
+    	   }
+       }
+       return num;
     }
     
     /**
@@ -66,7 +73,16 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-        
+    	int num=0;
+    	HashSet<Integer> repetidos = new HashSet<Integer>();
+        for(int i=0;i<lista.size();i++) {
+     	   if(enLista.contains(lista.get(i))) {
+     		   
+     	   }else {
+     		   num++;
+     	   }
+        }
+        return num;
     }    
     
     /**
@@ -74,16 +90,24 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        
+		int contador=0;
+		Integer a;
+		for(Object i:tabla.values()) {
+			if(i instanceof Integer) contador++;
+		}
+		return contador;
     }
     
     /**
-     * Borrar todas las personas del Map que sean de la ciudad Huesca.
+     * Borrar todas las personas de la lista que sean de la ciudad Huesca.
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-       
-            
+    	for(int i=0;i<listaPersonas.size();i++) {
+    		if(listaPersonas.get(i).getCiudad().equals("Huesca")) {
+                listaPersonas.remove(i);  
+    	}
+    	}
     }
     
     /**
@@ -92,7 +116,11 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-       
+    	for(int i=0;i<listaPersonas.size();i++) {
+    		if(listaPersonas.get(i).getCiudad().equals("Huesca")) {
+    			listaPersonas.remove(i);
+    	}
+    	}
     }
     
     /**
@@ -102,7 +130,10 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-       
+    	if(colaPersonas.peek().getCesta().get().getTotalArticulos()<5 || colaPersonas.peek()==null) {
+    		 colaPersonas.add(personaNueva);
+    	}
+      
     }
 
     /**
@@ -110,8 +141,9 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
-    public List<Integer> generarLista(int valores[]){
-        
+    public List<int[]> generarLista(int valores[]){
+	 List<int[]> l = Arrays.asList(valores);
+	 return l;
     }
     
     /**
@@ -119,6 +151,12 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
+    	ArrayList<Integer> miLista = new ArrayList<>();
+        for (int i = 0; i < valores.length; i++) {
+            miLista.add(valores[i]);
+
+        }
+        return miLista;
        
     }
 
@@ -128,6 +166,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico){
+    	boolean mineral = minerales.contains(objeto);
+        boolean organicos = organico.contains(objeto);
+        if(mineral) return "Mineral";
+        else if(organicos) return "Organico";
+        else return "";
         
     }    
 
@@ -137,6 +180,8 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
+		frutas.retainAll(colores);
+		return frutas;
        
     }        
 
@@ -146,6 +191,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
+    	List<String> listaNotas = new ArrayList<>();
+        for (String i : notas.keySet()) {
+        if (notas.get(i) >= 5) {
+                listaNotas.add(i);
+            }
+        }
+        return listaNotas;
         
     } 
 
@@ -156,8 +208,24 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
+    	Map<String, Integer> mapa = new HashMap<String, Integer>();
+    	for(Persona p1:personas) {
+    		if(p1.getCesta().isPresent()) {
+    			if(mapa.containsKey(p1.getNombre())==true) {
+    				 Integer num = mapa.get(p1.getNombre());
+                    num =num + p1.getCesta().get().getTotalArticulos();
+                    mapa.put(p1.getNombre(),num);
+
+                } else {
+                   return null;
+
+                }
+    			}
+    		}
+    	return mapa;
+    	}
         
-    }     
+    
     
     
     /**
@@ -165,7 +233,8 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public void annadirElementosMultiples(List<Integer> destino, int ... valores){
-        
-    }
-
+    	for( int i: valores) {
+    		destino.add(i);
+         }	
 }
+    }
