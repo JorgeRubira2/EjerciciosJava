@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,6 +17,17 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
+        Set<Persona> lista = new HashSet<Persona>();
+        lista.addAll(personasGradoMedio);
+        lista.addAll(personasUniversidad);
+        lista.addAll(personasCertificado);
+        
+      /*  lista.stream()
+                .filter(x->((personasGradoMedio.contains(x.getNombre()) && personasUniversidad.contains(x.getNombre()))
+                        || (personasGradoMedio.contains(x.getNombre()) && personasCertificado.contains(x.getNombre()))
+                        || (personasCertificado.contains(x.getNombre()) && personasUniversidad.contains(x.getNombre()))))
+                .collect(Co)*/
+        
         throw new RuntimeException("Pendiente de hacer");
     }
     /**
