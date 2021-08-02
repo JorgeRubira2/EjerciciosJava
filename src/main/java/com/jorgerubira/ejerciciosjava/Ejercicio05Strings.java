@@ -67,7 +67,7 @@ public class Ejercicio05Strings {
     /**
      * Cuenta cuantas líneas hay en el texto. Se considera una línea si tiene algún carácter. El salto de línea se realiza con el carácter \n o, en algunos textos, con \r\n.
      */
-    public int contarLineas(String texto){
+    public int contarLineas(String texto){i
         throw new RuntimeException("Pendiente de hacer");
     }
     

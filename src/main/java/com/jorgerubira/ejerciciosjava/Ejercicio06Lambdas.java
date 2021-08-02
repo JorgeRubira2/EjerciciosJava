@@ -20,7 +20,7 @@ public class Ejercicio06Lambdas {
      * falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers() {
-        return (p1, p2) -> p1 - p2;
+      
 
     }
 
@@ -30,21 +30,7 @@ public class Ejercicio06Lambdas {
      * null se considerarán los más bajos a nivel de comparación
      */
     public Comparator<String> compararStrings() {
-        return (p1, p2) -> {
-            if (p1 == null && p2==null) {
-                return 0;
-            } else if (p1==null) {
-                return -1;
-            } else if (p2==null) {
-                return 1;
-            } else if (p1.compareTo(p2) == 0) {
-                return 0;
-            } else if (p1.compareTo(p2) > 0) {
-                return 1;
-            } else {
-                return -1;
-            }
-        };
+       
     }
 
     /**
@@ -53,7 +39,7 @@ public class Ejercicio06Lambdas {
      * valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente() {
-        return (p1,p2) -> p1.getEdad() - p2.getEdad();
+       
     }
 
     /**
@@ -61,7 +47,7 @@ public class Ejercicio06Lambdas {
      * ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
-       return (p1,p2) -> p2.getEdad()- p1.getEdad();
+       
     }
 
     /**
@@ -70,13 +56,7 @@ public class Ejercicio06Lambdas {
      * por nombre. No hace falta comprobar los nulos.
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
-        return (p1,p2) -> {
-            if (p1.getCiudad().compareTo(p2.getCiudad())==0){
-                    return p1.getNombre().compareTo(p2.getNombre());
-                } else {
-                return p1.getCiudad().compareTo(p2.getCiudad());
-            }
-        };
+       
         
     }
 
@@ -85,7 +65,7 @@ public class Ejercicio06Lambdas {
      * Huesca. tener en cuenta también valores nulos en la ciudad.
      */
     public Predicate<Persona> esLaPersonaDeHuesca() {
-        return p -> p.getCiudad().equals("Huesca");
+        
     }
 
     /**
@@ -93,14 +73,14 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-        return p -> p.getEdad() >= 16 &&  p.getEdad() <64;
+      
     }
 
     /**
      * Devolver una función Function que devuelva el nombre de las personas.
      */
     public Function<Persona, String> obtenerNombreDePersonas() {
-        return p-> p.getNombre();
+      
     }
 
     /**
@@ -108,7 +88,7 @@ public class Ejercicio06Lambdas {
      * personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas() {
-        return p -> p.getCesta();
+        
     }
 
     /**
@@ -116,20 +96,14 @@ public class Ejercicio06Lambdas {
      * personas. Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas() {
-        return p -> {
-            if (p.getCesta().isPresent()){
-                  return p.getCesta().get();
-            }else {
-                return null;
-            }
-        };
+       
     }
 
     /**
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        return p -> p.setEdad(p.getEdad()+1);
+        
     }
 
     /**
@@ -138,21 +112,14 @@ public class Ejercicio06Lambdas {
      * recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio() {
-        return (p1,p2) -> {
-                if (p2.getCesta().isPresent()){
-                    p1.setCesta(p2.getCesta().get());
-                } else {
-                    p1.setCesta(null);
-                }
-                 p2.setCesta(null);
-        };
+        
     }
 
     /**
      * Devuelve una compra vacia.
      */
     public Supplier<Optional<Compra>> generarCompraVacia() {
-        return () ->  Optional.ofNullable((Compra)null); 
+       
         
     }
 
@@ -160,7 +127,7 @@ public class Ejercicio06Lambdas {
      * Devuelve una compra con 0 unidades y false en el carro.
      */
     public Supplier<Compra> generarCompra0Unidades() {
-        return () -> new Compra(0,false);
+      
     }
 
     /**
@@ -168,7 +135,7 @@ public class Ejercicio06Lambdas {
      * nulos.
      */
     public UnaryOperator<String> convertirAMayusculas() {
-        return p -> p.toUpperCase();
+       
     }
 
     /**
@@ -176,7 +143,7 @@ public class Ejercicio06Lambdas {
      * parametro int
      */
     public IntBinaryOperator sumar() {
-        return (i,j) -> i+j;
+       
     }
 
     /**

@@ -19,9 +19,7 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public List<Double> elementosPositivos(List<Double> origen){
-    	 List<Double> l =(List<Double>) origen.stream()
-    	           .filter((i)->i>0);
-    	    return l;
+    	
     }
     
     /**
@@ -29,9 +27,7 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public Optional<Integer> maximoElemento(List<Integer> lista){
-       Optional<Integer> max = lista.stream().max((x, y) -> x - y);
        
-       return max;
     }
     
     /**
@@ -39,10 +35,7 @@ public class Ejercicio06Streams {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosNoRepetidos(List<Integer> lista){
-    	Map<Integer, Long> list = lista.stream()
-                .collect(Collectors.groupingBy(x -> x, Collectors.counting()));
-
-        return (int) list.values().stream().filter(x -> x == 1).count();
+    	
     }
     
     /**

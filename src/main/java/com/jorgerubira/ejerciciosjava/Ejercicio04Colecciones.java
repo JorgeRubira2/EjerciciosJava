@@ -23,9 +23,7 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnLista(long valor, List<Long> destino){
-        if (valor >= 0) {
-            destino.add(valor);
-        }
+    	if(valor>0) destino.add(valor);
     }
 
     /**
@@ -33,11 +31,9 @@ public class Ejercicio04Colecciones {
      * No hace falta comprobar si destino es nulo.
      */
     public void insertarElementoEnTabla(String clave, Integer valor, Map<String, Integer> destino){
-        if (destino.containsKey(clave)){
-            
-        } else {
-            destino.put(clave,valor);
-        }
+      if(!destino.keySet().contains(valor)) {
+    	  destino.put(clave,valor);
+      }
     }
 
 
@@ -46,11 +42,14 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        for (Double o: origen){
-            if (o >= 0){
-                destino.add(o);
-            }
-        }
+    	
+    	
+    	for(int i=0;i<origen.size();i++) {
+    		if(origen.get(i)>=0) {
+    			destino.add(origen.get(i));
+    		}
+    	}
+    	
     }
     
     /**
@@ -58,15 +57,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
-        int count =0;
-        for (Integer i : lista){
-            for (Integer j: enLista){
-                if (i.equals(j)){ 
-                	count++;
-                	}
-            }
-        }
-        return count;
+       
     }
     
     /**
@@ -75,15 +66,7 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-        int count=0 ;
-        for (Integer i: lista){
-            if (enLista.contains(i)){ 
-                enLista.remove(i);
-                count++;
-            }
-                    
-        }
-        return count;
+        
     }    
     
     /**
@@ -91,12 +74,7 @@ public class Ejercicio04Colecciones {
      * Para comprobar si un valor es de tipo Integer utilizar instanceOf
      */
     public int contarIntegers(Map<String, Object> tabla){
-        int count=0;
-        for (Object objeto: tabla.values())
-            if (objeto instanceof Integer){
-                count++;
-            }
-        return count;
+        
     }
     
     /**
@@ -104,15 +82,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        List<Persona> oscenses = new LinkedList<>();
-        for (Persona per : listaPersonas){
-            if (per.getCiudad().equals("Huesca") == false){
-            	
-                oscenses.add(per);
-                
-            }
-        }
-        listaPersonas.retainAll(oscenses);
+       
             
     }
     
@@ -122,16 +92,7 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        Map<String,Persona> oscenses = new HashMap<>();
-        for (String clave : listaPersonas.keySet()){
-        	
-            if (listaPersonas.get(clave).getCiudad().equals("Huesca") == false){
-            	
-                oscenses.put(clave,listaPersonas.get(clave));
-                
-            }
-        }
-        listaPersonas = oscenses;
+       
     }
     
     /**
@@ -141,9 +102,7 @@ public class Ejercicio04Colecciones {
      * Pista: para ver que persona va a salir pero sin sacarla utilizar peek
      */    
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva){
-        if (personaNueva.getCesta().isEmpty() || personaNueva.getCesta().get().getTotalArticulos() <=5){
-            colaPersonas.add(personaNueva);
-        }
+       
     }
 
     /**
@@ -152,11 +111,7 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-        List<Integer> miLista = new ArrayList();
-        for (int i =0; i<valores.length ; i++) {
-            miLista.add(valores[i]);    
-        }
-        return miLista;
+        
     }
     
     /**
@@ -164,11 +119,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        ArrayList<Integer> miLista = new ArrayList();
-        for (int i =0; i<valores.length ; i++) {
-            miLista.add(valores[i]);    
-        }
-        return miLista;
+       
     }
 
     /**
@@ -177,10 +128,6 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico){
-        String salida ="";
-        if(minerales.contains(objeto)){salida= "Mineral";}
-        else if(organico.contains(objeto)){salida="Organico";}
-        return salida;
         
     }    
 
@@ -190,10 +137,7 @@ public class Ejercicio04Colecciones {
      * Pista: Para la interseccion utilizar retainAll. 
      */    
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores){
-        Set<String> miSet=  new HashSet<>();
-        miSet.addAll(frutas);
-        miSet.retainAll(colores);
-        return miSet;
+       
     }        
 
     /**
@@ -202,13 +146,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
-        List<String> miLista = new ArrayList<>();
-        for (String persona : notas.keySet()){
-            if(notas.get(persona) >= 5){ 
-                miLista.add(persona);
-            }
-        }
-        return miLista;
+        
     } 
 
     
@@ -218,20 +156,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public Map<String, Integer> totalProductos(List<Persona> personas){
-        HashMap<String,Integer> mapa = new HashMap<>();
-        for (Persona p: personas){
-            System.out.println(p.getNombre() + " ");
-            System.out.println(p.getNombre() + " cesta " +p.getCesta().isEmpty());
-            if (p.getCesta().isPresent()){
-                System.out.println(p.getNombre() + " " + p.getCesta().get().getTotalArticulos() );
-                    int aux = 0;
-                    if (mapa.containsKey(p.getNombre()) ){
-                        aux = mapa.get(p.getNombre());
-                    }
-                mapa.put(p.getNombre(),p.getCesta().get().getTotalArticulos() + aux);
-            }
-        }
-        return mapa;
+        
     }     
     
     
@@ -240,9 +165,7 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public void annadirElementosMultiples(List<Integer> destino, int ... valores){
-        for (int i = 0; i<valores.length; i++){
-            destino.add(valores[i]);
-        }
+        
     }
 
 }
