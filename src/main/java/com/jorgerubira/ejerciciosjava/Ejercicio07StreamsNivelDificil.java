@@ -56,8 +56,16 @@ public class Ejercicio07StreamsNivelDificil {
      * compra a Empty
      */
     public void repartoDeCompraPersona(Compra compraConjunta, List<Persona> personasARepartirLaCompra, Map<String, Integer> porcentajes) {
-         
-        throw new RuntimeException("Pendiente de hacer");
+      // no devuelve nada
+
+      /* List<Map.Entry<String, Integer>> lista = porcentajes.entrySet().stream()
+               .collect(Collectors.toList());
+*/
+
+        //throw new RuntimeException("Pendiente de hacer");
+      
+ 
+      
     }
 
     /**
