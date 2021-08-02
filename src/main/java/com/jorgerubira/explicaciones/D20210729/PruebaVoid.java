@@ -23,11 +23,7 @@ public class PruebaVoid {
     public static void main(String[] args) {
         Operacion o=PruebaVoid::oper;
         o.mensaje(2,3);
-        
-        
         Math.abs(3);
-        
-        
     }
     
 }
