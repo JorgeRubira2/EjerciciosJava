@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Ejercicio 02</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            
+            td{
+                width: 100px;
+                height:100px;
+                margin:1px;
+                vertical-align: top;
+                text-align:left;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Aqui hay una paleta de colores</h1>
+            <h2>En el siguiente ejemplo se muestra nuestra paleta de colores</h2>
+        </div>
+        <div>
+        <table>
+                <tr>
+                    <td>#396AB1</td>
+                    <td>#82A3DB</td>
+                    <td>#3E9651</td>
+                    <td>#94CA6B</td>
+                    <td>#DCD280</td>
+                    <td>#DA7C30</td>
+                    <td>#F1A75C</td>
+                </tr>
+                <tr>
+                    <td>#922428</td>
+                    <td>#b68570</td>
+                    <td>#e36e90</td>
+                    <td>#6b4c9a</td>
+                    <td>#b087c7</td>
+                    <td>#535154</td>
+                    <td>#909595</td>
+                </tr>
+            </table>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+    <script>
+        $(document).ready(function(){       
+            $("td").each(function(){this.setAttribute("style","background-color:"+this.innerHTML) });
+            });
+    </script>
+    </body>
+</html>

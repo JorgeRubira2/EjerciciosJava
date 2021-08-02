@@ -1,6 +1,6 @@
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.interfaces.IAduanaService; 
+import com.jorgerubira.ejerciciosjava.interfaces.IAduanaService;
 import com.jorgerubira.ejerciciosjava.interfaces.IComprasRepository;
 import com.jorgerubira.ejerciciosjava.interfaces.IPersonasRepository;
 import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mock; 
-import org.mockito.Mockito; 
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 
 public class Ejercicio09VariadoCapasTest {

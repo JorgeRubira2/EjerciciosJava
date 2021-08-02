@@ -49,3 +49,6 @@
 - Streams -> (Importante). Lambdas -> boolean Predicate<T>, void Consumer<T>, U Function<T,U>.
           -> Intermedios: filter, map, sorted (limit, skip)   
           -> Finales: List/Map/Set collect, long count(), Optional<T> anyMatch(Predicate), forEach
+- Parallel Streams -> Ejecutar un accion concurrente.
+- Exceptions -> try{ } catch(Exception e){ } -> try (Recurso) Autocloseable
+             -> throw metodo () throw Exception . El que llama es el que se responabiliza.
