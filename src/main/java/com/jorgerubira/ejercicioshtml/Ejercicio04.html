@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            img{
+                width:200px;
+            }
+            #aumentada{
+                width: 1000px;
+                margin:auto;
+            }
+        </style>
+          <script src="https://code.jquery.com/jquery-3.6.0.js" >   
+    </script>
+    <script>     
+        function aumentar(link){
+            $("#aumentada").attr("src",link);
+        }
+    </script>
+       
+    </head>    
+    <body>
+        <img src="nature1.jpg" onclick="aumentar(this.src)">
+        <img src="nature2.jpg" onclick="aumentar(this.src)">
+        <img src="nature3.jpg" onclick="aumentar(this.src)">
+        <img src="nature4.jpg" onclick="aumentar(this.src)">
+        <br/>
+        <img id="aumentada">
+  
+    </body>
+   
+</html>
