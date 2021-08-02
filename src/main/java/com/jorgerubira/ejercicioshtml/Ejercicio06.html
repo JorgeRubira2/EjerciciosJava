@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        div{
+            display: block;
+            width:330px;
+            margin:auto;
+            text-align: center;
+            padding:10px;
+            margin-top:5px;
+            background-color: grey;
+        }
+        ul{
+            display:block;
+            background-color:darkgray;
+            list-style-type:none
+        }
+        .canciones{
+            text-align: left;
+            color:white;
+            text-decoration: underline;
+        }
+        .visitado{
+            color:aqua
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <div class="repro">
+        <audio controls>
+            <source src="" type="audio/mpeg" />
+        </audio>
+    </div>
+    <div class="canciones">
+        <ul>
+            <li class="selector" value="src1">Cancion 1</li>
+            <li class="selector" value="src2">Cancion 2</li>
+            <li class="selector" value="src3">Cancion 3</li>
+            <li class="selector" value="src4">Cancion 4</li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $('.selector').click(function(){
+            var imagen =  $(this).attr("value");
+            $(this).addClass("visitado");
+            alert(imagen);
+        });
+    </script>
+</body>
+</html>

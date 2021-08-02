@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        div{
+            margin-left:20%;
+        }
+        table{
+            border-spacing: 15px 10px;
+        }
+
+        table td input, select {
+        display: block;
+        width: 100%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <div>
+        <form id="ejer5">
+            <table>
+                <tr>
+                    <td>Name</td> 
+                    <td><input name="nombre" placeholder="First"/></td>
+                    <td><input name="apellido" placeholder="Last"/></td>
+                </tr>
+                <tr>
+                    <td>Email </td>
+                    <td><input type="email" name="mail" placeholder="email@email.com" /></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td colspan="2"><input name="dir1" placeholder="Street Address" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"><input name="dir2" placeholder="Street Address linea 2" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="ciudad" placeholder="City" /></td>
+                    <td><input name="region" placeholder="Region" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="cp" placeholder="Codigo postal" /></td>
+                    <td>
+                        <select>
+                            <option value="AL" selected>Almeria</option>
+                            <option value="ZA">Zaragoza</option>
+                            <option value="BCN">Barcelona</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
