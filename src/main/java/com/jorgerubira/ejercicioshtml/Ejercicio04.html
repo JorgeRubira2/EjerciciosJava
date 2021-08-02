@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>   
+    </head>
+    <body>
+        <div style="align-items: flex-start">
+            <img src="https://static.wixstatic.com/media/bb1bd6_db6f1ff1b2404b9c86f486e34e205353~mv2.png" width="300" alt="alt"/>
+            <img src="https://mott.pe/noticias/wp-content/uploads/2018/10/5consejos-de-como-hacer-fotos-con-reflejos-en-tus-paisajes-1280x720.png" width="300" alt="alt"/>
+            <img src="https://fondosmil.com/fondo/13629.jpg" width="300" alt="alt"/>
+            <img src="https://fondosmil.com/fondo/17961.jpg" width="300" alt="alt"/>
+        </div>
+        
+        
+        <div id="completa">
+            <img id="a" style="width: 1500px"/>
+            
+        </div>
+        <script>
+             $("img").click(function () { 
+                $("#a").attr("src", $(this).attr('src'));
+                
+            });
+            
+            
+            
+            
+        </script>
+    </body>
+</html>
