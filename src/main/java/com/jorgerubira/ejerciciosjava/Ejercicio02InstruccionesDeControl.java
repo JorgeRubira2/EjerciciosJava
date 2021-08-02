@@ -15,58 +15,48 @@ public class Ejercicio02InstruccionesDeControl {
     }
     
     public int suma(int a,int b){
-        int c=a+b;
-        return c;
+        return a+b;
     }
 
 	public int maximoValor(int i, int j, int k) {
-		return Math.max(i,Math.max(i, k));
+		int n=Math.max(i,j);
+		return Math.max(k,n);
 	}
 
 	public int sumarElementos(int[] vector) {
 		int suma=0;
-        for (int i = 0; i <= vector.length; i++) {
-            suma+=vector[i];
-        }
-        return suma;
+		for(int i=0;i<vector.length;i++) {
+			suma= vector[i]+suma;
+		}
+		return suma;
 	}
 
 	public Integer contarPares(int[] vector) {
-		int pares = 0;
-		for (int i = 0; i <= vector.length; i++) {
-			if(vector[i]%2==0) pares++;
+		int numPares=0;
+		for(int i=0;i<vector.length;i++) {
+			if(vector[i]%2==0) numPares++;
 		}
-		return pares;
+		return numPares;
 	}
 
 	public Integer contarVocales(String string) {
-		int vocales = 0;
+		int numVocales=0;
 		for(int i=0;i<string.length();i++) {
 			if(string.charAt(i)=='a'||string.charAt(i)=='e'||string.charAt(i)=='i'||string.charAt(i)=='o'||string.charAt(i)=='u') {
-				vocales++;
+				numVocales++;
 			}
 		}
-		return vocales;
+		return numVocales;
 	}
 
-	public Integer maximoComunDivisor(int a, int b) {
-		int max = a;
-	       int min = b;
-	       int aux = 0;
-	       if (b>a) {
-	           max = b;
-	           min = a;
-	       } 
-	       while (max > min)
-	       {
-	            max-=min;
-	            if (min>max) {
-	               aux = max;
-	               max = min;
-	               min = aux;
-	           } 
-	       }
-	       return max;
+	public Integer maximoComunDivisor(int num1, int num2) {
+		while(num1 != num2)
+            if(num1>num2)
+                num1= num1-num2;
+            else
+                num2= num2 -num1;
+		
+		return num1;
 	}
 
 

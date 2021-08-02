@@ -15,19 +15,19 @@ public class Ejercicio00PruebaDeTestBasicaTest {
     @Test
     public void testSumar() {
         Ejercicio00PruebaDeTestBasica instance = new Ejercicio00PruebaDeTestBasica();
-        assertEquals(10, instance.sumar(6, 4));
+        assertEquals(14, instance.sumar(10, 4));
     }
 
     @Test
     public void testRestar() {
         Ejercicio00PruebaDeTestBasica instance = new Ejercicio00PruebaDeTestBasica();
-        assertEquals(2, instance.restar(6, 4));
+        assertEquals(-6, instance.restar(0, 6));
     }
 
     @Test
     public void testMultiplicar() {
         Ejercicio00PruebaDeTestBasica instance = new Ejercicio00PruebaDeTestBasica();
-        assertEquals(24, instance.multiplicar(6, 4));
+        assertEquals(9, instance.multiplicar(3, 3));
     }
     
 }

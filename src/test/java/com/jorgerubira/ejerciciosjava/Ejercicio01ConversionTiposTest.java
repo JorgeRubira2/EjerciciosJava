@@ -1,5 +1,6 @@
 package test.java.com.jorgerubira.ejerciciosjava;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.com.jorgerubira.ejerciciosjava.Ejercicio01ConversionTipos;
@@ -7,51 +8,56 @@ import main.java.com.jorgerubira.ejerciciosjava.Ejercicio01ConversionTipos;
 public class Ejercicio01ConversionTiposTest {
     
     public Ejercicio01ConversionTiposTest() {
+    	
     }
 
     @org.junit.jupiter.api.Test
     public void testTextoAEntero() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(245, instance.textoAEntero("245"));
-        assertEquals(-15, instance.textoAEntero("-15"));
-        assertThrows(Exception.class, ()-> instance.textoAEntero("aaa"));
+       Ejercicio01ConversionTipos instance= new Ejercicio01ConversionTipos();
+       assertEquals(instance.textoAEntero("7"),7);
+       assertEquals(instance.textoAEntero("2"),2);
+       assertEquals(instance.textoAEntero("3"),3);
     }
 
     @org.junit.jupiter.api.Test
     public void testDecimalesAEntero() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(-24, instance.decimalesAEntero(-24.2f));
-        assertEquals(44, instance.decimalesAEntero(44.8f));
+    	Ejercicio01ConversionTipos instance= new Ejercicio01ConversionTipos();
+        assertEquals(instance.decimalesAEntero(9.0F),9);
+        assertEquals(instance.decimalesAEntero(8.0F),8);
+        assertEquals(instance.decimalesAEntero(7.0F),7);
     }
 
     @org.junit.jupiter.api.Test
     public void testEnteroAFloat() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(2f, instance.enteroAFloat(2));
-        assertEquals(-5f, instance.enteroAFloat(-5));
+    	Ejercicio01ConversionTipos instance= new Ejercicio01ConversionTipos();
+    	 assertEquals(instance.enteroAFloat(9),9.0f);
+    	 assertEquals(instance.enteroAFloat(8),8.0f);
+    	 assertEquals(instance.enteroAFloat(7),7.0f);
     }
 
     @org.junit.jupiter.api.Test
     public void testSiguienteCaracter() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals('b', instance.siguienteCaracter('a'));
-        assertEquals('D', instance.siguienteCaracter('C'));
+    Ejercicio01ConversionTipos instance= new Ejercicio01ConversionTipos();
+   	 assertEquals(instance.siguienteCaracter('a'),'b');
+   	 assertEquals(instance.siguienteCaracter('b'),'c');
+   	 assertEquals(instance.siguienteCaracter('c'),'d');
     }
 
     @org.junit.jupiter.api.Test
     public void testObtenerAscii_char() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(65, instance.obtenerAscii('A'));
-        assertEquals(97, instance.obtenerAscii('a'));
+    	 Ejercicio01ConversionTipos instance= new Ejercicio01ConversionTipos();
+    	 assertEquals(instance.obtenerAscii('a'),97);
+    	 assertEquals(instance.obtenerAscii('b'),98);
+    	 assertEquals(instance.obtenerAscii('c'),99);
         
     }
 
     @org.junit.jupiter.api.Test
     public void testTextoADouble_String() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(42.5,  instance.textoADouble("42.5"));
-        assertEquals(-22.9, instance.textoADouble("-22.9"));
-        assertEquals(null,  instance.textoADouble("aaa"));
+    	Ejercicio01ConversionTipos instance= new Ejercicio01ConversionTipos();
+    	 assertEquals(instance.textoADouble("8"),8d);
+    	 assertEquals(instance.textoADouble("9"),9d);
+    	 assertEquals(instance.textoADouble("1"),1d);
     }
     
 }
