@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+            *{
+                font-family: verdana;
+            }
+            .contenedor{
+                display: inline-block;
+                color: white;
+                width: 175px;
+                height: 175px;
+                margin-bottom: 3px;
+                
+            }
+        </style>
+        <script>
+            $(document).ready(function(){
+                $("div").each(function(){
+                    this.setAttribute("style", "background-color:"+this.innerHTML);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        
+        <h2>Aquí hay una paleta de colores</h2>
+        <p>En el siguiente ejemplo se muestra una paleta de colores</p>
+        <div class="contenedor">#396AB1</div>
+        <div class="contenedor">#83A3DB</div>
+        <div class="contenedor">#3E9551</div>
+        <div class="contenedor">#94CA6B</div>
+        <div class="contenedor">#948B3D</div>
+        <div class="contenedor">#DCD280</div>
+        <div class="contenedor">#DA7C30</div>
+        <div class="contenedor">#F1A75C</div>
+        <div class="contenedor">#922428</div>
+        <div class="contenedor">#B68570</div>
+        <div class="contenedor">#CC2529</div>
+        <div class="contenedor">#E36E90</div>
+        <div class="contenedor">#6B4C9A</div>
+        <div class="contenedor">#B087C7</div>
+        <div class="contenedor">#535154</div>
+        <div class="contenedor">#909595</div>
+    </body>
+</html>
