@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <style>
+            td{
+                padding: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h3>Aquí hay una paleta de colores</h3>
+            <p>En el siguiente ejemplo se muestra nuestra paleta de colores</p>
+            <script>
+                $(document).ready(function(){
+                    $("td").each(function(){
+                        this.setAttribute("style","background-color:"+this.innerHTML)
+                    });
+                });
+            </script>
+            <table>
+                <tr>
+                    <td>#396AB1</td>
+                    <td>#82A3DB</td>
+                    <td>#3E9651</td>
+                    <td>#94CA6B</td>
+                    <td>#948B3D</td>
+                    <td>#DCD280</td>
+                    <td>#DA7C30</td>
+                    <td>#F1A75C</td>
+                </tr>
+                <tr>
+                    <td>#922428</td>
+                    <td>#B68570</td>
+                    <td>#CC2529</td>
+                    <td>#E36E90</td>
+                    <td>#6B4C9A</td>
+                    <td>#B087C7</td>
+                    <td>#535154</td>
+                    <td>#909595</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
