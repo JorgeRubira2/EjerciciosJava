@@ -57,7 +57,10 @@ public class Ejercicio06Lambdas {
      * valor nulo.
      */
     public Comparator<Persona> compararPersonasPorEdadAscendente() {
-    	throw new RuntimeException("Pendiente de hacer");
+         return (p1,p2) ->
+        	  p1.getEdad() - p2.getEdad();
+		
+
     }
 
     /**
@@ -65,7 +68,11 @@ public class Ejercicio06Lambdas {
      * ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente() {
-    	throw new RuntimeException("Pendiente de hacer");
+    	return (p1,p2) ->{
+    		
+			return Integer.compare(p1.getEdad(),p2.getEdad());
+		
+	};
     }
 
     /**
@@ -75,7 +82,13 @@ public class Ejercicio06Lambdas {
      */
     public Comparator<Persona> compararPersonasPorCiudadYNombre() {
        
-    	throw new RuntimeException("Pendiente de hacer");
+    	return(p1,p2)->{
+    		if(p1.getCiudad().compareTo(p2.getCiudad())==0) {
+    			return p1.getNombre().compareTo(p2.getNombre());
+    		}else {
+    			return p1.getNombre().compareTo(p2.getCiudad());
+    		}
+    	};
     }
 
     /**
