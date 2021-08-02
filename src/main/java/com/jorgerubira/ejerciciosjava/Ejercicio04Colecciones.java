@@ -75,13 +75,13 @@ public class Ejercicio04Colecciones {
      * Pista. Al encontrar un elemento sacarlo del Set para que no lo vuelva a contar.
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
-    	int contador = 0;
-        for (Integer pri:enLista){
-            if (lista.contains(pri)){
-                contador++;
+    	for (int i = lista.size() - 1; i >= 0; i--) {
+            if (enLista.contains(lista.get(i))) {
+                enLista.remove(lista.get(i));
             }
         }
-        return contador;
+
+        return enLista.size();
     }    
     
     /**
