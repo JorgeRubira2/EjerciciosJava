@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".canciones").click(function(){
+                    $("#musica").attr("src",$(this).attr("src"));
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div><audio id="musica" src="" controls></audio></div>
+        <div>
+            <ul>
+                <li src="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3" class="canciones">Canción 1</li>
+                <li src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" class="canciones">Canción 2</li>
+                <li src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" class="canciones">Canción 3</li>
+                <li src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" class="canciones">Canción 4</li>
+            </ul>
+        </div>
+    </body>
+</html>
