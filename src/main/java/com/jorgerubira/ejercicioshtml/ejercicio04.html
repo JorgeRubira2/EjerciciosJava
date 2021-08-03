@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio4</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            .imagenes{
+                width:10%;
+                height: 15%;
+            } 
+        </style>
+        <script>
+            
+           
+    $(document).ready(function() {
+    
+    $(".imagenes").click(function){
+        $(".imagenes").animate ({height:"750px", width:"1000px"}, 3000);
+    
+    });
+          
+        </script>
+        
+
+    </head>
+    <body>
+        <p id="hola">hola</p>
+        <input type="button" class="imagenes" Oclick= "ocultar()" value="hola">
+        <img class="imagenes" src ="https://viajes.nationalgeographic.com.es/medio/2020/07/10/ensenada-de-monsul_4490cc14_1400x933.jpg">
+        <img class="imagenes" src ="https://www.planetware.com/wpimages/2020/12/spain-barcelona-best-beaches-bogatell-beach.jpg">
+        <img class="imagenes" src ="https://pix10.agoda.net/hotelImages/301716/-1/fe9724d8fb4da3dd4590353bd771a276.jpg?s=1024x768">
+        <img class="imagenes" src ="https://cdn.theculturetrip.com/wp-content/uploads/2017/07/17238222421_b15d549354_k.jpg">
+
+
+    </body>
+</html>

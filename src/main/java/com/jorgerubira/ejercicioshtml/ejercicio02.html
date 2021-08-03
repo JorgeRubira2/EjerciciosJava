@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Paletas</title>
+    <meta charset="UTF-8" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    .container {
+      display: flex;
+
+      flex-wrap: wrap;
+      width: 80%;
+      height: 400px;
+    }
+    .cajas {
+      border: 1px solid white;
+      background-color: wheat;
+      width: 10%;
+      height: 200px;
+      color: white;
+      padding-left: 10px;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+      const colores = [
+        "#FFCDD2",
+        "#EBDEF0",
+        "#EAFAF1",
+        "#FCF3CF",
+        "#F2F3F4",
+        "#D1F2EB",
+        "#CCD1D1",
+        "#E6B0AA",
+        "#AED6F1",
+        "#FAD7A0",
+        "#EBDEF0",
+        "#F5CBA7",
+        "#F9EBEA",
+        "#E9F7EF",
+        "#EAEDED",
+        "#D6DBDF",
+        "#C39BD3",
+      ];
+      colores.forEach(function (color) {
+        $(".container").append("<div class = 'cajas' style= 'background: " + color + "'> " + color + "</div>");
+      });
+    });
+  </script>
+</head>
+
+  <body>
+    <h3>
+      Aquí hay una pelta de colores
+      <p>En el siguiente ejemplo se muestra nuestra paleta de colores</p>
+    </h3>
+    <div class="container">
+      <div class="cajas"><p>#396Ab1</p></div>
+    </div>
+  </body>
+</html>
