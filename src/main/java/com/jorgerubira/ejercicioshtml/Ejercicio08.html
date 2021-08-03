@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  </head>
+  <body>
+    <div style="display: flex;">
+      <div style="margin-right: 15px">
+        <input id="num" type="number" />
+        <br />
+        <br />
+        <button id="ok">Enviar</button>
+      </div>
+      <div >
+          <table id="tabla"></table>
+      </div>
+    </div>
+    <script>
+      $("#ok").click(function () {
+        $("#tabla").empty();
+        $("#tabla").attr('style','border-radius: 3%; border: 1px solid; padding:10px;');
+        for (let i = 1; i <= 10; i++) {
+          var num = $("#num").val();
+          $("#tabla").append(
+            "<tr><td>" +
+              num +
+              " x&nbsp;</td><td>" +
+              i +
+              " =</td><td>&nbsp;" +
+              num * i +
+              "</td></tr>"
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    </head>
+    <body>
+        <div>
+      <audio id="reproductor" controls>
+        <!--<source src="http://www.wisdomweb.ru/editor/ghost_k-stop.ogv" type="audio/mp3">
+                <source src="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3" type="audio/mp3">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3
+                " type="audio/mp3">-->
+        Tu navegador no soporta audio HTML5.
+      </audio>
+    </div>
+
+    <h3>Canciones</h3>
+<ul>
+    <li id="http://www.wisdomweb.ru/editor/ghost_k-stop.ogv">Audio 1</li>
+            <li id="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3">Audio 2</li>
+            <li id="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Audio 3</li>
+            <li id="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">Audio 4</li>
+</ul>
+    <script>
+      $("li").click(function () {
+        $("#reproductor").attr("src", $(this).attr("id")).trigger("play");
+        console.log($(this).attr("id"));
+      });
+    </script>
+    </body>
+</html>
