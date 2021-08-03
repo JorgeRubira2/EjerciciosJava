@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 6</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function (){
+                $(".musica").click(function (){
+                    $("#reproductor").attr("src",$(this).attr("src"))
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="player">
+            <audio id="reproductor" controls src=""></audio>
+        </div>
+        
+        <div class="canciones">
+            <a class="musica" src="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3">Cancion 1</a><br>
+            <a class="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Cancion 2</a><br>
+            <a class="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">Cancion 3</a><br>
+            <a class="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">Cancion 4</a>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+

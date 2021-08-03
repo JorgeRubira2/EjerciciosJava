@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 5</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            input[type=text]{
+                margin-right: 15px;
+            }
+            .espacio{
+                margin-right: 50px;
+            }
+            .max-tam{
+                display: block;
+                width: 90%
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="#" name="form1">
+            <table style="border-spacing: 15px">
+                <tr>
+                    <td><b class="espacio">Name</b></td>
+                    <td><input type="text" placeholder="First"></td>
+                    <td><input type="text" placeholder="Last"></td>
+                </tr>
+                <tr>
+                    <td><b class="espacio">Email</b></td>
+                    <td><input type="text" placeholder="Email"></td>
+                </tr>
+                <tr>
+                    <td><b class="espacio">Address</b></td>
+                    <td colspan="2"><input type="text" placeholder="Street Adress"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"><input type="text" placeholder="Street Adress Line 2"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" placeholder="City"></td>
+                    <td><input type="text" placeholder="Region"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" placeholder="Postal / Zip Code"></td>
+                    <td><select>
+                            <option value="">Select a Country</option>
+                            <option value="esp">Spain</option>
+                            <option value="ro" selected>Romania</option>
+                            <option value="fr">France</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input style="padding: 5px 20px; background-color: transparent;border-radius: 7px" type="submit" name="enviar" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
