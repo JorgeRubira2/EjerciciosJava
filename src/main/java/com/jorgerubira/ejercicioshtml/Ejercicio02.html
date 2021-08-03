@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ejercicio02</title>
+<style type="text/css">
+.cuadrado {
+	width: 150px;
+	height: 150px;
+}
+</style>
+</head>
+<body onload="ponerColor()">
+	<h2>Aqui hay una paleta de colores</h2>
+	<p>En el siguiente ejemplo se muestra nuestra siguiente paleta de
+		colores</p>
+
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td><div class="cuadrado">#0452F9</div></td>
+				<td><div class="cuadrado">#EB1313</div></td>
+				<td><div class="cuadrado">#06F520</div></td>
+				<td><div class="cuadrado">#06F5D5</div></td>
+			</tr>
+			<tr>
+				<td><div class="cuadrado">#F5E706</div></td>
+				<td><div class="cuadrado">#F206F5</div></td>
+				<td><div class="cuadrado">#F50685</div></td>
+				<td><div class="cuadrado">#9006F5</div></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	function ponerColor() {
+		$("div").attr("style", "background-color:");
+	}
+</script>
+</html>
