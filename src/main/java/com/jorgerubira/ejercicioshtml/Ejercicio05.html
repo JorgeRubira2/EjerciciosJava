@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>5. Diseñar un formulario que tenga esta forma</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        p{
+            display: inline-block;
+            font-weight: bold;
+            padding-right: 50px;
+            padding-left: 20px;
+        }
+        #pequeño{
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+        }
+        #grande{
+            width:363px;
+            margin-left: 14px;
+        }
+    </style>
+    <body>
+        <div>
+            <p>Name</p>
+            <input id="pequeño" type="text" name="nombre" placeholder="First"/>
+            <input id="pequeño" type="text" name="apellido" placeholder="Last"/>
+        </div>
+        <div>
+            <p style="padding-right: 49">Email</p>
+            <input id="pequeño" type="text" name="email"/>
+        </div>
+        <div>
+            <div>
+                <p>Address</p>
+                <input id="grande" type="text" name="direccion" placeholder="Street Address"/>
+            </div>
+            <div>
+                <input id="grande" type="text" name="direccion" placeholder="Street Address 2"/>
+            </div>
+            <div>
+                <input id="pequeño" type="text" name="ciudad" placeholder="City"/>
+                <input id="pequeño" type="text" name="region" placeholder="Region"/>
+            </div>
+        </div>
+    </body>
+</html>
