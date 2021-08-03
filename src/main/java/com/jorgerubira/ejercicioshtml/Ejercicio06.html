@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>Ejercicio06</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+        <style>
+            #listContainer { width:310px; background-color:#fafafa; }
+            #listContainer ul { background-color: #fafafa; clear: both; cursor: pointer; }
+            #listContainer li { padding:10px; }
+
+            #playerContainer { width:310px; height:130px; background-color:#333333; }
+            .controls li:first{margin-right:10px}
+            .controls li { float:left; display:inline-block; width:50px; text-align:center; margin-top:8px;margin-left:10px }
+
+            .progress { clear:both; height:4px; background-color:#666666; width:100%; cursor:pointer; position:relative; }
+            .progress .updateProgress { width:0px; background-color:#00BD9B; height:100%; float:left; position:relative; }
+            .volumeControl { position: relative; margin: 8px auto; }
+            .volumeControl .updateProgress { display:inline-block; vertical-align:middle; margin-top:2px; }
+            input[type="range"] { -webkit-appearance: none; -moz-appearance: none; background-color: #00BD9B; height: 2px; }
+        </style>
+    </head>
+    <body>
+        <div class="containerPlayer">
+
+            <div id="listContainer" class="playlistContainer"></div>
+
+            <div id="playerContainer">
+                <ul class="controls"></ul>
+                <div class="audioDetails"></div>
+                <div class="progress"></div>
+                <div class="volumeControl"></div>
+            </div>
+
+        </div>
+
+        <ul id="playListContainer">
+            <li data-src="https://www.fiftysounds.com/es/musica-libre-de-derechos/solo-los-valientes.html">
+                <a href="#">Solo los Valientes</a>
+            </li>
+            <li data-src="https://www.fiftysounds.com/es/musica-libre-de-derechos/diferente.html">
+                <a href="#">Diferente</a>
+            </li>
+        </ul>
+
+        <ul class="controls">
+            <li><a href="#" class="shuffle shuffleActive" data-attr="shuffled"></a></li>
+            <li><a href="#" class="left" data-attr="prevAudio"></a></li>
+            <li><a href="#" class="play" data-attr="playPauseAudio"></a></li>
+            <li><a href="#" class="right" data-attr="nextAudio"></a></li>
+            <li><a href="#" class="repeat" data-attr="repeatSong"></a></li>
+        </ul>
+
+        <div class="audioDetails">
+            <span class="songPlay"></span>
+            <span data-attr="timer" class="audioTime"></span>
+        </div>
+
+        <div class="progress">
+            <div data-attr="seekableTrack" class="seekableTrack"></div>
+            <div class="updateProgress"></div>
+        </div>
+
+        <div class="volumeControl">
+            <div class="volume volume1"></div>
+            <input class="bar" data-attr="rangeVolume" type="range" min="0" max="1" step="0.1" value="0.7" />
+        </div>
+
+        <script src="jquery.js"></script>
+        <script src="jquery.audioControls.js"></script>
+        <script>
+            $(document).ready(function ()
+            {
+                $("#playListContainer").audioControls(
+                        {
+                            autoPlay: false,
+                            timer: 'increment',
+                            onAudioChange: function (response) {
+                                $('.songPlay').text(response.title + ' ...'); //Song title information
+                            },
+                            onVolumeChange: function (vol) {
+                                var obj = $('.volume');
+                                if (vol <= 0) {
+                                    obj.attr('class', 'volume mute');
+                                } else if (vol <= 33)
+                                {
+                                    obj.attr('class', 'volume volume1');
+                                } else if (vol > 33 && vol <= 66)
+                                {
+                                    obj.attr('class', 'volume volume2');
+                                } else if (vol > 66)
+                                {
+                                    obj.attr('class', 'volume volume3');
+                                } else
+                                {
+                                    obj.attr('class', 'volume volume1');
+                                }
+                            }
+                        });
+            });
+        </script>
+    </body>
+</html>
