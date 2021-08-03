@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio02</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            color: white;
+            display: inline-block;
+            margin-top: 2px;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+                $("div").each(function(){
+                    this.setAttribute("style", "background-color:"+this.innerHTML);
+                });
+            });
+    </script>
+</head>
+<body>
+    <h3>Aquí hay una paleta de colores</h3>
+    <p>En el siguiente ejemplo se muestra nuestra paleta de colores</p>
+        <div>#396AB1</div>
+        <div>#82A3DB</div>
+        <div>#3E9651</div>
+        <div>#94CA6B</div>
+        <div>#948B3D</div>
+        <div>#DCD280</div>
+        <div>#DA7C30</div>
+        <div>#F1A75C</div>
+        <div>#922428</div>
+        <div>#B68570</div>
+        <div>#CC2529</div>
+        <div>#E36E90</div>
+        <div>#6B4C9A</div>
+        <div>#B087C7</div>
+        <div>#535154</div>
+        <div>#909595</div>
+</body>
+</html>
