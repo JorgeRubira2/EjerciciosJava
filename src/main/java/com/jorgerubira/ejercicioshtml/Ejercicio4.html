@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>       
+        <style>
+            
+            li{
+                  height: 300px;
+                  float: left;
+                  display: block;
+                  
+            }
+            
+            img, .resultado{
+                  width: 300px;
+                  float: left;
+                  display: block;               
+            }
+   
+        </style>    
+        
+    </head>
+    
+    <ul>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Amiga500_system.jpg" alt="alt" class="click"/></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Raspberry_Pi_4_Model_B_-_Side.jpg/1920px-Raspberry_Pi_4_Model_B_-_Side.jpg" alt="alt" class="click"/></li>        
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Nintendo-Switch-Console-Docked-wJoyConRB.jpg/1920px-Nintendo-Switch-Console-Docked-wJoyConRB.jpg" alt="alt" class="click"/></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/PS4-Console-wDS4.png/1920px-PS4-Console-wDS4.png" alt="alt" class="click"/></li>
+    </ul>
+
+    <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Amiga500_system.jpg" alt="alt" class="resultado"/>
+    </div>
+    
+    
+    <script>
+        $('.click').click(function() {
+            alert( "Imagen pulsada" );
+        });
+    </script>
+</html>
