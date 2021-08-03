@@ -9,20 +9,42 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>   
 
         <script>
             $(document).ready(function () {
 
-                function cambioImagen(obj) {
-                    $("img1").click(cambioImagen(this));
-                }
-
             });
+
+
+            function tabla(numero) {
+
+                for (var n = 0; n <= 10; n++) {
+                    var a = numero*n;
+                    
+                    $("#imprimir").append(numero + " x " + n + " = " + a +  "<br>");
+                }
+            }
+            ;
+
+
         </script>
     </head>
     <body>
-        <input type="text"/>
-        <input type="button" id="enviar"/>Enviar
+        <div class="container">
+
+            <div class="row col-2 mt-4">
+                <input id="numeroCoger" type="text" value=""/>
+            </div>
+            <div class="form-group row mt-4 col-2 ">
+                <input onclick="tabla($('#numeroCoger').val())" class="form-control  btn btn-primary" type="button" id="enviar" value="Enviar"/>
+            </div> <br><br>
+            <div id="imprimir">
+                
+                
+            </div>
+        </div>
     </body>
 </html>
