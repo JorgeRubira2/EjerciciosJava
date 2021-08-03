@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ejercicio04</title>
+</head>
+<style>
+img {
+	width: 150px;
+	height: 180px;
+}
+
+#fotoGrande{
+width: 250px;
+height:300px;
+}
+</style>
+<body>
+	<div>
+		<img class="col-3" id="imagenes"
+			src="https://www.hiberus.com/themes/custom/hiwc_static/styling/base/assets/imagen-responsive-web.jpg"
+			onclick="verImagen('https://www.hiberus.com/themes/custom/hiwc_static/styling/base/assets/imagen-responsive-web.jpg')" />
+		<img class="col-3" id="imagenes"
+			src="https://s03.s3c.es/imag/_v0/720x548/e/a/5/rrss_hiberus.jpg"
+			onclick="verImagen('https://s03.s3c.es/imag/_v0/720x548/e/a/5/rrss_hiberus.jpg')" />
+		<img class="col-3" id="imagenes"
+			src="https://www.hiberus.com/sites/default/files/2019-10/16._serveis_i_solucions.jpg"
+			onclick="verImagen('https://www.hiberus.com/sites/default/files/2019-10/16._serveis_i_solucions.jpg')" />
+		<img class="col-3" id="imagenes"
+			src="https://www.ciospain.es/archivos/201405/valencia.jpg"
+			onclick="verImagen('https://www.ciospain.es/archivos/201405/valencia.jpg')" />
+	</div>
+	<img id="fotoGrande" src="https://www.hiberus.com/themes/custom/hiwc_static/styling/base/assets/imagen-responsive-web.jpg">
+	
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+function verImagen(imagen) {
+    $("#fotoGrande").attr("src", imagen);
+}
+</script>
+</body>
+</html>

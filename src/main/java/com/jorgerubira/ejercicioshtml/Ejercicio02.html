@@ -10,24 +10,33 @@
 }
 </style>
 </head>
-<body onload="ponerColor()">
+<body>
+
 	<h2>Aqui hay una paleta de colores</h2>
 	<p>En el siguiente ejemplo se muestra nuestra siguiente paleta de
 		colores</p>
 
-	<table width="100%">
+	<table>
 		<tbody>
 			<tr>
 				<td><div class="cuadrado">#0452F9</div></td>
 				<td><div class="cuadrado">#EB1313</div></td>
 				<td><div class="cuadrado">#06F520</div></td>
 				<td><div class="cuadrado">#06F5D5</div></td>
+				<td><div class="cuadrado">#0D0A0E</div></td>
+				<td><div class="cuadrado">#C6B1D5</div></td>
+				<td><div class="cuadrado">#B5CDE7</div></td>
+				<td><div class="cuadrado">#205792 </div></td>
 			</tr>
 			<tr>
 				<td><div class="cuadrado">#F5E706</div></td>
 				<td><div class="cuadrado">#F206F5</div></td>
 				<td><div class="cuadrado">#F50685</div></td>
 				<td><div class="cuadrado">#9006F5</div></td>
+				<td><div class="cuadrado">#D8B3A3</div></td>
+				<td><div class="cuadrado">#D66A3E</div></td>
+				<td><div class="cuadrado">#F1F1E4</div></td>
+				<td><div class="cuadrado">#FF90A3</div></td>
 			</tr>
 		</tbody>
 	</table>
@@ -36,8 +45,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
-	function ponerColor() {
-		$("div").attr("style", "background-color:");
-	}
+	$(document).ready(function() {
+		$('div').each(function() {
+			this.setAttribute("style", "background-color:" + this.innerHTML);
+		});
+	});
 </script>
 </html>
