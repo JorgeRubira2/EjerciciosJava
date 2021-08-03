@@ -1,15 +1,44 @@
 <html>
 
   <head>
-    <title>1.Mostrar una cabecera y un parrafo</title>
+    <title>4.Imagen de miniatura a grande</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
     <style type="text/css">
-    
+      div {
+        display: flex;
+        margin-left: 200px;
+      }
+      .min {
+        width: 125px;
+      }
+      .max {
+        width: 500px;
+      }
+
     </style>
   </head>
 
   <body>
+    <div class="miniaturas">
+      <img class="min" src="img/abraham.png"></img>
+      <img class="min" src="img/apu.png"></img>
+      <img class="min" src="img/bart.png"></img>
+      <img class="min" src="img/burns.png"></img>
+      <img class="min" src="img/flanders.png"></img>
+      <img class="min" src="img/homer.png"></img>
+    </div>
+    <div>
+      <img class="max" id="1" src="img/abraham.png" />
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script>
+      $('.min').click(function() {
+        var imagen = $(this).attr("src");
+        $('#1').attr("src", imagen);
+      });
+    </script>
+
 
 
   </body>
