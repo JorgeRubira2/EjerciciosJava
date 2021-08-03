@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ejercicio08</title>
+</head>
+<body>
+<input type="number" id="valor" min="1" max="10" value="0">
+
+<div id="tablaMultiplicar">
+	<h1></h1>
+	<table></table>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+$("#valor").keypress(function(e) {
+    if(e.keyCode == 13) {//solo calcula si se pulsa el Enter
+        calcular();
+    }
+});
+
+function calcular() {
+ var numActual= $("#valor").val();//valor del input
+ $tablaMultiplicar = $('#tablaMultiplicar');
+ $tablaMultiplicar.find('h1').text("Tabla del "+numActual);//poner titulo
+
+ $tabla = $tablaMultiplicar.find('table');
+ $tabla.empty();//vacia la tabla para que no se acumulen los resultados
+ 
+ for(var i=1; i<11; i++){//multiplica del 1 al 10 y los añade a la tabla
+	 $tabla.append( $('<tr><th>'+numActual+'x'+i+'</th><td>=</td><td>'+(numActual*i)+'</td></tr>') );
+ }
+ //Actualizamos el siguiente numero
+ numActual = (numActual % 10) + 1;
+}
+
+</script>
+</html>
