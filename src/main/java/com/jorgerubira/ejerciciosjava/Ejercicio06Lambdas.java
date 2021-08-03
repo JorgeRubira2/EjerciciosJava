@@ -23,8 +23,8 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
-        return (v1, v2)->v1-v2;
-    } 
+        return (Integer a, Integer b)->a-b;
+        } 
 
     /**
      * Devolver una función Comparator con Lambdas que compare dos Strings 
@@ -59,7 +59,7 @@ public class Ejercicio06Lambdas {
      * para ordenar por edad de mayor a menor
      */
     public Comparator<Persona> compararPersonasPorEdadDescendente(){
-        return (v1,v2)-> v2.getEdad() - v1.getEdad();
+        return (Persona a,Persona b)-> a.getEdad() - b.getEdad();
     }     
     
     /**
@@ -90,8 +90,8 @@ public class Ejercicio06Lambdas {
      * Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral(){
-        return v1 ->{
-            if (v1.getEdad() >= 16 && v1.getEdad() <= 64) {
+        return (Persona a) ->{
+            if (a.getEdad() >= 16 && a.getEdad() <= 64) {
                 return true;
             }else{
                 return false;
@@ -111,7 +111,7 @@ public class Ejercicio06Lambdas {
      * Devolver una función Function que devuelva la compra (Opcional) de las personas.
      */
     public Function<Persona, Optional<Compra>> obtenerCompraOpcionalDePersonas(){
-        return v1 -> v1.getCesta();
+        return (Persona a) -> a.getCesta();
     }
 
     /**
@@ -119,9 +119,9 @@ public class Ejercicio06Lambdas {
      * Devolver null si no tiene compra.
      */
     public Function<Persona, Compra> obtenerCompraDePersonas(){
-        return v1 -> {
-            if (v1.getCesta().isPresent()){
-                return v1.getCesta().get();
+        return (Persona a) -> {
+            if (a.getCesta().isPresent()){
+                return a.getCesta().get();
             }else{
                 return null;
             }
@@ -138,14 +138,15 @@ public class Ejercicio06Lambdas {
     /**
      * Crear una función BiConsumer que copie la compra de la segunda persona a la primera.
      * La cesta de la segunda persona debe quedar empty.
+     * BiConsumer recibe dos parametros y lleva void
      */
     public BiConsumer<Persona, Persona> moverCompraAlInicio(){
-        return (v1, v2) -> {
-            if (v2.getCesta().isPresent()){
-                v1.setCesta(v2.getCesta().get());
-                v2.setCesta(null);
+        return (Persona a, Persona b) -> {
+            if (b.getCesta().isPresent()){
+                a.setCesta(b.getCesta().get());
+                b.setCesta(null);
             }else{
-                v1.setCesta(null);
+                a.setCesta(null);
             }
         };
     }
@@ -174,6 +175,7 @@ public class Ejercicio06Lambdas {
     
     /**
      * Devuelve la suma de dos enteros.
+     * Recibe dos parametros int y devuelve un parametro int
      */
     public IntBinaryOperator sumar(){
         return (int a, int b)->a+b;
@@ -185,12 +187,12 @@ public class Ejercicio06Lambdas {
      * Comprobar si la compra recibida vale empty. En ese caso será equivalente a 0 unidades.
      */
     public IComparadorPersonaCompra miCompraEsMayorQueOtra(){
-        return (v1, v2) -> {
-            if (v1.getCesta().isPresent() && v2.isEmpty()){
+        return (a, b) -> {
+            if (a.getCesta().isPresent() && b.isEmpty()){
                 return true;
             }
-            if (v1.getCesta().isPresent() && v1.getCesta().isPresent()){
-                if (v1.getCesta().get().getTotalArticulos() > v2.get().getTotalArticulos()){
+            if (a.getCesta().isPresent() && a.getCesta().isPresent()){
+                if (a.getCesta().get().getTotalArticulos() > b.get().getTotalArticulos()){
                     return true;
                 }
             }
@@ -203,13 +205,13 @@ public class Ejercicio06Lambdas {
      * Tener el valor empty equivale a tener 0 unidades.
      */
     public IComparadorPersonaCompra igualNumeroDeUnidades(){
-        return (v1, v2) -> {
-            if (v1.getCesta().isPresent() && v2.isPresent()){
-                if (v1.getCesta().get().getTotalArticulos() == v2.get().getTotalArticulos()){
+        return (a, b) -> {
+            if (a.getCesta().isPresent() && b.isPresent()){
+                if (a.getCesta().get().getTotalArticulos() == b.get().getTotalArticulos()){
                     return true;
                 }
             }
-            if (v1.getCesta().isEmpty() && v2.isEmpty()){
+            if (a.getCesta().isEmpty() && b.isEmpty()){
                 return true;
             }
             return false;

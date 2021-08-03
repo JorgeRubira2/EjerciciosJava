@@ -1,4 +1,5 @@
 - Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
+- Optional<Envoltorio> -> get(), isPresent(), isEmpty(), orElse(T) "es como el get pero darmo un valor por defecto si no tiene"
 - Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
 - Modificadores. (Public, Protected (derivadas y paquete), (Nada) (paquete), Private)
 - Herencia. (Reutilización codigo, Base y derivada, las derivadas tienen todo lo de la clase base).
@@ -7,7 +8,7 @@
 - Sobrecarga metodos (Podemos tener metodos con el mismo nombre pero parametros diferentes).
 - Constructores (Se ejecutan al hacer new. Para inicialización de datos)
 - Encapsulación (Atributos privados, Leer y modificar getAtributo o setAtributo).
-- Object (toString() - equals() - @Override)
+- Object (toString() - equals() - hashCode - @Override)
 
 - GIT (Add>Commit>Push) (Add>Commit>Pull) (Todos dias Add>Commit>Pull>Merge>(Conflict>Add>Commit)>Push)  Switch Branch, Merge Revision
 
@@ -20,3 +21,9 @@
 - Nomenclatura. CamelCase: Clase,Interface->PrimeraMayuscula.  metodos, atributos y variables->primeraMinuscula.
 - Enumeraciones (No es tan importante). Constantes (public final static int CONSTANTE) -> enum 
 - Switch. (No es tan importante). if (a==4) {  ... } else if ( a > 3 && a< 10) { ... }.
+
+- Collections -> List (ArrayList), Map (HashMap), Set (HashSet).  Add, Remove, Put
+- Lambdas -> Interface 1 metodo abstract. Almacenar en un código en una variable. Pasar por parámetro una función.
+- Streams -> (Importante). Lambdas -> boolean Predicate<T>, void Consumer<T>, U Function<T,U>.
+          -> Intermedios: filter, map, sorted (limit, skip)   
+          -> Finales: List/Map/Set collect, long count(), Optional<T> anyMatch(Predicate), forEach

@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -34,9 +35,9 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */
     public void copiar(List<Double> origen, List<Double> destino){
-        for(int n=0; n<origen.size();n++){
-            if (origen.get(n) >= 0) {
-                destino.add(origen.get(n));
+        for(int i=0; i<origen.size();i++){
+            if (origen.get(i) >= 0) {
+                destino.add(origen.get(i));
             }
         }
     }
@@ -47,8 +48,8 @@ public class Ejercicio04Colecciones {
      */
     public int contarElementosEnSet(List<Integer> lista, Set<Integer> enLista){
         int resultado = 0;
-        for (int n = 0; n < lista.size(); n++) {
-            if (enLista.contains(lista.get(n))) {
+        for (int i = 0; i < lista.size(); i++) {
+            if (enLista.contains(lista.get(i))) {
                 resultado++;
             }
         }
@@ -62,9 +63,9 @@ public class Ejercicio04Colecciones {
      */
     public int contarElementosEnSetNoRepetidos(List<Integer> lista, Set<Integer> enLista){
         int resultado = 0;
-        for (int n = 0; n < lista.size(); n++) {
-            if (enLista.contains(lista.get(n))) {
-                enLista.remove(lista.get(n));
+        for (int i = 0; i < lista.size(); i++) {
+            if (enLista.contains(lista.get(i))) {
+                enLista.remove(lista.get(i));
                 resultado++;
             }
         }
@@ -91,9 +92,9 @@ public class Ejercicio04Colecciones {
      *  return listaPersonas().removeIf(value -> !value.contains("Huesca"));
      */
     public void borrarPersonasHuescaDeLista(List<Persona> listaPersonas){
-        for (int n = listaPersonas.size() - 1; n > 0; n--) {
-            if (listaPersonas.get(n).getCiudad().equals("Huesca")) {
-                listaPersonas.remove(n);
+        for (int i = listaPersonas.size() - 1; i > 0; i--) {
+            if (listaPersonas.get(i).getCiudad().equals("Huesca")) {
+                listaPersonas.remove(i);
             }
         }
     }
@@ -104,14 +105,14 @@ public class Ejercicio04Colecciones {
      * 
      */
     public void borrarPersonasHuescaDeMapa(Map<String, Persona> listaPersonas){
-        List<String> list = new ArrayList<>(); //Creamos ArrayList para guardar las Keys de listaPersonas
+        List<String> lista = new ArrayList<>(); //Creamos ArrayList para guardar las Keys de listaPersonas
         for (String key : listaPersonas.keySet()) { //Recorremos listaPersonas
             if ((listaPersonas.get(key).getCiudad()).equals("Huesca")) { //Si esa persona tiene como ciudad "Huesca", añadimos su key al ArrayList
-                list.add(key);
+                lista.add(key);
             }
         }
-        for (int i = 0; i < list.size(); i++) { //Recorremos el ArrayList y eliminamos los elementos de ListaPersonas con esa key
-            listaPersonas.remove(list.get(i));
+        for (int i = 0; i < lista.size(); i++) { //Recorremos el ArrayList y eliminamos los elementos de ListaPersonas con esa key
+            listaPersonas.remove(lista.get(i));
         }
     }
     
@@ -137,11 +138,11 @@ public class Ejercicio04Colecciones {
      * Pista: Utilizar el método Arrays.asList <<Devuelve una lista inmutable
      */    
     public List<Integer> generarLista(int valores[]){
-        List<Integer> list = new ArrayList<>();
+        List<Integer> lista = new ArrayList<>();
         for (int numero : valores) {
-            list.add(numero);
+            lista.add(numero);
         }
-        return list;
+        return lista;
     }
     
     /**
@@ -149,11 +150,11 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public ArrayList<Integer> generarArrayList(int valores[]){
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> lista = new ArrayList<>();
         for (int numero : valores) {
-            list.add(numero);
+            lista.add(numero);
         }
-        return list;
+        return lista;
     }
 
     /**
@@ -187,13 +188,13 @@ public class Ejercicio04Colecciones {
      * No hace falta verificar si valen nulo.
      */    
     public List<String> aprobados(Map<String, Integer> notas){
-        List<String> list = new ArrayList<>(); //Creamos una lista para guardar los nombres de los alumnos aprobados
+        List<String> lista = new ArrayList<>(); //Creamos una lista para guardar los nombres de los alumnos aprobados
         for (String nombre : notas.keySet()) { //Recorremos el Map de los alumnos con sus notas
             if (notas.get(nombre) >= 5) { //Si es mayor de 5 la nota, se añade a la lista
-                list.add(nombre);
+                lista.add(nombre);
             }
         }
-        return list;
+        return lista;
     } 
 
     
@@ -202,9 +203,26 @@ public class Ejercicio04Colecciones {
      * Nota la persona puede aparecer varias veces en la lista, en ese caso se irá sumando 
      * No hace falta verificar si valen nulo.
      */    
-    public Map<String, Integer> totalProductos(List<Persona> personas){
-        throw new RuntimeException("Pendiente de hacer");
-    }     
+       public Map<String, Integer> totalProductos(List<Persona> personas) {
+        Map<String, Integer> lista = new HashMap<>(); //Creamos una lista donde guardaremos a las personas
+        for (Persona persona : personas) { //Recorremos el List de Persona
+            if (lista.containsKey(persona.getNombre())) { //Comprobamos que esa persona tenga ya una Key en nuestro list
+                int carro = lista.get(persona.getNombre()); //Añadimos el valor de la cesta actual
+                if (persona.getCesta().isPresent()) { //Comprobamos que haya algún valor 
+                    lista.replace(persona.getNombre(), carro + persona.getCesta().get().getTotalArticulos()); //Remplazamos añadiendo nombre y la cesta+el total de la nueva cesta
+                } else {
+                    lista.replace(persona.getNombre(), carro); //Reemplazamos añadiendo el nombre y la cesta actual
+                }
+            } else {
+                if (persona.getCesta().isPresent()) { //Comprobamos que haya algún valor
+                    lista.put(persona.getNombre(), persona.getCesta().get().getTotalArticulos()); //Al haber valor, añadimos a la persona con su cesta actual
+                } else {
+                    lista.put(persona.getNombre(), 0); //Si no hay ningún valor, añadimos a esa nueva persona con 0 artículos en la cesta
+                }
+            }
+        }
+        return lista;
+    }  
     
     
     /**

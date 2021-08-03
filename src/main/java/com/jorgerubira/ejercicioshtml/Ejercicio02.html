@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Ejercicio 2 - Mostrar una paleta de colores con su valor RGB en hexadecimal</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+            td{
+                display: inline-block;
+                color: white;
+                width: 100px;
+                height: 100px;
+                margin: 1px 2px;
+                padding: 10px;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <script>
+            $(document).ready(function(){
+                $('td').each(function(){
+                    this.setAttribute("style","background-color:" + this.innerHTML);
+                });                
+            });
+        </script>
+        <div>
+            <h1>Aquí hay una paleta de colores</h1>
+            <p>En el siguiente ejemplo se muestra una paleta de colores.</p>
+        </div>    
+        <table>
+            <tr>
+                <td>#3FE79D</td>
+                <td>#CA46DF</td>
+                <td>#E7543F</td>
+                <td>#3FB2E7</td>
+            </tr>
+            <tr>
+                <td>#6F3FE7</td>
+                <td>#B93FE7</td>
+                <td>#E73FAC</td>
+                <td>#A62339</td>
+            </tr>
+        </table>
+        
+        
+
+    </body>
+</html>
+

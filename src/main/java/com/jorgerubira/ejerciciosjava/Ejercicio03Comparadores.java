@@ -3,7 +3,7 @@ package com.jorgerubira.ejerciciosjava;
 import java.util.Optional;
 
 public class Ejercicio03Comparadores {
-    
+
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
@@ -12,19 +12,18 @@ public class Ejercicio03Comparadores {
             return true;
         }else{
             return false;
-        }  
+        }   
     }
-    
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
     //Si se envia null en cualquiera de ellos devuelve false
-    public boolean compararEnteroConLong(Integer i1, Long i2){
-        if((i1!=null && i2!= null)&&(i1.intValue() == i2.intValue())){
-            return true;
-        }else{
+    public boolean compararEnteroConLong(Integer i1, Long i2) {
+        try {
+            return Long.valueOf(i1).equals(i2);
+        } catch (Exception e) {
             return false;
-        }  
-    }    
+        }
+    }
 
     //Debe devolver true si el texto que se ha enviado en un número. 
     //Si no devuelve false
@@ -52,6 +51,7 @@ public class Ejercicio03Comparadores {
             return false;
         }  
     }    
+
 
     //Debe devolver true si los dos números son iguales. 
     //Si no devuelve false
