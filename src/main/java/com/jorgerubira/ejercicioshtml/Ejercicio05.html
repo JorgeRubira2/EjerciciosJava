@@ -1,0 +1,81 @@
+<html>
+
+  <head>
+    <title>5.Formulario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    <style>
+      .first {
+        margin-left: 80px;
+        margin-bottom: 30px;
+
+      }
+
+      .second {
+        margin-left: 20px;
+      }
+
+      form {
+        display: block;
+        margin-left: 500px;
+        margin-top: 20px;
+        text-align: justify;
+      }
+
+      label {
+        display: inline-block;
+        width: 80px;
+      }
+
+      .address {
+        margin-left: 160px;
+        margin-top: -20px;
+        margin-bottom: 10px;
+
+      }
+
+      .select {
+        margin-left: 24px;
+        width: 180px;
+
+      }
+
+      .submit {
+        margin-left: 160px;
+        margin-top: 20px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <form>
+
+      <label>Name</label><input class="first" name="Name" type="text" placeholder="First"></input> <input class="second" type="text" placeholder="Second"></input>
+      <br>
+      <label>Email</label><input class="first" name="Email" type="email"></input>
+      <br>
+      <label>Address</label><input class="first" type="text" name="Adress" style="width:355px;" placeholder="Street Adress"></input>
+      <br>
+      <input class="address" type="text" name="Street" style="width:355px;" placeholder="Street Adress Line 2"></input>
+      <br>
+      <input class="address" type="text" name="City" placeholder="City"></input> <input class="second" type="text" name="Region" placeholder="Region"style="width:180px;"></input>
+      <br>
+      <input class="address" type="text" name="CP" placeholder="Postal/Zip Code"></input><select class="select" name="Provincia" placeholder="Provincia">
+        <option value="Almeria" selected>Almeria</option>
+        <option value="Malaga">Malaga</option>
+        <option value="Cadiz">Cadiz</option>
+        <option value="Cordoba">Cordoba</option>
+        <option value="Jaen">Jaen</option>
+        <option value="Granada">Granada</option>
+
+      </select>
+      <br>
+      <input type="submit" class="submit"></input>
+
+    </form>
+
+
+  </body>
+
+</html>

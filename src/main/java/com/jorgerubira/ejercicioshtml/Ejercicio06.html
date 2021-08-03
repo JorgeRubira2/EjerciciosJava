@@ -1,0 +1,68 @@
+<html>
+
+  <head>
+    <title>6.Reproductor de musica</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    <style>
+      div {
+        display: block;
+        width: 310px;
+        margin: auto;
+        padding: 20px;
+        margin-top: 5px;
+        background-color: darkgray;
+
+      }
+
+      a {
+        cursor: pointer;
+      }
+
+      .lista {
+        text-align: left;
+        color: white;
+        text-decoration: underline;
+        display: block;
+        background-color: gray;
+      }
+
+      .inner {
+        background-color: black;
+        width: 250px;
+
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
+    <script>
+      $(document).ready(function() {
+
+        $('.cancion').click(function() {
+          var valor = $(this).attr("tag");
+          $('#repr').attr('src', valor).trigger();
+        });
+
+      });
+    </script>
+
+  </head>
+
+  <body>
+    <div class="reproductor">
+      <audio controls id="repr" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+
+      </audio>
+    </div>
+    <div class="lista">
+      <div class="inner">
+
+        <a class="cancion" tag="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Cancion 1</a><br>
+        <a class="cancion" tag="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">Cancion 2</a><br>
+        <a class="cancion" tag="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">Cancion 3</a><br>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
