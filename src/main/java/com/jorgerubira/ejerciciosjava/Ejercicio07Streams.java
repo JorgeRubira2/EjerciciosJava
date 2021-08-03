@@ -183,6 +183,7 @@ public class Ejercicio07Streams {
      * No hace falta verificar si valen nulo.
      */
     public Map<String, Integer> cuantasPersonasMayoresDeEdadPorCiudad(List<Persona> lista){
+
         Map<String, Long> personas = lista.stream()
                 .filter(a -> a.getEdad() >= 18)
                 .collect(Collectors.groupingBy(a -> a.getCiudad(), Collectors.counting()));
@@ -191,6 +192,7 @@ public class Ejercicio07Streams {
                 .collect(Collectors.toMap(a -> a.getKey(), a -> a.getValue().intValue()));
 
         return resultado;
+
     }     
     
 }

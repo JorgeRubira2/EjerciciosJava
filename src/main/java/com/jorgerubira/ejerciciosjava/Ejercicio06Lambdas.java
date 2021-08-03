@@ -23,8 +23,10 @@ public class Ejercicio06Lambdas {
      * No hace falta comprobar los valores nulos.
      */
     public Comparator<Integer> compararIntegers(){
+
         return (Integer a, Integer b)->a-b;
         } 
+
 
     /**
      * Devolver una función Comparator con Lambdas que compare dos Strings 

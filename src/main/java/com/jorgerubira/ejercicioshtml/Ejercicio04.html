@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mostrar 4 imágenes en miniatura que al pulsarlas aparezcan en grande en otra zona de la pantalla</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+        <style>
+            img{
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <script> 
+            $(document).ready(function(){
+                $('img').click(function(){
+                    $("#portaretrato").attr("src",this.src);
+                });
+            }); 
+        </script>
+        <div class="imagenes_pequeñas">
+            <img id="1" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-3.jpg" alt="llama" />
+            <img id="2" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-1.jpg" alt="avestruz"/>
+            <img id="3" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-2.jpg" alt="mono"/>
+            <img id="4" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-4.jpg" alt="orangutan"/>
+        </div>
+        <div >
+            <img alt="portaretratos" style="width: 400px; height:400px;" id="portaretrato" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-4.jpg">
+        </div>
+
+    </body>
+</html>
