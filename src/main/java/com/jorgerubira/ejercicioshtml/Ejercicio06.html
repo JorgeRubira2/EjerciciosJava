@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>   
+        <script>
+            function cambiarAudio(obj){
+                $('#reproductor').attr('src',obj);
+            }
+        </script>
+        
+        <style>
+            
+            .gris{
+                background-color: gray;
+                height: 30px;
+                width: 400px;
+                margin: 4px;
+                padding: 20px
+            }
+            
+            .gris2{
+                background-color: gray;
+                height: 30px;
+                width: 400px;
+                margin: 4px
+            }
+            .grisOscuro{
+                background-color: #444;
+                color: white;
+                padding: 10%
+                    
+                    
+            }
+        </style>
+    </head>
+    <body>
+        <div class = "gris">
+            <audio id="reproductor" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+               controls>
+            </audio>   
+        </div>
+        <div class="gris2">
+            <div class="grisOscuro">
+                <a href="#" onclick='cambiarAudio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")' >m&uacutesica 1</a> <br/>
+                <a href="#" onclick='cambiarAudio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3")' >m&uacutesica 2</a> <br/>
+                <a href="#" onclick='cambiarAudio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3")' >m&uacutesica 3</a>
+            </div>
+        </div>
+    </body>
+</html>

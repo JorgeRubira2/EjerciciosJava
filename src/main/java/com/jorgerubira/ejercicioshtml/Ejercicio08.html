@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>   
+        <script>
+            function calcularTabla(){
+                var num = $('#numero').val();
+                $('#tablaSalida').html("");
+                for (var i=1; i<=10; i++){
+                    var j = num*i;
+                    $('#tablaSalida').append(num + "x "+ i +"= "+j + "<br/>");
+                }
+            }
+        </script>
+        <style>
+            #tablaSalida{
+                border-color: black;
+                border: 20px
+            }
+        </style>
+        
+    </head>
+    <body>
+        <input id="numero" type="text" placeholder="Insertar numero para obtener tabla"/>
+        <input id="boton" type="button" onclick="calcularTabla()" value="Enviar"> 
+        <div id="tablaSalida" />
+    </body>
+</html>
