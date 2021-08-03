@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/united/bootstrap.min.css" integrity="sha384-JW3PJkbqVWtBhuV/gsuyVVt3m/ecRJjwXC3gCXlTzZZV+zIEEl6AnryAriT7GWYm" crossorigin="anonymous">
+        <style>
+            #form{
+                margin:0 auto;
+                display: flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="formulario">
+            <form>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input name="nombre" placeholder="First"/>
+                    <input name="apellido" placeholder="Last"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input name="nombreC" placeholder="Street Address"/><br>
+                    <input name="nombreC2" placeholder="Street Address Line 2"/><br>
+                    <input name="ciudad" placeholder="City"/>
+                    <input name="region" placeholder="Region"/><br>
+                    <input name="cp" placeholder="Postal/Zip Code"/>
+                    <select>
+                        <option value="españa">España</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="francia">Francia</option>
+                    </select>
+                </div>
+                <br>
+                <input type="submit" name="submit" class="btn btn-primary"/>
+            </form>
+        </div>
+    </body>
+</html>
