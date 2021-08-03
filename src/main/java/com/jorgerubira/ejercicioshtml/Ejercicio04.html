@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Ejercicios HTML</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>  
+
+        
+    </head>
+    <body>
+        <div>
+            <h1>
+                <u>ZARAGOZA </u>
+            </h1>
+            <h2>
+                <u>FOTOS</u>
+            </h2>
+                                    
+        </div>
+            
+        <img style="width:200px;height:100px" src="Zaragoza1.jpg" onclick="verImagen('Zaragoza1.jpg')">
+        <img style="width:200px;height:100px" src="aljaferia1.jpg" onclick="verImagen('aljaferia1.jpg')">
+        <img style="width:200px;height:100px" src="aljaferia2.jpg" onclick="verImagen('aljaferia2.jpg')">
+        <img style="width:200px;height:100px" src="monasterio.jpg" onclick="verImagen('monasterio.jpg')">
+     
+        
+         <img style="width:600px;height:600px" id="imagen" >
+    </body>
+    
+    
+    <script>
+        
+        function verImagen(imagen){
+            $('#imagen').attr('src',imagen);
+                        
+        }
+        
+        
+    </script>
+        
+</html>
