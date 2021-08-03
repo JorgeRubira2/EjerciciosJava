@@ -1,0 +1,69 @@
+
+<html>
+    <head>
+        <title>Ejercicio 05</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #principal{
+                width:700px;
+                margin: auto;
+            }
+            label{
+                width:10%;
+                display: inline-block;
+                float: left;
+            }
+            .pos{
+                margin-left: 10%;
+            }
+            .boxm{
+                width:75%;
+                margin-bottom: 10px;
+            }
+            .box{
+                width:37.2%;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <form>
+            <div id ="principal" >
+                <div>
+                    <label >Nombre</label>
+                    <input class="box" type="text"  placeholder="Nombre">
+                    <input class="box" type="text" placeholder="Apellido">
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input class="box" type="email" placeholder="Email">
+                </div>
+                <div>
+                    <label>Direccion</label>
+                    <input class="boxm" type="text" placeholder="Calle Linea 1 ">
+                </div>
+                <div>
+                    <input class="boxm pos" type="text"  placeholder="Calle Linea 2">
+                </div>
+                <div>
+                    <input class="box pos" type="text" placeholder="Ciudad">
+                    <input class="box" type="text"  placeholder="Region">   
+                </div>
+                <div>
+                    <input class="box pos" type="text" placeholder="Codigo postal">
+                    <select class="box">
+                        <option selected>España</option>
+                        <option value="1">Rumania</option>
+                        <option value="2">Francia</option>
+                        <option value="3">Italia</option>
+                    </select>
+                </div>
+                <div >
+                    <button class="pos" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

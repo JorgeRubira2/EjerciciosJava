@@ -1,0 +1,54 @@
+
+<html>
+    <head>
+        <title>Ejercicio 04</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            
+            #galeria {
+                border: 1px solid lightgray;  
+                padding: 10px;
+                padding-bottom: 0;
+                background: white;
+                width: 410px; 
+                margin: auto;
+            }
+            #grande {
+                border: 1px solid lightcyan; 
+                padding: 3px;
+                width: 400px; 
+                height: 500px; 
+            }
+            .miniatura {
+                width:  60px;  
+                height:  60px;  
+                float:left;
+                padding: 5px;
+                margin: 10px 15px;
+                cursor:pointer;
+            }
+           
+        </style>
+         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+    </head>
+    <body>
+        <div>
+            <div id="galeria">
+                <div><img id="grande" src="1.jpg" alt="1.jpg"/></div>
+                <div>
+                    <img class="miniatura" onclick="cambiar(this)" src="1.jpg" alt="imagen1" />
+                    <img class="miniatura" onclick="cambiar(this)" src="2.jpg" alt="imagen2" />
+                    <img class="miniatura" onclick="cambiar(this)" src="3.jpg" alt="imagen3"/>
+                    <img class="miniatura" onclick="cambiar(this)" src="4.jpg" alt="imagen4" />
+                </div>
+            </div>
+        </div>
+        <script>
+            
+            function cambiar(parametro){
+                $("#grande").attr("src",parametro.src);
+            }  
+        </script>
+    </body>
+</html>
