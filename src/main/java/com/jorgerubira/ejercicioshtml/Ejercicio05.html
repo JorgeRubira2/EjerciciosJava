@@ -2,9 +2,61 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/united/bootstrap.min.css"
+	integrity="sha384-JW3PJkbqVWtBhuV/gsuyVVt3m/ecRJjwXC3gCXlTzZZV+zIEEl6AnryAriT7GWYm"
+	crossorigin="anonymous">
 <title>Ejercicio05</title>
 </head>
 <body>
-
+	<div class="container-fluid">
+		<div class="row">
+			<section class="col-sm-6">
+				<form class="well">
+					<div class="form-group row">
+						<label for="nombreCompleto" class="col-2">Nombre:</label> 
+						<input
+							type="text" placeholder="Nombre" class="form-control col-5"
+							id="nombre">
+						<input type="text" placeholder="Apellidos"
+							class="form-control col-5" id="apellidos">
+					</div>
+					<div class="form-group row">
+						<label for="formGroupExampleInput2" class="col-2">Correo:</label>
+						<input type="text" class="form-control col-5" id="correo"
+							placeholder=".......@gmail.com">
+					</div>
+					<div class="form-group row">
+						<label for="direccion" class="col-2">Direccion:</label> 
+						<input
+							type="text" placeholder="Primera direccion"
+							class="form-control col-10" id="1calle"> 
+						<input
+							type="text" placeholder="Segunda direccion"
+							class="form-control offset-2 col-10" id="2calle">
+						<input
+							type="text" placeholder="Ciudad"
+							class="form-control offset-2 col-5" id="ciudad">
+						<input
+							type="text" placeholder="Poblacion"
+							class="form-control col-5" id="poblacion">
+						<input
+							type="text" placeholder="Codigo postal"
+							class="form-control offset-2 col-5" id="postal">
+						<select class="col-3">
+						<option>Espana</option>
+						<option>Union Sovietica</option>
+						<option>Francia</option>
+						<option>Italia</option>
+						</select>
+					</div>
+					<button class="btn btn-primary offset-2" type="submit">Enviar</button>
+				</form>
+			</section>
+		</div>
+	</div>
 </body>
 </html>
