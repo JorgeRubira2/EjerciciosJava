@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <title>TODO supply a title</title>
+        <style>
+            .imagen{
+                width: 100px;
+                height: 100px
+            }
+
+            .imagenGrande{
+                width: 600px;
+                height: 600px;
+                margin:auto;
+            }
+
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>  
+
+        <script>
+            $(document).ready(function () {
+
+                $("img").click(function(){
+
+                $("#cambiar").attr("src", this.src)
+            });
+        });
+
+
+
+        </script>
+
+
+        <div style="margin-left:400px" >
+            <img id="img1"  class="imagen" src="https://www.photopills.com/sites/default/files/tutorials/2020/landscape-cover-.jpg" alt="alt"/>
+            <img id="img2" class="imagen" src="https://i.vimeocdn.com/video/844009805_640x360.jpg" alt="alt"/>
+            <img id="img3"  class="imagen" src="https://aws.traveler.es/prod/designs/v1/assets/940x627/108669.jpg" alt="alt"/>
+            <img id="img4"  class="imagen" src="https://www.65ymas.com/uploads/s1/48/43/7/islandia-una-maravilla-de-la-naturaleza-ideal-para-explorar-en-autocaravana_1_621x621.jpeg" alt="alt"/>
+        </div>
+
+        <p> Esta imagen va cambiando al hacer click sobre las miniaturas > </p>
+        <div>
+            <img id="cambiar" class="imagenGrande" src="https://www.photopills.com/sites/default/files/tutorials/2020/landscape-cover-.jpg" alt="alt"/>
+        </div>
+    </body>
+</html>
