@@ -26,16 +26,27 @@ and open the template in the editor.
                 margin: 5px;
             }
             
+            .grande {
+                margin: auto;
+                width: 1000px;
+                height: 700px;
+            }
+            
             .miniaturas {
                 justify-content: center;
+                cursor: pointer;
  
             }
         </style>
         <script>
-            
-            $("img").click(function){
+            $(document).ready(function(){
+                $(".miniatura img").click(function(){
+                  $("#primera").attr("src",this.src );
+              });
+            });
+
                 
-            };
+
         </script>
     </head>
     <body>
@@ -48,7 +59,7 @@ and open the template in the editor.
         </div>
         
         <div>
-            <img src="https://blog.naturlider.com/wp-content/uploads/2020/03/AdobeStock_309195144-post-dia-mundial-naturaleza.jpeg" alt="Imagen1"/>
+            <img id="primera" class="grande" src="https://blog.naturlider.com/wp-content/uploads/2020/03/AdobeStock_309195144-post-dia-mundial-naturaleza.jpeg" alt="Imagen1"/>
         </div>
         
     </body>
