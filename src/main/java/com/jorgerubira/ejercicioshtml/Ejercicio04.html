@@ -1,10 +1,38 @@
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Ejercicio 04</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .lista ul{
+                list-style: none;
+                display: flex;
+            }
+            
+            .lista li {
+                display: block;
+                margin: auto;
+            }
+            
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="lista">
+            <ul>
+                <li><img src="https://haciendofotos.com/wp-content/uploads/las-mejores-fotos-de-paisajes-2020.jpg" id="img1" width="250" height="200"/></li>
+                <li><img src="https://www.dzoom.org.es/wp-content/uploads/2017/07/seebensee-2384369-810x540.jpg" id="img2" width="250" height="200"></li>
+                <li><img src="https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg" id="img3" width="250" height="200"></li>
+                <li><img src="https://www.nationalgeographic.com.es/medio/2018/02/27/playa-de-isuntza-lekeitio__1280x720.jpg" id="img4" width="250" height="200"></li>
+                <li><img style="width:600px; height:600px" id="imagen">
+            </ul>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+        <script>
+            
+           $('img').click(function() {
+               $("#imagen").attr("src", this.src);
+           });
+           
+        </script>    
     </body>
 </html>
