@@ -10,31 +10,55 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-        input{
-            margin-left:100px;
-        }
-        .second{
-            margin-left:20px;
-        }
+            .first{
+                margin-left: 200px;
+            }
+            .second{
+                margin-left: 20px;
+            }
     </style>
     </head>
     
     <body>
+        
         <form action="" method="get">
-            <label>Nombre<input type="text" placeholder="First"><input class="second" name="last" type="text" placeholder="Last"></label><br/><br/>
-            <label>Email <input type="email"></label><br/><br/>
-            <label>Address<input type="text" placeholder="Street Address"><br/><br/>
-                            <input type="text" placeholder="Street Address Line 2"><br/><br/>
-                            <input type="text" placeholder="City"><input class="second" type="text" placeholder="Region"><br/><br/>
-                            <input type="text" placeholder="Postal/Zip Code">
-                            <select class="second">
-                                <option>Romania</option>
-                                <option>Spain</option>
-                                <option>Portugal</option>
-                            </select><br/><br/>
-            
-            </label><br/>
-            <input type="submit" value="Submit">
+            <table>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td><input class="first" type="text" placeholder="First"><input class="second" name="last" type="text" placeholder="Last"></td>
+                </tr>
+                <tr>
+                    <td><label>Email </label></td>
+                    <td><input class="first" type="email"></td>
+                </tr>
+                <tr>
+                    <td rowspan="5"><label>Address</label></td>
+                    <td><input class="first" type="text" placeholder="Street Address"></td>
+                </tr>
+                <tr>
+                   
+                    <td><input class="first" type="text" placeholder="Street Address Line 2"></td>
+                </tr>
+                <tr>
+                    <td><input class="first" type="text" placeholder="City">
+                   <input class="second" type="text" placeholder="Region"></td>
+                </tr>
+                <tr>
+                    <td><input class="first" type="text" placeholder="Postal/Zip Code">
+                    <select class="second">
+                                    <option>Romania</option>
+                                    <option>Spain</option>
+                                    <option>Portugal</option>
+                                </select></td>
+                </tr>
+                <tr>
+                    <td><input class="first" type="submit" value="Submit"></td>
+                    
+                </tr>           
+                               
+                
+             </table>
         </form>
+       
     </body>
 </html>

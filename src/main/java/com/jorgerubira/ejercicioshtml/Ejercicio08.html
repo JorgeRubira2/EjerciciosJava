@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #resultado{
+                margin-right: 80%;
+                float:right;
+                border:1px solid black;
+                border-radius: 0.6;
+            }
+            
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script>
+          
+            function multiplicar(){
+               var num= $("#multiplo").val();              
+               for(var i=1;i<=10;i++){
+                   $("#resultado").append("<p>"+num+"x"+i+"="+(i*num)+"</p>");
+               }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="Ejercicio08.html" method="get" >
+            <input type="number" name="multiplo" id="multiplo"/><br/><br/>
+            <input type="button" class="enviar" value="Submit" onclick="multiplicar()"/>
+        </form>
+        <aside id="resultado">
+            
+        </aside>
+    </body>
+</html>
