@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio04</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+    <style>
+        .pequeña{
+            width: 200px;
+        }
+        #grande{
+            with:400px;
+        }
+    </style>
+</head>
+<body>
+    <img class="pequeña" src="https://c1.staticflickr.com/9/8299/7742476040_94f6928edd_b.jpg"  onclick="verImagen('https://c1.staticflickr.com/9/8299/7742476040_94f6928edd_b.jpg')">
+    <img class="pequeña" src="https://i.pinimg.com/736x/ba/a9/43/baa9432d0690d9f33204f14644d411d7--places-to-travel-places-to-go.jpg"  onclick="verImagen('https://i.pinimg.com/736x/ba/a9/43/baa9432d0690d9f33204f14644d411d7--places-to-travel-places-to-go.jpg')">
+    <img class="pequeña" src="https://live.staticflickr.com/65535/42544309690_e78973b234.jpg"  onclick="verImagen('https://live.staticflickr.com/65535/42544309690_e78973b234.jpg')">
+    <img class="pequeña" src="https://i.pinimg.com/originals/f0/e5/c7/f0e5c7703783352da9a0012c71a43d04.jpg" onclick="verImagen('https://i.pinimg.com/originals/f0/e5/c7/f0e5c7703783352da9a0012c71a43d04.jpg')">
+    <img id="grande">
+</body>
+<script>
+    function verImagen(imagen){
+        $('#grande').attr('src', imagen);
+    }
+</script>
+</html>
