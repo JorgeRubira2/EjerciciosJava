@@ -9,28 +9,34 @@ and open the template in the editor.
         <title>Ejercicio 5</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+        <style>
+            input{
+                margin: 10px;
+            }
+        </style>
     </head>
     <body>
-        <form>
+        <form class="formulario">
             <label>Name</label>
             <input type="text" placeholder="First"/>
-            <input type="text" placeholder="Last"/>
+            <input type="text" placeholder="Last"/><br>
             
             <label>Email</label>
-            <input type="password" value="password"/>
+            <input type="password"/><br>
             
             <label>Address</label>
-            <input type="text" placeholder="Street Address"/>
-            <input type="text" placeholder="Street Addess Line 2"/>
-            <input type="text" placeholder="City"/>
-            <input type="text" placeholder="Region"/>
-            <input type="text" placeholder="Postal / Zip Code"/>
-            <select>
-                <option value="Romania" selected> </option>
-                <option value="España"></option>
-                <option value="París"></option>
-            </select>
-            <input type="submit" value="Submit"/>
+            <input style="width: 310px; margin-left: 1px" type="text" placeholder="Street Address"/><br>
+            <input style="width: 310px; margin-left: 55px" type="text" placeholder="Street Addess Line 2"/><br>
+            <input style="margin-left: 55px" type="text" placeholder="City"/>
+            <input style="width: 135px" type="text" placeholder="Region"/><br>
+            <input style="margin-left: 55px" type="text" placeholder="Postal / Zip Code"/>
+            <select style="margin-left: 10px; width: 140px">
+                <option value="Romania">Romania</option>
+                <option value="España">España</option>
+                <option value="París">París</option>
+            </select><br>
+            <input style="margin-left: 55px" type="submit" value="Submit"/>
             
         </form>
     </body>

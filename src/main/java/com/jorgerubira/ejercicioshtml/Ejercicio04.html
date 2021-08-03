@@ -6,11 +6,48 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Ejercicio 4</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        
+        <style>
+            .imagenes{
+                margin-left: 250px;
+                margin-top: 50px;
+            }
+            img{
+                width: 150px;
+                height: 100px;
+            }
+            #vista{
+                width: 420px;
+                height: 300px;
+                margin-left: 50px;
+                vertical-align: text-top;
+            }
+        </style>
+        
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="imagenes">
+            <img src="imagen1.jpg" onclick="fun('imagen1.jpg')">
+            <img src="imagen2.jpg" onclick="fun('imagen2.jpg')">
+            <img src="imagen3.jpg" onclick="fun('imagen3.jpg')">
+            <img src="imagen4.jpg" onclick="fun('imagen4.jpg')">
+        </div>
+        
+        <div class="fotoVista">
+            
+            <br><p>Esta imagen va cambiando al hacer click en las miniaturas >
+                
+            <img id="vista"/>
+        </div>
+        
+        <script>
+            function fun(param){
+                $("#vista").attr("src", param);
+            }
+        </script>
     </body>
 </html>
