@@ -87,10 +87,11 @@ public class Ejercicio09VariadoCapas {
                     List<Compra> com = repoCompras.obtenerComprasDeUnaPersona(x.getNombre());
                     Long totalProductos = com.parallelStream()
                             .mapToLong(art -> art.getTotalArticulos())
-                            .reduce(0L, (a, y) -> a + y);
-                    return totalProductos;
+                            .reduce(0L, (a, y) -> a + y);  
+                    return totalProductos;               
                 })
                 .reduce(0L, (a, y) -> a + y);
+        System.out.println("res " +res);
         return res;
         
         //throw new RuntimeException("Pendiente de hacer");
