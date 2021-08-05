@@ -7,18 +7,22 @@
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action="listaPersonas" method="post">
+                <input name="accion" type="hidden" id="accion" />
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input id="name" class="form-control" name="nombre"/>
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="submit" value="Añadir" onclick="enviarFormulario('add')" class="btn btn-primary "/>        
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
-                    </div>   
+                        <input type="button" value="Borrar" onclick="confirmar()" class="btn btn-danger "/>
+                    </div>
+                    <div class="col-3 pt-5">
+                        
+                    </div>
                 </div>
             </form>
             <hr/>
@@ -26,14 +30,8 @@
                 <tr>
                     <th>Nombre</th>
                 </tr>
-                <tr>
-                    <td>Ana</td>
-                </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
+                <tr th:each="per:${listaNombres}">
+                    <td th:text="${per}"></td>
                 </tr>
             </table>
         </div>
@@ -44,11 +42,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
+            function enviarFormulario(valor){
+                   $("#accion").val(valor);
+                   $("form").submit();
+            }
             function confirmar(){
-                bootbox.confirm({
-                    message:"Desea borrar este nombre?",
-                    con
-                })
+                name = $("#name").val();
+                bootbox.confirm({                
+                    message:"Desea borrar a " + name +"?",
+                    callback:function(result){
+                        if (result) {
+                            enviarFormulario("del");
+                        }
+                    }
+                });
                 
             }
         </script>
