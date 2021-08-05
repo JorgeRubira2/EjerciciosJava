@@ -34,7 +34,18 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
 
     @Override
     public void bajaNombre(String nombre) {
-        nombres.remove(nombre);
+          String nombreVar;
+          for (int i = 0; i < nombres.size(); i++) {
+              nombreVar = nombres.get(i);
+             if   (nombreVar.equals(nombre))
+             {                     
+                 nombres.remove(nombre);
+             }
+             else 
+             { return;}
+                 
+           }
+           
     }
 
     @Override
