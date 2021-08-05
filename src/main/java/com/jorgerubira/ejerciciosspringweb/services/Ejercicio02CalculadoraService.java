@@ -1,7 +1,8 @@
 package com.jorgerubira.ejerciciosspringweb.services;
 
-import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio02CalculadoraService;
 import org.springframework.stereotype.Service;
+
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio02CalculadoraService;
 
 /**
  * Debe implementar Calculadora y ser un servicio @Service
@@ -16,17 +17,17 @@ public class Ejercicio02CalculadoraService implements IEjercicio02CalculadoraSer
 
     @Override
     public Integer restar(Integer a, Integer b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return a-b; 
     }
 
     @Override
     public Integer multiplicar(Integer a, Integer b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return a*b;
     }
 
     @Override
     public Integer dividir(Integer a, Integer b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return a/b;
     }
     
 }

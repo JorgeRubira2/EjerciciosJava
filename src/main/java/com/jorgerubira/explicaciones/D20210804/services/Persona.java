@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data       //Crear los set y los get
+@Data
 @AllArgsConstructor     //Constructor con todos los atributos
 @NoArgsConstructor      //Constructor con ningun parametro.
 public class Persona {
-    private String nombre;
-    private Integer edad; 
+	private String nombre;
+	private Integer edad;
+
 }
