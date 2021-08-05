@@ -11,25 +11,33 @@
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Valor 1</label>
-                        <input class="form-control" name="nombre" min="-99999" max="99999"/>
+                        <input class="form-control" name="valor1" min="-99999" max="99999"/>
                     </div>
+                    <div class="from-group col-2">
+                        <label >Valor 1</label>
+                        <input class="form-control" name="valor2" min="-99999" max="99999"/>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-1 pt-4">
-                        <input type="submit" id="anadir" value="Añadir" onclick="cambiarAnadir()" class="btn btn-primary "/>
+                        <input type="submit" id="sumar" value="Sumar" onclick="sumar()" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" id="borrar" value="Borrar" onclick="cambiarBorrar()" class="btn btn-danger "/>
+                        <input type="submit" id="restar" value="Restar" onclick="restar()" class="btn btn-primary "/>
                     </div>   
+                    <div class="col-1 pt-4">
+                        <input type="submit" id="multiplicar" value="Multiplicar" onclick="multiplicar()" class="btn btn-primary "/>
+                    </div>  
+                    <div class="col-1 pt-4">
+                        <input type="submit" id="dividir" value="Dividir" onclick="dividir()" class="btn btn-primary "/>
+                    </div>  
+                    <div class="from-group col-2">
+                        <label >Resultado</label>
+                        <input class="form-control"  disabled name="resultado" min="-99999" max="99999"/>
+                    </div>
                 </div>
             </form>
             <hr/>
-            <table class="table table-striped">
-                <tr>
-                    <th>Nombre</th>
-                </tr>
-                <tr th:each="nombre:${lista}">
-                <td th:text="${nombre}"></td>
-            </tr>
-            </table>
         </div>
         
 
@@ -38,18 +46,17 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
-            function confirmar(){
-                bootbox.confirm({
-                    message:"Desea borrar este nombre?",
-                    con
-                })
-                
+            function sumar(){
+                document.getElementById('formulario').action = "/ejercicio2/sumar";
             }
-            function cambiarAnadir(){
-                document.getElementById('formulario').action = "/anadir";
+            function restar(){
+                document.getElementById('formulario').action = "/ejercicio2/restar";
             }
-            function cambiarBorrar(){
-                document.getElementById('formulario').action = "/borrar";
+            function multiplicar(){
+                document.getElementById('formulario').action = "/ejercicio2/multiplicar";
+            }
+            function dividir(){
+                document.getElementById('formulario').action = "/ejercicio2/dividir";
             }
         </script>
     </body>
