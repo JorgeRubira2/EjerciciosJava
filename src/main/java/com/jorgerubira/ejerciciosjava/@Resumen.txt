@@ -81,5 +81,51 @@
                      $(document).ready(function(){
                         //Intrucciones al principio de carga de la ventana
                      });
+- Bootstrap -> Layout -> container (margenes laterales), container-fluid (margenes mas pequeños)
+               Grid -> Web responsive -> row -> col-md-3  (12 columnas)
+                        col-xs-numero col-sm-numero col-md-numero col-lg-numero col-xl-numero
+               Botones -> btn btn-primary btn-lg|btn-sm
+               Colores -> primary,secondary,success,info,warning,danger,dark,light
+               Formulario -> <div class='form-group'>label input<div>
+                             input,select-> form-control
+               Tablas -> class='table table-striped'
+- Bootwatch -> Cambiar de estilo (colores o formas) utilizando bootstrap
+- Font awesome -> <i class='far fa-edit' ></i> <<Buscar en la pagina y copiar el icono
+- Bootbox -> Mostrar ventanas emergentes.
+             bootbox.alert("Mensaje");
+             bootbox.confirm({
+                mesagge:"Mensaje",
+                confirm:function(){
+                    //Javascript en caso de aceptar
+                }
+             });
+             bootbox.dialog({
+                title: 'Este es el titulo',
+                size: 'large',
+                mesagge: $('#midiv').html()
+             })
 
 
+- Creación de un proyecto: http://start.spring.io
+- Spring MVC -> (Vista(Html)|Controlador(URLs<Usuario)|Model)  @Controller  -> @RestController (JSON)
+- Thymeleaf -> <html xmlns:th="http://www.thymeleaf.org" >
+                th:text -> contenido
+                th:class -> clase
+                th:if -> la etiqueta se muestra o no dependiendo del if.
+                th:each -> repite la etiqueta con cada elemento de la colleción
+                th:href -> modificar el href de un link
+- Envio de parametros (vistas->controlador): 
+                       GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url")
+                       POST (los parametros se envian en el body -> formularios)    @PostMapping("/url")
+- Parametros (controlador->vista):
+                       Model model
+                       model.addAtribute("nombreVariable", variab);
+
+- Spring Core: Desacoplar clases-> Trabajamos con interface.
+               @Service -> Que el contenedor de Spring genere un objeto de esa clase. (Singleton solo hay)
+               @Autowired -> Utilizar los objetos que ha creado Spring al arranca
+
+- Spring Lombok (codigo mas limipia): @Data, genera set get   
+                                      @AllArgsConstructor, genera constructor con todos
+                                      @NoArgsContructor, genera contructor sin parametros
+                
