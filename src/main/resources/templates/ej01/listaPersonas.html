@@ -6,18 +6,21 @@
     </head>
     <body>
         <div class="container">
+            
+            
+            
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action='/ejercicio01/nombre' method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input class="form-control" name="nombre"/>
                     </div>
                     <div class="col-1 pt-4">
                         <input type="submit" value="Añadir" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input id='accion' type="button" value="Borrar" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -26,14 +29,8 @@
                 <tr>
                     <th>Nombre</th>
                 </tr>
-                <tr>
-                    <td>Ana</td>
-                </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
+                <tr th:each='nombre: ${nombre}'>
+                    <td th:text='${nombre}'></td>
                 </tr>
             </table>
         </div>
@@ -47,10 +44,26 @@
             function confirmar(){
                 bootbox.confirm({
                     message:"Desea borrar este nombre?",
-                    con
-                })
-                
+                   // callback:function(){$("form").attr("action", "eliminar").submit();}
+                });
             }
         </script>
+        <script>
+                function enviarFormulario(nombre){
+                    $("form").attr('action', nombre);
+                    $("form").submit();
+                    
+                    //PODRÍA SER TAMBIÉN
+                    //$("#accion").val(valor);
+                    //$("form").submit();
+                }
+                function borrarNombre(valor){
+                    $("form").attr("action", "eliminar").submit();
+                    
+                    //PODRÍA SER TAMBIÉN
+                    //$("#accion").val(valor);
+                    //$("form").submit();
+                }
+            </script>
     </body>
 </html>
