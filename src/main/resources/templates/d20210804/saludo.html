@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            .Pepe{
+                color:red;
+            }
+            .colorVerde{
+                color:green;
+            }
+        </style>
+    </head>
+    <body>
+        <div th:text="${persona}"/>
+        <div th:class="${persona}">Hola que tal</div>
+        <div th:class="${persona.startsWith('P') ? 'colorVerde':'Pepe' }">Hola que tal</div>
+        <div th:class='${persona.startsWith("P") ? "colorVerde":"Pepe" }'>Hola que tal</div>
+        
+    </body>
+</html>
