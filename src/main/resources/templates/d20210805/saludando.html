@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <span th:with="tuvariable=${persona.nombre.toUpperCase()}">
+            <div th:text="${tuvariable}"></div>    
+            <div th:text="${tuvariable}"></div>    
+            <div th:text="${tuvariable}"></div>    
+        </span>
+        <h3>Formulario 1</h3>
+        <form action="/controlador1/enviarFormulario" method="post">
+            <input name="nombre" th:value="${persona.nombre}"/>
+            <input type="number" name="edad" th:value="${persona.edad}"/>
+            <input type="submit">
+        </form>
+        <h3>Formulario 2</h3>
+        <form th:object="${persona}" action="/controlador1/enviarFormulario" method="post">
+            <input th:field="*{nombre}"/>
+            <input type="number" th:field="*{edad}"/>
+        </form>        
+    </body>
+</html>
