@@ -11,29 +11,29 @@
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Valor 1</label>
-                        <input class="form-control" name="valor1" min="-99999" max="99999"/>
+                        <input class="form-control" th:value="${valor1}"  name="valor1" min="-99999" max="99999"/>
                     </div>
                     <div class="from-group col-2">
                         <label >Valor 1</label>
-                        <input class="form-control" name="valor2" min="-99999" max="99999"/>
+                        <input class="form-control" th:value="${valor2}" name="valor2" min="-99999" max="99999"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-1 pt-4">
-                        <input type="submit" id="sumar" value="Sumar" onclick="sumar()" class="btn btn-primary "/>
+                        <input type="submit" id="sumar" value="Sumar" onclick="document.getElementById('formulario').action = '/ejercicio2/sumar';" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" id="restar" value="Restar" onclick="restar()" class="btn btn-primary "/>
+                        <input type="submit" id="restar" value="Restar" onclick="document.getElementById('formulario').action = '/ejercicio2/restar';" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" id="multiplicar" value="Multiplicar" onclick="multiplicar()" class="btn btn-primary "/>
+                        <input type="submit" id="multiplicar" value="Multiplicar" onclick="document.getElementById('formulario').action = '/ejercicio2/multiplicar';" class="btn btn-primary "/>
                     </div>  
                     <div class="col-1 pt-4">
-                        <input type="submit" id="dividir" value="Dividir" onclick="dividir()" class="btn btn-primary "/>
+                        <input type="submit" id="dividir" value="Dividir" onclick="document.getElementById('formulario').action = '/ejercicio2/dividir';" class="btn btn-primary "/>
                     </div>  
                     <div class="from-group col-2">
                         <label >Resultado</label>
-                        <input class="form-control"  disabled name="resultado" min="-99999" max="99999"/>
+                        <input class="form-control" th:value="${resultado}" disabled name="resultado" min="-99999" max="99999"/>
                     </div>
                 </div>
             </form>

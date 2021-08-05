@@ -3,8 +3,6 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio01ListaNombresService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
