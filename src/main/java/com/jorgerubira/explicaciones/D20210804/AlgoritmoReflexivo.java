@@ -1,5 +1,5 @@
 package com.jorgerubira.explicaciones.D20210804;
-
+/*
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -40,3 +40,4 @@ public class AlgoritmoReflexivo {
         }
     }
 }
+*/
