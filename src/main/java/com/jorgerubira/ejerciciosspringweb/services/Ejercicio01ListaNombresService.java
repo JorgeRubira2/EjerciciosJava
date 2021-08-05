@@ -5,9 +5,10 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio01ListaNombresSe
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 
-//@Service  Poner al incluir en Maven.
+@Service  //Poner al incluir en Maven.
 public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresService{
 
     private List<String> nombres=new ArrayList<>();
