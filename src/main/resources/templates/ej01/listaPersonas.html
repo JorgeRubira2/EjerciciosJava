@@ -3,11 +3,13 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <title>Ejercicio01</title>
     </head>
     <body>
+        
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action="/ejercicio01/add" method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
@@ -17,7 +19,7 @@
                         <input type="submit" value="Añadir" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" value="Borrar" onclick="borrar()" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -26,19 +28,19 @@
                 <tr>
                     <th>Nombre</th>
                 </tr>
-                <tr>
-                    <td>Ana</td>
-                </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
+                <tr th:each="nombre: ${Personas}">
+                    <td th:text="${nombre}"></td>
                 </tr>
             </table>
         </div>
         
-
+        <script>
+           function borrar() {
+               $('form').attr("action","/ejercicio01/remove");
+               $('form').submit();
+               }
+        </script>
+        
         <!-- La solución optima es poner los scripts al final -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
