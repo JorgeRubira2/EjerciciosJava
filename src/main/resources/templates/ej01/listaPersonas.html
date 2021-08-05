@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
+        <title>Lista Personas</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
     </head>
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action="/ejercicio01/listaNombres" method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input class="form-control" id="nombre" name="nombre" />
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="submit" value="Añadir" id="anyadir" name="toDo" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" value="Borrar" id="borrar" name="toDo" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
             <hr/>
             <table class="table table-striped">
-                <tr>
-                    <th>Nombre</th>
+                <tr th:each="per:${listaPersonas}">
+                    <td th:text="${per}"></td>
                 </tr>
-                <tr>
-                    <td>Ana</td>
-                </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
-                </tr>
+              
             </table>
+            <p th:text="${resultado}"></p>
         </div>
         
 
@@ -44,13 +39,23 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
-            function confirmar(){
-                bootbox.confirm({
-                    message:"Desea borrar este nombre?",
-                    con
-                })
-                
-            }
+            
+            $(document).ready(function(){
+                $("#borrar").click(function(){bootbox.confirm({
+                        size: "small",
+                        message:"¿Desea borrar este nombre?",
+                        callback:function(result){
+                            if(result){
+                                $("#borrar").attr("type","submit");
+                                $("#borrar").trigger("click");
+                            }
+                           
+                            
+                        }
+                    })
+                });
+            });
+          
         </script>
     </body>
 </html>
