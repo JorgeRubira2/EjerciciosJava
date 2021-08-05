@@ -3,38 +3,42 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <script>
+              function accionEnvio(operacion){
+                $('#accion').val(operacion);
+                $('form').submit();        
+            }
+        </script>
     </head>
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action="tratarNombres" method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="button" id="boton" name="boton" value="Añadir" onclick="accionEnvio('Añadir')" class="btn btn-primary"/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" id="boton" name="boton" value="Borrar" onclick="accionEnvio('Borrar')" class="btn btn-danger"/>
                     </div>   
                 </div>
+                <input type="hidden" id="accion" name="accion" />
             </form>
+            <span th:text="${mensajeErr}" style="color: red"></span>
             <hr/>
             <table class="table table-striped">
                 <tr>
                     <th>Nombre</th>
                 </tr>
+                <span  th:each="per:${lista}">
                 <tr>
-                    <td>Ana</td>
-                </tr>
+                    <td th:text="${per}"></td>
                 <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
-                </tr>
+                </span>
             </table>
         </div>
         
@@ -51,6 +55,8 @@
                 })
                 
             }
+            
+          
         </script>
     </body>
 </html>

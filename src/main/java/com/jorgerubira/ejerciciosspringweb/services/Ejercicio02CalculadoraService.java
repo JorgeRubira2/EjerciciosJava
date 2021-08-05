@@ -16,17 +16,21 @@ public class Ejercicio02CalculadoraService implements IEjercicio02CalculadoraSer
 
     @Override
     public Integer restar(Integer a, Integer b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return a-b;
     }
 
     @Override
     public Integer multiplicar(Integer a, Integer b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return a*b;
     }
 
     @Override
     public Integer dividir(Integer a, Integer b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Integer sol = 0;
+        if (b != null && b!= 0){
+            sol = a/b;
+        }
+        return sol;
     }
     
 }
