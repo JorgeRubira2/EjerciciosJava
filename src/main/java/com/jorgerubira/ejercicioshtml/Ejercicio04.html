@@ -16,6 +16,9 @@ and open the template in the editor.
                 width: 100px;
                 height: 100px;
             }
+            .estilo1{
+                display:none;
+            }
         </style>
         
     </head>
@@ -25,8 +28,11 @@ and open the template in the editor.
                 $('img').click(function(){
                     $("#portaretrato").attr("src",this.src);
                 });
+                $('div div div').not('estilo2').html( 'B' );
+                
             }); 
         </script>
+        <!--<!-- comment 
         <div class="imagenes_pequeñas">
             <img id="1" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-3.jpg" alt="llama" />
             <img id="2" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-1.jpg" alt="avestruz"/>
@@ -35,7 +41,24 @@ and open the template in the editor.
         </div>
         <div >
             <img alt="portaretratos" style="width: 400px; height:400px;" id="portaretrato" src="http://misimagenesde.com/wp-content/uploads/2017/05/animales-graciosos-4.jpg">
+        </div>-->
+        <div id='uno' class='base'>
+            <div>A</div>
+            <div>
+                <div>A</div>
+            </div>
+            <div class='subbase'>
+                <div>A</div>
+            </div>
         </div>
-
+        <div id='dos' class='base'>
+            <div>A</div>
+            <div id='tres'>
+                <div class='estilo1'>A</div>
+            </div>
+            <div id='cuatro' class='subbase'>
+                <div class='estilo1 estilo2'>A</div>
+            </div>
+        </div>
     </body>
 </html>
