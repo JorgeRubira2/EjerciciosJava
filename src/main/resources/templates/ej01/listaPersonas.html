@@ -8,19 +8,21 @@
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="/ejercicio1/agregar" method="post">
+           
+             <form action="" method="post">    
                 <div class="row">
+                                                                       
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" />
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Agregar" class="btn btn-primary "/>
+                        <input type="submit" value="Agregar" onclick="enviarFormulario('/ejercicio1/agregar')"  class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
                         <!--  <input type="button" onclick="Eliminar('Maria')" value="Eliminar" class="btn btn-danger "/>-->
-                       <input type="button" onclick='/ejercicio1/eliminar' value="Eliminar" class="btn btn-danger "/>
-                       <input type="submit" value="Sumar" class="btn btn-primary "/>
+                       <input type="submit" value="Eliminar" onclick= "enviarFormulario('/ejercicio1/eliminar')"  class="btn btn-danger "/> 
+                       
                     </div>   
                 </div>
             </form>
@@ -46,17 +48,10 @@
         <script>
            
             
-            function Eliminar (nombre){
+            function enviarFormulario (valor){
                 
-               // alert("Estas seguro que deseas eliminar a " + nombre);
-               //MsgBox content, 0, title:
-            
-                var resultado = window.confirm('Estas seguro de elimnar a: '+ nombre);
-                if (resultado === true) {
-                     window.alert('Okay, si estas seguro.');
-                } else { 
-                    window.alert('Pareces indeciso');
-                }
+                $('form').attr('action', valor);
+                $('form').submit();
             }
         </script>
     </body>
