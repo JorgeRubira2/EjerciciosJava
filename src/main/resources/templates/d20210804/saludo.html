@@ -15,6 +15,9 @@
         <div th:class="${persona}">Hola que tal</div>
         <div th:class="${persona.startsWith('P') ? 'colorVerde':'Pepe' }">Hola que tal</div>
         <div th:class='${persona.startsWith("P") ? "colorVerde":"Pepe" }'>Hola que tal</div>
+        <div th:with="a=${persona}">
+            <span th:text="${a}"></span>
+        </div>
         
     </body>
 </html>
