@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h3>Calculadora</h3>
+            <form action="#" data-th-action="@{/ejercicio2/resultado}" data-th-object="${model}" method="post">
+                <div class="row">
+                    <div class="from-group col-4">
+                        <label >Valor 1</label>
+                        <input class="form-control" required type="number" name="valor1" th:value="${valor1}" min="-99999" max="99999"/>
+                    </div>
+                    <div class="from-group col-4">
+                        <label >Valor 2</label>
+                        <input class="form-control" required type="number" name="valor2" th:value="${valor2}" min="-99999" max="99999"/>
+                    </div>  
+                                       
+                </div>
+                <div class="row my-3 d-flex flex-row align-items-end">
+                        
+                    <div class="col-md">
+                        <input name="operacion" type="submit" value="sumar" class="form-control btn btn-primary "/>
+                    </div>   
+                    <div class="col-md">
+                        <input name="operacion" type="submit" value="restar" class="form-control btn btn-primary "/>
+                    </div>   
+                    <div class="col-md">
+                        <input name="operacion" type="submit" value="multiplicar" class="form-control btn btn-primary "/>
+                    </div>   
+                    <div class="col-md">
+                        <input name="operacion" type="submit" value="dividir" class=" form-control btn btn-primary "/>
+                    </div>  
+                    <div class="col-md">
+                        <label >Resultado</label>
+                        <input class="form-control" type="number" disabled th:value="${resultado}"/>
+                    </div>   
+                </div>
+            </form>
+        </div>
+        
+
+        <!-- La solución optima es poner los scripts al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    </body>
+</html>
