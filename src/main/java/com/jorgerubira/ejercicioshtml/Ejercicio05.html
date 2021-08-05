@@ -5,44 +5,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <style>
+        .normal{
+
+        }
         p{
             display: inline-block;
             font-weight: bold;
-            padding-right: 50px;
             padding-left: 20px;
+            width: 90px;
         }
         #pequeño{
-            position: relative;
             display: inline-block;
             margin-left: 30px;
         }
         #grande{
             width:363px;
-            margin-left: 14px;
+            margin-left: 30px;
+        }
+        .modificado{
+            margin-left: 144px;
+            width:363px;
         }
     </style>
     <body>
-        <div>
-            <p>Name</p>
-            <input id="pequeño" type="text" name="nombre" placeholder="First"/>
-            <input id="pequeño" type="text" name="apellido" placeholder="Last"/>
-        </div>
-        <div>
-            <p style="padding-right: 49">Email</p>
-            <input id="pequeño" type="text" name="email"/>
-        </div>
-        <div>
-            <div>
-                <p>Address</p>
-                <input id="grande" type="text" name="direccion" placeholder="Street Address"/>
-            </div>
-            <div>
-                <input id="grande" type="text" name="direccion" placeholder="Street Address 2"/>
-            </div>
-            <div>
-                <input id="pequeño" type="text" name="ciudad" placeholder="City"/>
-                <input id="pequeño" type="text" name="region" placeholder="Region"/>
-            </div>
-        </div>
+        <p>Name</p>
+        <input id="pequeño" type="text" name="nombre" placeholder="First"/>
+        <input id="pequeño" type="text" name="apellido" placeholder="Last"/>
+        <br/>
+        <p>Email</p>
+        <input id="pequeño" type="text" name="email"/>
+        <br/>
+        <p>Address</p>
+        <input id="grande" type="text" name="direccion" placeholder="Street Address"/>
+        <br/>
+        <input class="pequeño" "type="text" name="direccion" placeholder="Street Address 2"/>
+        <br/>
+        <input class="modificado" "type="text" name="direccion" placeholder="Street Address 2"/>
+        <br/>
+        <input class="pequeño" "type="text" name="direccion" placeholder="Street Address 2"/>
     </body>
 </html>
