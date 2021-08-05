@@ -14,10 +14,6 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
     private List<String> nombres=new ArrayList<>();
 
     public Ejercicio01ListaNombresService() {
-        //Añadimos varios nombres por defecto.
-        nombres.add("Ana");
-        nombres.add("Juan");
-        nombres.add("Pepe");
     }
     
     @Override
