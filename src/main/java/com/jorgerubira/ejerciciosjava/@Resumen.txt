@@ -52,3 +52,34 @@
 - Parallel Streams -> Ejecutar un accion concurrente.
 - Exceptions -> try{ } catch(Exception e){ } -> try (Recurso) Autocloseable
              -> throw metodo () throw Exception . El que llama es el que se responabiliza.
+
+------------------------------------------------------------------------------------------------------------
+- HTML -> Etiqueta: Input, Div, Span, Select, Button, Form, Table, (UL,OL,LI), A, IMG, (VIDEO,AUDIO), IFRAME, P, (B,I,U), BR, (H1,..H6), HR
+          Etiquetas especiales <Head> (No visual), <Script> Javascript, <Style> CSS
+          Atributos: id (No se debería repetir), class (darle un formato, varios), Input->(value, type, name (cuadrar nombre con el servidor)), style (utilizar sutilmente), (form -> action, method) (otros, required, readonly, disabled, src)
+          Para botones: onclick="llamadaJavascript()" <<Atributo
+
+- CSS -> Propiedades: Padding, Marging: variantes individuales -Top -Right -Bottom -Left, . 1 valor, 4 valores(reloj)  
+                      Width, Height. en px,%,em, 
+                      text-align: left, rigth, center, justify.
+                      display: none (oculta), block (tamaño y salto de linea al final), inline (no cuerpo y no salto de linea), inline-block (tamaño pero no salto de linea)
+                      background-color (fondo), color (texto), border: 1px solid red.
+                      Colores: red, blue, #F00, #FF0000, rgb(255,0,0), rgba(255,0,0,0.5)
+                      
+        Selectores: (Nada)Etiqueta, (.)clase, (#)id.  anidados>".clase1 div"  filtrar por atributo>"input[type='number']"
+        Selectores: Prioridades ID>Class>Etiqueta. =Prioridad(Definido el ultimo en el head). !Important para modificar la prioridad
+
+- JQuery -> $('elementoASeleccionar') (El mismo selector que CSS ((nada), (.), (#))
+            class -> addClass('nombreClase'), removeClass('nombreClase'), toggleClass('nombreClase')
+            contenido -> html('reemplazaContenido'), append('contenidoAlFinal'), preprend('contenidoAlPrincipal')
+                      -> html() --> leer el contenido que lleva dentro.
+            atributo -> attr('nombre','valores') -> Modifica el atributo.
+                        attr('nombre')  --> Leer un atributo.
+            Input(valor) -> val('valor') --> Modifica el valor de un input.
+                            val()  --> Leer el valor.
+            click -> Darle a los botones eventos.   <<JQuery
+                     $(document).ready(function(){
+                        //Intrucciones al principio de carga de la ventana
+                     });
+
+
