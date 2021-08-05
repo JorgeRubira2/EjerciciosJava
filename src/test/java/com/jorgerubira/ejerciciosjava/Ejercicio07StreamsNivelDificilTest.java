@@ -1,5 +1,7 @@
 package test.java.com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.Ejercicio07StreamsNivelDificil;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,8 +12,6 @@ package test.java.com.jorgerubira.ejerciciosjava;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Pair;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
-
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio07StreamsNivelDificil;
 
 import java.util.ArrayList;
 import java.util.Date;

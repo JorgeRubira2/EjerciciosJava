@@ -5,10 +5,9 @@
  */
 package test.java.com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.Ejercicio04Colecciones;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
-
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio04Colecciones;
 
 import java.util.ArrayList;
 import java.util.Arrays;

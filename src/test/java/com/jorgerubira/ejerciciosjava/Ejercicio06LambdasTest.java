@@ -6,11 +6,10 @@
 package test.java.com.jorgerubira.ejerciciosjava;
 
 
+import com.jorgerubira.ejerciciosjava.Ejercicio06Lambdas;
+import com.jorgerubira.ejerciciosjava.IComparadorPersonaCompra;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import main.java.com.jorgerubira.ejerciciosjava.entities.Persona;
-
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio06Lambdas;
-import main.java.com.jorgerubira.ejerciciosjava.IComparadorPersonaCompra;
 
 import java.util.Comparator;
 import java.util.Optional;

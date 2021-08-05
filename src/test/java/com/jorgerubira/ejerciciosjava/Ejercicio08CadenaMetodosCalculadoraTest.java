@@ -5,9 +5,8 @@
  */
 package test.java.com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.Ejercicio08CadenaMetodosCalculadora;
 import com.jorgerubira.ejerciciosjava.interfaces.ICalculadoraBasica;
-
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio08CadenaMetodosCalculadora;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

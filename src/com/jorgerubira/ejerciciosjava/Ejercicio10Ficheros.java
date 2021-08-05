@@ -1,4 +1,4 @@
-package main.java.com.jorgerubira.ejerciciosjava;
+package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;

@@ -1,4 +1,4 @@
-package com.jorgerubira.ejerciciosspringweb.interfaces;
+package com.jorgerubira.ejerciciosspringweb.ejerciciosspringweb.interfaces;
 
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import java.util.List;

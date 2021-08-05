@@ -1,5 +1,5 @@
 
-package main.java.com.jorgerubira.ejerciciosjava;
+package com.jorgerubira.ejerciciosjava;
 
 public class Ejercicio00PruebaDeTestBasica {
     

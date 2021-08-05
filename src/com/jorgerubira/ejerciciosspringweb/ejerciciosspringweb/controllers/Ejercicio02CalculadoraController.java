@@ -1,4 +1,4 @@
-package com.jorgerubira.ejerciciosspringweb.controllers;
+package com.jorgerubira.ejerciciosspringweb.ejerciciosspringweb.controllers;
 
 /**
  * Crear una calculadora web que ejecute el servicio CalculadoraServices encargada de 

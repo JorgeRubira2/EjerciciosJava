@@ -1,4 +1,4 @@
-package com.jorgerubira.ejerciciosspringweb.services;
+package main.java.com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio01ListaNombresService;
@@ -19,7 +19,6 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
         nombres.add("Pepe");
     }
     
-    @Override
     public void altaNombre(String nombre) throws OperacionEnListaException {
         if (nombre==null){ //Desde el exterior se debe comprobar si vale nulo.
             throw new NullPointerException();
@@ -31,12 +30,11 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
         }
     }
 
-    @Override
     public void bajaNombre(String nombre) {
         nombres.remove(nombre);
     }
 
-    @Override
+
     public List<String> getLista() {
         //Devuelve una lista inmutable.
         return Collections.unmodifiableList(nombres);

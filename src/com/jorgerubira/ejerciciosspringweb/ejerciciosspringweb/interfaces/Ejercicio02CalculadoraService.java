@@ -1,7 +1,7 @@
-package com.jorgerubira.ejerciciosspringweb.interfaces;
+package com.jorgerubira.ejerciciosspringweb.ejerciciosspringweb.interfaces;
 
 
-public interface IEjercicio02CalculadoraService {
+public interface Ejercicio02CalculadoraService {
     
     public Integer sumar(Integer a,Integer b);
     public Integer restar(Integer a,Integer b);

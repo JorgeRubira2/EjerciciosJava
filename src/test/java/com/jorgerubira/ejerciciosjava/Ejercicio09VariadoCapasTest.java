@@ -1,6 +1,7 @@
 package test.java.com.jorgerubira.ejerciciosjava;
 
-	import com.jorgerubira.ejerciciosjava.interfaces.IAduanaService;
+	import com.jorgerubira.ejerciciosjava.Ejercicio09VariadoCapas;
+import com.jorgerubira.ejerciciosjava.interfaces.IAduanaService;
 
 	import com.jorgerubira.ejerciciosjava.pojo.Ciudad;
 	import com.jorgerubira.ejerciciosjava.pojo.Compra;
@@ -8,8 +9,6 @@ package test.java.com.jorgerubira.ejerciciosjava;
 	import com.jorgerubira.ejerciciosjava.pojo.Persona;
 	import com.jorgerubira.ejerciciosjava.pojo.Producto;
 	import com.jorgerubira.ejerciciosjava.pojo.TipoProducto;
-
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio09VariadoCapas;
 
 import java.time.Duration;
 	import java.util.Date;

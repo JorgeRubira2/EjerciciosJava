@@ -3,7 +3,7 @@ package test.java.com.jorgerubira.ejerciciosjava;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio01ConversionTipos;
+import com.jorgerubira.ejerciciosjava.Ejercicio01ConversionTipos;
 
 public class Ejercicio01ConversionTiposTest {
     

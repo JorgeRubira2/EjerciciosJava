@@ -1,4 +1,4 @@
-package main.java.com.jorgerubira.ejerciciosjava;
+package com.jorgerubira.ejerciciosjava;
 
 import java.util.Comparator;
 import java.util.Optional;

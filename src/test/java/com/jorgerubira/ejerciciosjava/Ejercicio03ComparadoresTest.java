@@ -3,7 +3,7 @@ package test.java.com.jorgerubira.ejerciciosjava;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio03Comparadores;
+import com.jorgerubira.ejerciciosjava.Ejercicio03Comparadores;
 
 import static org.junit.jupiter.api.Assertions.*;
 

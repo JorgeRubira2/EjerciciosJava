@@ -1,11 +1,10 @@
 package test.java.com.jorgerubira.ejerciciosjava;
 
+import com.jorgerubira.ejerciciosjava.Ejercicio09VariadoCapasAduanaService;
 import com.jorgerubira.ejerciciosjava.excepciones.NoDatoDisponibleException;
 import com.jorgerubira.ejerciciosjava.pojo.Compra;
 import com.jorgerubira.ejerciciosjava.pojo.Producto;
 import com.jorgerubira.ejerciciosjava.pojo.TipoProducto;
-
-import main.java.com.jorgerubira.ejerciciosjava.Ejercicio09VariadoCapasAduanaService;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
