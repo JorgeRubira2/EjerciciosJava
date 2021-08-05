@@ -10,9 +10,8 @@
             <form id="formulario" action="" method="post">
                 <div class="row">
                     <div class="from-group col-2">
-                        <label >Nombre</label>
+                        <label >Valor 1</label>
                         <input class="form-control" name="nombre" min="-99999" max="99999"/>
-                        <span style="color: red" th:text="${error}"></span>
                     </div>
                     <div class="col-1 pt-4">
                         <input type="submit" id="anadir" value="Añadir" onclick="cambiarAnadir()" class="btn btn-primary "/>
@@ -47,10 +46,10 @@
                 
             }
             function cambiarAnadir(){
-                document.getElementById('formulario').action = "/ejercicio1/anadir";
+                document.getElementById('formulario').action = "/anadir";
             }
             function cambiarBorrar(){
-                document.getElementById('formulario').action = "/ejercicio1/borrar";
+                document.getElementById('formulario').action = "/borrar";
             }
         </script>
     </body>
