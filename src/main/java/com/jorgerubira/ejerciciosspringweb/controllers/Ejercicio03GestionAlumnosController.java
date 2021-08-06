@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/ejercicio03")
 public class Ejercicio03GestionAlumnosController {
-    private List<Integer> lista=new ArrayList<>();
+    
     @Autowired
     private IEjercicio03GestionAlumnosService service;
     
@@ -34,24 +34,38 @@ public class Ejercicio03GestionAlumnosController {
             service.borrarAlumno(codigo.longValue());
         }
         model.addAttribute("lista",service.getAlumnos());
-        model.addAttribute("number", lista.size()+1);
+        model.addAttribute("number", (int)(Math.random()*99999999));
         return "/ej03/listaAlumnos";
     }
     @PostMapping("/alumnos")
-    public String modificacionAlumno(Model model, String nombre, String telefono, String direccion, String eliminar){
-        Integer aux=lista.size()+1;
-        lista.add(aux);
-        Alumno nuevo=new Alumno(aux.longValue(),nombre,telefono,direccion);
+    public String modificacionAlumno(Model model, Integer codigo, String nombre, String telefono, String direccion){
+        
+        long a=codigo.longValue();
+        Alumno nuevo=new Alumno(a,nombre,telefono,direccion);
         service.guardarAlumno(nuevo);
         model.addAttribute("lista",service.getAlumnos());
-        model.addAttribute("number", service.getAlumnos().size()+1);
+        model.addAttribute("number", (int)(Math.random()*99999999));
         return "/ej03/listaAlumnos";
     }
+    @GetMapping("/alumnosBuscados")
+    public String buscador(Model model, String buscar){
+        List<Alumno>aux=new ArrayList<>();
+       
+            aux=service.getAlumnos(buscar);
+        
+        model.addAttribute("lista",aux);
+        model.addAttribute("number", (int)(Math.random()*99999999));
+        
+        return "/ej03/listaAlumnos";
+    }
+    
     @GetMapping("/alumnosModificar")
-    public String buscador(Model model, Integer codigo){
+    public String modificador(Model model, Integer codigo){
         Optional<Alumno>aux;
-        aux=service.getAlumno(codigo.longValue());
+        long a=codigo.longValue();
+        aux=service.getAlumno(a);
         Alumno resultado=aux.get();
+        
         model.addAttribute("alumno",resultado);
         return "/ej03/modificarAlumno";
     }

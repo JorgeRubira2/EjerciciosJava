@@ -1,7 +1,7 @@
 <!<!doctype html>
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Lista Alumnos</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
@@ -24,10 +24,11 @@
                     <tbody>
                         <tr>
                             
-                                <td><input type="number" th:value="*{codigo}" th:name="*{codigo}" disabled/></td>
-                                <td><input type="text" th:value="*{nombre}" th:id="*{nombre}" th:name="*{nombre}" disabled/></td>
-                                <td><input type="text" th:value="*{telefono}" th:id="*{telefono}" th:name="*{telefono}" disabled/></td>
-                                <td><input type="text" th:value="*{direccion}" th:id="*{direccion}" th:name="*{direccion}" disabled/></td>
+                                <td><input type="number" th:value="*{codigo}" name="codigo" readonly="readonly"/></td>
+                                <td><input type="text" th:value="*{nombre}"  name="nombre" /></td>
+                                <td><input type="text" th:value="*{direccion}" name="direccion" /></td>
+                                <td><input type="text" th:value="*{telefono}" name="telefono" /></td>
+                                
                                 <td> <input type="submit" value="Guardar" class="btn btn-primary"/> </td>      
                             
                         </tr>

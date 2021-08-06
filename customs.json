@@ -4,6 +4,7 @@
         "th:object": {},
         "th:each": {},
         "th:href": {},
+        "th:value": {},
         "th:name": {}
     }
 }
