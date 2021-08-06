@@ -1,5 +1,6 @@
 package com.jorgerubira.ejerciciosspringweb.services;
 
+import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio01ListaNombresService;
 import java.util.ArrayList;
@@ -41,6 +42,14 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
     public List<String> getLista() {
         //Devuelve una lista inmutable.
         return Collections.unmodifiableList(nombres);
+    }
+
+    public Object getPersonas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void nuevaPersona(Persona p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

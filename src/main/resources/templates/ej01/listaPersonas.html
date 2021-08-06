@@ -3,21 +3,23 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
     </head>
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action='/enviarPersona' method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input class="form-control" name="nombre" min="-99999" max="99999"/>
+                        <span th:text="${error}"></span>
                     </div>
                     <div class="col-1 pt-4">
                         <input type="submit" value="Añadir" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" value="Borrar" onclick="confirmar()" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -26,19 +28,15 @@
                 <tr>
                     <th>Nombre</th>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>Ana</td>
-                </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
+                </tr>-->
+                <tr th:each="persona:${nombre}">
+                    <td th:text="${persona}"></td>
                 </tr>
             </table>
         </div>
         
-
         <!-- La solución optima es poner los scripts al final -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
@@ -47,9 +45,8 @@
             function confirmar(){
                 bootbox.confirm({
                     message:"Desea borrar este nombre?",
-                    con
-                })
-                
+                    callback:function(){$("form").attr("action",'/borrado').submit();}
+                });
             }
         </script>
     </body>
