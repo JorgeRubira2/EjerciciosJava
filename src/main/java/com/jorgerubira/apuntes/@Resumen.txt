@@ -1,0 +1,111 @@
+- Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
+- Optional<Envoltorio> -> get(), isPresent(), isEmpty(), orElse(T) "es como el get pero darmo un valor por defecto si no tiene"
+- Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
+- Modificadores. (Public, Protected (derivadas y paquete), (Nada) (paquete), Private)
+- Herencia. (Reutilización codigo, Base y derivada, las derivadas tienen todo lo de la clase base).
+            - Solo se puede heredar de una clase
+            - this (atributos o metodos del mismo nivel), super (atributos o metodos de la clase base).
+- Sobrecarga metodos (Podemos tener metodos con el mismo nombre pero parametros diferentes).
+- Constructores (Se ejecutan al hacer new. Para inicialización de datos)
+- Encapsulación (Atributos privados, Leer y modificar getAtributo o setAtributo).
+- Object (toString() - equals() - hashCode - @Override)
+
+- GIT (Add>Commit>Push) (Add>Commit>Pull) (Todos dias Add>Commit>Pull>Merge>(Conflict>Add>Commit)>Push)  Switch Branch, Merge Revision
+
+- Generico (ArrayList<Integer>, ArrayList<Persona> , o clases hechas por vosotros class Nombre<T> )
+- Metodos y clases abstractas. Clase abstract (No new), Metodo abstract (No lleva codigo, obligacion de implementarlo clases derivada)
+- Metodos y clases final. No queremos que hagan @Override. Clases final (No se pueden crear clases derivadas)
+- Interface. Obligar a tener unos metodos. Una clase puede implementar muchas interface. API
+             default-> No es importante. Para casos muy concretos.
+
+- Nomenclatura. CamelCase: Clase,Interface->PrimeraMayuscula.  metodos, atributos y variables->primeraMinuscula.
+- Enumeraciones (No es tan importante). Constantes (public final static int CONSTANTE) -> enum 
+- Switch. (No es tan importante). if (a==4) {  ... } else if ( a > 3 && a< 10) { ... }.
+
+- Collections -> List (ArrayList), Map (HashMap), Set (HashSet).  Add, Remove, Put
+- Lambdas -> Interface 1 metodo abstract. Almacenar en un código en una variable. Pasar por parámetro una función.
+- Streams -> (Importante). Lambdas -> boolean Predicate<T>, void Consumer<T>, U Function<T,U>.
+          -> Intermedios: filter, map, sorted (limit, skip)   
+          -> Finales: List/Map/Set collect, long count(), Optional<T> anyMatch(Predicate), forEach
+- Parallel Streams -> Ejecutar un accion concurrente.
+- Exceptions -> try{ } catch(Exception e){ } -> try (Recurso) Autocloseable
+             -> throw metodo () throw Exception . El que llama es el que se responabiliza.
+
+------------------------------------------------------------------------------------------------------------
+- HTML -> Etiqueta: Input, Div, Span, Select, Button, Form, Table, (UL,OL,LI), A, IMG, (VIDEO,AUDIO), IFRAME, P, (B,I,U), BR, (H1,..H6), HR
+          Etiquetas especiales <Head> (No visual), <Script> Javascript, <Style> CSS
+          Atributos: id (No se debería repetir), class (darle un formato, varios), Input->(value, type, name (cuadrar nombre con el servidor)), style (utilizar sutilmente), (form -> action, method) (otros, required, readonly, disabled, src)
+          Para botones: onclick="llamadaJavascript()" <<Atributo
+
+- CSS -> Propiedades: Padding, Marging: variantes individuales -Top -Right -Bottom -Left, . 1 valor, 4 valores(reloj)  
+                      Width, Height. en px,%,em, 
+                      text-align: left, rigth, center, justify.
+                      display: none (oculta), block (tamaño y salto de linea al final), inline (no cuerpo y no salto de linea), inline-block (tamaño pero no salto de linea)
+                      background-color (fondo), color (texto), border: 1px solid red.
+                      Colores: red, blue, #F00, #FF0000, rgb(255,0,0), rgba(255,0,0,0.5)
+                      
+        Selectores: (Nada)Etiqueta, (.)clase, (#)id.  anidados>".clase1 div"  filtrar por atributo>"input[type='number']"
+        Selectores: Prioridades ID>Class>Etiqueta. =Prioridad(Definido el ultimo en el head). !Important para modificar la prioridad
+
+- JQuery -> $('elementoASeleccionar') (El mismo selector que CSS ((nada), (.), (#))
+            class -> addClass('nombreClase'), removeClass('nombreClase'), toggleClass('nombreClase')
+            contenido -> html('reemplazaContenido'), append('contenidoAlFinal'), preprend('contenidoAlPrincipal')
+                      -> html() --> leer el contenido que lleva dentro.
+            atributo -> attr('nombre','valores') -> Modifica el atributo.
+                        attr('nombre')  --> Leer un atributo.
+            Input(valor) -> val('valor') --> Modifica el valor de un input.
+                            val()  --> Leer el valor.
+            click -> Darle a los botones eventos.   <<JQuery
+                     $(document).ready(function(){
+                        //Intrucciones al principio de carga de la ventana
+                     });
+- Bootstrap -> Layout -> container (margenes laterales), container-fluid (margenes mas pequeños)
+               Grid -> Web responsive -> row -> col-md-3  (12 columnas)
+                        col-xs-numero col-sm-numero col-md-numero col-lg-numero col-xl-numero
+               Botones -> btn btn-primary btn-lg|btn-sm
+               Colores -> primary,secondary,success,info,warning,danger,dark,light
+               Formulario -> <div class='form-group'>label input<div>
+                             input,select-> form-control
+               Tablas -> class='table table-striped'
+- Bootwatch -> Cambiar de estilo (colores o formas) utilizando bootstrap
+- Font awesome -> <i class='far fa-edit' ></i> <<Buscar en la pagina y copiar el icono
+- Bootbox -> Mostrar ventanas emergentes.
+             bootbox.alert("Mensaje");
+             bootbox.confirm({
+                mesagge:"Mensaje",
+                confirm:function(){
+                    //Javascript en caso de aceptar
+                }
+             });
+             bootbox.dialog({
+                title: 'Este es el titulo',
+                size: 'large',
+                mesagge: $('#midiv').html()
+             })
+
+
+- Creación de un proyecto: http://start.spring.io
+- Spring MVC -> (Vista(Html)|Controlador(URLs<Usuario)|Model)  @Controller  -> @RestController (JSON)
+- Thymeleaf -> <html xmlns:th="http://www.thymeleaf.org" >
+                th:text -> contenido
+                th:class -> clase
+                th:if -> la etiqueta se muestra o no dependiendo del if.
+                th:each="var:${lista}" -> repite la etiqueta con cada elemento de la colleción
+                th:href -> modificar el href de un link
+                th:object="${objeto}" -> th:field="*{campo}" -> id, name, value (html)
+- Envio de parametros (vistas->controlador): 
+                       GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url")
+                       POST (los parametros se envian en el body -> formularios)    @PostMapping("/url")
+- Parametros (controlador->vista):
+                       Model model
+                       model.addAtribute("nombreVariable", variab);
+
+- Spring Core: Desacoplar clases-> Trabajamos con interface.
+               @Service -> Que el contenedor de Spring genere un objeto de esa clase. (Singleton solo hay)
+               @Autowired -> Utilizar los objetos que ha creado Spring al arranca
+
+- Spring Lombok (codigo mas limipia): @Data, genera set get   
+                                      @AllArgsConstructor, genera constructor con todos
+                                      @NoArgsContructor, genera contructor sin parametros
+- @RequestMapping("ruta/{id}"}, @PathVariable 
+  

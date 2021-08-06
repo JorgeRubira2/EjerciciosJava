@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------
---- Conversiones tipos primitivos, Envoltorio y Optional<Envoltorio> 
+--- Conversiones tipos primitivos, Envoltorio y Optional<Envoltorio>
 ---------------------------------------------------------------------
 
 Resumen de tranformaciones.
