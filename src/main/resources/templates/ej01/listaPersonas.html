@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-        
     </head>
     <body>
-        <div class="container">
+       <div class="container">
+            <script>
+                function enviarFormulario(valor){
+                    $("form").attr('action', valor);
+                    $("form").submit();
+                   
+                }
+            </script>
+            
             <h3>Lista de personas</h3>
            
              <form action="" method="post">    
                 <div class="row">
-                                                                       
+                             
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" />
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Agregar" onclick="enviarFormulario('/ejercicio1/agregar')"  class="btn btn-primary "/>
-                    </div>   
-                    <div class="col-1 pt-4">
-                        <!--  <input type="button" onclick="Eliminar('Maria')" value="Eliminar" class="btn btn-danger "/>-->
-                       <input type="submit" value="Eliminar" onclick= "enviarFormulario('/ejercicio1/eliminar')"  class="btn btn-danger "/> 
-                       
+
+                        <input type="button" value="Agregar" onclick="enviarFormulario('/ejercicio1/agregar')"  class="btn btn-primary "/>
+                        
+                   </div>   
+                   <div class="col-3 pt-4">
+                        <input type="button" value="Eliminar" onclick="enviarFormulario('/ejercicio1/eliminar')" class="btn btn-danger"/>
+
                     </div>   
                 </div>
             </form>
@@ -36,7 +43,7 @@
                     <td th:text="${per}"/>
                 </tr>
                               
-                               
+                                
             </table>
         </div>
         
@@ -45,14 +52,17 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
-           
-            
-            function enviarFormulario (valor){
-                
+            function enviarFormulario (valor){                
                 $('form').attr('action', valor);
                 $('form').submit();
-            }
+            } 
         </script>
+        
+        
     </body>
 </html>

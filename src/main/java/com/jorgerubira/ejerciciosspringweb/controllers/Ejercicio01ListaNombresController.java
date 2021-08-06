@@ -38,13 +38,15 @@ public class Ejercicio01ListaNombresController {
     public String agregar( Model model, String nombre){
                    
         try {
-            lista.altaNombre(nombre);
-            model.addAttribute("Lista", lista.getLista());
+            if ((nombre !=null) && (nombre.trim().equals("")== false))
+            {
+                lista.altaNombre(nombre);               
+            }
             
         } catch (OperacionEnListaException e) {
             e.getStackTrace();
         }
-           
+        model.addAttribute("Lista", lista.getLista());
         return "ej01/listaPersonas";
     }
     
