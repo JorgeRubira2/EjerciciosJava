@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1>Listado de Alumnos</h1>
+        <form action="nuevo" method="post">
+            <div class="from-group col-2">
+                <input class="form-control" name="nombre" />
+                <span th:text= "${mensajeError}"></span> 
+            </div>
+            <div class="col-1 pt-4">
+                <input type="button" value="Buscar" onclick="buscar()" class="btn btn-primary "/>
+            </div> 
+            <div class="col-1 pt-4">
+                <input type="button" value="Nuevo" onclick="nuevo()" class="btn btn-primary "/>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <tr>
+                <th>Codigo</th>
+                <th>nombre</th>
+                <th>telefono</th>
+                <th>direccion</th>
+                <th>acciones</th>
+            </tr>
+            <tr th:each="alu: ${alumno}">
+                <td th:text = "${alu.codigo}"></td>
+            </tr>
+            <tr th:each="alu: ${persona}">
+                <th th:text = "${alu.nombre}"></th>
+            </tr>
+            <tr th:each="alu: ${persona}">
+                <th th:text = "${alu.telefono}"></th>
+            </tr>
+            <tr th:each="alu: ${persona}">
+                <th th:text = "${alu.direccion}"></th>
+            </tr>
+            <tr th:each="alu: ${persona}">
+                <td><a th:href="$('/rutaborrar?codigo='+alu.codigo)" class="btn-primary"><i class="far fa-adress-card"></i>Editar</a></td>
+            </tr>
+        </table>
+    </body>
+</html>
