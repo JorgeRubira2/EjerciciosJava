@@ -1,0 +1,63 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <script>
+            function validar() {
+                if ($('#codigoNombre').val() == "") {
+                    alert('codigo o nombre requerido');
+                } else {
+                    $('form').submit();
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <h1 class="mt-5">Crear o Modificar Alumno</h1>
+            <hr/>
+
+            <form action='/ejercicio03/guardar' method="post">
+                <div class="row mt-5" >
+                    <div class="form-group col-2">
+                        <input class="form-control" id="codigo" name="codigo" th:value="${codigo}" type="text" alt="Nombre de la persona" required placeholder="Codigo"/>
+                    </div>
+                    <div class="form-group col-2">
+                        <input class="form-control" id="nombre" name="nombre" th:value="${nombre}" type="text" alt="Nombre de la persona" required placeholder="Nombre"/>
+                    </div>
+
+                    <div class="form-group col-2">
+                        <input class="form-control" id="Telefono" name="telefono" th:value="${telefono}" type="text" alt="Telefono del alumno" required placeholder="Telefono"/>
+                    </div>
+                 
+                    <div class="form-group col-2">
+                        <input class="form-control" id="direccion" name="direccion" th:value="${direccion}" type="text" alt="direccion durante el curso" required placeholder="Direccion"/>
+                    </div>
+                    
+                    <input type="hidden" id="codigo" name="codigo" th:value="${codigo}" />
+                    
+                </div>     
+                <br/>
+                <div class="row">
+                    <div class="form-group col-2 btn btn-primary mt-3">
+                        <!--<a class="btn btn-primary" id="buscar" th:href="${'/ejercicio03/search'}" onclick="validar()"> Buscar <i class="fas fa-search"></i> </a> -->
+                        <input type="submit" value="Guardar" style="background-color: transparent;color: white;border: 0px">  <i class="fas fa-save"></i>
+                    </div>
+                </div>
+            </form>
+
+            <span th:text="${mensajeErr}" style="color: red"></span>
+            <hr/>
+
+        </div>
+        <!-- La solución optima es poner los scripts al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+
+    </body>
+</html>
