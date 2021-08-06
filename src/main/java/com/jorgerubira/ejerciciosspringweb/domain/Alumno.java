@@ -19,10 +19,7 @@ public class Alumno {
     private String telefono;
     private String direccion;
     
-    @Override
-    public boolean equals(Object obj){
-        return this.codigo==(((Alumno)obj).codigo);
-    }
     
+  
     
 }

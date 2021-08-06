@@ -9,6 +9,7 @@ import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,18 +47,13 @@ public class Ejercicio03GestionAlumnosController {
         model.addAttribute("number", service.getAlumnos().size()+1);
         return "/ej03/listaAlumnos";
     }
-    @GetMapping("/alumnosBuscados")
-    public String buscador(Model model, String buscar, Integer numero){
-        List<Alumno>buscados=new ArrayList<>();
-        if(buscar!=null){
-            buscados=service.getAlumnos(buscar);
-        }
-        if(numero!=null){
-            buscados.add(service.getAlumno(numero.longValue()).get());
-        }
-        model.addAttribute("lista",service.getAlumnos());
-        model.addAttribute("number", lista.size()+1);
-        return "/ej03/listaAlumnos";
+    @GetMapping("/alumnosModificar")
+    public String buscador(Model model, Integer codigo){
+        Optional<Alumno>aux;
+        aux=service.getAlumno(codigo.longValue());
+        Alumno resultado=aux.get();
+        model.addAttribute("alumno",resultado);
+        return "/ej03/modificarAlumno";
     }
     
    

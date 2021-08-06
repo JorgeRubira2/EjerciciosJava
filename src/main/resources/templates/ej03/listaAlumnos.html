@@ -42,8 +42,7 @@
                                 <td><input type="text" th:value="${per.telefono}" th:id="${per.telefono}" th:name="${per.telefono}" disabled/></td>
                                 <td><input type="text" th:value="${per.direccion}" th:id="${per.direccion}" th:name="${per.direccion}" disabled/></td>
                                 <td><a th:href="${'/ejercicio03/alumnos?codigo='+per.codigo}" class="eliminar btn btn-secondary">Eliminar</a>
-
-                                <td><input type="button" value="Editar" th:id="${per.codigo}" th:name="${per.codigo}" class="btn btn-primary"/>        
+                                    <a th:href="${'/ejercicio03/alumnosModificar?codigo='+per.codigo}" class="editar btn btn-primary"> Editar</a>  </td>      
                             
                         </tr>
                     </tbody>
@@ -70,7 +69,7 @@
             $(document).ready(function(){
                 $("#nuevo").click(formulario);
                 $("#buscar").click(buscarElemento);
-               
+                $(".editar").click(editar)
                 });
           
             function formulario(){
@@ -83,13 +82,15 @@
             }
             function buscarElemento(){
                 var valor=$("#elementoBuscar").val();
-                if(typeof valor==='string'){
-                    $(this).attr("href","ejercicio03/alumnosBuscados?buscar="+valor).trigger("click");
-                }
-                else{
-                     $(this).attr("href","ejercicio03/alumnosBuscados?numero="+valor).trigger("click");
-                }
-                
+                $(this).attr("href","/ejercicio03/alumnosBuscados?buscar="+valor).trigger("click");               
+            }
+            function formulario(){
+                bootbox.dialog({
+                        title:"Nuevo Alumno",
+                        size: "large",
+                        message: $("#nuevoAlumno").html()
+                 
+                    });
             }
             
             

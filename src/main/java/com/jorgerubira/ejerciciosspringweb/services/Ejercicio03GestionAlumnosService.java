@@ -18,11 +18,23 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public void guardarAlumno(Alumno alumno) {
-        if (alumno != null && !listaAlumnos.contains(alumno)) {
+        if(listaAlumnos.size()>0 && alumno != null){
+            long contar=listaAlumnos.stream().filter(x->x.getCodigo()==alumno.getCodigo()).count();
+            if (contar==0) {
+                listaAlumnos.add(alumno);
+            } else {
+                listaAlumnos.forEach(x->{
+                    if(x.getCodigo()==alumno.getCodigo()){
+                        x.setNombre(alumno.getNombre());
+                        x.setDireccion(alumno.getDireccion());
+                        x.setTelefono(alumno.getTelefono());
+                    };
+                });
+                
+            }
+        }
+        else{
             listaAlumnos.add(alumno);
-        } else {
-            int posicion = listaAlumnos.indexOf(alumno);
-            listaAlumnos.set(posicion, alumno);
         }
     }
 
