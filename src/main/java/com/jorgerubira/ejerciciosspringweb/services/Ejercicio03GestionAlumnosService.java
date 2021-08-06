@@ -16,9 +16,12 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public void guardarAlumno(Alumno alumno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
         if(alumnos.stream()
                     .noneMatch)
                 )
+        */
     }
 
     @Override
