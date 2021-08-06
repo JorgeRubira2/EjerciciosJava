@@ -18,22 +18,20 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public void guardarAlumno(Alumno alumno) {
-        if(listaAlumnos.size()>0 && alumno != null){
-            long contar=listaAlumnos.stream().filter(x->x.getCodigo()==alumno.getCodigo()).count();
-            if (contar==0) {
+        if (listaAlumnos.size() > 0 && alumno != null) {
+            long contar = listaAlumnos.stream().filter(x -> x.getCodigo() == alumno.getCodigo()).count();
+            if (contar == 0) {
                 listaAlumnos.add(alumno);
             } else {
-                listaAlumnos.forEach(x->{
-                    if(x.getCodigo()==alumno.getCodigo()){
-                        x.setNombre(alumno.getNombre());
-                        x.setDireccion(alumno.getDireccion());
-                        x.setTelefono(alumno.getTelefono());
-                    };
-                });
-                
+                listaAlumnos.forEach(x -> {
+                                        if (x.getCodigo() == alumno.getCodigo()) {
+                                            x.setNombre(alumno.getNombre());
+                                            x.setDireccion(alumno.getDireccion());
+                                            x.setTelefono(alumno.getTelefono());
+                                        };
+                                    });
             }
-        }
-        else{
+        } else {
             listaAlumnos.add(alumno);
         }
     }
@@ -58,12 +56,10 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
         Optional<Alumno> devolver = Optional.ofNullable(null);
-
         List<Alumno> aux = listaAlumnos.stream().filter(x -> x.getCodigo() == codigo).collect(Collectors.toList());
         if (aux.size() > 0) {
             devolver = Optional.of(aux.get(0));
         }
-
         return devolver;
     }
 
