@@ -7,17 +7,17 @@
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action="/ejercicio1/anadir" method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input class="form-control" name="nombre" />
                     </div>
                     <div class="col-1 pt-4">
                         <input type="submit" value="Añadir" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" value="Borrar"onclick="confirmar()" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -26,15 +26,11 @@
                 <tr>
                     <th>Nombre</th>
                 </tr>
-                <tr>
-                    <td>Ana</td>
+                <tr th:each="nombre:${persona}">
+                    <td th:text="${nombre}"></td>
                 </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
-                </tr>
+                
+             
             </table>
         </div>
         
@@ -47,8 +43,11 @@
             function confirmar(){
                 bootbox.confirm({
                     message:"Desea borrar este nombre?",
-                    con
-                })
+                    		callback:function(){$("form").attr("action","/remove").submit();
+                    			
+                    		}
+                    
+                });
                 
             }
         </script>
