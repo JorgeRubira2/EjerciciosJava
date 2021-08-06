@@ -34,8 +34,9 @@ public class Ejercicio01ListaNombresController {
    @PostMapping("/annadir")
     public String insertar (Model model, String nombre){
         try {
-            service.altaNombre(nombre);
+            service.altaNombre(nombre);//Llamamos al método para dar de alta un nombre
         } catch (OperacionEnListaException ex) {
+            model.addAttribute("error", "Ha ocurrido un error al borrar");
             Logger.getLogger(Ejercicio01ListaNombresController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -45,6 +46,7 @@ public class Ejercicio01ListaNombresController {
     
     @PostMapping("/eliminar")
     public String borrar (Model model, String nombre){
+        service.bajaNombre(nombre);//Llamamos al método que hay para dar de baja
         model.addAttribute("personas", service.getLista());
         return"ej01/listaPersonas";
     }

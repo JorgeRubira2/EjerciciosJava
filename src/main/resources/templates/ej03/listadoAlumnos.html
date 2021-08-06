@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    </head>
+    <body>
+        <div class='container'>
+            <h1>LISTADO DE ALUMNOS</h1>
+        </div>
+        
+        <!-- Introducción de alumnos-->
+        <div id="intro-alumnos" class="container">
+            <form action="/ejercicio3/listado" method="post">
+                <div class="row">
+                    <div class="from-group col-3">
+                        <input class="form-control mt-4" type="text" name="valor1" placeholder="Ingrese un codigo o nombre" th:value="${valor1}" min="-99999" max="99999"/>
+                    </div>
+                    <div class="col-2 pt-4">
+                        <!--<input type="button" value="Buscar" onclick="enviarResultado('/ejercicio2/suma')" class="col-12 btn btn-primary "<i class="fas fa-search"></i></input>-->
+                        <button type="button" value="Buscar"  class="btn btn-primary "><i class="fas fa-search"></i> Buscar</button>                                    
+                        <!--<input type="submit" value="Nuevo" onclick="enviarResultado('/ejercicio2/resta')" class="col-12 btn btn-primary "/>-->
+                        <button type="button" value="Buscar"  class="btn btn-success "><i class="far fa-plus-square"></i> Nuevo</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla de alumnos-->    
+        <div id="tabla-alumnos" class="container">
+            <table class="table table-striped mt-4">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr th:each="alu:${alumnos}">
+                    <td th:text="${alu.codigo}"></td>
+                    <td th:text="${alu.nombre}"></td>
+                    <td th:text="${alu.telefono}"></td>
+                    <td th:text="${alu.direccion}"></td>
+                    <td>
+                        <a th:href="${'/rutaborrar?codigo='+alu.codigo}" class="btn btn-danger">Eliminar</a>
+                        <a th:href="${'/rutaborrar?codigo='+alu.codigo}" class="btn btn-primary">Editar</a>
+                    </td>
+                </tr> 
+            </table>
+        </div>
+
+        <!-- Scripts JQuery, Bootstrap, Fontawesome -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" ></script>
+
+    </body>
+</html>

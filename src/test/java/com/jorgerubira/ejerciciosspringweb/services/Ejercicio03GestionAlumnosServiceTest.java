@@ -70,7 +70,7 @@ public class Ejercicio03GestionAlumnosServiceTest {
         instance.guardarAlumno(a);
         assertEquals(true, instance.getAlumno(codigo1).isPresent());
         assertEquals(a, instance.getAlumno(codigo1).get());
-        assertEquals(false, instance.getAlumno(codigo2).get().getTelefono());
+        assertEquals(false, instance.getAlumno(codigo2).isPresent());
     }
 
     @Test

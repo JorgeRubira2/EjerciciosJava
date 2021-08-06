@@ -5,19 +5,20 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     </head>
     <body>
-        <div class="container">
+        <div class="container">      
             <h3>Lista de personas</h3>
             <form action="/ejercicio1/annadir" method="post">
                 <div class="row">
+                    <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" th:value="${nombre}"/>
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="button" value="Añadir" onclick="enviarFormulario('/ejercicio1/annadir')" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="button" value="Borrar" onclick="eliminar()" class="btn btn-danger "/>
+                        <input type="button" value="Borrar" onclick="confirmar()" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -28,9 +29,9 @@
                 </tr>
                 <tr th:each="nombre:${personas}">
                     <td th:text="${nombre}"></td>
-                </tr>
-                
+                </tr> 
             </table>
+            
         </div>
         
 
@@ -40,12 +41,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         
         <script>
+            function enviarFormulario(valor){
+                //$("#accion").val(valor);
+                //$("form").submit();
+                $("form").attr('action', valor);
+                $("form").submit();
+            }
+        </script>
+        
+        <script>
             function confirmar(){
                 bootbox.confirm({
                     message:"¿Desea borrar este nombre?",
-                    callback:function() {$"form"}.attr("action", "eliminar").submit();}
-                });
-                
+                    callback:function() {$("form").attr("action", "/ejercicio1/eliminar").submit();}
+                });             
             }
         </script>
         

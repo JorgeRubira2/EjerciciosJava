@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +12,13 @@ import java.util.Optional;
  */
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
+    private List<Alumno> alumnos = new ArrayList<>();
+    
     @Override
     public void guardarAlumno(Alumno alumno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(alumnos.stream()
+                    .noneMatch)
+                )
     }
 
     @Override
