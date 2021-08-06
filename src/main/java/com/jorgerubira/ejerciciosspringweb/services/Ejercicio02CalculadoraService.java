@@ -29,11 +29,7 @@ public class Ejercicio02CalculadoraService implements IEjercicio02CalculadoraSer
 
     @Override
     public Integer dividir(Integer a, Integer b) {
-        if (a.equals(0) || b.equals(0)){
-            
-            //un mensaje de error que debe introducri otro número
-            //warning?
-        }
+       
         return a/b;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
