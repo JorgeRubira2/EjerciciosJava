@@ -28,13 +28,13 @@ public class Ejercicio02CalculadoraServiceTest {
     @Test
     public void testMultiplicar() {
         Ejercicio02CalculadoraService instance = new Ejercicio02CalculadoraService();
-        assertEquals(8, instance.multiplicar(2, 4));
+        assertEquals(8.0, instance.multiplicar(2d, 4d));
     }
 
     @Test
     public void testDividir() {
         Ejercicio02CalculadoraService instance = new Ejercicio02CalculadoraService();
-        assertEquals(2, instance.dividir(5, 2));
+        assertEquals(2.5, instance.dividir(5d, 2d));
     }
     
 }
