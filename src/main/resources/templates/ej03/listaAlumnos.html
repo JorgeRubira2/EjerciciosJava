@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .escondido{
+            display:none;
+        }
+        label{
+            margin-top:2px;
+            margin-bottom: 2px;
+        }
+        input{
+            margin-top:2px;
+            margin-bottom: 2px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <title>Ejercicio 03 Spring</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Listado de Alumnos</h1>
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr th:each="per:${listaAlumnos}">
+                    <td th:text="${per.codigo}" />
+                    <td th:text="${per.nombre}" />
+                    <td th:text="${per.telefono}" />
+                    <td th:text="${per.direccion}" />
+                    <td>                        
+                        
+                        <a th:href="${'/listaAlumnos?codigo=' + per.codigo}" class="btn btn-danger"><i class="fas fa-trash fa-sm"></i></a>
+                    </td>
+                </tr>
+                    
+            </tbody>   
+        </table>
+        <input type="button" onclick="addUser()" class="btn btn-primary" value="Agregar Usuario" />
+    </div>
+
+    <div id="miformulario" class="container-fluid escondido">
+        <div class="row text-center">
+            <form class="form-control" action="listaAlumnos" method="POST">
+                <label class="col-2">Nombre:</label>
+                <input class="col-3" type="text" name="nombre" />
+                <label class="col-2">Telefono:</label>
+                <input class="col-3" type="number" name="telefono" />
+                <label class="col-2">Direccion:</label>
+                <input class="col-9" type="text" name="direccion" />
+                <input type="submit" value="Añadir" class="btn btn-primary col-12"/>        
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#example').DataTable( {
+        "iDisplayLength": 5,
+        "lengthMenu": [5, 10, 50],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No hay registros",
+            "info": "Mostrando del _START_ al _END_ de un total de _MAX_ registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "infoEmpty": "Lista vacia",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+                }
+            }
+        } );
+
+        
+
+    } );
+    function addUser(){
+        bootbox.dialog({
+                title:"Introduce los datos",
+                size: 'large',
+                message: $('#miformulario').html()
+            });
+        };
+
+    /*function elector(valor){
+            $("#accion").val(valor);
+            $("#selectores").submit();
+        }*/
+    </script>
+</body>
+</html>
