@@ -38,7 +38,9 @@ public class Ejercicio03GestionAlumnosController {
     public String buscar(Model model, @RequestParam("codigoNombre") String codigoNombre) {
         if (codigoNombre != null) {
             try {
-                model.addAttribute("lista", serviceGestionAlumnos.getAlumno(Long.parseLong(codigoNombre)).get());
+                model.addAttribute("lista", serviceGestionAlumnos.getAlumno(Long.parseLong(codigoNombre)).isPresent()
+                                ?serviceGestionAlumnos.getAlumno(Long.parseLong(codigoNombre)).get()
+                                :null);
             } catch (NumberFormatException e) {
                 model.addAttribute("lista", serviceGestionAlumnos.getAlumnos(codigoNombre));
             }
@@ -52,11 +54,12 @@ public class Ejercicio03GestionAlumnosController {
     }
     
     @PostMapping("/create")
-    public String crearDesdeFormulario(@RequestParam String direccion, @RequestParam String nombre, @RequestParam String telefono) {
+    public String crearDesdeFormulario(@RequestParam String direccion, @RequestParam String nombre, @RequestParam String telefono, @RequestParam String codigo) {
         Alumno alumno = new Alumno();
         alumno.setDireccion(direccion);
         alumno.setNombre(nombre);
         alumno.setTelefono(telefono);
+        alumno.setCodigo( (codigo != null && codigo != "" )? Long.parseLong(codigo) :0 );
         serviceGestionAlumnos.guardarAlumno(alumno);
         return "redirect:/ejercicio03/alumnos";
     }
@@ -72,10 +75,14 @@ public class Ejercicio03GestionAlumnosController {
     @GetMapping("/edit/{codigo}")
     public String editar(Model model,@PathVariable Long codigo) {
         Optional<Alumno> alumno = serviceGestionAlumnos.getAlumno(codigo);
+        if (alumno.isEmpty()) {
+            alumno = Optional.of(new Alumno());
+        }
         model.addAttribute("direccion",alumno.get().getDireccion());
         model.addAttribute("nombre",alumno.get().getNombre() );
         model.addAttribute("telefono",alumno.get().getTelefono() );
-        return "redirect:/ejercicio03/create";
+        model.addAttribute("codigo",alumno.get().getCodigo());
+        return "/ej03/formNuevoAlumno";
     }
     
     
