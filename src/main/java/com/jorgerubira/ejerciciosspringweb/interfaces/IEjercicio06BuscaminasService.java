@@ -9,6 +9,6 @@ public interface IEjercicio06BuscaminasService {
     public void pulsarCasilla(Long id);
     public List<List<Casilla>> getTablero();
     public int getCasillasDescubiertas();
-    public String getEstado();  //Devuelve. Parado, Jugando, Game Over.
+    public String getEstado();  //Devuelve. {"Jugando", "Game Over", "Conseguido"}.
     
 }

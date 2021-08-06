@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ej03 Gestión</title>
+</head>
+<body>
+    <form method="post">
+        <input type="text" name="nombre"/>
+        <input type="submit" value="Buscar">
+    </form>
+    <a href="/ej03/formulario">Nuevo</a>
+    <table>
+        <tr>
+            <th>código</th>
+            <th>nombre</th>
+            <th>teléfono</th>
+            <th>dirección</th>
+            <th>acciones</th>
+        </tr>
+        <tr th:each="alumno:${alumnos}">
+            <td th:text="${alumno.codigo}"></td>
+            <td th:text="${alumno.nombre}"></td>
+            <td th:text="${alumno.telefono}"></td>
+            <td th:text="${alumno.direccion}"></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>
