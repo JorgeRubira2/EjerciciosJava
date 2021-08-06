@@ -98,7 +98,7 @@
 
     } );
     function addUser(){
-        $('#formu').trigger("reset");
+        //document.getElementById('formu').reset();
         //$('#miformulario input').trigger("change");
         bootbox.dialog({
                 title:"Introduce los datos",
@@ -115,6 +115,7 @@
     <script th:if="${persona.codigo>0}">
         $(document).ready(function() {
             bootbox.dialog({
+                closeButton: false,
                 title:"Editar los datos",
                 size: 'large',
                 message: $('#miformulario').html(),
