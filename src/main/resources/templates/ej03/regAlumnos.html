@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Registro de Alumnos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <style>
+            .custom {
+                width: 150px !important;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container pt-5 px-5">
+            <h3>Listado de Alumnos</h3>
+            <form action="/ejercicio3/buscarAlumno" method="post">
+                <div class="row">
+                    <div class="form-group col-4">
+                        <input type="text" class="form-control rounded " placeholder="Buscar" name="nombre"/>
+                    </div>
+                    <div class="form-group col-auto" ><input type="submit" class="btn btn-primary custom" value="Buscar"/></div>
+                    <div class="form-group col-auto" ><a  class="btn btn-primary custom" href="/ejercicio3/formulario" >Nuevo</a></div>
+                </div>
+
+                <div class="row">
+                    <table class="table table-striped mt-5">
+                        <tr> 
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                            <th>Acciones</th>
+                        </tr>
+                        <tr th:each="alu:${listaAlumnos}">
+                            <td th:text="${alu.codigo}"></td>
+                            <td th:text="${alu.nombre}"></td>
+                            <td th:text="${alu.telefono}"></td>
+                            <td th:text="${alu.direccion}"></td>
+                            <td>
+                                <div class="row">
+                                    <div class="form-group col-2 m-1"> <a class="btn btn-danger btn-sm" th:href="${'/ejercicio3/eliminar?codigo='+ alu.codigo }">Eliminar</a></div>
+                                    <div class="form-group col-2 m-1">
+                                        <a class="btn btn-primary btn-sm" th:href="${'/ejercicio3/buscarAlumnoCodigo?codigo='+ alu.codigo }">Editar</a>
+                                    </div>
+                                   
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <a th:href=${"/ejercicio3/listaAlumnos"}>Volver al inicio</a>
+            </form>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+               
+    </body>
+</html>

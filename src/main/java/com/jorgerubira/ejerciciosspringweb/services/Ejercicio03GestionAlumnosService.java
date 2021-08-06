@@ -2,38 +2,55 @@ package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
 
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
+@Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
-
+     private List<Alumno> alumnos=new ArrayList<>();
+     
     @Override
     public void guardarAlumno(Alumno alumno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            alumnos.add(alumno);
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < alumnos.size(); i++) {
+            if (alumnos.get(i).getCodigo() == codigo) {
+                alumnos.remove(i);
+            }
+        }
     }
-
+    
     @Override
     public List<Alumno> getAlumnos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return alumnos;
     }
-
+    
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Alumno> opt= alumnos.stream()
+                .filter(x->x.getCodigo() == codigo)
+                .findFirst();
+       
+    return opt;   
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Alumno> resultado =  alumnos.stream()
+                .filter(x->x.getNombre().equalsIgnoreCase(buscar))
+                .collect(Collectors.toList());
+        return resultado;
     }
     
 }

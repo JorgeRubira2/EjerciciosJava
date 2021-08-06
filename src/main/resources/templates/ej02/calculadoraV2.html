@@ -2,6 +2,11 @@
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <style>
+             .custom {
+                width: 150px !important;
+             }
+        </style>
     </head>
     <body>
         <div class="container pt-5 px-5">
@@ -18,20 +23,20 @@
                     </div>
 
                     <div class="row">       
-                        <div class="from-group col-auto m-2 ">
-                            <input type="submit" value="Sumar" class="btn btn-primary  "/>  
+                        <div class="from-group col-auto m-2 pt-3 ">
+                            <input type="submit" value="Sumar" class="btn btn-primary custom "/>  
                         </div>
-                        <div class="from-group col-auto m-2 ">
-                            <input type="button" value="restar" onclick="restar()" class="btn btn-primary"/>
+                        <div class="from-group col-auto m-2 pt-3 ">
+                            <input type="button" value="restar" onclick="restar()" class="btn btn-primary custom"/>
                         </div>
-                        <div class="from-group col-auto m-2">
-                            <input type="button" value="multiplicar" onclick="multiplicar()" class="btn btn-primary "/>
+                        <div class="from-group col-auto m-2 pt-3">
+                            <input type="button" value="multiplicar" onclick="multiplicar()" class="btn btn-primary custom "/>
                         </div>                   
-                        <div class="from-group col-auto m-2 ">
-                            <input type="button" value="division" onclick="division()" class="btn btn-primary  "/>
+                        <div class="from-group col-auto m-2 pt-3 ">
+                            <input type="button" value="division" onclick="division()" class="btn btn-primary custom "/>
                         </div>
 
-                        <div class="from-group col-3">
+                        <div class="from-group col-auto">
                             <label>Resultado</label>
                             <input class="form-control" type="number" disabled th:value="${resultado}"/>
                         </div>                  

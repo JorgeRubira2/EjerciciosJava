@@ -70,13 +70,13 @@ public class Ejercicio03GestionAlumnosServiceTest {
         instance.guardarAlumno(a);
         assertEquals(true, instance.getAlumno(codigo1).isPresent());
         assertEquals(a, instance.getAlumno(codigo1).get());
-        assertEquals(false, instance.getAlumno(codigo2).get().getTelefono());
+        assertEquals(false, instance.getAlumno(codigo2).isPresent()); 
     }
 
     @Test
     public void testGetAlumnos_String() {
         String nombre=UUID.randomUUID().toString();
-        Alumno a1=new Alumno((int)(Math.random()*99999999),nombre,"A","A");
+        Alumno a1=new Alumno((int)(Math.random()*99999999),nombre,"A","A"); 
         Alumno a2=new Alumno((int)(Math.random()*99999999),nombre,"A","A");
         Ejercicio03GestionAlumnosService instance = new Ejercicio03GestionAlumnosService();
         instance.guardarAlumno(a1);

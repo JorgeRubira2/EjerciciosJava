@@ -1,25 +1,3 @@
-
-- Tipo primitivos, Envoltorios. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
-- Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
-- Modificadores. (Public, Protected (derivadas y paquete), (Nada) (paquete), Private)
-- Herencia. (Reutilización codigo, Base y derivada, las derivadas tienen todo lo de la clase base).
-            - Solo se puede heredar de una clase
-            - this (atributos o metodos del mismo nivel), super (atributos o metodos de la clase base).
-- Sobrecarga metodos (Podemos tener metodos con el mismo nombre pero parametros diferentes).
-- Constructores (Se ejecutan al hacer new. Para inicialización de datos)
-- Encapsulación (Atributos privados, Leer y modificar getAtributo o setAtributo).
-- Object (toString() - equals() - @Override)
-
-- GIT (Add>Commit>Push) (Add>Commit>Pull) (Todos dias Add>Commit>Pull>Merge>(Conflict>Add>Commit)>Push)  Switch Branch, Merge Revision
-
-- Generico (ArrayList<Integer>, ArrayList<Persona> , o clases hechas por vosotros class Nombre<T> )
-- Metodos y clases abstractas. Clase abstract (No new), Metodo abstract (No lleva codigo, obligacion de implementarlo clases derivada)
-- Metodos y clases final. No queremos que hagan @Override. Clases final (No se pueden crear clases derivadas)
-- Interface. Obligar a tener unos metodos. Una clase puede implementar muchas interface. API
-             default-> No es importante. Para casos muy concretos.
-
-- Constantes. Hoy
-
 - Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
 - Optional<Envoltorio> -> get(), isPresent(), isEmpty(), orElse(T) "es como el get pero darmo un valor por defecto si no tiene"
 - Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
@@ -112,8 +90,9 @@
                 th:text -> contenido
                 th:class -> clase
                 th:if -> la etiqueta se muestra o no dependiendo del if.
-                th:each -> repite la etiqueta con cada elemento de la colleción
+                th:each="var:${lista}" -> repite la etiqueta con cada elemento de la colleción
                 th:href -> modificar el href de un link
+                th:object="${objeto}" -> th:field="*{campo}" -> id, name, value (html)
 - Envio de parametros (vistas->controlador): 
                        GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url")
                        POST (los parametros se envian en el body -> formularios)    @PostMapping("/url")
@@ -128,4 +107,5 @@
 - Spring Lombok (codigo mas limipia): @Data, genera set get   
                                       @AllArgsConstructor, genera constructor con todos
                                       @NoArgsContructor, genera contructor sin parametros
-                
+- @RequestMapping("ruta/{id}"}, @PathVariable 
+  

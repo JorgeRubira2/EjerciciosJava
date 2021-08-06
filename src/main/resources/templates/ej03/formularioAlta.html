@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Formulario de Alta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container pt-2 px-1">
+            <h3>Formulario de alta</h3>
+            <form action='/ejercicio3/altaAlumno' method="post"> 
+                <div  class="form-group col-3">
+                    <label>Codigo</label>
+                    <input id="codigo"  class="form-control" value"" readonly name="codigo"  />
+                </div>
+                <div class="form-group col-3">
+                    <label>Nombre</label>
+                    <input  type="text" class="form-control" placeholder="Nombre" name="nombre">
+                </div>
+                <div class="form-group col-3">
+                    <label>Telefono</label>
+                    <input  type="text" class="form-control" placeholder="Telefono" name="telefono">
+                </div>
+                <div class="form-group col-3">
+                    <label>Direccion</label>
+                    <input  type="text" class="form-control" placeholder="Direccion" name="direccion">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Aceptar</button>
+            </form>
+        </div> 
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        
+        <script>
+           $(document).ready(function(){
+            $(function(){
+                var i= Math.floor(Math.random()*9999);
+                $('#codigo').val(i);
+            });
+          });           
+        </script>
+        
+        
+    </body>                         
+</html>
+

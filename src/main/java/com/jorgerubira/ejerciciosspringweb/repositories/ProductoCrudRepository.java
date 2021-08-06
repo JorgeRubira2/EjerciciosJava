@@ -17,6 +17,5 @@ import org.springframework.stereotype.Repository;
  * List: Para menor volumen de datos. Permite hacer búsquedas, conversiones o tratarlos con stream().
  */
 
-@Repository
 public interface ProductoCrudRepository extends JpaRepository<Producto, Long>{
 }
