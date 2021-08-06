@@ -55,7 +55,7 @@
 
     <div id="miformulario" class="container-fluid escondido">
         <div class="row text-center">
-            <form th:object="${persona}" action="/ej03/listaAlumnos" method="POST">
+            <form id="formu" th:object="${persona}" action="/ej03/listaAlumnos" method="POST">
                 <label class="col-2">Nombre:</label>
                 <input class="col-3" type="text" th:field="*{nombre}" />
                 <label class="col-2" >Telefono:</label>
@@ -98,11 +98,12 @@
 
     } );
     function addUser(){
-        $('#miformulario input').trigger("change");
+        $('#formu').trigger("reset");
+        //$('#miformulario input').trigger("change");
         bootbox.dialog({
                 title:"Introduce los datos",
                 size: 'large',
-                message: $('#miformulario').html()
+                message: $('#miformulario').html(),               
             });
         };
 
@@ -116,7 +117,7 @@
             bootbox.dialog({
                 title:"Editar los datos",
                 size: 'large',
-                message: $('#miformulario').html()
+                message: $('#miformulario').html(),
             });
         });
     </script>
