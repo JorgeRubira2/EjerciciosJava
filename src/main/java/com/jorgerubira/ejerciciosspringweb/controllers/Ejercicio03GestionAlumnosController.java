@@ -5,10 +5,38 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  *
  * @author PC
  */
+@Controller
+@RequestMapping("/ejercicio3")
 public class Ejercicio03GestionAlumnosController {
+    @Autowired
+    private IEjercicio03GestionAlumnosService alumnos;
+    
+        
+    @GetMapping("/crud")
+    public String calculadora(Model model){
+        model.addAttribute("alumnos",alumnos.getAlumnos());
+        return ("ej03/crud");
+    }
+    
+    
+    @GetMapping("/eliminar")
+    public String eliminarAlumno(Model model, long codigo) {
+        alumnos.borrarAlumno(codigo);
+        model.addAttribute("alumnos",alumnos.getAlumnos());
+        return ("ej03/crud");
+    }
     
 }
