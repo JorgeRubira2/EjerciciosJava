@@ -7,16 +7,26 @@
     </head>
     <body>
         <div class="container">
-            <h3>Lista de personas</h3>
+            <script>
+                function enviarFormulario(valor){
+                    //$("#accion").val(valor);
+                    //$("form").submit();
+                    $("form").attr('action', valor);
+                    $("form").submit();
+                }
+            </script>
+            
+            <h3 th>Lista de personas</h3>
             <form action="añadir" method="post">
                 <div class="row">
+                    <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" />
                         <span th:text= "${mensajeError}"></span> 
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="button" value="Añadir" onclick="enviarFormulario('ejercicio01/insertar')" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
                         <input type="button" value="Borrar" onclick="confirmar()" class="btn btn-danger "/>
