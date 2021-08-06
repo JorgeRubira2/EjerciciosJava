@@ -6,18 +6,28 @@
     </head>
     <body>
         <div class="container">
+            <script>
+                function enviarFormulario(valor){
+                    //$("#accion").val(valor);
+                    //$("form").submit();
+                    $("form").attr('action', valor);
+                    $("form").submit();
+                }
+            </script>
+            
             <h3>Lista de personas</h3>
             <form action="<-- RELLENAR URL DESTINO -- >" method="post">
                 <div class="row">
+                    <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="button" value="Añadir" onclick="enviarFormulario('ejercicio01/insertar')" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" value="Borrar" onclick="enviarFormulario('ejercicio01/borrar')" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -47,9 +57,7 @@
             function confirmar(){
                 bootbox.confirm({
                     message:"Desea borrar este nombre?",
-                    con
-                })
-                
+                });
             }
         </script>
     </body>
