@@ -84,15 +84,15 @@
              })
 
 
-
 - Creación de un proyecto: http://start.spring.io
 - Spring MVC -> (Vista(Html)|Controlador(URLs<Usuario)|Model)  @Controller  -> @RestController (JSON)
 - Thymeleaf -> <html xmlns:th="http://www.thymeleaf.org" >
                 th:text -> contenido
                 th:class -> clase
                 th:if -> la etiqueta se muestra o no dependiendo del if.
-                th:each -> repite la etiqueta con cada elemento de la colleción
+                th:each="var:${lista}" -> repite la etiqueta con cada elemento de la colleción
                 th:href -> modificar el href de un link
+                th:object="${objeto}" -> th:field="*{campo}" -> id, name, value (html)
 - Envio de parametros (vistas->controlador): 
                        GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url")
                        POST (los parametros se envian en el body -> formularios)    @PostMapping("/url")
@@ -107,5 +107,5 @@
 - Spring Lombok (codigo mas limipia): @Data, genera set get   
                                       @AllArgsConstructor, genera constructor con todos
                                       @NoArgsContructor, genera contructor sin parametros
-                
-
+- @RequestMapping("ruta/{id}"}, @PathVariable 
+  
