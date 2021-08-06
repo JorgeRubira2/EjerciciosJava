@@ -50,6 +50,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
             model.addAttribute("valor2", valor2);
             return "ej02/calculadora";
         }
+        
         @PostMapping("/multiplicar")
         public String multiplicar(Model model, Integer valor1, Integer valor2) {
             if (valor1 == null) {
@@ -63,6 +64,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
             model.addAttribute("valor2", valor2);
             return "ej02/calculadora";
         }
+        
         @PostMapping("/dividir")
         public String dividir(Model model, Integer valor1, Integer valor2) {
             if (valor1 == null) {

@@ -31,6 +31,7 @@ public class Ejercicio01ListaNombresController {
         try {
             list.altaNombre(nombre);
         } catch (OperacionEnListaException ex) {
+            model.addAttribute("error", "El nombre está repetido");
             Logger.getLogger(Ejercicio01ListaNombresController.class.getName()).log(Level.SEVERE, null, ex);
         }
         model.addAttribute("nombre", " ");
