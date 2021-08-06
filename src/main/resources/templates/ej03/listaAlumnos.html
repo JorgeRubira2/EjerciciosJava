@@ -1,16 +1,82 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <script>
+            function validar() {
+                if ($('#codigoNombre').val() == "") {
+                    alert('codigo o nombre requerido');
+                } else {
+                    $('form').submit();
+                }
+
+            }
+        </script>
+
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="container">
+            <h1>Listado de Alumnos</h1>
+
+
+            <form action='/ejercicio03/search' method="post">
+                <div class="row">
+                    <div class="form-group col-3">
+                        <input class="form-control" id="codigoNombre" name="codigoNombre" th:value="${codigoNombre}" type="text" placeholder="Ingrese un codigo o Nombre" required/>
+                    </div>
+                    <div class="form-group col-2">
+                        <!--<a class="btn btn-primary" id="buscar" th:href="${'/ejercicio03/search'}" onclick="validar()"> Buscar <i class="fas fa-search"></i> </a> -->
+                        <button onclick="validar()" class="btn btn-primary"> Buscar <i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="form-group col-2">
+                        <a class="btn btn-primary" th:href="${'/ejercicio03/create'}">  Nuevo <i class="fas fa-user-plus"></i> </a>
+                    </div>
+                </div>
+            </form>
+
+            <hr/>
+
+
+            <span th:if='${lista != null }'>
+                <table class="table table-striped">
+                        <tr>
+                            <th> Codigo </th>
+                            <th> Nombre </th>
+                            <th> Telefono </th>
+                            <th> Direccion </th>
+                            <th> Acciones </th>
+                        </tr>
+                        <span th:each="per:${lista}">
+                            <span th:if="${per.codigo != 0}">
+                            <tr >
+                                <td><span th:text="${per.codigo}" ></td>
+                                <td><span th:text="${per.nombre}" ></td>
+                                <td><span th:text="${per.telefono}" ></td>
+                                <td><span th:text="${per.direccion}" ></td>
+                                <td>
+                                    <a class="btn btn-primary" th:href="${'/ejercicio03/delete/'+  per.codigo }" > Eliminar <i class="fas fa-user-slash"></i> </a>
+                                    <a class="btn btn-primary" th:href="${'/ejercicio03/edit/'+ per.codigo }" > Editar <i class="fas fa-user-edit"></i> </a>
+                                </td>
+                            </tr>
+                            </span>
+                        </span>
+                </table>
+            </span>
+
+
+            <span th:text="${mensajeErr}" style="color: red"></span>
+            <hr/>
+
+        </div>
+
+
+        <!-- La solución optima es poner los scripts al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+
     </body>
 </html>

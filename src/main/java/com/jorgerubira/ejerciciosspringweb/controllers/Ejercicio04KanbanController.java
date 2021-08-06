@@ -5,6 +5,9 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 /**
  * Cosas interesantes para implementar en la vista.
@@ -16,5 +19,5 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
  * 
  */
 public class Ejercicio04KanbanController {
-    
+
 }
