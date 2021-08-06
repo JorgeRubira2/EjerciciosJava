@@ -60,9 +60,9 @@ public class Ejercicio03GestionAlumnosController {
     }
     
     @GetMapping("/deleteAlumno")
-    public String deleteAlumno(Model model, Alumno a,Long codigo){
+    public String deleteAlumno(Model model, Long codigo){
     	gestor.borrarAlumno(codigo);
         model.addAttribute("listaAlumnos", gestor.getAlumnos());
-        return "ej03/insertarAlumno";
+        return "ej03/listaAlumnos";
     }
 }

@@ -5,11 +5,15 @@
  */
 package com.jorgerubira.ejerciciosspringweb.services;
 
-import com.jorgerubira.ejerciciosspringweb.domain.Casilla;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.jorgerubira.ejerciciosspringweb.domain.Casilla;
 
 public class Ejercicio06BuscaminasServiceTest {
     
@@ -23,7 +27,7 @@ public class Ejercicio06BuscaminasServiceTest {
         assertNotEquals(null, instance.getTablero());
         assertEquals(10, instance.getTablero().size());
         assertEquals(10, instance.getTablero().get(9).size());
-        assertEquals(10L, instance.getTablero().stream().collect(
+        assertEquals(Long.valueOf(10), instance.getTablero().stream().collect(
                                 Collectors.summingLong(
                                      x-> x.stream().filter(y->y.getValor()==9).count()
                                 )
