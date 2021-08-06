@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Listado de alumnos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <style>
+            i{
+                padding-left:10px;
+            }
+            button{
+                width:100px;
+            }
+       
+        </style>
+        <script>
+            function comprobarNombre(){
+                if($('#ingresoCodigoNombre').val() == ""){
+                    alert("Campo vacío. Por favor ingrese un código o un nombre.");
+                }else{
+                    $('form').submit();
+                } 
+            }
+        </script>       
+    </head>
+    <body>
+        <div class="container">
+            <h1>Listado de alumnos</h1>
+            <form action='/ejercicio03/alumnos' method="post">
+                <div class="row ">
+                    <div class="from-group col-3">
+                        <input class="form-control" placeholder="Inserte un código o un nombre" required id="ingresoCodigoNombre" name="ingresoCodigoNombre" th:value="${ingresoCodigoNombre}"/>
+                    </div>
+                    <div class="from-group col">
+                        <button type="button" value="Buscar" onclick="comprobarNombre()" class="btn btn-primary ">Buscar<i class="fas fa-search"></i></button>
+                        <button type="button" value="Buscar" th:ref="${'ejercicio03/nuevoAlumno'}" class="btn btn-primary ">Nuevo</button>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <table class="table table-hover table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr> 
+                    </thead>
+                    <tbody th:each="per:${listaPersonas}">
+                        <tr th:if="${per.codigo != 0}" th:style="${per.nombre = ''}?'visibility:hidden;'">
+                            <td th:text="${per.codigo}"></td>
+                            <td th:text="${per.nombre}"></td>
+                            <td th:text="${per.telefono}"></td>
+                            <td th:text="${per.direccion}"></td>
+                            <td>
+                                <a class="btn btn-info">Eliminar<i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-primary">Editar<i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            
+        </div>
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    </body>
+</html>
