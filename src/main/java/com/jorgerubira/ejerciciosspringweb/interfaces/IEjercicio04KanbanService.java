@@ -40,7 +40,7 @@ public interface IEjercicio04KanbanService {
      * Incrementa el tiempo trabajado en la tarea del codigo introducido.
      * Devuelve una excepción si el código no encuentra la tarea
      */
-    public void imputarHorasTrabajadas(String codigo, String persona) throws OperacionEnListaException;
+    public void imputarHorasTrabajadas(String codigo, Integer horasTrabajadas) throws OperacionEnListaException;
 
     /**
      * Cambiar de estado de la tarea del codigo introducido.

@@ -60,9 +60,9 @@ public class Ejercicio04KanbanServiceTest {
     public void testImputarHorasTrabajadas() throws Exception {
         System.out.println("imputarHorasTrabajadas");
         String codigo = "";
-        String persona = "";
+        Integer horas = 0;
         Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        instance.imputarHorasTrabajadas(codigo, persona);
+        instance.imputarHorasTrabajadas(codigo, horas);
         fail("The test case is a prototype.");
     }
 

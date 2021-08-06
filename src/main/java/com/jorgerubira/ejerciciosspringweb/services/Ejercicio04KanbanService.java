@@ -3,48 +3,123 @@ package com.jorgerubira.ejerciciosspringweb.services;
 import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import org.springframework.stereotype.Service;
 
 
 /**
  * Implementa la interface IEjercicio04KanbanService
  */
+@Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
+    
+    private List<TareaKanban> listaTareas = new ArrayList<TareaKanban>();
+    
+    private static enum Estados {
+            ROADMAP("Roadmap"),WAITING("Waiting"), WORKING("Working"),DONE ("Done");
+            private String valor;
+            private Estados (String s){ valor=s;}
+            public String getEstado( ){ return this.valor;}
+        }
+    
+    
 
+            
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TareaKanban tarea = new TareaKanban();
+        
+        tarea.setCodigo(UUID.randomUUID().toString());
+        tarea.setEstado(Ejercicio04KanbanService.Estados.WAITING.getEstado()); //estaria mejor en TareaKanban
+        tarea.setDescripcion(descripcion);
+        tarea.setHorasEstimacion(horasEstimacion);
+        tarea.setHorasTrabajadas(0);
+        tarea.setPropietario(null);
+        
+        listaTareas.add(tarea);
     }
 
     @Override
     public void modificarTarea(String codigo, String descripcion, Integer horasEstamacion) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<TareaKanban> tarea = this.getTarea(codigo);
+        
+        if (tarea.isPresent()){
+            int indice = listaTareas.indexOf(tarea.get());
+            TareaKanban auxTarea = tarea.get();
+            auxTarea.setDescripcion(descripcion);
+            auxTarea.setHorasEstimacion(horasEstamacion);
+            listaTareas.remove(tarea.get());
+            listaTareas.add(indice,auxTarea);
+        } else {
+            throw new OperacionEnListaException(codigo);
+        }
+        
+        
     }
 
     @Override
     public void asignarPersona(String codigo, String persona) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<TareaKanban> tarea = this.getTarea(codigo);
+        
+        if (tarea.isPresent()){
+            int indice = listaTareas.indexOf(tarea.get());
+            TareaKanban auxTarea = tarea.get();
+            auxTarea.setPropietario(persona);
+            listaTareas.remove(tarea.get());
+            listaTareas.add(indice,auxTarea);
+            
+        } else {
+            throw new OperacionEnListaException(codigo);
+        }
+        
+        
     }
 
     @Override
-    public void imputarHorasTrabajadas(String codigo, String persona) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void imputarHorasTrabajadas(String codigo, Integer horasTrabajadas) throws OperacionEnListaException {
+        Optional<TareaKanban> tarea = this.getTarea(codigo);
+        
+        if (tarea.isPresent()){
+            int indice = listaTareas.indexOf(tarea.get());
+            TareaKanban auxTarea = tarea.get();
+            auxTarea.setHorasTrabajadas(auxTarea.getHorasTrabajadas() + horasTrabajadas );
+            listaTareas.remove(tarea.get());
+            listaTareas.add(indice,auxTarea);
+            
+        } else {
+            throw new OperacionEnListaException(codigo);
+        }
     }
 
     @Override
-    public void cambiarEstado(String codigo, String persona) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException {
+        Optional<TareaKanban> tarea = this.getTarea(codigo);
+        
+        if (tarea.isPresent()){
+            int indice = listaTareas.indexOf(tarea.get());
+            TareaKanban auxTarea = tarea.get();
+            auxTarea.setEstado(estado);
+            listaTareas.remove(tarea.get());
+            listaTareas.add(indice,auxTarea);
+            
+        } else {
+            throw new OperacionEnListaException(codigo);
+        }
     }
 
     @Override
     public List<TareaKanban> getTareas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaTareas;
     }
 
     @Override
     public Optional<TareaKanban> getTarea(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return   listaTareas.stream()
+                .filter(x -> x.getCodigo().equals(codigo))
+                .findFirst();
     }
     
 }
