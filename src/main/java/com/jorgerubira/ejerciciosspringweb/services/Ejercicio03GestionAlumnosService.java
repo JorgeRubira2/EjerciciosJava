@@ -25,17 +25,19 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     @Override
     public void guardarAlumno(Alumno alumno) {
 
-        if (alumno != null) {
-            lista.add(alumno);
+        if (null==alumno) {
+            
+        }else{
+             lista.add(alumno);
         }
-
+           
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
         for (Alumno a : lista) {
             if (a.getCodigo() == codigo) {
-                lista.remove(a);
+                lista.remove(a.getCodigo());
             }
 
         }
