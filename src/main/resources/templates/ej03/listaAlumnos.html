@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-2">
                     <form action="/ejercicio03/alumnos" method="post"><!-- comment -->
-                        <input type="text" placeholder="Ingrese un código o Nombre" name="buscar" id="elementoBuscar"/>
+                        <input type="text" placeholder="Ingrese un código o Nombre" name="buscar" id="elementoBuscar" required/>
                     </form>
                 </div>
                 <div class="col-2">
@@ -34,22 +34,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         <tr th:each="per:${lista}">
-                            
-                                <td><input type="number" th:value="${per.codigo}" th:id="${per.codigo}" th:name="${per.codigo}" disabled/></td>
-                                <td><input type="text" th:value="${per.nombre}" th:id="${per.nombre}" th:name="${per.nombre}" disabled/></td>
-                                <td><input type="text" th:value="${per.telefono}" th:id="${per.telefono}" th:name="${per.telefono}" disabled/></td>
-                                <td><input type="text" th:value="${per.direccion}" th:id="${per.direccion}" th:name="${per.direccion}" disabled/></td>
-                                <td><a th:href="${'/ejercicio03/alumnos?codigo='+per.codigo}" class="eliminar btn btn-secondary">Eliminar</a>
-                                    <a th:href="${'/ejercicio03/alumnosModificar?codigo='+per.codigo}" class="editar btn btn-primary"> Editar</a>  </td>      
-                            
+
+                            <td><input type="number" th:value="${per.codigo}" th:id="${per.codigo}" th:name="${per.codigo}" disabled/></td>
+                            <td><input type="text" th:value="${per.nombre}" th:id="${per.nombre}" th:name="${per.nombre}" disabled/></td>
+                            <td><input type="text" th:value="${per.telefono}" th:id="${per.telefono}" th:name="${per.telefono}" disabled/></td>
+                            <td><input type="text" th:value="${per.direccion}" th:id="${per.direccion}" th:name="${per.direccion}" disabled/></td>
+                            <td><a th:href="${'/ejercicio03/alumnos?codigo='+per.codigo}" class="eliminar btn btn-secondary">Eliminar</a>
+                                <a th:href="${'/ejercicio03/alumnosModificar?codigo='+per.codigo}" class="editar btn btn-primary"> Editar</a>  </td>      
+
                         </tr>
                     </tbody>
                 </table>
             </form>
-            
-            
+
+
         </div>
         <div id="nuevoAlumno" style="display:none">
             <form action="/ejercicio03/alumnos" method="post"  class="form-group">
@@ -58,42 +58,35 @@
                 <label for="telefono"  class="form-label">Teléfono:</label><input type="text" id="telefono" name="telefono" class="form-control" placeholder="Telefono"/><br/>
                 <label for="direccion"  class="form-label">Dirección:</label><input type="text" id="direccion" name="direccion" class="form-control" placeholder="Dirección"/><br/>
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
-                
+
             </form>
         </div>
-        
+
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $("#nuevo").click(formulario);
                 $("#buscar").click(buscarElemento);
-                $(".editar").click(editar)
+            });
+
+            function formulario() {//llama al formulario emergente
+                bootbox.dialog({
+                    title: "Nuevo Alumno",
+                    size: "large",
+                    message: $("#nuevoAlumno").html()
+
                 });
-          
-            function formulario(){
-                bootbox.dialog({
-                        title:"Nuevo Alumno",
-                        size: "large",
-                        message: $("#nuevoAlumno").html()
-                 
-                    });
             }
-            function buscarElemento(){
-                var valor=$("#elementoBuscar").val();
-                $(this).attr("href","/ejercicio03/alumnosBuscados?buscar="+valor).trigger("click");               
+            function buscarElemento() {//te redirige a una página con los alumnos buscados
+                var valor = $("#elementoBuscar").val();
+                $(this).attr("href", "/ejercicio03/alumnosBuscados?buscar=" + valor).trigger("click");
             }
-            function formulario(){
-                bootbox.dialog({
-                        title:"Nuevo Alumno",
-                        size: "large",
-                        message: $("#nuevoAlumno").html()
-                 
-                    });
-            }
+           
             
-            
+
+
         </script>
     </body>
 </html>
