@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+    <span th:text="${error}"></span>
+    
+        <div class="container">
+            <h3>Calculadora</h3>
+            <form action="/ejercicio2/sumar" method="post">
+             <div class="row">  
+                    <div class="from-group col-3">
+                        <label >Resultado</label>
+                        <input class="form-control" type="number" disabled th:value="${resultado}"/>
+                    </div> 
+                    </div>
+                <div class="row">
+                    <div class="from-group offset-1 col-5 text-center">
+                        <label >Valor 1</label>
+                        <input class="form-control" type="number" name="valor1" th:value="${valor1}" min="-99999" max="99999"/>
+                    </div>
+                    <div class="from-group col-5 text-center">
+                        <label >Valor 2</label>
+                        <input class="form-control" type="number" name="valor2" th:value="${valor2}" min="-99999" max="99999"/>
+                    </div>
+                    </div>
+                    <div class="row">     
+                    <div class="form-group offset-1 col-5 pt-4">
+                        <input type="button" value="Sumar" onclick="sumar()" class="btn btn-primary "/>
+                    </div> 
+                    <div class="form-group  col-5 pt-4">
+                        <input type="button" value="Restar"onclick="restar()" class="btn btn-primary "/>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="form-group offset-1 col-5 pt-4">
+                        <input type="button" value="Multiplicar"onclick="multiplicar()"class="btn btn-primary "/>
+                    </div> 
+                    <div class="form-group  col-5 pt-4">
+                        <input type="button" value="Dividir" onclick="dividir()" class="btn btn-primary "/>
+                    </div>
+                    </div>
+                                       
+                
+            </form>
+        </div>
+ 		<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script>
+        
+            function sumar(){
+               $("form").attr("action","/ejercicio2/sumar").submit();
+
+        };
+        function restar(){
+            $("form").attr("action","/ejercicio2/restar").submit();
+
+     	};
+     	function multiplicar(){
+         	$("form").attr("action","/ejercicio2/multiplicar").submit();
+
+  		};
+  		function dividir(){
+      		$("form").attr("action","/ejercicio2/dividir").submit();
+
+		};
+
+               
+        </script>
+</body>
+
+</html>
