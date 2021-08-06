@@ -21,7 +21,7 @@
                         <input type="button" value="Borrar" onclick="confirmar()" class="btn btn-danger "/>
                     </div>
                     <div class="col-3 pt-5">
-                        
+                        <p th:if="${error}" class="alert alert-danger">No puedes añadir nombres repetidos!!</p>
                     </div>
                 </div>
             </form>

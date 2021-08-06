@@ -22,7 +22,8 @@ public class Ejercicio01ListaNombresController {
     private IEjercicio01ListaNombresService listaNombres;
     
     @GetMapping("/listaPersonas")
-    public String lista(){   
+    public String lista(Model m){   
+        m.addAttribute("listaNombres",listaNombres.getLista());
         return "ej01/listaPersonas";
     }
     
