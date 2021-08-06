@@ -12,12 +12,13 @@
             <h3>Lista de personas</h3>
             <form action='/ejercicio01/nombre' method="post">
                 <div class="row">
+                    <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre"/>
                     </div>
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Añadir" class="btn btn-primary "/>
+                        <input type="button" value="Añadir" onclick="enviarFormulario('ejercicio01/insertar')" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
                         <input id='accion' type="button" value="Borrar" class="btn btn-danger "/>
