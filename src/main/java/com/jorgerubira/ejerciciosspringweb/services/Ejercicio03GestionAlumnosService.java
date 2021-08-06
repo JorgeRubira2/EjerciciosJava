@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 /**
@@ -31,7 +32,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
             alum.setCodigo(alumno.getCodigo());
             alum.setNombre(alumno.getNombre());
             alum.setTelefono(alumno.getTelefono());
-            
+            //no pasa test
         }
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -40,29 +41,35 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     @Override
     public void borrarAlumno(Long codigo) {
         
-      
-               
-            
+        alumnos.removeIf(x-> x.getCodigo()== codigo);
         
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
     public List<Alumno> getAlumnos() {
+        
         return alumnos;
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
+        
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
     public List<Alumno> getAlumnos(String buscar) {
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return alumnos.stream()
+                .filter(x-> x.getNombre().equals(buscar))
+               .collect(Collectors.toList());
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
