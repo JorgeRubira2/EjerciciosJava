@@ -15,9 +15,9 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
 
     public Ejercicio01ListaNombresService() {
         //Añadimos varios nombres por defecto.
-        nombres.add("Ana");
-        nombres.add("Juan");
-        nombres.add("Pepe");
+        //nombres.add("Ana");
+        //nombres.add("Juan");
+       // nombres.add("Pepe");
     }
     
     @Override
