@@ -6,9 +6,19 @@
     </head>
     <body>
         <div class="container">
+            <script>
+                function enviarFormulario(valor){
+                    //$("#accion").val(valor);
+                    //$("form").submit();
+                    $("form").attr('action', valor);
+                    $("form").submit();
+                }
+            </script>
+            
             <h3>Lista de personas</h3>
             <form action="/ejercicio1" method="post">
                 <div class="row">
+                    <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
@@ -39,7 +49,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
             function confirmar(){
-            	bootbox.alert("El nombre ha sido eliminado");
+                bootbox.confirm({
+                    message:"Desea borrar este nombre?",
+                });
             }
         </script>
     </body>
