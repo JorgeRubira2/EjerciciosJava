@@ -43,8 +43,8 @@
                     <td th:text="${per.telefono}" />
                     <td th:text="${per.direccion}" />
                     <td>                        
-                        
-                        <a th:href="${'/listaAlumnos?codigo=' + per.codigo}" class="btn btn-danger"><i class="fas fa-trash fa-sm"></i></a>
+                        <a th:href="${'/ej03/listaAlumnos/editar?codigo=' + per.codigo}" class="btn btn-success"><i class="fas fa-edit fa-sm"></i></a>
+                        <a th:href="${'/ej03/listaAlumnos/borrar?codigo=' + per.codigo}" class="btn btn-danger"><i class="fas fa-trash fa-sm"></i></a>
                     </td>
                 </tr>
                     
@@ -55,13 +55,14 @@
 
     <div id="miformulario" class="container-fluid escondido">
         <div class="row text-center">
-            <form class="form-control" action="listaAlumnos" method="POST">
+            <form th:object="${persona}" action="/ej03/listaAlumnos" method="POST">
                 <label class="col-2">Nombre:</label>
-                <input class="col-3" type="text" name="nombre" />
-                <label class="col-2">Telefono:</label>
-                <input class="col-3" type="number" name="telefono" />
+                <input class="col-3" type="text" th:field="*{nombre}" />
+                <label class="col-2" >Telefono:</label>
+                <input class="col-3" type="number" th:field="*{telefono}" />
                 <label class="col-2">Direccion:</label>
-                <input class="col-9" type="text" name="direccion" />
+                <input class="col-9" type="text" th:field="*{direccion}" />
+                <input type="hidden" th:field="*{codigo}" />
                 <input type="submit" value="Añadir" class="btn btn-primary col-12"/>        
             </form>
         </div>
@@ -97,6 +98,7 @@
 
     } );
     function addUser(){
+        $('#miformulario input').trigger("change");
         bootbox.dialog({
                 title:"Introduce los datos",
                 size: 'large',
@@ -108,6 +110,15 @@
             $("#accion").val(valor);
             $("#selectores").submit();
         }*/
+    </script>
+    <script th:if="${persona.codigo>0}">
+        $(document).ready(function() {
+            bootbox.dialog({
+                title:"Editar los datos",
+                size: 'large',
+                message: $('#miformulario').html()
+            });
+        });
     </script>
 </body>
 </html>

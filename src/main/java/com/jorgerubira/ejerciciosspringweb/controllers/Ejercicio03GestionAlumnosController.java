@@ -22,24 +22,38 @@ public class Ejercicio03GestionAlumnosController {
     
     @GetMapping("/listaAlumnos")
     public String lista(Model m){
+        m.addAttribute("persona", new Alumno());
         m.addAttribute("listaAlumnos", listaAlumnos.getAlumnos());
         return "ej03/listaAlumnos";
     }
     
     @PostMapping("/listaAlumnos")
     public String listaInserta(Model m,String codigo, String nombre, String telefono, String direccion, String accion){
-        long codigonuevo = (int)(Math.random()*99999999);
-        listaAlumnos.guardarAlumno(new Alumno(codigonuevo,nombre,telefono,direccion));
+        System.out.println(codigo);
+        if(Long.valueOf(codigo) != 0){
+            listaAlumnos.guardarAlumno(new Alumno(Long.valueOf(codigo),nombre,telefono,direccion));
+        }else{
+            long codigonuevo = (int)(Math.random()*99999999);
+            listaAlumnos.guardarAlumno(new Alumno(codigonuevo,nombre,telefono,direccion));
+        }
+        m.addAttribute("persona", new Alumno());
         m.addAttribute("listaAlumnos", listaAlumnos.getAlumnos());
         return "ej03/listaAlumnos";
     }
     
-    /*@GetMapping("/listaAlumnos")  
+    @GetMapping("/listaAlumnos/borrar")  
     public String borrar(Model m, String codigo){ 
-         listaAlumnos.borrarAlumno(Long.valueOf(codigo));
+        m.addAttribute("persona", new Alumno());
+        listaAlumnos.borrarAlumno(Long.valueOf(codigo));
+        m.addAttribute("listaAlumnos", listaAlumnos.getAlumnos());
+        return "ej03/listaAlumnos"; 
+    }
+    
+    @GetMapping("/listaAlumnos/editar")  
+    public String editar(Model m, String codigo){ 
+         m.addAttribute("persona", listaAlumnos.getAlumno(Long.valueOf(codigo)).get());
          m.addAttribute("listaAlumnos", listaAlumnos.getAlumnos());
          return "ej03/listaAlumnos"; 
-    }*/
-    
+    }
   
 }
