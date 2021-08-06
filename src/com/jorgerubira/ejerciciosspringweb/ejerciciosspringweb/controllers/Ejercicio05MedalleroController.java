@@ -10,5 +10,6 @@ package com.jorgerubira.ejerciciosspringweb.ejerciciosspringweb.controllers;
  * @author PC
  */
 public class Ejercicio05MedalleroController {
+
     
 }
