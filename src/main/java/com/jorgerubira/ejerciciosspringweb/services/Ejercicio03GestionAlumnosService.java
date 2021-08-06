@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,57 +16,50 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     private List<Alumno> lista = new ArrayList<>();
 
-    public Ejercicio03GestionAlumnosService() {
-        //Añadimos varios nombres por defecto.
-        lista.add(new Alumno(1, "Ana", "666666666", "Calle Inventada"));
-        lista.add(new Alumno(2, "Pepe", "666666666", "Calle Inventada2"));
-        lista.add(new Alumno(3, "Juan", "666666666", "Calle Inventada3"));
-    }
-
     @Override
     public void guardarAlumno(Alumno alumno) {
+        Optional<Alumno> a = lista.stream().filter(x -> alumno.getCodigo() == x.getCodigo())
+                .findFirst();
+        int numeroAleatorio = (int) (Math.random() * 9998 + 1);
+        if (a.isPresent()) {            
+            a.get().setNombre(alumno.getNombre());
+            a.get().setTelefono(alumno.getTelefono());
+            a.get().setDireccion(alumno.getDireccion());
 
-        if (null==alumno) {
-            
-        }else{
-             lista.add(alumno);
+        } else {
+            alumno.setCodigo(numeroAleatorio);
+            lista.add(alumno);
         }
-           
+
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-        for (Alumno a : lista) {
-            if (a.getCodigo() == codigo) {
-                lista.remove(a.getCodigo());
-            }
 
-        }
+        lista.removeIf(x -> x.getCodigo() == codigo);
     }
 
     @Override
     public List<Alumno> getAlumnos() {
+
         return lista;
+        /* return Collections.unmodifiableList(lista);*/
     }
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-      /*  Optional<Alumno> alumno;
-         for (Alumno a : lista) {
-             
-            if (a.getCodigo() == codigo) {
-                alumno=a;
-            }
+        Optional<Alumno> alumno = lista.stream()
+                .filter(x -> x.getCodigo() == codigo).findFirst();
 
-        }
-         
-         return alumno;*/
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return alumno;
+
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lista.stream().
+                filter(x -> x.getNombre().equals(buscar))
+                .collect(Collectors.toList());
     }
 
 }

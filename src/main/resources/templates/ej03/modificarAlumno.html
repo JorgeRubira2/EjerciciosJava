@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">       
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">         
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+ 
+            <h3 class="mt-4">Lista de alumnos</h3>
+            <form action="/ejercicio03/alta" method="post">
+                <div class="row mt-4">
+                    <div class="from-group">                      
+                        <input th:text="${alumno.getCodigo()}" type="hidden" class="form-control" name="codigo" />
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="from-group">                      
+                        <input class="form-control" name="nombre" min="-99999" max="99999" th:text="${alumno.getNombre()}" />
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="from-group ">                      
+                        <input class="form-control" name="edad" type="number" th:text="${alumno.getEdad()}" />
+
+                    </div>
+                </div>  
+                <div class="row mt-4">
+                    <div class="from-group ">                      
+                        <input class="form-control" name="telefono" type="text" th:text="${alumno.getTelefono()}" />
+
+                    </div>
+                </div>  
+
+                <div class="row mt-4">
+                    <div class="from-group  ">                      
+                        <input class="form-control" name="direccion" type="text" th:text="${alumno.getDireccion()}" />
+
+                    </div>
+                    <div class="row mt-4 col-3">
+                        <input type="submit" value="Nuevo" class="btn btn-primary "/>
+                    </div>
+                </div>  
+
+                <span th:text="${error}" style="color:red;font-size: 20px"></span>
+                <span th:text="${correcto}" style="color:green;font-size: 20px"></span>
+                <div class="row mt-4 col-2"> 
+                <a class="btn btn-primary" href="/ejercicio03/devolverlista">Volver a la lista</a>
+                </div>
+            </form>
+
+        </div>
+
+
+        <!-- La solución optima es poner los scripts al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        
+    </body>
+</html>

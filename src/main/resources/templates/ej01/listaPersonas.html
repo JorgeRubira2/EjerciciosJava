@@ -10,16 +10,24 @@
             <h3>Lista de personas</h3>
             <form action="/ejercicio01/altanombre" method="post">
                 <div class="row">
+                    <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
                         <input class="form-control" name="nombre" min="-99999" max="99999"/>
                         <span th:text="${error}" style="color:red"></span>
                     </div>
                     <div class="col-1 pt-4">
+
                         <input type="submit" value="Añadir"   class="btn btn-primary "/>
+
+
                     </div>   
                     <div class="col-1 pt-4">
+
                         <input type="button" value="Borrar" onclick="confirmar()" class="btn btn-danger "/>
+
+
+
                     </div>   
                 </div>
             </form>
@@ -42,9 +50,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
             function confirmar(){
+
             bootbox.confirm({
             message:"Desea borrar este nombre?",
-            callback:function(){$("form").attr("action","/ejercicio01/borrarnombre").submit();}
+            callback:function(){$("form").attr("action","/ejercicio03/devolverlista").submit();}
             })
 
             }
