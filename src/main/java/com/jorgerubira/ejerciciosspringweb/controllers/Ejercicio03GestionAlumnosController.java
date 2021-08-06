@@ -64,18 +64,17 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/borrar") //URL A LLAMAR
     public String borrarAlumno(Model model, Long codigo) {
-        model.addAttribute("codigo?", codigo);
-        service.borrarAlumno(codigo);
+        
+        service.borrarAlumno(codigo); 
         model.addAttribute("listaPersonas", service.getAlumnos());
 
         return "ej03/listaAlumnos";
     }
 
-    @GetMapping("/modificar") //URL A LLAMAR
+    @GetMapping("/modificar") //URL A LLAMAR 
     public String editarAlumno(Model model, Long codigo) {
-        model.addAttribute("codigo?", codigo);
-        service.getAlumno(codigo);
-        model.addAttribute("alumno",service.getAlumno(codigo));
+       
+        model.addAttribute("alumno", service.getAlumno(codigo));
 
         return "ej03/modificarAlumno";
     }
