@@ -25,8 +25,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
 	@Override
 	public void borrarAlumno(Long codigo) {
-		Optional<Alumno> al = alumnos.stream().filter(x -> x.getCodigo() == codigo).findFirst();
-		alumnos.remove(al);
+		alumnos.removeIf(x -> x.getCodigo() == codigo);
 	}
 
 	@Override
