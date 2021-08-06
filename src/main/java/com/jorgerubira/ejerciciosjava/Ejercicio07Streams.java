@@ -145,6 +145,7 @@ public class Ejercicio07Streams {
      * Top 3 ciudades. Devuelve las tres ciudades con más personas en un Set. No
      * hace falta verificar si valen nulo.
      */
+    /*
     public Set<String> top3Ciudades(List<Persona> lista) {
         Map<String, Long> contarPersonas = lista.stream()
                 .collect(Collectors.groupingBy(x -> x.getCiudad(), Collectors.counting()));
@@ -153,7 +154,7 @@ public class Ejercicio07Streams {
                 .collect(Collectors.toSet());
 
     }
-
+*/
     /**
      * Devuelve una lista con 3 objetos RangoEdad. Posicion 0-Cuantas personas
      * hay menores de 18 años. Posicion 1-Cuantas personas hay entre 18 y 60

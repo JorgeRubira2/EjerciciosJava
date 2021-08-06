@@ -7,17 +7,17 @@
     <body>
         <div class="container">
             <h3>Lista de personas</h3>
-            <form action="<-- RELLENAR URL DESTINO -- >" method="post">
+            <form action="/ejercicio1/annadir" method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input class="form-control" name="nombre" th:value="${nombre}"/>
                     </div>
                     <div class="col-1 pt-4">
                         <input type="submit" value="Añadir" class="btn btn-primary "/>
                     </div>   
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Borrar" class="btn btn-danger "/>
+                        <input type="button" value="Borrar" onclick="eliminar()" class="btn btn-danger "/>
                     </div>   
                 </div>
             </form>
@@ -26,15 +26,10 @@
                 <tr>
                     <th>Nombre</th>
                 </tr>
-                <tr>
-                    <td>Ana</td>
+                <tr th:each="nombre:${personas}">
+                    <td th:text="${nombre}"></td>
                 </tr>
-                <tr>
-                    <td>Juan</td>
-                </tr>
-                <tr>
-                    <td>Pepe</td>
-                </tr>
+                
             </table>
         </div>
         
@@ -43,14 +38,16 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        
         <script>
             function confirmar(){
                 bootbox.confirm({
-                    message:"Desea borrar este nombre?",
-                    con
-                })
+                    message:"¿Desea borrar este nombre?",
+                    callback:function() {$"form"}.attr("action", "eliminar").submit();}
+                });
                 
             }
         </script>
+        
     </body>
 </html>
