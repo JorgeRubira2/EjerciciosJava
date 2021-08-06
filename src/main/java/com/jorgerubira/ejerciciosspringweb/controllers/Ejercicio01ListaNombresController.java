@@ -24,7 +24,7 @@ public class Ejercicio01ListaNombresController {
     private IEjercicio01ListaNombresService servicio;
     
     @GetMapping("/lista")
-    public String calc(Model model){
+    public String getLista(Model model){
         model.addAttribute("nombre", "");
         model.addAttribute("listaPersonas", servicio.getLista());
         return "ej01/listaPersonas";
@@ -43,7 +43,7 @@ public class Ejercicio01ListaNombresController {
     }
     
     @PostMapping(params="borrar")
-    public String rdelete(Model model,String nombre){
+    public String delete(Model model,String nombre){
         model.addAttribute("nombre", nombre);
     	servicio.bajaNombre(nombre);
         model.addAttribute("listaPersonas", servicio.getLista());

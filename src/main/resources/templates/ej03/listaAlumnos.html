@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista de alumnos</title>
+</head>
+<body>
+
+
+	<table>
+		<tr>
+			<th>Codigo</th>
+			<th>Nombre</th>
+			<th>Telefono</th>
+			<th>Direccion</th>
+			
+		</tr>
+		<tr th:each="per:${listaAlumnos}">
+			<td th:text="${per.codigo}" />
+			<td th:text="${per.nombre}" />
+			<td th:text="${per.telefono}" />
+			<td th:text="${per.direccion}" />
+			<td>
+			<a th:href="${'/updateAlumno?codigo=' + per.codigo">Actualizar</a>
+			<a th:href="${'/deleteAlumno?codigo=' + per.codigo">Borrar</a>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>
