@@ -21,20 +21,20 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
          Optional<Alumno> alu = alumnos.stream()
                     .filter(a->a.getCodigo()==(alumno.getCodigo()))
                     .findFirst();
-//         OptionalLong ultimoCodigo = alumnos.stream()
-//                                        .mapToLong(a->a.getCodigo())
-//                                        .max();
+         OptionalLong ultimoCodigo = alumnos.stream()
+                                        .mapToLong(a->a.getCodigo())
+                                        .max();
 
          if(alu.isPresent()){
              alu.get().setNombre(alumno.getNombre());
              alu.get().setDireccion(alumno.getDireccion());
              alu.get().setTelefono(alumno.getTelefono());
          } else {
-//             if(ultimoCodigo.isPresent()){
-//                 alumno.setCodigo(ultimoCodigo.getAsLong()+1);
-//             } else {
-//                 alumno.setCodigo(1);
-//             }
+             if(ultimoCodigo.isPresent()){
+                 alumno.setCodigo(ultimoCodigo.getAsLong()+1);
+             } else {
+                 alumno.setCodigo(1);
+             }
              alumnos.add(alumno);
          }
     }

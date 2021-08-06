@@ -23,6 +23,10 @@
             <td th:text="${alumno.nombre}"></td>
             <td th:text="${alumno.telefono}"></td>
             <td th:text="${alumno.direccion}"></td>
+            <td>
+                <a th:href="@{'/ej03/borrarAlumno/' + ${alumno.codigo}}">Borrar</a>
+                <a th:href="@{'/ej03/editarAlumno/' + ${alumno.codigo}}">Editar</a>
+            </td>
             <td></td>
         </tr>
     </table>
