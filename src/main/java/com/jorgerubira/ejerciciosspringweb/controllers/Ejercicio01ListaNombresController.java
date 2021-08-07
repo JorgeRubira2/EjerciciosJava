@@ -50,7 +50,8 @@ public class Ejercicio01ListaNombresController {
     
     public String eliminar(Model model, String nombre){
         
-        service.bajaNombre(nombre);    
+        service.bajaNombre(nombre); 
+        
         model.addAttribute("personas",service.getLista());
         return "ej01/listaPersonas";
     }

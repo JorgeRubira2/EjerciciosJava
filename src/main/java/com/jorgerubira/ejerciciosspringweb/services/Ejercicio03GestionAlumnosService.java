@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosspringweb.services;
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,16 +14,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
-    
     private List<Alumno> alumnos = new ArrayList();
     
+    
+    
+  
     @Override
     public void guardarAlumno(Alumno alumno) {
+        
+        
+        
         
         if (alumnos.stream()
                 .noneMatch(x -> x.equals(alumno.getCodigo()))) {
             alumnos.add(alumno);
-        } else {
+        }/* else {
             
             var alum = alumnos.stream()
                     .filter(x -> x.getCodigo() == alumno.getCodigo())
@@ -34,7 +40,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
             alum.setTelefono(alumno.getTelefono());
             //no pasa test
         }
-
+*/
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -49,6 +55,12 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public List<Alumno> getAlumnos() {
+        Alumno alumno = new Alumno();
+        alumno.setCodigo(2);
+        alumno.setNombre("pepe");
+        alumno.setTelefono("1234");
+        alumno.setDireccion("dirección 1234");
+        alumnos.add(alumno);
         
         return alumnos;
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -57,9 +69,12 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
         
-        
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Alumno>alumno=alumnos.stream()
+                .filter(x->x.getCodigo()== codigo)
+                .findFirst();
+                        
+        return alumno;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
