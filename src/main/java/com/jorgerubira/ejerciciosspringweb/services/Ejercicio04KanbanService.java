@@ -18,11 +18,11 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     
     private List<TareaKanban> listaTareas = new ArrayList<TareaKanban>();
     
-    private static enum Estados {
+    public static enum Estados {
             ROADMAP("Roadmap"),WAITING("Waiting"), WORKING("Working"),DONE ("Done");
-            private String valor;
-            private Estados (String s){ valor=s;}
-            public String getEstado( ){ return this.valor;}
+            private String estado;
+            private Estados (String s){ estado=s;}
+            public String getEstado( ){ return this.estado;}
         }
     
     
@@ -33,7 +33,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         TareaKanban tarea = new TareaKanban();
         
         tarea.setCodigo(UUID.randomUUID().toString());
-        tarea.setEstado(Ejercicio04KanbanService.Estados.WAITING.getEstado()); //estaria mejor en TareaKanban
+        tarea.setEstado(Ejercicio04KanbanService.Estados.ROADMAP.getEstado()); //estaria mejor en TareaKanban
         tarea.setDescripcion(descripcion);
         tarea.setHorasEstimacion(horasEstimacion);
         tarea.setHorasTrabajadas(0);

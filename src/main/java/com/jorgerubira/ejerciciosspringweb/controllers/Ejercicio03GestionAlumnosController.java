@@ -33,6 +33,12 @@ public class Ejercicio03GestionAlumnosController {
         model.addAttribute("lista", serviceGestionAlumnos.getAlumnos());
         return "/ej03/listaAlumnos";
     }
+    
+    @GetMapping("/altaTarea")
+    public String aFormularioAltaTarea(Model model){
+        model.addAttribute("modo","AltaTarea");
+        return "/ej04/formTareaKanban";
+    }
 
     @PostMapping("/search")
     public String buscar(Model model, @RequestParam("codigoNombre") String codigoNombre) {

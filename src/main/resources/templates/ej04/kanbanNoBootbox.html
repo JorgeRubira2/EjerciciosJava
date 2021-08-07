@@ -1,0 +1,164 @@
+<!DOCTYPE html> 
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Kanban proyecto</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        .row{
+            text-align: center;
+
+        }
+        .cabecera {
+            text-align: center;
+            border: 2px solid #333333;
+        }
+
+       
+        
+        .miniBotones {
+                width: 70px;
+                height: 30px;
+                font-size: 12px;
+        }
+        .errorMessage {
+         font-size: Larger;
+         color:red;
+        }
+    </style>
+    <body>
+        <span class="errorMessage" th:if="${mensajeError != null} " th:text='${mensajeError  + " !!! " }'></span>
+        <div class="container">
+            <div class="row">
+                <div class ="col-3 cabecera">
+                    <div>Story</div>
+                    <span>
+                        <a class="btn btn-primary btn-sm miniBotones"  th:href="${'/ejercicio04/altaTarea'}"> Añadir <i class="fas fa-calendar-plus"></i></a>                
+                    </span>
+                </div>
+                <div class ="col-6 cabecera">
+                    <div  class="row">
+                        <span>Waiting</span>
+                    </div>
+                    <div class="row">
+                        <div class="col cabecera">Waiting</div>
+                        <div class="col cabecera">Working</div>
+                    </div> 
+                </div>
+                <div class ="col-3 cabecera">
+                    <span>Done</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container" >
+            <div class="row">
+                <div class ="col-3" >
+                    <div>
+                        <div class="card row col" th:each="tarea:${tareas}" th:if='${"Roadmap".equals(tarea.getEstado())}'>
+                               <!-- <img class="card-img-top" alt="tarea actual"> -->
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <div>Pendiente Paso a Espera  <i class="far fa-pause-circle" ></i></div>
+                                        <span><i class="far fa-clock" th:text="${' Estimacion: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + 'horas '}" ></i>  </span>
+                                    </h6>
+                                    <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/modificar/'+tarea.codigo}"><i class="far fa-edit"></i></a>
+                                    <a style="display:none" class="btn btn-primary miniBotones" th:href="${'/ejercicio04/eliminar/'+tarea.codigo}"><i class="fas fa-times"></i></a>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Waiting'}"> <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class ="col-6">
+                    <div  class="row">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                           <div class="card row col" th:each="tarea:${tareas}" th:if='${"Waiting".equals(tarea.getEstado())}'>
+                               <!-- <img class="card-img-top" alt="tarea actual"> -->
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <div><span th:if="${tarea.propietario == null }">Pendiente Asignacion a persona <i class="far fa-pause-circle" ></i></span>
+                                             <span th:if="${tarea.propietario != null }">Persona Asignada  <i class="fas fa-user-check"></i></span>
+                                             <div th:text="${tarea.propietario}"></div>
+                                        </div>
+                                        <span><i class="far fa-clock" th:text="${'Tiempo restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + 'horas '}" ></i>  </span>
+                                    </h6>
+                                    <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Roadmap'}"> <i class="fas fa-arrow-left"></i></a>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/asignarTrabajador/'+tarea.codigo}"><i class="fas fa-user-plus"></i></a>
+                                  <!--  <a style="display:none" class="btn btn-primary miniBotones" style="display:none" th:href="${'/ejercicio04/eliminar/'+tarea.codigo}"><i class="fas fa-times"></i></a> -->
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Working'}"> <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card row col" th:each="tarea:${tareas}" th:if='${"Working".equals(tarea.getEstado())}'>
+                               <!-- <img class="card-img-top" alt="tarea actual"> -->
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <div>Procesando <i class="fas fa-cogs"></i></div>
+                                        <span><i class="far fa-clock" th:text="${' Estimacion: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
+                                    </h6>
+                                    <span th:text="${'Persona asignada: ' + ((tarea.propietario != null)? tarea.propietario : 'nadie asignado') }"></span>
+                                    <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Waiting'}"> <i class="fas fa-arrow-left"></i></a>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/modificar/'+tarea.codigo}"><i class="far fa-edit"></i></a>
+                                    
+                                    <a style="display:none" class="btn btn-primary miniBotones" th:href="${'/ejercicio04/eliminar/'+tarea.codigo}"><i class="fas fa-times"></i></a>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Done'}"> <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class ="col-3">
+                    <div class="card row col" th:each="tarea:${tareas}" th:if='${"Done".equals(tarea.getEstado())}'>
+                               <!-- <img class="card-img-top" alt="tarea actual"> -->
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <div>Finalizada <i class="fas fa-clipboard-check"></i></div>
+                                        <span><i class="far fa-clock" th:text="${' Estimacion: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + 'horas '}" ></i>  </span>
+                                    </h6>
+                                    <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Working'}"> <i class="fas fa-arrow-left"></i></a>
+                                    <!--
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/modificar/'+tarea.codigo}"><i class="far fa-edit"></i></a>
+                                    <a style="display:none" class="btn btn-primary miniBotones" th:href="${'/ejercicio04/eliminar/'+tarea.codigo}"><i class="fas fa-times"></i></a>
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Done'}"> <i class="fas fa-arrow-right"></i></a>
+                                     -->
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+        
+       
+
+        
+
+    </body>
+
+    <!-- La solución optima es poner los scripts al final -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    <script>
+                            function enviar(formularioId,accionEnvio){
+                                $('#'+formularioId).attr('action',accionEnvio);
+                                $('#'+formularioId).submit();
+                            }
+
+    </script>
+</html>
