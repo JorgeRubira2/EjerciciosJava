@@ -7,47 +7,48 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-
 
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
-	private List<Alumno> alumno = new ArrayList<>();
-	
-    @Override
-    public void guardarAlumno(Alumno alumno) {
-       if(((Collection<Alumno>) alumno).stream()
-    		   .noneMatch(x->x.equals(alumno.getCodigo()))) {
-    	   ((List<Alumno>) alumno).add(alumno);
-       }else {
-    	   ((Collection<Alumno>) alumno).stream()
-    	   .filter(x->x.getCodigo()== alumno.getCodigo())
-    	   .findFirst().get();
-       }
-    }
+	private List<Alumno> alumnos = new ArrayList<>();
 
-    @Override
-    public void borrarAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public void guardarAlumno(Alumno alumno) {
+		if (alumnos.stream().anyMatch(x -> alumno.getCodigo() == x.getCodigo())) {
+			alumnos.removeIf(x -> alumno.getCodigo() == x.getCodigo());
+			alumnos.add(alumno);
+		} else {
+			alumnos.add(alumno);
+		}
 
-    @Override
-    public List<Alumno> getAlumnos() {
-        return alumno;
-    }
+	}
 
-    @Override
-    public Optional<Alumno> getAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public void borrarAlumno(Long codigo) {
+		alumnos.removeIf(x -> x.getCodigo() == codigo);
+	}
 
-    @Override
-    public List<Alumno> getAlumnos(String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+	@Override
+	public List<Alumno> getAlumnos() {
+		return alumnos;
+	}
+
+	@Override
+	public Optional<Alumno> getAlumno(Long codigo) {
+		Optional<Alumno> alu = alumnos.stream().filter(x -> x.getCodigo() == codigo).findFirst();
+		return alu;
+	}
+
+	@Override
+	public List<Alumno> getAlumnos(String buscar) {
+		List<Alumno> res = alumnos.stream().filter(x -> x.getNombre().equals(buscar)).collect(Collectors.toList());
+		return res;
+	}
+
 }
