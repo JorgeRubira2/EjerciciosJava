@@ -1,5 +1,6 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,24 +16,27 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/gestionAlumnos")
     public String verAlumnos(Model model) {
-         
+
         model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos());
         return "ej03/listaAlumnos";
     }
-    
-    
-    
-    @PostMapping("/gestionAlumnos")
-    public String buscarAlumnos(Model model, String nombre){
-        if(nombre!= null){
-            gestionAlumnos.getAlumnos(nombre);
-        }
-        
-        
-                return "ej03/listaAlumnos";
 
-        
+    @PostMapping("/gestionAlumnos")
+    public String agregarAlumnos(Model model, Long codigo, String nombre, String telefono, String direccion) {
+
+        Alumno alumno = new Alumno();
+  
+        alumno.setCodigo(codigo);
+        alumno.setNombre(nombre);
+        alumno.setTelefono(telefono);
+        alumno.setDireccion(direccion);
+        gestionAlumnos.guardarAlumno(alumno);
+        model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos());
+
+//gestionar los nulos?? 
+        return "ej03/listaAlumnos";
     }
+    
     
     
 
