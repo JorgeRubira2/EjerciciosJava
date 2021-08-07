@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +24,7 @@ public class Ejercicio03GestionAlumnosController {
     private IEjercicio03GestionAlumnosService gestor;
     
     @GetMapping("/listaAlumnos")
-    public String getLista(Model model){
+    public String getPaginaLista(Model model){
         model.addAttribute("buscador", "");
         model.addAttribute("listaAlumnos", gestor.getAlumnos());
         return "ej03/listaAlumnos";
@@ -40,29 +41,31 @@ public class Ejercicio03GestionAlumnosController {
     @PostMapping("/addAlumno")
     public String addAlumno(Model model, Alumno a){
     	gestor.guardarAlumno(a);
-        model.addAttribute("buscador", "");
-        model.addAttribute("listaAlumnos", gestor.getAlumnos());
+        getPaginaLista(model);//redirige a la lista
         return "ej03/listaAlumnos";
     }
     
-    @GetMapping("/actualizarAlumno")
-    public String getPaginaActualizar(Model model, Long codigo){
-        model.addAttribute("alumno",  gestor.getAlumno(codigo));
+    @GetMapping("/actualizarAlumno/{codigo}")
+    public String getPaginaActualizar(Model model,@PathVariable("codigo") Long codigo){
+        model.addAttribute("codigo",  gestor.getAlumno(codigo).get().getCodigo());
+        model.addAttribute("nombre", gestor.getAlumno(codigo).get().getNombre());
+        model.addAttribute("telefono",  gestor.getAlumno(codigo).get().getTelefono());
+        model.addAttribute("direccion",  gestor.getAlumno(codigo).get().getDireccion());
         return "ej03/actualizarAlumno";
     }
     
     @PostMapping("/updateAlumno")
     public String updateAlumno(Model model, Alumno a){
     	gestor.guardarAlumno(a);
-        model.addAttribute("buscador", "");
-        model.addAttribute("listaAlumnos", gestor.getAlumnos());
+        getPaginaLista(model);//redirige a la lista
         return "ej03/listaAlumnos";
     }
     
-    @GetMapping("/deleteAlumno")
-    public String deleteAlumno(Model model, Long codigo){
+    @GetMapping("/deleteAlumno/{codigo}")
+    public String deleteAlumno(Model model,@PathVariable("codigo") Long codigo){
+        model.addAttribute("codigo", codigo);
     	gestor.borrarAlumno(codigo);
-        model.addAttribute("listaAlumnos", gestor.getAlumnos());
+        getPaginaLista(model);//redirige a la lista
         return "ej03/listaAlumnos";
     }
 }
