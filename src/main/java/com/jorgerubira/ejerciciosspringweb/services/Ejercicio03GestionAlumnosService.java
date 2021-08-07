@@ -41,14 +41,16 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
 	@Override
 	public Optional<Alumno> getAlumno(Long codigo) {
-		Optional<Alumno> alu = alumnos.stream().filter(x -> x.getCodigo() == codigo).findFirst();
+		Optional<Alumno> alu = alumnos.stream()
+				.filter(x ->x.getCodigo() == codigo).findFirst();
 		return alu;
 	}
 
 	@Override
 	public List<Alumno> getAlumnos(String buscar) {
-		List<Alumno> res = alumnos.stream().filter(x -> x.getNombre().equals(buscar)).collect(Collectors.toList());
-		return res;
-	}
+		   return alumnos.stream().
+	                filter(x ->x.getNombre().equals(buscar))
+	                .collect(Collectors.toList());
+	    }
 
 }
