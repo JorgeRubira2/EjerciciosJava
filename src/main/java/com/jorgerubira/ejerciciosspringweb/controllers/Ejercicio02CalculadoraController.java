@@ -57,5 +57,12 @@ public class Ejercicio02CalculadoraController {
 		model.addAttribute("resultado", service.dividir(valor1, valor2));
         return "ej02/calculadora";
 	}
+	@PostMapping("/calculadora")
+	public String volver(Model model) {
+		model.addAttribute("resultado", 0);
+        model.addAttribute("valor1", 0);
+        model.addAttribute("valor2", 0);
+        return "ej02/calculadora";
+	}
     
 }
