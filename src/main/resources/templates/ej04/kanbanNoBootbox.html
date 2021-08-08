@@ -124,7 +124,7 @@ and open the template in the editor.
                                              <span th:if="${tarea.propietario != null }">Persona Asignada  <i class="fas fa-user-check"></i></span>
                                              <div th:text="${tarea.propietario}"></div>
                                         </div>
-                                        <span><i class="far fa-clock" th:text="${' Tiempo restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
+                                        <span><i class="far fa-clock" th:text="${' Tiempo Restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
                                     </h6>
                                     <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Roadmap'}"> <i class="fas fa-arrow-left"></i></a>
@@ -145,7 +145,7 @@ and open the template in the editor.
                                                                )}" th:id="${tarea.codigo + 'cardbody'}">
                                     <h6 class="card-title">
                                         <div>Procesando <i class="fas fa-cogs"></i></div>
-                                        <span><i class="far fa-clock" th:text="${' Tiempo restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
+                                        <span><i class="far fa-clock" th:text="${' Tiempo Restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
                                     </h6>
                                     <span th:text="${'Persona asignada: ' + ((tarea.propietario != null)? tarea.propietario : 'nadie asignado') }"></span>
                                     <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>

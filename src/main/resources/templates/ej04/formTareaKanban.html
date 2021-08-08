@@ -19,6 +19,7 @@ and open the template in the editor.
         </style>
     </head>
     <body>
+        <span class="errorMessage" th:if="${mensajeError != null} " th:text='${mensajeError  + " !!! " }'></span>
          <!-- Formulario de alta  --> 
         
         <div id="formularioAltaTask" th:if="${'altaTarea'.equals(modo)}" >
