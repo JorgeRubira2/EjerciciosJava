@@ -77,12 +77,8 @@ public class Ejercicio05Strings {
      * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto){
-        String aus = texto.replace("  "," ").replace("..",".").replace(",,",",").replace("::",":");
-        while (aus.replace("  "," ").replace("..",".").replace(",,",",").replace("::",":").length() != aus.length() ){
-            aus = aus.replace("  "," ").replace("..",".").replace(",,",",").replace("::",":");
-        }
-        System.out.println("reemplazsado "+ aus);
-        String[] listaPalabras = aus.split("[' ']+|['.']+|[',']+|[':']+");
+
+        String[] listaPalabras = texto.split("[' ']+|['.']+|[',']+|[':']+");
         int count= 0;
         for (String linea :listaPalabras){
             if(linea.length()>0){
