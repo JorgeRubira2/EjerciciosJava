@@ -68,4 +68,11 @@ public class Ejercicio03GestionAlumnosController {
         getPaginaLista(model);//redirige a la lista
         return "ej03/listaAlumnos";
     }
+    
+    @PostMapping("/buscarAlumno")
+    public String buscador(Model model,String buscar){
+        model.addAttribute("buscador", buscar);
+        model.addAttribute("listaAlumnos", gestor.getAlumnos(buscar));
+        return "ej03/listaAlumnos";
+    }
 }

@@ -42,7 +42,9 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 		if (codigo==null || alumnos.stream().noneMatch(x->x.getCodigo() == codigo)){ 
 			throw new NullPointerException();
 		}
-		return  alumnos.stream().filter(x -> x.getCodigo()== codigo).findFirst();
+		return  alumnos.stream()
+				.filter(x -> x.getCodigo()== codigo)
+				.findFirst();
 	}
 
 
@@ -51,6 +53,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 		if (buscar==null || alumnos.stream().noneMatch(x->x.getNombre().equalsIgnoreCase(buscar))){
 			throw new NullPointerException();
 		}
-		return  alumnos.stream().filter(x -> x.getNombre().equalsIgnoreCase(buscar)).collect(Collectors.toList());
+		return  alumnos.stream()
+				.filter(x -> x.getNombre().equalsIgnoreCase(buscar))
+				.collect(Collectors.toList());
 	}
 }

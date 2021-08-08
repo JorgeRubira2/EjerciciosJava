@@ -8,7 +8,13 @@
 <body>
 
 	<div th:if="${listaAlumnos.size() == 0}">La tabla esta vacia</div>
-	<table th:if="${listaAlumnos.size() > 0}" class="table table-striped">
+	<form action="buscarAlumno" method="post" class="form-group" th:if="${listaAlumnos.size() > 0}">
+		<input type="text" name="buscador" th:value="${buscador}" placeholder="Buscar alumno..."> 
+		<br />
+		<input type="submit" class="btn btn-primary" value="Buscar alumno">
+	</form>
+	<br/>
+	<table th:if="${listaAlumnos.size() > 0}" class="table table-striped col-6 pt-4">
 		<tr>
 			<th>Codigo</th>
 			<th>Nombre</th>

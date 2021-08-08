@@ -5,6 +5,7 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import org.springframework.stereotype.Controller;
 
 /**
  * Cosas interesantes para implementar en la vista.
@@ -15,6 +16,7 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
  * En las tarjetas mostrar la descripción, persona responsable, horas trabajadas/horas estimadas.
  * 
  */
+@Controller
 public class Ejercicio04KanbanController {
     
 }
