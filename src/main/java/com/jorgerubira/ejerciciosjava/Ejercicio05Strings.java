@@ -5,6 +5,10 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  *
  * @author PC
@@ -73,28 +77,55 @@ public class Ejercicio05Strings {
      * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto){
-        return texto.split("[' ']|['.']|[',']|[':']").length;
+        String aus = texto.replace("  "," ").replace("..",".").replace(",,",",").replace("::",":");
+        while (aus.replace("  "," ").replace("..",".").replace(",,",",").replace("::",":").length() != aus.length() ){
+            aus = aus.replace("  "," ").replace("..",".").replace(",,",",").replace("::",":");
+        }
+        System.out.println("reemplazsado "+ aus);
+        String[] listaPalabras = aus.split("[' ']+|['.']+|[',']+|[':']+");
+        int count= 0;
+        for (String linea :listaPalabras){
+            if(linea.length()>0){
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
      * Cuenta cuantas líneas hay en el texto. Se considera una línea si tiene algún carácter. El salto de línea se realiza con el carácter \n o, en algunos textos, con \r\n.
      */
     public int contarLineas(String texto){
-        return texto.split("[\n]|[\r]").length;
+        String[] listaParrafos =  texto.split("[\n]|[\r]");
+        int count= 0;
+        for (String linea :listaParrafos){
+            if(linea.length()>0){
+                count++;
+            }
+        }
+        return count;
     }
     
     /**
      * Cuenta cuantas vocales hay en un texto (con tildes incluidas á).
      */
     public int contarVocales(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        char[] text =this.insensible(texto).toCharArray();
+        List<Character> vocales = new ArrayList<>(List.of('a','e','i','o','u'));
+        int i = 0;
+        for (char letra: text){
+            if (vocales.contains( Character.valueOf(letra))){
+                i++;
+            }
+        }
+        return i;
     }
 
     /**
      * Eliminación de espacios a izquierda y derecha
      */
     public String quitarEspacios(String frase){
-        throw new RuntimeException("Pendiente de hacer");
+        return frase.trim();
     }
 
 }
