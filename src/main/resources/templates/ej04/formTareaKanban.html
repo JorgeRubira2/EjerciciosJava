@@ -100,7 +100,28 @@ and open the template in the editor.
             </form>
         </div>
          
-         
+          <!-- Asignar Horas Trabajadas Tarea --> 
+        
+        <div id="imputarHorasDiv" th:if="${'imputarHoras'.equals(modo)}" >
+            <form id= "imputarHoras" method="post" th:object="${tarea}">
+                <div class="container" >
+                    <div class="row" >
+                        <h1> Imputar Horas </h1>
+                    </div>
+                    <div class="row" >
+                        <div class="form-group col-7">
+                            <label for="horasTrabajadas"> Horas Trabajadas </label>
+                            <input type="number"  th:field="*{horasTrabajadas}" />
+                        </div>
+                    </div>
+                        <input type='hidden' th:field="*{codigo}"/>
+                    <br/>
+                    <div class="row col-7">
+                        <a class="btn btn-primary"  onclick="enviar('imputarHoras','/ejercicio04/imputarHoras')"> Imputar Horas <i class="fas fa-user-clock"></i> </a>
+                    </div>
+                </div>
+            </form>
+        </div>         
          
          
          

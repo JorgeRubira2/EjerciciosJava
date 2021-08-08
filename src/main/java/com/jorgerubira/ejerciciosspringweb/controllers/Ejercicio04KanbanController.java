@@ -167,4 +167,35 @@ public class Ejercicio04KanbanController {
         model.addAttribute("tareas", serviceKanban.getTareas());
         return "ej04/kanbanNoBootbox";
     }
+    
+    
+    
+    @GetMapping("/imputarHoras/{codigo}")
+    public String imputarHorasTrabajadas (Model model,@PathVariable("codigo") String codigo ){
+        Optional<TareaKanban> tarea = serviceKanban.getTarea(codigo);
+        if (tarea.isPresent()){
+            model.addAttribute(tareaAtr,tarea.get());
+        } else {
+            model.addAttribute(errorMessageAtr, "tarea a modificar planificacion no encontrada");
+            System.out.println("tarea a modificar Horas Trabajadas no encontrada" + codigo);
+        }
+        model.addAttribute(modoAtr,"imputarHoras");
+        return "/ej04/formTareaKanban";
+    }
+    
+    @PostMapping("/imputarHoras")
+    public String modificarTareaCambioHorasTrabajadas(Model model
+                                                            ,@RequestParam("codigo") String codigo
+                                                            ,@RequestParam("horasTrabajadas") Integer horasTrabajadas){
+        try {
+            serviceKanban.imputarHorasTrabajadas(codigo, horasTrabajadas);
+        } catch (OperacionEnListaException ex) {
+            Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+            model.addAttribute(errorMessageAtr, "tarea a modificar Descripcion estimacion no encontrada: " + codigo);
+        }
+        model.addAttribute("tareas", serviceKanban.getTareas());
+        return "ej04/kanbanNoBootbox";
+    }
+    
+    
 }

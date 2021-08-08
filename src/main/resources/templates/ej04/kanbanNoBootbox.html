@@ -20,10 +20,9 @@ and open the template in the editor.
         .cabecera {
             text-align: center;
             border: 2px solid #333333;
+            background: linear-gradient(to bottom right,  #b5e4f5,#778a91);
         }
 
-       
-        
         .miniBotones {
                 width: 70px;
                 height: 30px;
@@ -33,6 +32,28 @@ and open the template in the editor.
          font-size: Larger;
          color:red;
         }
+        
+        .card-body .card-text{
+            font-style: italic;
+        }
+        
+        .awesome{
+                box-shadow: 10px 10px 4px 4px black;
+                background: linear-gradient(to bottom right,  #ccffcc,#00ff66);
+        }
+        .good{
+                box-shadow: 10px 10px 4px 4px black;
+                background: linear-gradient(to bottom right,  #00ff66,#ffcc66);
+        }
+        .fine{
+                box-shadow: 10px 10px 4px 4px black;
+                background: linear-gradient(to bottom right,  #ffff66,#ff6600);
+        }
+        .bad{
+                box-shadow: 10px 10px 4px 4px black;
+                background: linear-gradient(to bottom right,  #ff6600,#ff0033);
+        }
+        
     </style>
     <body>
         <span class="errorMessage" th:if="${mensajeError != null} " th:text='${mensajeError  + " !!! " }'></span>
@@ -66,10 +87,15 @@ and open the template in the editor.
                     <div>
                         <div class="card row col" th:each="tarea:${tareas}" th:if='${"Roadmap".equals(tarea.getEstado())}'>
                                <!-- <img class="card-img-top" alt="tarea actual"> -->
-                                <div class="card-body">
+                                <div th:class="${'card-body ' + ( (tarea.horasEstimacion - tarea.horasTrabajadas > 20) ? 
+                                                                                            'awesome': ((tarea.horasEstimacion - tarea.horasTrabajadas > 10)? 'good' :
+                                                                                                         ((tarea.horasEstimacion - tarea.horasTrabajadas >= 0)?  'fine' : 'bad'
+                                                                                                         )
+                                                                                                       )
+                                                               )}" th:id="${tarea.codigo + 'cardbody'}">
                                     <h6 class="card-title">
                                         <div>Pendiente Paso a Espera  <i class="far fa-pause-circle" ></i></div>
-                                        <span><i class="far fa-clock" th:text="${' Estimacion: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + 'horas '}" ></i>  </span>
+                                        <span><i class="far fa-clock" th:text="${' Tiempo Restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
                                     </h6>
                                     <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/modificar/'+tarea.codigo}"><i class="far fa-edit"></i></a>
@@ -87,13 +113,18 @@ and open the template in the editor.
                         <div class="col">
                            <div class="card row col" th:each="tarea:${tareas}" th:if='${"Waiting".equals(tarea.getEstado())}'>
                                <!-- <img class="card-img-top" alt="tarea actual"> -->
-                                <div class="card-body">
+                               <div th:class="${'card-body ' + ( (tarea.horasEstimacion - tarea.horasTrabajadas > 20) ? 
+                                                                                            'awesome': ((tarea.horasEstimacion - tarea.horasTrabajadas > 10)? 'good' :
+                                                                                                         ((tarea.horasEstimacion - tarea.horasTrabajadas >= 0)?  'fine' : 'bad'
+                                                                                                         )
+                                                                                                       )
+                                                               )}" th:id="${tarea.codigo + 'cardbody'}">
                                     <h6 class="card-title">
                                         <div><span th:if="${tarea.propietario == null }">Pendiente Asignacion a persona <i class="far fa-pause-circle" ></i></span>
                                              <span th:if="${tarea.propietario != null }">Persona Asignada  <i class="fas fa-user-check"></i></span>
                                              <div th:text="${tarea.propietario}"></div>
                                         </div>
-                                        <span><i class="far fa-clock" th:text="${'Tiempo restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + 'horas '}" ></i>  </span>
+                                        <span><i class="far fa-clock" th:text="${' Tiempo restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
                                     </h6>
                                     <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Roadmap'}"> <i class="fas fa-arrow-left"></i></a>
@@ -106,16 +137,21 @@ and open the template in the editor.
                         <div class="col">
                             <div class="card row col" th:each="tarea:${tareas}" th:if='${"Working".equals(tarea.getEstado())}'>
                                <!-- <img class="card-img-top" alt="tarea actual"> -->
-                                <div class="card-body">
+                                <div th:class="${'card-body ' + ( (tarea.horasEstimacion - tarea.horasTrabajadas > 20) ? 
+                                                                                            'awesome': ((tarea.horasEstimacion - tarea.horasTrabajadas > 10)? 'good' :
+                                                                                                         ((tarea.horasEstimacion - tarea.horasTrabajadas >= 0)?  'fine' : 'bad'
+                                                                                                         )
+                                                                                                       )
+                                                               )}" th:id="${tarea.codigo + 'cardbody'}">
                                     <h6 class="card-title">
                                         <div>Procesando <i class="fas fa-cogs"></i></div>
-                                        <span><i class="far fa-clock" th:text="${' Estimacion: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
+                                        <span><i class="far fa-clock" th:text="${' Tiempo restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
                                     </h6>
                                     <span th:text="${'Persona asignada: ' + ((tarea.propietario != null)? tarea.propietario : 'nadie asignado') }"></span>
                                     <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Waiting'}"> <i class="fas fa-arrow-left"></i></a>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/modificar/'+tarea.codigo}"><i class="far fa-edit"></i></a>
-                                    
+                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/imputarHoras/'+tarea.codigo}"><i class="fas fa-user-clock"></i></a>
                                     <a style="display:none" class="btn btn-primary miniBotones" th:href="${'/ejercicio04/eliminar/'+tarea.codigo}"><i class="fas fa-times"></i></a>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Done'}"> <i class="fas fa-arrow-right"></i></a>
                                 </div>
@@ -126,18 +162,19 @@ and open the template in the editor.
                 <div class ="col-3">
                     <div class="card row col" th:each="tarea:${tareas}" th:if='${"Done".equals(tarea.getEstado())}'>
                                <!-- <img class="card-img-top" alt="tarea actual"> -->
-                                <div class="card-body">
+                                <div th:class="${'card-body ' + ( (tarea.horasEstimacion - tarea.horasTrabajadas > 20) ? 
+                                                                                            'awesome': ((tarea.horasEstimacion - tarea.horasTrabajadas > 10)? 'good' :
+                                                                                                         ((tarea.horasEstimacion - tarea.horasTrabajadas >= 0)?  'fine' : 'bad'
+                                                                                                         )
+                                                                                                       )
+                                                               )}" th:id="${tarea.codigo + 'cardbody'}">
                                     <h6 class="card-title">
                                         <div>Finalizada <i class="fas fa-clipboard-check"></i></div>
-                                        <span><i class="far fa-clock" th:text="${' Estimacion: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + 'horas '}" ></i>  </span>
+                                        <span><i class="far fa-clock" th:text="${' Tiempo Restante: ' +(tarea.horasEstimacion - tarea.horasTrabajadas) + ' horas '}" ></i>  </span>
                                     </h6>
                                     <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
                                     <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Working'}"> <i class="fas fa-arrow-left"></i></a>
-                                    <!--
-                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/modificar/'+tarea.codigo}"><i class="far fa-edit"></i></a>
-                                    <a style="display:none" class="btn btn-primary miniBotones" th:href="${'/ejercicio04/eliminar/'+tarea.codigo}"><i class="fas fa-times"></i></a>
-                                    <a class="btn btn-primary miniBotones" th:href="${'/ejercicio04/planificar/'+tarea.codigo+'/Done'}"> <i class="fas fa-arrow-right"></i></a>
-                                     -->
+
                                 </div>
                             </div>
                 </div>
@@ -160,5 +197,8 @@ and open the template in the editor.
                                 $('#'+formularioId).submit();
                             }
 
+                            $( window ).load(function() {
+                             
+                            });
     </script>
 </html>
