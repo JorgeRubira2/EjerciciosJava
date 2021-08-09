@@ -8,14 +8,14 @@
     <body>
         <div class="container">
             <h3>Lista de Alumnos</h3>
-            <form action="/ejercicio1/listaagregar" method="post">
+            <form action="/ejercicio3/" method="post">
                 <div class="row">
                     <div class="col-3 pt-4">
                         <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999" placeholder="Ingrese un código o nombre"/>
                     </div>
                     <div class="col-3 pt-4">
                         <button class="btn btn-primary">Buscar <i class="fas fa-search"></i></button>
-                        <button class="btn btn-primary">Nuevo</button>
+                        <input type="button" onClick="mostrarFormulario()" value="Nuevo" class="btn btn-primary"/>
                     </div>  
                 </div>
             </form>
@@ -33,18 +33,14 @@
                     <td th:text="${alum.nombre}"/>
                     <td th:text="${alum.telefono}"/>
                     <td th:text="${alum.direccion}"/>
-                    <td>1</td>
-                    <td>Raúl</td>
-                    <td>665379845</td>
-                    <td>C/ Cabo Cervera, Nº9</td>
                     <td>
-                    <input type="button" onClick="confirmar()" value="Eliminar" class="btn btn-danger "/>
-                    <input type="button" onClick="mostrarFormulario()" value="Editar" class="btn btn-info"/>
+                        <input type="button" onClick="confirmar()" value="Eliminar" class="btn btn-danger "/>
+                        <input type="button" onClick="mostrarFormulario()" value="Editar" class="btn btn-info"/>
                     </td>
                 </tr>
             </table>
         </div>
-        
+
         <div id="miformulario" style="display:none">
             <form >
                 <input class="form-control" name="nombreFormulario" th:value="${nombre}" min="-99999" max="99999" placeholder="Nombre" style="margin-bottom: 10px;"/>
@@ -52,32 +48,34 @@
                 <input class="form-control" name="direccionFormulario" th:value="${direccion}" min="-99999" max="99999" placeholder="Dirección" style="margin-bottom: 10px;"/>
                 <button class="btn btn-primary" style="width: 100%;">Añadir/Editar</button>
             </form>
-            
+
         </div>
-        
+
 
         <!-- La solución optima es poner los scripts al final -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-        
+
         <script>
-            function mostrarFormulario(){
-                bootbox.dialog({
-                    title:"Añade/Edita el alumno",
-                    size: 'large',
-                    message: $('#miformulario').html()
-                })
-            }
-            
-            function confirmar(){
-                bootbox.confirm({
-                    message:"Desea borrar este nombre?",
-                    callback:function (){$("form").attr("action","/ejercicio1/listaborrado").submit();}
-                });
-            }
+                        function mostrarFormulario() {
+                            bootbox.dialog({
+                                title: "Añade/Edita el alumno",
+                                size: 'large',
+                                message: $('#miformulario').html()
+                            })
+                        }
+
+                        function confirmar() {
+                            bootbox.confirm({
+                                message: "Desea borrar este nombre?",
+                                callback: function () {
+                                    $("form").attr("action", "/ejercicio3/borrarUsuario").submit();
+                                }
+                            });
+                        }
         </script>
-        
-        
+
+
     </body>
 </html>

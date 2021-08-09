@@ -5,24 +5,45 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
-
 
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
-    
+
     private List<Alumno> listaAlumnos = new ArrayList<>();
     
+    public Ejercicio03GestionAlumnosService() {
+         Alumno alumno = new Alumno();
+        
+        alumno.setCodigo(1);
+        alumno.setNombre("Raul");
+        alumno.setTelefono("665379845");
+        alumno.setDireccion("Calle");
+        listaAlumnos.add(0, alumno);
+    }
+
     @Override
     public void guardarAlumno(Alumno alumno) {
-        if(alumno == null){
+        if (alumno == null) {
             throw new NullPointerException();
-        }
-        if(listaAlumnos.stream().noneMatch(v1->v1.equals(alumno.getCodigo()))){
+        } else if (listaAlumnos.stream()
+                .noneMatch(var1 -> var1.getCodigo() == (alumno.getCodigo()))) {
             listaAlumnos.add(alumno);
+        } else {
+
+            Alumno aux = listaAlumnos.stream()
+                    .filter(var1 -> var1.getCodigo() == alumno.getCodigo())
+                    .findAny().get();
+
+            aux.setDireccion(alumno.getDireccion());
+            aux.setCodigo(alumno.getCodigo());
+            aux.setNombre(alumno.getNombre());
+            aux.setTelefono(alumno.getTelefono());
+
         }
     }
 
@@ -31,9 +52,9 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         Optional<Alumno> alumno = listaAlumnos.stream()
                 .filter(v1 -> v1.getCodigo() == codigo)
                 .findAny();
-        
-        if(alumno.isPresent()){
-         listaAlumnos.remove(alumno.get());
+
+        if (alumno.isPresent()) {
+            listaAlumnos.remove(alumno.get());
         }
     }
 
@@ -44,12 +65,17 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Alumno> alumno = listaAlumnos.stream()
+                .filter(x -> x.getCodigo() == codigo)
+                .findAny();
+
+        return alumno;
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaAlumnos.stream()
+                .filter(x -> x.getNombre().equals(buscar))
+                .collect(Collectors.toList());
     }
-    
 }
