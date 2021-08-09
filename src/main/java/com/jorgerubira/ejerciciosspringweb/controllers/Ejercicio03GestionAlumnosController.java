@@ -34,8 +34,9 @@ public class Ejercicio03GestionAlumnosController {
 
 	@PostMapping("/alta")
 	public String altaAlumno(Model model, Alumno alumno) {
-		model.addAttribute("alumno", alumno);
+		
 		service.guardarAlumno(alumno);
+		model.addAttribute("lista", alumno);
 		return "ej03/Alta";
 	}
 
