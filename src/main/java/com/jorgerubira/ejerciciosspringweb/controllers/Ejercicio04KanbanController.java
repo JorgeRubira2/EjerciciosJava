@@ -5,7 +5,12 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
+import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,5 +45,33 @@ public class Ejercicio04KanbanController {
         model.addAttribute("kanban",service.getTareas());
         return "redirect:/ejercicio04/inicial";
     }
-    
+    @GetMapping("/editar")
+    public String editar(Model model, String codigo, String accion){
+        TareaKanban aux=service.getTarea(codigo).get();
+        model.addAttribute("accion", accion);
+        model.addAttribute("kanbanMiembro",aux);
+        return "/ej04/formularioEdicion";
+    }
+    @PostMapping("/guardado")
+    public String guardado(Model model, String codigo, String accion, String descripcion, Integer horasEstimacion, String propietario){
+        if(accion.equals("editar")){
+            try {
+                service.modificarTarea(codigo, descripcion, horasEstimacion);
+            } catch (OperacionEnListaException ex) {
+                Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(accion.equals("asignar")){
+            try {
+                service.asignarPersona(codigo, propietario);
+                service.cambiarEstado(codigo, "Waiting");
+            } catch (OperacionEnListaException ex) {
+                Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        
+        return "redirect:/ejercicio04/inicial";
+    }
 }

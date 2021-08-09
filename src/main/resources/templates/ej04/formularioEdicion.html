@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Editar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="container" style="margin-top:20px">
+            <h1 th:text="'Formulario '+${accion} "></h1>
+            <form action="/ejercicio04/guardado" method="post" th:object="${kanbanMiembro}" class="form-group">
+                <input type="hidden" th:field="*{codigo}" />
+                <input type="hidden" th:value="${accion}" name="accion" />
+                <div th:if="${#strings.equals(accion,'editar')}">
+                <label for="descripcion" class="form-label">Descripción:</label><input type="text" class="form-control" th:field="*{descripcion}"/><br/>
+                <label for="horasEstimacion" class="form-label">Horas estimadas:</label><input type="number" class="form-control" th:field="*{horasEstimacion}"/><br/>
+                </div>
+                <div th:if="${#strings.equals(accion,'asignar')}">
+                <label for="propietario" class="form-label">Persona:</label><input type="text" class="form-control" id="propietario" name="propietario"/><br/>
+                </div>
+                <input type="submit" value="Guardar" class="btn btn-primary"/>
+                    
+
+            </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+    </body>
+</html>

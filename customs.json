@@ -4,13 +4,16 @@
     },
     "attributes": {
         "th:text": {},
+        "th:if": {},
         "th:object": {},
         "th:include": {},
         "th:replace": {},
         "th:each": {},
         "th:href": {},
         "th:fragment": {},
+        "th:field": {},
         "th:value": {},
-        "th:name": {}
+        "th:name": {},
+        "th:title": {}
     }
 }
