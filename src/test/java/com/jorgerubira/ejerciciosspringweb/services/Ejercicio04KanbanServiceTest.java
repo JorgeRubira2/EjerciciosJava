@@ -37,64 +37,61 @@ public class Ejercicio04KanbanServiceTest {
 
     @Test
     public void testModificarTarea() throws Exception {
-        System.out.println("modificarTarea");
-        String codigo = "";
-        String descripcion = "";
-        Integer horasEstamacion = null;
         Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        instance.modificarTarea(codigo, descripcion, horasEstamacion);
-        fail("The test case is a prototype.");
+        instance.crearTarea("PruebaTest", 9999);
+        instance.crearTarea("PruebaTest2", 9998);
+        List<TareaKanban> tareas=instance.getTareas();
+        int pos=tareas.size()-1;
+        instance.modificarTarea(tareas.get(pos).getCodigo(), "PruebaTest3", 9997);
+        assertEquals(9997, tareas.get(pos).getHorasEstimacion());
+        assertEquals("PruebaTest3", tareas.get(pos).getDescripcion());
+        assertEquals(9999, tareas.get(0).getHorasEstimacion());
+        assertEquals("PruebaTest", tareas.get(0).getDescripcion());
     }
 
     @Test
     public void testAsignarPersona() throws Exception {
-        System.out.println("asignarPersona");
-        String codigo = "";
-        String persona = "";
         Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        instance.asignarPersona(codigo, persona);
-        fail("The test case is a prototype.");
+        instance.crearTarea("PruebaTest", 9999);
+        instance.crearTarea("PruebaTest2", 9998);
+        List<TareaKanban> tareas=instance.getTareas();
+        int pos=tareas.size()-1;
+        instance.asignarPersona(tareas.get(pos).getCodigo(), "Juan");
+        assertEquals("Juan", tareas.get(pos).getPropietario());
     }
 
     @Test
     public void testImputarHorasTrabajadas() throws Exception {
-        System.out.println("imputarHorasTrabajadas");
-        String codigo = "";
-        String persona = "";
         Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        instance.imputarHorasTrabajadas(codigo, persona);
-        fail("The test case is a prototype.");
+        instance.crearTarea("PruebaTest", 9999);
+        instance.crearTarea("PruebaTest2", 9998);
+        List<TareaKanban> tareas=instance.getTareas();
+        int pos=tareas.size()-1;
+        instance.imputarHorasTrabajadas(tareas.get(pos).getCodigo(), 10);
+        assertEquals(10, tareas.get(pos).getHorasTrabajadas());
+        instance.imputarHorasTrabajadas(tareas.get(pos).getCodigo(), 5);
+        assertEquals(15, tareas.get(pos).getHorasTrabajadas());
     }
 
     @Test
     public void testCambiarEstado() throws Exception {
-        System.out.println("cambiarEstado");
-        String codigo = "";
-        String persona = "";
         Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        instance.cambiarEstado(codigo, persona);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetTareas() {
-        System.out.println("getTareas");
-        Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        List<TareaKanban> expResult = null;
-        List<TareaKanban> result = instance.getTareas();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        instance.crearTarea("PruebaTest", 9999);
+        instance.crearTarea("PruebaTest2", 9998);
+        List<TareaKanban> tareas=instance.getTareas();
+        int pos=tareas.size()-1;
+        instance.cambiarEstado(tareas.get(pos).getCodigo(), "Waiting");
+        assertEquals("Waiting", tareas.get(pos).getEstado());
     }
 
     @Test
     public void testGetTarea() {
-        System.out.println("getTarea");
-        String codigo = "";
         Ejercicio04KanbanService instance = new Ejercicio04KanbanService();
-        Optional<TareaKanban> expResult = null;
-        Optional<TareaKanban> result = instance.getTarea(codigo);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        instance.crearTarea("PruebaTest", 9999);
+        instance.crearTarea("PruebaTest2", 9998);
+        List<TareaKanban> tareas=instance.getTareas();
+        int pos=tareas.size()-1;
+        assertEquals(tareas.get(pos), instance.getTarea(tareas.get(pos).getCodigo()));
+        assertNotEquals(tareas.get(0), instance.getTarea(tareas.get(pos).getCodigo()));
     }
-    
 }
