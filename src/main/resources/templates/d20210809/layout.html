@@ -1,8 +1,8 @@
-<html th:fragment='layout(cuerpo)'>
+<html th:fragment='verFragmento(html)'>
     <body>
-        <div class="container">
-            <th:block th:include="${cuerpo}"/>
-        </div>
-        <footer>Texto fijo del pie</footer>
+        Menu,
+        Cabecera
+        <hr/>
+        <th:block th:include="${html}"/>
     </body>
 </html>
