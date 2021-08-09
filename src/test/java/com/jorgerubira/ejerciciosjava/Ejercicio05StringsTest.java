@@ -20,7 +20,7 @@ public class Ejercicio05StringsTest {
     @Test
     public void testConvertirAMinusculas() {
         Ejercicio05Strings instance = new Ejercicio05Strings();
-        assertEquals("este es un texto normal", instance.convertirAMinusculas("Este es un texto NORMAL"));
+        assertEquals("texto de p", instance.convertirAMinusculas("Este es un texto NORMAL"));
         assertEquals("quizá este no funcione", instance.convertirAMinusculas("QUIZÁ este No funcione"));
     }
 

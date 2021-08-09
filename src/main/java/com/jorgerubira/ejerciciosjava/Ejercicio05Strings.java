@@ -15,7 +15,8 @@ public class Ejercicio05Strings {
      * Recibe una palabra y devuelve esta en minusculas
      */
     public String convertirAMinusculas(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        String p=palabra1.toLowerCase();
+        return p;
     }
 
     /**
@@ -23,7 +24,8 @@ public class Ejercicio05Strings {
      * Pista: Utilizar split para trocear la frase.
      */
     public String segundaPalabra(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+       String[] partes= palabra1.split(" ");
+        return partes[1];
     }    
 
     /**
@@ -33,14 +35,29 @@ public class Ejercicio05Strings {
      * Tener en cuenta que las posiciones empiezan desde 0.
      */
     public int buscar(String frase, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] partes= frase.split(" ");
+    	int total=0;
+    	for(int i=0;i<partes.length;i++) {
+    		if(partes[i].equals(palabra)) return total;
+    		else{
+    			String name =partes[i]; 
+    			total+=name.length();	
+    		}
+    		
+    	}
+    	return -1;
     }    
 
     /**
      * Devuelve si las palabras son la misma sin contar las tildes o las mayusculas.
      * Ejemplo. "Balón" y "balon" deberían ser la misma palabra.
      * Pista. Para quitar las tildes utilizar replaceAll
+     * 
      */
+    static String toProperCase(String s) {
+        return s.substring(0, 1).toUpperCase() +
+                   s.substring(1).toLowerCase();
+    }
     public boolean equalsInsensibleMayusculasYTildes(String palabra1, String palabra2){
         throw new RuntimeException("Pendiente de hacer");
     }
@@ -51,7 +68,12 @@ public class Ejercicio05Strings {
      * Pista. Primero trocear la frase con split y cada elemento obtener el primer caracter o el resto con substring
      */
     public String convertirCamelCase(String palabra1){
-        throw new RuntimeException("Pendiente de hacer");
+        String[] parts = palabra1.split("_");
+    	   String camelCaseString = "";
+    	   for (String part : parts){
+    	      camelCaseString = camelCaseString + toProperCase(part);
+    	   }
+    	   return camelCaseString;
     }
     
     /**
@@ -60,28 +82,46 @@ public class Ejercicio05Strings {
      * Pista. Se recomienda convertir los puntos comas y dobles espacios a un espacio. Luego trocear con un split y contar cuantas palabras salen.
      */
     public int contarPalabras(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        int wordCount=0;
+    	for (int i = 0; i < texto.length(); i++) {
+    	  if ((i+1 != texto.length()) && !(""+ texto.charAt(i+1)).equals(",") ||!(""+ texto.charAt(i+1)).equals(".") && !(""+ texto.charAt(i+1)).equals(" "))  {
+              wordCount++;
+          }
+    	}
+    	   return wordCount;
     }
 
     /**
      * Cuenta cuantas líneas hay en el texto. Se considera una línea si tiene algún carácter. El salto de línea se realiza con el carácter \n o, en algunos textos, con \r\n.
      */
     public int contarLineas(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        int n=0;
+    	for (int i = 0; i < texto.length(); i++) {
+    		if(texto.charAt(i)=='\n') {
+    			n++;
+    		}
+    	}
+    	return n;
     }
     
     /**
      * Cuenta cuantas vocales hay en un texto (con tildes incluidas á).
      */
     public int contarVocales(String texto){
-        throw new RuntimeException("Pendiente de hacer");
+        int n=0;
+    	for (int i = 0; i < texto.length(); i++) {
+    		if( texto.charAt(i)=='a' || texto.charAt(i)=='e' || texto.charAt(i)=='i' || texto.charAt(i)=='o' || texto.charAt(i)=='u') {
+    			n++;
+    		}
+    	}
+    	return n;
     }
 
     /**
      * Eliminación de espacios a izquierda y derecha
      */
-    public String quitarEspacios(String frase){
-        throw new RuntimeException("Pendiente de hacer");
+    public String quitarEspacios(String frase){ 
+        return frase.replace(" ","");
     }
 
 }

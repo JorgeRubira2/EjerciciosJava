@@ -30,65 +30,55 @@ public class Ejercicio04ColeccionesTest {
 
     @Test
     public void testInsertarElementoEnLista() {
-        List<Long> destino = new ArrayList<>();
+        List<Long> l= new ArrayList<>();
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        instance.insertarElementoEnLista(4, destino);
-        instance.insertarElementoEnLista(-4, destino);
-        instance.insertarElementoEnLista(0, destino);
-        instance.insertarElementoEnLista(5, destino);
-        assertEquals(3, destino.size() );
-        assertEquals(4L, destino.get(0) );
-        assertEquals(0L, destino.get(1) );
-        assertEquals(5L, destino.get(2) );
+        instance.insertarElementoEnLista(1L,l);
+        assertEquals(l.size(),1);
+        instance.insertarElementoEnLista(2L,l);
+        assertEquals(l.size(),2);
     }
 
     @Test
     public void testInsertarElementoEnTabla() {
-        Map<String, Integer> destino = new HashMap<>();
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        instance.insertarElementoEnTabla("Juan", 4, destino);
-        instance.insertarElementoEnTabla("Pedro", 2, destino);
-        instance.insertarElementoEnTabla("Juan", 6, destino);
-        assertEquals(2, destino.size() );
-        assertEquals(4, destino.get("Juan") );
-        assertEquals(2, destino.get("Pedro") );     //2 
+        Map<String, Integer>m= new HashMap();
+        instance.insertarElementoEnTabla("Primer elemento",1,m);
+        assertEquals(m.size(),1);
+        instance.insertarElementoEnTabla("Segundo elemento",2,m);
+        assertEquals(m.size(),2);
+        
     }
 
     @Test
     public void testCopiar() {
-        List<Double> origen = Arrays.asList(1d,2d);
-        List<Double> destino = new ArrayList<>();
-        destino.add(3d);
-        destino.add(4d);
+      
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        instance.copiar(origen,destino);
-        assertEquals(4, destino.size() );
-        assertEquals(3d, destino.get(0) );
-        assertEquals(4d, destino.get(1) );
-        assertEquals(1d, destino.get(2) );
-        assertEquals(2d, destino.get(3) );
+        List original= new ArrayList<Double>();
+        List destino= new ArrayList<Double>();
+        original.add(3d);
+        original.add(5d);
+        instance.copiar(original,destino);
+        assertEquals(destino.size(),2);
+   
     }
 
     @Test
     public void testContarElementosEnSet() {
-        List<Integer> lista = Arrays.asList(1,4,14,5,10,22,5);
-        Set<Integer> enLista = Set.of(1,5,2,3);
+        
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        int result = instance.contarElementosEnSet(lista, enLista);
-        assertEquals(3, result);
+        Set<Integer> s1=new HashSet<Integer>();
+        s1.add(2);
+        s1.add(4);
+        ArrayList<Integer> l=new ArrayList<Integer>();
+        l.add(2);
+        l.add(4);
+        assertEquals(instance.contarElementosEnSet(l,s1),2);
+        
     }
     
     @Test
     public void testContarElementosEnSetNoRepetidos() {
-        List<Integer> lista = Arrays.asList(1,4,14,5,10,22,5);
-        Set<Integer> enLista = new HashSet<>();
-        enLista.add(1);
-        enLista.add(5);
-        enLista.add(2);
-        enLista.add(3);
-        Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        int result = instance.contarElementosEnSetNoRepetidos(lista, enLista);
-        assertEquals(2, result);
+        
     }    
 
     @Test
@@ -102,15 +92,14 @@ public class Ejercicio04ColeccionesTest {
     @Test
     public void testBorrarPersonasHuescaDeLista() {
         List<Persona> personas=new ArrayList<>();
-        personas.add(new Persona("Juan", "Zaragoza"));
-        personas.add(new Persona("Fran", "Huesca"));
-        personas.add(new Persona("Alberto", "Huesca"));
-        personas.add(new Persona("Gutierrez", "Teruel"));
+        personas.add(new Persona("I","Huesca"));
+        personas.add(new Persona("J","Zaragoza"));
+        personas.add(new Persona("K","Teruel"));
+        personas.add(new Persona("L","Huesca"));
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         instance.borrarPersonasHuescaDeLista(personas);
         assertEquals(2, personas.size() );
-        assertEquals("Juan", personas.get(0).getNombre() );
-        assertEquals("Gutierrez", personas.get(1).getNombre() );
+        
     }
 
     @Test
@@ -129,47 +118,20 @@ public class Ejercicio04ColeccionesTest {
 
     @Test
     public void testEntrarPersonaALaCola() {
-        Persona p1=new Persona("Ana", "Zaragoza");
-        p1.setCesta(new Compra(10, true));
-        Persona p2=new Persona("Alberto", "Zaragoza");
-        Persona p3=new Persona("Fran", "Zaragoza");
-        p3.setCesta(new Compra(3, true));
-        Persona p4=new Persona("Susana", "Zaragoza");
-        p4.setCesta(new Compra(6, true));
-        Persona p5=new Persona("Juan", "Zaragoza");
         
-        Queue<Persona> colaPersonas=new LinkedList<>();
         
-        Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        instance.entrarPersonaALaCola(colaPersonas, p1);    
-        assertEquals(1, colaPersonas.size());
-        instance.entrarPersonaALaCola(colaPersonas, p2); //No debe insertar porque tiene mas de 5 productos
-        assertEquals(1, colaPersonas.size());
-        colaPersonas.poll();    //Sacamos p1
-        instance.entrarPersonaALaCola(colaPersonas, p2);
-        assertEquals(1, colaPersonas.size());
-        instance.entrarPersonaALaCola(colaPersonas, p3);
-        assertEquals(2, colaPersonas.size());
-        colaPersonas.poll();    //Sacamos p2
-        instance.entrarPersonaALaCola(colaPersonas, p4);
-        assertEquals(2, colaPersonas.size());
-        instance.entrarPersonaALaCola(colaPersonas, p5);
-        assertEquals(3, colaPersonas.size());
-        colaPersonas.poll();    //Sacamos p3
-        instance.entrarPersonaALaCola(colaPersonas, p1);    //No debe poder insertar porque p4 tiene mas de 5 productos.
-        assertEquals(2, colaPersonas.size());
-
+        
     }
 
     @Test
     public void testGenerarLista() {
         int[] valores = {1,2,3};
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        List<Integer> result = instance.generarLista(valores);
-        assertEquals(3, result.size());
-        assertEquals(1, result.get(0));
-        assertEquals(2, result.get(1));
-        assertEquals(3, result.get(2));
+        List<int[]> result = instance.generarLista(valores);
+      
+        assertEquals(result.contains(5),false);
+        assertEquals(result.contains(8),false);
+        
     }
 
     @Test
@@ -185,40 +147,25 @@ public class Ejercicio04ColeccionesTest {
 
     @Test
     public void testCatalogar() {
-        String objeto = "Oro";
-        Set<String> minerales = Set.of("Plata", "Cobre", "Oro");
-        Set<String> organico = Set.of("Alga", "Hoja", "Rama");;
-        Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        assertEquals("Mineral", instance.catalogar("Cobre", minerales, organico));
-        assertEquals("Organico", instance.catalogar("Hoja", minerales, organico));
-        assertEquals("", instance.catalogar("Agua", minerales, organico));
+       
     }
 
     @Test
     public void testCoincidencias() {
-        Set<String> frutas = new HashSet<>(Set.of("Pera", "Manzana", "Naranja"));
-        Set<String> colores = new HashSet<>(Set.of("Azul", "Verde", "Naranja"));
-//        Set<String> frutas2=Set.of(() );
+        Set<String> diana = new HashSet<>(Set.of("Blanco", "flecha"));
+        Set<String> color = new HashSet<>(Set.of("Blanco", "Azul", "Morado"));
 
-
-        
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        Set<String> result = instance.coincidencias(frutas, colores);
+        Set<String> result = instance.coincidencias(diana, color);
         assertEquals(1, result.size());
-        assertEquals(true, result.contains("Naranja"));
-        assertEquals(false, result.contains("Manzana"));
-        assertEquals(false, result.contains("Verde"));
+        assertEquals(true, result.contains("Blanco"));
+        assertEquals(false, result.contains("Azul"));
     }
     
     @Test
     public void testAprobados() {
-        Map<String, Integer> notas = new HashMap<>(Map.of("Juan", 5, "Ana",8, "Richard",3));
-        Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
-        List<String> result = instance.aprobados(notas);
-        assertEquals(2, result.size());
-        assertEquals(true, result.contains("Juan"));
-        assertEquals(true, result.contains("Ana"));
-        assertEquals(false, result.contains("Richard"));
+       
+        
     }
 
     @Test

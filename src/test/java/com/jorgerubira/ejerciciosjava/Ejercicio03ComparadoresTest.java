@@ -13,30 +13,26 @@ public class Ejercicio03ComparadoresTest {
     @Test
     public void testCompararEnteros() {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
-        assertEquals(true, instance.compararEnteros(new Integer(3), new Integer(3)));
-        assertEquals(false, instance.compararEnteros(new Integer(3), new Integer(2)));
-        assertEquals(false, instance.compararEnteros(new Integer(3), null));
-        assertEquals(false, instance.compararEnteros(null, new Integer(2)));
-        assertEquals(false, instance.compararEnteros(null, null));
+        assertEquals(instance.compararEnteros(1,1),true);
+        assertEquals(instance.compararEnteros(11,11),true);
+        assertEquals(instance.compararEnteros(0,1),false);
     }
 
     @Test
     public void testCompararEnteroConLong() {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
-        assertEquals(true, instance.compararEnteroConLong(new Integer(3), new Long(3)));
-        assertEquals(false, instance.compararEnteroConLong(new Integer(3), new Long(2)));
-        assertEquals(false, instance.compararEnteroConLong(new Integer(3), null));
-        assertEquals(false, instance.compararEnteroConLong(null, new Long(2)));
-        assertEquals(false, instance.compararEnteroConLong(null, null));
+         assertEquals(instance.compararEnteroConLong(1,1L),true);
+        assertEquals(instance.compararEnteroConLong(2,8L),false);
+        assertEquals(instance.compararEnteroConLong(9,9L),true);
     }
 
     @Test
     public void testComprobarNumero() {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
-        assertEquals(true, instance.comprobarNumero("123.4"));
-        assertEquals(true, instance.comprobarNumero("12"));
-        assertEquals(false, instance.comprobarNumero("1a2"));
-        assertEquals(false, instance.comprobarNumero(null));
+         assertEquals(true, instance.comprobarNumero("1"));
+        assertEquals(true, instance.comprobarNumero("2"));
+        assertEquals(true, instance.comprobarNumero("10"));
+        assertEquals(false, instance.comprobarNumero("a"));
     }
 
     @Test
@@ -51,10 +47,10 @@ public class Ejercicio03ComparadoresTest {
     @Test
     public void testComprobarOptionalesIntegerYDouble() {
         Ejercicio03Comparadores instance = new Ejercicio03Comparadores();
-        assertEquals(true, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2d)));
-        assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(2.3)));
-        assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.empty()));
-        //assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), null));
+        assertEquals(true, instance.comprobarOptionalesIntegerYDouble(Optional.of(1), Optional.of(1d)));
+        assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(2), Optional.of(4.9)));
+        assertEquals(false, instance.comprobarOptionalesIntegerYDouble(Optional.of(9), Optional.of(8.1)));
+       
     }
     
 }

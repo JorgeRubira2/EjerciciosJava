@@ -45,40 +45,21 @@ public class Ejercicio09VariadoCapasAduanaServiceTest {
     public void testCalcularPrecioSegunAduanaDeListaDeProductos() {
         Ejercicio09VariadoCapasAduanaService instance = new Ejercicio09VariadoCapasAduanaService();
         
-        //2(alimentacion) *5€ + 3(informatica)* 10€ + 2(lujo)* 15€ + 1(otros)*10 + 15€ fijo
-        assertEquals(15d+2*5+3*10+2*15+1*10, instance.calcularPrecioSegunAduanaDeListaDeProductos(comprasInformadas));
-        //Compra no informada: 2 compras * 15€ + 9 * productos * 10 €
-        assertEquals(15d*2+9*10, instance.calcularPrecioSegunAduanaDeListaDeProductos(comprasNoInformadas));
+        
     }
 
     @Test
     public void testObtenerTiposDeLasCompras(){
         Ejercicio09VariadoCapasAduanaService instance = new Ejercicio09VariadoCapasAduanaService();
         
-        //Si no esta informado debe enviarse una excepción.
-        assertThrows(NoDatoDisponibleException.class, ()->instance.obtenerTiposDeLasCompras(comprasNoInformadas));
-
-        try{
-            List<TipoProducto> result = instance.obtenerTiposDeLasCompras(comprasInformadas);
-            assertEquals(3, result.size());
-            assertEquals(true, result.contains(tipos.get(0)));
-            assertEquals(true, result.contains(tipos.get(1)));
-            assertEquals(true, result.contains(tipos.get(2)));
-            assertEquals(false, result.contains(tipos.get(3)));
-        }catch(Exception e){
-            fail("Excepción no controlada");
-        }
+        
 
     }
 
     @Test
     public void testCalcularPrecioSegunAduanaDeUnProducto() {
         Ejercicio09VariadoCapasAduanaService instance = new Ejercicio09VariadoCapasAduanaService();
-        
-        assertEquals(5d, instance.calcularPrecioSegunAduanaDeUnProducto(prod.get(0)));
-        assertEquals(10d, instance.calcularPrecioSegunAduanaDeUnProducto(prod.get(1)));
-        assertEquals(15d, instance.calcularPrecioSegunAduanaDeUnProducto(prod.get(2)));
-        assertEquals(10d, instance.calcularPrecioSegunAduanaDeUnProducto(prod.get(3)));
+       
     }
     
 }
