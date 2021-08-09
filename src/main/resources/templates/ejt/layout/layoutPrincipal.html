@@ -1,0 +1,23 @@
+<html th:fragment="layout(htmlcuerpo)">
+    <head>
+        <title>Ejemplo Templates</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" >
+    </head>
+    <body>
+        <h2>Mostrando Vista</h2>
+        <nav>
+            <a href="/ejemplotemplate/texto1">Ir a texto 1</a>
+            <a href="/ejemplotemplate/texto2">Ir a texto 2</a>
+            <input type="button" class="btn btn-primary" value="pulsar"/>
+        </nav>
+        <div>
+            <th:block th:include="${htmlcuerpo}" />
+        </div>
+        </hr>
+        <footer>
+            pie
+        </footer>
+    </body>
+</html>

@@ -44,19 +44,23 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/regAlumnos";
     }
 
-     @GetMapping("/buscarAlumnoCodigo")
-    public String buscarAlumno(Model model,long codigo){
-        model.addAttribute("listaAlumnos",service.getAlumno(codigo));
-        return "ej03/regAlumnos";
+    @GetMapping("/buscarAlumnoCodigo")
+    public String buscarAlumno(Model model, long codigo) {
+        model.addAttribute("codigo", service.getAlumno(codigo).get().getCodigo());
+        model.addAttribute("nombre", service.getAlumno(codigo).get().getNombre());
+        model.addAttribute("telefono", service.getAlumno(codigo).get().getTelefono());
+        model.addAttribute("direccion", service.getAlumno(codigo).get().getDireccion());
+        return "ej03/formularioEdita";
     }
+
     @PostMapping("/buscarAlumno")
     public String buscarAlumnoPorNombre(Model model, String nombre) {
         model.addAttribute("listaAlumnos", service.getAlumnos(nombre));
         return "ej03/regAlumnos";
     }
-    
+
     @GetMapping("/eliminar")
-    public String eliminarAlumno(Model model,Long codigo){
+    public String eliminarAlumno(Model model, Long codigo) {
         service.borrarAlumno(codigo);
         model.addAttribute("listaAlumnos", service.getAlumnos());
         return "ej03/regAlumnos";
