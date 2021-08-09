@@ -123,13 +123,13 @@ and open the template in the editor.
                                 bootbox.dialog({
                                     title: formTitulo,
                                     size: 'medium',
-                                    message: $('#' + formNombre).html()
+                                    message:"<div id='bootboxform'>" + $('#' + formNombre).html() + "</div>"
                                 })
                             }
                             
                             function enviar(formularioId,accionEnvio){
-                                $('#'+formularioId).attr('action',accionEnvio);
-                                $('#'+formularioId).submit();
+                                $('#bootboxform #'+formularioId).attr('action',accionEnvio).submit();
+                                
                             }
 
     </script>

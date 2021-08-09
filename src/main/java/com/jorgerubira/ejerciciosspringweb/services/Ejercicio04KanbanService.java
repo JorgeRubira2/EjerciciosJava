@@ -79,7 +79,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     }
 
     @Override
-    public void imputarHorasTrabajadas(String codigo, Integer horasTrabajadas) throws OperacionEnListaException {
+    public void imputarHorasTrabajadas(String codigo, int horasTrabajadas) throws OperacionEnListaException {
         Optional<TareaKanban> tarea = this.getTarea(codigo);
         
         if (tarea.isPresent()){

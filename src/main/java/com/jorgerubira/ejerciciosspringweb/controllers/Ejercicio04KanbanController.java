@@ -48,6 +48,7 @@ public class Ejercicio04KanbanController {
        model.addAttribute("tareas",serviceKanban.getTareas());
        model.addAttribute(errorMessageAtr, "tarea a modificar planificacnion no encontrada");
        return "ej04/kanbanNoBootbox";
+       //return "ej04/kanban";
     }
     
     @GetMapping("/altaTarea")
