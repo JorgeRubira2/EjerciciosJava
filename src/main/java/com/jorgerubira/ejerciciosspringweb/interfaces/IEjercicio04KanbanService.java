@@ -28,7 +28,7 @@ public interface IEjercicio04KanbanService {
      * Modifica la tarea de la misma que tenga el código introducido.
      * Devuelve una excepción si el código no encuentra la tarea
      */
-    public void modificarTarea(String codigo, String descripcion, Integer horasEstamacion) throws OperacionEnListaException;
+    public void modificarTarea(String codigo, String descripcion, Integer horasEstimacion) throws OperacionEnListaException;
     
     /**
      * Asigna una persona a la tarea del codigo introducido
@@ -46,7 +46,7 @@ public interface IEjercicio04KanbanService {
      * Cambiar de estado de la tarea del codigo introducido.
      * Devuelve una excepción si el código no encuentra la tarea
      */
-    public void cambiarEstado(String codigo, String persona) throws OperacionEnListaException;
+    public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException;
 
     /**
      * Devuelve todas las tareas del tablero
