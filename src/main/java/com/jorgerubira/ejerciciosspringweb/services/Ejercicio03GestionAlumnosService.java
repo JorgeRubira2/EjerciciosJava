@@ -42,8 +42,11 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public void borrarAlumno(Long codigo) {
+        
+             alumnos.removeIf(x -> x.getCodigo() == codigo);
+           
 
-        alumnos.removeIf(x -> x.getCodigo() == codigo);
+       
 
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

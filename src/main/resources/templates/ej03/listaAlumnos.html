@@ -32,8 +32,10 @@
                     </div>
 
                 </div>
+                </form>
 
                 <table class="table table-striped  ">
+                    
                     <thead>
                         <tr>
                             <th scope="col">Codigo</th>
@@ -52,170 +54,168 @@
                             <td th:text="${alumno.telefono}" ></td>
                             <td th:text="${alumno.direccion}" ></td>
 
-                            <td> 
-                                <form>
-                                    
-                                <button type="button" value="Eliminar" class="btn btn-primary"> Eliminar </button>
-                                </form>
-                               
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal02">Editar</button>
+                            <td>       
+                                <a th:href="@{/gestionAlumnos/eliminar(codigo=${alumno.codigo})}">
+                                    <Input type="button"  value="Eliminar" class="btn btn-primary">  
+                                </a>
+                                <Input type="button" th:onclick="'editar('+${alumno.codigo}+ ')'"  value="Editar" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal02">
+                                
                             </td>
                         </tr>
 
                     </tbody>
                 </table>
-            </form>
+          
         </div>
 
 
-
+<!-- th:ref <a th:href="@{${detailsURL}(id=${order.id})}"> -->
 
         <!-- FORMULARIO PARA NUEVO/ VENTANA MODAL -->
 
-<div class="modal fade" id="modal01" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Añadir nuevo alumno</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              
-            <form action="/gestionAlumnos" method="post"> 
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Código*</label>
-                </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-angle-double-right"></i></div>
-                    <input type="number" name="codigo" required class="form-control" />
-                  </div>
-                </div>
-              </div>
+        <div class="modal fade" id="modal01" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"aria-hidden="true"
+             >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Añadir nuevo alumno</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
 
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Nombre*</label>
-                </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-user"></i></div>
-                    <input type="text"  name="nombre" required class="form-control"/>
-                  </div>
-                </div>
-              </div>
+                        <form action="/gestionAlumnos" method="post"> 
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Código*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-angle-double-right"></i></div>
+                                        <input type="number" name="codigo" required class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
 
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Teléfono*</label>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Nombre*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                        <input type="text"  name="nombre" required class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Teléfono*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-phone-alt"></i></div>
+                                        <input type="text"  name="telefono" required class="form-control"  />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Dirección*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                                        <input type="text" name="direccion" required class="form-control"  />
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-info">Aceptar</button>
+                    </div>
+                    </form>
                 </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-phone-alt"></i></div>
-                    <input type="text"  name="telefono" required class="form-control"  />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Dirección*</label>
-                </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-                    <input type="text" name="direccion" required class="form-control"  />
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-info">Aceptar</button>
-          </div>
-            </form>
+            </div>
         </div>
-      </div>
-    </div>
-        
-        
-         <!-- FORMULARIO PARA EDITAR VENTANA MODAL -->
-    
-<div class="modal fade" id="modal02" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Editar alumno</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              
-            <form action="/gestionAlumnos" method="post"> 
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Código*</label>
-                </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-angle-double-right"></i></div>
-                    <input type="number" name="codigo" disabled class="form-control"/>
-                    
-                    
-                  </div>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Nombre*</label>
-                </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-user"></i></div>
-                    <input type="text"  name="nombre" required class="form-control"/>
-                  </div>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Teléfono*</label>
+        <!-- FORMULARIO PARA EDITAR VENTANA MODAL -->
+
+        <div class="modal fade" id="modal02" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"aria-hidden="true"
+             >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar alumno</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="/gestionAlumnos" method="post"> 
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Código*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-angle-double-right"></i></div>
+                                        <input id="codigo" type="number" disabled name="codigo" class="form-control"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Nombre*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                        <input type="text"  name="nombre" required class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Teléfono*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-phone-alt"></i></div>
+                                        <input type="text"  name="telefono" required class="form-control"  />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="codigo">Dirección*</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                                        <input type="text" name="direccion" required class="form-control"  />
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-info">Aceptar</button>
+                    </div>
+                    </form>
                 </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-phone-alt"></i></div>
-                    <input type="text"  name="telefono" required class="form-control"  />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <label for="codigo">Dirección*</label>
-                </div>
-                <div class="col-10">
-                  <div class="input-group mb-2">
-                    <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-                    <input type="text" name="direccion" required class="form-control"  />
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-info">Aceptar</button>
-          </div>
-            </form>
+            </div>
         </div>
-      </div>
-    </div>
-        
-         
-         
-       
+
+
+
+
 
         <!-- La solución optima es poner los scripts al final -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -223,7 +223,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
 
         <script>
-           
+            
+           function editar(codigo){
+               $('#codigo').val(codigo);
+           }
+            
+          
+
         </script>
     </body>
 </html>

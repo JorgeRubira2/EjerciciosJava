@@ -23,9 +23,7 @@ public class Ejercicio03GestionAlumnosController {
 
     @PostMapping("/gestionAlumnos")
     public String agregarAlumnos(Model model, Long codigo, String nombre, String telefono, String direccion) {
-
         Alumno alumno = new Alumno();
-  
         alumno.setCodigo(codigo);
         alumno.setNombre(nombre);
         alumno.setTelefono(telefono);
@@ -33,11 +31,16 @@ public class Ejercicio03GestionAlumnosController {
         gestionAlumnos.guardarAlumno(alumno);
         model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos());
 
-//gestionar los nulos?? 
         return "ej03/listaAlumnos";
     }
-    
-    
-    
+
+    @GetMapping("/gestionAlumnos/eliminar")
+    public String eliminarAlumnos(Model model, Long codigo) {
+
+        gestionAlumnos.borrarAlumno(codigo);
+        model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos());
+
+        return "ej03/listaAlumnos";
+    }
 
 }
