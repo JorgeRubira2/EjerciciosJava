@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TareaKanban {
 
-    private String codigo; //Se generará al azar al insertar. UUID.randomUUID().toString();
+    private String codigo; //Se generará al azar al insertar. ;
     private String descripcion; //Descripcion de la tarea
     private String propietario; //Persona que está realizando esta tarea.
     private Integer horasEstimacion; //Tiempo estimado en la tarea. Opcional

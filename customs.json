@@ -3,6 +3,7 @@
         "th:block": {}
     },
     "attributes": {
+        "th:text": {},
         "th:object": {},
         "th:include": {},
         "th:replace": {},
