@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container">
-
+                                        <!-- QUIERO QUE ME LLEVE A MOSTRAR LA LISTA NO A ALTA -->
             <h3 class="mt-4">Lista de alumnos</h3>
             <form action="/ejercicio03/alta" method="post" th:object="${alumno}">
                 <div class="row mt-4">
@@ -37,12 +37,12 @@
 
                     </div>
                     <div class="row mt-4 col-3">
-                        <input type="submit" value="Nuevo" class="btn btn-primary "/>
+                        <input type="submit" value="Modificar" class="btn btn-primary "/>
                     </div>
                 </div>  
 
-                <span th:text="${error}" style="color:red;font-size: 20px"></span>
-                <span th:text="${correcto}" style="color:green;font-size: 20px"></span>
+                <span th:text="${errormodificado}" style="color:red;font-size: 20px"></span>
+                <span th:text="${bienmodificado}" style="color:green;font-size: 20px"></span>
                 <div class="row mt-4 col-2"> 
                     <a class="btn btn-primary" href="/ejercicio03/devolverlista">Volver a la lista</a>
                 </div>

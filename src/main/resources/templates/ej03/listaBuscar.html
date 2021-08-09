@@ -12,20 +12,18 @@
         <div class="container">
 
             <h3>Lista de alumnos</h3>
-            <form action="/ejercicio03/altanombre" method="post">
+            <form action="/ejercicio03/buscar" method="post">
                 <div class="row">
                     <div class="from-group col-3">                      
                         <input class="form-control" name="nombre" min="-99999" max="99999" placeholder="Ingrese un codigo o un nombre"/>
                         <span th:text="${error}" style="color:red"></span>
                     </div>
                     <div class="col-2"> 
-                        <button class="btn btn-primary  mr-2 "  type="submit" onclick="buscar()">Buscar       <i class="fas fa-search pl-1 "></i></button>
+                        <button class="btn btn-primary  mr-2 "  type="submit">Buscar       <i class="fas fa-search pl-1 "></i></button>
 
 
                     </div>   
-                    <div  class="col-2">                                            
-                        <input type="button" value="Nuevo" onclick="nuevo()" class="btn btn-primary "/>
-                    </div>    
+
                 </div>
             </form>
             <hr/>
@@ -37,11 +35,11 @@
                     <th>Direccion</th>
                     <th>Acciones</th>
                 </tr>
-                <tr th:each="per:${listaPersonas}" id="tabla">
-                    <td th:text="${per.getCodigo()}" id="codigo"></td>   
-                    <td th:text="${per.getNombre()}" id="nombre"></td>   
-                    <td th:text="${per.getTelefono()}" id="telefono"></td>    
-                    <td th:text="${per.getDireccion()}" id="direccion"></td>    
+                <tr th:each="per:${alumnos}">
+                    <td th:text="${per.getCodigo()}"></td>   
+                    <td th:text="${per.getNombre()}"></td>   
+                    <td th:text="${per.getTelefono()}"></td>    
+                    <td th:text="${per.getDireccion()}"></td>    
                     <td>
                         <div class="row">      
                             <div class="col-3"> 
@@ -52,8 +50,6 @@
                             <div class="col-3"> 
                                 <a class="btn btn-primary"  th:href="${'/ejercicio03/modificar?codigo='+per.getCodigo()}" >Editar</a>
 
-                                
-      <!--  pasar parammetros con th <a class="btn btn-primary"  th:href="@{/url/mas(codigo=${variable},id=${variable2})}">Editar</a> -->   
                             </div> 
 
                         </div> 
@@ -69,28 +65,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
 
-        <script>
-                            function nuevo() {
-                                $("form").attr("action", "/ejercicio03/nuevousuario").submit();
-
-
-                            }
-
-        </script>
-        <script>
-            function buscar() {
-                $("form").attr("action", "/ejercicio03/buscar").submit();
-
-
-                /*
-                 document.getElementById("tabla").innerHTML = 'th:text="alu:${alumnos}"';
-                 document.getElementById("codigo").innerHTML = 'th:text="${alu.getCodigo()}"';
-                 document.getElementById("nombre").innerHTML = 'th:text="${alu.getNombre()}"';
-                 document.getElementById("telefono").innerHTML = 'th:text="${alu.getTelefono()}"';
-                 document.getElementById("direccion").innerHTML = 'th:text="${alu.getDireccion()}"';*/
-
-            }
-
-        </script>
     </body>
 </html>

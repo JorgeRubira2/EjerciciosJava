@@ -8,6 +8,7 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.List;
 import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,8 +65,8 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/borrar") //URL A LLAMAR
     public String borrarAlumno(Model model, Long codigo) {
-        
-        service.borrarAlumno(codigo); 
+
+        service.borrarAlumno(codigo);
         model.addAttribute("listaPersonas", service.getAlumnos());
 
         return "ej03/listaAlumnos";
@@ -73,10 +74,28 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/modificar") //URL A LLAMAR 
     public String editarAlumno(Model model, Long codigo) {
-       
-        model.addAttribute("alumno", service.getAlumno(codigo));
-
+        try {
+            model.addAttribute("alumno", service.getAlumno(codigo));
+            model.addAttribute("bienmodificado", "Se ha modificado correctamente");
+        } catch (Exception e) {
+            model.addAttribute("errormodificado", "Ha ocurrido un error al modificado ");
+        }
         return "ej03/modificarAlumno";
+    }
+
+    @PostMapping("/buscar") //URL A LLAMAR
+    public String buscarAlumno(Model model, String nombre) {
+
+        try {
+
+            List<Alumno> alumnos = service.getAlumnos(nombre);
+            model.addAttribute("alumnos", alumnos);
+            model.addAttribute("correcto", "Se ha encontrado correctamente");
+        } catch (Exception e) {
+            model.addAttribute("error", "No existe ningun alumno por ese nombre");
+        }
+
+        return "ej03/listaBuscar";
     }
 
 }
