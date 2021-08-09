@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html th:fragment="layout(htmlcuerpo)">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Mostrando vista</h2>
+<nav>
+
+	<a href="/ejemplotemplate/texto1">Ir al texto 1</a>
+	<a href="/ejemplotemplate/texto2">Ir al texto 2</a>
+</nav>
+<hr/>
+<div class="container">
+
+	<th:block th:include="${htmlcuerpo}">
+</div>
+<hr/>
+<footer></footer>
+</body>
+</html>
