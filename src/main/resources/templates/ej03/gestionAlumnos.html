@@ -4,44 +4,96 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            .from-group{
+                margin-right: 10px;
+            }
+            .btn{
+                height: 38px;
+            }
+            .nuevo-alumno-input{
+                margin-right: 10px;
+            }
+            .boton-guardar{
+                margin-top: 20px;
+            }
+            .primer-grupo{
+                margin-bottom: 10px;
+            }
+        </style>
     </head>
     <body>
         <h1>Listado de Alumnos</h1>
-        <form action="nuevo" method="post">
+        <form action="Buscar" method="post" class="d-flex">
             <div class="from-group col-2">
-                <input class="form-control" name="nombre" />
+                <input class="form-control" name="nombre" placeholder="Ingrese un codigo o Nombre" />
                 <span th:text= "${mensajeError}"></span> 
             </div>
-            <div class="col-1 pt-4">
-                <input type="button" value="Buscar" onclick="buscar()" class="btn btn-primary "/>
+            <div class="col-1">
+                <button value="Buscar" onclick="buscar()" class="btn btn-primary fas fa-search">
+                    Buscar
+                </button>
             </div> 
-            <div class="col-1 pt-4">
-                <input type="button" value="Nuevo" onclick="nuevo()" class="btn btn-primary "/>
+            <div class="col-1">
+                <button value="Nuevo" onclick="nuevo()" class="btn btn-primary far fa-plus-square">
+                    Nuevo
+                </button>
             </div>
         </form>
         <table class="table table-striped">
-            <tr>
-                <th>Codigo</th>
-                <th>nombre</th>
-                <th>telefono</th>
-                <th>direccion</th>
-                <th>acciones</th>
-            </tr>
-            <tr th:each="alu: ${alumno}">
-                <td th:text = "${alu.codigo}"></td>
-            </tr>
-            <tr th:each="alu: ${persona}">
-                <th th:text = "${alu.nombre}"></th>
-            </tr>
-            <tr th:each="alu: ${persona}">
-                <th th:text = "${alu.telefono}"></th>
-            </tr>
-            <tr th:each="alu: ${persona}">
-                <th th:text = "${alu.direccion}"></th>
-            </tr>
-            <tr th:each="alu: ${persona}">
-                <td><a th:href="$('/rutaborrar?codigo='+alu.codigo)" class="btn-primary"><i class="far fa-adress-card"></i>Editar</a></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="alu: ${alumno}">
+                    <td th:text = "${alu.codigo}"></td>
+                    <td th:text = "${alu.nombre}"></td>
+                    <td th:text = "${alu.telefono}"></td>
+                    <td th:text = "${alu.direccion}"></td>
+                    <td>
+                        <a th:href="$('/rutaborrar?codigo='+alu.codigo)" class="btn btn-info"><i class="far fa-trash-alt"></i>Eliminar</a>
+                        <a th:href="$('/rutaeditar?codigo='+alu.codigo)" class="btn btn-primary"><i class="far fa-edit"></i>Editar</a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
+        <form action="nuevo" method="post">
+            <h1>Introduzca un nuevo alumno</h1>
+            <div class="from-group col-4">
+                <div class="d-flex primer-grupo">
+                    <input class="form-control nuevo-alumno-input" name="codigo" placeholder="Ingrese un código" /> 
+                    <input class="form-control" name="nombre" placeholder="Ingrese un nombre" />
+                </div>
+                <div class="d-flex">
+                    <input class="form-control nuevo-alumno-input" name="telefono" placeholder="Ingrese un teléfono" />
+                    <input class="form-control" name="direccion" placeholder="Ingrese una dirección" />
+                </div>
+            </div>
+            <div class="col-1 boton-guardar">
+                <button value="Buscar" onclick="guardar()" class="btn btn-primary far fa-save">
+                    Guardar
+                </button>
+            </div> 
+        </form>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script>
+                    function confirmar() {
+                        bootbox.confirm({
+                            message: "Desea borrarlo?",
+                            callback: function () {
+                                $("form").attr("action", "eliminar").submit();
+                            }
+                        });
+                    }
+        </script>
     </body>
 </html>
