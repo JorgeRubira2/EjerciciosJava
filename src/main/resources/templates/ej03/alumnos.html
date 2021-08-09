@@ -4,7 +4,7 @@
         <title>Listado de alumnos</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" referrerpolicy="no-referrer" />
-   
+
         <style>
             th .form-group{
                 margin-left: 300px;
@@ -19,7 +19,7 @@
                     <div class="from-group col-5">
                         <input class="form-control" type="text" placeholder="Ingrese un código o Nombre"/>
                     </div>   
-                    
+
                     <div class="form-group col">
                         <button type="button" value="Buscar" class="btn btn-primary "> Buscar <i class="fas fa-search"></i></button>
                         <a href="ej03/editAlumno.html"><input type="button" value="Nuevo"class="btn btn-primary"/> </a>
@@ -27,27 +27,33 @@
                 </div>
             </form>
             <br>
-                <table class="table table-striped">
-                    <tr>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Acciones</th>
-                    </tr>
-                    <th class="from-group col">
-                        <input type="button" value="Eliminar" class="btn btn-danger"/> 
-                        <a href="editAlumno.html"><input type="button" value="Editar" class="btn btn-primary"/></a>
-                    </th>
-                </table>
-            </div>
-          
-            <!-- La solución optima es poner los scripts al final -->
-            <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+            <table class="table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th class="from-group col">Acciones</th>
+                </tr>
+                <tr th:each="elemento : ${alumnos}">
+                    <td th:text="${elemento.codigo}"></td>
+                    <td th:text="${elemento.nombre}"></td>
+                    <td th:text="${elemento.telefono}"></td>
+                    <td th:text="${elemento.direccion}"></td>
+                    <td>
+                    <input type="button" value="Eliminar" class="btn btn-danger"/> 
+                    <a href="editAlumno.html"><input type="button" value="Editar" class="btn btn-primary"/></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-            <script>
-             
-            </script>
+        <!-- La solución optima es poner los scripts al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+        <script>
+
+        </script>
     </body>

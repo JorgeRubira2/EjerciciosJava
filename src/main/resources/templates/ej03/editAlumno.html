@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            input{
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <form action='/ejercicio03' method="post">
+            <div class="row">
+                <input id="accion" type="hidden" name="accion" />
+                <div class="from-group col-2">
+                    <label >Nombre</label>
+                    <input class="form-control" name="nombre"/><br/>
+                    <label >Teléfono</label>
+                    <input class="form-control" name="telefono"/><br/>
+                    <label >Dirección</label>
+                    <input class="form-control" name="direccion"/><br/>
+                </div>
+                <div class="col-1 pt-4">
+                    <input type="button" value="Añadir" onclick="enviarFormulario('ejercicio01/insertar')" class="btn btn-primary "/>
+                </div>
+            </div>
+    </body>
+</html>
