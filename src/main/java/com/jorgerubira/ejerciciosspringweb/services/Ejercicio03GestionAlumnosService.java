@@ -20,8 +20,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     public Ejercicio03GestionAlumnosService() {
         //Añadimos varios nombres por defecto.
-        alumnos.add(new Alumno(0, "Pepe", "600900300", "Calle la pergola n12"));
-        alumnos.add(new Alumno(1, "Sara", "600903300", "Calle Kaiser d02"));
+        alumnos.add(new Alumno(1, "Pepe", "600900300", "Calle la pergola n12"));
+        alumnos.add(new Alumno(2, "Sara", "600903300", "Calle Kaiser d02"));
     }
     
     @Override
@@ -31,7 +31,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         if(!a.isPresent()){
             alumnos.add(alumno);
         }else{
-            alumnos.remove(a.get());
+            //alumnos.remove(a.get());
             alumnos.add(new Alumno(a.get().getCodigo(),alumno.getNombre(),alumno.getTelefono(),alumno.getDireccion()));
         }
     }

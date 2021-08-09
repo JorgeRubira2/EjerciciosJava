@@ -7,11 +7,13 @@
     <body>
         <div class="container">
 
+            
 
-            <form class="form-inline d-flex col-5 m-3">
-                <input class="form-control mr-sm-2 " type="search" placeholder="Ingrese un código o Nombre" >
-                <button th:ref="@{/ejercicio3/buscar}"class="btn btn-outline-primary col-3 mx-2" type="submit"> Buscar <i class="fas fa-search"></i></button>
-                <button th:ref="@{/ejercicio3/nuevo}" class="btn btn-outline-success" type="submit">Nuevo</button>
+            <form action="buscar" class="form-inline d-flex col-5 m-3">
+                <input class="form-control mr-sm-2 " name='alumno' type="text" placeholder="Ingrese un código o Nombre" >
+                <button class="btn btn-outline-primary col-3 mx-2" type="submit"> Buscar <i class="fas fa-search"></i></button>
+                
+            <a href="/ejercicio3/crud/nuevo" class="btn btn-outline-success">Nuevo</a>
             </form>
 
             <table class="table table-striped table-hover">
@@ -32,7 +34,7 @@
                     <td th:text="${a.direccion}"></td>
                     <td>
                         <a th:href="@{'/ejercicio3/eliminar?codigo='+${a.codigo}}" class="btn btn-outline-danger">Eliminar</a> 
-                        <a th:href="@{/ejercicio3/editar/{codigo}(codigo = ${a.codigo})}" class="btn btn-outline-warning">Editar</a>
+                        <a th:href="@{/ejercicio3/editar/{id}(id = ${a.codigo})}" class="btn btn-outline-warning">Editar</a>
                     </td>
                 </tbody>
             </table>

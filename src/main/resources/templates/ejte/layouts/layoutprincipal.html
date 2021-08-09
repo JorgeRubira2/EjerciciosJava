@@ -1,34 +1,27 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html th:fragment="layout(htmlcuerpo)">
+<html th:fragment="layout(htmlcuerpo, scripts, titulo)">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
     <body>
-        <h2>Mostrando vista</h2>
+        <h2 th:text='${titulo}'></h2>        
         <nav>
-            <a href="texto1">Ir a texto 1</a>
-            <a href="/ejemplotemplate/texto2">Ir a texto 2</a>            
+            <a href="/ejemplotemplate/texto1">Ir a Texto 1</a>
+            <a href="/ejemplotemplate/texto2">Ir a Texto 2</a>
         </nav>
-        
+        <hr/>
         <div class="container">
-            <th:block th:include="${htmlcuerpo}">
+            <th:block th:include="${htmlcuerpo}"/>
         </div>
-        <hr>
+        <hr/>
         <footer>
-            Hecho por jmgl
+            Hecho por .... 
         </footer>
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-        
+        <th:block th:include="${scripts}"/>
     </body>
 </html>
