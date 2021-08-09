@@ -21,24 +21,19 @@ public class Ejercicio03GestionAlumnosController {
     private IEjercicio03GestionAlumnosService servicio;
     
     @GetMapping("/gestion")
-    public String gestion(){
+    public String gestion(Model model){
+        model.addAttribute("alumnos", servicio.getAlumnos());
         return "ej03/gestionAlumnos";
     }
     
     @GetMapping("/nuevo")
     public String nuevoAlumno(){
-       return "ej03/formAlumnos";
+       return "ej03/formAlumno";
     }
     
     @PostMapping("/guardar")
-    public String guardarAlumno(Model model,@RequestParam String direccion, @RequestParam String nombre, @RequestParam String telefono, @RequestParam long codigo){
-        Alumno alumno = new Alumno();
-        alumno.setCodigo(codigo);
-        alumno.setNombre(nombre);
-        alumno.setTelefono(telefono);
-        alumno.setCodigo(0);
-        servicio.guardarAlumno(alumno);
-        model.addAttribute("listaPersonas",servicio.getAlumnos());
+    public String guardarAlumno(Model model, Alumno alumno){
+       servicio.guardarAlumno(alumno);
         
         return "ej03/gestionAlumnos";
     }
@@ -51,7 +46,7 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/editar/{codigo}")
     public String editar(Model model) {
-        return "/ej03/formAlumnos";
+        return "/ej03/formAlumno";
     }
     
 }

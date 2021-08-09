@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html th:fragment="layout(htmlcuerpo)">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+         <h2>Mostrando Vista</h2>
+        <nav>
+            <a href="texto1">Ir a texto 1</a>
+            <a href="texto2">Ir a texto 2</a>
+        </nav>
+        <hr>
+        <div class="container">
+            <th:block th:include="${htmlcuerpo}">
+        </div>
+        <hr>
+        <footer>
+            Hecho por
+        </footer>
+    </body>
+</html>

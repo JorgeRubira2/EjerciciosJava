@@ -16,24 +16,25 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public void guardarAlumno(Alumno alumno) {
-        Optional<Alumno> al = Optional.empty();
-        if(alumno.getCodigo() != 0){
-            al = alumnos.stream()
+        Optional<Alumno> al = alumnos.stream()
                     .filter(x->x.getCodigo() == alumno.getCodigo())
                     .findFirst();
-        }
         
-        if(al.isPresent()){
-           
-        }
+         if(al.isPresent()){
+             al.get().setNombre(alumno.getNombre());
+             al.get().setDireccion(alumno.getDireccion());
+             al.get().setTelefono(alumno.getTelefono());
+         } else {
+             alumnos.add(alumno);
+         }
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-        alumnos.stream()
-                .filter(x->x.getCodigo() == codigo.longValue())
-                .findFirst();
         
+        alumnos.remove(alumnos.stream()
+                .filter(x->x.getCodigo() == codigo.longValue())
+                .findFirst());
     }
 
     @Override
@@ -44,7 +45,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
         Optional<Alumno> al = alumnos.stream()
-                .filter(x->x.getCodigo() == codigo.longValue())
+                .filter(x->codigo.equals(x.getCodigo()))
                 .findFirst();
         if(al.isPresent()){
             return al;
