@@ -51,6 +51,20 @@ public class Ejercicio00Muestra {
         model.addAttribute("valor2", valor2);
         return "ej00/calculadora";
     }
+    
+    @PostMapping("/resta")
+    public String resta(Model model, Integer valor1, Integer valor2){
+        if (valor1==null){
+            valor1=0;
+        }
+        if (valor2==null){
+            valor2=0;
+        }
+        model.addAttribute("resultado", calc.restar(valor1, valor2));    
+        model.addAttribute("valor1", valor1);
+        model.addAttribute("valor2", valor2);
+        return "ej00/calculadora";
+    }    
 
     /******************************************
      *     Ejemplo de Repositorio
