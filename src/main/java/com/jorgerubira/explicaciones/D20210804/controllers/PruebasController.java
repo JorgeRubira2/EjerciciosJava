@@ -8,12 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 //Ctrl + Espacio -> Intro -> import automatico
 //Ctrl + Mayus + i -> import automatico
 
 @Controller
 public class PruebasController {
+    
     
     @GetMapping("/dimehola")    //URL que deberemos poner en el navegador
     public String saludar(Model model){  //Recibimos Model para enviar información a la vista.
