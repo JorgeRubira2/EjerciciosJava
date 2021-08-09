@@ -28,7 +28,7 @@ import java.util.List;
 public class Ejercicio03GestionAlumnosController {
 
     @Autowired
-    IEjercicio03GestionAlumnosService service;
+    private IEjercicio03GestionAlumnosService service;
 
     @GetMapping("/gestion")
     public String verGestion(Model model){

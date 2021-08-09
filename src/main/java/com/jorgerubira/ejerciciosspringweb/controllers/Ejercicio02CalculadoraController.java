@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Ejercicio02CalculadoraController {
 
     @Autowired
-    IEjercicio02CalculadoraService service;
+    private IEjercicio02CalculadoraService service;
 
     @GetMapping("/calculadora")
     public String verCalculadora(){

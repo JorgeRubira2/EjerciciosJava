@@ -23,7 +23,7 @@ import java.util.List;
 public class Ejercicio01ListaNombresController {
 
     @Autowired
-    IEjercicio01ListaNombresService service;
+    private IEjercicio01ListaNombresService service;
 
     @GetMapping("/listaNombres")
     public String listaNombres(Model model){
