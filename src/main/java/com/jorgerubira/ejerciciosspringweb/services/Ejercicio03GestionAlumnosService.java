@@ -21,7 +21,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         Optional<Alumno> a = lista.stream().filter(x -> alumno.getCodigo() == x.getCodigo())
                 .findFirst();
         int numeroAleatorio = (int) (Math.random() * 9998 + 1);
-        if (a.isPresent()) {            
+        if (a.isPresent()) {
             a.get().setNombre(alumno.getNombre());
             a.get().setTelefono(alumno.getTelefono());
             a.get().setDireccion(alumno.getDireccion());

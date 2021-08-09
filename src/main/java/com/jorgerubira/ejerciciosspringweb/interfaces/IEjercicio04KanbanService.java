@@ -18,7 +18,7 @@ public interface IEjercicio04KanbanService {
     /**
      * Inserta una tarea nueva en la lista
      * El campo codigo se obtendrá al azar. 
-     * El estado por defecto es Planning.
+     * El estado por defecto es Roadmap.
      * El numero de hora trabajadas por defecto es 0.
      * La persona por defecto es null.
      */

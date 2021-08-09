@@ -30,7 +30,7 @@ public class Ejercicio04KanbanServiceTest {
                                                     .findFirst();
         assertEquals(true, t.isPresent());
         assertNotEquals(null, t.get().getCodigo());
-        assertEquals("Planning", t.get().getEstado());
+        assertEquals("Roadmap", t.get().getEstado());
         assertEquals(null, t.get().getPropietario());
         assertEquals(0, t.get().getHorasTrabajadas());
     }
