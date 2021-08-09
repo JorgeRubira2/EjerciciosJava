@@ -8,19 +8,26 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
-
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
-     private List<Alumno> alumnos=new ArrayList<>();
-     
+
+    private List<Alumno> alumnos = new ArrayList<>();
+    
     @Override
     public void guardarAlumno(Alumno alumno) {
-
+        for (int i = 0; i < alumnos.size(); i++) {
+            if (alumnos.get(i).getCodigo() == alumno.getCodigo()) {
+                alumnos.set(i, alumno);
+            } else {
+                alumnos.add(alumno);
+            }
+            
+        }
     }
-
+    
     @Override
     public void borrarAlumno(Long codigo) {
         for (int i = 0; i < alumnos.size(); i++) {
@@ -37,18 +44,18 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        Optional<Alumno> opt= alumnos.stream()
-                .filter(x->x.getCodigo() == codigo)
+        Optional<Alumno> opt = alumnos.stream()
+                .filter(x -> x.getCodigo() == codigo)
                 .findFirst();
-       
-    return opt;   
+        
+        return opt;        
     }
-
+    
     @Override
     public List<Alumno> getAlumnos(String buscar) {
         
-        List<Alumno> resultado =  alumnos.stream()
-                .filter(x->x.getNombre().equalsIgnoreCase(buscar))
+        List<Alumno> resultado = alumnos.stream()
+                .filter(x -> x.getNombre().equalsIgnoreCase(buscar))
                 .collect(Collectors.toList());
         return resultado;
     }
