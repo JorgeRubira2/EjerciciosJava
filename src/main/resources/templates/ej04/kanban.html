@@ -9,6 +9,18 @@
             .cabecera{
                 border:1px solid lightgrey;
             }
+            .card{
+                margin-top:5px;
+            }
+            .verde{
+                background-color:lightgreen;
+            }
+            .naranja{
+                background-color:rgb(243, 189, 89);
+            }
+            .rojo{
+                background-color:rgb(247, 162, 162);
+            }
         </style>
     </head>
     <body>
@@ -42,32 +54,73 @@
                 <div class="col-md-4">
                 </div>
             </div>
-            <div class="row align-items-center text-center">
-                <div class="col-md-4">
-                    <div class="card" th:each="tar:${tareas}">
+            <div th:each="tar:${tareas}" class="row align-items-center text-center">
+                <div th:if="${'Roadmap'.equals(tar.estado)}" class="col-md-4 roadmap">
+                    <div class="card" th:classappend="
+                                                ${tar.horasTrabajadas <= tar.horasEstimacion} ? 'verde' : 
+                                                (${tar.horasTrabajadas < tar.horasEstimacion*2} ? 'naranja' : 'rojo')">
                         <div class="card-body">
-                          <p class="card-text" th:text="${tar.descripcion}"></p>
-                          <a href="#" class="card-link">Card link</a>
-                          <a href="#" class="card-link">Another link</a>
+                            <h6 th:if="${tar.propietario!=null}" th:utext="|<i class='fas fa-user'></i> ${tar.propietario}|" class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text" th:text="${tar.descripcion}"></p>
+                            <a class="btn-sm btn btn-success col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=waiting'}" ><i class="fas fa-arrow-right    "></i></a>
+                            <a class="btn-sm btn btn-secondary col-3" th:href="${'/ej04/kanban/edita?codigo=' + tar.codigo}" >Editar tarea</a>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/usuario?codigo=' + tar.codigo}" ><i class="fas fa-user"></i></a>
+                            <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div th:if="${'waiting'.equals(tar.estado)}" id="waiting" class="col-md-2 offset-md-4">
+                    <div class="card" th:classappend="
+                                                    ${tar.horasTrabajadas <= tar.horasEstimacion} ? 'verde' : 
+                                                    (${tar.horasTrabajadas < tar.horasEstimacion*2} ? 'naranja' : 'rojo')">
+                        <div class="card-body">
+                            <h6 th:if="${tar.propietario!=null}" th:utext="|<i class='fas fa-user'></i> ${tar.propietario}|" class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text" th:text="${tar.descripcion}"></p>
+                            <a class="btn-sm btn btn-success col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=working'}" ><i class="fas fa-arrow-right    "></i></a>
+                            <a class="btn-sm btn btn-secondary col-3" th:href="${'/ej04/kanban/edita?codigo=' + tar.codigo}" ><i class="fas fa-edit"></i></a>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/usuario?codigo=' + tar.codigo}" ><i class="fas fa-user"></i></a>
+                            <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-2">
+                <div th:if="${'working'.equals(tar.estado)}" id="working" class="col-md-2 offset-md-6">
+                    <div class="card" th:classappend="
+                                                    ${tar.horasTrabajadas <= tar.horasEstimacion} ? 'verde' : 
+                                                    (${tar.horasTrabajadas < tar.horasEstimacion*2} ? 'naranja' : 'rojo')">
+                        <div class="card-body">
+                            <h6 th:if="${tar.propietario!=null}" th:utext="|<i class='fas fa-user'></i> ${tar.propietario}|" class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text" th:text="${tar.descripcion}"></p>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=waiting'}" ><i class="fas fa-arrow-left    "></i></a>
+                            <a class="btn-sm btn btn-danger col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=done'}" ><i class="fas fa-check-circle    "></i></a>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/usuario?codigo=' + tar.codigo}" ><i class="fas fa-user"></i></a>
+                            <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
+                <div th:if="${'done'.equals(tar.estado)}" id="done" class="col-md-4 offset-md-8">
+                    <div class="card" th:classappend="
+                                                    ${tar.horasTrabajadas <= tar.horasEstimacion} ? 'verde' : 
+                                                    (${tar.horasTrabajadas < tar.horasEstimacion*2} ? 'naranja' : 'rojo')">
+                        <div class="card-body">
+                            <h6 th:if="${tar.propietario!=null}" th:utext="|<i class='fas fa-user'></i> ${tar.propietario}|" class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text" th:text="${tar.descripcion}"></p>
+                            <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div style="display:none" id="formuadd" class="container-fluid">
             <div class="row text-center">
-                <form id="formu" th:object="${tareas}" action="/ej04/addtarea" method="POST">
+                <form id="formu" th:object="${task}" action="/ej04/addtarea" method="POST">
+                    <input type="hidden" th:field="*{codigo}" />
                     <label class="col-2">Descripcion:</label>
-                    <textarea class="col-3" th:field="*{descripcion}" />
+                    <textarea class="col-3" th:field="*{descripcion}" > </textarea>
                     <label class="col-2" >Tiempo estimado:</label>
-                    <input class="col-3" type="number" th:field="*{horasEstimacion}" />
+                    <input min="0" class="col-3" type="number" th:field="*{horasEstimacion}" />
+                    <label class="col-2" >Tiempo trabajado:</label>
+                    <input min="0" class="col-3" type="number" th:field="*{horasTrabajadas}" />
                     <input type="submit"  value="Añadir" class="btn btn-primary col-6"/>        
                 </form>
             </div>
@@ -89,6 +142,16 @@
                 message: $('#formuadd').html(),               
                 });
             }
+        </script>
+        <script th:if="${task.codigo!=null}">
+            $(document).ready(function() {
+                bootbox.dialog({
+                    closeButton: false,
+                    title:"Editar la tarea",
+                    size: 'large',
+                    message: $('#formuadd').html(),
+                });
+            });
         </script>
     </body>
 </html>

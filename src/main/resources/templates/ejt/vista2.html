@@ -9,3 +9,6 @@
         </script>
     </librerias>
 </html>
+
+
+<div class="card" th:classappend="${tar.horasEstimacion >= tar.horasTrabajadas} ? 'verde' : ({tar.horasEstimacion > tar.horasTrabajadas} && {tar.horasEstimacion < (tar.horasTrabajadas*2)}) 'naranja' : 'rojo'">
