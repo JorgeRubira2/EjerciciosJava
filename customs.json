@@ -1,9 +1,14 @@
 {
-    "elements": {},
+    "elements": {
+        "th:block": {}
+    },
     "attributes": {
         "th:object": {},
+        "th:include": {},
+        "th:replace": {},
         "th:each": {},
         "th:href": {},
+        "th:fragment": {},
         "th:value": {},
         "th:name": {}
     }

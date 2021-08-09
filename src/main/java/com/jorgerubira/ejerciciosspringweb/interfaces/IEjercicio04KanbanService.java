@@ -14,7 +14,7 @@ import java.util.Optional;
  * Gestiona una lista de tareas.
  */
 public interface IEjercicio04KanbanService {
-    
+
     /**
      * Inserta una tarea nueva en la lista
      * El campo codigo se obtendrá al azar. 

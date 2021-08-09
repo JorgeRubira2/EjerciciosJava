@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" 
+      th:replace="ejte/layouts/layoutprincipal::layout(~{::body},~{::miscripts})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h3>El texto del segundo</h3>
+    </body>
+    <miscripts>
+        <script>
+            $(document).ready(
+                function(){
+                    alert("hola"); 
+                }
+            );
+         </script>
+    </miscripts>
+</html>
