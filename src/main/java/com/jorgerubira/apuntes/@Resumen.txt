@@ -94,8 +94,10 @@
                 th:href -> modificar el href de un link
                 th:object="${objeto}" -> th:field="*{campo}" -> id, name, value (html)
 - Envio de parametros (vistas->controlador): 
-                       GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url")
-                       POST (los parametros se envian en el body -> formularios)    @PostMapping("/url")
+                       GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url") 
+                       POST (los parametros se envian en el body -> formularios)    @PostMapping("/url") 
+                       GET Y POST @RequestMapping(value = "/suburl", method = {RequestMethod.POST, RequestMethod.GET})
+                                          
 - Parametros (controlador->vista):
                        Model model
                        model.addAtribute("nombreVariable", variab);
@@ -108,4 +110,5 @@
                                       @AllArgsConstructor, genera constructor con todos
                                       @NoArgsContructor, genera contructor sin parametros
 - @RequestMapping("ruta/{id}"}, @PathVariable 
-  
+
+- Instalamos el plugin,  
