@@ -1,0 +1,26 @@
+package com.jorgerubira.ejerciciosspringweb.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/ejemploTemplate")
+public class EjemploTemplate {
+
+
+	@GetMapping("/texto1")
+	public String texto1(){
+		return "ejtm/vista1";
+	}
+
+	@GetMapping("/texto2")
+	public String texto2(){
+		return"ejtm/vista2";
+	}
+	
+	@GetMapping("/layout")
+	public String layout(){
+		return"ejtm/layouts/layoutprincipal";
+	}
+}
