@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class EjemploTemplate {
     @GetMapping("/texto1")
-    
     public String text1(){
             return "/ejte/vista1";
      
