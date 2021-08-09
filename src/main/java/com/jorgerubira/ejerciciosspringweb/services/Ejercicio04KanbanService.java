@@ -28,7 +28,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     }
 
     @Override
-    public void imputarHorasTrabajadas(String codigo, String persona) throws OperacionEnListaException {
+    public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
