@@ -12,6 +12,10 @@ import java.util.Optional;
 
 /**
  * Gestiona una lista de tareas.
+ * Colores:
+ *    Si horas estidadas + 1.2 < horas trabajadas -> rojo
+ *    Si horas estidadas < horas trabajadas -> naranja
+ *    Si horas estidadas >= horas trabajadas -> verde
  */
 public interface IEjercicio04KanbanService {
 

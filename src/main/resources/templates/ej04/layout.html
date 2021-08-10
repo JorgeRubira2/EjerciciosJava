@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html th:fragment="layout(htmlcuerpo,javascript)">
     <head>
         <title>Kanban</title>
         <meta charset="UTF-8">
@@ -19,7 +19,10 @@
         </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <th:block th:include="${htmlcuerpo}"/>
+        </div>
+        
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
@@ -27,21 +30,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         
     </body>
-    <misscripts>
-        <script>
-            $(document).ready(function(){
-                $("#nuevaTarea").click(nuevaTarea);
-            });
-            function nuevaTarea(){
-                bootbox.dialog({
-                    titleyu: "Nuevo Kanban",
-                    size: "large",
-                    message: $("#nueva").html()
-
-                });
-            }
-
-          
-        </script>
-    </misscripts>
+    <th:block th:include="${javascript}"/>
+    
 </html>
