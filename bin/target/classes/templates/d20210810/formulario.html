@@ -1,0 +1,17 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="d20210810/layout::layout(~{::body},~{::misscripts})">
+    <body>
+        <div class="container">
+            <form th:object="${persona}" action="/url" method="post">
+                <input type="hidden" th:field="*{id}"/><br/>
+                <input class="form-control" th:field="*{nombre}"/><br/>
+                <input class="form-control" th:field="*{apellido1}"/><br/>
+                <input class="form-control" th:field="*{direccion}"/><br/>
+                <input class="btn btn-primary"  type="submit" value="enviar"/>
+            </form>
+        </div>
+    </body>
+    <misscripts>
+        
+    </misscripts>
+</html>
