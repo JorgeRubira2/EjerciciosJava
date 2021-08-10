@@ -25,7 +25,8 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
         if (nombre==null){ //Desde el exterior se debe comprobar si vale nulo.
             throw new NullPointerException();
         }
-        if (nombres.stream().noneMatch(x->x.equals(nombre))){
+        if (nombres.stream()
+                   .noneMatch(x->x.equals(nombre))){
             nombres.add(nombre);
         }else{
             throw new OperacionEnListaException(nombre);

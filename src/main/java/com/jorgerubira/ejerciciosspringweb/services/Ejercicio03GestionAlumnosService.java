@@ -18,26 +18,31 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     //Hecho controlador para probar que funciona la lista
     public Ejercicio03GestionAlumnosService() {
-            listaAlumnos.add(new Alumno(1, "Isabel", "132131", "Dirección"));
+        listaAlumnos.add(new Alumno(1, "Isabel", "132131", "Dirección"));
     }
 
-    
     @Override
-    public void guardarAlumno(Alumno alumno){
-      //  listaAlumnos.stream()
-               // .filter(x -> x.getCodigo());
+    public void guardarAlumno(Alumno alumno) {
+        if (listaAlumnos.stream()
+                        .noneMatch(x -> alumno.getCodigo()==x.getCodigo() ))  {
 
-        Alumno nuevoAlumno = new Alumno();
-        nuevoAlumno.setCodigo(alumno.getCodigo());
-        nuevoAlumno.setNombre(alumno.getNombre());
-        nuevoAlumno.setTelefono(alumno.getDireccion());
-        nuevoAlumno.setDireccion(alumno.getDireccion());
-       
+            listaAlumnos.add(alumno);
+            
+        } else {
+            Alumno alum = listaAlumnos.stream()
+                                      .filter(x -> alumno.getCodigo()== x.getCodigo())
+                                      .findFirst().get();
+            
+            alum.setCodigo(alumno.getCodigo());
+            alum.setNombre(alumno.getNombre());
+            alum.setTelefono(alumno.getDireccion());
+            alum.setDireccion(alumno.getDireccion());            
+        }
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-        listaAlumnos.removeIf(x -> x.getCodigo()==codigo);
+        listaAlumnos.removeIf(x -> x.getCodigo() == codigo);
     }
 
     @Override
@@ -47,17 +52,17 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        
+
         Optional<Alumno> alumno = listaAlumnos.stream()
-                           .filter(x -> x.getCodigo()== codigo)
-                           .findFirst();   
+                .filter(x -> x.getCodigo() == codigo)
+                .findFirst();
         return alumno;
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
         return listaAlumnos.stream()
-                           .filter(x -> buscar.equals(x.getNombre()))
-                           .collect(Collectors.toList());
+                .filter(x -> buscar.equals(x.getNombre()))
+                .collect(Collectors.toList());
     }
 }
