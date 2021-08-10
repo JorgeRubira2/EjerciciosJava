@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
     
-    private List<String> nombres=new ArrayList<>();
+    private List<String> alumnos=new ArrayList<>();
     
     @Override
     public void guardarAlumno(Alumno alumno) {
