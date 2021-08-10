@@ -5,14 +5,20 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
+
 
     private List<Alumno> listaAlumnos = new ArrayList<>();
     
@@ -25,7 +31,10 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         alumno.setDireccion("Calle");
         listaAlumnos.add(0, alumno);
     }
-
+    
+    @Autowired
+    private List<String> nombres;
+    
     @Override
     public void guardarAlumno(Alumno alumno) {
         if (alumno == null) {
