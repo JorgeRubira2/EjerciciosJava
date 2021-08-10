@@ -6,9 +6,12 @@ public class Ejercicio03Comparadores {
 
     //Debe devolver true si los dos enteros contienen el mismo valor.
     //Si no devuelve false
-    //Si se envia null en cualquiera de ellos devuelve false 
-    public boolean compararEnteros(Integer i1, Integer i2) {
-        throw new RuntimeException("Pendiente de hacer");
+
+    //Si se envia null en cualquiera de ellos devuelve false
+
+    public boolean compararEnteros(Integer i1, Integer i2){
+    	throw new RuntimeException("Pendiente de hacer");
+
     }
         //Debe devolver true si los dos enteros contienen el mismo valor.
         //Si no devuelve false

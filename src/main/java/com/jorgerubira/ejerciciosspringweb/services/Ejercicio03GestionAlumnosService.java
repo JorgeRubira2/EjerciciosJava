@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,10 @@ import org.springframework.stereotype.Service;
 @Service 
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-    List<Alumno> listaAlumnos = new ArrayList<>();
+    @Autowired
+    private List<Alumno> listaAlumnos = new ArrayList<>();
+
+
     @Override
     
     public void guardarAlumno(Alumno alumno) {
