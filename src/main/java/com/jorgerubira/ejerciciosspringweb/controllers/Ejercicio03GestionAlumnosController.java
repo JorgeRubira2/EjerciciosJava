@@ -33,15 +33,15 @@ public class Ejercicio03GestionAlumnosController {
 	}
 	 @PostMapping("/gestionAlumno")
 	    public String nuevo(Model model, Long codigo, String nombre, String telefono, String direccion) {
-	        Alumno alumno = new Alumno();
-	        alumno.setCodigo(codigo);
-	        alumno.setNombre(nombre);
-	        alumno.setTelefono(telefono);
-	        alumno.setDireccion(direccion);
-	        service.guardarAlumno(alumno);
+	        Alumno alumnos = new Alumno();
+	        alumnos.setCodigo(codigo);
+	        alumnos.setNombre(nombre);
+	        alumnos.setTelefono(telefono);
+	        alumnos.setDireccion(direccion);
+	        service.guardarAlumno(alumnos);
 	        model.addAttribute("lista", service.getAlumnos());
 
-	        return "ej03/listaAlumno";
+	        return "ej03/gestionAlumno";
 	    }
 
 	    @GetMapping("/gestionAlumno/eliminar")
@@ -50,26 +50,15 @@ public class Ejercicio03GestionAlumnosController {
 	        service.borrarAlumno(codigo);
 	        model.addAttribute("lista", service.getAlumnos());
 
-	        return "ej03/listaAlumno";
+	        return "ej03/gestionAlumno";
 	    }
-//	@PostMapping("/alta")
-//	public String altaAlumno(Model model, Alumno alumno) {
-//		
-//		service.guardarAlumno(alumno);
-//		model.addAttribute("lista", alumno);
-//		return "ej03/Alta";
-//	}
-//
-//	@GetMapping("/borrar")
-//	public String borrarAlumno(Model model, Long codigo) {
-//		service.borrarAlumno(codigo);
-//		model.addAttribute("lista", service.getAlumnos());
-//		return "ej03/gestionAlumno";
-//	}
-//
-//	@GetMapping("/modificar")
-//	public String modificarAlumno(Model model, Long codigo) {
-//		model.addAttribute("alumno", service.getAlumno(codigo));
-//		return "";
-//	}
+	    @PostMapping("/buscarAlumno")
+	    public String buscarAlumnos(Model model, String nombre) {
+	            
+	        
+	    model.addAttribute("lista", service.getAlumnos(nombre));
+	  
+	        return "ej03/gestionAlumno";
+	    }
+
 }

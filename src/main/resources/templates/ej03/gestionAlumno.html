@@ -16,6 +16,10 @@
 .fa-user-plus {
 	float: right;
 }
+.btn{
+text-align: center;
+}
+
 </style>
 
 <link rel="stylesheet"
@@ -31,11 +35,11 @@
 	<div class="container">
 
 		<h1>Listado de Alumnos</h1>
-		<form action="/ejercicio3/gestionAlumno" method="post">
+		<form action="/ejercicio3/buscarAlumno" method="post">
 			<div class="row">
 				<div class="form-group col-2">
 					<input class="form-control" placeholder="Ingresa un nombre"
-						type="text" name="alumno" th:value="${alumno}" />
+						type="text" name="alumnos" th:value="${alumnos}" />
 				</div>
 				<div class="col-4 ">
 
@@ -63,20 +67,24 @@
 
 				</thead>
 				<tbody>
-					<tr th:each="alumno:${lista}">
+					<tr th:each="alumnos:${lista}">
 
-						<td th:text="${alumno.codigo}"></td>
-						<td th:text="${alumno.nombre}"></td>
-						<td th:text="${alumno.telefono}"></td>
-						<td th:text="${alumno.direccion}"></td>
+						<td th:text="${alumnos.codigo}"></td>
+						<td th:text="${alumnos.nombre}"></td>
+						<td th:text="${alumnos.telefono}"></td>
+						<td th:text="${alumnos.direccion}"></td>
 
 						<td>
-							<div class="row">
-								<a class="btn btn-danger btn-sm fal fa-times"
-									th:href="${'/gestionAlumno/borrar?codigo='+alumno.getCodigo()}">Eliminar</a>
-								<a class="btn btn-info "
-									th:href="${'/gestionAlumno/modificar?codigo='+alumno.getCodigo()}">Editar</a>
-							</div>
+							
+								<a class="btn btn-danger btn-sm fal"
+									th:href="${'/gestionAlumno/eliminar?codigo='+alumnos.getCodigo()}">Eliminar</a>
+									<!-- <a class="btn btn-danger btn-sm fal"
+									th:href="@{'ejercicio3/eliminar/{codigo} (codigo=${elemento.codigo})}">Eliminar</a>
+									 -->
+								<a class="btn btn-info btn-sm fal  "
+									th:href="${'/gestionAlumno/modificar?codigo='+alumnos.getCodigo()}">Editar</a>
+									
+							
 						</td>
 
 					</tr>
@@ -93,14 +101,14 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">A&ntilde;adir
+					<h3 class="modal-title" id="staticBackdropLabel">A&ntilde;adir
 						nuevo alumno</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 
-					<form action="/gestionAlumno" method="post">
+					<form action="gestionAlumno" method="post">
 						<div class="row">
 							<div class="col-2">
 								<label for="codigo">Codigo</label>
@@ -108,7 +116,7 @@
 							<div class="col-10">
 								<div class="input-group mb-2">
 
-									<input type="number"th:field="${alumno.setCodigo}" required class="form-control"
+									<input type="number" required class="form-control"
 										name="codigo" />
 								</div>
 							</div>
@@ -121,7 +129,7 @@
 							<div class="col-10">
 								<div class="input-group mb-2">
 
-									<input type="text" th:field="${alumno.setNombre}"required class="form-control" name="nombre" />
+									<input type="text"required class="form-control" name="nombre" />
 								</div>
 							</div>
 						</div>
@@ -133,7 +141,7 @@
 							<div class="col-10">
 								<div class="input-group mb-2">
 
-									<input type="text" th:field="${alumno.setTelefono}"  required class="form-control"
+									<input type="text" required class="form-control"
 										name="telefono" />
 								</div>
 							</div>
@@ -145,7 +153,7 @@
 							<div class="col-10">
 								<div class="input-group mb-2">
 
-									<input type="text" th:field="${alumno.setDireccion}"required class="form-control"
+									<input type="text"required class="form-control"
 										name="direccion" />
 								</div>
 							</div>
