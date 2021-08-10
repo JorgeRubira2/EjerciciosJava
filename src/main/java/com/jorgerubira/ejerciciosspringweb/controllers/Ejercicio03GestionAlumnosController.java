@@ -72,16 +72,18 @@ public class Ejercicio03GestionAlumnosController {
             return ("ej03/crud");
         }
         
-        boolean codigo = Character.isDigit(alumno.charAt(0));
+        boolean codigo = Character.isDigit(alumno.charAt(0)) && Character.isDigit(alumno.charAt(alumno.length()-1));
         
-        if (codigo) {
+        if (codigo && alumnos.getAlumno(Long.valueOf(alumno)).isPresent()) {
+            
             model.addAttribute("alumnos", alumnos.getAlumno(Long.valueOf(alumno)).get());
+            
         } else {
              List<Alumno> busqueda = alumnos.getAlumnos(alumno).stream().filter((t) -> {
                 return t.getNombre().equals(alumno);
             }).collect(Collectors.toList());
 
-            model.addAttribute("alumnos", busqueda);
+            model.addAttribute("alumnos", busqueda.isEmpty()?List.of():busqueda);
 
         }
 

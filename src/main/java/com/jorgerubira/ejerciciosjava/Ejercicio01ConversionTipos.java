@@ -4,7 +4,8 @@ public class Ejercicio01ConversionTipos {
 
     //Devuelve la suma a+b;
     public int ejemploSuma(int a, int b){
-        throw new RuntimeException("Pendiente de hacer");
+       
+		return a+b;
     }
     
     //Convierte de String a int.

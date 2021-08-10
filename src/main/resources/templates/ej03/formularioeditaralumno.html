@@ -11,7 +11,7 @@
             <h1>Formulario para añadir un alumno nuevo</h1>
             <form action="/ejercicio3/addAlumno" method="POST">
                 <div class="form-group row col-3">
-                    <label class="col-form-label">Código :</label> <input th:value="${alumno.codigo}" class="form-control" type="number" name="codigo" min="0" required>
+                    <label class="col-form-label">Código :</label> <input readonly th:value="${alumno.codigo}" class="form-control" type="number" name="codigo" min="0" required>
                 </div>
                 <div class="form-group row col-3">
                     <label class="col-form-label">Nombre: </label> <input th:value="${alumno.nombre}" class="form-control" type="text" name="nombre" required>
