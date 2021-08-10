@@ -5,13 +5,18 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Service
 
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-    private List<Alumno> alumnos=new ArrayList<>();
+
+    private final List<Alumno> alumnos=new ArrayList<>();
     
     public Ejercicio03GestionAlumnosService() {
         
@@ -31,7 +36,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         alumnos.add(alumno2);
     }
    
-    
+
+      
     @Override
     public void guardarAlumno(Alumno alumno) {
         
@@ -61,9 +67,9 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
         
-         return Optional alumnos.get(codigo.intValue());
+        // return Optional alumnos.get(codigo.intValue());
          
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -71,7 +77,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         
         List<Alumno> alumnos2=new ArrayList<>();
          for (int i=0;i < alumnos.size() ;i++){
-                if (alumnos.get(i).getNombre() == buscar )
+                if (alumnos.get(i).getNombre().equals(buscar) )
                     alumnos2.add(alumnos.get(i));
                 
                 
