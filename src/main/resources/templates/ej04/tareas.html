@@ -14,7 +14,7 @@
                     <tr>
                         <td>Waiting</td>
                         <td>Working<br/>
-                           
+                            
                     </tr>
                     <tr>
                         
@@ -29,7 +29,7 @@
                         <div th:if="${#strings.equals(tar.estado,'Roadmap')}" class="row text-center">
                             <i class="col-2 far fa-calendar" th:text="${tar.horasEstimacion}"></i><br/>
                             <span class="col-10" th:id="${tar.codigo}" th:text="${tar.descripcion}" ></span>
-                            <a class="col-2" th:href="@{|/ejercicio04/editar?codigo=${tar.codigo}&accion=editar|}" title="Editar descripción y horas"><i class="far fa-edit"></i></a>
+                            <a class="col-2" th:onclick="|acciones(${tar.codigo},'editar')|" title="Editar descripción y horas"><i class="far fa-edit"></i></a>
                             <a class="col-2" th:href="@{|/ejercicio04/editar?codigo=${tar.codigo}&accion=asignar|}" title="Asignar trabajador"><i class="fas fa-users-slash"></i></a>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div th:if="${#strings.equals(tar.estado,'Waiting')}" class="row text-center">
                             <i class="col-2 far fa-calendar" th:text="${tar.horasEstimacion}"></i><br/>
                             <span class="col-10" th:id="${tar.codigo}" th:text="${tar.descripcion}" ></span>
-                            <a class="col-2" th:href="@{|/ejercicio04/editar?codigo=${tar.codigo}&accion=editar|}" title="Editar descripción y horas"><i class="far fa-edit"></i></a>
+                            <a class="col-2" th:onclick="|acciones(${tar.codigo},'editar')|"  title="Editar descripción y horas"><i class="far fa-edit"></i></a>
                             <a class="col-2" th:href="@{|/ejercicio04/editar?codigo=${tar.codigo}&accion=cambio|}" title="Cambiar estado"><i class="fas fa-exchange-alt"></i></a>
                             <a class="col-2" th:title="${tar.propietario}"><i class="fas fa-users" ></i></a>
                         </div>
@@ -88,11 +88,29 @@
             });
             function nuevaTarea(){
                 bootbox.dialog({
-                    titleyu: "Nuevo Kanban",
+                    title: "Nuevo Kanban",
                     size: "large",
                     message: $("#nueva").html()
 
                 });
+            }
+            function acciones(pCodigo, pAccion){
+                $.ajax({
+                    url:"editar",
+                    data:{
+                        codigo:pCodigo,
+                        accion:pAccion
+                    },
+                    success: function(pHTML){
+                        bootbox.dialog({
+                            title:pAccion,
+                            message:pHTML
+                        })
+                    },
+                    error: function(err){
+                        alert(err)
+                    }
+                })
             }
 
           
