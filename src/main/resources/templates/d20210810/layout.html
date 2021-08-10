@@ -1,27 +1,19 @@
-<html th:fragment="layout(htmlcuerpo, scripts, titulo)">
+<html th:fragment="layout(cuerpo,javascript)">
     <head>
-        <title>TODO supply a title</title>
+        <title>Titulo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
     <body>
-        <h2 th:text='${titulo}'></h2>        
-        <nav>
-            <a href="/ejemplotemplate/texto1">Ir a Texto 1</a>
-            <a href="/ejemplotemplate/texto2">Ir a Texto 2</a>
-        </nav>
-        <hr/>
         <div class="container">
-            <th:block th:include="${htmlcuerpo}"/>
+            <!-- Contenido -->
+            <th:block th:include="${cuerpo}"/>
         </div>
-        <hr/>
-        <footer>
-            Hecho por .... 
-        </footer>
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-        <th:block th:include="${scripts}"/>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>        
+        <th:block th:include="${javascript}"/>
     </body>
 </html>
