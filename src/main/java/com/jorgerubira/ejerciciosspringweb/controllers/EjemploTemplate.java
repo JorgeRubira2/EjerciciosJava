@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/ejemplotemplate")
 public class EjemploTemplate {
 
-    @GetMapping("/texto1")
+    @GetMapping("/texto11")
     public String texto1(){
         return "ejte/vista1";
     }
     
-    @GetMapping("/texto2")
+    @GetMapping("/texto21")
     public String texto2(){
         return "ejte/vista2";
     }

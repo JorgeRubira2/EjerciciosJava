@@ -23,21 +23,33 @@ public class Ejercicio05MedalleroController {
     
     @Autowired
     private IEjercicio05MedalleroService serviceMedallero;
-    
+
     
     @GetMapping("/medallas")
-    public String inicioMedallas(Model model){
-        
-        serviceMedallero.obtenerRankingPorPais().forEach(x ->System.out.println(x));
-        model.addAttribute("medallasPaises", serviceMedallero.obtenerRankingPorPais());
+    public String inicioMedallas(Model model,String opcionConsulta){
+        if (opcionConsulta == null) {
+            opcionConsulta="paises";
+        }
+        if (opcionConsulta.equals("deportistas")){
+            serviceMedallero.obtenerRankingPorAlteta().forEach(x ->System.out.println(x));
+            model.addAttribute("medallasAtletas", serviceMedallero.obtenerRankingPorAlteta());
+        } else {
+            serviceMedallero.obtenerRankingPorPais().forEach(x ->System.out.println(x));
+            model.addAttribute("medallasPaises", serviceMedallero.obtenerRankingPorPais());
+        }
+        model.addAttribute("opcionConsulta",opcionConsulta);
     return "ej05/medallas";
     }
     
     @GetMapping("/consultaDeportesEnMedalla/{metal}/{pais}")
     public String consultaDeportesDeMedalla(Model model, @PathVariable("metal") String metal, @PathVariable("pais") String pais){
-        serviceMedallero.obtenerDeportesDeUnaMedalla(pais, metal);
-        model.addAttribute("deportesMedalla", pais);
+        model.addAttribute("deportesMedalla",serviceMedallero.obtenerDeportesDeUnaMedalla(pais, metal) );
         return "ej05/medallas";
     }
     
+    @GetMapping("/consultaMedallas/{pais}")
+    public String deportesDePais(Model model, @PathVariable String pais){
+        model.addAttribute("deportes", serviceMedallero.obtenerDeportesConMedalla(pais));
+        return "ej05/medallas";
+    }
 }
