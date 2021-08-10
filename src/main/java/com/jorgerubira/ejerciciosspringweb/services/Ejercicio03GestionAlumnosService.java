@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 
@@ -31,7 +30,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         if(!a.isPresent()){
             alumnos.add(alumno);
         }else{
-            //alumnos.remove(a.get());
+            alumnos.remove(a.get());
             alumnos.add(new Alumno(a.get().getCodigo(),alumno.getNombre(),alumno.getTelefono(),alumno.getDireccion()));
         }
     }

@@ -1,0 +1,104 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Tareas Kanban</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <style>
+            td div{
+                padding: 10px;
+                margin: 15px;
+                border: 1px solid;
+                
+            }
+        
+         
+            .naranja{
+                background-color: orange;
+            }
+            .verde{
+                background-color: greenyellow;
+            }
+               .rojo{
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container ">
+            <table class="w-100 text-center" border="1" width="1">
+                <thead>
+                    <tr >
+                        <th class="p-3" rowspan="2">Story</th>                    
+                        <th class="p-3" colspan="2">Waiting</th>
+                        <th class="p-3" rowspan="2">Done</th>
+                    </tr><tr>
+                        <th class="p-3">Waiting</th>
+                        <th class="p-3">Working</th></tr>
+
+                    </tr>
+                </thead>
+                <tbody>
+                   <!-- 
+    private String codigo; //Se generará al azar al insertar. UUID.randomUUID().toString();
+    private String descripcion; //Descripcion de la tarea
+    private String propietario; //Persona que está realizando esta tarea.
+    private Integer horasEstimacion; //Tiempo estimado en la tarea. Opcional
+    private Integer horasTrabajadas; //Tiempo de trabajo en la tarea. 
+    private String estado; //Roadmap (Pensada), Waiting (Se hace en breve), Working (Realizandose), Done (Finalizada). 
+                   
+                    <tr th:each="t:${tareas}">
+                    <td  th:if="${t.estado == 'Roadmap'}"  th:text="${t.descripcion}"></td>
+                    <td th:if="${t.estado == 'Waiting'}"  th:text="${t.estado}"></td>
+                    <td th:if="${t.estado == 'Working'}"  th:text="${t.descripcion}"></td>
+                    <td th:if="${t.estado == 'Done'}"  th:text="${t.descripcion}"></td>
+                      
+                    </tr>
+              --> 
+              <!--    /**
+ * Gestiona una lista de tareas.
+ * Colores:
+ *    Si horas estidadas + 1.2 < horas trabajadas -> rojo
+ *    Si horas estidadas < horas trabajadas -> naranja
+ *    Si horas estidadas >= horas trabajadas -> verde
+ */-->
+                   
+                   <tr>
+                <td id="roadmap">
+                    <div th:classappend="|${(t.horasEstimacion+1.2)<t.horasTrabajadas ? 'rojo' : ''}
+                                          ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
+                                          ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
+                                          |" th:each="t:${tareas}" th:if="${t.estado == 'Roadmap'}" th:text="${t.descripcion}"> </div>
+                </td>
+                <td id="waiting">
+                    <div th:classappend="|${(t.horasEstimacion+1.2)<t.horasTrabajadas ? 'rojo' : ''}
+                                          ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
+                                          ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
+                                          |" th:each="t:${tareas}" th:if="${t.estado == 'Waiting'}" th:text="${t.descripcion}"> </div>
+                </td>
+                <td id="working">
+                    <div th:classappend="|${(t.horasEstimacion+1.2)<t.horasTrabajadas ? 'rojo' : ''}
+                                          ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
+                                          ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
+                                          |" th:each="t:${tareas}" th:if="${t.estado == 'Working'}" th:text="${t.descripcion}"> </div>
+                </td>
+                <td id="done">
+                    <div th:classappend="|
+                                          ${(t.horasEstimacion+1.2)<t.horasTrabajadas ? 'rojo' : ''}
+                                          ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
+                                          ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
+                                          |" th:each="t:${tareas}" th:if="${t.estado == 'Done'}" th:text="${t.horasEstimacion}"> </div>
+                </td>
+                   </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+   
+    </body>
+</html>
