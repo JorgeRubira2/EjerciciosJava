@@ -1,0 +1,59 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:include="d20210809/layout::verFragmento( ~{::body} )">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <table>
+            <tr>
+                <td>
+                    <div th:each="alu:${persona}" th:if='${alu.startsWith("A")}'>
+                        <div th:include="::mitarjeta(${alu})"/>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="alu:${persona}" th:if='${alu.startsWith("A")==false}'>
+                        <div th:include="d20210809/plantillas::mitarjeta2(${alu})"/>
+                    </div>
+                </td>        
+                <td>
+                    <div th:each="alu:${personaObjeto}">
+                        <div th:include="::mitarjetaObjeto1(${alu.nombre}, ${alu.telefono}, 'verde' )"/>
+                    </div>
+                </td> 
+                <td>
+                    <div th:each="alu:${personaObjeto}">
+                        <div th:include="::mitarjetaObjeto1(${alu.nombre}, ${alu.telefono}, 'rojo' )"/>
+                    </div>
+                </td> 
+                <td>
+                    <div th:each="alu:${personaObjeto}">
+                        <div th:include="::mitarjetaObjeto2(${alu})"/>
+                    </div>
+                </td>                     
+            </tr>
+        </table>
+        <div style="display:none" th:fragment="mitarjetaObjeto2(persona)">
+             <div class='tarjeta'  >
+                  Linea 1: <span th:text='${persona}'/>
+             </div>
+        </div>                          
+        <div style="display:none" th:fragment="mitarjetaObjeto1(nombre, telefono, color)">
+             <div class='tarjeta' th:classappend="${color}" >
+                  Linea 1: <span th:text='${nombre}'/>
+                  Linea 2: <span th:text='${telefono}'/>
+             </div>
+        </div>                        
+        <div style="display:none" th:fragment="mitarjeta(nombre)">
+             <div class='tarjeta' >
+                  Linea 1: <span th:text='${nombre}'/>
+                  Linea 2: <span th:text='${nombre}'/>
+                  Linea 3: <span th:text='${nombre}'/>
+                  Linea 4: <span th:text='${nombre}'/>
+             </div>
+        </div>
+    </body>
+</html>

@@ -42,5 +42,18 @@ public class Ejercicio03GestionAlumnosController {
 
         return "ej03/listaAlumnos";
     }
+    
+    
+    
+   @PostMapping("/buscarNombre")
+    public String buscarAlumnos(Model model, String nombre) {
+            
+        
+    model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos(nombre));
+  
+
+        return "ej03/listaAlumnos";
+    }
+    
 
 }
