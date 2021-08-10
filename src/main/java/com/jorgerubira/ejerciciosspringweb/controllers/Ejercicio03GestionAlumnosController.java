@@ -2,7 +2,7 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
-import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
+import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException; 
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,17 +35,23 @@ public class Ejercicio03GestionAlumnosController {
     public String guardarAlumno(Model model, Alumno alumno){
        servicio.guardarAlumno(alumno);
         
-        return "ej03/gestionAlumnos";
+        return "redirect:/ejercicio3/gestion";
     }
     
-    @GetMapping("/borrar/{codigo}")
-    public String borrar(Model model) {
-        
+    @GetMapping("/borrar")
+    public String borrar(Model model, String codigo) {
+        servicio.borrarAlumno(Long.valueOf(codigo));
         return "/ej03/gestionAlumnos";
     }
 
-    @GetMapping("/editar/{codigo}")
-    public String editar(Model model) {
+    @GetMapping("/editar")
+    public String editar(Model model, Alumno a) {
+        servicio.borrarAlumno(a.getCodigo());
+        model.addAttribute("codigo",a.getCodigo());
+        model.addAttribute("nombre",a.getNombre());
+        model.addAttribute("telefono",a.getTelefono());
+        model.addAttribute("direccion",a.getDireccion());
+        
         return "/ej03/formAlumno";
     }
     

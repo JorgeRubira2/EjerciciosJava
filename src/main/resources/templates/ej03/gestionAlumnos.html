@@ -46,8 +46,8 @@
                     <td th:text="${alumno.telefono}"></td>
                     <td th:text="${alumno.direccion}"></td>
                     <td>
-                        <a th:href="${'/borrarAlumno?codigo='+alumno.codigo}">Eliminar</a>
-                        <a th:href="${'/editarAlumno?codigo='+alumno.codigo + '&nombre='+alumno.nombre + '&telefono='+alumno.edad + '&direccion='+alumno.direccion}">Editar</a>
+                        <a th:href="${'/ejercicio3/borrar?codigo='+alumno.codigo}" class="btn btn-outline-danger">Eliminar  <i class="fas fa-trash"></i></a>
+                        <a th:href="${'/ejercicio3/editar?codigo='+alumno.codigo + '&nombre='+alumno.nombre + '&telefono='+alumno.telefono + '&direccion='+alumno.direccion}" class="btn btn-outline-warning">Editar  <i class="fas fa-edit"></i></i></a>
                     </td>
                 </tr>
             </table>

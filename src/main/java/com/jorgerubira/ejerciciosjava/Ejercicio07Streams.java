@@ -49,7 +49,7 @@ public class Ejercicio07Streams {
     public List<Persona> personasDeHuescaALista(List<Persona> lista) {
         return lista.stream()
                 .filter((x) -> x.getCiudad().equals("Huesca"))
-                .toList();
+                .collect(toList());
     }
 
     /**
@@ -81,7 +81,7 @@ public class Ejercicio07Streams {
         return lista.stream()
                 .filter((x -> x.getCesta().isPresent()))
                 .map(x -> x.getCesta().get())
-                .toList();
+                .collect(toList());
     }
 
     /**
