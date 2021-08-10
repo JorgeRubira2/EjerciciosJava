@@ -6,11 +6,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">         
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <style>
-            table,
-            th,
-            td {
+            .tabla {
                 text-align: center !important;
                 border: 1.5px solid #929292 !important;
+            }
+            .tarjeta{
+                background-color: orange;
+                color:white;
             }
         </style>
     </head> 
@@ -18,21 +20,24 @@
         <div class="container">
             <button type="button" class="btn btn-primary mt-4  mb-4" data-toggle="modal" data-target="#exampleModal" data-whatever="">Crear tarea</button>
 
-            <table class="table">
+            <table class="table table-striped tabla">
                 <thead>
                     <tr>
-                        <th rowspan="2">Story</th>                    
-                        <th colspan="2">Waiting</th>                    
-                        <th rowspan="2">Done</th>
+                        <th rowspan="2" class="tabla">Story</th>                    
+                        <th colspan="2" class="tabla">Waiting</th>                    
+                        <th rowspan="2" class="tabla">Done</th>
                     </tr>
                     <tr>
-                        <th>Waiting</th>
-                        <th>Working</th>
+                        <th class="tabla">Waiting</th>
+                        <th class="tabla">Working</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- empiezan las filas -->
-                    <tr>
+                    <tr th:each="tar:${listaTareas}" > 
+
+                        <td th:text="${tar.getCodigo()}" class="tarjeta"></td>  
+                        <td th:text="${tar.getEstado()}" ></td>  
 
 
                     </tr>
@@ -52,24 +57,23 @@
                         <h5 class="modal-title" id="exampleModalLabel">Crear tarea</h5>  
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="/ejercicio04/alta" method="post">
                             <div class="form-group">
-                                <label for="descripcion" class="col-form-label">Descripcion </label>
-                                <input type="text" class="form-control" id="descripcion">
+                                <label for="descripcion" class="col-form-label" >Descripcion </label>
+                                <input type="text" class="form-control" id="descripcion" Required>
                             </div>
                             <div class="form-group">
-                                <label for="horasestimadas" class="col-form-label">Horas estimadas </label>
-                                <input type="number" class="form-control" id="horasestimadas"/>
+                                <label for="horasEstimacion" class="col-form-label">Horas estimadas </label>
+                                <input type="number" class="form-control" id="horasEstimacion" Required/>
                             </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary"/>Crear tarea</button>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Crear tarea</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
     <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>

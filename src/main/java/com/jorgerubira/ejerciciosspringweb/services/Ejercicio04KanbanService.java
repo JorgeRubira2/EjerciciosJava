@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 /**
  * Implementa la interface IEjercicio04KanbanService
  */
-
 @Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
