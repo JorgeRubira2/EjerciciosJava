@@ -13,14 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * IEjercicio02CalculadoraService encargada de 
  * sumar, restar, multiplicar y dividir dos números.
  * El resultado se mostrará en la parte inferior.
- * 
- * public Integer sumar(Integer a,Integer b);
-    public Integer restar(Integer a,Integer b);
-    public Integer multiplicar(Integer a,Integer b);
-    public Integer dividir(Integer a,Integer b);
- * 
- * 
- * 
  */
 
 @Controller
