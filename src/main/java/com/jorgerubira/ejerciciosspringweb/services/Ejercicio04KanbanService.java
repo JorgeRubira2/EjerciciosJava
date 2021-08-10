@@ -1,6 +1,5 @@
 package com.jorgerubira.ejerciciosspringweb.services;
 
-import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
@@ -8,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.hibernate.annotations.common.util.impl.Log_$logger;
+import org.springframework.stereotype.Service;
 
 /**
  * Implementa la interface IEjercicio04KanbanService
  */
+
+@Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     private List<TareaKanban> lista = new ArrayList<>();
@@ -49,25 +50,14 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     }
 
     @Override
-    public void imputarHorasTrabajadas(String codigo, String persona) throws OperacionEnListaException {
-        Optional<TareaKanban> tarea = lista.stream().filter(x -> x.getCodigo().equals(codigo)).findFirst();
-        if (tarea.isPresent()) {
-            tarea.get().setHorasTrabajadas(2);
-
-        }
-
-    }
-
-    @Override
     public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException {
 
         Optional<TareaKanban> tarea = lista.stream().filter(x -> x.getCodigo().equals(codigo)).findFirst();
         if (tarea.isPresent()) {
             tarea.get().setEstado(estado);
-           
+
         }
-         
- 
+
     }
 
     @Override
@@ -86,4 +76,13 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         return null;
     }
 
+    @Override
+    public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
+        Optional<TareaKanban> tarea = lista.stream().filter(x -> x.getCodigo().equals(codigo)).findFirst();
+        if (tarea.isPresent()) {
+            int horasTrabajadas = tarea.get().getHorasTrabajadas();
+            tarea.get().setHorasTrabajadas(horas + horasTrabajadas);
+        }
+
+    }
 }

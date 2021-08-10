@@ -1,0 +1,88 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">         
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <style>
+            table,
+            th,
+            td {
+                text-align: center !important;
+                border: 1.5px solid #929292 !important;
+            }
+        </style>
+    </head> 
+    <body>
+        <div class="container">
+            <button type="button" class="btn btn-primary mt-4  mb-4" data-toggle="modal" data-target="#exampleModal" data-whatever="">Crear tarea</button>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Story</th>                    
+                        <th colspan="2">Waiting</th>                    
+                        <th rowspan="2">Done</th>
+                    </tr>
+                    <tr>
+                        <th>Waiting</th>
+                        <th>Working</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- empiezan las filas -->
+                    <tr>
+
+
+                    </tr>
+
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear tarea</h5>  
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="descripcion" class="col-form-label">Descripcion </label>
+                                <input type="text" class="form-control" id="descripcion">
+                            </div>
+                            <div class="form-group">
+                                <label for="horasestimadas" class="col-form-label">Horas estimadas </label>
+                                <input type="number" class="form-control" id="horasestimadas"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Crear tarea</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('Crear tarea ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
+</html>
