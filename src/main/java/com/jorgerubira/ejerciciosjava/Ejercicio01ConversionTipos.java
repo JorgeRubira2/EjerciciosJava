@@ -15,28 +15,20 @@ public class Ejercicio01ConversionTipos {
     }
 
     //Convierte de Float a int.
-    }
-
-    //Convierte de int a Float.
-    public Float enteroAFloat(int valor){
     public int decimalesAEntero(Float valor){
         
         return valor.intValue();
     }
 
-    //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
-    public char siguienteCaracter(char valor){
-    }
-
-    //Devuelve el código ascii del caracter 
-    public int obtenerAscii(char valor){
+    //Convierte de int a Float.
+    public Float enteroAFloat(int valor){
         
         return (float)valor;
            
     }
 
-    //Convierte de String a Double. Devuelve null si no se puede convertir
-    public Double textoADouble(String valor){
+    //Devuelve el siguiente carácter en el alfabeto (tabla ASCII).
+    public char siguienteCaracter(char valor){
         
         valor++;
         return valor;
@@ -44,8 +36,23 @@ public class Ejercicio01ConversionTipos {
       //  throw new RuntimeException("Pendiente de hacer");
     }
 
-}
+    //Devuelve el código ascii del caracter 
+    public int obtenerAscii(char valor){
         
      return (int)valor;
      
         
+    }
+
+    //Convierte de String a Double. Devuelve null si no se puede convertir
+    public Double textoADouble(String valor){
+        try{
+            //Algoritmo 
+           return Double.parseDouble(valor);
+        }catch(Exception e){
+            return null;
+        }
+       
+    }
+
+}
