@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Ej03 Formulario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
     <form th:object="${alumno}" action="/ej03/anadirAlumno" method="post" >
-        <div>
-            <label>Nombre:</label>
-            <input type="text" th:field="*{nombre}"/>
+        <input type="hidden" th:field="*{codigo}">
+        <div class="form-group row">
+            <label class="col-1">Nombre:</label>
+            <input class="col-4" type="text" th:field="*{nombre}"/>
         </div>
-        <div>
-            <label>Teléfono:</label>
-            <input type="text" th:field="*{telefono}"/>
+        <div class="form-group row">
+            <label class="col-1">Teléfono:</label>
+            <input class="col-4" type="text" th:field="*{telefono}"/>
         </div>
-        <div>
-            <label>Dirección:</label>
-            <input type="text" th:field="*{direccion}"/>
+        <div class="form-group row">
+            <label class="col-1">Dirección:</label>
+            <input class="col-4" type="text" th:field="*{direccion}"/>
         </div>
-        <input type="submit" value="Guardar"/>
+        <input class="btn btn-outline-primary row" type="submit" value="Guardar"/>
     </form>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
 </html>

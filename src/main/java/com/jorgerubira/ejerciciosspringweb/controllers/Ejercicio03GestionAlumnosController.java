@@ -54,10 +54,17 @@ public class Ejercicio03GestionAlumnosController {
         return new RedirectView("/ej03/gestion");
     }
 
-//    @PostMapping("/buscarAlumno")
-//    public String buscarAlumno(){
-//        List<Alumno> lista = new ArrayList<>();
-//        service
-//        return "/ej03/gestion";
-//    }
+    @PostMapping("/buscarAlumno")
+    public String buscarAlumno(Model model, String nombre){
+        List<Alumno> lista = new ArrayList<>();
+        model.addAttribute("alumnos", service.getAlumnos(nombre));
+        return "/ej03/gestion";
+    }
+
+    @GetMapping("/editarAlumno/{codigo}")
+    public String editarAlumno(Model model, @PathVariable long codigo){
+        Alumno a = service.getAlumno(codigo).get();
+        model.addAttribute("alumno", a);
+        return "/ej03/formulario";
+    }
 }
