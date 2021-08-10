@@ -60,6 +60,7 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
                                     ,Integer.parseInt(Long.toString(medallas.stream().filter(y -> x.equals(y.getPais()) && "Plata".equals(y.getMedalla())).count()))
                                     ,Integer.parseInt(Long.toString(medallas.stream().filter(y -> x.equals(y.getPais()) && "Cobre".equals(y.getMedalla())).count()))
                             ))
+                .sorted((x,y) ->(y.getCobre()+y.getPlata()+y.getOro()) - (x.getCobre()+x.getPlata()+x.getOro()))
                 .collect(Collectors.toList());
         
         return medallasPais;
@@ -71,7 +72,7 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
     @Override
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla) {
         List<String> deportesMedalla  = medallas.stream()
-                .filter(x -> medalla.equals(x.getDeporte()))
+                .filter(x -> medalla.equals(x.getMedalla()))
                 .filter(x -> medalla.equals(x.getPais()))
                 .map(x -> x.getDeporte())
                 .collect(Collectors.toList());
