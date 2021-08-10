@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-    private List<Alumno> alumnos=new ArrayList<>();
+    private List<Alumno> alumnos = new ArrayList<>();
     
     @Override
     public void guardarAlumno(Alumno alumno) {
@@ -31,10 +31,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public void borrarAlumno(Long codigo) {
-        
-        alumnos.remove(alumnos.stream()
-                .filter(x->x.getCodigo() == codigo.longValue())
-                .findFirst());
+        alumnos.removeIf(x->x.getCodigo() == codigo);
     }
 
     @Override

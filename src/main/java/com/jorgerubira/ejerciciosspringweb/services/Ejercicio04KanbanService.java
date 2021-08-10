@@ -5,11 +5,13 @@ import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 
 /**
  * Implementa la interface IEjercicio04KanbanService
  */
+@Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     @Override

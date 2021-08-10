@@ -33,14 +33,16 @@ public class Ejercicio03GestionAlumnosController {
     
     @PostMapping("/guardar")
     public String guardarAlumno(Model model, Alumno alumno){
-       servicio.guardarAlumno(alumno);
+        model.addAttribute("alumnos", servicio.getAlumnos());
+        servicio.guardarAlumno(alumno);
         
         return "redirect:/ejercicio3/gestion";
     }
     
     @GetMapping("/borrar")
-    public String borrar(Model model, String codigo) {
-        servicio.borrarAlumno(Long.valueOf(codigo));
+    public String borrar(Model model, Long codigo) {
+        servicio.borrarAlumno(codigo);
+        model.addAttribute("alumnos", servicio.getAlumnos());
         return "/ej03/gestionAlumnos";
     }
 
@@ -53,6 +55,12 @@ public class Ejercicio03GestionAlumnosController {
         model.addAttribute("direccion",a.getDireccion());
         
         return "/ej03/formAlumno";
+    }
+    
+    @PostMapping("/buscar")
+    public String buscar(Model model, String nombre){
+        model.addAttribute("alumnos", servicio.getAlumnos(nombre));       
+        return "/ej03/gestionAlumnos";
     }
     
 }
