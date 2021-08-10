@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
@@ -15,12 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
-/**
- *
- * @author PC
- */
 @Controller
+@RequestMapping("/controlador")
 public class Ejercicio03GestionAlumnosController {
 
     @Autowired
@@ -28,56 +22,44 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/gestionAlumnos")
     public String gestionAlumnos(Model model) {
-
+        model.addAttribute("alumno", new Alumno());
         model.addAttribute("alumno", service.getAlumnos());
-        //model.addAttribute("mensajeError", "");
         return "ej03/gestionAlumnos";
     }
 
-    @PostMapping("/añadir")
+    @GetMapping("/añadir")
     public String incluirAlumnos(Model model, Alumno alumno) {
-
-       
-            service.guardarAlumno(alumno);
-       
-
+        service.guardarAlumno(alumno);
         model.addAttribute("alumno", service.getAlumnos());
         return "ej03/gestionAlumnos";
     }
 
     @PostMapping("/buscar")
     public String buscarAlumnosPorCodigo(Model model, Long codigo) {
-
-       
-            service.getAlumno(codigo);
-        
-
+        service.getAlumno(codigo);
         model.addAttribute("alumno", service.getAlumnos());
         return "ej03/gestionAlumnos";
     }
 
-    @PostMapping("/buscarporNombre")
-    public String buscarAlumnosNombre(Model model, String nombre) {
-
-        
-            service.getAlumnos(nombre);
-      
+    @PostMapping("/buscarPorNombre")
+    public String buscarAlumnosPorNombre(Model model, String nombre) {
+        service.getAlumnos(nombre);
         model.addAttribute("alumno", service.getAlumnos());
         return "ej03/gestionAlumnos";
     }
 
-    @PostMapping("/remove")
+    @GetMapping("/remove")
     public String eliminarAlumnos(Model model, Long codigo) {
         service.borrarAlumno(codigo);
         model.addAttribute("alumno", service.getAlumnos());
         return "ej03/gestionAlumnos";
     }
 
-    @PostMapping("/edit")
-    public String aditarAlumnos(Model model, Alumno alumno) {
-        service.guardarAlumno(alumno);
+    @GetMapping("/edit")
+    public RedirectView aditarAlumnos(Model model, Long codigo) {
+        model.addAttribute("alumno", service.getAlumno(codigo));
         model.addAttribute("alumno", service.getAlumnos());
-        return "ej03/gestionAlumnos";
+        return new RedirectView ("gestionAlumnos");
     }
 
 }

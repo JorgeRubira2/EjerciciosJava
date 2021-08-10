@@ -25,7 +25,7 @@
     </head>
     <body>
         <h1>Listado de Alumnos</h1>
-        <form action="Buscar" method="post" class="d-flex">
+        <form action="/controlador/buscar" method="post" class="d-flex">
             <div class="from-group col-2">
                 <input class="form-control" name="nombre" placeholder="Ingrese un codigo o Nombre" />
                 <span th:text= "${mensajeError}"></span> 
@@ -58,8 +58,8 @@
                     <td th:text = "${alu.telefono}"></td>
                     <td th:text = "${alu.direccion}"></td>
                     <td>
-                        <a th:href="$('/rutaborrar?codigo='+alu.codigo)" class="btn btn-info"><i class="far fa-trash-alt"></i>Eliminar</a>
-                        <a th:href="$('/rutaeditar?codigo='+alu.codigo)" class="btn btn-primary"><i class="far fa-edit"></i>Editar</a>
+                        <a th:href="@{/controlador/remove(codigo=${alu.codigo})}" class="btn btn-info"><i class="far fa-trash-alt"></i>Eliminar</a>
+                        <a th:href="@{/controlador/edit(codigo=${alu.codigo})}" class="btn btn-primary"><i class="far fa-edit"></i>Editar</a>
                     </td>
                 </tr>
             </tbody>
@@ -90,7 +90,7 @@
                         bootbox.confirm({
                             message: "Desea borrarlo?",
                             callback: function () {
-                                $("form").attr("action", "eliminar").submit();
+                                $("form").attr("action", "remove").submit();
                             }
                         });
                     }

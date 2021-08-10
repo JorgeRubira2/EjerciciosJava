@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,50 +17,46 @@ import org.springframework.stereotype.Service;
 @Service 
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-    private List<Alumno> listaAlumnos = new ArrayList<>();
+    List<Alumno> listaAlumnos = new ArrayList<>();
     @Override
     
     public void guardarAlumno(Alumno alumno) {
-       // Optional<Alumno> alu = listaAlumnos.stream().filter(x -> alumno.getCodigo());
-        
-       // Optional<Alumno> alu = alumno;
-        
-        //codigo = alumno.getCodigo();
-        listaAlumnos.add(alumno);
-        
-        
-        
-//        if (alu!=null){ 
-//            throw new NullPointerException();
-//        }
-//        if (listaAlumnos.stream().noneMatch(x->x.equals(alumno.getNombre()))){
-//            alumno.add(alumno.getNombre());
-//            
-//        }else{
-//            throw new OperacionEnListaException(alumno);
-//        }
+       Optional<Alumno> alumnoGuardar = listaAlumnos.stream()
+               .filter(al -> al.getCodigo() == alumno.getCodigo())
+               .findFirst();
        
+        if (alumnoGuardar.isPresent()) {
+            alumnoGuardar.get().setCodigo(alumno.getCodigo());
+            alumnoGuardar.get().setNombre(alumno.getNombre());
+            alumnoGuardar.get().setDireccion(alumno.getDireccion());
+            alumnoGuardar.get().setTelefono(alumno.getTelefono());
+        } else {
+            listaAlumnos.add(alumno);
+        }
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        listaAlumnos.removeIf(alumno -> alumno.getCodigo() == codigo);
     }
 
     @Override
     public List<Alumno> getAlumnos() {
-      //Devuelve una lista inmutable.
-        return Collections.unmodifiableList(listaAlumnos);
+        return listaAlumnos;
     }
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaAlumnos.stream()
+                .filter(alumno -> codigo == alumno.getCodigo())
+                .findFirst();
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaAlumnos.stream()
+                .filter(alumno -> buscar.equals(alumno.getNombre()))
+                .collect(Collectors.toList());
     }
     
 }
