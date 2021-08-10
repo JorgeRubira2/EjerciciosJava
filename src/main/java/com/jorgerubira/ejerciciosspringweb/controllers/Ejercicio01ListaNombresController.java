@@ -26,12 +26,12 @@ public class Ejercicio01ListaNombresController {
     private IEjercicio01ListaNombresService service;
     
     @GetMapping(value="")
-    public String hello(Model Model) {
+    public String lista(Model Model) {
         return "ej01/listaPersonas";
     }    
    
     @GetMapping("/listaPersonas")
-       public String listaPersonas(Model model, String nombre){
+       public String listaPersonas(Model model){
            
               model.addAttribute("persona",service.getLista());
               return "ej01/listaPersonas";
