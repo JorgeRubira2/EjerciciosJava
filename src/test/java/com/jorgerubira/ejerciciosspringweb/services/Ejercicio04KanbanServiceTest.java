@@ -30,7 +30,7 @@ public class Ejercicio04KanbanServiceTest {
                                                     .findFirst();
         assertEquals(true, t.isPresent());
         assertNotEquals(null, t.get().getCodigo());
-        assertEquals("Planning", t.get().getEstado());
+        assertEquals("Roadmap", t.get().getEstado());
         assertEquals(null, t.get().getPropietario());
         assertEquals(0, t.get().getHorasTrabajadas());
     }
@@ -91,7 +91,7 @@ public class Ejercicio04KanbanServiceTest {
         instance.crearTarea("PruebaTest2", 9998);
         List<TareaKanban> tareas=instance.getTareas();
         int pos=tareas.size()-1;
-        assertEquals(tareas.get(pos), instance.getTarea(tareas.get(pos).getCodigo()));
-        assertNotEquals(tareas.get(0), instance.getTarea(tareas.get(pos).getCodigo()));
+        assertEquals(tareas.get(pos), instance.getTarea(tareas.get(pos).getCodigo()).get());
+        assertNotEquals(tareas.get(0), instance.getTarea(tareas.get(pos).getCodigo()).get());
     }
 }

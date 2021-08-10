@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
+
 	private List<Alumno> alumnos = new ArrayList<>();
 
 	@Override
@@ -52,5 +57,6 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 	                filter(x ->x.getNombre().equals(buscar))
 	                .collect(Collectors.toList());
 	    }
+
 
 }
