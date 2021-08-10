@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -44,23 +43,20 @@ public class Ejercicio03GestionAlumnosController {
         return "redirect:listaAlumnos";
     }
     
-    @GetMapping("/actualizarAlumno/{codigo}")
-    public String getPaginaActualizar(Model model,@PathVariable("codigo") Long codigo){
-        model.addAttribute("codigo",  gestor.getAlumno(codigo).get().getCodigo());
-        model.addAttribute("nombre", gestor.getAlumno(codigo).get().getNombre());
-        model.addAttribute("telefono",  gestor.getAlumno(codigo).get().getTelefono());
-        model.addAttribute("direccion",  gestor.getAlumno(codigo).get().getDireccion());
+    @GetMapping("/actualizarAlumno")
+    public String getPaginaActualizar(Model model,Long codigo){
+        model.addAttribute("alumno",  gestor.getAlumno(codigo).get());
         return "ej03/actualizarAlumno";
     }
     
     @PostMapping("/updateAlumno")
-    public String updateAlumno(Model model, Alumno a){
-    	gestor.guardarAlumno(a);
+    public String updateAlumno(Model model, Alumno alumno){
+    	gestor.guardarAlumno(alumno);
         return "redirect:listaAlumnos";
     }
     
-    @GetMapping("/deleteAlumno/{codigo}")
-    public String deleteAlumno(Model model,@PathVariable("codigo") Long codigo){
+    @GetMapping("/deleteAlumno")
+    public String deleteAlumno(Model model,Long codigo){
         model.addAttribute("codigo", codigo);
     	gestor.borrarAlumno(codigo);
         return "redirect:listaAlumnos";

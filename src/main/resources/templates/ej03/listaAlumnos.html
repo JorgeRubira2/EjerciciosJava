@@ -14,25 +14,27 @@
 	</form>
 	<a th:href="@{http://localhost:8090/ejercicio3/insertarAlumno}" class="btn btn-primary">Nuevo alumno</a>
 	<br/>
-	<table th:if="${listaAlumnos.size() > 0}" class="table table-striped col-6 pt-4">
-		<tr>
-			<th>Codigo</th>
-			<th>Nombre</th>
-			<th>Telefono</th>
-			<th>Direccion</th>
-			<th>Acciones</th>
-		</tr>
-		<tr th:each="per:${listaAlumnos}">
-			<td th:text="${per.codigo}" />
-			<td th:text="${per.nombre}" />
-			<td th:text="${per.telefono}" />
-			<td th:text="${per.direccion}" />
-			<td>
-			<a th:href="@{/actualizarAlumno(codigo=${per.codigo})}" class="btn btn-success">Actualizar</a>
-			<a th:href="${'/deleteAlumno?codigo=' + per.codigo}" class="btn btn-danger">Borrar</a>
-			</td>
-		</tr>
-	</table>
-
+		<table th:if="${listaAlumnos.size() > 0}"
+			class="table table-striped col-6 pt-4">
+			<tr>
+				<th>Codigo</th>
+				<th>Nombre</th>
+				<th>Telefono</th>
+				<th>Direccion</th>
+				<th>Acciones</th>
+			</tr>
+			<tr th:each="alumno:${listaAlumnos}">
+				<td th:text="${alumno.codigo}" id="codigo"/>
+				<td th:text="${alumno.nombre}" />
+				<td th:text="${alumno.telefono}" />
+				<td th:text="${alumno.direccion}" />
+				<td><a th:href="@{/ejercicio3/actualizarAlumno(codigo=${alumno.codigo})}"
+					class="btn btn-success">Actualizar</a> 
+					<a
+					th:href="@{/ejercicio3/deleteAlumno(codigo=${alumno.codigo})}"
+					class="btn btn-danger">Borrar</a>
+				</td>
+			</tr>
+		</table>
 </body>
 </html>

@@ -40,12 +40,13 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
 	@Override
 	public Optional<Alumno> getAlumno(Long codigo) {
-		if (codigo==null || alumnos.stream().noneMatch(x->x.getCodigo() == codigo)){ 
+		if (alumnos.stream().noneMatch(x->x.getCodigo() == codigo)){ 
 			throw new NullPointerException();
+		}else {
+			return  alumnos.stream()
+					.filter(x -> x.getCodigo()== codigo)
+					.findFirst();
 		}
-		return  alumnos.stream()
-				.filter(x -> x.getCodigo()== codigo)
-				.findFirst();
 	}
 
 
