@@ -27,7 +27,7 @@
                     <div class="col-4 ">
 
                         <button type="submit" class="btn btn-info" value="Buscar">Buscar <i class="fas fa-user-plus"></i></button>
-
+                        
                         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal01">Nuevo <i class="fas fa-user-plus"></i></button>
 
                     </div>
@@ -59,7 +59,7 @@
                             <a th:href="@{/gestionAlumnos/eliminar(codigo=${alumno.codigo})}">
                                 <Input type="button"  value="Eliminar" class="btn btn-primary">  
                             </a>
-                            <Input type="button" value="Editar" ick="'editar('+${alumno.codigo}+ ')'" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal02">
+                            <Input type="button" value="Editar" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal02">
 
                         </td>
                     </tr>
@@ -72,6 +72,7 @@
 
         <!-- th:ref <a th:href="@{${detailsURL}(id=${order.id})}"> -->
         <!--campos rellenados  th:onclick="'editar('+${alumno.codigo}+ ')'" -->
+        <!-- <Input type="button" value="Editar" th:onclick="'editar('+${alumno.codigo}+ ')'" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal02"> -->
         <!-- FORMULARIO PARA NUEVO/ VENTANA MODAL -->
 
         <div class="modal fade" id="modal01" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"aria-hidden="true"
@@ -225,11 +226,7 @@
 
         <script>
 
-            function editar(codigo) {
-                $('#codigo').val(codigo);
-            }
-
-
+          
 
         </script>
     </body>

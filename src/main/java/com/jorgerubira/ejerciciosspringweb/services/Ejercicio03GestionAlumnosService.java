@@ -7,13 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Servicio que implementa el interface de gestion de alumnos
- */
+
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
+    @Autowired
 
     private List<Alumno> alumnos = new ArrayList();
 
