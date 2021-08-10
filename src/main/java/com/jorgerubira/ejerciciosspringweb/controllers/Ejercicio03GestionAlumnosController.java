@@ -26,30 +26,50 @@ public class Ejercicio03GestionAlumnosController {
 	@Autowired
 	private IEjercicio03GestionAlumnosService service;
 
-	@GetMapping("/listaAlumnos")
+	@GetMapping("/gestionAlumno")
 	public String lista(Model model) {
 		model.addAttribute("lista", service.getAlumnos());
 		return "ej03/gestionAlumno";
 	}
+	 @PostMapping("/gestionAlumno")
+	    public String nuevo(Model model, Long codigo, String nombre, String telefono, String direccion) {
+	        Alumno alumno = new Alumno();
+	        alumno.setCodigo(codigo);
+	        alumno.setNombre(nombre);
+	        alumno.setTelefono(telefono);
+	        alumno.setDireccion(direccion);
+	        service.guardarAlumno(alumno);
+	        model.addAttribute("lista", service.getAlumnos());
 
-	@PostMapping("/alta")
-	public String altaAlumno(Model model, Alumno alumno) {
-		
-		service.guardarAlumno(alumno);
-		model.addAttribute("lista", alumno);
-		return "ej03/Alta";
-	}
+	        return "ej03/listaAlumno";
+	    }
 
-	@GetMapping("/borrar")
-	public String borrarAlumno(Model model, Long codigo) {
-		service.borrarAlumno(codigo);
-		model.addAttribute("lista", service.getAlumnos());
-		return "ej03/gestionAlumno";
-	}
+	    @GetMapping("/gestionAlumno/eliminar")
+	    public String eliminarAlumnos(Model model, Long codigo) {
 
-	@GetMapping("/modificar")
-	public String modificarAlumno(Model model, Long codigo) {
-		model.addAttribute("alumno", service.getAlumno(codigo));
-		return "";
-	}
+	        service.borrarAlumno(codigo);
+	        model.addAttribute("lista", service.getAlumnos());
+
+	        return "ej03/listaAlumno";
+	    }
+//	@PostMapping("/alta")
+//	public String altaAlumno(Model model, Alumno alumno) {
+//		
+//		service.guardarAlumno(alumno);
+//		model.addAttribute("lista", alumno);
+//		return "ej03/Alta";
+//	}
+//
+//	@GetMapping("/borrar")
+//	public String borrarAlumno(Model model, Long codigo) {
+//		service.borrarAlumno(codigo);
+//		model.addAttribute("lista", service.getAlumnos());
+//		return "ej03/gestionAlumno";
+//	}
+//
+//	@GetMapping("/modificar")
+//	public String modificarAlumno(Model model, Long codigo) {
+//		model.addAttribute("alumno", service.getAlumno(codigo));
+//		return "";
+//	}
 }

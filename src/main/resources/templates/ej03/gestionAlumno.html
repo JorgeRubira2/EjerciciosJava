@@ -31,7 +31,7 @@
 	<div class="container">
 
 		<h1>Listado de Alumnos</h1>
-		<form action="/ejercicio3/listaAlumnos" method="post">
+		<form action="/ejercicio3/gestionAlumno" method="post">
 			<div class="row">
 				<div class="form-group col-2">
 					<input class="form-control" placeholder="Ingresa un nombre"
@@ -40,15 +40,17 @@
 				<div class="col-4 ">
 
 					<button value="Buscar" class="btn btn-primary ">
-						Buscar
-						<i class="fal fa-search"></i>
+						Buscar <i class="fal fa-search"></i>
 					</button>
-					<button value="Nuevo" class="btn btn-primary " onclick="Nuevo()">
-						Nuevo Usuario
-						<i class="fal fa-user-plus"></i>
+					<button type="button" class="btn btn-primary"
+						data-bs-toggle="modal" data-bs-target="#modalEjemplo">
+						Nuevo Usuario <i class="fal fa-user-plus"></i>
 					</button>
+					
+					
 				</div>
 			</div>
+			</form>
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
@@ -61,7 +63,7 @@
 
 				</thead>
 				<tbody>
-					<tr th:each="alumno:${listaAlumnos}">
+					<tr th:each="alumno:${lista}">
 
 						<td th:text="${alumno.codigo}"></td>
 						<td th:text="${alumno.nombre}"></td>
@@ -71,9 +73,9 @@
 						<td>
 							<div class="row">
 								<a class="btn btn-danger btn-sm fal fa-times"
-									th:href="${'/ejercicio03/borrar?codigo='+alumno.getCodigo()}">Eliminar</a>
+									th:href="${'/gestionAlumno/borrar?codigo='+alumno.getCodigo()}">Eliminar</a>
 								<a class="btn btn-info "
-									th:href="${'/ejercicio03/modificar?codigo='+alumno.getCodigo()}">Editar</a>
+									th:href="${'/gestionAlumno/modificar?codigo='+alumno.getCodigo()}">Editar</a>
 							</div>
 						</td>
 
@@ -81,9 +83,86 @@
 
 				</tbody>
 			</table>
-			<a class="btn btn-primary" th:href="${'/ejercicio3/listaAlumnos'}">Volver</a>
-		</form>
+			<a class="btn btn-primary" th:href="${'/ejercicio3/gestionAlumno'}">Volver</a>
+	
 	</div>
+	<!-- Ventana -->
+	<div class="modal fade" id="modalEjemplo" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">A&ntilde;adir
+						nuevo alumno</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<form action="/gestionAlumno" method="post">
+						<div class="row">
+							<div class="col-2">
+								<label for="codigo">Codigo</label>
+							</div>
+							<div class="col-10">
+								<div class="input-group mb-2">
+
+									<input type="number"th:field="${alumno.setCodigo}" required class="form-control"
+										name="codigo" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-2">
+								<label for="codigo">Nombre</label>
+							</div>
+							<div class="col-10">
+								<div class="input-group mb-2">
+
+									<input type="text" th:field="${alumno.setNombre}"required class="form-control" name="nombre" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-2">
+								<label for="codigo">Telefono</label>
+							</div>
+							<div class="col-10">
+								<div class="input-group mb-2">
+
+									<input type="text" th:field="${alumno.setTelefono}"  required class="form-control"
+										name="telefono" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2">
+								<label for="codigo">Direccion</label>
+							</div>
+							<div class="col-10">
+								<div class="input-group mb-2">
+
+									<input type="text" th:field="${alumno.setDireccion}"required class="form-control"
+										name="direccion" />
+								</div>
+							</div>
+						</div>
+				
+						<div class="modal-footer">
+						
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="submit" class="btn btn-primary">Aceptar</button>
+				</div>
+				</form>
+				
+				</div>
+			</div>
+		</div>
+	
 
 
 
