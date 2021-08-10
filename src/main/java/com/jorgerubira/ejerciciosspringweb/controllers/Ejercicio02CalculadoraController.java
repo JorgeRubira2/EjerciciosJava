@@ -59,7 +59,7 @@ public class Ejercicio02CalculadoraController {
             valor1=0;
         }
         if (valor2==null){
-            valor2=0;
+            valor2=0; 
         }
         model.addAttribute("resultado", calc.restar(valor1, valor2));    
         model.addAttribute("valor1", valor1);

@@ -187,7 +187,7 @@ public class Ejercicio04ColeccionesTest {
     public void testCatalogar() {
         String objeto = "Oro";
         Set<String> minerales = Set.of("Plata", "Cobre", "Oro");
-        Set<String> organico = Set.of("Alga", "Hoja", "Rama");;
+        Set<String> organico = Set.of("Alga", "Hoja", "Rama");
         Ejercicio04Colecciones instance = new Ejercicio04Colecciones();
         assertEquals("Mineral", instance.catalogar("Cobre", minerales, organico));
         assertEquals("Organico", instance.catalogar("Hoja", minerales, organico));
