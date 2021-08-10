@@ -1,13 +1,34 @@
 <!doctype html>
-<html xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <title>Titulo</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="ej05/layout::layout(~{::body},~{::misscripts})">
+     
     <body>
-        <div class="container">
-            <!-- Contenido -->
+        <div class="container main">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th class="primera">Pais</th>
+                        <th class="text-center"><i class="fas fa-medal gold"></i></th>
+                        <th class="text-center"><i class="fas fa-medal silver"></i></th>
+                        <th class="text-center"><i class="fas fa-medal bronce"></i></th>
+                        <th class="text-center"><i class="fas fa-medal small gold"></i>
+                            <i class="fas fa-medal small silver"></i>
+                            <i class="fas fa-medal small bronce"></i></th>
+                    </tr>
+                    <tr th:each="pais:${paises}">
+                        <td th:text="${pais.pais}"></td> 
+                        <td class="text-center" th:text="${pais.oro}"></td>
+                        <td class="text-center" th:text="${pais.plata}"></td>
+                        <td class="text-center" th:text="${pais.cobre}"></td>
+                        <td class="text-center" th:text="${pais.cobre+pais.plata+pais.oro}"></td>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </body>
+    <misscripts>
+        <script>
+            
+         </script>
+    </misscripts>
 </html>

@@ -26,7 +26,7 @@ public class Ejercicio05MedalleroController {
     public String inicio(Model model){
        
         model.addAttribute("paises",service.obtenerRankingPorPais());
-        model.addAttribute("atletas",service.obtenerRankingPorAlteta());
+        
         return "/ej05/inicio";
         
     }
