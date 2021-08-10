@@ -76,10 +76,7 @@ public class Ejercicio04KanbanController {
             } catch (OperacionEnListaException ex) {
                 Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
-        
-        
+        }       
         return "redirect:/ejercicio04/inicial";
     }
 }

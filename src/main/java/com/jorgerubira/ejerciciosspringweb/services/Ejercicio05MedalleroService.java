@@ -6,17 +6,28 @@
 package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Medalla;
+import com.jorgerubira.ejerciciosspringweb.domain.MedallaAtleta;
+import com.jorgerubira.ejerciciosspringweb.domain.MedallaPais;
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio05MedalleroService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
 /**
  *
  */
-public class Ejercicio05MedalleroService {
-    
+@Service
+public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService {
+
     private List<Medalla> medallas = new ArrayList<>();
-    
-    public Ejercicio05MedalleroService(){ 
+    private List<MedallaPais> paises = new ArrayList<>();
+    private List<MedallaAtleta> atletas = new ArrayList<>();
+
+    public Ejercicio05MedalleroService() {
         medallas.add(new Medalla("China", "Peso medio femenino", "Oro", "Lucha", "Li Qian"));
         medallas.add(new Medalla("Gran Bretaña", "Peso medio femenino", "Plata", "Lucha", "Lauren Price"));
         medallas.add(new Medalla("Kenia", "Maratón masculino", "Oro", "Atletismo", "E. Kipchoge"));
@@ -29,5 +40,80 @@ public class Ejercicio05MedalleroService {
         medallas.add(new Medalla("China", "Clavados masculino", "Plata", "Natacion", "J. Yang"));
         medallas.add(new Medalla("Gran Bretaña", "Clavados masculino", "Cobre", "Natacion", "T. Daley"));
     }
-    
+
+    @Override
+    public void altaMedalla(Medalla medalla) {
+        if (medalla != null) {
+            medallas.add(medalla);
+        }
+    }
+
+    @Override
+    public List<Medalla> getMedallas() {
+        return medallas;
+    }
+
+    @Override
+    public List<MedallaPais> obtenerRankingPorPais() {
+        Map<String, Long> oro = medallas.stream().filter(x -> x.getMedalla().equals("Oro")).collect(Collectors.groupingBy(x -> x.getPais(), Collectors.counting()));
+        Map<String, Long> plata = medallas.stream().filter(x -> x.getMedalla().equals("Plata")).collect(Collectors.groupingBy(x -> x.getPais(), Collectors.counting()));
+        Map<String, Long> bronce = medallas.stream().filter(x -> x.getMedalla().equals("Cobre")).collect(Collectors.groupingBy(x -> x.getPais(), Collectors.counting()));
+        oro.keySet().forEach(x -> {
+            Optional<Integer> oroCount = oro.entrySet().stream().filter(y -> y.getKey().equals(x)).map(y -> y.getValue().intValue()).findFirst();
+            Optional<Integer> plataCount = plata.entrySet().stream().filter(y -> y.getKey().equals(x)).map(y -> y.getValue().intValue()).findFirst();
+            Optional<Integer> cobreCount = bronce.entrySet().stream().filter(y -> y.getKey().equals(x)).map(y -> y.getValue().intValue()).findFirst();
+            int oroAux=0,plataAux=0,cobreAux=0;
+            if(oroCount.isPresent()){
+                oroAux=oroCount.get();
+            }
+            if(plataCount.isPresent()){
+                plataAux=plataCount.get();
+            }
+            if(cobreCount.isPresent()){
+                cobreAux=cobreCount.get();
+            }
+            paises.add(new MedallaPais(x, oroAux, plataAux, cobreAux));
+
+        });
+
+        return paises;
+    }
+
+    @Override
+    public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla) {
+        return medallas.stream().filter(x->x.getPais().equals(pais)).filter(x->x.getMedalla().equals(medalla)).map(x->x.getDeporte()).collect(Collectors.toList());
+        
+    }
+
+    @Override
+    public List<String> obtenerDeportesConMedalla(String pais) {
+        return medallas.stream().filter(x->x.getPais().equals(pais)).filter(x->x.getMedalla()!=null).map(x->x.getDeporte()).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MedallaAtleta> obtenerRankingPorAlteta() {
+       Map<String, Long> oro = medallas.stream().filter(x -> x.getMedalla().equals("Oro")).collect(Collectors.groupingBy(x -> x.getDeportistas(), Collectors.counting()));
+        Map<String, Long> plata = medallas.stream().filter(x -> x.getMedalla().equals("Plata")).collect(Collectors.groupingBy(x -> x.getDeportistas(), Collectors.counting()));
+        Map<String, Long> bronce = medallas.stream().filter(x -> x.getMedalla().equals("Cobre")).collect(Collectors.groupingBy(x -> x.getDeportistas(), Collectors.counting()));
+        oro.keySet().forEach(x -> {
+            Optional<Integer> oroCount = oro.entrySet().stream().filter(y -> y.getKey().equals(x)).map(y -> y.getValue().intValue()).findFirst();
+            Optional<Integer> plataCount = plata.entrySet().stream().filter(y -> y.getKey().equals(x)).map(y -> y.getValue().intValue()).findFirst();
+            Optional<Integer> cobreCount = bronce.entrySet().stream().filter(y -> y.getKey().equals(x)).map(y -> y.getValue().intValue()).findFirst();
+            int oroAux=0,plataAux=0,cobreAux=0;
+            if(oroCount.isPresent()){
+                oroAux=oroCount.get();
+            }
+            if(plataCount.isPresent()){
+                plataAux=plataCount.get();
+            }
+            if(cobreCount.isPresent()){
+                cobreAux=cobreCount.get();
+            }
+            atletas.add(new MedallaAtleta(x, oroAux, plataAux, cobreAux));
+
+        });
+
+        return atletas;
+    }
+
 }
