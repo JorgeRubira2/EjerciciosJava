@@ -1,0 +1,14 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:classappend": {},
+        "th:if": {},
+        "th:text": {},
+        "th:object": {
+            "context": "form"
+        },
+        "th:each": {},
+        "th:href": {},
+        "th:field": {}
+    }
+}
