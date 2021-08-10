@@ -34,12 +34,15 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public void guardarAlumno(Alumno alumno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        alumnos.add(alumno);
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-         for (int i=1;i<= alumnos.size() ;i++){
+         for (int i=0;i< alumnos.size() ;i++){
                 if (alumnos.get(i).getCodigo() == codigo )
                     alumnos.remove(i);
             }
@@ -57,12 +60,25 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         return Optional alumnos.get(codigo.intValue());
+         
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Alumno> alumnos2=new ArrayList<>();
+         for (int i=0;i < alumnos.size() ;i++){
+                if (alumnos.get(i).getNombre() == buscar )
+                    alumnos2.add(alumnos.get(i));
+                
+                
+            }
+         return alumnos2;
+         
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

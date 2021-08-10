@@ -35,7 +35,6 @@ public class Ejercicio03GestionAlumnosController {
        // model.addAttribute("resultado", calc.sumar(valor1, valor2));    
        // model.addAttribute("valor1", valor1);
        // model.addAttribute("valor2", valor2);
-        
         alumnos.borrarAlumno(codigo);
         model.addAttribute("alumnos", alumnos.getAlumnos()); 
         return "/ej03/alumnos";
