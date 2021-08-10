@@ -1,0 +1,78 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Ranking medallas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <style>
+            .oro{
+                color:gold
+            }
+            .plata{
+                color:silver
+            }
+            .bronce{
+                color:#CD7F32;
+            }
+            td:nth-child(2){
+                width:70% 
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center">Ranking de medallas</h1>
+            <table id="ranking" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th id="pais" colspan="2">Pais</th>
+                    <th id="oro"><i class="fas fa-medal oro"></i></th>
+                    <th id="plata"><i class="fas fa-medal plata"></i></th>
+                    <th id="bronce"><i class="fas fa-medal bronce"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="med:${medallas}">
+                    <td></td>
+                    <td th:text="${med.pais}"></td>
+                    <td th:text="${med.oro}"></td>
+                    <td th:text="${med.plata}"></td>
+                    <td th:text="${med.cobre}"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#ranking').DataTable( {
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 20, 50],
+                "fnCreatedRow": function (row, data, index) {
+                            $('td', row).eq(0).html(index + 1);
+                        },
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No hay registros",
+                    "info": "Mostrando del _START_ al _END_ de un total de _MAX_ registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "infoEmpty": "Lista vacia",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                        }
+                    }
+                } );
+                
+            } );
+        </script>
+    </body>
+</html>

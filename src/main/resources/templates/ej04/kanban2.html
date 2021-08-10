@@ -64,7 +64,7 @@
                             <p class="card-text" th:text="${tar.descripcion}"></p>
                             <a class="btn-sm btn btn-success col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=waiting'}" ><i class="fas fa-arrow-right    "></i></a>
                             <a class="btn-sm btn btn-secondary col-3" th:href="${'/ej04/kanban/edita?codigo=' + tar.codigo}" >Editar tarea</a>
-                            <button class="btn-sm btn btn-info col-3" th:attr="onclick=|leerHtmlAjax('${tar.codigo}')|"  ><i class="fas fa-user"></i></button>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/usuario?codigo=' + tar.codigo}" ><i class="fas fa-user"></i></a>
                             <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                             <p class="card-text" th:text="${tar.descripcion}"></p>
                             <a class="btn-sm btn btn-success col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=working'}" ><i class="fas fa-arrow-right    "></i></a>
                             <a class="btn-sm btn btn-secondary col-3" th:href="${'/ej04/kanban/edita?codigo=' + tar.codigo}" ><i class="fas fa-edit"></i></a>
-                            <button class="btn-sm btn btn-info col-3" th:attr="onclick=|leerHtmlAjax('${tar.codigo}')|" ><i class="fas fa-user"></i></button>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/usuario?codigo=' + tar.codigo}" ><i class="fas fa-user"></i></a>
                             <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             <p class="card-text" th:text="${tar.descripcion}"></p>
                             <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=waiting'}" ><i class="fas fa-arrow-left    "></i></a>
                             <a class="btn-sm btn btn-danger col-3" th:href="${'/ej04/kanban/modifica?codigo=' + tar.codigo + '&estado=done'}" ><i class="fas fa-check-circle    "></i></a>
-                            <button class="btn-sm btn btn-info col-3" th:attr="onclick=|leerHtmlAjax('${tar.codigo}')|" ><i class="fas fa-user"></i></button>
+                            <a class="btn-sm btn btn-info col-3" th:href="${'/ej04/kanban/usuario?codigo=' + tar.codigo}" ><i class="fas fa-user"></i></a>
                             <footer th:text="|${tar.horasTrabajadas} / ${tar.horasEstimacion}|" class="blockquote-footer"></footer>
                         </div>
                     </div>
@@ -140,22 +140,6 @@
                 title:"Introduce los datos de la tarea",
                 size: 'large',
                 message: $('#formuadd').html(),               
-                });
-            }
-            function leerHtmlAjax(pCodigo){
-                $.ajax({
-                    url:"kanban/usuario",   //<--Ejecutamos del contra esta url
-                    data:{                  //<- Parametros 
-                        codigo: pCodigo,
-                    },
-                    success: function(pHtml){    //<- Nos devuelven la respuesta. 
-                        bootbox.dialog({
-                            message:pHtml
-                        })
-                    },
-                    error: function(xhr, status, error) {
-                      alert(xhr.responseText);
-                    }
                 });
             }
         </script>
