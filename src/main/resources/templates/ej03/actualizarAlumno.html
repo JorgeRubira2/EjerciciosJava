@@ -7,7 +7,7 @@
 </head>
 <body>
 	<form  th:object="${alumno}" action="updateAlumno" method="post" class="form-group">
-		<label>Codigo:</label> <input type="number" th:field="*{codigo}" readonly> <br />
+		<label>Codigo:</label> <input type="number" th:field="*{codigo}" disabled> <br />
 		<label>Nombre:</label> <input type="text" th:field="*{nombre}"> <br />
 		<label>Telefono:</label><input type="text" th:field="*{telefono}"><br /> 
 		<label>Direccion:</label> <input type="text" th:field="*{direccion}">
