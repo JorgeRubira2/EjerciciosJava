@@ -20,9 +20,11 @@ public class Ejercicio01ConversionTiposTest {
 
     @org.junit.jupiter.api.Test
     public void testDecimalesAEntero() {
-        Ejercicio01ConversionTipos instance = new Ejercicio01ConversionTipos();
-        assertEquals(-24, instance.decimalesAEntero(-24.2f));
-        assertEquals(44, instance.decimalesAEntero(44.8f));
+
+        Ejercicio01ConversionTipos valor1 = new Ejercicio01ConversionTipos();
+        assertEquals(24, valor1.decimalesAEntero(24.2f));
+        assertEquals(44, valor1.decimalesAEntero(44.8f));
+
     }
 
     @org.junit.jupiter.api.Test

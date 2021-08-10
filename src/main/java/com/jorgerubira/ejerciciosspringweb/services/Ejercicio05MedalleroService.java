@@ -16,7 +16,7 @@ public class Ejercicio05MedalleroService {
     
     private List<Medalla> medallas = new ArrayList<>();
     
-    public Ejercicio05MedalleroService(){
+    public Ejercicio05MedalleroService(){ 
         medallas.add(new Medalla("China", "Peso medio femenino", "Oro", "Lucha", "Li Qian"));
         medallas.add(new Medalla("Gran Bretaña", "Peso medio femenino", "Plata", "Lucha", "Lauren Price"));
         medallas.add(new Medalla("Kenia", "Maratón masculino", "Oro", "Atletismo", "E. Kipchoge"));
