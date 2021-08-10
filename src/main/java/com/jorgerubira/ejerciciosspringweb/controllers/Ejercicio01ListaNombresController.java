@@ -25,6 +25,11 @@ public class Ejercicio01ListaNombresController {
     @Autowired
     private IEjercicio01ListaNombresService service;
     
+    @GetMapping(value="")
+    public String hello(Model Model) {
+        return "ej01/listaPersonas";
+    }    
+   
     @GetMapping("/listaPersonas")
        public String listaPersonas(Model model, String nombre){
            
@@ -50,10 +55,8 @@ public class Ejercicio01ListaNombresController {
     @PostMapping("/eliminar")
        public String eliminar(Model model, String nombre){
            
-               lista.bajaNombre(nombre);
-               model.addAttribute("Lista", lista.getLista());
-           
-           
+               service.bajaNombre(nombre);
+
               return "ej01/listaPersonas";
     }            
        
