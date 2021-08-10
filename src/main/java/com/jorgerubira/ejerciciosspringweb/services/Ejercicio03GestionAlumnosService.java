@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
     
-    @Autowired
-    private List<String> nombres;
+    private List<String> nombres=new ArrayList<>();
     
     @Override
     public void guardarAlumno(Alumno alumno) {
