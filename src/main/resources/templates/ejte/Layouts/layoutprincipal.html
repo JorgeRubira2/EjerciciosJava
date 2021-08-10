@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html th:fragment="layout(htmlcuerpo)"> <!-- El html del cuerpo es el que recibimos como parámetro -->
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Mostrando vista</h1>
+            <nav>
+                <a href="texto1">Ir a texto 1</a><!-- Con ruta relativa -->
+                <a href="/ejemplotemplate/texto2">Ir a texto 2</a><!-- Con ruta absoluta -->
+            </nav>
+        </div>
+        <hr/>
+        <div class="container">
+            <th:block th:include="${htmlcuerpo}"/>
+        </div>
+        <hr/>
+        <footer class="container">
+            Hecho por Marcos
+        </footer>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <th:block th:include="${htmlcuerpo}"/>
+    </body>
+</html>

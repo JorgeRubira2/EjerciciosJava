@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/ejercicio3")
 public class Ejercicio03GestionAlumnosController {
-    @Autowired
     
+    @Autowired
     private IEjercicio03GestionAlumnosService gest;
     
     @GetMapping("/listado")
