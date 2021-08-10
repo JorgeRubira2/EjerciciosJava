@@ -47,6 +47,7 @@ public class Ejercicio01ListaNombresController {
                  // Logger.getLogger(Ejercicio01ListaNombresController.class.getName()).log(Level.SEVERE, null, ex);
               }
               
+              //devuelve la lista de personas             
               model.addAttribute("persona",service.getLista());
               
               return "ej01/listaPersonas";
@@ -57,8 +58,10 @@ public class Ejercicio01ListaNombresController {
            
                service.bajaNombre(nombre);
 
+               //devuelve la lista de personas
+               model.addAttribute("persona",service.getLista());
+               
               return "ej01/listaPersonas";
     }            
-       
        
 }
