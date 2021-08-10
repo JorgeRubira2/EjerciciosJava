@@ -41,7 +41,7 @@ public class Ejercicio03GestionAlumnosController {
     @PostMapping("/addAlumno")
     public String addAlumno(Model model, Alumno a){
     	gestor.guardarAlumno(a);
-        return getPaginaLista(model);//redirige a la lista
+        return "redirect:listaAlumnos";
     }
     
     @GetMapping("/actualizarAlumno/{codigo}")
@@ -56,19 +56,19 @@ public class Ejercicio03GestionAlumnosController {
     @PostMapping("/updateAlumno")
     public String updateAlumno(Model model, Alumno a){
     	gestor.guardarAlumno(a);
-    	return getPaginaLista(model);//redirige a la lista
+        return "redirect:listaAlumnos";
     }
     
     @GetMapping("/deleteAlumno/{codigo}")
     public String deleteAlumno(Model model,@PathVariable("codigo") Long codigo){
         model.addAttribute("codigo", codigo);
     	gestor.borrarAlumno(codigo);
-    	return getPaginaLista(model);//redirige a la lista
+        return "redirect:listaAlumnos";
     }
     
     @PostMapping("/buscarAlumno")
     public String buscador(Model model,String buscar){
-        model.addAttribute("buscador", buscar);
+        model.addAttribute("buscar", buscar);
         model.addAttribute("listaAlumnos", gestor.getAlumnos(buscar));
         return "ej03/listaAlumnos";
     }
