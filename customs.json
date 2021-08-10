@@ -1,19 +1,21 @@
 {
     "elements": {
+        "misscripts": {},
         "th:block": {}
     },
     "attributes": {
         "th:text": {},
-        "th:if": {},
         "th:object": {},
         "th:include": {},
-        "th:replace": {},
         "th:each": {},
-        "th:href": {},
         "th:fragment": {},
         "th:field": {},
+        "th:placeholder": {},
+        "th:title": {},
+        "th:if": {},
+        "th:replace": {},
+        "th:href": {},
         "th:value": {},
-        "th:name": {},
-        "th:title": {}
+        "th:name": {}
     }
 }

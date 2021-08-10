@@ -53,7 +53,7 @@ public class Ejercicio04KanbanController {
         return "/ej04/formularioEdicion";
     }
     @PostMapping("/guardado")
-    public String guardado(Model model, String codigo, String accion, String descripcion, Integer horasEstimacion, String propietario){
+    public String guardado(Model model, String codigo, String accion, String descripcion, Integer horasEstimacion, String propietario, String estado, Integer horasTrabajadas){
         if(accion.equals("editar")){
             try {
                 service.modificarTarea(codigo, descripcion, horasEstimacion);
@@ -65,6 +65,14 @@ public class Ejercicio04KanbanController {
             try {
                 service.asignarPersona(codigo, propietario);
                 service.cambiarEstado(codigo, "Waiting");
+            } catch (OperacionEnListaException ex) {
+                Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(accion.equals("cambio")){
+            try {
+                service.imputarHorasTrabajadas(codigo, horasTrabajadas);
+                service.cambiarEstado(codigo, estado);
             } catch (OperacionEnListaException ex) {
                 Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -8,6 +8,9 @@ fontawesome
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 <html xmlns:th="https://www.thymeleaf.org">//thymeleaf
 
+deserialize
+<script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
+
 links audios: https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3
 https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
 https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3
