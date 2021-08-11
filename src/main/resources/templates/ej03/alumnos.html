@@ -18,8 +18,7 @@
     </head>
     <body>
         <div> 
-            
-            
+                       
             <h1>Listado de Alumnos</h1>
               <spam>
                       
@@ -43,17 +42,26 @@
                             <th>Acciones</th>
                        </tr>
                                 
-      
-                    
+                        
                      <tr th:each="alumno:${alumnos}">
                          <td  th:text="${alumno.codigo}"/> 
                          <td  th:text="${alumno.nombre}"/> 
                          <td  th:text="${alumno.telefono}"/> 
                          <td  th:text="${alumno.direccion}"/> 
-                         <!-- c <a th:href="@{/ejercicio3/eliminar(id=${alummo.codigo})}" class="btn-danger" >
-                     </a>
-omment -->
-                    </tr>
+                         <td>
+                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class="btn-primary" value='Eliminar'>  Eliminar
+                            </a>
+                         
+                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn-primary" value='Editar'> Editar
+                                                                
+                            </a> 
+                             
+                              <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn" value='Editar2'> Editar2
+                                                                
+                            </a>
+                         </td>
+                         
+                     </tr>
                      
                 </table>
                 

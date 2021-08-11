@@ -7,6 +7,7 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,7 @@ public class Ejercicio03GestionAlumnosController {
     private IEjercicio03GestionAlumnosService alumnos;
     
      @GetMapping("/alumnos") 
-     public String ListaAlumnos(Model model){
-        
+     public String ListaAlumnos(Model model){        
         model.addAttribute("alumnos", alumnos.getAlumnos());   
         return "ej03/alumnos";
     }
@@ -32,12 +32,22 @@ public class Ejercicio03GestionAlumnosController {
     @GetMapping("/eliminar")
     public String eliminarAlumno(Model model, long codigo){
         
-       // model.addAttribute("resultado", calc.sumar(valor1, valor2));    
-       // model.addAttribute("valor1", valor1);
-       // model.addAttribute("valor2", valor2);
         alumnos.borrarAlumno(codigo);
         model.addAttribute("alumnos", alumnos.getAlumnos()); 
         return "/ej03/alumnos";
+    }
+    
+    
+   @GetMapping("/editar")
+   public String editarAlumno(Model model, long codigo){
+       
+        // public String editarAlumno(Model model){
+      
+       // Optional<Alumno> alumno = Optional.empty();
+        Optional<Alumno>alumno = alumnos.getAlumno(codigo);
+        model.addAttribute ("alumno", alumno);
+      
+        return "/ej03/editar";
     }
     
 }

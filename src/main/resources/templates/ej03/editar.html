@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Editar Alumno</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lumen/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <link rel="stylesheet" href="https://wowjs.uk/css/libs/animate.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>      
+        
+    </head>
+    <body>
+   
+                       
+            <h1>Edición de Alumno</h1>
+                       
+            <div>
+        
+                     <br>
+                  <form action=""  method="post">
+                         <div> 
+                         <input name="codigo" class="col-1 "   placeholder="th:text=${alumno.codigo}" disabled=""/>
+                         
+                         <br>
+                         
+                            </div>
+                                  <br>
+                            <label >  &nbsp; Nombre  &nbsp; </label> <input name="nombre" class="col-2"  value="Nombre" /> 
+                            <br>
+                            <label >  &nbsp; Telefono  &nbsp; </label> <input name ="telefono" class="col-2"  value="Telefono"  />
+                          <br>
+
+                        <label >    &nbsp;Direccion  &nbsp; </label> <input name="direccion"  class="col-2" value= "Direccion "/>
+                        <br>
+
+                        </div>
+                         <div class="col-1 pt-4">
+                        <input type="button" value="Guardar" onclick="form().submit"  class="btn btn-primary"  />
+                                  
+                     </form>
+           
+            </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        
+        
+        
+    </body>
+</html>
