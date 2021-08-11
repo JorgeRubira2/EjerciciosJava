@@ -130,7 +130,11 @@
 
 - Spring Core: Desacoplar clases-> Trabajamos con interface.
                @Service -> Que el contenedor de Spring genere un objeto de esa clase. (Singleton solo hay)
+               @Bean -> Igual que el @Service pero para Pojo (Clases básica Atributos, Set Get), Hay que ponerlo en una clase que tenga @Configuration.
                @Autowired -> Utilizar los objetos que ha creado Spring al arranca
+               @Value -> Es para cargar variables de application.properties (configuracion de la aplicacion).
+                         Una desarrollo, una produccion, ... un test.
+                         @Value("${nombre}");
 
 - Spring Lombok (codigo mas limipia): @Data, genera set get   
                                       @AllArgsConstructor, genera constructor con todos
@@ -139,5 +143,7 @@
 
 - Instalamos el plugin,  
 - HTML -> atributo formaction. <input type='submit' formaction='/urlNueva' value='enviar' />
+
+- Ajax -> HTML -> $('#destino').html(parametro) , JSON (->deserialize() volcar a un formulario)
 
 
