@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class MedallaAtleta {
     private String atleta;
     private int oro;
-    private int planta;
+    private int plata;
     private int cobre;
 }
