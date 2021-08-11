@@ -18,12 +18,16 @@ import org.springframework.stereotype.Service;
 @Service 
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-    @Autowired
     private List<Alumno> listaAlumnos = new ArrayList<>();
 
-
-    @Override
+    public Ejercicio03GestionAlumnosService() {
+        listaAlumnos.add(new Alumno(2L, "Ana", "444", "C/rwr"));
+        listaAlumnos.add(new Alumno(3L, "Pedro", "6753648", "C/pogbtr"));
+        listaAlumnos.add(new Alumno(4L, "Lucas", "6543895", "C/hygdtfrb"));
+                
+    }
     
+    @Override
     public void guardarAlumno(Alumno alumno) {
        Optional<Alumno> alumnoGuardar = listaAlumnos.stream()
                .filter(al -> al.getCodigo() == alumno.getCodigo())

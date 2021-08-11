@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment='layout(cuerpo)'>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -27,18 +28,17 @@
         <h1>Listado de Alumnos</h1>
         <form action="/controlador/buscar" method="post" class="d-flex">
             <div class="from-group col-2">
-                <input class="form-control" name="nombre" placeholder="Ingrese un codigo o Nombre" />
-                <span th:text= "${mensajeError}"></span> 
+                <input class="form-control buscar" name="nombre" placeholder="Ingrese un codigo o Nombre" />
             </div>
             <div class="col-1">
-                <button value="Buscar" onclick="buscar()" class="btn btn-primary fas fa-search">
+                <button type="submit" value="Buscar" class="btn btn-primary fas fa-search">
                     Buscar
                 </button>
             </div> 
             <div class="col-1">
-                <button value="Nuevo" onclick="nuevo()" class="btn btn-primary far fa-plus-square">
+                <a th:onclick="|nuevo()|"  class="btn btn-primary far fa-plus-square">
                     Nuevo
-                </button>
+                </a>
             </div>
         </form>
         <table class="table table-striped">
@@ -53,47 +53,68 @@
             </thead>
             <tbody>
                 <tr th:each="alu: ${alumno}">
-                    <td th:text = "${alu.codigo}"></td>
-                    <td th:text = "${alu.nombre}"></td>
-                    <td th:text = "${alu.telefono}"></td>
-                    <td th:text = "${alu.direccion}"></td>
+                    <td class="codigo" th:text = "${alu.codigo}"></td>
+                    <td class="nombre" th:text = "${alu.nombre}"></td>
+                    <td class="telefono" th:text = "${alu.telefono}"></td>
+                    <td class="direccion" th:text = "${alu.direccion}"></td>
                     <td>
-                        <a th:href="@{/controlador/remove(codigo=${alu.codigo})}" class="btn btn-info"><i class="far fa-trash-alt"></i>Eliminar</a>
-                        <a th:href="@{/controlador/edit(codigo=${alu.codigo})}" class="btn btn-primary"><i class="far fa-edit"></i>Editar</a>
+                        <a th:href="@{/controlador/remove(codigo=${alu.codigo})}" onclick="confirmar()" class="btn btn-info text-white"><i class="far fa-trash-alt"></i>Eliminar</a>
+                        <button th:onclick="|leerHtmlAjax(${alu.codigo})|" class="btn btn-primary" value="Editar"><i class="far fa-edit"></i>Editar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <form action="nuevo" method="post">
-            <h1>Introduzca un nuevo alumno</h1>
-            <div class="from-group col-4">
-                <div class="d-flex primer-grupo">
-                    <input class="form-control nuevo-alumno-input" name="codigo" placeholder="Ingrese un código" /> 
-                    <input class="form-control" name="nombre" placeholder="Ingrese un nombre" />
-                </div>
-                <div class="d-flex">
-                    <input class="form-control nuevo-alumno-input" name="telefono" placeholder="Ingrese un teléfono" />
-                    <input class="form-control" name="direccion" placeholder="Ingrese una dirección" />
-                </div>
-            </div>
-            <div class="col-1 boton-guardar">
-                <button value="Buscar" onclick="guardar()" class="btn btn-primary far fa-save">
-                    Guardar
-                </button>
-            </div> 
-        </form>
+         <div class="container">
+            <!-- Contenido -->
+            <th:block th:include='${cuerpo}'/>
+        </div>
+            
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
-                    function confirmar() {
-                        bootbox.confirm({
-                            message: "Desea borrarlo?",
-                            callback: function () {
-                                $("form").attr("action", "remove").submit();
-                            }
-                        });
+            function confirmar() {
+                bootbox.confirm({
+                    message: "Desea borrarlo?",
+                    callback: function () {
+                        $("form").attr("action", "remove").submit();
                     }
+                });
+            }
+            
+            function nuevo() {
+                  $.ajax({
+                    url: "añadir", //<--Ejecutamos del contra esta url
+                    data: {//<- Parametros ?id=4
+                        //id: pId,
+                    },
+                    success: function (html) {    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message: html
+                        })
+                    },
+                    error: function (err) {
+                        alert('La URL está mal. Código 404')
+                    }
+                })
+            }
+            function leerHtmlAjax(aCodigo) {
+                $.ajax({
+                    url: "edit", //<--Ejecutamos del contra esta url
+                    data: {//<- Parametros ?id=4
+                        //id: pId,
+                        codigo: aCodigo,
+                    },
+                    success: function (pHtml) {    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message: pHtml
+                        })
+                    },
+                    error: function (err) {
+                        alert('La URL está mal. Código 404')
+                    }
+                })
+            }
         </script>
     </body>
 </html>

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 /**
  * Debe implementar Calculadora y ser un servicio @Service
  */
-@Service
+@Service 
 public class Ejercicio02CalculadoraService implements IEjercicio02CalculadoraService {
 
     @Override

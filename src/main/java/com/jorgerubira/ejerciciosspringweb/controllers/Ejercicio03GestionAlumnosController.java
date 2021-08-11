@@ -28,10 +28,10 @@ public class Ejercicio03GestionAlumnosController {
     }
 
     @GetMapping("/añadir")
-    public String incluirAlumnos(Model model, Alumno alumno) {
+    public RedirectView incluirAlumnos(Model model, Alumno alumno) {
+        model.addAttribute("alumno", alumno);
         service.guardarAlumno(alumno);
-        model.addAttribute("alumno", service.getAlumnos());
-        return "ej03/gestionAlumnos";
+        return new RedirectView ("gestionAlumnos");
     }
 
     @PostMapping("/buscar")
@@ -49,10 +49,10 @@ public class Ejercicio03GestionAlumnosController {
     }
 
     @GetMapping("/remove")
-    public String eliminarAlumnos(Model model, Long codigo) {
+    public RedirectView eliminarAlumnos(Model model, Long codigo) {
         service.borrarAlumno(codigo);
         model.addAttribute("alumno", service.getAlumnos());
-        return "ej03/gestionAlumnos";
+        return new RedirectView ("gestionAlumnos");
     }
 
     @GetMapping("/edit")
