@@ -85,12 +85,12 @@ public class Ejercicio04KanbanController {
     }
 
     @PostMapping("/addpersona") //URL A LLAMAR
-    public String addPersona(Model model, String codigo, String nombre) {
+    public String addPersona(Model model, String codigo, String persona) {
         try {
             model.addAttribute("codigo", codigo);
-            model.addAttribute("nombre", nombre);
-
-            service.asignarPersona(codigo, nombre);
+            model.addAttribute("persona", persona);
+ 
+            service.asignarPersona(codigo, persona);
         } catch (OperacionEnListaException ex) {
             Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
         }

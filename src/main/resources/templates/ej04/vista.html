@@ -95,21 +95,22 @@
                     </div>
                     <div class="modal-body">
                         <form action="/ejercicio04/alta" method="post">
+                            <input type="hidden"  name="codigo" id="codigo"/>
                             <div class="form-group">
-                                <label for="descripcion" class="col-form-label" >Descripcion </label>
+                                <label for="descripcion" id="labeldescripcion" class="col-form-label" >Descripcion </label>
                                 <input type="text" class="form-control" name="descripcion" id="descripcion">
                             </div>
                             <div class="form-group">
-                                <label for="horasEstimacion" class="col-form-label">Horas estimadas </label>
+                                <label for="horasEstimacion" id="labelhoras" class="col-form-label">Horas estimadas </label>
                                 <input type="number" class="form-control" name="horasEstimacion" id="horasEstimacion" />
                             </div>
                             <div class="form-group">
-                                <label for="persona" class="col-form-label" style="display:none">Persona  </label>
+                                <label for="persona" id="labelpersona" class="col-form-label" style="visibility:hidden">Persona  </label>
                                 <input type="hidden" class="form-control" name="persona" id="persona"  />
                             </div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary"/>Crear tarea</button>
-                        </form>
+                        </form> 
                     </div>
                 </div>
             </div>
@@ -133,9 +134,10 @@
             <!-- BOTONES PARA CADA CARD-->
             <div class="row ml-1">
                 <button class="btn">
-                    <i class="fas fa-edit "></i>
+                    <i class="fas fa-edit "></i>  
                 </button>
-                <button class="btn" onclick="addpersona()">
+               
+                     <button class="btn" type="submit" th:onclick="|addpersona('${codigo}')|"> 
                     <i class="fas fa-user"></i>
                 </button>
 
@@ -168,12 +170,18 @@
                     })
     </script>
     <script>
-        function addpersona() {
+        function addpersona(codigo) {
+
+            $('#exampleModal').modal('show');
+            $("#codigo").val(codigo);
+            $("#descripcion").prop("type", "hidden");
+            $("#horasEstimacion").prop("type", "hidden");
+            $("#persona").prop("type", "text");
+            document.getElementById("labeldescripcion").style.visibility = "hidden";
+            document.getElementById("labelhoras").style.visibility = "hidden";
+            document.getElementById("labelpersona").style.visibility = 'visible';
             $("form").attr("action", "/ejercicio04/addpersona").submit();
-            document.getElementById('descripcion').style.display = 'hidden';
-            document.getElementById('horasEstimacion').style.display = 'hidden';
-            document.getElementById('persona').style.display = 'text';
             //quitar hidden en el formulario a persona y ocultar horas y descripcion
         }
-    </script>
+    </script> 
 </html>
