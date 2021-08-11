@@ -47,7 +47,6 @@ public class Ejercicio01ListaNombresController {
                 serviceListaNombres.bajaNombre(nombre);
             }
             model.addAttribute("lista",serviceListaNombres.getLista());
-            System.out.println(accion);
             return "ej01/listaPersonas";
         }
         

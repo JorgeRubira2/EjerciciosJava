@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej06/layout::reemplazar( ~{::body}, ~{::misscripts}, ~{::misestilos})">
+    <misestilos>
+        <style>
+            .boton{
+                width: 20px;
+                height: 20px;
+            }
+            .azulInmodificable{
+                background-color: #0000cc;
+            }
+        </style>
+    </misestilos>
+    <body>
+        <div th:if="${'Conseguido'.equals(estado)}"> Enhorabuena has salvado el mundo </div>
+        <div th:if="${'Game Over'.equals(estado)}"> te ha Explotado!! </div>
+        <div th:if="${'Jugando'.equals(estado)}">
+            <form mehod='get' id='formularioEnvio'>
+                <span th:each="fila:${tablero}">
+                    <tr>
+                        <div>
+                            <span th:each="casilla:${fila}">
+                                <span th:if="${casilla.oculto}">
+                                    <td> <input type="button" class="boton"  th:id="${casilla.id}" th:onmousedown="@{pulsar('id')}"/> </td>
+                                </span>
+                                <span th:if="${casilla.oculto == false}">
+                                    <td> <input type="text" class="boton"   th:id="${casilla.id}" readonly th:value="${casilla.valor}"/> </td>
+                                </span>
+                            </span>
+                        </div>
+                    </tr>
+                </span>
+            </form>
+        </div>
+    </body>
+    <misscripts>
+        <script>
+
+
+
+            function pulsar(id) {
+                $('#' + id).mousedown(function (event) {
+                    switch (event.which) {
+                        case 1:
+                            $('#formularioEnvio').attr('action', '/pulsarCasilla/' + id).submit();
+                            break;
+                        case 2:
+                            $('#' + id).attr('style', 'background-color:blue');
+                            break;
+                        case 3:
+                            $('#' + id).attr('style', 'background-color:blue');
+                            break;
+                        default:
+                            alert('You have a strange mouse');
+                    }
+                })
+            }
+
+
+
+
+
+
+
+        </script>
+    </misscripts>
+</html>

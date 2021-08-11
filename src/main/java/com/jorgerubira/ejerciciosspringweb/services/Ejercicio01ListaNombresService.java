@@ -39,8 +39,7 @@ public class Ejercicio01ListaNombresService implements IEjercicio01ListaNombresS
 
     @Override
     public List<String> getLista() {
-        //Devuelve una lista inmutable.
-        return Collections.unmodifiableList(nombres);
+        return nombres;
     }
     
 }

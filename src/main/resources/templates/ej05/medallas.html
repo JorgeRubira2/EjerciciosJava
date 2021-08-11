@@ -19,104 +19,106 @@ and open the template in the editor.
 
     <body>
         <div class="container">
-            <div class = "row">
-                <form id="seleccion">
-                    <select name="opcionConsulta" onchange="submit()">
+            <form id="seleccion">
+                <div class = "row">
+
+                    <select class="col-2" name="opcionConsulta" onchange="submit()">
                         <option value="paises" th:selected="${'paises'.equals(opcionConsulta)}">paises</option>
                         <option value="deportistas" th:selected="${'deportistas'.equals(opcionConsulta)}">deportistas</option>
                     </select>
-                </form>
-            </div>
-            <div class="row tabla">
-                <div class="col-7">
-                    <label  th:if="${'paises'.equals(opcionConsulta)}" th:text="Pais"></label>
-                    <label  th:if="${'deportistas'.equals(opcionConsulta)}" th:text="Deportistas"></label>
                 </div>
-                <div class="col-1"><i class="fas fa-medal" style="color: gold"></i></div>
-                <div class="col-1"><i class="fas fa-medal" style="color: silver"></i></div>
-                <div class="col-1"><i class="fas fa-medal" style="color: brown"></i></div>
-                <div class="col-1"><i class="fas fa-medal" style="color: gold"></i><i class="fas fa-medal" style="color: silver"></i><i class="fas fa-medal" style="color: brown"></i></div>
-            </div>
-            <ol>
-                <span th:if="${'paises'.equals(opcionConsulta)}">
-                    <li  th:each="medallaPais:${medallasPaises}">
-                        <div class="row tabla">
-                            <div class="col-7">
-                                <span th:ruta='@{consultaMedallas/{pais}(pais=${medallaPais.pais})}' th:onclick="|envioAjax(this , 'medallasPorPais' )|"><span th:text="${medallaPais.pais}"></span></span>
+                <div class="row tabla">
+                    <div class="col-7">
+                        <label  th:if="${'paises'.equals(opcionConsulta)}" th:text="Pais"></label>
+                        <label  th:if="${'deportistas'.equals(opcionConsulta)}" th:text="Deportistas"></label>
+                    </div>
+                    <div class="col-1"><i class="fas fa-medal" style="color: gold"></i></div>
+                    <div class="col-1"><i class="fas fa-medal" style="color: silver"></i></div>
+                    <div class="col-1"><i class="fas fa-medal" style="color: brown"></i></div>
+                    <div class="col-1"><i class="fas fa-medal" style="color: gold"></i><i class="fas fa-medal" style="color: silver"></i><i class="fas fa-medal" style="color: brown"></i></div>
+                </div>
+                <ol>
+                    <span th:if="${'paises'.equals(opcionConsulta)}">
+                        <li  th:each="medallaPais:${medallasPaises}">
+                            <div class="row tabla">
+                                <div class="col-7">
+                                    <span th:ruta='@{consultaMedallas/{pais}(pais=${medallaPais.pais})}' th:onclick="|envioAjax(this , 'medallasPorPais' )|"><span th:text="${medallaPais.pais}"></span></span>
+                                </div>
+
+                                <div class="col-1"> <span th:ruta='@{consultaDeportesEnMedalla/Oro/{pais}(pais=${medallaPais.pais})}'   th:onclick="|envioAjax(this , 'medallasPorPais' )|" th:text="${medallaPais.oro}" ></span></div>
+                                <div class="col-1"> <span th:ruta='@{consultaDeportesEnMedalla/Plata/{pais}(pais=${medallaPais.pais})}' th:onclick="|envioAjax(this , 'medallasPorPais' )|" th:text="${medallaPais.plata}"></span></div>
+                                <div class="col-1"> <span th:ruta='@{consultaDeportesEnMedalla/Cobre/{pais}(pais=${medallaPais.pais})}' th:onclick="|envioAjax(this , 'medallasPorPais' )|" th:text="${medallaPais.cobre}"></span></div>
+
+                                <div class="col-1"><div th:text="${medallaPais.oro +medallaPais.plata + medallaPais.cobre}" ></div></div> 
+
                             </div>
-
-                            <div class="col-1"> <span th:ruta='@{consultaDeportesEnMedalla/Oro/{pais}(pais=${medallaPais.pais})}'   th:onclick="|envioAjax(this , 'medallasPorPais' )|" th:text="${medallaPais.oro}" ></span></div>
-                            <div class="col-1"> <span th:ruta='@{consultaDeportesEnMedalla/Plata/{pais}(pais=${medallaPais.pais})}' th:onclick="|envioAjax(this , 'medallasPorPais' )|" th:text="${medallaPais.plata}"></span></div>
-                            <div class="col-1"> <span th:ruta='@{consultaDeportesEnMedalla/Cobre/{pais}(pais=${medallaPais.pais})}' th:onclick="|envioAjax(this , 'medallasPorPais' )|" th:text="${medallaPais.cobre}"></span></div>
-
-                            <div class="col-1"><div th:text="${medallaPais.oro +medallaPais.plata + medallaPais.cobre}" ></div></div> 
-
-                        </div>
-                    </li>
-                </span>
-                <span th:if="${'deportistas'.equals(opcionConsulta)}">
-                    <li  th:each="medallaAtleta:${medallasAtletas}">
-                        <div class="row tabla">
-                            <div class="col-7">
-                                <span th:text="${medallaAtleta.atleta}"></span>
+                        </li>
+                    </span>
+                    <span th:if="${'deportistas'.equals(opcionConsulta)}">
+                        <li  th:each="medallaAtleta:${medallasAtletas}">
+                            <div class="row tabla">
+                                <div class="col-7">
+                                    <span th:text="${medallaAtleta.atleta}"></span>
+                                </div>
+                                <div class="col-1"><span th:text="${medallaAtleta.oro}" ></span></div> 
+                                <div class="col-1"><span th:text="${medallaAtleta.plata}" ></span></div>
+                                <div class="col-1"><span th:text="${medallaAtleta.cobre}" ></span></div> 
+                                <div class="col-1"><div th:text="${medallaAtleta.oro +medallaAtleta.plata + medallaAtleta.cobre}" ></div></div> 
                             </div>
-                            <div class="col-1"><span th:text="${medallaAtleta.oro}" ></span></div> 
-                            <div class="col-1"><span th:text="${medallaAtleta.plata}" ></span></div>
-                            <div class="col-1"><span th:text="${medallaAtleta.cobre}" ></span></div> 
-                            <div class="col-1"><div th:text="${medallaAtleta.oro +medallaAtleta.plata + medallaAtleta.cobre}" ></div></div> 
-                        </div>
-                    </li>
-                </span>
-            </ol>
+                        </li>
+                    </span>
+                </ol>
 
 
 
-        </ol>
-    </div>
+                </ol>
+            </form>
 
-    <span th:if="${deportesMedalla != null}">
-        <div id="deportesPorMedalla" form="deportesPorMedalla"  >
-            <h1>Deportes con medalla para <span id="pais" th:value="${pais}"/></h1>
-            <div th:each="deporte:${deportesMedalla}">
-                <div><span th:text="${deporte}" ></span></div>
-            </div>
         </div>
-    </span>
 
-    <span th:if="${deportes != null}">
-        <div id="medallasPorPais" form="medallasPorPais"  >
-            <h1> Medallas por pais <span id="pais" th:value="${pais}" /></h1>
-            <div th:each="deporte:${deportes}">
-                <div><span th:text="${deporte}" ></span></div>
+        <span th:if="${deportesMedalla != null}">
+            <div id="deportesPorMedalla" form="deportesPorMedalla"  >
+                <h1>Deportes con medalla para <span id="pais" th:value="${pais}"/></h1>
+                <div th:each="deporte:${deportesMedalla}">
+                    <div><span th:text="${deporte}" ></span></div>
+                </div>
             </div>
-        </div>    
-    </span>
+        </span>
+
+        <span th:if="${deportes != null}">
+            <div id="medallasPorPais" form="medallasPorPais"  >
+                <h1> Medallas por pais <span id="pais" th:value="${pais}" /></h1>
+                <div th:each="deporte:${deportes}">
+                    <div><span th:text="${deporte}" ></span></div>
+                </div>
+            </div>    
+        </span>
 
 
-</body>
+    </body>
 
 
 
 
-<misscripts>
-    <script>
-        function envioAjax(urlPet, formulario) {
-            $.ajax({
-                url: urlPet.getAttribute('ruta'), //<--Ejecutamos del contra esta url
-                data: {//<- Parametros ?id=4
-                },
-                success: function (formulario) {    //<- Nos devuelven la respuesta. 
-                    bootbox.dialog({
-                        message: formulario,
-                    })
-                },
-                error: function (err) {
-                    alert('Si la URL esta mal. Codigo 404')
-                }
-            })
-        }
+    <misscripts>
+        <script>
+            function envioAjax(urlPet, formulario) {
+                $.ajax({
+                    url: urlPet.getAttribute('ruta'), //<--Ejecutamos del contra esta url
+                    data: {//<- Parametros ?id=4
+                    },
+                    success: function (formulario) {    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message: formulario,
+                        })
+                    },
+                    error: function (err) {
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
 
 
-    </script>
-</misscripts>
+        </script>
+    </misscripts>
 </html>

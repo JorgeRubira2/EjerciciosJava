@@ -14,8 +14,6 @@
         <div class="container">
             <script>
                 function enviarFormulario(valor){
-                    //$("#accion").val(valor);
-                    //$("form").submit();
                     $("form").attr('action', valor);
                     $("form").submit();
                 }
@@ -27,7 +25,7 @@
                     <input id="accion" type="hidden" name="accion" />
                     <div class="from-group col-2">
                         <label >Nombre</label>
-                        <input class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999"/>
+                        <input class="form-control" name="nombre" th:value="${nombre}" />
                     </div>
                     <div class="col-1 pt-4">
                         <input type="button" id="boton" name="boton" value="Añadir" onclick="accionEnvio('Añadir')" class="btn btn-primary"/>
@@ -36,7 +34,6 @@
                         <input type="button" id="boton" name="boton" value="Borrar" onclick="accionEnvio('Borrar')" class="btn btn-danger"/>
                     </div>   
                 </div>
-                <input type="hidden" id="accion" name="accion" />
             </form>
             <span th:text="${mensajeErr}" style="color: red"></span>
             <hr/>
