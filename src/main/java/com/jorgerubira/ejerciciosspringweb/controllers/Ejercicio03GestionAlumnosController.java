@@ -25,6 +25,20 @@ public class Ejercicio03GestionAlumnosController {
 
         return "ej03/listaAlumnos";
     }
+    
+    @GetMapping("/formulario")
+    public String formulario(Model model, Long codigo) {
+        model.addAttribute("codigoControlador", list.getAlumno(codigo));
+        
+        return "ej03/formulario";
+    }
+    
+    @GetMapping("/formularioNuevo")
+    public String formularioNuevo(Model model, Alumno alumno) {
+        model.addAttribute("codigoControlador", alumno);
+        return "ej03/formulario";
+    }
+    
 
     @PostMapping("/busqueda")
     public String busquedaNombre(Model model, String nombre) {
@@ -39,14 +53,12 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/listaAlumnos";
     }
 
-    @GetMapping("/nuevoUsuario")
-    public String nuevoUsuario(Model model, Long codigo, String nombre, String telefono, String direccion) {
+    @PostMapping("/editarAlumno")
+    public String editarAlumno(Model model, Long codigo, String nombre, String telefono, String direccion) {
 
         list.guardarAlumno(new Alumno(codigo,nombre, telefono, direccion));
 
-        model.addAttribute("lista", list.getAlumnos());
-
-        return "ej03/formulario";
+        return "redirect:/ejercicio3/";
     }
     
     @GetMapping("/borrar/{codigo}")

@@ -7,17 +7,18 @@
     <body>
         <div class="container">
             <h3>Lista de Alumnos</h3>
-            <form action="/formulario" method="post">
+            <form action="" method="post">
                 <div class="row">
                     <div class="col-3 pt-4">
-                        <input id="nombrecodigo" class="form-control" name="nombre" th:value="${nombre}" min="-99999" max="99999" placeholder="Ingrese un código o nombre"/>
+                        <input required="" id="nombrecodigo" class="form-control" name="nombre" th:value="${nombre}" placeholder="Ingrese un código o nombre"/>
                     </div>
                     <div class="col-3 pt-4">
                         <button class="btn btn-primary" formaction="/ejercicio3/busqueda">Buscar <i class="fas fa-search"></i></button>
-                        <input class="btn btn-primary" type='submit' value="Nuevo"/> 
+                        <input type="button" onClick='mostrarFormularioNuevo()' value="Nuevo" class="btn btn-primary"/>
                     </div>  
                 </div>
-            </form>
+                <input type="hidden" name="codigo" th:value="${codigo}">
+                </form>
             <hr/>
             <table class="table table-striped">
                 <tr>
@@ -33,23 +34,14 @@
                     <td th:text="${alum.telefono}"/>
                     <td th:text="${alum.direccion}"/>
                     <td>
-                        <a class="btn btn-danger" th:href="@{/ejercicio3/borrar/{codigo} (codigo=${alum.codigo})}">Eliminar</a>
-                        <input type="button" onClick="mostrarFormulario()" value="Editar" class="btn btn-info"/>
+                        <a class="btn btn-danger" th:onclick="|confirmar(${alum.codigo})|">Eliminar</a>
+                        <input type="button" th:onclick="|mostrarFormularioEditar(${alum.codigo})|" value="Editar" class="btn btn-info"/>
                     </td>
                 </tr>
             </table>
+            
         </div>
 
-        <div id="miformulario" style="display:none">
-            <form >
-                <input type="hidden" class="form-control" name="idFormulario" th:value="${id}" min="-99999" max="99999" placeholder="id" style="margin-bottom: 10px;"/>
-                <input class="form-control" name="nombreFormulario" th:value="${nombre}" min="-99999" max="99999" placeholder="Nombre" style="margin-bottom: 10px;"/>
-                <input type="number" class="form-control" name="telefonoFormulario" th:value="${telefono}" min="9" max="9" placeholder="Teléfono" style="margin-bottom: 10px;"/>
-                <input class="form-control" name="direccionFormulario" th:value="${direccion}" min="-99999" max="99999" placeholder="Dirección" style="margin-bottom: 10px;"/>
-                <button class="btn btn-primary" style="width: 100%;">Añadir/Editar</button>
-            </form>
-
-        </div>
 
 
         <!-- La solución optima es poner los scripts al final -->
@@ -58,23 +50,46 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
 
         <script>
-                        function mostrarFormulario() {
-                            bootbox.dialog({
-                                title: "Añade/Edita el alumno",
-                                size: 'large',
-                                message: $('#miformulario').html()
-                            });
-                        };
 
-                        function confirmar() {
-                            bootbox.confirm({
-                                message: "Desea borrar este nombre?",
-                                closeButton: false,
-                                callback: function () {
-                                    $("form").submit();
-                                }
-                            });
-                        };  
+            function mostrarFormularioEditar(codigoparam) {
+                $.ajax({
+                    url: "/ejercicio3/formulario",
+                    data: {
+                        codigo: codigoparam
+                    },
+                    success: function (formularioEditar) {
+                        bootbox.dialog({
+                            title: "Añade/Edita el alumno",
+                            size: 'large',
+                            message: formularioEditar
+                        });
+                    }
+                });
+
+            }
+            function mostrarFormularioNuevo() {
+                $.ajax({
+                    url: "/ejercicio3/formularioNuevo",
+                    data: {
+                    },
+                    success: function (formularioNuevo) {
+                        bootbox.dialog({
+                            message:formularioNuevo
+                        })
+                    },
+                    error: function (err) {
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
+            
+            function confirmar(codigo){
+                bootbox.confirm({
+                    message:"¿Desea borrar este alumno?",
+                    callback:function (){document.location="borrar/"+codigo;}
+                });
+            }
+
         </script>
     </body>
 </html>
