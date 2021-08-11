@@ -1,0 +1,20 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Formulario de Tareas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+         <div class="container">
+            <form th:object="${tareas}" action="/ejercicio4/editar" method="post">
+                <input type="hidden" th:field="*{codigo}"/><br/>
+                <label>Descripción:</label> <input class="form-control" th:field="*{descripcion}"/><br/>
+               <label>Propietario:</label> <input class="form-control" th:field="*{propietario}"/><br/>
+               <label>Estado:</label> <input class="form-control" th:field="*{estado}"/><br/>
+               <label>Horas estimadas:</label> <input type="number" min="0" class="form-control" th:field="*{horasEstimacion}"/><br/>
+               <label>Horas trabajadas:</label> <input type="number" min="0" class="form-control" th:field="*{horasTrabajadas}"/><br/>
+                <input class="btn btn-primary"  type="submit" value="Enviar"/>
+            </form>
+        </div>
+    </body>
+</html>
