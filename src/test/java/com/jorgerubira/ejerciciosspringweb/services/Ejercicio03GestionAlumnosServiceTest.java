@@ -36,9 +36,7 @@ public class Ejercicio03GestionAlumnosServiceTest {
         assertEquals(0, instance.getAlumnos().stream().filter(x->x.getCodigo()==codigo && "A".equals(x.getTelefono())).count());
         assertEquals(1, instance.getAlumnos().stream().filter(x->x.getCodigo()==codigo && "B".equals(x.getNombre())).count());
         assertEquals(1, instance.getAlumnos().stream().filter(x->x.getCodigo()==codigo && "B".equals(x.getDireccion())).count());
-        assertEquals(1, instance.getAlumnos().stream().filter(x->x.getCodigo()==codigo && "B".equals(x.getTelefono())).count());
-        
-        
+        assertEquals(1, instance.getAlumnos().stream().filter(x->x.getCodigo()==codigo && "B".equals(x.getTelefono())).count());    
     }
 
     @Test

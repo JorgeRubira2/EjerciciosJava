@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,55 +20,43 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("")
     public String list(Model model) {
-        
+
         model.addAttribute("lista", list.getAlumnos());
+
+        return "ej03/listaAlumnos";
+    }
+
+    @PostMapping("/busqueda")
+    public String busquedaNombre(Model model, String nombre) {
+        
+
+        if (nombre.matches("[+-]?\\d*(\\.\\d+)?")) {
+            model.addAttribute("lista", list.getAlumno(Long.parseLong(nombre)).get());
+        } else {
+            model.addAttribute("lista", list.getAlumnos(nombre));
+        }
         
         return "ej03/listaAlumnos";
     }
 
-    @PostMapping("/busquedaCodigo")
-    public String busquedaCodigo(Model model, Long codigo) {
-        
-        model.addAttribute("lista", list.getAlumno(codigo));
-        model.addAttribute("cuadrobusqueda", " ");
-        
-        return "ej03/listaAlumnos";
-    }
-
-    @PostMapping("/busquedaNombre")
-    public String busquedaNombre(Model model, String buscar) {
-        
-        model.addAttribute("lista", list.getAlumnos(buscar));
-        model.addAttribute("cuadrobusqueda", " ");
-        
-        return "ej03/listaAlumnos";
-    }
-
-    @PostMapping("/nuevoUsuario")
+    @GetMapping("/nuevoUsuario")
     public String nuevoUsuario(Model model, Long codigo, String nombre, String telefono, String direccion) {
 
-        Alumno alumno = new Alumno();
-        
-        alumno.setCodigo(codigo);
-        alumno.setNombre(nombre);
-        alumno.setTelefono(telefono);
-        alumno.setDireccion(direccion);
-        list.guardarAlumno(alumno);
+        list.guardarAlumno(new Alumno(codigo,nombre, telefono, direccion));
 
-        model.addAttribute("cuadrobusqueda", " ");
+        model.addAttribute("lista", list.getAlumnos());
+
+        return "ej03/formulario";
+    }
+    
+    @GetMapping("/borrar/{codigo}")
+    public String borrarUsuario(Model model, @PathVariable Long codigo) {
+
+        list.borrarAlumno(codigo);
+
         model.addAttribute("lista", list.getAlumnos());
 
         return "ej03/listaAlumnos";
     }
     
-    @PostMapping("/borrarUsuario")
-    public String borrarUsuario(Model model, Long codigo) {
-
-        list.borrarAlumno(codigo);
-
-        model.addAttribute("cuadrobusqueda", " ");
-        model.addAttribute("lista", list.getAlumnos());
-
-        return "ej03/listaAlumnos";
-    }
 }
