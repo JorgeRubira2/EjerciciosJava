@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
-    @Autowired
-
-    private List<Alumno> alumnos = new ArrayList();
-
+    
+    private List<Alumno> alumnos=new ArrayList<>();
+    
     @Override
     public void guardarAlumno(Alumno alumno) {
 

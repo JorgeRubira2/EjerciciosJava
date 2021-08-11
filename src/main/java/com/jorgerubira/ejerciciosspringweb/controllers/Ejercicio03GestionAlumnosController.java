@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class Ejercicio03GestionAlumnosController {
@@ -20,8 +21,17 @@ public class Ejercicio03GestionAlumnosController {
         model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos());
         return "ej03/listaAlumnos";
     }
+    @GetMapping("/leerAlumno")
+    @ResponseBody
+    public Alumno leerAlumno(Long codigo){
+        //is present
+  
+       return gestionAlumnos.getAlumno(codigo).get();
+    
+    }
 
     @PostMapping("/gestionAlumnos")
+    
     public String agregarAlumnos(Model model, Long codigo, String nombre, String telefono, String direccion) {
         Alumno alumno = new Alumno();
         alumno.setCodigo(codigo);
@@ -46,14 +56,17 @@ public class Ejercicio03GestionAlumnosController {
     
     
    @PostMapping("/buscarNombre")
-    public String buscarAlumnos(Model model, String nombre) {
+    public String buscarNombre(Model model, String alumno) {
             
         
-    model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos(nombre));
+    model.addAttribute("listaAlumnos", gestionAlumnos.getAlumnos(alumno));
   
 
         return "ej03/listaAlumnos";
     }
+    
+    
+    
     
 
 }
