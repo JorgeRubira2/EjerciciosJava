@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 
@@ -14,16 +15,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-    private List<Alumno> alumnos = new ArrayList<>();
+    private List<Alumno> alumnos = new ArrayList<>(); 
     
-    @Override
+    @Override 
     public void guardarAlumno(Alumno alumno) {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+       Optional<Alumno> nuevoAlumno = alumnos.stream().filter(x->x.getCodigo()==alumno.getCodigo()).findFirst();
+       
+       if(nuevoAlumno.isPresent()){
+           nuevoAlumno.get().setNombre(alumno.getNombre());
+           nuevoAlumno.get().setTelefono(alumno.getTelefono());
+           nuevoAlumno.get().setDireccion(alumno.getDireccion());
+           
+       }else{
+           alumnos.add(alumno);
+       }
     }
 
     @Override
     public void borrarAlumno(Long codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        alumnos.removeIf(x->x.getCodigo()==codigo);
     }
 
     @Override
@@ -33,16 +44,15 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        Optional<Alumno> alumno = codigo.stream()
-                .
-        //El orElse de arriba es para que se trague los posibles nulos y los ponga a 0.
+        Optional<Alumno> alumno = alumnos.stream().filter(x->x.getCodigo()==codigo).findFirst();   
         return alumno;
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        List<Alumno> alumno = buscar.equals(alumno)
+        List<Alumno> alumno = alumnos.stream().filter(x->x.getNombre().equals(buscar)).collect(Collectors.toList());
         return alumno;
+        
     }
     
 }

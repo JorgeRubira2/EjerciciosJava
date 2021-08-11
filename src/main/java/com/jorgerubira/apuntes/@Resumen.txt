@@ -93,6 +93,32 @@
                 th:each="var:${lista}" -> repite la etiqueta con cada elemento de la colleción
                 th:href -> modificar el href de un link
                 th:object="${objeto}" -> th:field="*{campo}" -> id, name, value (html)
+
+- Thymeleaf -> th:fragment   -> th:include (modifica el contenido. Para display:none), th:replace (reemplaza la etiqueta), th:insert (respeta el html y lo añade al final)
+                    - Reutilizar componentes anidados. 
+                    - Crear layout (contorno) -> <th:block th:include="${html}"/>   <-Plantilla
+                                                 <html ..... th:replace="ruta/fichero::nombreFragmento(~{::body})
+                                                 <html ..... th:replace="ruta/fichero::nombreFragmento(~{::body}, ~{::misscripts})
+                                                 <html ..... th:replace="ruta/fichero::nombreFragmento(~{:: #idDiv })
+- redirect: 
+        @PostMapping("/url2")
+        public String metodo(...){
+            m.addAttributes <-No hace falta.
+            return "redirect:urlDondeQuereisIr"; //Ruta relativa. Desde la ultima barra
+            return "redirect:/urlDondeQuereisIr"; //Ruta absoluta. Empieza desde el dominio
+        }
+        //Alternativa utilizar RedirectView
+
+- Notaciones Thymeleaf:
+        ${expresion lenguage} <- Codigo Java dentro de html. 
+        @{/url1/url2/(id=${variableId},nombre=${variableNombre})} -> /url1/url2?id=2&nombre=Ana
+        @{/url1/url2/{id}(id=${variableId},nombre=${variableNombre})} -> /url1/url2/2?nombre=Ana
+        ~{ruta/fichero::nombreFragmento( parametros )}
+        ~{::nombreFragmento( parametros )} <-- Dentro del mismo fichero no hace falta poner el fichero
+        ~{ruta/fichero:: #etiqueta} <--html del que tenga ese id #etiquet
+        ~{::body} <-- Dentro del mismo fichero no hace falta poner el fichero
+        |El resultado es ${variable1} y el autor es ${variable2}| -> ${'El resultado es' + variable1 + ' y el autor es' + variable2}
+
 - Envio de parametros (vistas->controlador): 
                        GET (los parametros se envian en la URL dominio?p1=v1&p2=v2) @GetMapping("/url") 
                        POST (los parametros se envian en el body -> formularios)    @PostMapping("/url") 
@@ -112,3 +138,6 @@
 - @RequestMapping("ruta/{id}"}, @PathVariable 
 
 - Instalamos el plugin,  
+- HTML -> atributo formaction. <input type='submit' formaction='/urlNueva' value='enviar' />
+
+

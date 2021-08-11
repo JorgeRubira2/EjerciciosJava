@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -28,4 +29,13 @@ public class Ejercicio03GestionAlumnosController {
         model.addAttribute("listaAlumnos", gest.getAlumnos());
         return "ej03/listadoAlumnos";
     }
+    
+    @GetMapping("/edicion")
+    public String edicion(Model model) {
+        model.addAttribute("listaAlumnos", gest.getAlumnos());
+        return "ej03/nuevoAlumno";
+    }
+    
+    @PostMapping("/listado")
+    public String 
 }

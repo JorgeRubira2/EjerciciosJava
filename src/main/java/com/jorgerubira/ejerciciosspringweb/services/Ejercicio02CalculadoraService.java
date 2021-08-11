@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class Ejercicio02CalculadoraService implements IEjercicio02CalculadoraService {
 
     @Override
-    public Integer sumar(Integer a, Integer b) {
+    public Integer sumar(Integer a, Integer b) { 
         return a+b;
     }
 

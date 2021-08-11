@@ -6,8 +6,6 @@
 package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author PC
  */
 public class Ejercicio03GestionAlumnosServiceTest {
-    
+   
     public Ejercicio03GestionAlumnosServiceTest() {
     }
 

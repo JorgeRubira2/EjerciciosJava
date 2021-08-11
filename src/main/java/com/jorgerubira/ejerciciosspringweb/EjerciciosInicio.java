@@ -8,5 +8,5 @@ public class EjerciciosInicio {
 
     public static void main(String[] args) {
         SpringApplication.run(EjerciciosInicio.class, args);
-    }
+    } 
 }
