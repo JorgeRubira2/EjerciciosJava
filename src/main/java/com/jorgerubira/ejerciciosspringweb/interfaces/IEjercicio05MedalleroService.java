@@ -20,5 +20,6 @@ public interface IEjercicio05MedalleroService {
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla);
     public List<String> obtenerDeportesConMedalla(String pais);
     public List<MedallaAtleta> obtenerRankingPorAlteta();
+    public List<MedallaAtleta> obtenerRankingPorAltetaPais(String pais);
     
 }

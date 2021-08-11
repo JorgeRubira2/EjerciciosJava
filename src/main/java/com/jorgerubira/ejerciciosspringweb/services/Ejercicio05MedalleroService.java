@@ -79,9 +79,24 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
                 .sorted((x,y) -> y.getValue().intValue()-x.getValue().intValue())
                 .map(x-> new MedallaAtleta(
                             x.getKey(),
-                            (int)medallas.stream().filter(z->z.getPais().equals(x.getKey()) && "Oro".equals(z.getMedalla())).count(),
-                            (int)medallas.stream().filter(z->z.getPais().equals(x.getKey()) && "Plata".equals(z.getMedalla())).count(),
-                            (int)medallas.stream().filter(z->z.getPais().equals(x.getKey()) && "Cobre".equals(z.getMedalla())).count()
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Oro".equals(z.getMedalla())).count(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Plata".equals(z.getMedalla())).count(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Cobre".equals(z.getMedalla())).count()
+                )).collect(Collectors.toList());
+    }
+    
+    public List<MedallaAtleta> obtenerRankingPorAltetaPais(String pais) {
+        return medallas.stream()
+                .filter(x-> pais.equalsIgnoreCase(x.getPais()))
+                .collect(Collectors.groupingBy((x)-> x.getDeportistas(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted((x,y) -> y.getValue().intValue()-x.getValue().intValue())
+                .map(x-> new MedallaAtleta(
+                            x.getKey(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Oro".equals(z.getMedalla())).count(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Plata".equals(z.getMedalla())).count(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Cobre".equals(z.getMedalla())).count()
                 )).collect(Collectors.toList());
     }
     

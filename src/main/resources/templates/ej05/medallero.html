@@ -18,11 +18,17 @@
             td:nth-child(2){
                 width:70% 
             }
+            td { cursor: pointer; }
+            a{
+                margin-left:40%;
+                margin-bottom: 10px;
+            }
         </style>
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center">Ranking de medallas</h1>
+            <h1 class="text-center">Ranking de medallas por Pais</h1>
+            <a class="btn btn-info btn-sm" href="deportistas" >Cambiar a ranking por deportistas</a>
             <table id="ranking" class="table table-striped">
                 <thead>
                   <tr>
@@ -30,24 +36,51 @@
                     <th id="oro"><i class="fas fa-medal oro"></i></th>
                     <th id="plata"><i class="fas fa-medal plata"></i></th>
                     <th id="bronce"><i class="fas fa-medal bronce"></i></th>
+                    <th id="total"><i class="fas fa-medal"></i></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr th:each="med:${medallas}">
+                  <tr th:each="med:${medallas}" >
                     <td></td>
-                    <td th:text="${med.pais}"></td>
-                    <td th:text="${med.oro}"></td>
-                    <td th:text="${med.plata}"></td>
-                    <td th:text="${med.cobre}"></td>
+                    <td th:attr="onclick=|leerJsonPais('${med.pais}','Oro')|" th:text="${med.pais}"></td>
+                    <td th:attr="onclick=|leerJsonAjax('${med.pais}','Oro')|" th:text="${med.oro}"></td>
+                    <td th:attr="onclick=|leerJsonAjax('${med.pais}','Plata')|"th:text="${med.plata}"></td>
+                    <td th:attr="onclick=|leerJsonAjax('${med.pais}','Cobre')|" th:text="${med.cobre}"></td>
+                    <td th:with="result=${med.oro + med.plata + med.cobre}"><span th:text="${result}"></span></td>
                   </tr>
                 </tbody>
               </table>
+
+            <div id="rankingDepor" style="display:none">
+                <p>Deportes con medalla de <span id="medalla"></span> para el pais <span class="paisrank"></span></p>
+                <ul id="listaDeportes">
+
+                </ul>
+            </div>
+            <div id="rankingPersona" style="display:none">
+                <p>Deportistas con medallas para el pais <span class="paisrank"></span></p>
+                <table id="listaPersonas" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th id="deportista" colspan="2">Deportista</th>
+                        <th id="oro"><i class="fas fa-medal oro"></i></th>
+                        <th id="plata"><i class="fas fa-medal plata"></i></th>
+                        <th id="bronce"><i class="fas fa-medal bronce"></i></th>
+                        <th id="total"><i class="fas fa-medal"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody id="lista">
+
+                    </tbody>
+                  </table>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>        
         <script>
             $(document).ready(function() {
                 $('#ranking').DataTable( {
@@ -71,8 +104,88 @@
                         }
                     }
                 } );
+                $('#listaPersonas').DataTable( {
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 20, 50],
+                "fnCreatedRow": function (row, data, index) {
+                            $('td', row).eq(0).html(index + 1);
+                        },
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No hay registros",
+                    "info": "Mostrando del _START_ al _END_ de un total de _MAX_ registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "infoEmpty": "Lista vacia",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                        }
+                    }
+                } );
                 
             } );
+            function leerJsonAjax(pPais, pMedalla){
+                $.ajax({
+                    url:"jsonMedallas",   //<--Ejecutamos del contra esta url
+                    data:{              //<- Parametros ?id=4
+                        pais: pPais,
+                        medalla: pMedalla
+                    },
+                    dataType:"json",
+                    success: function(pJson){    //<- Nos devuelven la respuesta. 
+                        $("#listaDeportes").empty();
+                        $("#medalla").text(pMedalla);
+                        $(".paisrank").text(pPais);
+                        $.each(pJson, function(i, valor) {
+                            $("#listaDeportes").append("<li>" + pJson[i] + "</li>");
+                        });
+                        bootbox.dialog({
+                            message: "<div id='tableJson'>" + $('#rankingDepor').html() + "</div>"
+                        });
+                    },
+                    error: function (err){
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
+
+            function leerJsonPais(pPais){
+                $.ajax({
+                    url:"jsonPersonas",   //<--Ejecutamos del contra esta url
+                    data:{              //<- Parametros ?id=4
+                        pais: pPais,
+                    },
+                    dataType:"json",
+                    success: function(pJson){    //<- Nos devuelven la respuesta. 
+                        $("#lista").empty();
+                        $(".paisrank").text(pPais);
+                        var index = 0;
+                        $.each(pJson, function(i, valor) {
+                            i++;
+                            var total = valor.oro + valor.plata + valor.cobre;
+                            $("#lista").append(
+                                    "<tr>" +
+                                        "<td>" + i + "</td>" +
+                                        "<td>" + valor.atleta + "</td>" +
+                                        "<td>" + valor.oro + "</td>" +
+                                        "<td>" + valor.plata + "</td>" +
+                                        "<td>" + valor.cobre + "</td>" +
+                                        "<td>" + total + "</td>" +
+                                    "</tr>"
+                            );
+                        });
+                        bootbox.dialog({
+                            message: "<div id='tableJson'>" + $('#rankingPersona').html() + "</div>"
+                        });
+                    },
+                    error: function (err){
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
         </script>
     </body>
 </html>
