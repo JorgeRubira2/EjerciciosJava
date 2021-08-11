@@ -30,7 +30,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         alumnos.add(alumno);
         alumnos.add(alumno2);
     }
-   
+
+    
     @Override
     public void guardarAlumno(Alumno alumno) {
         
@@ -38,14 +39,19 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
         if (nuevo.isPresent())
         {
-            
+            nuevo.get().setCodigo(alumno.getCodigo());
             nuevo.get().setNombre(alumno.getNombre());
             nuevo.get().setTelefono(alumno.getTelefono());            
             nuevo.get().setDireccion(alumno.getDireccion());
-                   
+            
           
         }else{
-             alumnos.add(alumno); 
+            long codigo=(int)(Math.random()*99999999);
+            nuevo.get().setCodigo(codigo);
+            nuevo.get().setNombre(alumno.getNombre());
+            nuevo.get().setTelefono(alumno.getTelefono());            
+            nuevo.get().setDireccion(alumno.getDireccion());
+            alumnos.add(alumno); 
                          
         }
                    
@@ -90,10 +96,18 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
          List<Alumno> alumnos2=new ArrayList<>();
          
          for (int i=0;i < alumnos.size() ;i++){
-                if (alumnos.get(i).getNombre().equals(buscar) )
+                if (alumnos.get(i).getNombre().equals(buscar) ){
                     alumnos2.add(alumnos.get(i));
-                
+                    System.out.println (" Si       HAY      " );
+                }
             }
+         
+         System.out.println ("          PASOOOOOOOOOOO  ");
+         int cantidad = 0;
+         cantidad = alumnos2.size();
+                       
+          String cantidad2 = String.valueOf(cantidad);
+          System.out.println ("       Cantidad    " + cantidad2 ) ;
         return alumnos2;
          
     }

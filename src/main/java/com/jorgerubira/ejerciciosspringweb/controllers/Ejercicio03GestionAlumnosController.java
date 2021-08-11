@@ -7,6 +7,8 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,13 +43,49 @@ public class Ejercicio03GestionAlumnosController {
    @GetMapping("/editar")
    public String editarAlumno(Model model, long codigo){
        
-        // public String editarAlumno(Model model){
-      
-       // Optional<Alumno> alumno = Optional.empty();
         Optional<Alumno>alumno = alumnos.getAlumno(codigo);
         model.addAttribute ("alumno", alumno);
       
         return "/ej03/editar";
     }
+   
+   @PostMapping("/guardar")
+   public String guardarAlumno(Model model, Alumno alumno){
+       
+       alumnos.guardarAlumno(alumno);
+       return "redirect:alumnos";
+    }
+   
+  
+    @PostMapping("/buscar") 
+    public String buscarAlumno(Model model, String nombre2){
+       
+       List<Alumno> alumnos2 = new ArrayList<>() ;
+       alumnos2 = alumnos.getAlumnos(nombre2);
+       
+       System.out.println ( "NOMBRE      " +  nombre2 );
+       model.addAttribute ("alumnos", alumnos2);
+       
+       System.out.println ( "VACIOOOOOOOO" +  alumnos2.isEmpty());
+       System.out.println (alumnos2.toString());
+       return "redirect:alumnos";
+       }
     
+    
+     @PostMapping("/nuevo") 
+     public String nuevoAlumno(Model model){
+             
+      // model.addAttribute ("alumnos", alumnos);
+       
+       return "/ej03/nuevo";
+       }
+     
+     @PostMapping("/agregar") 
+     public String agregarlumno(Model model){
+             
+      // model.addAttribute ("alumnos", alumnos);
+       
+       return "/ej03/alumnos";
+       }
+           
 }

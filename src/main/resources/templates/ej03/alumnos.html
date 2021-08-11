@@ -21,14 +21,15 @@
                        
             <h1>Listado de Alumnos</h1>
               <spam>
-                      
-                 <form  method="post">
+                       
+                 <form id="form" name="form" method="post"> 
                                       
-                    <input name="nombre" class="col-2"   placeholder="Introduce el nombre"/> 
-                    <input type="button" value="Buscar" onclick="enviarFormulario('Buscar')" class="btn btn-primary"  />
-                    <input type="button" value="Nuevo"  onclick="enviarFormulario('Nuevo')" class="btn btn-primary" />
+                    <input id="nombre2" name="nombre2" class="col-2" placeholder="Introduce el nombre"/> 
+                    <input type="button" value="Buscar" onclick="enviarFormulario('/ejercicio/buscar')"  class="btn btn-primary"  />
+                                      
+                    <input type="button" value="Nuevo"  onclick="enviarFormulario('/ejercicio3/nuevo')" class="btn btn-primary" />
                 
-                  </form>
+                  </form>   
               </spam>
             <br>
             <span>
@@ -49,16 +50,14 @@
                          <td  th:text="${alumno.telefono}"/> 
                          <td  th:text="${alumno.direccion}"/> 
                          <td>
-                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class="btn-primary" value='Eliminar'>  Eliminar
+                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class="btn-danger" value='Eliminar'>  Eliminar
                             </a>
-                         
-                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn-primary" value='Editar'> Editar
+                             <div>
+                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn-primary" value='Editar'>  Editar
                                                                 
                             </a> 
-                             
-                              <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn" value='Editar2'> Editar2
-                                                                
-                            </a>
+                                 </div>
+             
                          </td>
                          
                      </tr>
@@ -74,23 +73,19 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" ></script>
         
         <script>
-        
-            function enviarFormulario (valor){
-                if (valor === 'Nuevo') {
-                    alert("prueba " + valor );
-                //}else { 
-                   // $('form').attr('action', valor);
-                   // $('form').submit();
-                  // alert("prueba2");
-                  
-                }else if (valor === 'Buscar')
-                
-                     alert("prueba " + valor );
-                }
-        
-         </script>
-        
+            function enviarFormulario(url){
+             //alert (url  )
+              
+             // url2 = url + "?nombre=" + document.getElementById("nombre2").value ;
+              
+              $('form').attr('action', url);
+              $('form').submit();
+          }
+          
+           </script> 
+
     </body>
 </html>
