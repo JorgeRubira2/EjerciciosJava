@@ -8,11 +8,13 @@ package com.jorgerubira.ejerciciosspringweb.interfaces;
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 /**
  * El servicio Gestion Alumnos permite gestionar alumnos. Dar de alta y de baja alumnos.
  * El campo que servirá para identificarlos será el id
  */
+@Service
 public interface IEjercicio03GestionAlumnosService {
     
     /**

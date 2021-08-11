@@ -4,12 +4,11 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <html xmlns:th="http://www.thymeleaf.org"
-      th.replace="ejte/layouts/layoutprincipal::layout(~{::body} )">
+       th:replace="ejte/layouts/layoutprincipal::layout( ~{::body}  )">
     
     <body>
-        <input type="button" class=""btn btn-primary" value="Pulsar"/>
+        <input type="button" class="btn btn-primary" value="Pulsar"/>
         <p>
             Texto aleatorio 1
         </p>
@@ -19,10 +18,6 @@ and open the template in the editor.
         <p>
             Texto aleatorio 3
         </p>
-    </body>
-    <body>
-        <div>TODO write content</div>
-        
     </body>
         <misscripts>
             <script scr="https://sdnjs.cloudfare.com/ajax/libs/wow/1.1.2.js ">
