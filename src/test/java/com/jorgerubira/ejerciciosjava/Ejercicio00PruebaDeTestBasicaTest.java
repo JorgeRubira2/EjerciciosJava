@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class Ejercicio00PruebaDeTestBasicaTestb {
+public class Ejercicio00PruebaDeTestBasicaTest {
     
-    public Ejercicio00PruebaDeTestBasicaTestb() {
+    public Ejercicio00PruebaDeTestBasicaTest() {
     }
 
     @Test
