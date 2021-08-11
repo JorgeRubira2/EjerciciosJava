@@ -18,7 +18,7 @@ and open the template in the editor.
     </misestilos>
 
     <body>
-        <div class="container">
+        <div class="container" th:if="${opcionConsulta!=null}">
             <form id="seleccion">
                 <div class = "row">
 
@@ -78,7 +78,7 @@ and open the template in the editor.
 
         <span th:if="${deportesMedalla != null}">
             <div id="deportesPorMedalla" form="deportesPorMedalla"  >
-                <h1>Deportes con medalla para <span id="pais" th:value="${pais}"/></h1>
+                <h1>Deportes con medalla  de <span id="metal" th:text="${metal}"/> para <span id="pais" th:text="${pais}"/> </h1>
                 <div th:each="deporte:${deportesMedalla}">
                     <div><span th:text="${deporte}" ></span></div>
                 </div>
@@ -87,7 +87,7 @@ and open the template in the editor.
 
         <span th:if="${deportes != null}">
             <div id="medallasPorPais" form="medallasPorPais"  >
-                <h1> Medallas por pais <span id="pais" th:value="${pais}" /></h1>
+                <h1> Medallas por pais <span id="pais" th:text="${pais}" /></h1>
                 <div th:each="deporte:${deportes}">
                     <div><span th:text="${deporte}" ></span></div>
                 </div>

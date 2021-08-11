@@ -44,12 +44,15 @@ public class Ejercicio05MedalleroController {
     @GetMapping("/consultaDeportesEnMedalla/{metal}/{pais}")
     public String consultaDeportesDeMedalla(Model model, @PathVariable("metal") String metal, @PathVariable("pais") String pais){
         model.addAttribute("deportesMedalla",serviceMedallero.obtenerDeportesDeUnaMedalla(pais, metal) );
+        model.addAttribute("metal",metal);
+        model.addAttribute("pais",pais);
         return "ej05/medallas";
     }
     
     @GetMapping("/consultaMedallas/{pais}")
     public String deportesDePais(Model model, @PathVariable String pais){
         model.addAttribute("deportes", serviceMedallero.obtenerDeportesConMedalla(pais));
+        model.addAttribute("pais",pais);
         return "ej05/medallas";
     }
 }

@@ -1,0 +1,72 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="/ej07/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
+    <head>
+
+    <misestilos>
+        <style>
+        input .textarea{
+            width: 200 px;
+        }
+        </style>
+    </misestilos>
+        
+    </head>
+    
+    <body>
+        <div class="container">
+            <form id="formulario">
+                <div class="row">
+                    <div class="col-2">
+                        <input type="submit" formaction="Create" value="Save"/>
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" formaction="Modificar" value="Modificar"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Name
+                    </div>
+                    <div class="col-3">
+                        Account Name
+                    </div>
+                    <div class="col-3">
+                        Email & Phone
+                    </div>
+                </div>
+                <span th:each="cliente:${clientes}">
+                    
+                    <div class="row">
+                            
+                            <div class="col-6"> 
+                                <input type="text" th:field="*{cliente.firstName}"/> <input th:field="*{cliente.lastName}"/>
+                            </div>
+                            <div class="col-3"> 
+                                <label th:field="*{cliente.primaryAccount}"></label>
+                            </div>
+                            <div class="col-3"> 
+                                <label th:field="*{cliente.email}"></label>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-9"> 
+                                <label th:field="*{cliente.title}"></label>
+                            </div>
+                            
+                            <div class="col-3"> 
+                                <label th:field="*{cliente.officePhone}"></label>
+                            </div>
+                    </div>
+                    
+                </span>
+                
+                
+                
+            </form>
+        </div>
+    </body>
+
+    <misscripts>
+    </misscripts>
+
+</html>

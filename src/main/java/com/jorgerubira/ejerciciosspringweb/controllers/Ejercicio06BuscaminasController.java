@@ -6,6 +6,7 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio06BuscaminasService;
+import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ public class Ejercicio06BuscaminasController {
    
     @GetMapping("/buscaminas")
     public String iniciarBuscaminas (Model model){
+        serviceBuscaminas.empezarPartida();
         model.addAttribute("tablero", serviceBuscaminas.getTablero());
         model.addAttribute("estado", serviceBuscaminas.getEstado());
         model.addAttribute("minasFaltantes", 90 - serviceBuscaminas.getCasillasDescubiertas());
@@ -35,11 +37,13 @@ public class Ejercicio06BuscaminasController {
     
     
     @GetMapping("/pulsarCasilla/{casilla}")
-    public String pulsarCasilla (Model model, @PathVariable Long casilla){
+    public String pulsarCasilla (Model model, @PathVariable("casilla") Long casilla){
+
         serviceBuscaminas.pulsarCasilla(casilla);
         model.addAttribute("tablero", serviceBuscaminas.getTablero());
-        model.addAttribute("Estado", serviceBuscaminas.getEstado());
+        model.addAttribute("estado", serviceBuscaminas.getEstado());
         model.addAttribute("minasFaltantes", 90 - serviceBuscaminas.getCasillasDescubiertas());
+
         return "ej06/buscaminas";
     }
 }

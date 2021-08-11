@@ -1,0 +1,113 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="/ej07/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
+    <head>
+
+    <misestilos>
+        <style>
+        input .textarea{
+            width: 200 px;
+        }
+        </style>
+    </misestilos>
+        
+    </head>
+    
+    <body>
+        <div class="container">
+            <form id="formulario" th:object="${cliente}">
+                <div class="row">
+                    <div class="col-2">
+                        <input type="submit" formaction="Guardar" value="Save"/>
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" formaction="GuardarYVisualizar" value="Save & View"/>
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" formaction="Cancelar" value="Cancel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-3"> 
+                            <label for="firstName">First Name</label>
+                            <input type="text" th:field="*{firstName}">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3"> 
+                            <label for="primaryAccount">Primary Account</label>
+                            <input type="text" th:field="*{primaryAccount}">
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-3"> 
+                            <label for="lastName">Last Name</label>
+                            <input type="text" th:field="*{lastName}">
+                        </div>
+                    </div>
+                     <div class="col-2">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3"> 
+                            <label for="officePhone">Office Phone</label>
+                            <input type="tel" th:field="*{officePhone}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-3"> 
+                            <label for="title">title</label>
+                            <input type="text" th:field="*{title}">
+                        </div>
+                    </div>
+                     <div class="col-2">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-3"> 
+                            <label for="email">email</label>
+                            <input type="email" th:field="*{email}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-6"> 
+                            <label for="description">Description</label>
+                            <input type="textarea" th:field="*{description}">
+                        </div>
+                    </div>
+                     
+                </div>
+                <div>
+                    <div class="row">Address information</div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="direction">Primary Address</label>
+                            <input type="textarea" th:field="*{direction}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="city">city</label>
+                            <input type="text" th:field="*{city}">
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </body>
+
+    <misscripts>
+    </misscripts>
+
+</html>
