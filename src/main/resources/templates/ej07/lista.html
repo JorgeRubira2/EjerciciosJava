@@ -10,11 +10,22 @@
             .main{
                 margin-top: 20px;
             }
+            .top{
+                margin:20px 0px;
+                background-color: #99ccff;
+                padding:10px;
+            }
         </style>
     </head>
     <body>
         <div class="container main">
-            <table class="table table-bordered">
+            
+           <div class="top">
+               <input type="button" id="nuevo" value="Nuevo" class="btn btn-primary"/>
+               <input type="button" id="borrar" value="Borrar" class="btn btn-secondary"/>
+               <input type="button" id="modificar" value="Editar" class="btn btn-info"/>
+           </div>
+            <table class="table table-bordered table-hover ">                
                 <thead>
                     <tr>
                         <th></th>
@@ -24,16 +35,52 @@
                     </tr>
                 </thead>
                 <tr th:each="cli:${clientes}">
-                    <td></td>
+                    <td><input type="radio" name="id" th:value="${cli.id}"/>
                     <td th:text="${cli.firstName}"></td>
                     <td th:text="${cli.primaryAccount}"></td>
                     <td th:text="${cli.telefono}"></td>
                 </tr>
             </table>
         </div>
-         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <div id="nuevoCliente" style="display:none">
+            <form action="ejercicio7" method="post">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+                <div class="row">
+                    <div class="col-5"> <label class="form-label" for="firstName">First name: </label><input type="text" name="firstName" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="primaryAccount">Primary Account: </label><input type="text" name="primaryAccount" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="lastName">Last name: </label><input type="text" name="lastName" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="telefono">Teléfono: </label><input type="text" name="telefono" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="title">Título: </label><input type="text" name="title" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="email">Email: </label><input type="email" name="email" class="form-control"/></div>
+                    <div class="col-10"><span class="form-label">Descripción:</span> <textarea name="descripcion" class="form-control"></textarea></div>
+                    <hr/>  
+                    <br/>
+                    <h4>Address Information</h4>
+                    <div class="col-10"><span class="form-label">Primary Address:</span><textarea class="form-control" name="direccion"></textarea> </div>
+                    <div class="col-5"> <label class="form-label" for="city">City: </label><input type="text" name="city" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="estado">Estate: </label><input type="text" name="estado" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="country">Country: </label><input type="text" name="country" class="form-control"/></div>
+                    <div class="col-5"> <label class="form-label" for="codigoPostal">Postal code: </label><input type="number" name="codigoPostal" class="form-control"/></div>                
+                </div>
+            </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script> 
+        <script>
+            $(document).ready(function(){
+                $("#nuevo").click(formulario);          
+            });
+                
+            function formulario(){
+                bootbox.dialog({
+                    title: "Nuevo Cliente",
+                    size: "large",
+                    message: $("#nuevoCliente").html()
+
+                });
+            }
+        </script>
     </body>
 </html>
