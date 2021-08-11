@@ -4,11 +4,17 @@
         "th:text": {
             "context": "span"
         },
+        "th:include": {
+            "context": "div"
+        },
         "th:each": {
             "context": "tr"
         },
         "th:href": {
             "context": "a"
+        },
+        "th:fragment": {
+            "context": "div"
         }
     }
 }
