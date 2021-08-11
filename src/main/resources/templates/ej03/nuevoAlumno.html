@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Nuevo alumno</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="style.css" type="text/css">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Nuevo alumno</h1>
+            <form action='/ejercicio03/nuevoAlumno' method="post" th:object="${alumno}">
+                <table>
+                    <tr>
+                        <td>Nombre: </td>
+                        <td><input class="form-control" id="nombre" name="nombre" th:value="${nombre}" type="text" placeholder="Introduce el nombre" required/></td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono </td>
+                        <td><input class="form-control" id="telefono" name="telefono" th:value="${telefono}" type="text" placeholder="Introduce el teléfono" required/></td>
+                    </tr>
+                    <tr>
+                        <td>Dirección </td>
+                        <td><input class="form-control" id="direccion" name="direccion" th:value="${direccion}" type="text" placeholder="Introduce la dirección" required/></td>
+                    </tr>
+                    <tr>
+                         <input type="hidden" id="codigo" name="codigo" th:value="${codigo}" />
+                    </tr>
+                    <tr>   
+                        <td><a class="btn btn-primary" th:href="${'/ejercicio03/alumnos'}">  Volver </a></td>
+                        <td><button onclick="altaUsuario()" class="btn btn-primary"> Alta </button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        <!-- Scripts siempre al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    </body>
+</html>

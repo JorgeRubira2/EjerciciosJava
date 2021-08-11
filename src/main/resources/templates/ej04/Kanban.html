@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>KANBAN</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <style>
+            .row{
+                text-align: center;
+            }
+            .col-3, .col, .col-6 {
+                text-align: center;
+                border: 2px solid #000;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Kanban</h1>
+        <div class="container">
+            <div class="row">
+                <div class ="col-3">
+                    <div>Story</div>
+                    <span>
+                        <a class="btn btn-primary btn-sm"  onclick="mostrarFormulario()">add task</a>                
+                    </span>
+                </div>
+                <div class ="col-6">
+                    <div class="row">
+                        <span>Waiting</span>
+                    </div>
+                    <div class="row">
+                        <div class="col">Waiting</div>
+                        <div class="col">Working</div>
+                    </div> 
+                </div>
+                <div class ="col-3">
+                        <span>Done</span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Scripts siempre al final -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    </body>
+</html>

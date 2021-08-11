@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosspringweb.services;
 import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,14 @@ import java.util.Optional;
  * Implementa la interface IEjercicio04KanbanService
  */
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
-
+    private List<TareaKanban> tareasKanban = new ArrayList<TareaKanban>();
+    
+    public static enum Estados {
+            ROADMAP("Roadmap"),WAITING("Waiting"), WORKING("Working"),DONE ("Done");
+            private String estado;
+            private Estados (String s){ estado=s;}
+            public String getEstado( ){ return this.estado;}
+        }
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

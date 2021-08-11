@@ -2,17 +2,19 @@ package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
+@Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
     
-    
+    private List<Alumno> alumnos=new ArrayList<>();
     
     @Override
     public void guardarAlumno(Alumno alumno) {
@@ -26,7 +28,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public List<Alumno> getAlumnos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return alumnos; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

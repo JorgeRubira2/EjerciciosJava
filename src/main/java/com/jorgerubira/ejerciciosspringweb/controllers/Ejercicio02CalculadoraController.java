@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * IEjercicio02CalculadoraService encargada de 
  * sumar, restar, multiplicar y dividir dos números.
  * El resultado se mostrará en la parte inferior.
+ * 
+ * http://localhost:8080/ejercicio2/calculadora
+ * 
  */
 
 @Controller
