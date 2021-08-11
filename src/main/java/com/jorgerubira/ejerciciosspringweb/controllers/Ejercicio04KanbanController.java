@@ -5,7 +5,13 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
 
 /**
  * Cosas interesantes para implementar en la vista.
@@ -17,6 +23,15 @@ import org.springframework.stereotype.Controller;
  * 
  */
 @Controller
+@RequestMapping("/ejercicio4")
 public class Ejercicio04KanbanController {
+	
+    @Autowired
+    private IEjercicio04KanbanService kanban;
     
+    @GetMapping("/listaTareas")
+    public String getPaginaLista(Model model){
+        model.addAttribute("listaTareas", kanban.getTareas());
+        return "ej04/listaTareas";
+    }
 }
