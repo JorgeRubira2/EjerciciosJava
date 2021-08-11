@@ -24,25 +24,4 @@ public class ConfiguracionAplicacion {
     public Alumno getAlumno(){
         return new Alumno(0, "Alumno creado con Bean","",""); 
     }*/
-
-    @Value("${tipoEntorno}")      //Obtener información del application.properties.
-    private String tipo;    //Desarrollo
-
-    @Bean
-    public List<TareaKanban> obtenerListatareas(){
-        List<TareaKanban> lista=new ArrayList<>();
-        if ("desarrollo".equals(tipo)){
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 1",null, 0, 0, "Roadmap"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 2",null, 0, 0, "Waiting"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 3",null, 0, 0, "Working"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 4",null, 0, 0, "Waiting"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 5",null, 0, 0, "Done"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 6",null, 0, 0, "Roadmap"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 7",null, 0, 0, "Done"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 8",null, 0, 0, "Working"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 9",null, 0, 0, "Waiting"));
-            lista.add(new TareaKanban(UUID.randomUUID().toString(),"Tarea 10",null, 0, 0, "Roadmap"));
-        }
-        return lista;
-    }
 }

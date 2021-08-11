@@ -19,6 +19,18 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     private List<TareaKanban> tareas = new ArrayList<>();
 
+//    private List<TareaKanban> tareas = List.of(
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 1",null, 0, 0, "Roadmap"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 2",null, 0, 0, "Waiting"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 3",null, 0, 0, "Working"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 4",null, 0, 0, "Waiting"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 5",null, 0, 0, "Done"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 6",null, 0, 0, "Roadmap"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 7",null, 0, 0, "Done"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 8",null, 0, 0, "Working"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 9",null, 0, 0, "Waiting"),
+//            new TareaKanban(UUID.randomUUID().toString(),"Tarea 10",null, 0, 0, "Roadmap"));
+
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
         TareaKanban tarea = new TareaKanban();

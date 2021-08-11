@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <form th:object="${tarea}" action="/ej04/asignarPersona" method="post">
+        <input type="hidden" th:field="*{codigo}">
+        <input type="text"  th:field="*{propietario}" placeholder="Introduce la persona">
+        <input type="submit" value="Asignar">
+    </form>
+</body>
+</html>

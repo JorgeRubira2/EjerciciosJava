@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -33,24 +34,24 @@ import java.util.Optional;
 @RequestMapping("/ej04")
 public class Ejercicio04KanbanController {
 
-    @Autowired
-    private List<TareaKanban> tareas;
 
     @Autowired
     IEjercicio04KanbanService service;
 
     @GetMapping("/verkanban")
-    public String verKanbas(Model model){
-        model.addAttribute("tareas", tareas);
+    public String verKanbas(Model model) {
+        model.addAttribute("tareas", service.getTareas());
         return "/ej04/kanban";
     }
 
     @GetMapping("/subirEstado/{codigo}")
-    public RedirectView subirEstado(@PathVariable String codigo){
+    public RedirectView subirEstado(@PathVariable String codigo) {
         Optional<TareaKanban> tarea = service.getTarea(codigo);
-        if(tarea.isPresent()) {
+
+        if (tarea.isPresent()) {
+            String estado = tarea.get().getEstado();
             try {
-                switch (tarea.get().getEstado()) {
+                switch (estado) {
                     case "Roadmap":
                         service.cambiarEstado(codigo, "Waiting");
                         break;
@@ -60,7 +61,29 @@ public class Ejercicio04KanbanController {
                     case "Working":
                         service.cambiarEstado(codigo, "Done");
                         break;
+                }
+            } catch (OperacionEnListaException e) {
+                e.printStackTrace();
+            }
+        }
+        return new RedirectView("/ej04/verkanban");
+    }
+
+    @GetMapping("/bajarEstado/{codigo}")
+    public RedirectView bajarEstado(@PathVariable String codigo) {
+        Optional<TareaKanban> tarea = service.getTarea(codigo);
+        if (tarea.isPresent()) {
+            String estado = tarea.get().getEstado();
+            try {
+                switch (estado) {
+                    case "Waiting":
+                        service.cambiarEstado(codigo, "Roadmap");
+                        break;
+                    case "Working":
+                        service.cambiarEstado(codigo, "Waiting");
+                        break;
                     case "Done":
+                        service.cambiarEstado(codigo, "Working");
                         break;
                 }
             } catch (OperacionEnListaException e) {
@@ -68,5 +91,66 @@ public class Ejercicio04KanbanController {
             }
         }
         return new RedirectView("/ej04/verkanban");
+    }
+
+    @GetMapping("/asignarPersona/{codigo}")
+    public String formPersona(Model model, @PathVariable String codigo){
+        TareaKanban tarea = service.getTarea(codigo).get();
+        model.addAttribute("tarea", tarea);
+        return "/ej04/asignarPersona";
+    }
+
+    @PostMapping("/asignarPersona")
+    public RedirectView asignarPersona(TareaKanban tarea){
+        try {
+            service.asignarPersona(tarea.getCodigo(), tarea.getPropietario());
+        } catch (OperacionEnListaException e) {
+            e.printStackTrace();
+        }
+        return new RedirectView("/ej04/verkanban");
+    }
+
+    @GetMapping("/imputarHoras/{codigo}")
+    public String formHoras(Model model, @PathVariable String codigo){
+        TareaKanban tarea = service.getTarea(codigo).get();
+        model.addAttribute("codigo", codigo);
+        return "/ej04/imputarHoras";
+    }
+
+    @PostMapping("/imputarHoras")
+    public RedirectView imputarHoras(String codigo, Integer horas){
+        try {
+            service.imputarHorasTrabajadas(codigo, horas);
+        } catch (OperacionEnListaException e) {
+            e.printStackTrace();
+        }
+        return new RedirectView("/ej04/verkanban");
+    }
+
+    @GetMapping("/editarTarea/{codigo}")
+    public String editarTarea(Model model, @PathVariable String codigo){
+        TareaKanban tarea = service.getTarea(codigo).get();
+        model.addAttribute("tarea", tarea);
+        return "/ej04/tarea";
+    }
+
+    @PostMapping("/guardarTarea")
+    public RedirectView guardarTarea(TareaKanban tarea){
+        try {
+            if(!tarea.getCodigo().equals("")) {
+                service.modificarTarea(tarea.getCodigo(), tarea.getDescripcion(), tarea.getHorasEstimacion());
+            } else {
+                service.crearTarea(tarea.getDescripcion(), tarea.getHorasEstimacion());
+            }
+        } catch (OperacionEnListaException e) {
+            e.printStackTrace();
+        }
+        return new RedirectView("/ej04/verkanban");
+    }
+
+    @GetMapping("/anadirTarea")
+    public String anadirTarea(Model model){
+        model.addAttribute("tarea", new TareaKanban());
+        return "/ej04/tarea";
     }
 }

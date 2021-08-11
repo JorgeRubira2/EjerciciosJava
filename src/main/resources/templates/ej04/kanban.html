@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <title>KanbanService</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <style>
+        div{
+            border: 1px, solid, black;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="row">
+        <a th:href="@{'/ej04/anadirTarea'}">Nueva tarea</a>
+        <div class="row justify-content-center text-center">
             <div class="col-3">Story</div>
             <div class="col-6">Waiting
                 <div class="row">
@@ -20,24 +26,40 @@
         <div class="row" th:each="tarea:${tareas}">
             <div class="col-3" th:if="${'Roadmap'.equals(tarea.estado)}">
                 <span th:text="${tarea.descripcion}"></span></br>
-                <span th:text="${tarea.estado}"></span>
+                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
+                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
+                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
                 <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
             </div>
             <div class="col-3 offset-3" th:if="${'Waiting'.equals(tarea.estado)}">
                 <span th:text="${tarea.descripcion}"></span></br>
-                <span th:text="${tarea.estado}"></span>
+                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
+                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
                 <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
+                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
                 <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
             </div>
             <div class="col-3 offset-6" th:if="${'Working'.equals(tarea.estado)}">
                 <span th:text="${tarea.descripcion}"></span></br>
-                <span th:text="${tarea.estado}"></span>
+                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
+                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
                 <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
+                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
                 <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
             </div>
             <div class="col-3 offset-9" th:if="${'Done'.equals(tarea.estado)}">
                 <span th:text="${tarea.descripcion}"></span></br>
-                <span th:text="${tarea.estado}"></span>
+                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
+                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
+                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
                 <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
             </div>
         </div>

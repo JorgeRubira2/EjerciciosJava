@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<form th:object="${tarea}" action="/ej04/guardarTarea" method="post">
+    <input type="hidden" th:field="*{codigo}">
+    <textarea th:field="*{descripcion}"></textarea>
+    <input type="number" th:field="*{horasEstimacion}">
+    <input type="submit" value="Guardar">
+</form>
+</body>
+</html>
