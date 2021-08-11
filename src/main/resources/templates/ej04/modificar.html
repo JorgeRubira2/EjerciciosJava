@@ -1,0 +1,29 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <form action="/ejercicio4/addTarea" method="post">
+                <input name="codigo"  type="hidden" />
+                <label>Descripcion:</label>
+                <input th:value="${descripcion}" name="descipcion"  />
+                <label>Propietario:</label>
+                <input name="propieatario"  />
+                <label>Horas Estimadas</label>
+                <input name="horasEstimadas"   />
+                <label>Descripcion:</label>
+                <input name="horasTrabajadas"  />
+                <label>Descripcion:</label>
+                <input name="estado"  />
+                <button type="submit" class="btn btn-success">Aceptar</button>
+            </form>
+        </div>
+    </body>
+</html>
+private String propietario; //Persona que está realizando esta tarea.
+    private Integer horasEstimacion; //Tiempo estimado en la tarea. Opcional
+    private Integer horasTrabajadas; //Tiempo de trabajo en la tarea. 
+    private String estado; //Roadmap
