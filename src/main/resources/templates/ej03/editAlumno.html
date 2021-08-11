@@ -11,27 +11,20 @@
         </style>
     </head>
     <body>
-        <form action='ejercicio03/editar' method="post">
+        <form action='/ejercicio03/guardar' th:object="${alumno}" method="post">
             <div class="row">
-                <input id="accion" type="hidden" name="accion" />
                 <div class="from-group col-2">
+                    <input class="form-control" th:field="*{codigo}" th:hidden="hidden"><br/>
                     <label >Nombre</label>
-                    <input class="form-control" name="nombre"/><br/>
+                    <input class="form-control" th:field="*{nombre}"/><br/>
                     <label >Teléfono</label>
-                    <input class="form-control" name="telefono"/><br/>
+                    <input class="form-control" th:field="*{telefono}"/><br/>
                     <label >Dirección</label>
-                    <input class="form-control" name="direccion"/><br/>
+                    <input class="form-control" th:field="*{direccion}"/><br/>
                 </div>
                 <div class="col-1 pt-4">
-                    <input type="submit" value="Aceptar" onclick="enviarFormulario('ejercicio03/guardar')" class="btn btn-primary "/>
+                    <input class="btn btn-primary" type="submit" value="Aceptar"/>
                 </div>
             </div>
-
-            <script>
-                function enviarFormulario(id) {
-                    $("guardar").attr('action', id);
-                    $("guardar").submit();
-                }
-            </script>
     </body>
 </html>

@@ -33,11 +33,18 @@ public class Ejercicio03GestionAlumnosController {
         return "/ej03/alumnos";
     }
     
+   @GetMapping("/formulario")
+    public String formularioVista (Model model){
+        model.addAttribute("alumno", new Alumno());
+        
+        return "/ej03/editAlumno";
+    }
+    
     @PostMapping("/guardar")
     public String formulario(Model model, Alumno alumno){
         alumnosService.guardarAlumno(alumno);
  
-        return ("/ej03/editAlumno");
+        return "redirect:ver";
     }
     
     @GetMapping("/editar/{codigo}")
@@ -50,7 +57,6 @@ public class Ejercicio03GestionAlumnosController {
     
     @PostMapping("/buscar")
     public String buscarAlumno(Model model, String nombre){
-        
         List<Alumno> encontrados = new ArrayList<>();
         model.addAttribute("alumnos", alumnosService.getAlumnos(nombre));
         

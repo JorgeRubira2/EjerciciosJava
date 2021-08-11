@@ -26,6 +26,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         if (listaAlumnos.stream()
                         .noneMatch(x -> alumno.getCodigo()==x.getCodigo() ))  {
 
+            alumno.setCodigo((int)(Math.random()*99999));
+            
             listaAlumnos.add(alumno);
             
         } else {
@@ -33,9 +35,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
                                       .filter(x -> alumno.getCodigo()== x.getCodigo())
                                       .findFirst().get();
             
-            alum.setCodigo(alumno.getCodigo());
             alum.setNombre(alumno.getNombre());
-            alum.setTelefono(alumno.getDireccion());
+            alum.setTelefono(alumno.getTelefono());
             alum.setDireccion(alumno.getDireccion());            
         }
     }

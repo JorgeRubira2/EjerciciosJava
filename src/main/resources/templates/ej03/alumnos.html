@@ -14,44 +14,44 @@
     <body>
         <div class="container pt-5 px-5">
             <h1>Listado de Alumnos</h1>
-            <form action="/ejercicio03/" method="post">
+            <form action="/ejercicio03/buscar" method="post">
                 <div class="row">
                     <div class="from-group col-5">
-                        <input class="form-control" th:value="${nombre}" type="text" placeholder="Ingrese un código o Nombre"/>
+                        <input class="form-control" name="nombre" type="text" placeholder="Ingrese un código o Nombre"/>
                     </div>   
-
                     <div class="form-group col">
-                        <button class="btn btn-primary">Buscar<i class="fas fa-search"></i></button>
-                      <!--  <a class="btn btn-primary" th:href="@{/ejercicio03/editar/{codigo}}">Nuevo</a> -->
+                        <button class="btn btn-primary" type="submit">Buscar<i class="fas fa-search"></i></button>
+            </form>
+                        <a class="btn btn-primary" href="/ejercicio03/formulario">Nuevo</a>
                     </div>
                 </div>
-            </form>
-            <br>
-            <table class="table table-striped">
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th class="from-group col">Acciones</th>
-                </tr>
-                <tr th:each="elemento : ${alumnos}">
-                    <td th:text="${elemento.codigo}"></td>
-                    <td th:text="${elemento.nombre}"></td>
-                    <td th:text="${elemento.telefono}"></td>
-                    <td th:text="${elemento.direccion}"></td>
-                    <td>
-                        <a class="btn btn-danger" th:href="@{/ejercicio03/borrar/{codigo} (codigo=${elemento.codigo})}">Eliminar</a>
-                        <a class="btn btn-primary" th:href="@{/ejercicio03/editar/{codigo} (codigo=${elemento.codigo})}">Editar</a>
-                    </td>
-                </tr>
-            </table>
+
+                <br>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th class="from-group col">Acciones</th>
+                    </tr>
+                    <tr th:each="elemento : ${alumnos}">
+                        <td th:text="${elemento.codigo}"></td>
+                        <td th:text="${elemento.nombre}"></td>
+                        <td th:text="${elemento.telefono}"></td>
+                        <td th:text="${elemento.direccion}"></td>
+                        <td>
+                            <a class="btn btn-danger" th:href="@{/ejercicio03/borrar/{codigo} (codigo=${elemento.codigo})}">Eliminar</a>
+                            <a class="btn btn-primary" th:href="@{/ejercicio03/editar/{codigo} (codigo=${elemento.codigo})}">Editar</a>
+                        </td>
+                    </tr>
+                </table>
         </div>
 
         <!-- La solución optima es poner los scripts al final -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-  
+
     </body>
 </html>
