@@ -1,0 +1,34 @@
+<!<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div id="medallero">
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Pais</th>
+                            <th class="text-center">Atleta</th>
+                            <th class="text-center">Medalla</th>
+                            <th class="text-center">Deporte</th>
+                            <th class="text-center">Tipo de Deporte</th>
+                        </tr>
+                    </thead>
+                    <tr th:each="med:${medallas}">
+                        <td th:text="${med.pais}"></td> 
+                        <td th:text="${med.deportistas}"></td> 
+                        <td class="text-center" th:text="${med.medalla}"></td>
+                        <td class="text-center" th:text="${med.deporte}"></td>
+                        <td class="text-center" th:text="${med.tipoDeporte}"></td>
+                        
+                    </tr>
+                
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

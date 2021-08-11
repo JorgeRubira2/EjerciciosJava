@@ -102,7 +102,7 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
                 paises.add(new MedallaPais(x, 0, 0, cobreAux));
             }
         });
-        paises = paises.stream().sorted((x, y) -> x.getPais().compareTo(y.getPais())).collect(Collectors.toList());
+        paises = paises.stream().sorted((x, y) -> (y.getCobre()+y.getOro()+y.getPlata())-(x.getCobre()+x.getOro()+x.getPlata())).collect(Collectors.toList());
         return paises;
     }
 

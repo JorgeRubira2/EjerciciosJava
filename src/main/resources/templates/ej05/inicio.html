@@ -4,7 +4,12 @@
      
     <body>
         <div class="container main">
-            <table class="table ">
+            <select class="form-select" id="visualizacion">
+                <option value='paises'>Países</option>
+                <option value='atletas'>Atletas</option>
+            </select><br/>
+            <hr/>
+            <table class="table " id="paises" >
                 <thead>
                     <tr>
                         <th class="primera">Pais</th>
@@ -15,19 +20,92 @@
                             <i class="fas fa-medal small silver"></i>
                             <i class="fas fa-medal small bronce"></i></th>
                     </tr>
+                </thead>
                     <tr th:each="pais:${paises}">
-                        <td th:text="${pais.pais}"></td> 
-                        <td class="text-center" th:text="${pais.oro}"></td>
-                        <td class="text-center" th:text="${pais.plata}"></td>
-                        <td class="text-center" th:text="${pais.cobre}"></td>
-                        <td class="text-center" th:text="${pais.cobre+pais.plata+pais.oro}"></td>
+                        <td ><a th:attr="onclick=|paisMedalla('${pais.pais}')|" th:text="${pais.pais}"></a></td> 
+                        <td class="text-center"><a  th:attr="onclick=|paisDeporte('${pais.pais}','Oro')|" th:text="${pais.oro}"></a></td>
+                        <td class="text-center"><a  th:attr="onclick=|paisDeporte('${pais.pais}','Plata')|" th:text="${pais.plata}"></a></td>
+                        <td class="text-center"><a  th:attr="onclick=|paisDeporte('${pais.pais}','Cobre')|" th:text="${pais.cobre}"></a></td>
+                        <td class="text-center"><a  th:attr="onclick=|paisDeporte('${pais.pais}','todas')|" th:text="${pais.cobre+pais.plata+pais.oro}"></a></td>
+                    </tr>     
+            </table>
+            <table class="table " id="atletas" style='display:none'>
+                <thead>
+                    <tr>
+                        <th class="primera">Atleta</th>
+                        <th class="text-center"><i class="fas fa-medal gold"></i></th>
+                        <th class="text-center"><i class="fas fa-medal silver"></i></th>
+                        <th class="text-center"><i class="fas fa-medal bronce"></i></th>
+                        <th class="text-center"><i class="fas fa-medal small gold"></i>
+                            <i class="fas fa-medal small silver"></i>
+                            <i class="fas fa-medal small bronce"></i></th>
                     </tr>
                 </thead>
+                    <tr th:each="atle:${atletas}">
+                        <td ><a th:attr="onclick=|paisMedalla('${atle.atleta}')|" th:text="${atle.atleta}"></a></td> 
+                        <td class="text-center" th:text="${atle.oro}"></td>
+                        <td class="text-center" th:text="${atle.plata}"></td>
+                        <td class="text-center" th:text="${atle.cobre}"></a></td>
+                        <td class="text-center" th:text="${atle.cobre+atle.plata+atle.oro}"></td>
+                    </tr>     
             </table>
+          
         </div>
     </body>
     <misscripts>
         <script>
+            $(document).ready(function(){
+                $("#visualizacion").on("change", function(){
+                   var valor=$(this).val();
+                   if(valor==='paises'){
+                       $("#paises").removeAttr("style");
+                       $("#atletas").css("display","none");
+                   }
+                   else if(valor==='atletas'){
+                       $("#atletas").removeAttr("style");
+                       $("#paises").css("display","none");
+                   }
+                });
+            });
+            function paisMedalla(pPais){
+                 $.ajax({
+                    url:"tabla",  
+                    data:{              
+                        pais:pPais,
+
+                    },
+                    success: function(pHtml){     
+                        bootbox.dialog({
+                            title:"Deportistas con medalla",
+                            size:"large",
+                            message:pHtml
+                        })
+                    },
+                    error: function (err){
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
+            function paisDeporte(pPais,pMedalla){
+                 $.ajax({
+                    url:"tablaDeporte",  
+                    data:{              
+                        pais:pPais,
+                        medalla: pMedalla
+
+                    },
+                    success: function(pHtml){     
+                        bootbox.dialog({
+                            title:"Deportistas con medalla",
+                            size:"large",
+                            message:pHtml
+                        })
+                    },
+                    error: function (err){
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
             
          </script>
     </misscripts>

@@ -26,15 +26,18 @@ public class Ejercicio07GestionClientesController {
      */
     @GetMapping
     public String lista(Model m){
-        throw new RuntimeException("Pendiente de hacer");
+        m.addAttribute("clientes", repoClientes.findAll());
+        return "ej07/lista";
     }
     
     /**
-     * Debe devolver la vista ej07/formulario con el atributo clientes que sea la lista
+     * Debe devolver la vista ej07/formulario con el atributo cliente que sea la lista
      */
     @GetMapping("/{id}")
     public String read(Model m, @PathVariable Long id){
-        throw new RuntimeException("Pendiente de hacer");
+        Cliente aux=repoClientes.findById(id).get();
+        m.addAttribute("cliente", aux);
+        return "ej07/formulario";
     }
 
     /**
@@ -43,7 +46,8 @@ public class Ejercicio07GestionClientesController {
     @GetMapping("/ajax/{id}")
     @ResponseBody 
     public Cliente readAjax(Model m, @PathVariable Long id){
-        throw new RuntimeException("Pendiente de hacer");
+        Cliente aux=repoClientes.findById(id).get();
+        return aux;
     }
 
     /**
@@ -51,7 +55,8 @@ public class Ejercicio07GestionClientesController {
      */    
     @PostMapping
     public String save(Model m, Cliente alumno){
-        throw new RuntimeException("Pendiente de hacer");
+        repoClientes.save(alumno);
+        return "redirect:/ejercicio7";
     }    
 
     /**
@@ -59,7 +64,8 @@ public class Ejercicio07GestionClientesController {
      */    
     @GetMapping("/delete/{id}")
     public String delete(Model m, @PathVariable Long id){
-        throw new RuntimeException("Pendiente de hacer");
+        repoClientes.deleteById(id);
+        return "redirect:/ejercicio7";
     }    
 
 }

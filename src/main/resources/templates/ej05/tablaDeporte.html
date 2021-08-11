@@ -1,0 +1,25 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+           <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Pais</th>
+                            <th class="text-center">Deporte</th>
+
+                        </tr>
+                    </thead>
+                    <tr th:each="med:${medallas}">
+                        <td th:text="${pais}" ></td> 
+                        <td th:text="${med}" class="text-center"></td>      
+                    </tr>
+                
+                </table>
+        </div>
+    </body>
+</html>
