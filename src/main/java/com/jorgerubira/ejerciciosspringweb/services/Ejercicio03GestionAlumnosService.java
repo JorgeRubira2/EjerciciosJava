@@ -43,11 +43,11 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
             nuevo.get().setNombre(alumno.getNombre());
             nuevo.get().setTelefono(alumno.getTelefono());
             nuevo.get().setDireccion(alumno.getDireccion());
-             System.out.println ("IS PRESENT              " + alumno.getCodigo());   
+             
                       
         }else{
             long codigo2= (long)(Math.random()*99999999);
-           System.out.println ("NO     PRESENT              " + alumno.getCodigo());   
+           
             alumno.setCodigo(codigo2);
             alumnos.add(alumno); 
                          
