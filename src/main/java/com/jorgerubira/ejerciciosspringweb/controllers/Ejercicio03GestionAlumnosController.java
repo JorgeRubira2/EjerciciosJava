@@ -52,8 +52,7 @@ public class Ejercicio03GestionAlumnosController {
     
     @PostMapping("/listado")
     public String listado (Model m, String nombre){
-        
-             
+           
         m.addAttribute("lista", gest.getAlumnos(nombre));
         
         return "ej03/listadoAlumnos";

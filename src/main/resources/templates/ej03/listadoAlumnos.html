@@ -28,7 +28,8 @@ and open the template in the editor.
                         <!--<input type="button" value="Buscar" onclick="enviarResultado('/ejercicio2/suma')" class="col-12 btn btn-primary "<i class="fas fa-search"></i></input>-->
                         <button type="submit" value="Buscar"  class="btn btn-primary "><i class="fas fa-search"></i> Buscar</button>                                    
                         <!--<input type="submit" value="Nuevo" onclick="enviarResultado('/ejercicio2/resta')" class="col-12 btn btn-primary "/>-->
-                        <button type="button" value="Nuevo"  class="btn btn-success "><i class="far fa-plus-square"></i> Nuevo</button>
+                        <a class="btn btn-success " href="/ejercicio3/edicion"><i class="fas fa-user-plus"></i> Nuevo</a>
+                        
                     </div>
                 </div>
             </form>
@@ -50,8 +51,9 @@ and open the template in the editor.
                     <td th:text="${alu.telefono}"></td>
                     <td th:text="${alu.direccion}"></td>
                     <td>
-                        <a th:href="${'/ejercicio3/eliminar?codigo='+alu.codigo}" class="btn btn-danger">Eliminar</a>
-                        <a th:href="${'/ejercicio3/listado?codigo='+alu.codigo}" class="btn btn-primary">Editar</a>
+                        <a class="btn btn-danger" th:href="${'/ejercicio3/eliminar?codigo='+alu.codigo}" ><i class="fas fa-user-times"></i> Eliminar</a>
+                        <a class="btn btn-primary" href="/ejercicio3/edicion"><i class="fas fa-edit"></i> Editar</a>
+                        
                     </td>
                 </tr> 
             </table>

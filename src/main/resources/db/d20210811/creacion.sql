@@ -1,4 +1,4 @@
-CREATE TABLE Canciones (
+CREATE TABLE canciones (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	autor VARCHAR(200),
 	titulo VARCHAR(200),

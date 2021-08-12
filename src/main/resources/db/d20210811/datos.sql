@@ -1,4 +1,4 @@
-INSERT INTO Canciones (
+INSERT INTO canciones (
 	autor,titulo,fecha_publicacion,
 	fecha_hora_ultima_reproduccion, activa,precio_reproduccion
 )  values
