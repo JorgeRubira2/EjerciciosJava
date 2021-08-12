@@ -17,15 +17,19 @@
         
     </head>
     <body>
-      <h1>Edición de Alumno</h1>
-      <div>
+      <h1 align="center"> Edición de Alumno</h1>
+      <div th:align="center">
         <br>
-         <label> Codigo del Alumno </label>
+         
          <form th:object="${alumno}"  action="/ejercicio3/guardar" method="post" >
+             <h2 align="center">
+             <span style="color:red" > <label th:align="center" > Codigo del Alumno </label> </span>
+             </h2>
              <div> 
-                <input class="col-1" th:field="*{codigo}"/><br/>
+               
+                 <input th:align="center" style="color:red" th:field="*{codigo}" th:readonly="true" /><br/>
                 <br>
-             </div>
+                
              <br>
              <label>  &nbsp; Nombre  &nbsp; </label> <input class="col-2"  th:field="*{nombre}" /> 
              <br>

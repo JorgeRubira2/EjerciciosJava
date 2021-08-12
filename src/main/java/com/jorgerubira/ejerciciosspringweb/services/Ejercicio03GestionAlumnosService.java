@@ -34,27 +34,25 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public void guardarAlumno(Alumno alumno) {
-        
+     
          Optional <Alumno>  nuevo = alumnos.stream().filter(x -> alumno.getCodigo()== x.getCodigo()).findFirst();
     
         if (nuevo.isPresent())
         {
-            nuevo.get().setCodigo(alumno.getCodigo());
+           
             nuevo.get().setNombre(alumno.getNombre());
-            nuevo.get().setTelefono(alumno.getTelefono());            
+            nuevo.get().setTelefono(alumno.getTelefono());
             nuevo.get().setDireccion(alumno.getDireccion());
-            
-          
+             System.out.println ("IS PRESENT              " + alumno.getCodigo());   
+                      
         }else{
-            long codigo=(int)(Math.random()*99999999);
-            nuevo.get().setCodigo(codigo);
-            nuevo.get().setNombre(alumno.getNombre());
-            nuevo.get().setTelefono(alumno.getTelefono());            
-            nuevo.get().setDireccion(alumno.getDireccion());
+            long codigo2= (long)(Math.random()*99999999);
+           System.out.println ("NO     PRESENT              " + alumno.getCodigo());   
+            alumno.setCodigo(codigo2);
             alumnos.add(alumno); 
                          
         }
-                   
+                  
     }
 
     @Override
@@ -63,23 +61,18 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
                 if (alumnos.get(i).getCodigo() == codigo.intValue() )
                     alumnos.remove(i);
             }
-               
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          
     }
 
     @Override
     public List<Alumno> getAlumnos() {
         
         return alumnos;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     }
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        
-       // Optional<Alumno>  nuevo =  Optional.empty();      
-        //Optional <Alumno> alumno2 = Optional.empty();
-            Alumno alumno2 = new Alumno();   
+         Alumno alumno2 = new Alumno();   
         
          for (int i=0;i < alumnos.size() ;i++){
                 if (alumnos.get(i).getCodigo() == codigo.intValue()) {
@@ -92,22 +85,17 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     }
 
     @Override
+    
     public List<Alumno> getAlumnos(String buscar) {
          List<Alumno> alumnos2=new ArrayList<>();
          
          for (int i=0;i < alumnos.size() ;i++){
                 if (alumnos.get(i).getNombre().equals(buscar) ){
                     alumnos2.add(alumnos.get(i));
-                    System.out.println (" Si       HAY      " );
+                    
                 }
             }
-         
-         System.out.println ("          PASOOOOOOOOOOO  ");
-         int cantidad = 0;
-         cantidad = alumnos2.size();
-                       
-          String cantidad2 = String.valueOf(cantidad);
-          System.out.println ("       Cantidad    " + cantidad2 ) ;
+        
         return alumnos2;
          
     }

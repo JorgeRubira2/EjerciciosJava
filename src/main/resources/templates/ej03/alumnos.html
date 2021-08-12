@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title> Alumnos </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -25,9 +25,13 @@
                  <form id="form" name="form" method="post"> 
                                       
                     <input id="nombre2" name="nombre2" class="col-2" placeholder="Introduce el nombre"/> 
-                    <input type="button" value="Buscar" onclick="enviarFormulario('/ejercicio/buscar')"  class="btn btn-primary"  />
+                    <input type="button" value="Buscar" onclick="enviarFormulario('/ejercicio3/buscar')"  class="btn btn-primary"  />
                                       
                     <input type="button" value="Nuevo"  onclick="enviarFormulario('/ejercicio3/nuevo')" class="btn btn-primary" />
+                    <input type="button" value="Lista Alumnos"  onclick="window.location ='alumnos'" class="btn btn-primary" />
+
+                                                                       
+                     </a> 
                 
                   </form>   
               </spam>
@@ -45,15 +49,15 @@
                                 
                         
                      <tr th:each="alumno:${alumnos}">
-                         <td  th:text="${alumno.codigo}"/> 
+                         <td  th:text="${alumno.codigo}"/>
                          <td  th:text="${alumno.nombre}"/> 
                          <td  th:text="${alumno.telefono}"/> 
                          <td  th:text="${alumno.direccion}"/> 
-                         <td>
-                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class="btn-danger" value='Eliminar'>  Eliminar
+                         <td th:size="30">
+                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class=" btn btn-danger btn-sm"  value='Eliminar'>  Eliminar
                             </a>
                              <div>
-                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn-primary" value='Editar'>  Editar
+                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class=" btn btn-primary btn-sm"   value='Editar'>  Editar
                                                                 
                             </a> 
                                  </div>

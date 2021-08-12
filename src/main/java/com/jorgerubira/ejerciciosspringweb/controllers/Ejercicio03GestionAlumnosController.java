@@ -27,7 +27,7 @@ public class Ejercicio03GestionAlumnosController {
      @GetMapping("/alumnos") 
      public String ListaAlumnos(Model model){        
         model.addAttribute("alumnos", alumnos.getAlumnos());   
-        return "ej03/alumnos";
+        return "/ej03/alumnos";
     }
     
     
@@ -62,30 +62,28 @@ public class Ejercicio03GestionAlumnosController {
        
        List<Alumno> alumnos2 = new ArrayList<>() ;
        alumnos2 = alumnos.getAlumnos(nombre2);
-       
-       System.out.println ( "NOMBRE      " +  nombre2 );
        model.addAttribute ("alumnos", alumnos2);
        
-       System.out.println ( "VACIOOOOOOOO" +  alumnos2.isEmpty());
-       System.out.println (alumnos2.toString());
-       return "redirect:alumnos";
+      
+       return "/ej03/alumnos";
        }
     
     
      @PostMapping("/nuevo") 
      public String nuevoAlumno(Model model){
-             
-      // model.addAttribute ("alumnos", alumnos);
-       
-       return "/ej03/nuevo";
+      
+            return "/ej03/nuevo";
        }
      
      @PostMapping("/agregar") 
-     public String agregarlumno(Model model){
+     public String agregarAlumno(Model model, Alumno alumno){
              
-      // model.addAttribute ("alumnos", alumnos);
+       alumnos.guardarAlumno(alumno);
+       model.addAttribute ("alumnos", alumnos);
        
-       return "/ej03/alumnos";
+       return "redirect:alumnos";
        }
+     
+     
            
 }
