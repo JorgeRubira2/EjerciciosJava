@@ -1,5 +1,7 @@
 {
-    "elements": {},
+    "elements": {
+        "th:block": {}
+    },
     "attributes": {
         "th:classappend": {},
         "th:if": {},
@@ -7,8 +9,10 @@
         "th:object": {
             "context": "form"
         },
+        "th:replace": {},
         "th:each": {},
         "th:href": {},
-        "th:field": {}
+        "th:field": {},
+        "th:fragment": {}
     }
 }

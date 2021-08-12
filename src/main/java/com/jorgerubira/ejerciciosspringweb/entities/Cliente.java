@@ -12,6 +12,18 @@ import lombok.NoArgsConstructor;
 @Entity     //Poner las anotaciones que creas convenientes.
 public class Cliente {
     @Id
-    private Long id;    //Poner las anotaciones
+    private long id;    //Poner las anotaciones
     //poner aquí los campos que creas conveniente.
+    private String firstName;
+    private String lastName;
+    private String title;
+    private String email;
+    private String phone;
+    private String primaryAccount;
+    private String description;
+    private String calle;
+    private String ciudad;
+    private String estado;
+    private String pais;
+    private Integer cp;
 }
