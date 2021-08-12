@@ -146,3 +146,10 @@
 
 - Ajax -> HTML -> $('#destino').html(parametro) , JSON (->deserialize() volcar a un formulario)
 
+- Bases de datos. Tabla
+- Spring Data -> (ORM) JPA (Hibernate) JPQL
+              -> CrudRepository (Operaciones Basica), JpaRepository(Paginado de elementos)
+                  -> (Por defecto: findAll, findById) -> findByFechaAndAutor (Generacion por nomenclatura) Containing, Greate
+              -> Entity (Un Entity por cada tabla), @Id (@GeneratedValue-> ), @Table, @Column
+              -> H2 Base de datos Java (Pruebas)
+
