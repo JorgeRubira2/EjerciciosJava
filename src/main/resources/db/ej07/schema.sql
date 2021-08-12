@@ -1,4 +1,4 @@
-CREATE TABLE Cliente (
+CREATE TABLE cliente (
     id                  INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name          VARCHAR(200),
     last_name           VARCHAR(200),
