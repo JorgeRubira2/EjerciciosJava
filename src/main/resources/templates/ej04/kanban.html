@@ -30,12 +30,13 @@
             <!--            <div class="tarjeta" th:classappend="${t.horasTrabajadas * 2 >= t.horasEstimacion} ? doble: mayor " >-->
             <div class="tarjeta">
                 <a class="btn btn-primary btn-sm" th:href="@{/ejercicio4/buscarPorCodigo(codigo=${t.codigo})}"><i class="far fa-edit"></i></a>
-                <a class="btn btn-success btn-sm" th:href="@{/ejercicio4/buscarPorCodigo(codigo=${t.codigo})}"><i class="fas fa-user-plus"></i></a>
+                <a class="btn btn-success btn-sm" th:href="@{/ejercicio4/buscarPorCodigo2(codigo=${t.codigo})}"><i class="fas fa-user-plus"></i></a>
                 <a class="btn btn-warning btn-sm" th:href="@{/ejercicio4/buscarPorCodigo(codigo=${t.codigo})}"><i class="far fa-clock"></i></a>
                 <a class="btn btn-info btn-sm" th:href="@{/ejercicio4/buscarPorCodigo(codigo=${t.codigo})}"><i class="fab fa-font-awesome-flag"></i></a>
                 <div th:text="${t.descripcion}"> </div> 
                 <div th:text="${t.horasEstimacion}"> </div>
                 <div th:text="${t.propietario}"> </div>
+               
             </div>
         </div>
          <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    

@@ -6,13 +6,14 @@
     </head>
     <body>
         <div class="container">
-             <label>Codigo:</label>
-            <form action="/ejercicio4/modificar" method="post">
+
+            <form action="/ejercicio4/modificarDescripcion" method="post">
+                <label>Codigo:</label>
                 <input name="codigo"  th:value="${tarea.codigo}" readonly />
                 <label>Descripcion:</label>
                 <input th:value="${tarea.descripcion}" name="descripcion"  />
                 <label>Propietario:</label>
-                <input name="propieatario" readonly  th:value="${tarea.propietario}" />
+                <input name="propietario"   th:value="${tarea.propietario}" />
                 <label>Horas Estimadas</label>
                 <input name="horasEstimacion" th:value="${tarea.horasEstimacion}"   />
                 <label>Horas Trabajadas</label>

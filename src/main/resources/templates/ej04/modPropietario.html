@@ -1,0 +1,18 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <form action="/ejercicio4/asignaPersona" method="post">
+                <label>Codigo:</label>
+                <input name="codigo"  th:value="${tarea.codigo}" readonly />              
+                <label>Propietario:</label>
+                <input name="propietario"   th:value="${tarea.propietario}" />
+                <button type="submit" class="btn btn-success">Aceptar</button>
+            </form>
+        </div>
+    </body>
+</html>

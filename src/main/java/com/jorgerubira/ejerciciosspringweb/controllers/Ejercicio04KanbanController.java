@@ -54,8 +54,12 @@ public class Ejercicio04KanbanController {
     public String formulario2() {
         return "ej04/modificar";
     }
+     @GetMapping("/modPropietario")
+    public String formulario3() {
+        return "ej04/modPropietario";
+    }
     
-    @PostMapping("/modificar")
+    @PostMapping("/modificarDescripcion")
     public String modificarTarea(Model model,String codigo, String descripcion, Integer horasEstimacion){
         try {
             service.modificarTarea(codigo, descripcion, horasEstimacion);         
@@ -69,6 +73,42 @@ public class Ejercicio04KanbanController {
     public String buscarPorCodigo(Model model,String codigo){
         model.addAttribute("tarea",service.getTarea(codigo).get());
         return "ej04/modificar";
+    }
+    
+     @GetMapping("/buscarPorCodigo2")
+    public String buscarPorCodigo2(Model model,String codigo){
+        model.addAttribute("tarea",service.getTarea(codigo).get());
+        return "ej04/modPropietario";
+    }
+    
+     @PostMapping("/asignaPersona")
+    public String asignaPersona(Model model,String codigo, String persona){
+        try {
+            service.asignarPersona(codigo,persona);         
+        } catch (OperacionEnListaException ex) {
+            model.addAttribute("error","No existe ninguna tarea relacionada con el codigo proporcionado");
+        }
+        return ("redirect:listaTareas");
+    }
+    
+         @PostMapping("/anyadirHorasTrabajadas")
+    public String anyadirHorasTrabajadas(Model model,String codigo, int horas){
+        try {
+            service.imputarHorasTrabajadas(codigo, horas);
+        } catch (OperacionEnListaException ex) {
+            model.addAttribute("error","No existe ninguna tarea relacionada con el codigo proporcionado");
+        }
+        return ("redirect:listaTareas");
+    }   
+    
+         @PostMapping("/cambiarEstado")
+    public String cambiarEstado(Model model,String codigo, String estado){
+        try {
+            service.cambiarEstado(codigo, estado);
+        } catch (OperacionEnListaException ex) {
+            model.addAttribute("error","No existe ninguna tarea relacionada con el codigo proporcionado");
+        }
+        return ("redirect:listaTareas");
     }
     
 }
