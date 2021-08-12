@@ -30,6 +30,11 @@ public class Ejercicio07GestionClientesController {
         return "ej07/lista";
     }
     
+    @GetMapping("/formulario")
+    public String crear(Model m){
+        return "ej07/formulario";
+    }
+    
     /**
      * Debe devolver la vista ej07/formulario con el atributo clientes que sea la lista
      */
@@ -51,7 +56,7 @@ public class Ejercicio07GestionClientesController {
     /**
      * guardar el objeto en la base de datos y redireccionar a la lista
      */    
-    @PostMapping
+    @PostMapping("/formulario")
     public String save(Model m, Cliente alumno){
         repoClientes.save(alumno);
         return "redirect:/ejercicio7"; 

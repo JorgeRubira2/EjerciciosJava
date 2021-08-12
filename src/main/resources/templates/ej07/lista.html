@@ -1,12 +1,50 @@
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej07/layout::plantilla( ~{::body})">
     <head>
         <title>Titulo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div class="container">
-            <!-- Contenido -->
-        </div>
+            <div class="row ">
+                <button th:attr="onclick=|leerHtmlAjax()|" class="btn btn-info  col-3">Crear nuevo registro</button>
+            </div>
+            <div class="row lista">
+                <hr />
+                <table id="listado" class="table table-striped container-fluid" style="width:100%" >
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <th>Nombre</th>
+                            <th>Nombre de cuenta</th>
+                            <th>Email and Phone</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr th:each="per:${clientes}">
+                            <td class="align-middle">
+                                <input type="checkbox" name="id" th:attr="value=${per.id}" />
+                            </td>
+                            <td>
+                                <p th:text="|${per.firstName} ${per.lastName}|" ></p>
+                                <p th:text="${per.title}" ></p>
+                            </td>
+                            <td>
+                               <i class="fas fa-folder-open"></i> <span th:text="|${per.primaryAccount}|"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-mail-bulk"></i>  <span th:text="${per.email}"></span> <br />
+                                <i class="fas fa-phone"></i>  <span th:text="${per.phone}"></span>
+                            </td>
+                            <td>                        
+                                <a th:href="${'/ejercicio7/' + per.id}" class="btn btn-success"><i class="fas fa-edit fa-sm"></i></a>
+                                <a th:href="${'/ejercicio7/delete/' + per.id}" class="btn btn-danger"><i class="fas fa-trash fa-sm"></i></a>
+                            </td>
+                        </tr>
+                            
+                    </tbody>   
+                </table>
+            </div>
     </body>
 </html>
