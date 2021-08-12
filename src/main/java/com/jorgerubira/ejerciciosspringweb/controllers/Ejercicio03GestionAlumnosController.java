@@ -50,7 +50,6 @@ public class Ejercicio03GestionAlumnosController {
 
 	@GetMapping("/gestionAlumno/eliminar")
 	public String eliminarAlumnos(Model model, Long codigo) {
-
 		service.borrarAlumno(codigo);
 		model.addAttribute("lista", service.getAlumnos());
 
@@ -59,9 +58,8 @@ public class Ejercicio03GestionAlumnosController {
 
 	@PostMapping("/buscarAlumno")
 	public String buscarAlumnos(Model model, String nombre) {
-
+		service.getAlumnos(nombre);
 		model.addAttribute("lista", service.getAlumnos(nombre));
-
 		return "ej03/gestionAlumno";
 	}
 

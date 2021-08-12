@@ -25,7 +25,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
 	@Override
 	public void guardarAlumno(Alumno alumno) {
-		if (alumnos.stream().anyMatch(x -> alumno.getCodigo() == x.getCodigo())) {
+		if (alumnos.stream()
+			.anyMatch(x -> alumno.getCodigo() == x.getCodigo())) {
 			alumnos.removeIf(x -> alumno.getCodigo() == x.getCodigo());
 			alumnos.add(alumno);
 		} else {
@@ -54,7 +55,8 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 	@Override
 	public List<Alumno> getAlumnos(String buscar) {
 		   return alumnos.stream().
-	                filter(x ->x.getNombre().equals(buscar))
+	                filter(x ->x.getNombre()
+	                .equals(buscar))
 	                .collect(Collectors.toList());
 	    }
 
