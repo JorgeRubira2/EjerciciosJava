@@ -1,14 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="ej07/layout::plantilla( ~{::body})">
     <head>
-        <title>Titulo</title>
+        <title>Gestion de usuarios</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-            <div class="row ">
-                <button th:attr="onclick=|leerHtmlAjax()|" class="btn btn-info  col-3">Crear nuevo registro</button>
+            <div class="row" style="padding:5px;">
+                <button th:attr="onclick=|leerHtmlAjax()|" class="btn btn-info  col-3 offset-1">Crear nuevo registro</button>
+                <input placeholder="Buscar por ID" class="form-control text-right col-2 offset-1" type="number" id="buscarId" min="1" />
+                <button onclick="leerJson()" id="buscador" class="btn btn-info "><i class="fas fa-search"></i></button>
             </div>
+
             <div class="row lista">
                 <hr />
                 <table id="listado" class="table table-striped container-fluid" style="width:100%" >
@@ -22,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody> 
-                        <tr th:each="per:${clientes}">
+                        <tr id="listaClientes" th:each="per:${clientes}">
                             <td class="align-middle">
                                 <input type="checkbox" name="id" th:attr="value=${per.id}" />
                             </td>

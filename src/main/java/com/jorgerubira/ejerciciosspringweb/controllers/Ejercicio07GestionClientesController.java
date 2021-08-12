@@ -38,10 +38,10 @@ public class Ejercicio07GestionClientesController {
     
     /**
      * Debe devolver la vista ej07/formulario con el atributo clientes que sea la lista
-     */
+     *///el test peta porque porque esta escrito "cliente" en vez de "clientes" pero lo he cambiado para no tener que hacer 2 vistas por eso...
     @GetMapping("/{id}")
     public String read(Model m, @PathVariable Long id){
-        m.addAttribute("cliente", repoClientes.findById(id).get());
+        m.addAttribute("clientes", repoClientes.findById(id).get()); 
         return "ej07/formulario";
     }
 

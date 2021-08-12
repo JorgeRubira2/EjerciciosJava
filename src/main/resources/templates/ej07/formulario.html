@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="ej06/layout::plantilla( ~{::body})">
+      th:replace="ej07/layout::plantilla( ~{::body})">
     <head>
         <title>Añadir usuario</title>
         <meta charset="UTF-8">
@@ -8,52 +8,89 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     </head>
     <body>
-        <div class="row">
-            <button class="btn btn-success">Guardar</button> 
-        </div>
-        <div class="row">
-            <form id="formulario" th:object="${clientes}" action="formulario" method="POST">
+        <div class="row text-center container-fluid">
+            <form class="col-12" id="formulario" th:object="${clientes}" action="/ejercicio7/formulario" method="POST">
                 <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="firstName">First name</label>
                         <input th:field="*{firstName}" type="text" class="form-control" >
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="primaryAccount">Primary Account</label>
-                        <input th:field="*{primaryAccount}" type="text" class="form-control" >
+                        <input th:field="*{primaryAccount}" type="text" class="form-control" required >
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="lastName">Last Name</label>
-                        <input th:field="*{lastName}" type="text" class="form-control">
+                        <input th:field="*{lastName}" type="text" class="form-control" required>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="phone">Office Phone</label>
                         <input th:field="*{phone}" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="title">Title</label>
                         <input th:field="*{title}" type="text" class="form-control">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label for="email">Email</label>
                         <input th:field="*{email}" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-10">
+                    <div class="col-10">
                         <label for="description">Descripcion</label>
-                        <textarea rows="3" th:field="*{description}" type="number" class="form-control"> </textarea>
+                        <textarea rows="3" th:field="*{description}" type="text" class="form-control"> </textarea>
                     </div>
                 </div>
                 <hr />
                 <div class="form-group row segundo">
-
+                    <div class="col-8">
+                        <label for="calle">Primary Adress</label>
+                        <textarea rows="1" th:field="*{calle}" type="text" class="form-control"> </textarea>
+                    </div>
+                    <div class="col-4">
+                        <th:block th:if="${clientes.id != null && clientes.id != 0}">
+                            <input type="hidden" th:field="*{id}" />
+                            <a href="/ejercicio7" class="btn btn-info col-10">Volver a la lista</a>
+                        </th:block>     
+                    </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label for="ciudad">City</label>
+                        <input th:field="*{ciudad}" type="text" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="estado">State</label>
+                        <input th:field="*{estado}" type="text" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <button id="limpiar" class="btn btn-danger col-10">Limpiar</button>  
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label for="pais">Country</label>
+                        <input th:field="*{pais}" type="text" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="cp">Postal code</label>
+                        <input th:field="*{cp}" type="text" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" class="btn btn-success col-10"></input>  
+                    </div>
+                </div>  
             </form>
         </div>
+        <script>
+            $("#limpiar").click(function(){
+                $("#formulario").trigger("reset");
+            });
+        </script>
     </body>
 </html>

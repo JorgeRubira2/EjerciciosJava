@@ -67,8 +67,8 @@ public class Ejercicio07GestionClientesControllerTest {
         mockMvc.perform(get(new URI("/ejercicio7/1")))
                .andExpect(status().isOk())
                .andExpect(view().name("ej07/formulario"))
-               .andExpect(model().attributeExists("cliente"))
-               .andExpect(model().attribute("cliente", cli));
+               .andExpect(model().attributeExists("clientes"))
+               .andExpect(model().attribute("clientes", cli));
     }
 
     @Test
