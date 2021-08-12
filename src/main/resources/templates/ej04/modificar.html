@@ -6,24 +6,21 @@
     </head>
     <body>
         <div class="container">
-            <form action="/ejercicio4/addTarea" method="post">
-                <input name="codigo"  type="hidden" />
+             <label>Codigo:</label>
+            <form action="/ejercicio4/modificar" method="post">
+                <input name="codigo"  th:value="${tarea.codigo}" readonly />
                 <label>Descripcion:</label>
-                <input th:value="${descripcion}" name="descipcion"  />
+                <input th:value="${tarea.descripcion}" name="descripcion"  />
                 <label>Propietario:</label>
-                <input name="propieatario"  />
+                <input name="propieatario" readonly  th:value="${tarea.propietario}" />
                 <label>Horas Estimadas</label>
-                <input name="horasEstimadas"   />
-                <label>Descripcion:</label>
-                <input name="horasTrabajadas"  />
-                <label>Descripcion:</label>
-                <input name="estado"  />
+                <input name="horasEstimacion" th:value="${tarea.horasEstimacion}"   />
+                <label>Horas Trabajadas</label>
+                <input name="horasTrabajadas" readonly th:value="${tarea.horasTrabajadas}" />
+                <label>Estado:</label>
+                <input name="estado" readonly th:value="${tarea.estado}" />
                 <button type="submit" class="btn btn-success">Aceptar</button>
             </form>
         </div>
     </body>
 </html>
-private String propietario; //Persona que está realizando esta tarea.
-    private Integer horasEstimacion; //Tiempo estimado en la tarea. Opcional
-    private Integer horasTrabajadas; //Tiempo de trabajo en la tarea. 
-    private String estado; //Roadmap

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * En las tarjetas mostrar la descripción, persona responsable, horas trabajadas/horas estimadas.
  * 
  */
-@Controller("/controlador")
+@Controller
 @RequestMapping("/ejercicio4")
 public class Ejercicio04KanbanController {
     @Autowired
@@ -34,8 +35,7 @@ public class Ejercicio04KanbanController {
     
     @GetMapping("/listaTareas")
     public String listarTareas(Model model){
-        model.addAttribute("listaTareas",service.getTareas());
-        
+        model.addAttribute("listaTareas",service.getTareas());  
         return("ej04/kanban");
     }
     
@@ -50,13 +50,25 @@ public class Ejercicio04KanbanController {
         return "ej04/crear";
     }
     
-    @GetMapping("/modificar")
-    public String modificarTarea(Model model,String codigo, String descripcion, Integer horasEstamacion){
+    @GetMapping("/modificarForm")
+    public String formulario2() {
+        return "ej04/modificar";
+    }
+    
+    @PostMapping("/modificar")
+    public String modificarTarea(Model model,String codigo, String descripcion, Integer horasEstimacion){
         try {
-            service.modificarTarea(codigo, descripcion, horasEstamacion);         
+            service.modificarTarea(codigo, descripcion, horasEstimacion);         
         } catch (OperacionEnListaException ex) {
             model.addAttribute("error","No existe ninguna tarea relacionada con el codigo proporcionado");
         }
         return ("redirect:listaTareas");
     }
+    
+    @GetMapping("/buscarPorCodigo")
+    public String buscarPorCodigo(Model model,String codigo){
+        model.addAttribute("tarea",service.getTarea(codigo).get());
+        return "ej04/modificar";
+    }
+    
 }
