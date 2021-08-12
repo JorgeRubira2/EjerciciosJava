@@ -18,6 +18,10 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     private List<Alumno> alumnos = new ArrayList<>(); 
     
+    public Ejercicio03GestionAlumnosService(){ 
+        alumnos.add(new Alumno(1L,"A","B","C"));
+    }
+    
     @Override 
     public void guardarAlumno(Alumno alumno) {
        

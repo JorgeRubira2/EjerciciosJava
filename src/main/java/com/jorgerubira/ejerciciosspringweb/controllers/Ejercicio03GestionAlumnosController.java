@@ -5,7 +5,11 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
+import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,16 +30,40 @@ public class Ejercicio03GestionAlumnosController {
     
     @GetMapping("/listado")
     public String lista(Model model) {
-        model.addAttribute("listaAlumnos", gest.getAlumnos());
+        model.addAttribute("lista", gest.getAlumnos());
         return "ej03/listadoAlumnos";
     }
     
     @GetMapping("/edicion")
     public String edicion(Model model) {
-        model.addAttribute("listaAlumnos", gest.getAlumnos());
+        model.addAttribute("lista", gest.getAlumnos());
         return "ej03/nuevoAlumno";
     }
     
-    //@PostMapping("/listado")
-    //public String 
+    @PostMapping("/guardar")
+    public String insertar (Model m, Alumno nuevoAlumno){
+        
+        gest.guardarAlumno(nuevoAlumno);
+        
+        m.addAttribute("lista", gest.getAlumnos());
+        
+        return "ej03/nuevoAlumno";
+    }
+    
+    @PostMapping("/listado")
+    public String listado (Model m, String nombre){
+        
+             
+        m.addAttribute("lista", gest.getAlumnos(nombre));
+        
+        return "ej03/listadoAlumnos";
+    }
+        
+    @GetMapping("/eliminar")
+    public String borrar (Model model, Long codigo){
+        gest.borrarAlumno(codigo);//Llamamos al método que hay para dar de baja
+        model.addAttribute("lista", gest.getAlumnos());
+        
+        return"ej03/listadoAlumnos";
+    }
 }

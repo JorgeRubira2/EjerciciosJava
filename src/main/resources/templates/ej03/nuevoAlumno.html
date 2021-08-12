@@ -23,23 +23,23 @@ and open the template in the editor.
                 <div class="row">
                     <div class="from-group col-12 mt-4">
                         <label>Codigo</label>
-                        <input disabled class="form-control" type="text" name="valor1" placeholder="Ingrese el código del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input disabled class="form-control" type="text" name="codigo" placeholder="Ingrese el código del alumno" th:value="${valor1}" min="-99999" max="99999"/>
                     </div>
                     <div class="from-group col-12 mt-4">
                         <label>Nombre</label>
-                        <input class="form-control" type="text" name="valor1" placeholder="Ingrese el nombre del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input class="form-control" type="text" name="nombre" placeholder="Ingrese el nombre del alumno" th:value="${valor1}" min="-99999" max="99999"/>
                     </div>
                     <div class="from-group col-12 mt-4">
                         <label>Teléfono</label>
-                        <input class="form-control" type="number" name="valor1" placeholder="Ingrese el teléfono del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input class="form-control" type="number" name="telefono" placeholder="Ingrese el teléfono del alumno" th:value="${valor1}" min="-99999" max="99999"/>
                     </div>
                     <div class="from-group col-12 mt-4">
                         <label>Dirección</label>
-                        <input class="form-control" type="text" name="valor1" placeholder="Ingrese la dirección del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input class="form-control" type="text" name="direccion" placeholder="Ingrese la dirección del alumno" th:value="${valor1}" min="-99999" max="99999"/>
                     </div>
                 </div>
             </form>
-            <button type="button" value="Buscar"  class="btn btn-success mt-4"><i class="far fa-plus-square"></i> Insertar</button>
+            <input type="submit" value="Buscar" class="btn btn-success mt-4"><i class="far fa-plus-square"></i> Insertar</input>
         </div>
 
         <!-- Scripts JQuery, Bootstrap, Fontawesome -->

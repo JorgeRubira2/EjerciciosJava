@@ -1,0 +1,17 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:text": {
+            "context": "span"
+        },
+        "th:include": {
+            "context": "div"
+        },
+        "th:each": {
+            "context": "div"
+        },
+        "th:fragment": {
+            "context": "div"
+        }
+    }
+}
