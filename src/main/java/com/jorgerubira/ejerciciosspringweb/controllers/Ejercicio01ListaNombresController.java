@@ -47,7 +47,8 @@ public class Ejercicio01ListaNombresController {
             e.getStackTrace();
         }
         model.addAttribute("Lista", lista.getLista());
-        return "ej01/listaPersonas";
+       // return "ej01/listaPersonas";
+       return "redirect:listaPersonas";
     }
     
     @PostMapping ("/eliminar")
@@ -57,12 +58,8 @@ public class Ejercicio01ListaNombresController {
         lista.bajaNombre(nombre);
         model.addAttribute("Lista", lista.getLista());
                  
-        return "ej01/listaPersonas";
+       // return "ej01/listaPersonas";
+       return "redirect:listaPersonas";
     }
     
-    
-            
-     //       obtener llamada la vista
-            
-            // implementar los post agregar y eliminar
 }
