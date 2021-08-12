@@ -17,6 +17,7 @@
         "th:replace": {},
         "th:href": {},
         "th:value": {},
+        "th:attr": {},
         "th:name": {}
     }
 }

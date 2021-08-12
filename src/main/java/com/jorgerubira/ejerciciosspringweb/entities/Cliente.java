@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data  
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity (name="Clientes")    //Poner las anotaciones que creas convenientes.
+@Entity (name="clientes")    //Poner las anotaciones que creas convenientes.
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
