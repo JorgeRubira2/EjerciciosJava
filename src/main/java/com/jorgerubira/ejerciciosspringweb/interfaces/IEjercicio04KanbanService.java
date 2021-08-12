@@ -13,9 +13,9 @@ import java.util.Optional;
 /**
  * Gestiona una lista de tareas.
  * Colores:
- *    Si horas estidadas + 1.2 < horas trabajadas -> rojo
- *    Si horas estidadas < horas trabajadas -> naranja
- *    Si horas estidadas >= horas trabajadas -> verde
+ *    Si horas estimadas + 1.2 < horas trabajadas -> rojo
+ *    Si horas estimadas < horas trabajadas -> naranja
+ *    Si horas estimadas >= horas trabajadas -> verde
  */
 public interface IEjercicio04KanbanService {
     
@@ -32,6 +32,7 @@ public interface IEjercicio04KanbanService {
      * Modifica la tarea de la misma que tenga el código introducido.
      * Devuelve una excepción si el código no encuentra la tarea
      */
+    
     public void modificarTarea(String codigo, String descripcion, Integer horasEstimacion) throws OperacionEnListaException;
     
     /**

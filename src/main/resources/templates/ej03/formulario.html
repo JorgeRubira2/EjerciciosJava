@@ -1,11 +1,9 @@
-<html xmlns:th="https://www.thymeleaf.org"
-      th:replace='ej03/gestionAlumnos::layout(~{:: .container})'>
+<html xmlns:th="https://www.thymeleaf.org">
     <body>
-        <div class="container">
-            <form th:object="${alumno}" action="/controlador/añadir" method="post">
-                <input type="hidden" th:field="*{id}"/>
+        <div id="container">
+            <form th:object="${alumno}" action="/controlador/add" method="post">
                 <h1>Introduzca un nuevo alumno</h1>
-                <div class="from-group col-4">
+                <div class="from-group col-20">
                     <div class="d-flex primer-grupo">
                         <input class="form-control nuevo-alumno-input" th:field="*{codigo}" placeholder="Ingrese un código" /> 
                         <input class="form-control" th:field="*{nombre}" placeholder="Ingrese un nombre" />
@@ -15,7 +13,7 @@
                         <input class="form-control" th:field="*{direccion}" placeholder="Ingrese una dirección" />
                     </div>
                 </div>
-                <div class="col-1 boton-guardar">
+                <div class="col-2 boton-guardar">
                     <button type="submit" value="guardar" class="btn btn-primary far fa-save"></button>                
                 </div> 
             </form>

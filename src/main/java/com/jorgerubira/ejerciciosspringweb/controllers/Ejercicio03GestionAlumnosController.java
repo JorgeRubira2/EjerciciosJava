@@ -27,24 +27,15 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/gestionAlumnos";
     }
 
-    @GetMapping("/añadir")
+    @PostMapping("/add")
     public RedirectView incluirAlumnos(Model model, Alumno alumno) {
-        model.addAttribute("alumno", alumno);
         service.guardarAlumno(alumno);
         return new RedirectView ("gestionAlumnos");
     }
 
-    @PostMapping("/buscar")
-    public String buscarAlumnosPorCodigo(Model model, Long codigo) {
-        service.getAlumno(codigo);
-        model.addAttribute("alumno", service.getAlumnos());
-        return "ej03/gestionAlumnos";
-    }
-
     @PostMapping("/buscarPorNombre")
     public String buscarAlumnosPorNombre(Model model, String nombre) {
-        service.getAlumnos(nombre);
-        model.addAttribute("alumno", service.getAlumnos());
+        model.addAttribute("alumno", service.getAlumnos(nombre));
         return "ej03/gestionAlumnos";
     }
 
@@ -61,5 +52,15 @@ public class Ejercicio03GestionAlumnosController {
         model.addAttribute("alumno", service.getAlumnos());
         return new RedirectView ("gestionAlumnos");
     }
-
+    
+    @GetMapping("/formulario")
+    public String formulario(Model model, Long codigo) {
+        if(codigo!=null){
+        model.addAttribute("alumno", service.getAlumno(codigo));
+        } else{
+        model.addAttribute("alumno", new Alumno());
+        }
+        return "ej03/formulario";
+    }
+    
 }

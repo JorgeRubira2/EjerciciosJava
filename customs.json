@@ -1,0 +1,9 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:onclick": {},
+        "th:fragment": {
+            "context": "html"
+        }
+    }
+}

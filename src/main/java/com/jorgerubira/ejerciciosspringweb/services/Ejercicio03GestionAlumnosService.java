@@ -21,14 +21,15 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     private List<Alumno> listaAlumnos = new ArrayList<>();
 
     public Ejercicio03GestionAlumnosService() {
+        listaAlumnos.add(new Alumno(1L, "Mario", "7865", "C/dfcvbg"));
         listaAlumnos.add(new Alumno(2L, "Ana", "444", "C/rwr"));
         listaAlumnos.add(new Alumno(3L, "Pedro", "6753648", "C/pogbtr"));
         listaAlumnos.add(new Alumno(4L, "Lucas", "6543895", "C/hygdtfrb"));
-                
     }
     
     @Override
     public void guardarAlumno(Alumno alumno) {
+        
        Optional<Alumno> alumnoGuardar = listaAlumnos.stream()
                .filter(al -> al.getCodigo() == alumno.getCodigo())
                .findFirst();
@@ -39,6 +40,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
             alumnoGuardar.get().setDireccion(alumno.getDireccion());
             alumnoGuardar.get().setTelefono(alumno.getTelefono());
         } else {
+            alumno.setCodigo((long)(Math.random()*999999999));
             listaAlumnos.add(alumno);
         }
     }
