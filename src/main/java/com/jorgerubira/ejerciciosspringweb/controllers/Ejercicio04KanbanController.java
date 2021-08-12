@@ -66,7 +66,7 @@ public class Ejercicio04KanbanController {
     }
 
     @GetMapping("/modificar") //URL A LLAMAR 
-    public String editarAlumno(Model model, String codigo) {
+    public String modificarTarea(Model model, String codigo) {
 
         Optional<TareaKanban> tar = service.getTarea(codigo);
         if (tar.isPresent()) {
@@ -85,16 +85,15 @@ public class Ejercicio04KanbanController {
     }
 
     @PostMapping("/addpersona") //URL A LLAMAR
-    public String addPersona(Model model, String codigo, String persona) {
+    public String addPersona(Model model, String codigo, String propietario) {
         try {
-            model.addAttribute("codigo", codigo);
-            model.addAttribute("persona", persona);
- 
-            service.asignarPersona(codigo, persona);
+
+            service.asignarPersona(codigo, propietario);
         } catch (OperacionEnListaException ex) {
             Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return "redirect:devolverlista";
     }
+
 }
