@@ -1,0 +1,57 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="d20210810/layout::layout( ~{::body}, ~{::misscripts} )">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <div class="container">
+            <table class="table table-striped">
+                <tr th:each="per:${personas}"> 
+                    <td th:text="${per.id}"/>
+                    <td th:text="${per.nombre}"/>
+                    <td th:text="${per.apellido1}"/>
+                    <td th:text="${per.direccion}"/>
+                    <td>
+                        <input type="button" th:onclick="|leerJsonAjax(${per.id})|" value="Editar"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="formularioPersona" style="display:none" >
+            <form action="/url" method="post">
+                <input type="hidden" name="id" /><br/>
+                <input class="form-control" name="nombre" /><br/>
+                <input class="form-control" name="apellido1" /><br/>
+                <input class="form-control" name="direccion"/><br/>
+                <input class="btn btn-primary" type="submit" value="enviar"/>
+            </form>
+        </div>        
+        
+    </body>
+    <misscripts>
+        <script>
+            function leerJsonAjax(pId){
+                $.ajax({
+                    url:"jsonPersona",   //<--Ejecutamos del contra esta url
+                    data:{              //<- Parametros ?id=4
+                        id: pId,
+                    },
+                    dataType:"json",
+                    success: function(pJson){    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message: "<div id='formBB'>" + $('#formularioPersona').html() + "</div>"
+                        });
+                        $('#formBB form').deserialize(pJson);
+                    },
+                    error: function (err){
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
+        </script>
+    </misscripts>    
+</html>

@@ -11,15 +11,15 @@ import com.jorgerubira.ejerciciosspringweb.domain.MedallaPais;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio05MedalleroService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
- 
 
 @Service
-public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService{
-    
+public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService {
+
     private List<Medalla> medallas = new ArrayList<>();
-    
-    public Ejercicio05MedalleroService(){
+
+    public Ejercicio05MedalleroService() {
         medallas.add(new Medalla("China", "Peso medio femenino", "Oro", "Lucha", "Li Qian"));
         medallas.add(new Medalla("Gran Bretaña", "Peso medio femenino", "Plata", "Lucha", "Lauren Price"));
         medallas.add(new Medalla("Kenia", "Maratón masculino", "Oro", "Atletismo", "E. Kipchoge"));
@@ -39,14 +39,15 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
     }
 
     @Override
-    public List<Medalla> getMedallas() {    
-        
-       return medallas;
-    }
+    public List<Medalla> getMedallas() {
 
+        return medallas;
+    }
+ 
     @Override
     public List<MedallaPais> obtenerRankingPorPais() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -63,10 +64,5 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
     public List<MedallaAtleta> obtenerRankingPorAlteta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
-    
-    
+
 }
