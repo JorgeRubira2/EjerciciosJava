@@ -159,7 +159,7 @@
         <div th:fragment="fila(codigo,descripcion,propietario,horasEstimacion,horasTrabajadas,estado)" style="display:none">
             <div class="row ml-1">
                 <div class="card">
-
+ 
                     <div class="card-header" th:text="${descripcion}" ></div>
                     <div class="card-body" th:text="${propietario}"></div>
                     <div class="card-body" th:text="${horasEstimacion}"></div>
@@ -214,13 +214,13 @@
             $("#codigo").val(codigo);
         }
     </script>
- 
+
     <script>
         //scrip para añadir horas
         function addhoras(codigo) {
 
             $('#modalHoras').modal('show');
-            $("#codigo2").val(codigo);
+            $("#codigo2").val(codigo); 
         }
     </script> 
 </html>

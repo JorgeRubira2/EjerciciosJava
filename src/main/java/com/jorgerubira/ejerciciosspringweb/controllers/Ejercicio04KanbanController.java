@@ -97,15 +97,15 @@ public class Ejercicio04KanbanController {
     }
 
     @PostMapping("/addhoras") //URL A LLAMAR
-    public String imputarHoras(Model model, String codigo, int horas) {
+    public String imputarHoras(Model model, String codigo2, int horas) {
         try {
 
-            service.imputarHorasTrabajadas(codigo, horas);
+            service.imputarHorasTrabajadas(codigo2, horas);
         } catch (OperacionEnListaException ex) {
             Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
 
         return "redirect:devolverlista";
-    }
+    } 
 
 }
