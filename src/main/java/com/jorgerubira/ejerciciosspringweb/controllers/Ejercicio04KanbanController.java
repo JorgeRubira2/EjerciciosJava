@@ -106,6 +106,18 @@ public class Ejercicio04KanbanController {
         }
 
         return "redirect:devolverlista";
-    } 
+    }
+
+    @PostMapping("/modificartarea") //URL A LLAMAR
+    public String modificarTarea(Model model, String codigo3, String descripcion2, Integer horasEstimacion2) {
+
+        try {
+            service.modificarTarea(codigo3, descripcion2, horasEstimacion2);
+        } catch (OperacionEnListaException ex) {
+            Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "redirect:devolverlista";
+    }
 
 }
