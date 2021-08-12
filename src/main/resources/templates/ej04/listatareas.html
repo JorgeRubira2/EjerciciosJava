@@ -68,65 +68,75 @@
 
                     <tr class="align-baseline">
                         <td id="roadmap">
-                           <a class=" d-flex justify-content-end mx-3 mt-2 text-decoration-none" onclick="nuevaTareaAjax()" >+ Añadir tarea</a>
-                            <div class="card-body " th:classappend="|${(t.horasEstimacion*2)<t.horasTrabajadas ? 'rojo' : ''}
+                            <a class=" d-flex justify-content-end mx-3 mt-2 text-decoration-none" onclick="nuevaTareaAjax()" >+ Añadir tarea</a>
+                            <div class="card-body" th:classappend="|${(t.horasEstimacion*2)<t.horasTrabajadas ? 'rojo' : ''}
                                  ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
                                  ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
-                                 |" t h:each="t:${tareas}" th:if="${t.estado == 'Roadmap'}" >
-                                <a class="float-right text-dark bg-light text-decoration-none" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">Editar</a> 
+                                 |" th:each="t:${tareas}" th:if="${t.estado == 'Roadmap'}" >
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; Editar &nbsp;</a> 
+                                <a class="float-right rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarEstadoAjax(this.getAttribute('codigo'),'Waiting')">&nbsp; <i class="fas fa-arrow-right"></i> &nbsp;</a> 
+                                <!-- <a class="float-right rounded text-dark bg-light text-decoration-none " th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; -> &nbsp;</a> 
+                                <a class="float-right rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; Modificar horas &nbsp;</a> 
+                                <a class="float-right rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; Cambiar nombre &nbsp;</a> 
+                                -->
                                 <br>
-                                
-                                        <h5 class="card-title" th:text="${t.propietario}"></h5>
-                                        
-                                        <p class="card-text" th:text="${t.descripcion}"></p>
-                                        <p class="card-text"><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
-                                    
-                                    </div>
+
+                                <h5 class="card-title"  th:codigo="${t.codigo}"  th:onclick="modificarNombreAjax(this.getAttribute('codigo'))"> <span  th:text="${t.propietario}"></span> <i class="fas fa-user-edit text-primary"></i></h5> 
+                                <p class="card-text" th:text="${t.descripcion}"></p>
+                                <p class="card-text"><i class="fas fa-user-clock text-white mr-2" th:codigo="${t.codigo}" th:onclick="modificarHorasTrabajadasAjax(this.getAttribute('codigo'))"></i><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
+
+                            </div>
                         </td>
                         <td id="waiting">
-                            <a class=" d-flex justify-content-end mx-3 text-decoration-none" >+ Añadir tarea</a>
-                        <div class="card-body" th:classappend="|t.horasTrabajadas != null && ${(t.horasEstimacion*2)<t.horasTrabajadas ? 'rojo' : ''}
+                            <a class=" d-flex justify-content-end mx-3 mt-2 text-decoration-none" onclick="nuevaTareaAjax()" >+ Añadir tarea</a>
+                            <div class="card-body" th:classappend="|t.horasTrabajadas != null && ${(t.horasEstimacion*2)<t.horasTrabajadas ? 'rojo' : ''}
                                  ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
                                  ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
                                  |" th:each="t:${tareas}" th:if="${t.estado == 'Waiting'}" >
-                                <a class="float-right text-dark bg-light text-decoration-none" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">Editar</a> 
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; Editar &nbsp;</a> 
+                                <a class="float-right rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarEstadoAjax(this.getAttribute('codigo'),'Working')">&nbsp; <i class="fas fa-arrow-right"></i> &nbsp;</a> 
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarEstadoAjax(this.getAttribute('codigo'),'Roadmap')">&nbsp; <i class="fas fa-arrow-left"></i> &nbsp;</a> 
                                 <br>
-                                        <h5 class="card-title" th:text="${t.propietario}"></h5>
-                                        <p class="card-text" th:text="${t.descripcion}"></p>
-                                        <p class="card-text"><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
-                                    </div>
-                                     
-                        
+                                <h5 class="card-title"  th:codigo="${t.codigo}"  th:onclick="modificarNombreAjax(this.getAttribute('codigo'))"> <span  th:text="${t.propietario}"></span> <i class="fas fa-user-edit text-primary"></i></h5> <p class="card-text" th:text="${t.descripcion}"></p>
+                                <p class="card-text"><i class="fas fa-user-clock text-white mr-2" th:codigo="${t.codigo}" th:onclick="modificarHorasTrabajadasAjax(this.getAttribute('codigo'))"></i><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
+
+                            </div>
+
+
                         </td>
                         <td id="working">
-                            <a class=" d-flex justify-content-end mx-3 text-decoration-none" >+ Añadir tarea</a>                        
+                            <a class=" d-flex justify-content-end mx-3 mt-2 text-decoration-none" onclick="nuevaTareaAjax()" >+ Añadir tarea</a>                      
                             <div class="card-body" th:classappend="|${(t.horasEstimacion*2)<t.horasTrabajadas ? 'rojo' : ''}
                                  ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
                                  ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
                                  |" th:each="t:${tareas}" th:if="${t.estado == 'Working'}" >
-                                <a class="float-right text-dark bg-light text-decoration-none" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">Editar</a> 
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; Editar &nbsp;</a> 
+                                <a class="float-right rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarEstadoAjax(this.getAttribute('codigo'),'Done')">&nbsp; <i class="fas fa-arrow-right"></i> &nbsp;</a> 
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarEstadoAjax(this.getAttribute('codigo'),'Waiting')">&nbsp; <i class="fas fa-arrow-left"></i> &nbsp;</a> 
                                 <br>
-                                        <h5 class="card-title" th:text="${t.propietario}"></h5>
-                                        <p class="card-text" th:text="${t.descripcion}"></p>
-                                        <p class="card-text"><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
-                                    
-                                    </div>
-                            
+                                <h5 class="card-title"  th:codigo="${t.codigo}"  th:onclick="modificarNombreAjax(this.getAttribute('codigo'))"> <span  th:text="${t.propietario}"></span> <i class="fas fa-user-edit text-primary"></i></h5>
+                                <p class="card-text" th:text="${t.descripcion}"></p>
+                                <p class="card-text"><i class="fas fa-user-clock text-white mr-2" th:codigo="${t.codigo}" th:onclick="modificarHorasTrabajadasAjax(this.getAttribute('codigo'))"></i><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
+
+
+                            </div>
+
                         </td>
                         <td id="done">
-                        <a class=" d-flex justify-content-end mx-3 text-decoration-none" >+ Añadir tarea</a>
+                            <a class=" d-flex justify-content-end mx-3 mt-2 text-decoration-none" onclick="nuevaTareaAjax()" >+ Añadir tarea</a>
                             <div class="card-body" th:classappend="|${(t.horasEstimacion*2)<t.horasTrabajadas ? 'rojo' : ''}
                                  ${(t.horasEstimacion)<t.horasTrabajadas ? 'naranja' : ''}
                                  ${(t.horasEstimacion)>=t.horasTrabajadas ? 'verde' : ''}
                                  |" th:each="t:${tareas}" th:if="${t.estado == 'Done'}" >
-                                <a class="float-right text-dark bg-light text-decoration-none" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">Editar</a> 
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarTareaAjax(this.getAttribute('codigo'))">&nbsp; Editar &nbsp;</a> 
+                                <a class="float-left rounded text-dark bg-light text-decoration-none mr-2" th:codigo="${t.codigo}"  th:onclick="modificarEstadoAjax(this.getAttribute('codigo'),'Working')">&nbsp; <i class="fas fa-arrow-left"></i> &nbsp;</a> 
                                 <br>
-                                        <h5 class="card-title" th:text="${t.propietario}"></h5>
-                                        <p class="card-text" th:text="${t.descripcion}"></p>
-                                        <p class="card-text"><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
-                                    </div>
-                                    
-                            
+                                <h5 class="card-title"  th:codigo="${t.codigo}"  th:onclick="modificarNombreAjax(this.getAttribute('codigo'))"> <span  th:text="${t.propietario}"></span> <i class="fas fa-user-edit text-primary"></i></h5><p class="card-text" th:text="${t.descripcion}"></p>
+                               <p class="card-text"><i class="fas fa-user-clock text-white mr-2" th:codigo="${t.codigo}" th:onclick="modificarHorasTrabajadasAjax(this.getAttribute('codigo'))"></i><small class="text-white" th:text="|${t.horasTrabajadas}h/${t.horasEstimacion}h|"></small></p>
+
+                            </div>
+
+
                         </td>
                     </tr>
                 </tbody>
@@ -139,45 +149,100 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
         <script>
-             function modificarTareaAjax(pCodigo){
-                $.ajax({
-                    url:"formulario",   //<--Ejecutamos del contra esta url
-                    data:{              //<- Parametros ?id=4
-                        codigo: pCodigo
-                        //nombre: 'Ana',
-                        //wrw: 'rwr',
-                    },
-                    success: function(pHtml){    //<- Nos devuelven la respuesta. 
-                        bootbox.dialog({
-                            message:pHtml
-                        });
-                    },
-                    error: function (err){
-                        alert('Si la URL esta mal. Codigo 404');
-                    }
-                });
-            }
-            
-            function nuevaTareaAjax(){
-                $.ajax({
-                    url:"formularioNuevo",   //<--Ejecutamos del contra esta url
-                    data:{              //<- Parametros ?id=4
-                        //codigo: pCodigo
-                        //nombre: 'Ana',
-                        //wrw: 'rwr',
-                    },
-                    success: function(pHtml){    //<- Nos devuelven la respuesta. 
-                        bootbox.dialog({
-                            message:pHtml
-                        });
-                    },
-                    error: function (err){
-                        alert('Si la URL esta mal. Codigo 404');
-                    }
-                });
-            }
-            
-            
+                                function modificarTareaAjax(pCodigo) {
+                                    $.ajax({
+                                        url: "formulario", //<--Ejecutamos del contra esta url
+                                        data: {//<- Parametros ?id=4
+                                            codigo: pCodigo
+                                                    //nombre: 'Ana',
+                                                    //wrw: 'rwr',
+                                        },
+                                        success: function (pHtml) {    //<- Nos devuelven la respuesta. 
+                                            bootbox.dialog({
+                                                message: pHtml
+                                            });
+                                        },
+                                        error: function (err) {
+                                            alert('Si la URL esta mal. Codigo 404');
+                                        }
+                                    });
+                                }
+
+                                function modificarNombreAjax(pCodigo) {
+                                    $.ajax({
+                                        url: "formularioNombre", //<--Ejecutamos del contra esta url
+                                        data: {//<- Parametros ?id=4
+                                            codigo: pCodigo
+                                                    //nombre: 'Ana',
+                                                    //wrw: 'rwr',
+                                        },
+                                        success: function (pHtml) {    //<- Nos devuelven la respuesta. 
+                                            bootbox.dialog({
+                                                message: pHtml
+                                            });
+                                        },
+                                        error: function (err) {
+                                            alert('Si la URL esta mal. Codigo 404');
+                                        }
+                                    });
+                                }
+                                
+                                function modificarHorasTrabajadasAjax(pCodigo) {
+                                    $.ajax({
+                                        url: "cambiarHorasTrabajadas", //<--Ejecutamos del contra esta url
+                                        data: {//<- Parametros ?id=4
+                                            codigo: pCodigo
+                                                    //nombre: 'Ana',
+                                                    //wrw: 'rwr',
+                                        },
+                                        success: function (pHtml) {    //<- Nos devuelven la respuesta. 
+                                            bootbox.dialog({
+                                                message: pHtml
+                                            });
+                                        },
+                                        error: function (err) {
+                                            alert('Si la URL esta mal. Codigo 404');
+                                        }
+                                    });
+                                }
+
+                                function modificarEstadoAjax(pCodigo, pEstado) {
+                                    $.ajax({
+                                        url: "cambiarEstado", //<--Ejecutamos del contra esta url
+                                        data: {//<- Parametros ?id=4
+                                            codigo: pCodigo,
+                                            estado: pEstado
+                                                    //wrw: 'rwr',
+                                        }, success: function () {
+                                            location.reload();
+                                        }
+                                        ,
+                                        error: function (err) {
+                                            alert('Si la URL esta mal. Codigo 404');
+                                        }
+                                    });
+                                }
+
+                                function nuevaTareaAjax() {
+                                    $.ajax({
+                                        url: "formularioNuevo", //<--Ejecutamos del contra esta url
+                                        data: {//<- Parametros ?id=4
+                                            //codigo: pCodigo
+                                            //nombre: 'Ana',
+                                            //wrw: 'rwr',
+                                        },
+                                        success: function (pHtml) {    //<- Nos devuelven la respuesta. 
+                                            bootbox.dialog({
+                                                message: pHtml
+                                            });
+                                        },
+                                        error: function (err) {
+                                            alert('Si la URL esta mal. Codigo 404');
+                                        }
+                                    });
+                                }
+
+
         </script>
 
     </body>

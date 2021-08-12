@@ -20,11 +20,13 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     
      public Ejercicio04KanbanService(){
+         
         /*crearTarea("Tarea test 1", 100);
         crearTarea("Tarea test 2", 10);
         crearTarea("Tarea test 3", 10);
         crearTarea("Tarea test 4", 10);*/
-        /*
+        /*tareas.add(new TareaKanban(UUID.randomUUID().toString(), "Tarea ejemplo Roadmap", "Xema", 10, 10, "Roadmap"));
+        
         tareas.add(new TareaKanban(UUID.randomUUID().toString(), "Tarea ejemplo Roadmap", "Xema", 10, 10, "Roadmap"));
         tareas.add(new TareaKanban(UUID.randomUUID().toString(), "Tarea ejemplo Roadmap", "Xema", 10, 0, "Roadmap"));
         tareas.add(new TareaKanban(UUID.randomUUID().toString(), "Tarea ejemplo Waiting", "Xena", 10, 15, "Waiting"));
