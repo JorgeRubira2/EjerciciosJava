@@ -4,69 +4,110 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        
+         <style>
+            body{
+                font-family: "Verdana";
+            }
+            .col-3 {
+                text-align: center;
+                border: 1px solid black;
+            }
+            .col{
+                border-top: 1px solid black;
+                border-bottom: 1px solid black;
+            }
+            .col-5 {
+                border-top: 1px solid black;
+            }
+            .relleno {
+                height: 400px;
+            }
+            .row{
+                text-align: center;
+            }
+            .casilla{
+                height: 60px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
-            <script>
-                function enviarFormulario(valor){
-                    //$("#accion").val(valor);
-                    //$("form").submit();
-                    $("form").attr('action', valor);
-                    $("form").submit();
-                }
-            </script>
-            
-            <h3>Lista de personas</h3>
-            <form id="formulario" action="/ejercicio3/buscar" method="post">
-                <div class="row">
-                    <input id="accion" type="hidden" name="accion" />
-                    <div class="from-group col-2">
-                        <label >Nombre</label>
-                        <input class="form-control" name="nombre"/>
-                        <span style="color: red" th:text="${error}"></span>
-                    </div>
-                    <div class="col-1 mt-3 btn btn-primary ">
-                        <input type="submit" id="buscar" value="Buscar" onclick="buscar()" style="background-color: transparent; border: 0px;color:white" ><i class="fas fa-search"></i>
-                    </div>   
-                    <a id="nuevo" value="Nuevo" href="/ejercicio3/nuevo" style="color: white;text-decoration: none" class="col-1 mt-3 mx-2 btn btn-primary">Nuevo<a/>
+            <div class="row mt-4">
+                <div class ="col-3">
+                    <div class="pt-4">Story</div>
+                    <span>
+                        <a class="btn btn-outline-dark btn-sm mt-4" style="float: right;"  onclick="mostrarFormulario('formAddTask', 'Alta de Tareas')"> <i class="fas fa-plus"></i> <b>add task</b></a> 
+                    </span>
                 </div>
-            </form>
-            <hr/>
-            <table class="table table-striped">
-                <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
-                    <th>Acciones</th>
-                </tr>    
-                <tr th:each="alumno:${alumnos}">
-                    <td th:text="${alumno.codigo}"></td>
-                    <td th:text="${alumno.nombre}"></td>
-                    <td th:text="${alumno.telefono}"></td>
-                    <td th:text="${alumno.direccion}"></td>
-                    <td>
-                        <a th:href="${'/ejercicio3/borrar?codigo='+alumno.codigo}" class="btn btn-outline-danger">Eliminar  <i class="fas fa-trash"></i></a>
-                        <a th:href="${'/ejercicio3/editar?codigo='+alumno.codigo + '&nombre='+alumno.nombre + '&telefono='+alumno.telefono + '&direccion='+alumno.direccion}" class="btn btn-outline-warning">Editar  <i class="fas fa-edit"></i></i></a>
-                    </td>
-                </tr>
-            </table>
+                <div class ="col-5">
+                    <div class="row">
+                        <span class="casilla pt-3">Waiting</span>
+                    </div>
+                    <div class="row">
+                        <div class="col casilla pt-3" style="border-right: 1px solid black;">Waiting</div>
+                        <div class="col casilla pt-3">Working</div>
+                    </div> 
+                </div>
+                <div class ="col-3">
+                    <div class="pt-4">Done</div>
+                </div>
+            </div>
+            <div class="row relleno">
+                <div class ="col-3" style="border-top: 0px">
+                    
+                </div>
+                <div class ="col-5" style="border-top: 0px">
+                    <div class="row">
+                        <div class="col pt-3 relleno" style="border-right: 1px solid black;border-top: 0px"></div>
+                        <div class="col pt-3 relleno" style="border-top: 0px"></div>
+                    </div> 
+                </div>
+                <div class ="col-3 relleno" style="border-top: 0px">
+ 
+                </div>
+            </div>
         </div>
         
-
-        <!-- La solución optima es poner los scripts al final -->
+        <div id="formAddTask" style="display:none" >
+            <form id= "addTask" method="get" >
+                <div class="container" >
+                    <div class="row" >
+                        <div class="form-group">
+                            <label for="descripcion">Tarea</label>
+                            <textarea id="descripcion" class="col-7" name="descripcion" th:value="${descripcion}">  </textarea>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="form-group ">
+                            <input type="number" id="horasEstimacion" class="col-12" placeholder="Tiempo Estimado" name="horasEstimacion" th:value="${horasEstimacion}"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row col" style="border:0px">
+                        <a class="btn btn-outline-dark"  onclick="enviar('AltaTask','/ejercicio04/nuevaTarea')"> Alta </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+                
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
         <script>
-            function confirmar(){
-                bootbox.confirm({
-                    message:"Desea borrar este nombre?"
-                });
-                function buscar(){
-                    document.getElementById('formulario').action = "/ejercicio3/buscar";
-                }
+            function mostrarFormulario(formNombre, formTitulo) {
+                bootbox.dialog({
+                    title: formTitulo,
+                    size: 'medium',
+                    message:"<div id='bootboxform'>" + $('#' + formNombre).html() + "</div>"
+                })
             }
-        </script>
+
+            function enviar(formularioId,accionEnvio){
+                $('#bootboxform #'+formularioId).attr('action',accionEnvio).submit();
+
+            }
+
+    </script>
     </body>
 </html>
