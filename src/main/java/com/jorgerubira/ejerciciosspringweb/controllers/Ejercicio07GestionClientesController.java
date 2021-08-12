@@ -32,6 +32,7 @@ public class Ejercicio07GestionClientesController {
     
     @GetMapping("/formulario")
     public String crear(Model m){
+        m.addAttribute("clientes",new Cliente());
         return "ej07/formulario";
     }
     
