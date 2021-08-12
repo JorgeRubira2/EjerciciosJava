@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Cosas interesantes para implementar en la vista.
@@ -40,7 +41,23 @@ public class Ejercicio04KanbanController {
 
     @GetMapping("/verkanban")
     public String verKanbas(Model model) {
-        model.addAttribute("tareas", service.getTareas());
+        List<TareaKanban> tareasRoadmap = service.getTareas().stream()
+                .filter(t->"Roadmap".equals(t.getEstado()))
+                .collect(Collectors.toList());
+        List<TareaKanban> tareasWaiting = service.getTareas().stream()
+                .filter(t->"Waiting".equals(t.getEstado()))
+                .collect(Collectors.toList());
+        List<TareaKanban> tareasWorking = service.getTareas().stream()
+                .filter(t->"Working".equals(t.getEstado()))
+                .collect(Collectors.toList());
+        List<TareaKanban> tareasDone = service.getTareas().stream()
+                .filter(t->"Done".equals(t.getEstado()))
+                .collect(Collectors.toList());
+        model.addAttribute("tareasRoadmap", tareasRoadmap);
+        model.addAttribute("tareasWaiting", tareasWaiting);
+        model.addAttribute("tareasWorking", tareasWorking);
+        model.addAttribute("tareasDone", tareasDone);
+
         return "/ej04/kanban";
     }
 

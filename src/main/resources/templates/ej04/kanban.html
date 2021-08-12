@@ -4,70 +4,109 @@
     <meta charset="UTF-8">
     <title>KanbanService</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
+        .colorVerde{
+            background-color: green;
+        }
+        .colorNaranja{
+            background-color: orange
+        }
+        .colorRojo{
+            background-color: red;
+        }
+        .card{
+            margin-top:5px;
+            color: white;
+        }
+        .butns{
+            text-align:center;
+            margin-bottom: 5px;
+        }
+        .borde{
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a th:href="@{'/ej04/anadirTarea'}">Nueva tarea</a>
+        <a class="btn btn-primary" th:href="@{'/ej04/anadirTarea'}">Nueva tarea</a>
         <div class="row justify-content-center text-center">
-            <div class="col-3">Story</div>
-            <div class="col-6">Waiting
+            <div class="borde col-3">Story</div>
+            <div class="borde col-6">Waiting
                 <div class="row">
-                <div style="width:50%">Waiting</div>
-                <div style="width:50%">Working</div>
+                <div class="borde" style="width:50%">Waiting</div>
+                <div class="borde" style="width:50%">Working</div>
                 </div>
             </div>
-            <div class="col-3">Done</div>
+            <div class="borde col-3">Done</div>
         </div>
-        <div class="row" th:each="tarea:${tareas}">
-            <div class="card col-3" th:if="${'Roadmap'.equals(tarea.estado)}">
-                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
-                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
-                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
-                <div>
-                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                    <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+        <div class="row">
+            <div class="borde col-3">
+                <div class="card" th:classappend="${tarea.horasTrabajadas<=tarea.horasEstimacion}?colorVerde:
+                                                    (${tarea.horasTrabajadas>=tarea.horasEstimacion*2}?colorRojo:colorNaranja)"
+                     th:each="tarea:${tareasRoadmap}">
+                    <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                    <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                    <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                    <div class="butns">
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-right fa-xs' style='color:#ffffff'></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="card col-3 offset-3" th:if="${'Waiting'.equals(tarea.estado)}">
-                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
-                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
-                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
-                <div>
-                    <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
-                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                    <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+            <div class="borde col-3">
+                <div class="card" th:classappend="${tarea.horasTrabajadas<=tarea.horasEstimacion}?colorVerde:
+                                                    (${tarea.horasTrabajadas>=tarea.horasEstimacion*2}?colorRojo:colorNaranja)"
+                     th:each="tarea:${tareasWaiting}">
+                    <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                    <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                    <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                    <div class="butns">
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-left fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-right fa-xs' style='color:#ffffff'></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="card col-3 offset-6" th:if="${'Working'.equals(tarea.estado)}">
-                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
-                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
-                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
-                <div>
-                    <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
-                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                    <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+            <div class="borde col-3">
+                <div class="card" th:classappend="${tarea.horasTrabajadas<=tarea.horasEstimacion}?colorVerde:
+                                                    (${tarea.horasTrabajadas>=tarea.horasEstimacion*2}?colorRojo:colorNaranja)"
+                     th:each="tarea:${tareasWorking}">
+                    <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                    <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                    <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                    <div class="butns">
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-left fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-right fa-xs' style='color:#ffffff'></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="card col-3 offset-9" th:if="${'Done'.equals(tarea.estado)}">
-                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
-                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
-                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
-                <div>
-                    <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
-                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
+            <div class="borde col-3">
+                <div class="card" th:classappend="${tarea.horasTrabajadas<=tarea.horasEstimacion}?colorVerde:
+                                                    (${tarea.horasTrabajadas>=tarea.horasEstimacion*2}?colorRojo:colorNaranja)"
+                     th:each="tarea:${tareasDone}">
+                    <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                    <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                    <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                    <div class="butns">
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-left fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        <div>
+    </div>
+    </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
