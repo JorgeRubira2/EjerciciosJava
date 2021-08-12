@@ -25,11 +25,7 @@ public class Ejercicio07GestionClientesController {
     
     
     
-//    @GetMapping 
-//    public String inicioClientes(Model m){
-//        m.addAttribute("cliente", new Cliente());
-//        return "ej07/formulario";
-//    }
+ 
     /**
      * Debe devolver la vista ej07/lista con el atributo 'clientes' que sea la lista
      */
@@ -47,9 +43,9 @@ public class Ejercicio07GestionClientesController {
     public String read(Model m, @PathVariable Long id){
         Optional<Cliente> cliente= repoClientes.findById(id);
         if (cliente.isPresent()){
-            m.addAttribute("clientes",cliente.get());
+            m.addAttribute("cliente",cliente.get());
         } else {
-            m.addAttribute("clientes",new Cliente());
+            m.addAttribute("cliente",new Cliente());
         }
         return "ej07/formulario";
     }
@@ -74,7 +70,7 @@ public class Ejercicio07GestionClientesController {
     @PostMapping
     public String save(Model m, Cliente alumno){
         repoClientes.save(alumno);
-        return "redirect:ej07/lista";
+        return "redirect:/ejercicio7";
     }    
 
     /**
@@ -83,7 +79,7 @@ public class Ejercicio07GestionClientesController {
     @GetMapping("/delete/{id}")
     public String delete(Model m, @PathVariable Long id){
         repoClientes.deleteById(id);
-        return "redirect:ej07/lista";
+        return "redirect:/ejercicio7";
     }    
 
 }

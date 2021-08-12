@@ -4,75 +4,106 @@
 
     <misestilos>
         <style>
-        input .textarea{
-            width: 200 px;
-        }
+            input .textarea{
+                width: 200 px;
+            }
+            .header{
+                font-style: italic;
+            }
         </style>
     </misestilos>
-        
-    </head>
-    
-    <body>
-        <div class="container">
-            <form id="formulario">
+
+</head>
+
+<body>
+    <div class="container">
+        <form id="formulario" action="none" method="tampod">
+            <div class="row">
+                <div class="col-2">
+                    <input type="button" th:onclick="enviar(this)" id="guardar" value="Crear"/>
+                </div>
+                <div class="col-2">
+                    <input type="button" th:onclick="enviar(this)" id="modificar" value="modificar"/>
+                </div>
+                <div class="col-2">
+                    <input type="button" th:onclick="enviar(this)" id="borrar" value="delete"/>
+                </div>
+            </div>
+            <div class="row header">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    Name
+                </div>
+                <div class="col-3">
+                    Account Name
+                </div>
+                <div class="col-3">
+                    Email & Phone
+                </div>
+            </div>
+            <span th:each="cliente:${clientes}">
+                <!--       <form th:id="${cliente.id}" th:action="|/${cliente.id}|"> -->
+
                 <div class="row">
-                    <div class="col-2">
-                        <input type="submit" formaction="Create" value="Save"/>
+                    <div class="col-1"> 
+                        <input type="checkbox" th:id="*{cliente.id}" th:value="*{cliente.id}"/>
                     </div>
-                    <div class="col-2">
-                        <input type="submit" formaction="Modificar" value="Modificar"/>
+                    <div class="col-5"> 
+                        <span th:text="*{cliente.firstName}"/> <span th:text="*{cliente.lastName}"/>
+                    </div>
+                    <div class="col-3"> 
+                        <span th:text="*{cliente.primaryAccount}"/>
+                    </div>
+                    <div class="col-3"> 
+                        <span th:text="*{cliente.email}"/>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1">
+                    <div class="col-1"></div>
+                    <div class="col-8"> 
+                        <span th:text="*{cliente.title}"/>
                     </div>
-                    <div class="col-5">
-                        Name
-                    </div>
-                    <div class="col-3">
-                        Account Name
-                    </div>
-                    <div class="col-3">
-                        Email & Phone
+
+                    <div class="col-3"> 
+                        <span th:text="*{cliente.officePhone}"/>
                     </div>
                 </div>
-                <span th:each="cliente:${clientes}">
-                    <form th:id="${cliente.id}" th:action="|/${cliente.id}|">
-                        
-                    <div class="row">
-                            <div class="col-1"> 
-                                 <input type="checkbox" th:id="*{cliente.id}" th:value="*{cliente.id}"/>
-                            </div>
-                            <div class="col-5"> 
-                                <span th:text="*{cliente.firstName}"/> <span th:text="*{cliente.lastName}"/>
-                            </div>
-                            <div class="col-3"> 
-                                <span th:text="*{cliente.primaryAccount}"/>
-                            </div>
-                            <div class="col-3"> 
-                                <span th:text="*{cliente.email}"/>
-                            </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1"></div>
-                            <div class="col-8"> 
-                                <span th:text="*{cliente.title}"/>
-                            </div>
-                            
-                            <div class="col-3"> 
-                                <span th:text="*{cliente.officePhone}"/>
-                            </div>
-                    </div>
-                    </form>
-                </span>
-                
-                
-                
-            </form>
-        </div>
-    </body>
+            </span>
+        </form>
+    </div>
+</body>
 
-    <misscripts>
-    </misscripts>
+<misscripts>
+    <script>
+        function enviar(obj) {
+            var valor = $(obj).attr('id');
+            var opcion = $(obj).attr('value');
+            if ( valor==='guardar') {
+               $('#formulario').attr('method','get').attr('action','/ejercicio7/0');
+               $('#formulario').submit();
+            }
+            $("input:checkbox:checked").each(
+                    
+                    function () {
+                        var identif = $(this).val();
+                        if (valor === 'modificar'){
+                            $('#formulario').attr('method','get').attr('action','/ejercicio7/'+ identif );
+                            $('#formulario').submit();
+                        }
+                        if (valor === 'borrar'){
+                            $('#formulario').attr('method','get').attr('action','/ejercicio7/delete/'+ identif );
+                            $('#formulario').submit();
+                        }
+                        alert("El checkbox con valor " + identif
+                              + " está seleccionado con opcion " + opcion );
+                      
+                      
+                    }
+            );
+        }
+        ;
+        </script>
+ </misscripts>
 
-</html>
+ </html>
