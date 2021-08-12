@@ -5,9 +5,6 @@
     <title>KanbanService</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <style>
-        div{
-            border: 1px, solid, black;
-        }
     </style>
 </head>
 <body>
@@ -24,43 +21,51 @@
             <div class="col-3">Done</div>
         </div>
         <div class="row" th:each="tarea:${tareas}">
-            <div class="col-3" th:if="${'Roadmap'.equals(tarea.estado)}">
-                <span th:text="${tarea.descripcion}"></span></br>
-                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
-                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
-                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+            <div class="card col-3" th:if="${'Roadmap'.equals(tarea.estado)}">
+                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                <div>
+                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
+                    <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+                </div>
             </div>
-            <div class="col-3 offset-3" th:if="${'Waiting'.equals(tarea.estado)}">
-                <span th:text="${tarea.descripcion}"></span></br>
-                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
-                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
-                <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
-                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+            <div class="card col-3 offset-3" th:if="${'Waiting'.equals(tarea.estado)}">
+                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                <div>
+                    <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
+                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
+                    <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+                </div>
             </div>
-            <div class="col-3 offset-6" th:if="${'Working'.equals(tarea.estado)}">
-                <span th:text="${tarea.descripcion}"></span></br>
-                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
-                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
-                <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
-                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+            <div class="card col-3 offset-6" th:if="${'Working'.equals(tarea.estado)}">
+                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                <div>
+                    <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
+                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
+                    <a th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}">-></a>
+                </div>
             </div>
-            <div class="col-3 offset-9" th:if="${'Done'.equals(tarea.estado)}">
-                <span th:text="${tarea.descripcion}"></span></br>
-                <span th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></span>
-                <span th:text="${tarea.horasTrabajadas}"></span>/<span th:text="${tarea.horasEstimacion}"></span>
-                <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
-                <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
-                <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
-                <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
+            <div class="card col-3 offset-9" th:if="${'Done'.equals(tarea.estado)}">
+                <h5 class="card-title" th:if="${tarea.propietario!=null}" th:text="${tarea.propietario}"></h5>
+                <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
+                <p class="card-body" th:text="${tarea.descripcion}"></p></br>
+                <div>
+                    <a th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><-</a>
+                    <a th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}">P</a>
+                    <a th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}">H</a>
+                    <a th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}">M</a>
+                </div>
             </div>
         </div>
     </div>
