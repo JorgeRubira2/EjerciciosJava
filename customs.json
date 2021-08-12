@@ -15,6 +15,9 @@
         },
         "th:fragment": {
             "context": "div"
+        },
+        "th:attr": {
+            "context": "button"
         }
     }
 }

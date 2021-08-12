@@ -95,7 +95,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="/ejercicio04/alta" method="post">
-                            <input type="hidden"  name="codigo" id="codigo"/>
+
                             <div class="form-group">
                                 <label for="descripcion" id="labeldescripcion" class="col-form-label" >Descripcion </label>
                                 <input type="text" class="form-control" name="descripcion" id="descripcion">
@@ -129,10 +129,30 @@
                             <button type="submit" class="btn btn-primary"/>Asignar</button>
                         </form> 
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
-
+        <!-- MODAL PARA CREAR AÑADIR HORAS-->
+        <div class="modal fade" id="modalHoras">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Añadir horas</h5>  
+                    </div>
+                    <div class="modal-body">
+                        <form action="/ejercicio04/addhoras" method="post">
+                            <input type="hidden"  name="codigo2" id="codigo2"/>                         
+                            <div class="form-group">
+                                <label for="horas" id="labelhoras" class="col-form-label" >Horas  </label>
+                                <input type="number" class="form-control" name="horas" id="horas"  Required />
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary"/>Añadir Horas</button>
+                        </form> 
+                    </div>
+                </div> 
+            </div>
+        </div>
 
         <!-- DIV PARA CADA TARJETA DE CADA TAREA Y SE INCRUSTA EN LA TABLA-->
 
@@ -157,8 +177,8 @@
                 <button class="btn" th:attr="onclick=|addpersona('${codigo}')|" > 
                     <i class="fas fa-user"></i>
                 </button>
-
-                <button class="btn" onclick="">
+ 
+                <button class="btn" th:attr="onclick=|addhoras('${codigo}')|" >
                     <i class="fas fa-hourglass-start"></i>
                 </button>
                 <a class="btn"  th:href="${'/ejercicio04/modificar?codigo='+codigo}"   >
@@ -187,12 +207,20 @@
         })
     </script>
     <script>
+        //scrip para añadir personas
         function addpersona(codigo) {
 
             $('#modalPersona').modal('show');
             $("#codigo").val(codigo);
+        }
+    </script>
+ 
+    <script>
+        //scrip para añadir horas
+        function addhoras(codigo) {
 
-
+            $('#modalHoras').modal('show');
+            $("#codigo2").val(codigo);
         }
     </script> 
 </html>
