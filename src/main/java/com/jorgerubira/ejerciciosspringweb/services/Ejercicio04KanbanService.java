@@ -16,21 +16,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     
-    private List<TareaKanban> listaTareas = new ArrayList<TareaKanban>();
+    private List<TareaKanban> listaTareas = new ArrayList<>();
+
+    public Ejercicio04KanbanService() {
+        crearTarea("Desc 1", 5);
+        crearTarea("Desc 2", 10);
+        crearTarea("Desc 3", 15);
+        crearTarea("Desc 4", 20);
+        
+        listaTareas.get(0).setEstado("Working");
+    }
+    
     
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
         //codigo;descripcion;propietario; horasEstimacion;horasTrabajadas;estado;        
         //UUID.randomUUID().toString(),descripcion,null, horasEstimacion,0,"Roadmap"    
         
-        TareaKanban tareas = new TareaKanban();
-        
-        tareas.setCodigo(UUID.randomUUID().toString());
-        tareas.setDescripcion(descripcion);
-        tareas.setPropietario(null);
-        tareas.setHorasEstimacion(horasEstimacion);
-        tareas.setHorasTrabajadas(0);
-        tareas.setEstado("Roadmap");
+        listaTareas.add(new TareaKanban(UUID.randomUUID().toString(), descripcion, null, horasEstimacion, 0, "Roadmap"));
     }
 
     @Override
@@ -62,12 +65,14 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     @Override
     public List<TareaKanban> getTareas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaTareas;
     }
 
     @Override
     public Optional<TareaKanban> getTarea(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaTareas.stream()
+                .filter(x->x.getCodigo().equalsIgnoreCase(codigo))
+                .findFirst();
     }
     
 }

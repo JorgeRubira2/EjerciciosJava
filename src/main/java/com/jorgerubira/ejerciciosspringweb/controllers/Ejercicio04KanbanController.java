@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -26,6 +27,11 @@ public class Ejercicio04KanbanController {
     
     @GetMapping("/kanban")
     public String kanban(){
+        return "ej04/kanban";
+    }
+    
+    @PostMapping("/alta")
+    public String alta(){
         return "ej04/kanban";
     }
 }
