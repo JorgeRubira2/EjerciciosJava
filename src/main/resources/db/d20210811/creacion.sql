@@ -8,7 +8,7 @@ CREATE TABLE Canciones (
 	precio_reproduccion DECIMAL(18,2)
 );
 
-Create table Cliente (
+Create table cliente (
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name      VARCHAR(100) not null,
     last_name       varchar(200),

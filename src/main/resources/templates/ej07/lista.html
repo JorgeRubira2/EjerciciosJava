@@ -24,7 +24,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-5">
                         Name
                     </div>
                     <div class="col-3">
@@ -35,29 +37,33 @@
                     </div>
                 </div>
                 <span th:each="cliente:${clientes}">
-                    
+                    <form th:id="${cliente.id}" th:action="|/${cliente.id}|">
+                        
                     <div class="row">
-                            
-                            <div class="col-6"> 
-                                <input type="text" th:field="*{cliente.firstName}"/> <input th:field="*{cliente.lastName}"/>
+                            <div class="col-1"> 
+                                 <input type="checkbox" th:id="*{cliente.id}" th:value="*{cliente.id}"/>
+                            </div>
+                            <div class="col-5"> 
+                                <span th:text="*{cliente.firstName}"/> <span th:text="*{cliente.lastName}"/>
                             </div>
                             <div class="col-3"> 
-                                <label th:field="*{cliente.primaryAccount}"></label>
+                                <span th:text="*{cliente.primaryAccount}"/>
                             </div>
                             <div class="col-3"> 
-                                <label th:field="*{cliente.email}"></label>
+                                <span th:text="*{cliente.email}"/>
                             </div>
                     </div>
                     <div class="row">
-                            <div class="col-9"> 
-                                <label th:field="*{cliente.title}"></label>
+                        <div class="col-1"></div>
+                            <div class="col-8"> 
+                                <span th:text="*{cliente.title}"/>
                             </div>
                             
                             <div class="col-3"> 
-                                <label th:field="*{cliente.officePhone}"></label>
+                                <span th:text="*{cliente.officePhone}"/>
                             </div>
                     </div>
-                    
+                    </form>
                 </span>
                 
                 
