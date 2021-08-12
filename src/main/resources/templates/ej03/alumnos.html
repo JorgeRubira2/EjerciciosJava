@@ -17,9 +17,10 @@
         
     </head>
     <body>
-        <div> 
+        <div class="container pt-5 px-5">
                        
-            <h1>Listado de Alumnos</h1>
+            <h1 align="center"> Listado de Alumnos</h1>
+            <br>
               <spam>
                        
                  <form id="form" name="form" method="post"> 
@@ -30,46 +31,44 @@
                     <input type="button" value="Nuevo"  onclick="enviarFormulario('/ejercicio3/nuevo')" class="btn btn-primary" />
                     <input type="button" value="Lista Alumnos"  onclick="window.location ='alumnos'" class="btn btn-primary" />
 
-                                                                       
-                     </a> 
-                
-                  </form>   
+                 </form>   
               </spam>
             <br>
-            <span>
+            <spam>
                 <table class="table table-striped">
-                    
+                 
                       <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Teléfono</th>
                             <th>Direccióm</th>
-                            <th>Acciones</th>
+                            <th class="col-4">Acciones</th>
                        </tr>
                                 
-                        
-                     <tr th:each="alumno:${alumnos}">
-                         <td  th:text="${alumno.codigo}"/>
+        
+                     <tr  th:each="alumno:${alumnos}">
+                         <td th:text="${alumno.codigo}"/>
                          <td  th:text="${alumno.nombre}"/> 
                          <td  th:text="${alumno.telefono}"/> 
                          <td  th:text="${alumno.direccion}"/> 
-                         <td th:size="30">
-                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class=" btn btn-danger btn-sm"  value='Eliminar'>  Eliminar
+                         <td>
+                        
+                         <div class="pt-1" >
+                            <a th:href="@{/ejercicio3/eliminar(codigo=${alumno.codigo})}" class="btn btn-danger btn-md"  value='Eliminar'>  Eliminar
                             </a>
-                             <div>
-                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class=" btn btn-primary btn-sm"   value='Editar'>  Editar
-                                                                
+                                                  
+                             <a th:href="@{/ejercicio3/editar(codigo=${alumno.codigo})}" class="btn btn-primary btn-md"   value='Editar'>  Editar
+                                                             
                             </a> 
-                                 </div>
-             
+                          </div>
                          </td>
-                         
+              
                      </tr>
                      
                 </table>
                 
-                
-            </span>
+
+           </spam>
                  
                  
         </div>
