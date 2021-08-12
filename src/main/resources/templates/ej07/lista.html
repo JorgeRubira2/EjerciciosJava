@@ -4,12 +4,27 @@
 
     <misestilos>
         <style>
-            input .textarea{
-                width: 200 px;
+
+            #box{
+                border: 4px outher #333333;
+
             }
             .header{
                 font-style: italic;
+                border-bottom: 3px solid #cccccc ;
+
             }
+            .grupoConsulta{
+                border-bottom: 3px solid #cccccc ;
+            }
+            .checkbox{
+                margin: 6px;
+            }
+            .firts-text{
+                color:blue;
+                font-weight: 600;
+            }
+            
         </style>
     </misestilos>
 
@@ -18,58 +33,62 @@
 <body>
     <div class="container">
         <form id="formulario" action="none" method="tampod">
-            <div class="row">
-                <div class="col-2">
-                    <input type="button" th:onclick="enviar(this)" id="guardar" value="Crear"/>
-                </div>
-                <div class="col-2">
-                    <input type="button" th:onclick="enviar(this)" id="modificar" value="modificar"/>
-                </div>
-                <div class="col-2">
-                    <input type="button" th:onclick="enviar(this)" id="borrar" value="delete"/>
-                </div>
-            </div>
-            <div class="row header">
-                <div class="col-1">
-                </div>
-                <div class="col-5">
-                    Name
-                </div>
-                <div class="col-3">
-                    Account Name
-                </div>
-                <div class="col-3">
-                    Email & Phone
-                </div>
-            </div>
-            <span th:each="cliente:${clientes}">
-                <!--       <form th:id="${cliente.id}" th:action="|/${cliente.id}|"> -->
-
+            <div id="box">
                 <div class="row">
-                    <div class="col-1"> 
-                        <input type="checkbox" th:id="*{cliente.id}" th:value="*{cliente.id}"/>
+                    <div class="col-2">
+                        <input class="btn btn-primary" type="button" th:onclick="enviar(this)" id="guardar" value="Crear"/>
                     </div>
-                    <div class="col-5"> 
-                        <span th:text="*{cliente.firstName}"/> <span th:text="*{cliente.lastName}"/>
+                    <div class="col-2">
+                        <input class="btn btn-primary" type="button" th:onclick="enviar(this)" id="modificar" value="modificar"/>
                     </div>
-                    <div class="col-3"> 
-                        <span th:text="*{cliente.primaryAccount}"/>
-                    </div>
-                    <div class="col-3"> 
-                        <span th:text="*{cliente.email}"/>
+                    <div class="col-2">
+                        <input class="btn btn-primary" type="button" th:onclick="enviar(this)" id="borrar" value="delete"/>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-8"> 
-                        <span th:text="*{cliente.title}"/>
+                <div class="row header">
+                    <div class="col-1">
                     </div>
+                    <div class="col-5">
+                        Name
+                    </div>
+                    <div class="col-3">
+                        Account Name
+                    </div>
+                    <div class="col-3">
+                        Email & Phone
+                    </div>
+                </div>
+                <span th:each="cliente:${clientes}">
+                    <!--       <form th:id="${cliente.id}" th:action="|/${cliente.id}|"> -->
+                    <div class="grupoConsulta">
+                        <div class="row firts-text">
+                            <div class="col-1"> 
+                                <input class="checkbox" type="checkbox" th:id="*{cliente.id}" th:value="*{cliente.id}"/>
+                            </div>
 
-                    <div class="col-3"> 
-                        <span th:text="*{cliente.officePhone}"/>
+                            <div class="col-5"> 
+                               <i class="far fa-star"></i> <span th:text="*{cliente.firstName}"/> <span th:text="*{cliente.lastName}"/>
+                            </div>
+                            <div class="col-3"> 
+                                <i class="far fa-folder-open"></i> <span th:text="*{cliente.primaryAccount}"/>
+                            </div>
+                            <div class="col-3"> 
+                               <i class="far fa-envelope"></i> <span th:text="*{cliente.email}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-8"> 
+                                <span th:text="*{cliente.title}"/>
+                            </div>
+
+                            <div class="col-3"> 
+                                <i class="fas fa-phone-square"></i> <span th:text="*{cliente.officePhone}"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </span>
+                </span>
+            </div>
         </form>
     </div>
 </body>
@@ -79,31 +98,26 @@
         function enviar(obj) {
             var valor = $(obj).attr('id');
             var opcion = $(obj).attr('value');
-            if ( valor==='guardar') {
-               $('#formulario').attr('method','get').attr('action','/ejercicio7/0');
-               $('#formulario').submit();
+            if (valor === 'guardar') {
+                $('#formulario').attr('method', 'get').attr('action', '/ejercicio7/0');
+                $('#formulario').submit();
             }
             $("input:checkbox:checked").each(
-                    
                     function () {
                         var identif = $(this).val();
-                        if (valor === 'modificar'){
-                            $('#formulario').attr('method','get').attr('action','/ejercicio7/'+ identif );
+                        if (valor === 'modificar') {
+                            $('#formulario').attr('method', 'get').attr('action', '/ejercicio7/' + identif);
                             $('#formulario').submit();
                         }
-                        if (valor === 'borrar'){
-                            $('#formulario').attr('method','get').attr('action','/ejercicio7/delete/'+ identif );
+                        if (valor === 'borrar') {
+                            $('#formulario').attr('method', 'get').attr('action', '/ejercicio7/delete/' + identif);
                             $('#formulario').submit();
                         }
-                        alert("El checkbox con valor " + identif
-                              + " está seleccionado con opcion " + opcion );
-                      
-                      
                     }
             );
         }
         ;
-        </script>
- </misscripts>
+    </script>
+</misscripts>
 
- </html>
+</html>

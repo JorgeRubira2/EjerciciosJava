@@ -4,18 +4,55 @@
 
     <misestilos>
         <style>
-        input .textarea{
-            width: 200 px;
-        }
+            textarea{
+                width: 400px;
+                height: 100px;
+            }
+
+            #box{
+                background-color: aliceblue;
+                border: 3px ridge #333333;
+
+            }
+            .form-group{
+                margin-left: 10px;
+                font-weight: 700;
+
+            }
+            #nav{
+                background: linear-gradient(to bottom,#cccccc ,#999999 , #cccccc);
+                border: 3px ridge #333333;
+                margin: 0px 0px;
+                padding-top: 3px;
+                padding-bottom: 3px;
+
+            }
+            .innerbox{
+                margin: 2px;
+                background: honeydew;
+                border: 3px ridge #333333;
+            }
+            .titulo{
+                margin-left: 20px;
+                font-size:large;
+                color:activecaption ;
+                letter-spacing: 0.25em;
+                word-spacing: 0.25em;
+            }
+            
+            .texto{
+                width: 300px;
+            }
         </style>
     </misestilos>
-        
-    </head>
-    
-    <body>
-        <div class="container">
-            <form id="formulario" method="post" th:object="${cliente}">
-                <div class="row">
+
+</head>
+
+<body>
+    <div class="container">
+        <form id="formulario" method="post" th:object="${cliente}">
+            <div id="box">
+                <div id="nav" class="row">
                     <div class="col-2">
                         <input type="submit" formaction="/ejercicio7" value="Save"/>
                     </div>
@@ -27,95 +64,96 @@
                     </div>
                 </div>
                 <input type="hidden" th:field="*{id}">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-3"> 
-                            <label for="firstName">First Name</label>
-                            <input type="text" th:field="*{firstName}"/>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-3"> 
-                            <label for="primaryAccount">Primary Account</label>
-                            <input type="text" th:field="*{primaryAccount}"/>
-                        </div>
-
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-3"> 
-                            <label for="lastName">Last Name</label>
-                            <input type="text" th:field="*{lastName}"/>
-                        </div>
-                    </div>
-                     <div class="col-2">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-3"> 
-                            <label for="officePhone">Office Phone</label>
-                            <input type="tel" th:field="*{officePhone}"/>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-3"> 
-                            <label for="title">title</label>
-                            <input type="text" th:field="*{title}"/>
-                        </div>
-                    </div>
-                     <div class="col-2">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-3"> 
-                            <label for="email">email</label>
-                            <input type="email" th:field="*{email}"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-6"> 
-                            <label for="description">Description</label>
-                            <textarea  th:field="*{description}"/>
-                        </div>
-                    </div>
-                     
-                </div>
-                <div>
-                    <div class="row">Address information</div>
+                <div class="innerbox">
                     <div class="row">
                         <div class="form-group">
-                            <label for="direction">Primary Address</label>
-                            <textarea type="textarea" th:field="*{direction}"/>
+                            <div class="col-5"> 
+                                <label  for="firstName">First Name</label>
+                                <input class="texto" type="text" th:field="*{firstName}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-5"> 
+                                <label for="primaryAccount">Primary Account</label>
+                                <input class="texto" type="text" th:field="*{primaryAccount}"/>
+                            </div>
+
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="form-group">
-                            <label for="city">city</label>
-                            <input type="text" th:field="*{city}"/>
+                            <div class="col-5"> 
+                                <label for="lastName">Last Name</label>
+                                <input class="texto" type="text" th:field="*{lastName}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-5"> 
+                                <label for="officePhone">Office Phone</label>
+                                <input class="texto" type="tel" th:field="*{officePhone}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-5"> 
+                                <label for="title">Title</label>
+                                <input class="texto" type="text" th:field="*{title}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-5"> 
+                                <label for="email">Email</label>
+                                <input class="texto" type="email" th:field="*{email}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-6"> 
+                                <label for="description">Description</label>
+                                <textarea  th:field="*{description}"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="innerbox">
+                    <div>
+                        <div class="row col-5 titulo">Address information</div>
+                        <div class="row">
+                            <div class="form-group col-5">
+                                <label for="direction">Primary Address</label>
+                                <textarea type="textarea" th:field="*{direction}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-5">
+                                <label for="city">city</label>
+                                <input class="texto" type="text" th:field="*{city}"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-            </form>
-        </div>
-    </body>
+            </div>
+        </form>
+    </div>
+</body>
 
-    <misscripts>
-        <script>
-            function volver(){
-               $('#formulario').attr('method','get');
-               $('#formulario').submit();
-            }
-        </script>
-            
-    </misscripts>
+<misscripts>
+    <script>
+        function volver() {
+            $('#formulario').attr('method', 'get').attr('action','/ejercicio7');
+            $('#formulario').submit();
+        }
+    </script>
+
+</misscripts>
 
 </html>
