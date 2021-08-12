@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        
+        <a onclick="document.location='http://www.google.es'" >Buscar</a>
         <div class="container">
             <table>
                 <tr th:each="can:${canciones}">
@@ -16,8 +18,8 @@
             <hr/>
             <form action="enviarDatos" method="post">
                 <input name="id" placeholder="id"/>
-                <input name="autor"  placeholder="autor"/>
-                <input name="titulo"  placeholder="titulo"/>
+                <input name="autor" placeholder="autor"/>
+                <input name="titulo" placeholder="titulo"/>
                 <input type="submit" value="Enviar Datos"/>
             </form>
         </div>
