@@ -16,44 +16,108 @@ import org.springframework.stereotype.Service;
 @Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     
-     //List<TareaKanban> tareas = new ArrayList<>();
+     List<TareaKanban> tareas = new ArrayList<>();
  
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
         
-       //tareas.add(new TareaKanban(UUID.randomUUID().toString(),"descripcion""propietario",0,"Roadmap");
+        tareas.add(new TareaKanban(UUID.randomUUID().toString(),descripcion,null,horasEstimacion,0,"Roadmap"));
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void modificarTarea(String codigo, String descripcion, Integer horasEstamacion) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Optional <TareaKanban> tar= tareas.stream()
+                .filter(x->x.getCodigo().equals(codigo))
+                .findFirst();
+        
+        if(tar.isPresent()){
+            tar.get()
+                    .setDescripcion(descripcion);
+            tar.get()
+                    .setHorasEstimacion(horasEstamacion);
+            
+        }
+        else{          
+            throw new OperacionEnListaException(codigo);
+            
+        }
+
+        
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void asignarPersona(String codigo, String persona) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        Optional <TareaKanban> tar= tareas.stream()
+                .filter(x->x.getCodigo().equals(codigo))
+                .findFirst();
+        if(tar.isPresent()){
+            tar.get()
+                    .setPropietario(persona);
+        }else{
+            throw new OperacionEnListaException(codigo);
+            
+        }
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Optional <TareaKanban> tar= tareas.stream()
+                .filter(x->x.getCodigo().equals(codigo))
+                .findFirst();
+        
+        
+        if(tar.isPresent()){
+            tar.get()
+                    .setHorasTrabajadas(tar.get().getHorasTrabajadas()+horas);
+            
+        }else{
+            throw new OperacionEnListaException(codigo);
+            
+        }
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void cambiarEstado(String codigo, String persona) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Optional <TareaKanban> tar= tareas.stream()
+                .filter(x->x.getCodigo().equals(codigo))
+                .findFirst();
+        
+        if(tar.isPresent()){
+            tar.get()
+                    .setEstado(persona);
+        }
+        
+        
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<TareaKanban> getTareas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tareas.add(new TareaKanban());
+       return tareas;
     }
 
     @Override
     public Optional<TareaKanban> getTarea(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        
+        return tareas.stream().filter(x->x.getCodigo().equals(codigo))
+                .findFirst();
+        
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
