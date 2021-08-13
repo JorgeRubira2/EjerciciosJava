@@ -68,16 +68,30 @@
             }
             function leerJson(){
                 var pId = $("#buscarId").val();
-                console.log(pId);
                 $.ajax({
                     url:"/ejercicio7/ajax/" + pId,   //<--Ejecutamos del contra esta url
                     dataType:"json",
-                    success: function(pJson){ 
-                        alert("Funcionalidad en desarrollo");   //<- Nos devuelven la respuesta. 
-                        console.log(pJson); //Me falta ver como mostrar esto por pantalla
+                    success: function(pJson){ //busqueda super pellejera, si tengo tiempo deberia convertir todo a datatable pa una busqueda mejor
+                        $("#listaClientes").html("");
+                        var salida = $("<tr>");
+                        $("<td>").html("").appendTo(salida);
+                        $("<td>").html(pJson.firstName + " " +pJson.lastName + "<p>" + pJson.title + "</p>").appendTo(salida);
+                        $("<td>").html(pJson.primaryAccount).appendTo(salida);
+                        $("<td>").html(pJson.email + "<p>" + pJson.phone + "</p>").appendTo(salida);
+                        $("<td>").html("<a href='/ejercicio7/'" + pJson.id +  
+                            " class='btn btn-success'><i class='fas fa-edit fa-sm'></i></a>" +
+                                "<a href='/ejercicio7/delete/'" +pJson.id + 
+                            " class='btn btn-danger'><i class='fas fa-trash fa-sm'></i></a>"
+                        ).appendTo(salida); //Se podria meter en un div display none los botones 
+                        salida.appendTo("#listaClientes");
+                        //alert("Funcionalidad en desarrollo");   //<- Nos devuelven la respuesta. 
+                        //console.log(pJson); //Me falta ver como mostrar esto por pantalla
                     },
                     error: function (err){
-                        alert(err.status);
+                        bootbox.dialog({
+                            title: 'Error en la busqueda',
+                            message: "Usuario no encontrado"
+                        });
                     }
                 })
             }
