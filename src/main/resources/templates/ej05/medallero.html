@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medallero</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<h2>Ranking paises</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Pais</th>
+        <th>Oro</th>
+        <th>Plata</th>
+        <th>Bronce</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="m:${rankingPais}">
+        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais})}" th:text="${m.pais}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais}, medalla='Oro')}" th:text="${m.oro}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais}, medalla='Plata')}" th:text="${m.plata}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais}, medalla='Bronce')}" th:text="${m.cobre}"></a></td>
+        <td th:text="${m.oro+m.plata+m.cobre}"></td>
+    </tr>
+</table>
+<h2>Ranking atletas</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Deportista</th>
+        <th>Oro</th>
+        <th>Plata</th>
+        <th>Bronce</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="m:${rankingDeportista}">
+        <td th:text="${m.atleta}"></td>
+        <td th:text="${m.oro}"></td>
+        <td th:text="${m.plata}"></td>
+        <td th:text="${m.cobre}"></td>
+        <td th:text="${m.oro+m.plata+m.cobre}"></td>
+    </tr>
+</table>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+</html>
