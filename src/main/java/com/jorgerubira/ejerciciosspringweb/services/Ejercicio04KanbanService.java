@@ -16,6 +16,10 @@ import org.springframework.stereotype.Service;
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     private List<TareaKanban> listaKanbans = new ArrayList<>();
+    
+    public Ejercicio04KanbanService() {
+        listaKanbans.add(new TareaKanban("1", "Tarea1", "Isabel", 5, 2, "Working"));
+    }
 
     
     @Override
@@ -94,7 +98,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     
     @Override
-    public void cambiarEstado(String codigo, String persona) throws OperacionEnListaException {
+    public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException {
         
         Optional<TareaKanban> cambioEstado = listaKanbans.stream()
                 .filter(x -> x.getCodigo().equals(codigo))
@@ -103,7 +107,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         if (cambioEstado.isPresent()) {
 
             TareaKanban tareaKanban = cambioEstado.get();
-            tareaKanban.setEstado(persona);
+            tareaKanban.setEstado(estado);
 
             listaKanbans.add(tareaKanban);
             
