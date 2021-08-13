@@ -18,5 +18,9 @@ public class Alumno {
     private String nombre;
     private String telefono;
     private String direccion;
+
+    public void add(Alumno alumno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

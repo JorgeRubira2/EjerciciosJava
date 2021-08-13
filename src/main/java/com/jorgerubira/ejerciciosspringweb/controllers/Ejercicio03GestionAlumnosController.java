@@ -14,7 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -26,42 +27,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/ejercicio3")
 public class Ejercicio03GestionAlumnosController {
-    
-        /******* SERVICE *******/
-    @Autowired
-    private Ejercicio03GestionAlumnosService serviceAlumnos;
 
-    @GetMapping("/alumnos")
-    public String inicioAlumnos(Model model) {
-        model.addAttribute("lista", serviceAlumnos.getAlumnos());
-        return "/ej03/listadoAlumnos";
+    @Autowired
+    private IEjercicio03GestionAlumnosService service;
+
+    @GetMapping("/listadoAlumnos")
+    public String gestionAlumnos(Model model) {
+        model.addAttribute("alumno", new Alumno());
+        model.addAttribute("alumno", service.getAlumnos());
+        return "ej03/listadoAlumnos";
     }
-    
-    @GetMapping("/crear")
-    public String crear() {
-        return "/ej03/formNuevoAlumno";
+
+    @GetMapping("/nuevo")
+    public String incluirAlumnos(Model model, Alumno alumno) {
+        model.addAttribute("alumno", alumno);
+        service.guardarAlumno(alumno);
+        return ("ej03/nuevoAlumno");
     }
-    @PostMapping("/crear")
-    public String crearDesdeFormulario(@RequestParam String direccion, @RequestParam String nombre, @RequestParam String telefono, @RequestParam String codigo) {
-        Alumno alumno = new Alumno();
-        alumno.setDireccion(direccion);
-        alumno.setNombre(nombre);
-        alumno.setTelefono(telefono);
-        alumno.setCodigo( (codigo != null && codigo != "" )? Long.parseLong(codigo) :0 );
-        serviceAlumnos.guardarAlumno(alumno);
-        return "redirect:/ejercicio03/alumnos";
+
+    @PostMapping("/buscar")
+    public String buscarAlumnosPorCodigo(Model model, Long codigo) {
+        service.getAlumno(codigo);
+        model.addAttribute("alumno", service.getAlumnos());
+        return "ej03/listadoAlumnos";
     }
-    
-    @GetMapping("/ejercicio03/nuevoAlumno")
-    public String ajaxhtml(Model model){
-        model.addAttribute("alumno",new Alumno ());
-        return "/ejercicio03/alumnos";
-    } 
-    
-            
-    @GetMapping("/return")
-    public String volver(Model model) {
-        model.addAttribute("lista",serviceAlumnos.getAlumnos());
-        return "/ej03/listaAlumnos";
+
+    @PostMapping("/buscarPorNombre")
+    public String buscarAlumnosPorNombre(Model model, String nombre) {
+        service.getAlumnos(nombre);
+        model.addAttribute("alumno", service.getAlumnos());
+        return "ej03/listadoAlumnos";
     }
+
+    @GetMapping("/borrar")
+    public String eliminarAlumnos(Model model, Long codigo) {
+        service.borrarAlumno(codigo);
+        model.addAttribute("alumno", service.getAlumnos());
+        return "ej03/listadoAlumnos";
+    }
+
+    @GetMapping("/editar")
+    public RedirectView editarAlumnos(Model model, Long codigo) {
+        model.addAttribute("alumno", service.getAlumno(codigo));
+        model.addAttribute("alumno", service.getAlumnos());
+        return new RedirectView ("listadoAlumnos");
+    }
+
 }
