@@ -16,30 +16,31 @@ and open the template in the editor.
         <div class='container' style='text-align: center;'>
             <h1>AGREGAR/EDITAR NUEVO ALUMNO</h1>
         </div>
-        
+
         <!-- Introducción de alumnos-->
         <div id="intro-alumnos" class="container col-5">
-            <form action="/ejercicio3/listado" method="post">
+            <form action="/ejercicio3/guardar" th:object="${alumno}" method="post">
                 <div class="row">
                     <div class="from-group col-12 mt-4">
                         <label>Codigo</label>
-                        <input disabled class="form-control" type="text" name="codigo" placeholder="" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input readonly class="form-control" type="text" placeholder="" th:field="*{codigo}"/>
                     </div>
                     <div class="from-group col-12 mt-4">
                         <label>Nombre</label>
-                        <input class="form-control" type="text" name="nombre" placeholder="Ingrese el nombre del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input class="form-control" type="text" placeholder="Ingrese el nombre del alumno" th:field="*{nombre}" />
                     </div>
                     <div class="from-group col-12 mt-4">
                         <label>Teléfono</label>
-                        <input class="form-control" type="number" name="telefono" placeholder="Ingrese el teléfono del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input class="form-control" type="number" placeholder="Ingrese el teléfono del alumno" th:field="*{telefono}" />
                     </div>
                     <div class="from-group col-12 mt-4">
                         <label>Dirección</label>
-                        <input class="form-control" type="text" name="direccion" placeholder="Ingrese la dirección del alumno" th:value="${valor1}" min="-99999" max="99999"/>
+                        <input class="form-control" type="text" placeholder="Ingrese la dirección del alumno" th:field="*{direccion}" />
                     </div>
                 </div>
+                <input  type="submit" value="Guardar" class="btn btn-success mt-4"></input>
             </form>
-            <input  type="submit" value="Insertar" class="btn btn-success mt-4"></input>
+
         </div>
 
         <!-- Scripts JQuery, Bootstrap, Fontawesome -->

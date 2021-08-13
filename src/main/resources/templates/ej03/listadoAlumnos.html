@@ -28,7 +28,7 @@ and open the template in the editor.
                         <!--<input type="button" value="Buscar" onclick="enviarResultado('/ejercicio2/suma')" class="col-12 btn btn-primary "<i class="fas fa-search"></i></input>-->
                         <button type="submit" value="Buscar"  class="btn btn-primary "><i class="fas fa-search"></i> Buscar</button>                                    
                         <!--<input type="submit" value="Nuevo" onclick="enviarResultado('/ejercicio2/resta')" class="col-12 btn btn-primary "/>-->
-                        <a class="btn btn-success " href="/ejercicio3/edicion"><i class="fas fa-user-plus"></i> Nuevo</a>
+                        <a class="btn btn-success " href="/ejercicio3/nuevo"><i class="fas fa-user-plus"></i> Nuevo</a>
                         
                     </div>
                 </div>
@@ -52,7 +52,7 @@ and open the template in the editor.
                     <td th:text="${alu.direccion}"></td>
                     <td>
                         <a class="btn btn-danger" th:href="${'/ejercicio3/eliminar?codigo='+alu.codigo}" ><i class="fas fa-user-times"></i> Eliminar</a>
-                        <a class="btn btn-primary" href="/ejercicio3/edicion"><i class="fas fa-edit"></i> Editar</a>
+                        <a class="btn btn-primary" th:href="${'/ejercicio3/editar?codigo='+alu.codigo}"><i class="fas fa-edit"></i> Editar</a>
                         
                     </td>
                 </tr> 

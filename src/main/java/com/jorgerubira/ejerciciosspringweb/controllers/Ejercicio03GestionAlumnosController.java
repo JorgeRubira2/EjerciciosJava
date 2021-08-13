@@ -35,16 +35,22 @@ public class Ejercicio03GestionAlumnosController {
     }
     
     @GetMapping("/editar")
-    public String edicion(Model model) {
-        model.addAttribute("lista", gest.getAlumnos());
+    public String edicion(Model model, Long codigo) {
+        model.addAttribute("alumno", gest.getAlumno(codigo).get()); //Devuelve un optional de Alumno
+        return "ej03/nuevoAlumno";
+    }
+    
+    @GetMapping("/nuevo")
+    public String nuevo(Model model) {
+        model.addAttribute("alumno", new Alumno()); //"alumno" es el mismo parámetro para nuevo y para editar, han de devolver lo mismo
         return "ej03/nuevoAlumno";
     }
     
     @PostMapping("/guardar")
     public String insertar (Model m, Alumno nuevoAlumno){
         gest.guardarAlumno(nuevoAlumno);
-        m.addAttribute("lista", gest.getAlumnos());
-        return "ej03/nuevoAlumno";
+        //m.addAttribute("lista", gest.getAlumnos()); No hace falta porque ya está dentro de listado
+        return "redirect:listado";
     }
     
     @PostMapping("/listado")

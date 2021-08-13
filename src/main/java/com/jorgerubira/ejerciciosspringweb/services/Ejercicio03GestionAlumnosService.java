@@ -34,6 +34,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
            
            
        }else{
+           alumno.setCodigo((long)(Math.random()*999999));
            alumnos.add(alumno);
        }
     }
