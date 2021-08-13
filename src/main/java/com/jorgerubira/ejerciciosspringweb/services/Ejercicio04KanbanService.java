@@ -17,11 +17,26 @@ import org.springframework.stereotype.Service;
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     
      List<TareaKanban> tareas = new ArrayList<>();
+
+    public Ejercicio04KanbanService() {
+       /* crearTarea("Descripción de la tarea",29);
+        crearTarea("medio1",29);
+        crearTarea("medio2",37);
+        crearTarea("Adios",44);
+        
+        tareas.get(0).setEstado("RoadMap");
+        tareas.get(1).setEstado("Waiting");
+        tareas.get(2).setEstado("Working");
+        tareas.get(3).setEstado("Done");
+*/
+    }
+     
+     
  
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
         
-        tareas.add(new TareaKanban(UUID.randomUUID().toString(),descripcion,null,horasEstimacion,0,"Roadmap"));
+        tareas.add(new TareaKanban(UUID.randomUUID().toString(),descripcion,null,horasEstimacion,0,"RoadMap"));
         
     }
 
@@ -104,7 +119,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     @Override
     public List<TareaKanban> getTareas() {
-        tareas.add(new TareaKanban());
+       
        return tareas;
     }
 

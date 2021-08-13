@@ -1,6 +1,7 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/ej04")
+//@RequestMapping("/ej04")
 
 public class Ejercicio04KanbanController {
     
@@ -34,18 +35,25 @@ public class Ejercicio04KanbanController {
     
     public String verKanban(Model model){
         
-        model.addAttribute("tareas", gestionKanban.getTareas());
+        model.addAttribute("tareaRoadMap", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("RoadMap")).collect(Collectors.toList()));
+        model.addAttribute("tareaWaiting", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Waiting")).collect(Collectors.toList()));
+        model.addAttribute("tareaWorking", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Working")).collect(Collectors.toList()));
+        model.addAttribute("tareaDone", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Done")).collect(Collectors.toList()));
+        
 
+    
         return"ej04/Kanban";
     }
     
-    @PostMapping("nuevaTarea")
+    @PostMapping("/nuevaTarea")
     
-    public String nuevaTarea(Model model, String descripcion, Integer horasEstimadas){
+    public String nuevaTarea(Model model, String descripcion, Integer horasEstimacion){
         
+        gestionKanban.crearTarea(descripcion, horasEstimacion);
         
-        
-        return"ej04/Kanban";
+        gestionKanban.getTareas();
+
+        return "redirect: verkanban";
     }
 }
 
