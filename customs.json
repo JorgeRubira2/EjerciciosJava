@@ -1,6 +1,12 @@
 {
     "elements": {},
     "attributes": {
+        "th:text": {
+            "context": "span"
+        },
+        "th:each": {
+            "context": "div"
+        },
         "th:value": {
             "context": "textarea"
         }

@@ -55,29 +55,81 @@
             </div>
             <div class="row relleno">
                 <div class ="col-3" style="border-top: 0px">
-                    <div class="card m-2" th:each="tarea:${tareaWaiting}">
+                    <div class="card m-2" th:each="tarea:${tareas}" th:if='${"Roadmap".equals(tarea.getEstado())}'> 
                         <div class="card-body">
-                            <h5 class="card-title">Prueba</h5>
-                            <p class="card-text">
-                                LOREM
-                            </p>
+                            <h5 class="card-title">
+                                <span th:text="${'Estimacion ' +tarea.horasEstimacion}"/>
+                                <span th:text="${'Trabajadas '+tarea.horasTrabajadas}"/>
+                                <span th:text="${'Estado '+tarea.getEstado}"/>
+                            </h5>
+                            <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-user-plus"></i></a>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-edit"></i></a>
+                            <a onclick="mostrarFormulario('formImputarHoras', 'Imputar Horas')" class="btn btn-outline-dark"><i class="fas fa-clock"></i></a>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class ="col-5" style="border-top: 0px">
-                    <div class="row">
-                        <div class="col pt-3 relleno" style="border-right: 1px solid black;border-top: 0px"></div>
-                        <div class="col pt-3 relleno" style="border-top: 0px"></div>
+                <div class ="col-5" style="border-top: 0px;border-bottom: 1px solid black">
+                    <div class="row relleno">
+                        <div class="col" style="border-right: 1px solid black;border-top: 0px;border-bottom: 0px">
+                            <div class="card m-2" th:each="tarea:${tareas}" th:if='${"Waiting".equals(tarea.getEstado())}'> 
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <span th:text="${' Estimacion ' +tarea.horasEstimacion}"/>
+                                        <span th:text="${'trabajadas '+tarea.horasTrabajadas}"/>
+                                        <span th:text="${'estado '+tarea.getEstado}"/>
+                                    </h5>
+                                    <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-left"></i></a>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-user-plus"></i></a>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-edit"></i></a>
+                                    <a onclick="mostrarFormulario('formImputarHoras', 'Imputar Horas')" class="btn btn-outline-dark"><i class="fas fa-clock"></i></a>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col" style="border-top: 0px;border-bottom: 0px">
+                           <div class="card m-2" th:each="tarea:${tareas}" th:if='${"Working".equals(tarea.getEstado())}'> 
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <span th:text="${' Estimacion ' +tarea.horasEstimacion}"/>
+                                        <span th:text="${'trabajadas '+tarea.horasTrabajadas}"/>
+                                        <span th:text="${'estado '+tarea.getEstado}"/>
+                                    </h5>
+                                    <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-left"></i></a>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-user-plus"></i></a>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-edit"></i></a>
+                                    <a onclick="mostrarFormulario('formImputarHoras', 'Imputar Horas')" class="btn btn-outline-dark"><i class="fas fa-clock"></i></a>
+                                    <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div> 
                 </div>
-                <div class ="col-3 relleno" style="border-top: 0px">
- 
+                <div class ="col-3" style="border-top: 0px">
+                    <div class="card m-2" th:each="tarea:${tareas}" th:if='${"Done".equals(tarea.getEstado())}'> 
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span th:text="${' Estimacion ' +tarea.horasEstimacion}"/>
+                                <span th:text="${'trabajadas '+tarea.horasTrabajadas}"/>
+                                <span th:text="${'estado '+tarea.getEstado}"/>
+                            </h5>
+                            <p class="card-text"><span th:text="${tarea.descripcion}"/> </p>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-left"></i></a>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-user-plus"></i></a>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-edit"></i></a>
+                            <a onclick="mostrarFormulario('formImputarHoras', 'Imputar Horas')" class="btn btn-outline-dark"><i class="fas fa-clock"></i></a>
+                            <a href="#" class="btn btn-outline-dark"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div id="formAddTask" style="display:none" >
-            <form id= "addTask" method="get" >
+            <form id= "addTask" method="post"  action="/ejercicio4/alta">
                 <div class="container" >
                     <div class="row" >
                         <div class="form-group">
@@ -86,12 +138,30 @@
                     </div>
                     <div class="row" >
                         <div class="form-group ">
-                            <input type="number" id="horasEstimacion" class="col-12" placeholder="Tiempo Estimado" name="horasEstimacion" th:value="${horasEstimacion}"/>
+                            <input type="number" id="horasEstimacion" class="col-12" name="horasEstimacion" placeholder="Tiempo Estimado" th:value="${horasEstimacion}"/>
                         </div>
                     </div>
                     <br/>
                     <div class="row col" style="border:0px">
-                        <a class="btn btn-outline-dark"  onclick="enviar('AltaTask','/ejercicio04/nuevaTarea')"> Alta </a>
+                        <input type="submit" class="btn btn-outline-dark" value="Enviar"> 
+                        <!-- <a class="btn btn-outline-dark"  onclick="enviar('AltaTask','/ejercicio04/alta')"> Alta </a>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div id="formImputarHoras" style="display:none" >
+            <form id= "imputarHoras" method="post"  action="/ejercicio4/imputarHoras">
+                <div class="container" >
+                    <div class="row" >
+                        <div class="form-group ">
+                            <input type="number" id="horasEstimacion" class="col-12" name="horasEstimacion" placeholder="Horas Imputadas" th:value="${tarea.getEstado}"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row col" style="border:0px">
+                        <input type="submit" class="btn btn-outline-dark" value="Enviar"> 
+                        <!-- <a class="btn btn-outline-dark"  onclick="enviar('AltaTask','/ejercicio04/alta')"> Alta </a>-->
                     </div>
                 </div>
             </form>

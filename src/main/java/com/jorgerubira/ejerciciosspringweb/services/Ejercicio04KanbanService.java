@@ -25,8 +25,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         crearTarea("Desc 4", 20);
         
         listaTareas.get(0).setEstado("Working");
-    }
-    
+    }  
     
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
@@ -38,7 +37,15 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     @Override
     public void modificarTarea(String codigo, String descripcion, Integer horasEstamacion) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<TareaKanban> tarea = this.getTarea(codigo);
+        if (tarea.isPresent()){
+            listaTareas.removeIf(x->codigo.equals(x.getCodigo()));
+            tarea.get().setDescripcion(descripcion);
+            tarea.get().setHorasEstimacion(horasEstamacion);
+            listaTareas.add(tarea.get());
+        } else {
+            throw new OperacionEnListaException(codigo);
+        }
     }
 
     @Override
@@ -55,12 +62,19 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     @Override
     public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<TareaKanban> opTareas = getTarea(codigo);
+        
+        if (opTareas.isPresent()) {
+            TareaKanban tarea = opTareas.get();
+            tarea.setHorasTrabajadas(horas);   
+        }
     }
 
     @Override
-    public void cambiarEstado(String codigo, String persona) throws OperacionEnListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException {
+        Optional<TareaKanban> opTareas = getTarea(codigo);
+        TareaKanban tarea = opTareas.get();
+        tarea.setEstado(estado);
     }
 
     @Override
