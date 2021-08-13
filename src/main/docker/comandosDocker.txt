@@ -1,0 +1,5 @@
+Descargar imagen mysql
+docker pull mysql
+
+Ejecutar contenedor
+docker run --name basedatoshiberus -e MYSQL_ROOT_PASSWORD=1111 -p3306:3306 -d mysql --lower-case-table-names
