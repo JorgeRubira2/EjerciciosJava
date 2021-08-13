@@ -34,7 +34,7 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/listadoAlumnos";
     }
     
-    @GetMapping("/edicion")
+    @GetMapping("/editar")
     public String edicion(Model model) {
         model.addAttribute("lista", gest.getAlumnos());
         return "ej03/nuevoAlumno";
@@ -42,19 +42,14 @@ public class Ejercicio03GestionAlumnosController {
     
     @PostMapping("/guardar")
     public String insertar (Model m, Alumno nuevoAlumno){
-        
         gest.guardarAlumno(nuevoAlumno);
-        
         m.addAttribute("lista", gest.getAlumnos());
-        
         return "ej03/nuevoAlumno";
     }
     
     @PostMapping("/listado")
-    public String listado (Model m, String nombre){
-           
+    public String listado (Model m, String nombre){    
         m.addAttribute("lista", gest.getAlumnos(nombre));
-        
         return "ej03/listadoAlumnos";
     }
         
@@ -62,7 +57,6 @@ public class Ejercicio03GestionAlumnosController {
     public String borrar (Model model, Long codigo){
         gest.borrarAlumno(codigo);//Llamamos al método que hay para dar de baja
         model.addAttribute("lista", gest.getAlumnos());
-        
         return"ej03/listadoAlumnos";
     }
 }
