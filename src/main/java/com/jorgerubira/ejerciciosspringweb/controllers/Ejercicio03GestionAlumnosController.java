@@ -33,23 +33,49 @@ public class Ejercicio03GestionAlumnosController {
 
     @GetMapping("/listadoAlumnos")
     public String gestionAlumnos(Model model) {
-        model.addAttribute("alumno", new Alumno());
         model.addAttribute("alumno", service.getAlumnos());
         return "ej03/listadoAlumnos";
     }
 
     @GetMapping("/nuevo")
-    public String incluirAlumnos(Model model, Alumno alumno) {
-        model.addAttribute("alumno", alumno);
-        service.guardarAlumno(alumno);
+    public String incluirAlumnos(Model model) {
+        model.addAttribute("alumno", new Alumno());
         return ("ej03/nuevoAlumno");
     }
+    
+    @PostMapping("/nuevo")
+    public String incluirAlumnos(Model model, Alumno alumno) {
+        service.guardarAlumno(alumno);
+        return ("redirect:listadoAlumnos");
+    }
+    @GetMapping("/borrar")
+    public String eliminarAlumnos(Model model, Long codigo) {
+        service.borrarAlumno(codigo);
+        model.addAttribute("alumno", service.getAlumnos());
+        return "ej03/listadoAlumnos";
+    }
+    
+    //@PostMapping("/borrar")
+    //public String eliminarAlumnos(Model model, Long codigo) {
+    //    service.borrarAlumno(codigo);
+    //    model.addAttribute("alumno", service.getAlumnos());
+    //    return ("redirect:listadoAlumnos");
+    //}
+    //
+    //@PostMapping("/borrar")
+    //public String eliminarAlumnos(Model model, Long codigo) {
+    //    service.getAlumno(codigo);
+    //    model.addAttribute("alumno", service.getAlumnos());
+    //    return "ej03/listadoAlumnos";
+    //}
+    //
 
+    
     @PostMapping("/buscar")
     public String buscarAlumnosPorCodigo(Model model, Long codigo) {
         service.getAlumno(codigo);
         model.addAttribute("alumno", service.getAlumnos());
-        return "ej03/listadoAlumnos";
+        return ("redirect:listadoAlumnos");
     }
 
     @PostMapping("/buscarPorNombre")
@@ -59,12 +85,7 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/listadoAlumnos";
     }
 
-    @GetMapping("/borrar")
-    public String eliminarAlumnos(Model model, Long codigo) {
-        service.borrarAlumno(codigo);
-        model.addAttribute("alumno", service.getAlumnos());
-        return "ej03/listadoAlumnos";
-    }
+
 
     @GetMapping("/editar")
     public RedirectView editarAlumnos(Model model, Long codigo) {
