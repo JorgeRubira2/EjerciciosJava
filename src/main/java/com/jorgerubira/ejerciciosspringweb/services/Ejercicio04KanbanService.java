@@ -31,6 +31,8 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         if (task.isPresent()) {
             task.get().setDescripcion(descripcion);
             task.get().setHorasEstimacion(horasEstamacion);
+        } else {
+            throw new OperacionEnListaException(codigo);
         }
     }
 
@@ -40,6 +42,8 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         
         if (task.isPresent()) {
             task.get().setPropietario(persona);
+        } else {
+            throw new OperacionEnListaException(codigo);
         }
     }
 
@@ -50,6 +54,8 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         if (task.isPresent()) {
 
             task.get().setHorasTrabajadas(horas + horasAcumuladoas);
+        } else {
+            throw new OperacionEnListaException(codigo);
         }
     }
 
@@ -59,6 +65,8 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         
         if (task.isPresent()) {
             task.get().setEstado(estado);
+        } else {
+            throw new OperacionEnListaException(codigo);
         }
     }
 
