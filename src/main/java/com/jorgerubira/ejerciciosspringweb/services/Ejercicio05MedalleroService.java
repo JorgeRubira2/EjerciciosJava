@@ -35,7 +35,7 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
 
     @Override
     public void altaMedalla(Medalla medalla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        medallas.add(medalla);
     }
 
     @Override
@@ -43,10 +43,10 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
 
         return medallas;
     }
- 
+
     @Override
     public List<MedallaPais> obtenerRankingPorPais() {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
 
