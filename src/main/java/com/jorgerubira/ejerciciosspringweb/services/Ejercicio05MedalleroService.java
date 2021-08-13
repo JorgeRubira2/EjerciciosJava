@@ -46,7 +46,32 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
 
     @Override
     public List<MedallaPais> obtenerRankingPorPais() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        List<String> paises = medallas.stream()
+                .map(x -> x.getPais())
+                .distinct()
+                .collect(Collectors.toList());
+
+        List<MedallaPais> res = paises.stream()
+                .map(x -> new MedallaPais(
+                x,
+                (int) medallas.stream()
+                        .filter(y -> y.getMedalla().equals("Oro"))
+                        .filter(y -> y.getPais().equals(x))
+                        .count(),
+                (int) medallas.stream()
+                        .filter(y -> y.getMedalla().equals("Plata"))
+                        .filter(y -> y.getPais().equals(x))
+                        .count(),
+                (int) medallas.stream()
+                        .filter(y -> y.getMedalla().equals("Cobres"))
+                        .filter(y -> y.getPais().equals(x))
+                        .count()
+        ))
+                .sorted((x, y) -> (y.getOro() + y.getPlata() + y.getCobre()) - (x.getOro() + x.getPlata() + x.getCobre()))
+                .collect(Collectors.toList());
+
+        return res;
 
     }
 
