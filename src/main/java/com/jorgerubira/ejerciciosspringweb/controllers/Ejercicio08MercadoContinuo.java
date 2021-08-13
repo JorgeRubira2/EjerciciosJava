@@ -22,4 +22,9 @@ public class Ejercicio08MercadoContinuo {
 
         return mercadoContinuo.obtenerCotizaciones();
     }
+    
+    @GetMapping
+    public String inicio(){
+        return "/ej08/cotizar";
+    }
 }

@@ -1,0 +1,139 @@
+<html lang="es" xmlns:th="https://www.thymeleaf.org"
+      th:fragment="plantilla(cuerpo)">
+    <head>
+        <title>Cotizaciones</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lumen/bootstrap.min.css">
+        <style>
+            .verde{
+                color:green;
+            }
+            .rojo{
+                color:red;
+            }
+            body{
+                background: rgba(212,228,239,1);
+                background: -moz-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1))) fixed;
+                background: -webkit-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: -o-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: -ms-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: linear-gradient(to bottom, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=0 );
+                padding-right:5%;
+                padding-left:5%;
+            }
+            .container{
+                align-self: center;
+                /*background-color:rgb(209, 209, 209);*/
+                background: linear-gradient(to bottom, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+                margin-top:15px;
+                border:1px solid gray;
+                border-radius: 10px;
+            }
+            .modal-content{
+                background: rgba(212,228,239,1);
+                background: -moz-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(212,228,239,1)), color-stop(100%, rgba(134,174,204,1))) fixed;
+                background: -webkit-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: -o-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: -ms-linear-gradient(top, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                background: linear-gradient(to bottom, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%) fixed;
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=0 );
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container text-center">
+            <th:block th:include="${cuerpo}"/>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>        
+        <script>
+            function leerJson(){
+                $.ajax({
+                    url:"/ejercicio8/listaCotizaciones",   //<--Ejecutamos del contra esta url
+                    dataType:"json",
+                    success: function(pJson){ //busqueda super pellejera, si tengo tiempo deberia convertir todo a datatable pa una busqueda mejor
+                        console.log(pJson);
+                        $('#listaCot').DataTable({
+                            destroy: true,
+                            order: [0, "asc"],
+                            data: pJson,
+                            columns: [
+                                { data: "titulo", title : "Titulo" },
+                                { data: "ultimo", title : "Ultimo" },
+                                { data: "variacion", title : "Variacion",
+                                        render: function (data, type, row) {
+                                        if (data >=0) {
+                                            return '<i class="fas fa-arrow-up verde"></i> ' + data;
+                                        }else {
+                                            return '<i class="fas fa-arrow-up rojo"></i> ' + data;
+                                        }
+                                    }
+                                },
+                                { data: "variacionPorcentaje", title : "%" ,
+                                        render: function (data, type, row) {
+                                        if (data >=0) {
+                                            return '<i class="fas fa-arrow-up verde"></i> ' + data;
+                                        }else {
+                                            return '<i class="fas fa-arrow-up rojo"></i> ' + data;
+                                        }
+                                    }
+                                },
+                                { data: "volumen", title : "Volumen" },
+                                { data: "maximo", title : "Maximo" },
+                                { data: "minimo", title : "Minimo" },
+                                { data: "hora", title : "Hora" },
+                            ],
+                            "lengthMenu": [10, 20, 50],
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ registros",
+                                "zeroRecords": "No hay registros",
+                                "info": "Mostrando del _START_ al _END_ de un total de _MAX_ registros",
+                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                "infoEmpty": "Lista vacia",
+                                "search": "Buscar:",
+                                "paginate": {
+                                    "first": "Primero",
+                                    "last": "Último",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
+                                    }
+                                }
+                        });
+                        /*console.log(pJson); //sin datatables, topenco
+                        $("#listaCot").html("");
+                        var salida = "";
+                        $.each(pJson, function(key,value){
+                            salida = $("<tr>");
+                            $("<td>").html(value.titulo).appendTo(salida); 
+                            salida.appendTo("#listaCot");       
+                        });*/ 
+                        //console.log(salida);     
+                    },
+                    error: function (err){
+                        bootbox.dialog({
+                            title: 'Error en la busqueda',
+                            message: err
+                        });
+                    }
+                })
+            }
+            function refrescar(){
+                leerJson();              
+                setTimeout(function(){refrescar()}, 30000);
+            }
+            $(document).ready(function(){
+                refrescar();
+            });
+        </script>
+    </body>
+</html>
