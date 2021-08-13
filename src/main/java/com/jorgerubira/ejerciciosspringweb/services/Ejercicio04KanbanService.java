@@ -19,7 +19,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
      List<TareaKanban> tareas = new ArrayList<>();
 
     public Ejercicio04KanbanService() {
-       /* crearTarea("Descripción de la tarea",29);
+        crearTarea("Descripción de la tarea",29);
         crearTarea("medio1",29);
         crearTarea("medio2",37);
         crearTarea("Adios",44);
@@ -28,7 +28,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         tareas.get(1).setEstado("Waiting");
         tareas.get(2).setEstado("Working");
         tareas.get(3).setEstado("Done");
-*/
+
     }
      
      

@@ -1,6 +1,10 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
+import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -44,6 +49,15 @@ public class Ejercicio04KanbanController {
     
         return"ej04/Kanban";
     }
+    @GetMapping ("/leerKanban")
+    @ResponseBody
+    public TareaKanban leerKanban(String codigo){
+        //mirar isPresent 1º
+          return gestionKanban.getTarea(codigo).get();
+   
+    }
+    
+    
     
     @PostMapping("/nuevaTarea")
     
@@ -51,9 +65,26 @@ public class Ejercicio04KanbanController {
         
         gestionKanban.crearTarea(descripcion, horasEstimacion);
         
-        gestionKanban.getTareas();
-
-        return "redirect: verkanban";
+      
+        return "redirect:verKanban";
     }
+    
+    
+    @PostMapping("/editarTarea")
+    
+    public String editarTarea(Model model, String codigo, String descripcion, Integer horasEstimacion){
+        
+        try {
+            gestionKanban.modificarTarea(codigo, descripcion, horasEstimacion);
+        } catch (OperacionEnListaException ex) {
+            Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      
+        return "redirect:verKanban";
+    }
+    
+    
+    
 }
 
