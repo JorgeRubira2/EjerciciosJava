@@ -1,0 +1,32 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>País</th>
+                        <th>Oro</th>
+                        <th>Plata</th>
+                        <th>Cobre</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pais,it:${paises}">
+                        <td th:text="${it.index+1}+' '+ ${pais.pais}"></td>
+                        <td th:text="${pais.oro}"></td>
+                        <td th:text="${pais.plata}"></td>
+                        <td th:text="${pais.cobre}"></td>
+                        <td th:text="${(pais.cobre + pais.plata + pais.oro)}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
