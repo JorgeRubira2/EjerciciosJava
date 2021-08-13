@@ -18,7 +18,7 @@ public interface IEjercicio05MedalleroService {
     //Listas calculadas a partir del List<Medalla>
     public List<MedallaPais> obtenerRankingPorPais();
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla);
-    public List<String> obtenerDeportesConMedalla(String pais);
+    public List<String> obtenerDeportistasConMedalla(String pais);
     public List<MedallaAtleta> obtenerRankingPorAlteta();
     
 }
