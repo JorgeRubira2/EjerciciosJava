@@ -21,7 +21,11 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
         Alumno alu = alumnos.stream()
                 .filter(x -> x.getCodigo() == alumno.getCodigo())
                 .findFirst()
-                .orElse(null);        
+                .orElse(null); 
+        if (alumno.getCodigo()==0){
+            alumno.setCodigo((int)(Math.random()*99999));            
+        }
+        
         if (alu == null) {
             alumnos.add(alumno);
         } else {

@@ -22,9 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/ejercicio3")
 public class Ejercicio03GestionAlumnosController {
 
-    @GetMapping("/formulario")
-    public String formulario() {
-        return "ej03/formularioAlta";
+    @GetMapping("/formulario")  //Dar de alta
+    public String formulario(Model model) {
+        model.addAttribute("alumno", new Alumno());
+        return "ej03/formularioEditar";
     }
 
     @Autowired
@@ -44,12 +45,9 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/regAlumnos";
     }
 
-    @GetMapping("/buscarAlumnoCodigo")
+    @GetMapping("/buscarAlumnoCodigo")  //Modificar
     public String buscarAlumno(Model model, long codigo) {
-        model.addAttribute("codigo", service.getAlumno(codigo).get().getCodigo());
-        model.addAttribute("nombre", service.getAlumno(codigo).get().getNombre());
-        model.addAttribute("telefono", service.getAlumno(codigo).get().getTelefono());
-        model.addAttribute("direccion", service.getAlumno(codigo).get().getDireccion());
+        model.addAttribute("alumno", service.getAlumno(codigo).get());
         return "ej03/formularioEdita";
     }
 
