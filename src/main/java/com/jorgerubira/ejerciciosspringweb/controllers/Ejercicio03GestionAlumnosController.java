@@ -47,6 +47,13 @@ public class Ejercicio03GestionAlumnosController {
 
 		return "ej03/gestionAlumno";
 	}
+//	@PostMapping("/gestionAlumno")
+//	public String nuevo(Model model,Alumno alumnos) {
+	//service.guardarAlumno(alumnos);
+//		model.addAttribute("lista", service.getAlumnos());
+//
+//		return "ej03/gestionAlumno";
+//	}
 
 	@GetMapping("/gestionAlumno/eliminar")
 	public String eliminarAlumnos(Model model, Long codigo) {
