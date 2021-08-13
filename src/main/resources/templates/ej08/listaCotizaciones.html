@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <style>
+            .variaPositivo{
+                color: green;
+            }
+             .variaNegativo{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="tabla"></table>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    <script>
+         
+        function desSerializador() {
+			$.ajax({
+				url : "listaCotizaciones",
+				data : {
+					// codigo : codigo
+				},
+				datatype : "json",
+				success : function(obj) {
+                                        $('#tabla').html('');
+                                        $('#tabla').append("<tr><th>Titulo</th><th>Último</th><th>Variacion</th><th>Variación en porcentaje</th><th>Volumen</th><th>Máximo</th><th>Mínimo</th><th>Hora</th><th></th><th></th></tr>")
+                                        $.each(obj,function(key,value){
+                                            //var ruta= value.titulo;
+                                            var fila=$("<tr>");
+                                            $("<td>").html(value.titulo).attr('class','titulo').attr('name','titulo').append('</td>').appendTo(fila);
+                                            $("<td>").html(value.ultimo).attr('class','ultimo').attr('name','ultimo').append('</td>').appendTo(fila);
+                                            //$("<td>").html(value.variacion).attr('class','variacion').appendTo(fila);
+                                            if (value.variacion >= 0){
+                                                $("<td>").html(value.variacion).attr('class','variaPositivo').attr('name','variacion').append('  <i class="variaPositivo fas fa-sort-up"></i>').append('</td>').appendTo(fila);
+                                            } else {
+                                                $("<td>").html(value.variacion).attr('class','variaNegativo').attr('name','variacion').append('  <i class="variaNegativo fas fa-sort-down"></i>').append('</td>').appendTo(fila);
+                                            }
+                                            //$("<td>").html(value.variacionPorcentaje).attr('class','variacionPorcentaPositivo').appendTo(fila);
+                                            if (value.variacionPorcentaje >= 0){
+                                                $("<td>").html(value.variacionPorcentaje).attr('class','variaPositivo').attr('name','variacionPorcentaje').append('  <i class="variaPositivo fas fa-sort-up"></i>').append('</td>').appendTo(fila);
+                                            } else {
+                                                $("<td>").html(value.variacionPorcentaje).attr('class','variaNegativo').attr('name','variacionPorcentaje').append('  <i class="variaNegativo fas fa-sort-down"></i>').append('</td>').appendTo(fila);
+                                            }
+                                            $("<td>").html(value.volumen).attr('class','volumen').attr('name','volumen').append('</td>').appendTo(fila);
+                                            $("<td>").html(value.maximo).attr('class','maximo').attr('name','maximo').append('</td>').appendTo(fila);
+                                            $("<td>").html(value.minimo).attr('class','minimo').attr('name','minimo').append('</td>').appendTo(fila);
+                                            $("<td>").html(value.hora).attr('class','hora').attr('name','hora').append('</td>').appendTo(fila);
+                                            $("<td>").append('<input type ="button" onclick="comprar" formaction="compraVenta" value="Comprar"/>').append('</td>').appendTo(fila);
+                                            $("<td>").append('<input type ="button" onclick="vender" formaction="compraVenta" value="Vender"/>').append('</td>').appendTo(fila);
+                                            $("</tr>").appendTo(fila);
+                                            $('#tabla').append(fila);
+                                        });
+					
+				}
+			});}   
+                    
+        function refrescar() {
+            desSerializador();
+            setTimeout(function(){ refrescar();}, 10000 );
+            
+        }
+
+        $(document).ready(function (){ refrescar();});
+    </script>
+</html>
