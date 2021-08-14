@@ -15,6 +15,8 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
  * En las tarjetas mostrar la descripción, persona responsable, horas trabajadas/horas estimadas.
  * 
  */
+@Controller
+@RequestMapping("/ejercicio4")
 public class Ejercicio04KanbanController {
     
 }
