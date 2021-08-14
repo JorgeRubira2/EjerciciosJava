@@ -68,14 +68,19 @@
                             order: [0, "asc"],
                             data: pJson,
                             columns: [
-                                { data: "titulo", title : "Titulo" },
-                                { data: "ultimo", title : "Ultimo" },
+                                { data: "titulo", title : "Titulo"},
+                                { data: null, title : "Ultimo",
+                                        render: function(data, type, row){
+                                            return data.ultimo +'<input type="hidden" value="' + data.ultimo 
+                                                    + '" id="' +data.titulo+'"/>';
+                                        }
+                                },
                                 { data: "variacion", title : "Variacion",
                                         render: function (data, type, row) {
                                         if (data >=0) {
                                             return '<i class="fas fa-arrow-up verde"></i> ' + data;
                                         }else {
-                                            return '<i class="fas fa-arrow-up rojo"></i> ' + data;
+                                            return '<i class="fas fa-arrow-down rojo"></i> ' + data;
                                         }
                                     }
                                 },
@@ -84,7 +89,7 @@
                                         if (data >=0) {
                                             return '<i class="fas fa-arrow-up verde"></i> ' + data;
                                         }else {
-                                            return '<i class="fas fa-arrow-up rojo"></i> ' + data;
+                                            return '<i class="fas fa-arrow-down rojo"></i> ' + data;
                                         }
                                     }
                                 },
@@ -92,6 +97,11 @@
                                 { data: "maximo", title : "Maximo" },
                                 { data: "minimo", title : "Minimo" },
                                 { data: "hora", title : "Hora" },
+                                { data: null , title: "Accion",
+                                        render: function (data, type, row) {
+                                        return '<button class=\'btn btn-primary\' onclick=\'leerHtmlAjax("'+data.titulo+'",'+data.ultimo+')\'>Comprar</button>';
+                                    }
+                                }
                             ],
                             "lengthMenu": [10, 20, 50],
                             "language": {
@@ -108,16 +118,8 @@
                                     "previous": "Anterior"
                                     }
                                 }
-                        });
-                        /*console.log(pJson); //sin datatables, topenco
-                        $("#listaCot").html("");
-                        var salida = "";
-                        $.each(pJson, function(key,value){
-                            salida = $("<tr>");
-                            $("<td>").html(value.titulo).appendTo(salida); 
-                            salida.appendTo("#listaCot");       
-                        });*/ 
-                        //console.log(salida);     
+                        }
+                        ); 
                     },
                     error: function (err){
                         bootbox.dialog({
@@ -128,12 +130,31 @@
                 })
             }
             function refrescar(){
-                leerJson();              
+                leerJson();                 
                 setTimeout(function(){refrescar()}, 30000);
             }
             $(document).ready(function(){
                 refrescar();
             });
+            function leerHtmlAjax(pTitulo,pUltimo){
+                $.ajax({
+                    url:"ejercicio8/comprar",
+                    data: {
+                        titulo: pTitulo,
+                        ultimo: pUltimo
+                    },   //<--Ejecutamos del contra esta url
+                    success: function(pHtml){    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            title: 'Compra de acciones',
+                            size: "large",
+                            message: pHtml
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                      alert(xhr.responseText);
+                    }
+                });
+            }
         </script>
     </body>
 </html>

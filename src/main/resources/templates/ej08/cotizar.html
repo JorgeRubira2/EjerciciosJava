@@ -6,8 +6,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <th:block th:if="${cotiza!=null}">
+            <div class="container text-center">
+                <h4>Stock actual</h4>
+                <table id="listaMovs" class="table table-striped">
+                    <thead>
+                        <th>Titulo</th>
+                        <th>Comprado</th>
+                        <th>Cantidad</th>
+                        <th>Fecha compra</th>
+                        <th>Venta</th>
+                        <th>Diferencia</th>
+                        <th>Accion</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cot:${cotiza}" th:if="${cot.tipoOperacion} == 'Compra'">
+                            <td th:text="${cot.titulo}" />
+                            <td th:text="${cot.precioInicial}" />
+                            <td th:text="${cot.cantidad}" />
+                            <td th:text="${cot.fechaOperacionInicio}" />
+                            <td id="precioVenta"> </td>
+                            <td id="calcularDiferencia" />
+                            <td>
+                                <button class="btn btn-warning">Vender</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>   
+            </div>
+        </th:block>
+
         <table id="listaCot" class="table table-striped">
             
-        </table>
+        </table>   
+        <script>
+
+        </script>
     </body>
 </html>
