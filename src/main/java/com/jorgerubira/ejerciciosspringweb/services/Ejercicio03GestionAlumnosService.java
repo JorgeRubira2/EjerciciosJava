@@ -23,13 +23,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     private List<Alumno> listaAlumnos = new ArrayList<>();
     
-      public Ejercicio03GestionAlumnosService() {
-        listaAlumnos.add(0, new Alumno(1, "Raul", "665379845", "Calle"));
-        listaAlumnos.add(1, new Alumno(2, "Pepe", "665379845", "Calle"));
-        listaAlumnos.add(2, new Alumno(3, "Juan", "665379845", "Calle"));
-    }
-    
-     @Override
+    @Override
     public void guardarAlumno(Alumno alumno) {
         if (alumno == null) {
             throw new NullPointerException();
@@ -39,14 +33,16 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
             OptionalLong ultima = listaAlumnos.stream()
                     .mapToLong(var1 -> var1.getCodigo())
                     .max();
-            
-            if(ultima.isPresent()){
-                alumno.setCodigo(ultima.getAsLong()+1);
+
+            if (ultima.isEmpty()){
+                alumno.setCodigo(1);
             } else {
-                alumno.setCodigo(0);
+                alumno.setCodigo(ultima.getAsLong()+1);
             }
+
+
             listaAlumnos.add(alumno);
-            
+
         } else {
             Alumno aux = listaAlumnos.stream()
                     .filter(var1 -> var1.getCodigo() == alumno.getCodigo())
@@ -64,7 +60,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     public void borrarAlumno(Long codigo) {
         Optional<Alumno> alumno = listaAlumnos.stream()
                 .filter(v1 -> v1.getCodigo() == codigo)
-                .findAny();
+                .findFirst();
 
         if (alumno.isPresent()) {
             listaAlumnos.remove(alumno.get());

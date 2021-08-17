@@ -23,18 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 
-@Controller
-@RequestMapping("/Ejercicio4")
 public class Ejercicio04KanbanController {
 
-    @Autowired
-    private IEjercicio04KanbanService list;
-
-    @GetMapping("")
-    public String list(Model model) {
-
-        model.addAttribute("lista", list.getTareas());
-
-        return "ej04/Kanban";
-    }
 }
