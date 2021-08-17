@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio08MercadoContinuoService;
 import com.jorgerubira.ejerciciosspringweb.repositories.BolsaRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -26,19 +29,42 @@ public class Ejercicio08MercadoContinuo {
     @GetMapping
     public String inicio(Model m){
         m.addAttribute("bolsa",new Bolsa());
+       
         return "/ej08/inicio";
     }
     
     @GetMapping("/listaCotizaciones")
     @ResponseBody
     public List<Cotizacion> mercadoContinuo() throws Exception{
-
         return mercadoContinuo.obtenerCotizaciones();
     }
     
     @PostMapping("/formulario")
     @ResponseBody
-    public Bolsa compra(Bolsa b){
-        return b;
+   
+    public Bolsa formulario(Bolsa b){
+ 
+        return b; 
+    }
+    @PostMapping("/compra")
+    public String compra(Model m, String hora, String titulo, String operacion, Integer titulos, Double precio){
+        System.out.print(titulo+" "+operacion+" "+titulos+" "+precio);
+        System.out.println(hora);
+        Date date1=null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", new Locale("es-ES"));
+            date1 = sdf.parse(hora);
+        } catch (ParseException ex) {
+            System.err.print("error");
+        }
+        Bolsa b=new Bolsa(date1,titulo,operacion,titulos,precio);
+        System.out.println(b.getTitulo());
+       bolsaService.save(b);
+       return "redirect:/ejercicio8"; 
+    }
+    @GetMapping("/cartera")
+    @ResponseBody
+    public List<Bolsa> cartera() {
+        return bolsaService.findAll();
     }
 }
