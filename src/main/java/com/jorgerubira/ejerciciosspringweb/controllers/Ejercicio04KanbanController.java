@@ -35,9 +35,9 @@ public class Ejercicio04KanbanController {
         model.addAttribute("listaTareas", kanban.getTareas());
         return "ej04/listaTareas";
     }
+    
     @PostMapping("/addTarea")
     public String addTarea(Model model){
-        model.addAttribute("listaTareas", kanban.getTareas());
-        return "ej04/listaTareas";
+        return "redirect:listaTareas";
     }
 }

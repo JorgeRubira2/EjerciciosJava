@@ -5,7 +5,6 @@
  */
 package com.jorgerubira.ejerciciosspringweb.services;
 
-import com.jorgerubira.ejerciciosspringweb.domain.Cotizacion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,8 +14,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.stereotype.Service;
+
+import com.jorgerubira.ejerciciosspringweb.domain.Cotizacion;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio08MercadoContinuoService;
 
 
@@ -55,7 +57,7 @@ public class Ejercicio08MercadoContinuoService implements IEjercicio08MercadoCon
         html=html.split("<table")[1];
         html=html.split("</table")[0];
         List<String> lista = new ArrayList<>(Arrays.asList(html.split("lnk")));
-        var res=lista.stream().map(x->{
+        List<Cotizacion> res=lista.stream().map(x->{
                 try{
                     String []dato=x.split("<td");
                     return new Cotizacion(

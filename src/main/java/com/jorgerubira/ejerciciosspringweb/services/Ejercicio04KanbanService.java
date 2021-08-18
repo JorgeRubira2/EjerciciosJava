@@ -40,7 +40,10 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 		Optional<TareaKanban> tarea = tareas.stream()
 				.filter(x -> x.getCodigo()== codigo)
 				.findFirst();
-		tarea.get().setPropietario(persona);
+
+		if(tarea.isPresent()) {
+			tarea.get().setPropietario(persona);
+		}
 	}
 
 	@Override
