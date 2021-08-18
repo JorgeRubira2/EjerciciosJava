@@ -28,38 +28,35 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
 	@Override
 	public void modificarTarea(String codigo, String descripcion, Integer horasEstamacion) throws OperacionEnListaException {
-		Optional<TareaKanban> tarea = tareas.stream()
-				.filter(x -> x.getCodigo()== codigo)
-				.findFirst();
+		Optional<TareaKanban> tarea = getTarea(codigo);
+		tareas.removeIf(x -> x.getCodigo() == codigo);
 		tarea.get().setDescripcion(descripcion);
 		tarea.get().setHorasEstimacion(horasEstamacion);
+		tareas.add(tarea.get());
 	}
 
 	@Override
 	public void asignarPersona(String codigo, String persona) throws OperacionEnListaException {
-		Optional<TareaKanban> tarea = tareas.stream()
-				.filter(x -> x.getCodigo()== codigo)
-				.findFirst();
-
-		if(tarea.isPresent()) {
-			tarea.get().setPropietario(persona);
-		}
+		Optional<TareaKanban> tarea = getTarea(codigo);
+		tareas.removeIf(x -> x.getCodigo() == codigo);
+		tarea.get().setPropietario(persona);
+		tareas.add(tarea.get());
 	}
 
 	@Override
 	public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
-		Optional<TareaKanban> tarea = tareas.stream()
-				.filter(x -> x.getCodigo()== codigo)
-				.findFirst();
+		Optional<TareaKanban> tarea = getTarea(codigo);
+		tareas.removeIf(x -> x.getCodigo() == codigo);
 		tarea.get().setHorasTrabajadas(horas);
+		tareas.add(tarea.get());
 	}
 
 	@Override
 	public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException {
-		Optional<TareaKanban> tarea = tareas.stream()
-				.filter(x -> x.getCodigo()== codigo)
-				.findFirst();
+		Optional<TareaKanban> tarea = getTarea(codigo);
+		tareas.removeIf(x -> x.getCodigo() == codigo);
 		tarea.get().setEstado(estado);
+		tareas.add(tarea.get());
 	}
 
 	@Override
@@ -73,7 +70,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 			throw new NullPointerException();
 		}else {
 			return  tareas.stream()
-					.filter(x -> x.getCodigo()== codigo)
+					.filter(x -> x.getCodigo() == codigo)
 					.findFirst();
 		}
 	}
