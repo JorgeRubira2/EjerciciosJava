@@ -19,15 +19,9 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
      List<TareaKanban> tareas = new ArrayList<>();
 
     public Ejercicio04KanbanService() {
-        crearTarea("Descripción de la tarea",29);
-        crearTarea("medio1",29);
-        crearTarea("medio2",37);
-        crearTarea("Adios",44);
-        
-        tareas.get(0).setEstado("RoadMap");
-        tareas.get(1).setEstado("Waiting");
-        tareas.get(2).setEstado("Working");
-        tareas.get(3).setEstado("Done");
+        crearTarea("Tareica bonica ",29);
+        tareas.get(0).setEstado("Roadmap");
+       
 
     }
      
@@ -36,7 +30,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
         
-        tareas.add(new TareaKanban(UUID.randomUUID().toString(),descripcion,null,horasEstimacion,0,"RoadMap"));
+        tareas.add(new TareaKanban(UUID.randomUUID().toString(),descripcion,null,horasEstimacion,0,"Roadmap"));
         
     }
 
@@ -70,6 +64,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         Optional <TareaKanban> tar= tareas.stream()
                 .filter(x->x.getCodigo().equals(codigo))
                 .findFirst();
+        
         if(tar.isPresent()){
             tar.get()
                     .setPropietario(persona);
@@ -102,7 +97,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
     }
 
     @Override
-    public void cambiarEstado(String codigo, String persona) throws OperacionEnListaException {
+    public void cambiarEstado(String codigo, String estado) throws OperacionEnListaException {
         
         Optional <TareaKanban> tar= tareas.stream()
                 .filter(x->x.getCodigo().equals(codigo))
@@ -110,7 +105,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         
         if(tar.isPresent()){
             tar.get()
-                    .setEstado(persona);
+                    .setEstado(estado);
         }
         
         

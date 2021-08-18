@@ -40,7 +40,7 @@ public class Ejercicio04KanbanController {
     
     public String verKanban(Model model){
         
-        model.addAttribute("tareaRoadMap", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("RoadMap")).collect(Collectors.toList()));
+        model.addAttribute("tareaRoadmap", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Roadmap")).collect(Collectors.toList()));
         model.addAttribute("tareaWaiting", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Waiting")).collect(Collectors.toList()));
         model.addAttribute("tareaWorking", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Working")).collect(Collectors.toList()));
         model.addAttribute("tareaDone", gestionKanban.getTareas().stream().filter(x-> x.getEstado().equals("Done")).collect(Collectors.toList()));
@@ -52,7 +52,7 @@ public class Ejercicio04KanbanController {
     @GetMapping ("/leerKanban")
     @ResponseBody
     public TareaKanban leerKanban(String codigo){
-        //mirar isPresent 1º
+        //mirar isPresent 
           return gestionKanban.getTarea(codigo).get();
    
     }
@@ -85,6 +85,49 @@ public class Ejercicio04KanbanController {
     }
     
     
+    @GetMapping("/asignarPersona")
+    
+    public String asignarPersona(Model model, String codigo, String persona){
+        
+        try {
+            gestionKanban.asignarPersona(codigo, persona);
+        } catch (OperacionEnListaException ex) {
+            Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "redirect:verKanban";
+      
+    }
+    
+    @GetMapping("/cambiarEstado")
+     public String cambiarEstado (Model model, String codigo, String estado){
+         
+        try {
+            gestionKanban.cambiarEstado(codigo, estado);
+        } catch (OperacionEnListaException ex) {
+            Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+          return "redirect:verKanban";
+     }
+     
+       @GetMapping("/horasTrabajadas")
+     public String horasTrabajadas (Model model, String codigo, Integer horasTrabajadas){
+    
+         if(horasTrabajadas !=null){
+              try {
+            gestionKanban.imputarHorasTrabajadas(codigo, horasTrabajadas);
+        } catch (OperacionEnListaException ex) {
+            Logger.getLogger(Ejercicio04KanbanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+         }
+       
+         
+          return "redirect:verKanban";
+     }
+     
+
     
 }
 
