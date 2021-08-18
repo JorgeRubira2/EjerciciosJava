@@ -45,7 +45,7 @@ public class Ejercicio08MercadoContinuoService implements IEjercicio08MercadoCon
     
     public double getDouble(String valor){
         try{
-            valor=valor.replaceAll("\\.", "").replaceAll(",", ".");
+            valor=valor.replaceAll("\\.", "").replaceAll(",", ".").replaceAll("%", "");
             return Double.parseDouble(valor);
         }catch(Exception e){
             return 0;
