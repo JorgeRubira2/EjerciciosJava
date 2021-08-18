@@ -47,7 +47,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 	public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
 		Optional<TareaKanban> tarea = getTarea(codigo);
 		tareas.removeIf(x -> x.getCodigo() == codigo);
-		tarea.get().setHorasTrabajadas(horas);
+		tarea.get().setHorasTrabajadas(tarea.get().getHorasTrabajadas() + horas);
 		tareas.add(tarea.get());
 	}
 
