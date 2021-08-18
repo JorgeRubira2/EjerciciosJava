@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
 
 /**
@@ -36,8 +37,19 @@ public class Ejercicio04KanbanController {
         return "ej04/listaTareas";
     }
     
+    @GetMapping("/insertarTarea")
+    public String getPaginaInsertar(Model model){
+        model.addAttribute("descripcion", "");
+        model.addAttribute("propietario", "");
+        model.addAttribute("estimacion", "");
+        model.addAttribute("horastrabajo", "");
+        model.addAttribute("estado", "");
+        return "ej04/guardarTarea";
+    }
+    
     @PostMapping("/addTarea")
-    public String addTarea(Model model){
+    public String addTarea(Model model, TareaKanban tarea){
+    	kanban.crearTarea(tarea.getDescripcion(), tarea.getHorasEstimacion());
         return "redirect:listaTareas";
     }
 }

@@ -3,6 +3,7 @@ package com.jorgerubira.ejerciciosspringweb.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 	@Override
 	public void crearTarea(String descripcion, Integer horasEstimacion) {
 		TareaKanban nuevo = new TareaKanban();
+		nuevo.setCodigo(UUID.randomUUID().toString());
 		nuevo.setDescripcion(descripcion);
 		nuevo.setHorasEstimacion(horasEstimacion);
 	}
