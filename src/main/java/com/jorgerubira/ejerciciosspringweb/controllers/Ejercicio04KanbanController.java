@@ -122,8 +122,7 @@ public class Ejercicio04KanbanController {
         }
              
          }
-       
-         
+
           return "redirect:verKanban";
      }
      
