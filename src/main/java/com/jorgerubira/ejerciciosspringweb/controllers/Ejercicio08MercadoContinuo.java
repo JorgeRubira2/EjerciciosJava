@@ -20,48 +20,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/ejercicio8")
 public class Ejercicio08MercadoContinuo {
-    
+
     @Autowired
     private IEjercicio08MercadoContinuoService mercadoContinuo;
     @Autowired
     private BolsaRepository bolsaService;
-    
+
     @GetMapping
-    public String inicio(Model m){
-        m.addAttribute("bolsa",new Bolsa());
-       
+    public String inicio(Model m) {
+        m.addAttribute("bolsa", new Bolsa());
+
         return "/ej08/inicio";
     }
-    
+
     @GetMapping("/listaCotizaciones")
     @ResponseBody
-    public List<Cotizacion> mercadoContinuo() throws Exception{
+    public List<Cotizacion> mercadoContinuo() throws Exception {
         return mercadoContinuo.obtenerCotizaciones();
     }
-    
+
     @PostMapping("/formulario")
     @ResponseBody
-   
-    public Bolsa formulario(Bolsa b){
- 
-        return b; 
+    public Bolsa formulario(Bolsa b) {
+        return b;
     }
+    
+    @PostMapping("/venta")
+    public String venta(Model m, Bolsa b) {
+        int sb=bolsaService.countSumaByTitle(b.getTitulo());
+        m.addAttribute("titulosDisponibles",sb);
+        m.addAttribute("bolsa", b);
+        return "/ej08/venta";
+    }
+
     @PostMapping("/compra")
-    public String compra(Model m, String hora, String titulo, String operacion, Integer titulos, Double precio){
-        System.out.print(titulo+" "+operacion+" "+titulos+" "+precio);
+    public String compra(Model m, String hora, String titulo, String operacion, Integer titulos, Double precio) {
+        System.out.print(titulo + " " + operacion + " " + titulos + " " + precio);
         System.out.println(hora);
-        Date date1=null;
+        Date date1 = null;
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", new Locale("es-ES"));
             date1 = sdf.parse(hora);
         } catch (ParseException ex) {
             System.err.print("error");
         }
-        Bolsa b=new Bolsa(date1,titulo,operacion,titulos,precio);
+        Bolsa b = new Bolsa(date1, titulo, operacion, titulos, precio);
         System.out.println(b.getTitulo());
-       bolsaService.save(b);
-       return "redirect:/ejercicio8"; 
+        bolsaService.save(b);
+        return "redirect:/ejercicio8";
     }
+
     @GetMapping("/cartera")
     @ResponseBody
     public List<Bolsa> cartera() {

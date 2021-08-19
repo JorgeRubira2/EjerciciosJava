@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <form action="/ejercicio8/compra" method="post" th:object="${bolsa}">
+                <input type="hidden" th:field="*{hora}" class="form-control" />
+                <label for="titulo" class="form-label">Empresa: </label><input type="text" th:field="*{titulo}" class="form-control" readonly/>
+                <label for="operacion" class="form-label">Operación: </label> <input type="text" th:field="*{operacion}" class="form-control"/>
+                <label for="titulos" class="form-label"> Títulos a comprar</label> <input type="number" th:placeholder="|Puedes vender un máximo de: ${titulosDisponibles}|" th:max="${titulosDisponibles}" id="titulos" name="titulos" class="form-control" step="1"/>
+                <label for="precio" class="form-label">Precio </label><input type="number" th:field="*{precio}" class="form-control" readonly/>
+                <input type="submit" id="submitOper" value="Guardar" class="btn btn-primary" />
+            </form>
+        </div>
+    </body>
+</html>

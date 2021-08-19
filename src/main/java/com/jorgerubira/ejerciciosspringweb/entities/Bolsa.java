@@ -38,3 +38,4 @@ public Bolsa(Date hora, String titulo, String operacion, Integer titulos, Double
    
     
 }
+ 

@@ -114,16 +114,16 @@
                 dat.setHours(hours);
                 dat.setMinutes(minutes);
                 dat.setSeconds(seconds);
-                $.post("/ejercicio8/formulario", {titulo: pTitulo,
+                $.post("/ejercicio8/venta", {titulo: pTitulo,
                     precio: pPrecio,
                     hora: dat,
                     operacion: 'Vender'}, 
-                    function (pJson) {
+                    function (pHtml) {
                         bootbox.dialog({
                             title: 'Comprar',
-                            message: "<div id='formBB'>" + $('#formularioComprar').html() + "</div>"
+                            message: pHtml
                         });
-                        $('#formBB form').deserialize(pJson);
+
  
                 });
             }
