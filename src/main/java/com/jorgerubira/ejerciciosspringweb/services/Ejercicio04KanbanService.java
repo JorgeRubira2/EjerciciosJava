@@ -19,7 +19,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
      List<TareaKanban> tareas = new ArrayList<>();
 
     public Ejercicio04KanbanService() {
-        crearTarea("Tareica bonica ",29);
+        crearTarea("Descripcion de la tarea ",29);
         tareas.get(0).setEstado("Roadmap");
        
 
