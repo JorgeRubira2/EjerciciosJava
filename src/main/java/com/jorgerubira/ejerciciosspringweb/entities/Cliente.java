@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosspringweb.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,16 @@ import lombok.NoArgsConstructor;
 public class Cliente {
     @Id
     private Long id;    //Poner las anotaciones
-    //poner aquí los campos que creas conveniente.
+    private String nombre;
+    private String apellidos;
+    private String titulo;
+    private String email;
+    private String telefono;
+    private String cuenta;
+    private String descripcion;
+    private String calle;
+    private String ciudad;
+    private String estado;
+    private String pais;
+    private Integer postal;
 }
