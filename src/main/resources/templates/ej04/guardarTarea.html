@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formulario</title>
+</head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<style>
+h3 {
+	text-decoration: underline;
+	font-weight: bold;
+}
+label{
+	text-decoration: underline;
+}
+</style>
+<body>
+	<h3>Guardar tarea</h3>
+	<br>
+	<form id="formulario" th:object="${tarea}" action="addTarea"
+		method="post">
+		<label>Descripcion:</label>
+		<textarea form="formulario" th:field="*{descripcion}"  rows="4" cols="30"></textarea>
+		<br /> <label>Horas estimadas:</label><input type="number"
+			th:field="*{estimacion}" class="col-1"> <br />
+		<button class="btn btn-success">Anadir tarea</button>
+	</form>
+
+</body>
+</html>

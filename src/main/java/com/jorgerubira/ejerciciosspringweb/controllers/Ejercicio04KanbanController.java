@@ -40,10 +40,7 @@ public class Ejercicio04KanbanController {
     @GetMapping("/insertarTarea")
     public String getPaginaInsertar(Model model){
         model.addAttribute("descripcion", "");
-        model.addAttribute("propietario", "");
         model.addAttribute("estimacion", "");
-        model.addAttribute("horastrabajo", "");
-        model.addAttribute("estado", "");
         return "ej04/guardarTarea";
     }
     
