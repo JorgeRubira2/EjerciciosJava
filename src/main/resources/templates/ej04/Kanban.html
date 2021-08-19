@@ -11,9 +11,23 @@
 
         <style>
             .container {
-
-
                 text-align: center;
+            }
+             .default{
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                border-left: 6px solid #45ABCD;
+            }
+            .verde{
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                border-left: 6px solid #1CCC12;
+            }
+             .naranja{
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                border-left: 6px solid #FEAF20;
+            }
+             .rojo{
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                border-left: 6px solid #D73814;
             }
 
         </style>
@@ -49,17 +63,23 @@
             <div class="cuerpo">
                 <div class="row">
                     <div class="col-3">
-                        <div class="card card bg-light m-2" th:each="tarea:${tareaRoadmap}" style="width: 18rem">
-                            <div class="card-body">                
+                        <!-- CARD
+                        
+                         th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'card border-success' : 
+                              (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'card border-danger m-2' : 'card border-warning m-2')"
+                               -->
+                        <div th:each="tarea:${tareaRoadmap}" 
+                              th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'default m-2' : 
+                              (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')"style="max-width: 18rem;">
+                            <div class="card-body">    
 
                                 <p class="card-text" th:text="${tarea.descripcion}" > </p> 
-
 
                                 <form action="/asignarPersona" method="get" >
                                     <input name="codigo" th:value="${tarea.codigo}" type="hidden">                                   
                                     <div class="input-group">
                                         <span class="input-group-addon m-2" ><i class="far fa-user-circle"></i></span>
-                                        <select name="persona" onchange="this.form.submit()" class="form-select">
+                                        <select name="persona" onchange="this.form.submit()" class="form-select mb-3">
                                             <option selected>Asigne una persona</option>
                                             <option th:selected="(${tarea.propietario} == Pepe)" value="Pepe">Pepe</option>
                                             <option th:selected="(${tarea.propietario} == Paco)" value="Paco">Paco</option>
@@ -72,7 +92,7 @@
                                     <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
                                     <div class="input-group">
                                         <span class="input-group-addon m-2" ><i class="fas fa-tasks"></i></span>
-                                        <select name="estado" onchange="this.form.submit()" class="form-select">
+                                        <select name="estado" onchange="this.form.submit()" class="form-select mb-3">
 
                                             <option th:selected="(${tarea.estado} == Roadmap)" value="Roadmap">Roadmap</option>
                                             <option th:selected="(${tarea.estado} == Waiting)" value="Waiting">Waiting</option>
@@ -82,72 +102,62 @@
                                     </div>
                                 </form>
                                 <!-- button para editar tarea -->
-                                <Button th:attr="onclick=|editar('${tarea.codigo}')|" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-secondary mt-3"> <i class="far fa-edit"></i> </button>
+                                <Button th:attr="onclick=|editar('${tarea.codigo}')|" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-info mb-2"> <i class="far fa-edit"></i> Editar Tarea</button>
 
                             </div>
-                            <div class="card-footer text-muted">
-                                
-                                
+                            <div class="card-footer border-info">
+
                                 <div class="row">
-                                   <div class="col-7">
-                                       <p class="card-text"> <i class="far fa-clock"></i>Horas estimadas </p> 
+                                    <div class="col-7">
+                                        <p class="card-text"> <i class="far fa-clock"></i>Horas estimadas </p> 
                                     </div>
-                                     <div class="col-5">
-                                        <input type="text" class="form-control" readOnly th:value="${tarea.horasEstimacion}">                              
+                                    <div class="col-5">
+                                        <input type="text"  readOnly th:value="${tarea.horasEstimacion}" class="form-control mb-3">                              
                                     </div>
-                                    
-                                    
+
                                 </div>
                                 <div class="row">
-                                   <div class="col-7">
+                                    <div class="col-7">
                                         <p class="card-text"> <i class="far fa-clock"></i>Horas trabajadas </p>
                                     </div>
-                                   <div class="col-5">
+                                    <div class="col-5">
                                         <form action="/horasTrabajadas" method="get">
-                                             <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
- 
-                                             <input name="horasTrabajadas" readOnly th:value="${tarea.horasTrabajadas}" class="form-control"> 
+                                            <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
+
+                                            <input name="horasTrabajadas" readOnly th:value="${tarea.horasTrabajadas}" class="form-control mb-3"> 
                                         </form>
 
                                     </div>
 
                                 </div>
-                                 <div class="row">
-                                   <div class="col-7">
+                                <div class="row">
+                                    <div class="col-7">
                                         <p class="card-text"> Imputar horas </p> 
                                     </div>
-                                   <div class="col-5">
+                                    <div class="col-5">
                                         <form action="/horasTrabajadas" method="get">
-                                             <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
- 
-                                            <input name="horasTrabajadas"  onchange="this.form.submit() "class="form-control"> 
+                                            <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
+
+                                            <input name="horasTrabajadas"  onchange="this.form.submit()"class="form-control"> 
                                         </form>
-
                                     </div>
-
                                 </div>
-          
-                               
                             </div>
                         </div>
+                        <!-- FIN CARD -->
                     </div>
                     <div class="col-3">
-
                         <div class="card card bg-light m-2" th:each="tarea:${tareaWaiting}" style="width: 18rem">
                             <div class="card-body">              
                                 <p class="card-text"  th:text="${tarea.descripcion}">                 
                                 </p>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-3">
-
                         <div class="card card bg-light m-2" th:each="tarea:${tareaWorking}" style="width: 18rem">
                             <div class="card-body">
-
                                 <p class="card-text" th:text="${tarea.descripcion}">
-
                                 </p>
                             </div>
                         </div>
@@ -155,9 +165,7 @@
                     <div class="col-3">
                         <div class="card card bg-light m-2" th:each="tarea:${tareaDone}" style="width: 18rem">
                             <div class="card-body">
-
                                 <p class="card-text" th:text="${tarea.descripcion}">
-
                                 </p>
                             </div>
                         </div>
@@ -224,28 +232,28 @@
 
         <script>
 
-                                            function editar(datos) {
-                                                $.ajax({
-                                                    url: "leerKanban",
-                                                    data: {
-                                                        codigo: datos,
-                                                    },
-                                                    datatype: 'json'
-                                                    ,
-                                                    success: function (tarea) {
-                                                        $('#modal').modal('show');
-                                                        $('#modal form').deserialize(tarea);
-                                                    },
-                                                    error: function (err) {
-                                                        alert('Si la URL esta mal. Codigo 404')
-                                                    }
-                                                })
-                                                $('#form').attr('action', "/editarTarea");
-                                            }
+                                                function editar(datos) {
+                                                    $.ajax({
+                                                        url: "leerKanban",
+                                                        data: {
+                                                            codigo: datos,
+                                                        },
+                                                        datatype: 'json'
+                                                        ,
+                                                        success: function (tarea) {
+                                                            $('#modal').modal('show');
+                                                            $('#modal form').deserialize(tarea);
+                                                        },
+                                                        error: function (err) {
+                                                            alert('Si la URL esta mal. Codigo 404')
+                                                        }
+                                                    })
+                                                    $('#form').attr('action', "/editarTarea");
+                                                }
 
-                                            function guardarOpcion() {
-                                                $('#guardarOpcion').val('Jose');
-                                            }
+                                                function guardarOpcion() {
+                                                    $('#guardarOpcion').val('Jose');
+                                                }
 
 
 

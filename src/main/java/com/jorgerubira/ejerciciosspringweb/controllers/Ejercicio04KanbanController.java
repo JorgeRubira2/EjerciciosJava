@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Cosas interesantes para implementar en la vista.
- * Si las horas superiores es superior que el doble de la hora estimada marcar el fondo en rojo
- * Si las horas superiores es superior a la hora estimada marcar el fondo en naranja
- * Si las horas superiores es inferior o igual a la hora estimada marcar el fondo en verde
+ * Si las horas trabajadas es superior que el doble de la hora estimada marcar el fondo en rojo
+ * Si las horas trabajadas es superior a la hora estimada marcar el fondo en naranja
+ * Si las horas trabajadas es inferior o igual a la hora estimada marcar el fondo en verde
  * 
  * En las tarjetas mostrar la descripción, persona responsable, horas trabajadas/horas estimadas.
  * 
