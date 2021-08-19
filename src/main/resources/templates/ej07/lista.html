@@ -1,12 +1,30 @@
 <html xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <title>Titulo</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="container">
-            <!-- Contenido -->
-        </div>
-    </body>
+<head>
+<title>Lista de clientes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="container">
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Nombre de la cuenta</th>
+					<th>Email y telefono</th>
+					<th>Accion</th>
+				</tr>
+				<tr th:each="cliente:${clientes}">
+					<td th:text="${cliente.nombre} + ' ' + ${cliente.apellidos}" />
+					<td th:text="${cliente.cuenta}" />
+					<td>
+						<div th:text="${alumno.email}"></div>
+						<div th:text="${alumno.telefono}"></div>
+					</td>
+					<td>Aqui iran las acciones de actualizar y borrar</td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
 </html>
