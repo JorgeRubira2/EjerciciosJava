@@ -8,24 +8,26 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/united/bootstrap.min.css"> -->
         <style>
+
+
+
             .container {
                 text-align: center;
+                width: 90% !important;
+
             }
-             .default{
+            .azul{
                 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 border-left: 6px solid #45ABCD;
             }
-            .verde{
-                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-                border-left: 6px solid #1CCC12;
-            }
-             .naranja{
+
+            .naranja{
                 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 border-left: 6px solid #FEAF20;
             }
-             .rojo{
+            .rojo{
                 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 border-left: 6px solid #D73814;
             }
@@ -33,7 +35,7 @@
         </style>
         <title>Probando Kanban</title>
     </head>
-    <body>
+    <body >
         <div class="container">
             <!--cabecera Kanban-->
             <div>
@@ -63,117 +65,130 @@
             <div class="cuerpo">
                 <div class="row">
                     <div class="col-3">
-                        <!-- CARD
-                        
-                         th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'card border-success' : 
-                              (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'card border-danger m-2' : 'card border-warning m-2')"
-                               -->
                         <div th:each="tarea:${tareaRoadmap}" 
-                              th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'default m-2' : 
-                              (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')"style="max-width: 18rem;">
-                            <div class="card-body">    
-
-                                <p class="card-text" th:text="${tarea.descripcion}" > </p> 
-
-                                <form action="/asignarPersona" method="get" >
-                                    <input name="codigo" th:value="${tarea.codigo}" type="hidden">                                   
-                                    <div class="input-group">
-                                        <span class="input-group-addon m-2" ><i class="far fa-user-circle"></i></span>
-                                        <select name="persona" onchange="this.form.submit()" class="form-select mb-3">
-                                            <option selected>Asigne una persona</option>
-                                            <option th:selected="(${tarea.propietario} == Pepe)" value="Pepe">Pepe</option>
-                                            <option th:selected="(${tarea.propietario} == Paco)" value="Paco">Paco</option>
-                                            <option th:selected="(${tarea.propietario} == Jose)" value="Jose">Jose</option>
-                                        </select>
-                                    </div>   
-                                </form>
-
-                                <form action="/cambiarEstado" method="get">
-                                    <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
-                                    <div class="input-group">
-                                        <span class="input-group-addon m-2" ><i class="fas fa-tasks"></i></span>
-                                        <select name="estado" onchange="this.form.submit()" class="form-select mb-3">
-
-                                            <option th:selected="(${tarea.estado} == Roadmap)" value="Roadmap">Roadmap</option>
-                                            <option th:selected="(${tarea.estado} == Waiting)" value="Waiting">Waiting</option>
-                                            <option th:selected="(${tarea.estado} == Working)" value="Working">Working</option>
-                                            <option th:selected="(${tarea.estado} == Done)" value="Done">Done</option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <!-- button para editar tarea -->
-                                <Button th:attr="onclick=|editar('${tarea.codigo}')|" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-info mb-2"> <i class="far fa-edit"></i> Editar Tarea</button>
-
-                            </div>
-                            <div class="card-footer border-info">
-
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p class="card-text"> <i class="far fa-clock"></i>Horas estimadas </p> 
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="text"  readOnly th:value="${tarea.horasEstimacion}" class="form-control mb-3">                              
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p class="card-text"> <i class="far fa-clock"></i>Horas trabajadas </p>
-                                    </div>
-                                    <div class="col-5">
-                                        <form action="/horasTrabajadas" method="get">
-                                            <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
-
-                                            <input name="horasTrabajadas" readOnly th:value="${tarea.horasTrabajadas}" class="form-control mb-3"> 
-                                        </form>
-
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p class="card-text"> Imputar horas </p> 
-                                    </div>
-                                    <div class="col-5">
-                                        <form action="/horasTrabajadas" method="get">
-                                            <input name="codigo" th:value="${tarea.codigo}" type="hidden"> 
-
-                                            <input name="horasTrabajadas"  onchange="this.form.submit()"class="form-control"> 
-                                        </form>
-                                    </div>
-                                </div>
+                             th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+                            <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
                         </div>
-                        <!-- FIN CARD -->
+
                     </div>
+
                     <div class="col-3">
-                        <div class="card card bg-light m-2" th:each="tarea:${tareaWaiting}" style="width: 18rem">
-                            <div class="card-body">              
-                                <p class="card-text"  th:text="${tarea.descripcion}">                 
-                                </p>
+                        <div class="card card bg-light m-2" th:each="tarea:${tareaWaiting}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+
+                            <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
                         </div>
                     </div>
                     <div class="col-3">
-                        <div class="card card bg-light m-2" th:each="tarea:${tareaWorking}" style="width: 18rem">
-                            <div class="card-body">
-                                <p class="card-text" th:text="${tarea.descripcion}">
-                                </p>
+                        <div class="card card bg-light m-2" th:each="tarea:${tareaWorking}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+                            <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
                         </div>
                     </div>
                     <div class="col-3">
-                        <div class="card card bg-light m-2" th:each="tarea:${tareaDone}" style="width: 18rem">
-                            <div class="card-body">
-                                <p class="card-text" th:text="${tarea.descripcion}">
-                                </p>
+                        <div th:each="tarea:${tareaDone}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+
+                            <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
+
+
+        <!-- FRAGMENT poner th include para el display:none -->
+        
+        <div th:fragment="card(codigo,descripcion,propietario,horasEstimacion,horasTrabajadas,estado)" style="display:none">
+            <div class="card" style="max-width: 18rem;"> 
+                <div style="max-width: 18rem;">
+                    <div class="card-body">    
+
+                        <p class="card-text" th:text="${descripcion}"> </p> 
+
+                        <form action="/asignarPersona" method="get">
+                            <input name="codigo" th:value="${codigo}" type="hidden">                                   
+                            <div class="input-group">
+                                <span class="input-group-addon m-2" ><i class="far fa-user-circle"></i></span>
+                                <select name="persona" onchange="this.form.submit()" class="form-select mb-3">
+                                    <option selected>Asigne una persona</option>
+                                    <option th:selected="(${propietario} == Pepe)" value="Pepe">Pepe</option>
+                                    <option th:selected="(${propietario} == Paco)" value="Paco">Paco</option>
+                                    <option th:selected="(${propietario} == Jose)" value="Jose">Jose</option>
+                                </select>
+                            </div>   
+                        </form>
+
+
+                        <div class="row">
+                            <div class="col-7">
+                                <p class="card-text"> <i class="far fa-clock"></i>Horas estimadas </p> 
+                            </div>
+                            <div class="col-5">
+                                <input type="text" readOnly th:value="${horasEstimacion}" class="form-control mb-3">                              
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-7">
+                                <p class="card-text"> <i class="far fa-clock"></i>Horas trabajadas </p>
+                            </div>
+                            <div class="col-5">
+                                <form action="/horasTrabajadas" method="get">
+                                    <input name="codigo" th:value="${codigo}" type="hidden"> 
+
+                                    <input name="horasTrabajadas" readOnly th:value="${horasTrabajadas}" class="form-control mb-3"> 
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-7">
+                                <p class="card-text"> Imputar horas </p> 
+                            </div>
+                            <div class="col-5">
+                                <form action="/horasTrabajadas" method="get">
+                                    <input name="codigo" th:value="${codigo}" type="hidden"> 
+
+                                    <input name="horasTrabajadas"  onchange="this.form.submit()"class="form-control"> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <form action="/cambiarEstado" method="get">
+                            <input name="codigo" th:value="${codigo}" type="hidden"> 
+                            <div class="input-group">
+                                <span class="input-group-addon m-2" ><i class="fas fa-tasks"></i></span>
+                                <select name="estado" onchange="this.form.submit()" class="form-select mb-3">
+
+                                    <option th:selected="(${estado} == Roadmap)" value="Roadmap">Roadmap</option>
+                                    <option th:selected="(${estado} == Waiting)" value="Waiting">Waiting</option>
+                                    <option th:selected="(${estado} == Working)" value="Working">Working</option>
+                                    <option th:selected="(${estado} == Done)" value="Done">Done</option>
+                                </select>
+                            </div>
+                        </form>
+                        <!-- button para editar tarea -->
+                        <Button th:attr="onclick=|editar('${codigo}')|" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-info mb-2"> <i class="far fa-edit"></i> Editar Tarea</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin fragmento -->
+
+
+
 
 
         <!-- formulario para nueva y añadir tarea -->
@@ -223,6 +238,8 @@
             </div>
         </div>
 
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -232,32 +249,24 @@
 
         <script>
 
-                                                function editar(datos) {
-                                                    $.ajax({
-                                                        url: "leerKanban",
-                                                        data: {
-                                                            codigo: datos,
-                                                        },
-                                                        datatype: 'json'
-                                                        ,
-                                                        success: function (tarea) {
-                                                            $('#modal').modal('show');
-                                                            $('#modal form').deserialize(tarea);
-                                                        },
-                                                        error: function (err) {
-                                                            alert('Si la URL esta mal. Codigo 404')
-                                                        }
-                                                    })
-                                                    $('#form').attr('action', "/editarTarea");
-                                                }
-
-                                                function guardarOpcion() {
-                                                    $('#guardarOpcion').val('Jose');
-                                                }
-
-
-
-
+                                    function editar(datos) {
+                                        $.ajax({
+                                            url: "leerKanban",
+                                            data: {
+                                                codigo: datos,
+                                            },
+                                            datatype: 'json'
+                                            ,
+                                            success: function (tarea) {
+                                                $('#modal').modal('show');
+                                                $('#modal form').deserialize(tarea);
+                                            },
+                                            error: function (err) {
+                                                alert('Si la URL esta mal. Codigo 404')
+                                            }
+                                        })
+                                        $('#form').attr('action', "/editarTarea");
+                                    }
 
         </script>
 
