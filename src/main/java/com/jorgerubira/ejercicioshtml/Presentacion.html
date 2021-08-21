@@ -5,6 +5,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            
+            :root{
+                --micolor:blue;
+            }
+            
+            .tipo1{
+                
+                color: var(--micolor);
+            }
+            
             iframe{
                 border: 0px;
                 width: 100%;
@@ -14,6 +24,8 @@
         </style>
     </head>
     <body>
+        <div class='tipo1'>werwer</div>
+        
         <script>
             for (var n=1;n<=17;n++){
                 document.write("<h3>Ejercicio " + n + "</h3><iframe src='Ejercicio" + (("0" + n).slice(-2)) + ".html'></iframe>");
