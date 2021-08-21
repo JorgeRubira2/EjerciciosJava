@@ -2,8 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <style>
+			.container {
+                text-align: center;
+                width: 90% !important;
 
-
+            }
+ 
+            .modal-content{
+            background-color:#3e7cd7 !important;
+            
+            }
+          
 </style>
 
 <link rel="stylesheet"
@@ -16,52 +25,269 @@
 <title>Ejercicio04Spring</title>
 </head>
 <body>
-<div class="contenedor">
-           <div class="container-fluid">
-            <div class="row align-items-center text-center cabecera">
-                <div class="col-md-4 ">Story
-                </div>
-                <div class="col-md-4">
-                    <div class="row cabecera">
-                        <div class="col-md-12">Waiting
+        <div class="container">
+            
+			<div>
+                <div class="row">
+                    <div class="col-3"><p>RoadMap</p></div>
+                    <div class="col-6">
+                        <div class="row col-12">
+                            <p>WORKING</p>
+                            <div class="col-6"><p>Waiting</p></div>
+                            <div class="col-6"><p>Working</p></div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 cabecera">Waiting
-                        </div>
-                        <div class="col-md-6 cabecera">Working
-                        </div>
+                    <div class="col-3"><p>Done</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" class="btn btn-light mt-4  mb-4" data-toggle="modal" data-target="#Modal1" data-whatever="">Crear tarea</button>
+                </div>
+            </div>
+                    <tr>
+                        <td>
+                            <div th:each="tarea:${Roadmap}" >
+                                <div th:include="::fila(${tarea.getCodigo()},
+                                ${tarea.getDescripcion()},
+                                ${tarea.getPropietario()},
+                                ${tarea.getHorasEstimacion()},
+                                ${tarea.getHorasTrabajadas()},
+                                ${tarea.getEstado()})">
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div th:each="tarea:${Waiting}" >
+                                <div th:include="::fila(${tarea.getCodigo()},
+                                ${tarea.getDescripcion()},
+                                 ${tarea.getPropietario()},
+                                ${tarea.getHorasEstimacion()},
+                                ${tarea.getHorasTrabajadas()},
+                                 ${tarea.getEstado()})">
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div th:each="tarea:${Working}" >
+                                <div th:include="::fila(${tarea.getCodigo()},
+                                ${tarea.getDescripcion()},
+                                ${tarea.getPropietario()},
+                                ${tarea.getHorasEstimacion()},
+                                ${tarea.getHorasTrabajadas()},
+                                ${tarea.getEstado()})">
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div th:each="tarea:${Done}" >
+                                <div th:include="::fila(${tarea.getCodigo()},
+                                ${tarea.getDescripcion()},
+                                ${tarea.getPropietario()},
+                                ${tarea.getHorasEstimacion()},
+                                ${tarea.getHorasTrabajadas()},
+                                ${tarea.getEstado()})">
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CREAR TAREA-->
+        <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">Crear tarea</h4>  
+                    </div>
+                    <div class="modal-body">
+                   
+                        <form action="/ejercicio4/nuevaTarea" method="post" >                           
+                            <div class="form-group">
+                                <label for="descripcion" id="labeldescripcion" class="col-form-label" >Descripcion </label>
+                                <input type="text" class="form-control" name="descripcion" id="descripcion">
+                            </div>
+                            <div class="form-group">
+                                <label for="horasEstimacion" id="horas" class="col-form-label">Horas estimadas </label>
+                                <input type="number" class="form-control" name="horasEstimacion" id="horasEstimacion" />
+                            </div>                       
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Crear tarea</button>
+                        </form> 
                     </div>
                 </div>
-                <div class="col-md-4">Done
+            </div>
+        </div>
+
+
+        <!--  ASIGNAR PERSONA-->
+        <div class="modal fade" id="Modal2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">Asignar persona</h4>  
+                    </div>
+                    <div class="modal-body">
+                    
+                        <form action="/ejercicio4/nuevaPersona" method="post">
+                            <input type="hidden"  name="codigo" id="codigo"/>                         
+                            <div class="form-group">
+                            
+                                <label for="propietario" id="labelpersona" class="col-form-label" >Persona  </label>
+                                <input type="text" class="form-control" name="propietario" id="propietario"  />
+                            </div>
+                            
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Añadir</button>
+                        </form> 
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+
+        <!--  AÑADIR HORAS-->
+        <div class="modal fade" id="Modal3">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">Añadir horas</h4>  
+                    </div>
+                    <div class="modal-body">
+                        <form action="/ejercicio4/masHoras" method="post">
+                            <input type="hidden"  name="codigo1" id="codigo1"/> 
+                                                    
+                            <div class="form-group">
+                            
+                                <label for="horas" id="horas" class="col-form-label" >Horas  </label>
+                                <input type="number" class="form-control" name="horas" id="horas"  Required />
+                                
+                            </div>
+                            
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Añadir Horas</button>
+                        </form> 
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <!--  MODIFICAR TAREA-->
+
+        <div class="modal fade" id="Modal4" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">Modificar tarea</h4>  
+                    </div>
+                    <div class="modal-body">
+                    
+                        <form action="/ejercicio4/modificarTarea" method="post" >     
+                            <input type="hidden"  name="codigo2" id="codigo2"/>
+                                         
+                            <div class="form-group">
+                            
+                                <label for="descripcion2" id="labeldescripcion" class="col-form-label" >Descripcion </label>
+                                <input type="text" class="form-control" name="descripcion1" id="descripcion1">
+                                
+                            </div>
+                            <div class="form-group">
+                            
+                                <label for="horasEstimacion2" id="labelhoras" class="col-form-label">Horas estimadas </label>
+                                <input type="number" class="form-control" name="horasEstimacion1" id="horasEstimacion1" />
+                                
+                            </div>           
+                                        
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Modificar tarea</button>
+                        </form> 
+                    </div>
                 </div>
             </div>
-            <div class="row align-items-center text-center">
-                <div class="col-md-4 cabecera">
-                    <button class="btn btn-secondary btn-sm" >A&ntilde;adir tarea</button>
-                </div>
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-4">
-                </div>
-            </div>
-           </div>
-          </div>
+        </div>
 
 
+        <!--Tarjetas con cada tarea para poner en tabla-->
+
+        <div th:fragment="fila(codigo,descripcion,propietario,horasEstimacion,horasTrabajadas,estado)" style="display:none">
+            <div class="row ml-1">
+                <div class="card">
+
+                    <div class="card-header" th:text="${descripcion}" ></div>
+                    <div class="card-body" th:text="${propietario}"></div>
+                    <div class="card-body" th:text="${horasEstimacion}"></div>
+                    <div class="card-body" th:text="${horasTrabajadas}"></div>
+                    <div class="card-footer" th:text="${estado}"></div>
+                </div>
+            </div> 
+            <!-- BOTONES PARA CADA CARD-->
+            <div class="row ml-1">
+                <button class="btn" th:attr="onclick=|modificar('${codigo}')|" > 
+                      
+                </button>
 
 
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
-	<script>
-		
-	</script>
-</body>
+                <button class="btn" th:attr="onclick=|nuevaPersona('${codigo}')|" > 
+                    
+                </button>
+
+                <button class="btn" th:attr="onclick=|masHoras('${codigo}')|" >
+                    
+                </button>
+                <a class="btn"  th:href="${'/ejercicio4/modificar?codigo='+codigo}"   >
+                    
+                </a>
+            </div> 
+
+        </div> 
+
+
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+    <script>
+        $('#Modal1').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever') 
+            
+            var modal = $(this)
+            modal.find('.modal-title').text('Crear tarea ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
+    <script>
+        function addpersona(codigo) {
+
+            $('#Modal2').modal('show');
+            $("#codigo").val(codigo);
+
+        }
+    </script>
+
+    <script>
+        
+        function addhoras(codigo) {
+
+            $('#Modal3').modal('show');
+            $("#codigo1").val(codigo);
+        }
+    </script> 
+
+    <script>
+       
+        function modificar(codigo) {
+            $('#Modal4').modal('show');
+            $("#codigo2").val(codigo);
+        }
+    </script> 
 </html>

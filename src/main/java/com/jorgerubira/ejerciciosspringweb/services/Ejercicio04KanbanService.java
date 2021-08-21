@@ -39,7 +39,10 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
 	@Override
 	public void asignarPersona(String codigo, String persona) throws OperacionEnListaException {
-		Optional<TareaKanban> tarea = tareas.stream().filter(x -> x.getCodigo().equals(codigo)).findFirst();
+		Optional<TareaKanban> tarea = tareas.stream()
+				.filter(x -> x.getCodigo()
+				.equals(codigo))
+				.findFirst();
 		if (tarea.isPresent()) {
 			tarea.get().setPropietario(persona);
 		} else {
@@ -50,7 +53,10 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
 	@Override
 	public void imputarHorasTrabajadas(String codigo, int horas) throws OperacionEnListaException {
-		Optional<TareaKanban> tarea = tareas.stream().filter(x -> x.getCodigo().equals(codigo)).findFirst();
+		Optional<TareaKanban> tarea = tareas.stream()
+				.filter(x -> x.getCodigo()
+				.equals(codigo))
+				.findFirst();
 		if (tarea.isPresent()) {
 			tarea.get().setHorasTrabajadas(tarea.get().getHorasTrabajadas() + horas);
 
@@ -76,6 +82,9 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 	@Override
 	public Optional<TareaKanban> getTarea(String codigo) {
 
-		return tareas.stream().filter(x -> x.getCodigo().equals(codigo)).findFirst();
+		return tareas.stream()
+				.filter(x -> x.getCodigo()
+				.equals(codigo))
+				.findFirst();
 	}
 }
