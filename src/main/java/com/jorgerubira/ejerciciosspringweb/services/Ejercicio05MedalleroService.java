@@ -38,12 +38,12 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
 
     @Override
     public void altaMedalla(Medalla medalla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        medallas.add(medalla);
     }
 
     @Override
     public List<Medalla> getMedallas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return medallas;
     }
 
     @Override
@@ -85,23 +85,43 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
                                     ))
                                     .sorted((x,y) -> (y.getOro()+y.getPlata()+y.getCobre()) - (x.getOro()+x.getPlata()+x.getCobre()) )
                                     .collect(Collectors.toList());
+		return res;
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	 return medallas.parallelStream()
+                 .filter(x->  pais.equalsIgnoreCase(x.getPais()))//comparamos las cadenas para ver si son iguales, devolviendo true si lo son
+                 .filter(x-> medalla.equalsIgnoreCase(x.getMedalla()))//comparamos las cadenas para ver si son iguales, devolviendo true si lo son
+                 .map(x-> x.getDeporte())//Recogemos todos los deportes de la medalla filtrada
+                 .collect(Collectors.toList());//Almacenamos
+
     }
 
     @Override
     public List<String> obtenerDeportesConMedalla(String pais) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    	return medallas.parallelStream()
+                .filter(x-> pais.equalsIgnoreCase(x.getPais()))//comparamos las cadenas para ver si son iguales, devolviendo true si lo son
+                .map(x-> x.getDeporte())//Recogemos todos los deportes con medalla filtrada
+                .collect(Collectors.toList());
+}
+    
 
     @Override
     public List<MedallaAtleta> obtenerRankingPorAlteta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	return medallas.stream()
+                .collect(Collectors.groupingBy((x)-> x.getDeportistas(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted((x,y) -> y.getValue().intValue()-x.getValue().intValue())
+                .map(x-> new MedallaAtleta(
+                            x.getKey(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Oro".equals(z.getMedalla())).count(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Plata".equals(z.getMedalla())).count(),
+                            (int)medallas.stream().filter(z->z.getDeportistas().equals(x.getKey()) && "Cobre".equals(z.getMedalla())).count()
+                )).collect(Collectors.toList());
     }
     
 }

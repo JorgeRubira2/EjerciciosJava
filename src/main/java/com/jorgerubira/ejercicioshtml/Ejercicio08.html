@@ -3,8 +3,12 @@
   <head>
     <title>5.Formulario</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    
+    
     <style>
+    input{
+     margin-left:160px;
+    }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
@@ -15,6 +19,26 @@
   </head>
 
   <body>
+  
+  	
+  	<input class="numero" type="number" id="numero" style="width:100px;" placeholder="Introduce un numero para comenzar" ></input><br><br>
+  	<input type="submit" id="enviar" class="submit"onclick="multiplicar()"></input>
+  	
+  	<div id="tabla">
+  	
+  	</div>
+  
+ 
+  <script>
+  function multiplicar(){
+	  $("#tabla").empty();
+      $("#tabla").attr('style','border-radius: 5%; border:1px solid grey;  position:absolute;margin-left:400px; padding:10px; font-size:20px;');
+      var num= $("#numero").val();              
+      for(var i=0;i<=10;i++){
+          $("#tabla").append("<p>"+num+"x"+i+"="+(i*num)+"</p>");
+      }
+   }
+    </script>
 
 
   </body>
