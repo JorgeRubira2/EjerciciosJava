@@ -53,7 +53,7 @@ public class Ejercicio07GestionClientesController {
 	/**
 	 * guardar el objeto en la base de datos y redireccionar a la lista
 	 */    
-	@PostMapping
+	@PostMapping("/save")
 	public String save(Model m, Cliente alumno){
 		repoClientes.save(alumno);
 		return "redirect:/ejercicio7";
