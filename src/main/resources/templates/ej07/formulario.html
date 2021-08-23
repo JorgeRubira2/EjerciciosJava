@@ -8,30 +8,91 @@
 </head>
 <style>
 label {
-      vertical-align: top;
+	vertical-align: top;
+}
+h3{
+	text-decoration: underline;
+}
+.container{
+	background-color: #D4D2D2;
 }
 </style>
 <body>
 	<div class="container">
-		<form action="save" id="formulario" method="post" th:object="${cliente}" class="form-group">
-			<label>Nombre:</label> <input type="text" th:field="*{nombre}"> 
-			<label>Cuenta principal:</label> <input type="text" th:field="*{cuenta}"><br />
-			<label>Apellidos:</label><input type="text" th:field="*{apellidos}">
-			<label>Telefono:</label><input type="text" th:field="*{telefono}"><br />
-			<label>Titulo:</label> <input type="text" th:field="*{titulo}">
-			<label>Email:</label> <input type="text" th:field="*{email}"> <br /></br>
-			<label style="  display: flex; flex-direction: column;">Descripcion:</label>
-			<textarea form="formulario" th:field="*{descripcion}"  rows="4" cols="30"></textarea>
+	
+		<h3>Informacion del cliente</h3>
+		<form action="save" id="formulario" method="post"
+			th:object="${cliente}" class="form-group">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Nombre:</label> <input type="text" class="form-control"
+						th:field="*{nombre}">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Cuenta principal:</label> <input type="text"
+						class="form-control" th:field="*{cuenta}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Apellidos:</label> <input type="text" class="form-control"
+						th:field="*{apellidos}">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Telefono:</label> <input type="text" class="form-control"
+						th:field="*{telefono}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Puesto:</label> <input type="text" class="form-control"
+						th:field="*{titulo}">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Email:</label> <input type="email" class="form-control"
+						th:field="*{email}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label style="display: flex; flex-direction: column;">Descripcion:</label>
+					<textarea class="form-control" form="formulario"
+					th:field="*{descripcion}" rows="4"></textarea>
+				</div>
+			</div>
+
+			</br>
 			
-			</br></br>
-			
-			<label>Calle:</label> <input type="text" th:field="*{calle}"> <br />
-			<label>Ciudad:</label><input type="text" th:field="*{ciudad}">
-			<label>Estado:</label> <input type="text" th:field="*{estado}"><br />
-			<label>Pais:</label><input type="text" th:field="*{pais}">
-			<label>C.Postal:</label> <input type="number" th:field="*{postal}"><br />
-			<br /> <input type="submit" class="btn btn-primary"
-				value="Agregar usuario">
+			<h3>Direccion del cliente</h3>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Calle:</label> <input type="text" class="form-control"
+						th:field="*{calle}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Ciudad:</label> <input type="text" class="form-control"
+						th:field="*{ciudad}">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Provincia:</label> <input type="text" class="form-control"
+						th:field="*{estado}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Pais:</label> <input type="text" class="form-control"
+						th:field="*{pais}">
+				</div>
+				<div class="form-group col-md-6">
+					<label>C.Postal:</label> <input type="text" class="form-control"
+						th:field="*{postal}">
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Agregar usuario</button>
+			<a class="btn btn-secondary" th:href="@{http://localhost:8090/ejercicio7}">Cancelar</a>
 		</form>
 	</div>
 </body>
