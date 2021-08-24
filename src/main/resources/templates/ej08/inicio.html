@@ -23,10 +23,9 @@
 
         <div id="formularioComprar" style="display:none">
             <form action="/ejercicio8/compra" method="post">
-                <input type="hidden" id="hora" name="hora" class="form-control" />
                 <label for="titulo" class="form-label">Empresa: </label><input type="text" id="titulo" name="titulo" class="form-control" readonly/>
                 <label for="operacion" class="form-label">Operación: </label> <input type="text" name="operacion" class="form-control"/>
-                <label for="titulos" class="form-label"> Títulos a comprar</label> <input type="number" id="titulos" name="titulos" class="form-control" step="1"/>
+                <label for="titulos" class="form-label"> Títulos a comprar</label> <input type="number" id="titulos" name="titulos" class="form-control" step="1" min="0"/>
                 <label for="precio" class="form-label">Precio </label><input type="number" id="precio" name="precio" class="form-control" readonly/>
                 <input type="submit" id="submitOper" value="Guardar" class="btn btn-primary" />
             </form>
@@ -43,136 +42,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script> 
-        
-        <!-- titulo, ultimo, variacion, variacionPorcentaje, volumen, maximo, minimo, hora -->
-        <script>
-            $(document).ready(function () {
-                refrescar();
-                $("#cartera").click(verCartera);
-            });
-            function cargarDatos() {
-                $.ajax({
-                    url: 'ejercicio8/listaCotizaciones',
-                    datatype: 'json',
-                    success: function (json) {
-                        $("#bolsa").html("");
-                        $("#bolsa").append("<thead><tr><th>Empresa</th><th>Útimo valor</th><th>Variación</th>" +
-                                "<th>Porcentaje</th><th>Volumen</th><th>max</th><th>min</th><th>Hora</th><th>Comprar</th><th>Vender</th></tr></thead>");
-                        $.each(json, function (key, value) {
-                            var fila = $("<tr>");
-                            var titulo = value.titulo;
-                            var hora = value.hora;
-                            var precio = value.ultimo;
-                            var color = value.variacion > 0 ? "verde" : value.variacion < 0 ? "rojo" : "";
-                            var flecha = value.variacion > 0 ? "<i class='fas fa-sort-up'></i>" : value.variacion < 0 ? "<i class='fas fa-sort-down'></i>" : "";
-                            $("<td>").html(value.titulo + "</td>").appendTo(fila);
-                            $("<td>").html(value.ultimo + "</td>").appendTo(fila);
-                            $("<td>").attr("class", color).html(value.variacion + " " + flecha + "</td>").appendTo(fila);
-                            $("<td>").attr("class", color).html(value.variacionPorcentaje + "% " + flecha + "</td>").appendTo(fila);
-                            $("<td>").html(value.volumen + "</td>").appendTo(fila);
-                            $("<td>").html(value.maximo + "</td>").appendTo(fila);
-                            $("<td>").html(value.minimo + "</td>").appendTo(fila);
-                            $("<td>").html(value.hora + "</td>").appendTo(fila);
-                            $("<td>").html("<input type='button' value='Comprar' class='btn btn-primary' onClick='compra(`" + titulo + "`," + precio + ",`" + hora + "`);'/></td>").appendTo(fila);
-                            $("<td>").html("<input type='button' value='Vender' class='btn btn-danger' onClick='vender(`" + titulo + "`," + precio + ",`" + hora + "`,`comprar`);'/></td>").appendTo(fila);
-                            fila.append("</tr>");
-                            fila.appendTo("#bolsa");
-                        });
-                        $("#bolsa").append("</table>");
-                    }
-                });
-            }
-            function refrescar() {
-                cargarDatos();
-                setInterval(function () {
-                    refrescar();
-                }, 30000);
-            }
-            function compra(pTitulo, pPrecio, pHora) {
-                var dat = new Date();
-                var [hours, minutes, seconds] = pHora.split(":");
-                dat.setHours(hours);
-                dat.setMinutes(minutes);
-                dat.setSeconds(seconds);
-                $.post("/ejercicio8/formulario", {titulo: pTitulo,
-                    precio: pPrecio,
-                    hora: dat,
-                    operacion: 'Comprar'}, 
-                    function (pJson) {
-                        bootbox.dialog({
-                            title: 'Comprar',
-                            message: "<div id='formBB'>" + $('#formularioComprar').html() + "</div>"
-                        });
-                        $('#formBB form').deserialize(pJson);
- 
-                });
-            }
-            function vender(pTitulo, pPrecio, pHora) {
-                var dat = new Date();
-                var [hours, minutes, seconds] = pHora.split(":");
-                dat.setHours(hours);
-                dat.setMinutes(minutes);
-                dat.setSeconds(seconds);
-                $.post("/ejercicio8/venta", {titulo: pTitulo,
-                    precio: pPrecio,
-                    hora: dat,
-                    operacion: 'Vender'}, 
-                    function (pHtml) {
-                        bootbox.dialog({
-                            title: 'Comprar',
-                            message: pHtml
-                        });
-
- 
-                });
-            }
-            function verCartera(){
-                $.ajax({
-                    url: 'ejercicio8/cartera',
-                    datatype: 'json',
-                    success: function (json) {
-                        $("#carteraTable").html("");
-                        $("#carteraTable").append("<thead><tr><th>Fecha de compra</th><th>Nombre empresa</th><th>Precio</th>"+
-                            "<th>Numero de acciones</th><th>Tipo de operación</th></tr></thead><tbody>");
-                        $.each(json, function (key, value) {
-                            var fila = $("<tr>");
-                            $("<td>").html(value.hora + "</td>").appendTo(fila);
-                            $("<td>").html(value.titulo + "</td>").appendTo(fila);
-                            $("<td>").html(value.precio + "</td>").appendTo(fila);
-                            $("<td>").html(value.titulos + "</td>").appendTo(fila);
-                            $("<td>").html(value.operacion + "</td>").appendTo(fila);
-                            fila.append("</tr>");
-                            fila.appendTo("#carteraTable");
-                        });
-                        $("#carteraTable").append("</table>");
-                        bootbox.dialog({
-                            title: 'Comprar',
-                            size:'xl',
-                            message: "<div id='carteraBB'>" + $('.carteraTable').html() + "</div>"
-                        });
-                      
-                    }
-                });
-            }
-            /*function validar(){
-                alert("hola");
-                var dat = new Date();
-                var [hours, minutes, seconds] = $("#hora").val().split(":");
-                dat.setHours(hours);
-                dat.setMinutes(minutes);
-                dat.setSeconds(seconds);
-                $.post("ejercicio8/compra",{
-                    hora:dat,
-                    titulo:$("#titulo").val(),
-                    operacion:$("input[name:'operacion']").val(),
-                    titulos:$("#titulos").val(),
-                    precio:$("#precio").val()
-                },function(){
-                    alert("realizado");
-                });
-                
-            }*/
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>         
+        <script src="ej08.js"> </script><!-- Documento separado para visualizarlo más fácil -->
     </body>
 </html>

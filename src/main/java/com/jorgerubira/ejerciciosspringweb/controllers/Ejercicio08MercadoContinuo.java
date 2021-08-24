@@ -12,6 +12,9 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio08MercadoContinu
 import com.jorgerubira.ejerciciosspringweb.repositories.BolsaRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Locale;
 import org.springframework.ui.Model;
@@ -28,8 +31,7 @@ public class Ejercicio08MercadoContinuo {
 
     @GetMapping
     public String inicio(Model m) {
-        m.addAttribute("bolsa", new Bolsa());
-
+        m.addAttribute("bolsa", new Bolsa());//objeto vacío
         return "/ej08/inicio";
     }
 
@@ -44,28 +46,27 @@ public class Ejercicio08MercadoContinuo {
     public Bolsa formulario(Bolsa b) {
         return b;
     }
-    
+
     @PostMapping("/venta")
     public String venta(Model m, Bolsa b) {
-        int sb=bolsaService.countSumaByTitle(b.getTitulo());
-        m.addAttribute("titulosDisponibles",sb);
+        int sb = bolsaService.countSumaByTitle(b.getTitulo());
+        m.addAttribute("titulosDisponibles", sb);
         m.addAttribute("bolsa", b);
         return "/ej08/venta";
     }
 
     @PostMapping("/compra")
-    public String compra(Model m, String hora, String titulo, String operacion, Integer titulos, Double precio) {
-        System.out.print(titulo + " " + operacion + " " + titulos + " " + precio);
-        System.out.println(hora);
-        Date date1 = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", new Locale("es-ES"));
-            date1 = sdf.parse(hora);
-        } catch (ParseException ex) {
-            System.err.print("error");
-        }
-        Bolsa b = new Bolsa(date1, titulo, operacion, titulos, precio);
-        System.out.println(b.getTitulo());
+    public String compra(Model m, String titulo, String operacion, Integer titulos, Double precio) {
+        Date date = Date.from(Instant.now());
+        Bolsa b = new Bolsa(date, titulo, operacion, titulos, precio);
+        bolsaService.save(b);
+        return "redirect:/ejercicio8";
+    }
+
+    @PostMapping("/vender")
+    public String vender(Model m, String titulo, String operacion, Integer titulos, Double precio) {
+        Date date = Date.from(Instant.now());
+        Bolsa b = new Bolsa(date, titulo, operacion, -(titulos), precio);
         bolsaService.save(b);
         return "redirect:/ejercicio8";
     }

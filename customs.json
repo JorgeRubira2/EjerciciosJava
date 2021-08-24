@@ -15,6 +15,7 @@
         "th:title": {},
         "th:if": {},
         "th.each": {},
+        "th:src": {},
         "th:replace": {},
         "th:href": {},
         "th:value": {},
