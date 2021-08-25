@@ -18,10 +18,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ImagenRepository extends JpaRepository<Imagen, Long> {
     
 
-    public List<Imagen> findByCategoria(String categoria);
-    public List<Imagen> findByDescripcionContaining (String descripcion);
-    public List<Imagen> findByCategoriaAndDescripcionContaining (String categoria, String descripcion);
+    public List<Imagen> findByCategoriaOrderByFechaHoraFichero(String categoria);
+    public List<Imagen> findByDescripcionContainingOrderByFechaHoraFichero (String descripcion);
+    public List<Imagen> findByCategoriaOrderByFechaHoraFicheroDesc(String categoria);
+    public List<Imagen> findByDescripcionContainingOrderByFechaHoraFicheroDesc (String descripcion);
+    public List<Imagen> findByCategoriaAndDescripcionContainingOrderByFechaHoraFichero (String categoria, String descripcion);
+    public List<Imagen> findByCategoriaAndDescripcionContainingOrderByFechaHoraFicheroDesc (String categoria, String descripcion);
 
     public List<Imagen> findAllByOrderByFechaHoraFichero();
     public List<Imagen> findAllByOrderByFechaHoraFicheroDesc();
+    
+    //public List<Imagen> findByCategoriaAndTipoImagenAndOrientacionAndContenidoAndUso(String categoria, String tipoImagen, String orietnacion, String contenido, String uso);
 }
