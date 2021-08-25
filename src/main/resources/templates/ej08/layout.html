@@ -61,8 +61,8 @@
                 $.ajax({
                     url:"/ejercicio8/listaCotizaciones",   //<--Ejecutamos del contra esta url
                     dataType:"json",
-                    success: function(pJson){ //busqueda super pellejera, si tengo tiempo deberia convertir todo a datatable pa una busqueda mejor
-                        console.log(pJson);
+                    success: function(pJson){ //
+                        //console.log(pJson);
                         $('#listaCot').DataTable({
                             destroy: true,
                             order: [0, "asc"],
@@ -127,12 +127,34 @@
                             message: err
                         });
                     }
-                })
+                });       
             }
-            function refrescar(){
-                leerJson();                 
-                setTimeout(function(){refrescar()}, 30000);
+            function refrescar(){         
+                leerJson();
+                ventas(); //hasta el primer refresco no se actualiza :/                   
+                setTimeout(function(){refrescar()}, 5000);
             }
+            function ventas(){ //Rellenamos la tabla de stock actual marcando la diferencia
+                var ultimo;
+                var dif;
+                $("#listaMovs td:first-child").each( function( index, local ){
+                    //console.log(local.textContent);
+                    $("#listaCot td:first-child").each( function( i, remoto ){
+                        if (local.textContent === remoto.textContent){
+                            ultimo = remoto.nextSibling.textContent;
+                            ultimo = parseFloat(ultimo); //convertir a numero porsi
+                            $('#listaMovs tbody tr:eq(' + index + ') td:eq(' + 4 + ')').html(ultimo);
+                            dif = ultimo - parseFloat($('#listaMovs tbody tr:eq(' + index + ') td:eq(' + 1 + ')').html());
+                            if(dif>0){
+                                $('#listaMovs tbody tr:eq(' + index + ') td:eq(' + 5 + ')').html('<i class="fas fa-arrow-up verde"></i> ' + dif.toFixed(3));
+                            }else{
+                                $('#listaMovs tbody tr:eq(' + index + ') td:eq(' + 5 + ')').html('<i class="fas fa-arrow-down rojo"></i> ' + dif.toFixed(3));
+                            }
+                            
+                        }
+                    });
+                });
+            };
             $(document).ready(function(){
                 refrescar();
             });
