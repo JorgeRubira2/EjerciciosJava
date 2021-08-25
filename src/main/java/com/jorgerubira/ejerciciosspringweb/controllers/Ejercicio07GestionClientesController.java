@@ -36,8 +36,8 @@ public class Ejercicio07GestionClientesController {
 	 * Devuelve el formulario vacio para nuevo cliente
 	 */
 	@GetMapping("/formulario")
-	public String read(Model m,Cliente c){
-		m.addAttribute("cliente", c);
+	public String read(Model m,Cliente cliente){
+		m.addAttribute("cliente", cliente);
 		return "ej07/formulario";
 	}
 
@@ -63,8 +63,8 @@ public class Ejercicio07GestionClientesController {
 	 * guardar el objeto en la base de datos y redireccionar a la lista
 	 */    
 	@PostMapping("/save")
-	public String save(Model m, Cliente alumno){
-		repoClientes.save(alumno);
+	public String save(Model m, Cliente cliente){
+		repoClientes.save(cliente);
 		return "redirect:/ejercicio7";
 	}    
 
