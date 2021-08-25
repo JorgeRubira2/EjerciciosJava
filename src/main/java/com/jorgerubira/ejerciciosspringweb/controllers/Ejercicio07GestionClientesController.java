@@ -31,6 +31,15 @@ public class Ejercicio07GestionClientesController {
 		m.addAttribute("clientes", repoClientes.findAll());
 		return "ej07/lista";
 	}
+	
+	/**
+	 * Devuelve el formulario vacio para nuevo cliente
+	 */
+	@GetMapping("/formulario")
+	public String read(Model m,Cliente c){
+		m.addAttribute("cliente", c);
+		return "ej07/formulario";
+	}
 
 	/**
 	 * Debe devolver la vista ej07/formulario con el atributo clientes que sea la lista

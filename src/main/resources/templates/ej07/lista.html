@@ -16,6 +16,7 @@ th {
 </style>
 <body>
 	<div class="container">
+	<a th:href="@{http://localhost:8090/ejercicio7/formulario}" class="btn btn-success offset-4"><i class="fas fa-user-plus"></i> Nuevo cliente</a>
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
@@ -28,8 +29,8 @@ th {
 					<td th:text="${cliente.nombre} + ' ' + ${cliente.apellidos}" />
 					<td th:text="${cliente.cuenta}" />
 					<td>
-						<div th:text="${alumno.email}"></div>
-						<div th:text="${alumno.telefono}"></div>
+						<div th:text="${cliente.email}"></div>
+						<div th:text="${cliente.telefono}"></div>
 					</td>
 					<td><a th:href="@{/ejercicio7/{id}(id=${cliente.id})}"
 					class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Actualizar</a> 
