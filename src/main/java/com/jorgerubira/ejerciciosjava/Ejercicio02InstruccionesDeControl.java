@@ -13,22 +13,47 @@ public class Ejercicio02InstruccionesDeControl {
     
     //Devolver el número más alto
     public int maximoValor(int a, int b, int c){
-        throw new RuntimeException("Pendiente de hacer");
+        if (a>=b && a>=c){
+            return a;
+        }else if (b>=a && b>=c){
+            return b;
+    
+        }else if (c>=a && c>=b){
+            return c;
+        }else{
+            return 0;
+        }
+                
+        
+       
     }
     
     //Devolver la suma de todos los elementos del vector
     public int sumarElementos(int[] vector){
-        throw new RuntimeException("Pendiente de hacer");
+        int suma=0;
+        for (int val:vector){
+            suma+=val;
+        }
+
+        return suma;
     }    
     
     //Devolver cuantos elementos son pares
     public int contarPares(int[] vector){
-        throw new RuntimeException("Pendiente de hacer");
+            
+        int contador=0;
+        for (int val:vector){
+        if (val%2 == 0){
+            contador++;
+        }
+}
+        return contador;
     }    
     
     //Devolver el maximo comun divisor.
     //Recibir dos elementos a, b. Restar repetidamente el valor mas pequeño al más grande. Parar cuando son iguales.
     public int maximoComunDivisor(int a, int b){
+        
         throw new RuntimeException("Pendiente de hacer");
     }
 

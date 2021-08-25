@@ -69,7 +69,7 @@ public class Ejercicio04KanbanServiceTest {
         int pos=tareas.size()-1;
         instance.imputarHorasTrabajadas(tareas.get(pos).getCodigo(), 10);
         assertEquals(10, tareas.get(pos).getHorasTrabajadas());
-        instance.imputarHorasTrabajadas(tareas.get(pos).getCodigo(), 5);
+        instance.imputarHorasTrabajadas(tareas.get(pos).getCodigo(), 15);
         assertEquals(15, tareas.get(pos).getHorasTrabajadas());
     }
 

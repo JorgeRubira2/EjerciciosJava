@@ -1,9 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.jorgerubira.ejerciciosspringweb.controllers;
+
+import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -15,6 +22,31 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
  * En las tarjetas mostrar la descripción, persona responsable, horas trabajadas/horas estimadas.
  * 
  */
+
+@Controller
+@RequestMapping("/ejercicio4")
 public class Ejercicio04KanbanController {
+    
+    @Autowired
+    private IEjercicio04KanbanService tareas;
+    
+    
+     @GetMapping("/kanban")
+     public String listaTareas(Model model){     
+         
+         List<TareaKanban> tareasRoadmap= new ArrayList<>();
+         List<TareaKanban> tareasWaiting= new ArrayList<>();
+         List<TareaKanban> tareasWorking= new ArrayList<>();
+         List<TareaKanban> tareasDone= new ArrayList<>();
+         
+         model.addAttribute("tareasRoadmap", tareas.getTareas().stream().filter(x-> x.getEstado().equals("RoadMap")).collect(Collectors.toList()));  
+         model.addAttribute("tareasWaiting", tareas.getTareas().stream().filter(x-> x.getEstado().equals("Waiting")).collect(Collectors.toList()));  
+         model.addAttribute("tareasWorking", tareas.getTareas().stream().filter(x-> x.getEstado().equals("Working")).collect(Collectors.toList()));  
+         model.addAttribute("tareasDone", tareas.getTareas().stream().filter(x-> x.getEstado().equals("Done")).collect(Collectors.toList()));  
+         
+         return "/ej04/kanban";
+    }
+    
+     
     
 }
