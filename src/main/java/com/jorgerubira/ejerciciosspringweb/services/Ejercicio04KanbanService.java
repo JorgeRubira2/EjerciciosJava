@@ -97,7 +97,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         } else {
             throw new OperacionEnListaException(codigo);
         }
-
+        
     }
 
     @Override

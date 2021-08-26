@@ -94,5 +94,15 @@ public class Ejercicio04KanbanController {
         }
         return new RedirectView("kanban");
     }
+    
+    @GetMapping("/formularioKanban")
+    public String formulario(Model model, String codigo) {
+        if(codigo!=null){
+        model.addAttribute("TareaKanban", service.getTarea(codigo));
+        } else{
+        model.addAttribute("TareaKanban", new TareaKanban());
+        }
+        return "ej04/formularioKanban";
+    }
 
 }

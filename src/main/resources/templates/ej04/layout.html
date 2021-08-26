@@ -1,0 +1,71 @@
+<html th:fragment="layout(cuerpo)">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            .kanban-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .caja-cabecero{
+                border: 1px solid blue;
+                border-bottom: 0px;
+                border-radius: 4px;
+            }
+            .roadmap{
+                border-right: 1px solid blue;
+                text-align: center;
+                vertical-align: middle !important;
+                font-weight: bold;
+            }
+            .in-progress{
+                border-bottom: 1px solid blue;
+                text-align: center;
+                font-weight: bold;
+                padding: 10px 0;
+            }
+            .waiting{
+                border-right: 1px solid blue;
+                text-align: center;
+                padding: 10px 0;
+                color: orange;
+            }
+            .working{
+                text-align: center;
+                padding: 10px 0;
+                color: green;
+            }
+            .done{
+                border-left: 1px solid blue;
+                text-align: center;
+                vertical-align: middle !important;
+            }
+            tbody{
+                border: 1px solid blue;
+            }
+            .tarjeta{
+                width: 100px;
+                height: 100px;
+                background-color: lightblue;
+                border: 1px solid grey;
+            }
+            .col-roadmap{
+                border-right: 1px solid blue;
+                border-collapse: initial;
+            }
+            .col-waiting{
+                border-right: 1px solid blue;
+                border-collapse: initial;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Contenido -->
+            <th:block th:include="${cuerpo}"/>
+        </div>
+    </body>
+</html>

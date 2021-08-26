@@ -1,33 +1,116 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace='ej04/layout::layout(~{::body})'>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
     <body>
         <div class="container">
-            <div class="d-flex align-items-center mt-5 border border-primary border-bottom-0 rounded text-center">
-                <div class="col-3 font-weight-bold">Story</div>
-                <div class="d-flex flex-wrap col-6 border-right border-left border-primary p-0">
-                    <div class="col-12 border-bottom border-primary font-weight-bold">In Progress</div>
-                    <div class="col-6 border-right border-primary text-primary">Waiting</div>
-                    <div class="col-6 text-primary">Working</div>
-                </div>
-                <div class="col-3 font-weight-bold">Done</div>
+            <div class="col-3">
+                <a th:onclick="|nueva()|"  class="btn btn-primary far fa-plus-square mt-5">
+                    Nueva tarea
+                </a>
             </div>
 
-            <div class="d-flex flex-wrap border border-primary rounded">
-                <div class="col-3 border-right border-primary">sdfgfbrh</div>             
-                <div class="col-3 border-right border-primary">vaevbervb</div> 
-                <div class="col-3 border-right border-primary">erverfverve</div> 
-                <div class="col-3">vewfvwefv</div> 
-            </div>
+            <table class="kanban-table mt-5">
+                <thead class="caja-cabecero">
+                    <tr>
+                        <th class="roadmap col-3">Roadmap</th>
+                        <th class="col-3 p-0">
+                            <table class="kanban-table">
+                                <thead>
+                                    <tr>
+                                        <th class="in-progress" colspan="2">
+                                            In Progress
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="waiting">Waiting</th>
+                                        <th class="working">Working</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </th>
+                        <th class="done col-3">Done</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td colspan="4">
+                            <table class="col-roadmap col-4">
+                                <tbody>
+                                    <tr th:each="tareaRoadmap: ${Roadmap}">
+                                        <td class="tarjeta" th:classappend="${tareaWaiting.horasEstimacion}">
+                                            <span th:text="${tareaRoadmap.horasEstimacion}">Horas estimadas: </span>
+                                            <p th:text="${tareaRoadmap.descripcion}">Tarea: </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="col-waiting col-2">
+                                <tbody>
+                                    <tr th:each="tareaWaiting: ${Waiting}">
+                                        <td th:classappend="${2*(tareaWaiting.horasTrabajadas) >= tareaWaiting.horasEstimacion} ? red : ${tareaWaiting.horasTrabajadas > tareaWaiting.horasEstimacion} ? orange : green">
+                                            <p th:text="${tareaWaiting.descripcion}"></p>
+                                            <span th:text="${tareaWaiting.horasEstimacion}"></span>
+                                            <span th:text="${tareaWaiting.propietario}"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="col-waiting col-2">
+                                <tbody>
+                                    <tr th:each="tareaWorking: ${Working}">
+                                        <td>
+                                            <p th:text="${tareaWorking.descripcion}"></p>
+                                            <span th:text="${tareaWorking.horasEstimacion}"></span>
+                                            <span th:text="${tareaWorking.propietario}"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table>
+                                <tbody>
+                                    <tr th:each="tareaDone: ${Done}">
+                                        <td>
+                                            <p th:text="${tareaDone.descripcion}"></p>
+                                            <span th:text="${tareaDone.horasEstimacion}"></span>
+                                            <span th:text="${tareaDone.horasTrabajadas}"></span>
+                                            <span th:text="${tareaDone.propietario}"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
+        <script>
+            function nueva() {
+                $.ajax({
+                    url: "formularioKanban", //<--Ejecutamos del controlador esta url
+                    data: {//<- Parametros ?id=4
+                        //id: pId,
+                    },
+                    success: function (html) {    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message: html
+                        })
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
