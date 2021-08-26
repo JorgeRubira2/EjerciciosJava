@@ -1,54 +1,95 @@
 <html>
-  <head>
-    <title>5. Diseñar un formulario que tenga esta forma</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <style>
-    .normal {
-    }
-    p {
-      display: inline-block;
-      font-weight: bold;
-      padding-left: 20px;
-      width: 90px;
-    }
-    #pequeño {
-      display: inline-block;
-      margin-left: 30px;
-    }
-    #grande {
-      width: 363px;
-      margin-left: 30px;
-    }
-    .modificado {
-      margin-left: 144px;
-      width: 363px;
-    }
-  </style>
-  <body>
+
+<head>
+  <title>5. Diseñar un formulario que tenga esta forma</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+<style>
+  p {
+    display: inline-block;
+    font-weight: bold;
+    padding-left: 20px;
+    width: 90px;
+    font-family: Arial;
+  }
+
+  select {
+    height: 22px;
+    width: 165px;
+    margin-left: 15px;
+  }
+
+  button {
+    margin-top: 20px;
+    margin-left: 129px;
+    border-radius: 4px;
+    border: 2px solid #8d8d8d;
+    background-color: #ffffff;
+    width: 90px;
+    height: 30px;
+  }
+
+  button:hover {
+    background-color: #8d8d8d;
+    color: white;
+  }
+
+  #pequeño {
+    display: inline-block;
+    margin-left: 15px;
+    height: 22px;
+  }
+
+  #grande {
+    width: 348px;
+    margin-left: 15px;
+    height: 22px;
+  }
+
+  #modificado {
+    margin-left: 129px;
+    width: 348px;
+    height: 22px;
+  }
+
+  #pequeño2 {
+    margin-top: 15px;
+    margin-left: 129px;
+    height: 22px;
+  }
+</style>
+
+<body>
+  <form action="">
+
     <p>Name</p>
     <input id="pequeño" type="text" name="nombre" placeholder="First" />
     <input id="pequeño" type="text" name="apellido" placeholder="Last" />
     <br />
+
     <p>Email</p>
     <input id="pequeño" type="text" name="email" />
     <br />
+
     <p>Address</p>
-    <input
-      id="grande"
-      type="text"
-      name="direccion"
-      placeholder="Street Address"
-    />
+    <input id="grande" type="text" name="direccion" placeholder="Street Address" />
     <br />
-    <input class="pequeño" "type="text" name="direccion" placeholder="Street
-    Address 2"/>
+    <input id="modificado" type="text" name="direccion" placeholder="Street Address 2" />
     <br />
-    <input class="modificado" "type="text" name="direccion" placeholder="Street
-    Address 2"/>
+    <input id="pequeño2" type="text" name="direccion" placeholder="City" />
+    <input id="pequeño" type="text" name="direccion" placeholder="Region" />
     <br />
-    <input class="pequeño" "type="text" name="direccion" placeholder="Street
-    Address 2"/>
-  </body>
+    <input id="pequeño2" type="text" name="direccion" maxlength="5"" placeholder=" Postal / Zip Code" />
+    <select name="Pais">
+      <option>España</option>
+      <option>Romania</option>
+      <option>Portugal</option>
+    </select>
+    <br />
+    <button>Submit</button>
+  </form>
+</body>
+
 </html>
