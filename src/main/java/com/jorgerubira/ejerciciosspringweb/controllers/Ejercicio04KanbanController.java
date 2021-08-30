@@ -100,49 +100,49 @@ public class Ejercicio04KanbanController {
     @GetMapping("/subir/{codigo}")
     public RedirectView subir (@PathVariable String codigo) {
         Optional<TareaKanban> tarea = service.getTarea(codigo);
-        if (tarea.isPresent()) {
-            String estado = tarea.get().getEstado();
-            try {
-               switch (estado) {
-                   case "Roadmap":
-                       service.cambiarEstado(codigo, estado: "Waiting");
-                       break;
-                    case "Waiting":
-                       service.cambiarEstado(codigo, estado: "Working");
-                       break;   
-                    case "Working":
-                       service.cambiarEstado(codigo, estado: "Done");
-                       break;
-                }
-            } catch (OperacionEnListaException e) {
-                e.printStackTrace();
-            }
-        }
-        return new RedirectView("kanban");
+//        if (tarea.isPresent()) {
+//            String estado = tarea.get().getEstado();
+//            try {
+//               switch (estado) {
+//                   case "Roadmap":
+//                       service.cambiarEstado(codigo, estado: "Waiting");
+//                       break;
+//                    case "Waiting":
+//                       service.cambiarEstado(codigo, estado: "Working");
+//                       break;   
+//                    case "Working":
+//                       service.cambiarEstado(codigo, estado: "Done");
+//                       break;
+//                }
+//            } catch (OperacionEnListaException e) {
+//                e.printStackTrace();
+//            }
+//        }
+       return new RedirectView("kanban");
     }
     
     @GetMapping("/bajar/{codigo}")
     public RedirectView bajar (@PathVariable String codigo) {
         Optional<TareaKanban> tarea = service.getTarea(codigo);
-        if (tarea.isPresent()) {
-            String estado = tarea.get().getEstado();
-            try {
-               switch (estado) {
-                   case "Done":
-                       service.cambiarEstado(codigo, estado: "Working");
-                       break;
-                    case "Working":
-                       service.cambiarEstado(codigo, estado: "Waiting");
-                       break;   
-                    case "Waiting":
-                       service.cambiarEstado(codigo, estado: "Roadmap");
-                       break;
-                }
-            } catch (OperacionEnListaException e) {
-                e.printStackTrace();
-            }
-        }
-        return new RedirectView("kanban");
+//        if (tarea.isPresent()) {
+//            String estado = tarea.get().getEstado();
+//            try {
+//               switch (estado) {
+//                   case "Done":
+//                       service.cambiarEstado(codigo, estado: "Working");
+//                       break;
+//                    case "Working":
+//                       service.cambiarEstado(codigo, estado: "Waiting");
+//                       break;   
+//                    case "Waiting":
+//                       service.cambiarEstado(codigo, estado: "Roadmap");
+//                       break;
+//                }
+//            } catch (OperacionEnListaException e) {
+//                e.printStackTrace();
+//            }
+//        }
+       return new RedirectView("kanban");
     }
     
     
