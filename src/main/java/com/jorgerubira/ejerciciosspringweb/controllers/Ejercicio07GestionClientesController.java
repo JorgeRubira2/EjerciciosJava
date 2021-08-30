@@ -26,7 +26,10 @@ public class Ejercicio07GestionClientesController {
      */
     @GetMapping
     public String lista(Model m){
-        throw new RuntimeException("Pendiente de hacer");
+        m.addAttribute("clientes", repoClientes.findAll());
+        
+       return "ej07/lista";
+        //throw new RuntimeException("Pendiente de hacer");
     }
     
     /**

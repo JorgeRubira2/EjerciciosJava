@@ -6,7 +6,15 @@
     </head>
     <body>
         <div class="container">
-            <!-- Contenido -->
+            
+            <table>
+                <tr th:each="cli:${clientes}">
+                    <td th:text="${cli.nombre}"></td>
+                    <td th:text="${cli.apellidos}"></td>
+                    <td th:text="${cli.telefono}" ></td>
+                </tr>
+            </table>
+           
         </div>
     </body>
 </html>
