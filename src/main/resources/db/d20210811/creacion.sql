@@ -30,3 +30,20 @@ cantidad int,
 fecha_datos varchar(100),
 fecha_transaccion timestamp
 );
+
+create table imagenes (
+id int primary key auto_increment,
+url Varchar(200) not null,
+descripcion varchar(400),
+fecha_hora_fichero timestamp,
+tipo_imagen varchar(100),
+orientacion varchar(100),
+contenido varchar(50),
+categoria varchar(200),
+uso varchar(50)
+);
+
+create table categorias (
+id int primary key auto_increment,
+categoria varchar(200) not null
+)
