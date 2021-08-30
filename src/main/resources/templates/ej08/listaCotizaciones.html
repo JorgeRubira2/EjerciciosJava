@@ -36,19 +36,19 @@ and open the template in the editor.
 				datatype : "json",
 				success : function(obj) {
                                         $('#tabla').html('');
+                                        $('#tabla')
                                         $('#tabla').append("<tr><th>Titulo</th><th>Último</th><th>Variacion</th><th>Variación en porcentaje</th><th>Volumen</th><th>Máximo</th><th>Mínimo</th><th>Hora</th><th></th><th></th></tr>")
                                         $.each(obj,function(key,value){
-                                            //var ruta= value.titulo;
+                                            var formulario = value.titulo;
                                             var fila=$("<tr>");
+                                           
                                             $("<td>").html(value.titulo).attr('class','titulo').attr('name','titulo').append('</td>').appendTo(fila);
                                             $("<td>").html(value.ultimo).attr('class','ultimo').attr('name','ultimo').append('</td>').appendTo(fila);
-                                            //$("<td>").html(value.variacion).attr('class','variacion').appendTo(fila);
                                             if (value.variacion >= 0){
                                                 $("<td>").html(value.variacion).attr('class','variaPositivo').attr('name','variacion').append('  <i class="variaPositivo fas fa-sort-up"></i>').append('</td>').appendTo(fila);
                                             } else {
                                                 $("<td>").html(value.variacion).attr('class','variaNegativo').attr('name','variacion').append('  <i class="variaNegativo fas fa-sort-down"></i>').append('</td>').appendTo(fila);
                                             }
-                                            //$("<td>").html(value.variacionPorcentaje).attr('class','variacionPorcentaPositivo').appendTo(fila);
                                             if (value.variacionPorcentaje >= 0){
                                                 $("<td>").html(value.variacionPorcentaje).attr('class','variaPositivo').attr('name','variacionPorcentaje').append('  <i class="variaPositivo fas fa-sort-up"></i>').append('</td>').appendTo(fila);
                                             } else {
@@ -58,9 +58,15 @@ and open the template in the editor.
                                             $("<td>").html(value.maximo).attr('class','maximo').attr('name','maximo').append('</td>').appendTo(fila);
                                             $("<td>").html(value.minimo).attr('class','minimo').attr('name','minimo').append('</td>').appendTo(fila);
                                             $("<td>").html(value.hora).attr('class','hora').attr('name','hora').append('</td>').appendTo(fila);
-                                            $("<td>").append('<input type ="button" onclick="comprar" formaction="compraVenta" value="Comprar"/>').append('</td>').appendTo(fila);
-                                            $("<td>").append('<input type ="button" onclick="vender" formaction="compraVenta" value="Vender"/>').append('</td>').appendTo(fila);
+                                            
+
+                                            $("<td>").append('<input type ="button" onclick="enviar(\''+formulario+'\',this,\''+value.ultimo+'\',\''+value.hora+'\')" formaction="comprar" value="Comprar"/>').append('</td>').appendTo(fila);
+                                            $("<td>").append('<input type ="button" onclick="enviar(\''+formulario+'\',this,\''+value.ultimo+'\',\''+value.hora+'\')" formaction="vender" value="Vender"/>').append('</td>').appendTo(fila);
+                                           
+                                            
+                                           
                                             $("</tr>").appendTo(fila);
+                                            
                                             $('#tabla').append(fila);
                                         });
 					
@@ -69,10 +75,40 @@ and open the template in the editor.
                     
         function refrescar() {
             desSerializador();
-            setTimeout(function(){ refrescar();}, 10000 );
+            setTimeout(function(){ refrescar();}, 100000 );
             
         }
 
         $(document).ready(function (){ refrescar();});
+        
+        
+        function enviar( _titulo, boton, _importe, _hora){
+            
+            var accion = $(boton).attr('formaction');
+            var identif= "'#"+ _titulo +"'";
+            var parametros = {
+                titulo: _titulo,
+                ultimo: _importe,
+                hora: _hora
+            }
+            console.log("objeto: " + '#'+ _titulo);
+            console.log("identificador: " + identif);
+            console.log("accion: " + accion);
+            
+            $.ajax({
+               type: "POST" ,
+               url: accion ,
+               data: parametros,
+               success : function(){
+                   alert("insertados");
+               },
+               error: function(){
+                   alert("no insertados");
+               }
+               
+            });
+        }
+     
+         
     </script>
 </html>

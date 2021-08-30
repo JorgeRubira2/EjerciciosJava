@@ -21,3 +21,12 @@ Create table cliente (
     city            VARCHAR(200)
     
 );
+
+create table valores (
+id  INT Primary key auto_increment,
+valor varchar(200) not null,
+importe_unitario decimal(18,4),
+cantidad int,
+fecha_datos varchar(100),
+fecha_transaccion timestamp
+);
