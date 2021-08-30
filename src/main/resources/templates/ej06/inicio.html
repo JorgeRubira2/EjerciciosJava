@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Busca minas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/flatly/bootstrap.min.css"/>
+        <style>
+            thead{
+            
+                font-size: 200%;
+                text-align: center; 
+                
+            }       
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            
+
+            <div th:if="${#strings.equals(estado,'Game Over')}"><a href="/bm/reiniciar" class="btn btn-danger">Reiniciar</a></div>
+            <table  class="table table-bordered table-secondary ">
+                <thead class="thead-secondary">
+                    <tr>
+                        <th colspan="5" th:text="${casillas}"> </th>
+                        <th colspan="5">
+                            <span style="color:yellow" class="emoji" th:if="${!#strings.equals(estado,'Game Over')}"><i class="fas fa-grin-alt"></i></span>
+                            <span style="color:red" class="emoji" th:if="${#strings.equals(estado,'Game Over')}"><i class="fas fa-dizzy"></i></span>
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tr th:each="tab:${tablero}" class="text-center">
+                    <td th:each="t:${tab}" >
+                        <a th:if="${t.oculto}" th:onclick="|destapar(${t.id})|" class="btn btn-secondary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <span th:if="!${t.oculto}" ><a class="btn btn-secondary" th:text="${t.valor}"></a></span></td>
+
+                </tr>
+            </table>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script> 
+        <script>
+            function destapar(pID) {
+                var aux = window.location.href;
+                if (aux.includes("?")) {
+                    window.location.href = "http://localhost:8080/bm?id=" + pID;
+                } else {
+                    window.location.href = window.location.href + "?id=" + pID;
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
