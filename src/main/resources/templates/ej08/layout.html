@@ -131,8 +131,8 @@
             }
             function refrescar(){         
                 leerJson();
-                ventas(); //hasta el primer refresco no se actualiza :/                   
-                setTimeout(function(){refrescar()}, 5000);
+                ventas(); //hasta el primer refresco no se actualiza :/    
+                setTimeout(function(){refrescar()}, 30000);
             }
             function ventas(){ //Rellenamos la tabla de stock actual marcando la diferencia
                 var ultimo;
@@ -156,6 +156,11 @@
                 });
             };
             $(document).ready(function(){
+                if ($("#saldo").html() > 0){
+                    $("#saldo").toggleClass("verde");
+                }else{
+                    $("#saldo").toggleClass("rojo");
+                }
                 refrescar();
             });
             function leerHtmlAjax(pTitulo,pUltimo){
@@ -168,6 +173,26 @@
                     success: function(pHtml){    //<- Nos devuelven la respuesta. 
                         bootbox.dialog({
                             title: 'Compra de acciones',
+                            size: "large",
+                            message: pHtml
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                      alert(xhr.responseText);
+                    }
+                });
+            }
+            function venderAjax(pTitulo,pUltimo,pCantidad){
+                $.ajax({
+                    url:"ejercicio8/vender",
+                    data: {
+                        titulo: pTitulo,
+                        ultimo: pUltimo,
+                        cantidad: pCantidad
+                    },   //<--Ejecutamos del contra esta url
+                    success: function(pHtml){    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            title: 'Venta de acciones',
                             size: "large",
                             message: pHtml
                         });

@@ -8,6 +8,9 @@
     <body>
         <th:block th:if="${cotiza!=null}">
             <div class="container text-center">
+                <h3>Saldo actual: </h3> 
+                <span id="saldo" th:text="${saldo}">  </span>
+                <hr />
                 <h4>Stock actual</h4>
                 <table id="listaMovs" class="table table-striped">
                     <thead>
@@ -21,18 +24,42 @@
                     </thead>
                     <tbody>
                         <tr th:each="cot:${cotiza}" th:if="${cot.tipoOperacion} == 'Compra'">
-                            <td th:text="${cot.titulo}" />
-                            <td th:text="${cot.precioInicial}" />
-                            <td th:text="${cot.cantidad}" />
-                            <td th:text="${cot.fechaOperacionInicio}" />
-                            <td id="precioVenta"> </td>
-                            <td id="calcularDiferencia" />
-                            <td>
-                                <button class="btn btn-warning">Vender</button>
-                            </td>
+                            <th:block th:if="${cot.cantidad}>0">
+                                <td th:text="${cot.titulo}" />
+                                <td th:text="${cot.precioInicial}" />
+                                <td th:text="${cot.cantidad}" />
+                                <td th:text="${cot.fechaOperacionInicio}" />
+                                <td id="precioVenta"> </td>
+                                <td id="calcularDiferencia" />
+                                <td>
+                                    <button class='btn btn-danger' th:attr="onclick=|venderAjax('${cot.titulo}','${cot.precioInicial}', '${cot.cantidad}')|">Vender</button>
+                                </td>
+                            </th:block>
                         </tr>
                     </tbody>
-                </table>   
+                </table>
+                    <table id="ventas" class="table table-striped">
+                        <thead>
+                            <th>Titulo</th>
+                            <th>Comprado</th>
+                            <th>Vendido</th>
+                            <th>Cantidad</th>
+                            <th>Fecha Compra</th>
+                            <th>Fecha Venta</th>
+                            <th>Resultado</th>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cot:${cotiza}" th:if="${cot.tipoOperacion} == 'Venta'">
+                                <td th:text="${cot.titulo}" />
+                                <td th:text="${cot.precioInicial}" />
+                                <td th:text="${cot.precioFinal}" />
+                                <td th:text="${cot.cantidad}" />
+                                <td th:text="${cot.fechaOperacionInicio}" />
+                                <td th:text="${cot.fechaOperacionFinal}" />
+                                <td th:text="${cot.precioInicial - cot.precioFinal}" />
+                            </tr>
+                        </tbody>
+                    </table>   
             </div>
         </th:block>
 

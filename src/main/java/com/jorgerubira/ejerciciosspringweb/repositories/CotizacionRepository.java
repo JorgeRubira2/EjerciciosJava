@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CotizacionRepository extends JpaRepository<Cotiza, Integer> {
         public Cotiza findByTitulo(String titulo);
+
+        public Cotiza findFirstByOrderByIdDesc();
 }

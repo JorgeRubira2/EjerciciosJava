@@ -33,9 +33,13 @@ public class Ejercicio08MercadoContinuo {
     @GetMapping
     public String inicio(Model m){
         if(repoCotiza.findAll().isEmpty()){
-            m.addAttribute("cotiza",new Cotiza());
+            Cotiza cot = new Cotiza();
+            cot.setSaldo(0d);
+            m.addAttribute("cotiza",cot);
+            m.addAttribute("saldo",cot.getSaldo());
         }else{
             m.addAttribute("cotiza",repoCotiza.findAll());
+            m.addAttribute("saldo",repoCotiza.findFirstByOrderByIdDesc().getSaldo());
         }
         return "/ej08/cotizar";
     }
@@ -46,12 +50,29 @@ public class Ejercicio08MercadoContinuo {
         m.addAttribute("ultimo",ultimo);
         return "/ej08/comprar";
     }
+    @GetMapping("/vender")
+    public String venta(Model m, String titulo, Double ultimo, Integer cantidad){
+        m.addAttribute("titulo",titulo);
+        m.addAttribute("ultimo",ultimo);
+        m.addAttribute("cantidad",cantidad);
+        return "/ej08/vender";
+    }
+    
     @PostMapping("/comprar")
     public String comprar(Model m, String titulo, Double ultimo, Integer cantidad){
+        Double actual;
+        if (repoCotiza.findFirstByOrderByIdDesc() != null){
+            actual = repoCotiza.findFirstByOrderByIdDesc().getSaldo();
+        }else{
+            actual = 0d;
+        }
         if(repoCotiza.findByTitulo(titulo)!=null){
             Cotiza aux = repoCotiza.findByTitulo(titulo);
+            Cotiza ult = repoCotiza.findFirstByOrderByIdDesc();
             aux.setCantidad(aux.getCantidad()+cantidad);
+            ult.setSaldo(actual - (ultimo*cantidad));
             repoCotiza.save(aux);
+            repoCotiza.save(ult);
         }else{
             Cotiza aux = new Cotiza();
             aux.setCantidad(cantidad);
@@ -59,8 +80,22 @@ public class Ejercicio08MercadoContinuo {
             aux.setPrecioInicial(ultimo);
             aux.setTipoOperacion("Compra");
             aux.setTitulo(titulo);  
+            aux.setSaldo(actual - (ultimo*cantidad));  
             repoCotiza.save(aux);
         }
+        return "redirect:/ejercicio8";
+    }
+    
+    @PostMapping("/vender")
+    public String vender(Model m, String titulo, Double ultimo, Integer cantidad){
+        Cotiza ul = repoCotiza.findFirstByOrderByIdDesc();
+        Cotiza aux = repoCotiza.findByTitulo(titulo);
+        aux.setCantidad(cantidad);
+        aux.setFechaOperacionFinal(new Date());
+        aux.setPrecioFinal(ultimo);
+        aux.setTipoOperacion("Venta");
+        
+        
         return "redirect:/ejercicio8";
     }
 }

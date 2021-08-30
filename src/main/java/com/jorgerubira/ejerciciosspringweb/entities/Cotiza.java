@@ -24,4 +24,5 @@ public class Cotiza {
     private Double precioInicial;
     private Date fechaOperacionFinal;
     private Double precioFinal;
+    private Double saldo;
 }
