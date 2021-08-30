@@ -44,6 +44,8 @@
                                         <td class="tarjeta">
                                             <span th:text="${tareaRoadmap.horasEstimacion}">Horas estimadas: </span>
                                             <p th:text="${tareaRoadmap.descripcion}">Tarea: </p>
+                                            <a class="btn btn-primary btn-sm" th:href="@{subir/{codigo}(codigo=${codigo})}" />Subir estado tarea
+                                            <a class="btn btn-primary btn-sm" th:href="@{bajar/{codigo}(codigo=${codigo})}" />Bajar estado tarea
                                         </td>
                                     </tr>
                                 </tbody>
