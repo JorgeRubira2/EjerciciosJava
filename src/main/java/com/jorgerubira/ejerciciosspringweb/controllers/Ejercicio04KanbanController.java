@@ -64,10 +64,10 @@ public class Ejercicio04KanbanController {
         } catch (OperacionEnListaException ex) {
             //return "ej04/kanban";
         }
-        return "ej04/kanban";
+        return "redirect:/ejercicio4/kanban";
     }
     
-    @GetMapping("/imputarHoras")
+    @PostMapping("/adduser")
     public String imputarHoras(Model model, String codigo , Integer horas){
         try {
             servicio.imputarHorasTrabajadas(codigo, horas);
@@ -79,4 +79,5 @@ public class Ejercicio04KanbanController {
         
         return "ej04/kanban";
     }
+    
 }

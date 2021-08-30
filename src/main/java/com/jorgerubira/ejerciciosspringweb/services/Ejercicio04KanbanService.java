@@ -32,7 +32,7 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
         //codigo;descripcion;propietario; horasEstimacion;horasTrabajadas;estado;        
         //UUID.randomUUID().toString(),descripcion,null, horasEstimacion,0,"Roadmap"    
         
-        listaTareas.add(new TareaKanban(UUID.randomUUID().toString(), descripcion, null, horasEstimacion, 0, "Roadmap"));
+        listaTareas.add(new TareaKanban(UUID.randomUUID().toString().replace("-", ""), descripcion, null, horasEstimacion, 0, "Roadmap"));
     }
 
     @Override
