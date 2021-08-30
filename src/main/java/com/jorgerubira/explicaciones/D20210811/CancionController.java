@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/d20210811")
 public class CancionController { 
     
-    @Autowired
+    @Autowired(required = false)
     private CancionRepository repositorio;
     
     @GetMapping("/lista")
