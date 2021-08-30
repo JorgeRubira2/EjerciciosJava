@@ -1,0 +1,74 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <style>
+            
+            .negrita{
+                font-weight: bolder !important;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            
+            <table id="datos" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        
+                        <th>Título </th>
+                        <th>Último</th>
+                        <th>Variación</th>
+                        <th>Variacion %</th>
+                        <th>Volumen</th>
+                        <th>Máximo</th>
+                        <th>Mínimo</th>
+                        <th>Hora</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="datos:${datosMercado}">
+                    <td th:text="${datos.titulo}"></td>
+                    <td th:text="${datos.ultimo}"></td>
+                    <td class="negrita" th:classappend="|${datos.variacion > 0 ? 'text-success' : 'text-danger'}|" th:text="${datos.variacion}"></td>
+                    <td class="negrita" th:classappend="|${datos.variacionPorcentaje > 0 ? 'text-success' : 'text-danger'}|" th:text="${datos.variacionPorcentaje}+'%'"></td>
+                    <td th:text="${datos.volumen}"></td>
+                    <td th:text="${datos.maximo}"></td>
+                    <td th:text="${datos.minimo}"></td>
+                    <td th:text="${datos.hora}"></td>
+                    <td>
+                        <!--
+                        <a th:href="@{'/ejercicio3/eliminar?codigo='+${a.codigo}}" class="btn btn-outline-danger">Eliminar</a> 
+                        <a th:href="@{/ejercicio3/editar/{id}(id = ${a.codigo})}" class="btn btn-outline-warning">Editar</a>
+                        -->
+                        <a class="btn btn-outline-success" href="" >Comprar</a>
+                        
+                        <a class="btn btn-outline-danger" href="">Vender</a>
+                    </td>
+                </tbody>
+            </table>
+            
+            
+            
+        </div>
+        
+           <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                  setTimeout(refrescar, 30000);
+                });
+                function refrescar(){
+                     $("#datos").load("listaCotizaciones");
+                    //console.log("a");
+                }
+</script>
+    </body>
+</html>
