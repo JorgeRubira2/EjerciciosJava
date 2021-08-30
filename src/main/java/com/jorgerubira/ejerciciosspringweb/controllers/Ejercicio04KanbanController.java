@@ -34,12 +34,12 @@ public class Ejercicio04KanbanController {
      @GetMapping("/kanban")
      public String listaTareas(Model model){     
          
-         List<TareaKanban> tareasRoadmap= new ArrayList<>();
+         List<TareaKanban> tareasRoadmap= tareas.getTareas().stream().filter(x-> x.getEstado().equals("Roadmap")).collect(Collectors.toList());
          List<TareaKanban> tareasWaiting= new ArrayList<>();
          List<TareaKanban> tareasWorking= new ArrayList<>();
          List<TareaKanban> tareasDone= new ArrayList<>();
          
-         model.addAttribute("tareasRoadmap", tareas.getTareas().stream().filter(x-> x.getEstado().equals("RoadMap")).collect(Collectors.toList()));  
+         model.addAttribute("tareasRoadmap", tareasRoadmap);  
          model.addAttribute("tareasWaiting", tareas.getTareas().stream().filter(x-> x.getEstado().equals("Waiting")).collect(Collectors.toList()));  
          model.addAttribute("tareasWorking", tareas.getTareas().stream().filter(x-> x.getEstado().equals("Working")).collect(Collectors.toList()));  
          model.addAttribute("tareasDone", tareas.getTareas().stream().filter(x-> x.getEstado().equals("Done")).collect(Collectors.toList()));  
