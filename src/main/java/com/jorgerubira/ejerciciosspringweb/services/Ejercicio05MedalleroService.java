@@ -24,7 +24,7 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
     
     private List<Medalla> medallas = new ArrayList<>();
     
-    public Ejercicio05MedalleroService(){ 
+    public Ejercicio05MedalleroService(){
         medallas.add(new Medalla("China", "Peso medio femenino", "Oro", "Lucha", "Li Qian"));
         medallas.add(new Medalla("Gran Bretaña", "Peso medio femenino", "Plata", "Lucha", "Lauren Price"));
         medallas.add(new Medalla("Kenia", "Maratón masculino", "Oro", "Atletismo", "E. Kipchoge"));
@@ -64,6 +64,8 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
                 .collect(Collectors.toList());
         
         return medallasPais;
+        //List<MedallaPais> medallasPais  = new List<MedallaPais>();
+
                 
     }
 
@@ -71,7 +73,7 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla) {
         List<String> deportesMedalla  = medallas.stream()
                 .filter(x -> medalla.equals(x.getMedalla()))
-                .filter(x -> pais.equals(x.getPais()))
+                .filter(x -> medalla.equals(x.getPais()))
                 .map(x -> x.getDeporte())
                 .collect(Collectors.toList());
         return deportesMedalla;
@@ -101,7 +103,6 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
                                     ,Integer.parseInt(Long.toString(medallas.stream().filter(y -> x.equals(y.getDeportistas()) && "Plata".equals(y.getMedalla())).count()))
                                     ,Integer.parseInt(Long.toString(medallas.stream().filter(y -> x.equals(y.getDeportistas()) && "Cobre".equals(y.getMedalla())).count()))
                             ))
-                .sorted((x,y) ->(y.getCobre()+y.getPlata()+y.getOro()) - (x.getCobre()+x.getPlata()+x.getOro()))
                 .collect(Collectors.toList());
         
         return medallasPorAtleta;
