@@ -1,0 +1,37 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="d20210830/layout::layout( ~{::body})">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+            <a class="btn btn-primary" href="/coches/nuevo" >Nuevo</a>
+            <table class="table table-striped">
+                <tr th:each="coche:${coches}">
+                    <td th:text="${coche.id}"></td>
+                    <td th:text="${coche.matricula}"></td>
+                    <td th:text="${coche.marca}"></td>
+                    <td th:text="${coche.modelo}"></td>
+                    <td >
+                        <a class="btn btn-primary btn-sm" th:href="@{editar(id=${coche.id})}">Editar</a>
+                        <a class="btn btn-primary btn-sm" th:onclick="|borrar(${coche.id})|">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <script>
+                function borrar(id){
+                    bootbox.confirm({
+                        message:"¿Desea borrar?",
+                        callback: function (result) {
+                           if (result){
+                               document.location="/coches/borrar?id=" + id;
+                           }
+                        }
+                    })
+                }
+            </script>            
+    </body>
+</html>
