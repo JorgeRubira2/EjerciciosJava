@@ -25,7 +25,7 @@ public class CancionController {
     
     @GetMapping("/lista")
     public String leerCanciones(Model m){ 
-        m.addAttribute("canciones", repositorio.findByAutorContaining("E"));   
+        m.addAttribute("canciones", repositorio.findAll());   
         return "d20210811/listado";      
     }
     
