@@ -20,7 +20,7 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <table id="tabla"></table>
+        <table class="table table-striped " id="tabla"></table>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
@@ -37,7 +37,7 @@ and open the template in the editor.
 				success : function(obj) {
                                         $('#tabla').html('');
                                         $('#tabla')
-                                        $('#tabla').append("<tr><th>Titulo</th><th>Último</th><th>Variacion</th><th>Variación en porcentaje</th><th>Volumen</th><th>Máximo</th><th>Mínimo</th><th>Hora</th><th></th><th></th></tr>")
+                                        $('#tabla').append("<thead><tr><th>Titulo</th><th>Último</th><th>Variacion</th><th>Variación en porcentaje</th><th>Volumen</th><th>Máximo</th><th>Mínimo</th><th>Hora</th><th></th><th></th></tr></thead><tbody>")
                                         $.each(obj,function(key,value){
                                             var formulario = value.titulo;
                                             var fila=$("<tr>");
@@ -69,13 +69,14 @@ and open the template in the editor.
                                             
                                             $('#tabla').append(fila);
                                         });
+                                        $('#tabla').append('</tbody>')
 					
 				}
 			});}   
                     
         function refrescar() {
             desSerializador();
-            setTimeout(function(){ refrescar();}, 100000 );
+            setTimeout(function(){ refrescar();}, 5000 );
             
         }
 
@@ -100,10 +101,10 @@ and open the template in the editor.
                url: accion ,
                data: parametros,
                success : function(){
-                   alert("insertados");
+
                },
                error: function(){
-                   alert("no insertados");
+
                }
                
             });
