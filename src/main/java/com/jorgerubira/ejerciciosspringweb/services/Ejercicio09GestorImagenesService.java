@@ -40,7 +40,12 @@ public class Ejercicio09GestorImagenesService implements IEjercicio09GestorImage
 
     @Override
     public void altaImagen(Imagen img) {
-        repoImagenes.save(img);
+        if (repoCategorias.findByCategoria(img.getCategoria()).isPresent()){
+            repoImagenes.save(img);
+        }
+        else {
+            throw new RuntimeException("categoria seleccionada de imagen inexistente");
+        }
     }
 
     @Override

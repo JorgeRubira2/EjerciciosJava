@@ -6,6 +6,7 @@
 package com.jorgerubira.ejerciciosspringweb.repositories;
 
 import com.jorgerubira.ejerciciosspringweb.entities.Categoria;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author janus
  */
 public interface CategoriasRepository extends JpaRepository<Categoria, Integer> {
-    
+    Optional<Categoria> findByCategoria(String categoria);
 }
