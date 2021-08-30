@@ -15,4 +15,5 @@ import java.util.List;
 public interface IEjercicio09GestorImagenesCategoriasService {
     void altaCategoria(Categoria c);
     List<Categoria> obtenerCategorias();
+
 }

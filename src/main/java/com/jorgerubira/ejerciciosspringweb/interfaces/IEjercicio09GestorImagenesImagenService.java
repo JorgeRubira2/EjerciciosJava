@@ -16,4 +16,6 @@ import java.util.List;
 public interface IEjercicio09GestorImagenesImagenService {
     List<Imagen> obtenerImagenes();
     void altaImagen(Imagen img);
+
+    
 }

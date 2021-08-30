@@ -12,6 +12,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio09GestorImagenes
 import com.jorgerubira.ejerciciosspringweb.repositories.CategoriasRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.ImagenesRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,18 @@ public class Ejercicio09GestorImagenesService implements IEjercicio09GestorImage
         return repoCategorias.findAll();
     }
 
+
+    // pasamos un elemento de tipo imagen con los filtros cargados 
+    public List<Imagen> filtrarImagenes(Imagen img) { //tipo, orientacion categoria y uso
+        return this.obtenerImagenes().parallelStream()
+                              .filter(x-> img.getTipoImagen() ==  null || img.getTipoImagen().isEmpty() ||  x.getTipoImagen().equals(img.getTipoImagen()))
+                              .filter(x-> img.getOrientacion() ==  null || img.getOrientacion().isEmpty() || x.getOrientacion().equals(img.getOrientacion()))
+                              .filter(x-> img.getCategoria() == null || img.getCategoria().isEmpty() || x.getCategoria().equals(x.getCategoria()))
+                              .filter(x-> img.getUso() == null || img.getUso().isEmpty() || x.getUso().equals(x.getUso()))
+                              .collect(Collectors.toList());
+    }
+
+
+    
 
 }
