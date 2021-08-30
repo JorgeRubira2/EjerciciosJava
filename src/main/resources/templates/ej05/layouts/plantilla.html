@@ -1,0 +1,63 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>Medallero Olímpico</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../static/estilos.css" th:href="@{estilos.css}"  rel="stylesheet"/>
+
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+        <style>
+
+            .header > div {
+                height: 4rem;
+
+            }
+            img {
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            .centrar{
+                text-align: center;
+            }
+            .oro{
+                color:#efb810;
+            }
+            .plata{
+                color: silver;
+            }
+            .bronce{
+                color:#cd7f32;
+            }
+
+        </style>
+    </head>
+    <body> 
+        <div th:fragment="cabecera">
+            <div class="container">
+                <div class="row header m-2">
+                    <div class="col-2">
+                        <img src="https://www.fedehalter.org/wp-content/uploads/2020/09/aros-olimpicos-.png" />
+                    </div>
+                    <div class="col-10">
+                        <h4 class="display-6">MEDALLERO OLIMPICO</h4>
+                    </div>
+                </div>  
+            </div> 
+        </div>
+
+    <myscripts th:fragment="scripts">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
+    </myscripts>
+</body>
+</html>

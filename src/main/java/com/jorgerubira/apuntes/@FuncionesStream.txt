@@ -19,7 +19,7 @@ Metodos finales -----------------------------------------------
 ---------------------------------------------------------------
 R collect(Collector)                  Devuelve un List,Map o Set con los datos del stream. Collectors.toList(), Collectors.toMap(), Collectors.toSet()
 Optional<T> findFirst()               Devuelve el primer elemento.
-long count()                           Cuenta los elementos
+long count()                          Cuenta los elementos
 void forEach(Consumer)                Ejecuta un consumer
 boolean anyMatch(Predicate)           Devuelve si encuentra alguna condicion
 R[] toArray(size->new R[size])

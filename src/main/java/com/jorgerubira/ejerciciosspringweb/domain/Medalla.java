@@ -20,6 +20,7 @@ public class Medalla {
     private String medalla; //Oro, Plata, Bronce
     private String tipoDeporte;
     private String deportistas;
+    
     //private List<String> deportistas; //Posible mejora nivel PRO, una medalla puede tener varios deportistas.
     
 }

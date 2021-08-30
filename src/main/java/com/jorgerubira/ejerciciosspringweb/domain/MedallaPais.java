@@ -16,5 +16,5 @@ public class MedallaPais {
     private String pais;
     private int oro;
     private int plata;
-    private int cobre;
+    private int bronce;
 }

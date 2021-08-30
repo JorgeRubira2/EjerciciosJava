@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:include="ej05/layouts/plantilla::head">
+    </head>
+    <body>
+        <div th:include="ej05/layouts/plantilla::cabecera">
+        </div>
+        <div class="container">
+            <table class="table table-responsive table-striped table-hover">
+                <thead >
+                    <tr>
+                        <th> Deporte </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="med:${medallero}" >
+                        <td th:text="${med}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:include="ej05/layouts/plantilla::scripts">
+        </div>
+    </body>
+</html>

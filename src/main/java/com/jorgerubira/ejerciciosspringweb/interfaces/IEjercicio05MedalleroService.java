@@ -11,14 +11,21 @@ import com.jorgerubira.ejerciciosspringweb.domain.MedallaPais;
 import java.util.List;
 
 public interface IEjercicio05MedalleroService {
- 
+
     public void altaMedalla(Medalla medalla);
+
     public List<Medalla> getMedallas();
 
     //Listas calculadas a partir del List<Medalla>
     public List<MedallaPais> obtenerRankingPorPais();
+
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla);
-    public List<String> obtenerDeportesConMedalla(String pais);
-    public List<MedallaAtleta> obtenerRankingPorAlteta();
     
+    public List<String> obtenerDeportistaConMedalla(String pais);
+    
+
+    public List<String> obtenerDeportesConMedalla(String pais);
+
+    public List<MedallaAtleta> obtenerRankingPorAlteta();
+
 }

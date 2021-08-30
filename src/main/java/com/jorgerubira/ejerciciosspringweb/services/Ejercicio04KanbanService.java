@@ -46,9 +46,12 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
                     .setDescripcion(descripcion);
             tar.get()
                     .setHorasEstimacion(horasEstamacion);
+           
+           
             
         }
-        else{          
+        else{     
+            
             throw new OperacionEnListaException(codigo);
             
         }

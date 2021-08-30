@@ -13,29 +13,21 @@
             .container-fluid {
                 width: 85%;
                 border:1px solid #ebebeb;
-                
-                 text-align: center;
-       
+                text-align: center;
             }
-          
             .azul{
-                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 border-left: 6px solid #45ABCD;
             }
-
             .naranja{
-                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 border-left: 6px solid #FEAF20;
             }
             .rojo{
-                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 border-left: 6px solid #D73814;
             }
-           
-            .borde{
-                background: lavender;
+            .sombra{
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
             }
-
+          
         </style>
         <title>Probando Kanban</title>
     </head>
@@ -54,7 +46,6 @@
                     <td>Waiting</td>
                     <td>Working</td>
                 </tr>
-
             </table>
             <div class="row">
                 <div class="col-12 ml-2">
@@ -62,17 +53,13 @@
                 </div>
             </div>
             <!--Fin cabecera Kanban-->
-            <!--cuerpo-->
-            <!--Añadir tarea-->
-
-            <!--fin div añadir tarea-->
-
+            <!--cuerpo--> 
             <div class="cuerpo">
                 <div class="row">
                     <div class="col-3">
                         <div th:each="tarea:${tareaRoadmap}" 
-                             th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
-                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+                             th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul sombra m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo sombra m-2' : 'naranja sombra m-2')" >
                             <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
                         </div>
@@ -80,23 +67,22 @@
                     </div>
 
                     <div class="col-3">
-                        <div class="card card bg-light m-2" th:each="tarea:${tareaWaiting}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
-                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
-
+                        <div class="card card bg-light m-2" th:each="tarea:${tareaWaiting}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul sombra m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo sombra m-2' : 'naranja sombra m-2')" >
                             <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
                         </div>
                     </div>
                     <div class="col-3">
-                        <div class="card card bg-light m-2" th:each="tarea:${tareaWorking}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
-                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+                        <div class="card card bg-light m-2" th:each="tarea:${tareaWorking}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul sombra m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo sombra m-2' : 'naranja sombra m-2')" >
                             <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
                         </div>
                     </div>
                     <div class="col-3">
-                        <div th:each="tarea:${tareaDone}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul m-2' : 
-                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo m-2' : 'naranja m-2')" >
+                        <div th:each="tarea:${tareaDone}" th:class="${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'azul sombra m-2' : 
+                             (${tarea.horasTrabajadas > tarea.horasEstimacion*2} ? 'rojo sombra m-2' : 'naranja sombra m-2')" >
 
                             <div th:include="::card(${tarea.getCodigo()},${tarea.getDescripcion()},${tarea.getPropietario()},${tarea.getHorasEstimacion()},${tarea.getHorasTrabajadas()},${tarea.getEstado()})">
                             </div>
@@ -107,9 +93,8 @@
             </div>
 
         </div>
-
-
-
+        
+        
         <!-- FRAGMENT poner th include para el display:none -->
 
         <div th:fragment="card(codigo,descripcion,propietario,horasEstimacion,horasTrabajadas,estado)" style="display:none">
@@ -188,6 +173,8 @@
         <!-- fin fragmento -->
 
 
+
+
         <!-- formulario para nueva y añadir tarea -->
         <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"aria-hidden="true">
             <div class="modal-dialog">
@@ -256,6 +243,8 @@
                                         })
                                         $('#form').attr('action', "/editarTarea");
                                     }
+
+                                   
 
         </script>
     </body>

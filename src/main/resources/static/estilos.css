@@ -1,0 +1,25 @@
+   .header > div {
+                height: 4rem;
+
+            }
+            img {
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            .centrar{
+                text-align: center;
+            }
+            .oro{
+                color:#efb810;
+            }
+            .plata{
+                color: silver;
+            }
+            .bronce{
+                color:#cd7f32;
+            }

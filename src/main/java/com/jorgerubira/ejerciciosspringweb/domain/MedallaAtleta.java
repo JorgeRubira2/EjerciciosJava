@@ -11,5 +11,5 @@ public class MedallaAtleta {
     private String atleta;
     private int oro;
     private int plata;
-    private int cobre;
+    private int bronce;
 }
