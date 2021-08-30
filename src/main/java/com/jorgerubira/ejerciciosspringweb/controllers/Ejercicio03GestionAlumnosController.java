@@ -7,14 +7,13 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnosService;
-import com.jorgerubira.ejerciciosspringweb.services.Ejercicio03GestionAlumnosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
@@ -48,6 +47,8 @@ public class Ejercicio03GestionAlumnosController {
         service.guardarAlumno(alumno);
         return ("redirect:listadoAlumnos");
     }
+    
+    
     @GetMapping("/borrar")
     public String eliminarAlumnos(Model model, Long codigo) {
         service.borrarAlumno(codigo);
@@ -55,43 +56,32 @@ public class Ejercicio03GestionAlumnosController {
         return "ej03/listadoAlumnos";
     }
     
-    //@PostMapping("/borrar")
-    //public String eliminarAlumnos(Model model, Long codigo) {
-    //    service.borrarAlumno(codigo);
-    //    model.addAttribute("alumno", service.getAlumnos());
-    //    return ("redirect:listadoAlumnos");
-    //}
-    //
-    //@PostMapping("/borrar")
-    //public String eliminarAlumnos(Model model, Long codigo) {
-    //    service.getAlumno(codigo);
-    //    model.addAttribute("alumno", service.getAlumnos());
-    //    return "ej03/listadoAlumnos";
-    //}
-    //
-
+    
+    @GetMapping("/editar")
+    public String editarAlumnos(Model model, Long codigo) {
+        /*model.addAttribute("alumno", service.getAlumno(codigo));
+        model.addAttribute("alumno", service.getAlumnos());
+        return new RedirectView ("listadoAlumnos");*/
+        try {
+            model.addAttribute("alumno", service.getAlumno(codigo));
+            model.addAttribute("bienmodificado","El alumno se ha modificado correctamente.");
+        }catch(Exception e){
+            model.addAttribute("errormodificado","Ha ocurrido un error al modificar el alumno.");
+        }
+         return "ej03/listadoAlumnos";
+    }
     
     @PostMapping("/buscar")
-    public String buscarAlumnosPorCodigo(Model model, Long codigo) {
-        service.getAlumno(codigo);
-        model.addAttribute("alumno", service.getAlumnos());
-        return ("redirect:listadoAlumnos");
-    }
-
-    @PostMapping("/buscarPorNombre")
-    public String buscarAlumnosPorNombre(Model model, String nombre) {
-        service.getAlumnos(nombre);
-        model.addAttribute("alumno", service.getAlumnos());
+    public String buscar(Model model, @RequestParam("codigoNombre") String codigoNombre) {
+        if (codigoNombre != null) {
+            try {
+                model.addAttribute("alumno", service.getAlumno(Long.parseLong(codigoNombre)).isPresent()
+                                ?service.getAlumno(Long.parseLong(codigoNombre)).get()
+                                :null);
+            } catch (NumberFormatException e) {
+                model.addAttribute("alumno", service.getAlumnos(codigoNombre));
+            }
+        }
         return "ej03/listadoAlumnos";
     }
-
-
-
-    @GetMapping("/editar")
-    public RedirectView editarAlumnos(Model model, Long codigo) {
-        model.addAttribute("alumno", service.getAlumno(codigo));
-        model.addAttribute("alumno", service.getAlumnos());
-        return new RedirectView ("listadoAlumnos");
-    }
-
 }

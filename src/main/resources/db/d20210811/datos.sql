@@ -1,4 +1,4 @@
-INSERT INTO Canciones (
+/*INSERT INTO Canciones (
 	autor,titulo,fecha_publicacion,
 	fecha_hora_ultima_reproduccion, activa,precio_reproduccion
 ) VALUES (
@@ -20,4 +20,4 @@ INSERT INTO Canciones (
 ) VALUES (
 	'Pepe', 'Canciones', '2021-12-31',
 	'2021-02-28 03:12:11', TRUE, 1.2
-);
+);*/

@@ -1,4 +1,4 @@
-DROP TABLE Productos IF EXISTS;
+/*DROP TABLE Productos IF EXISTS;
 
 CREATE TABLE Productos (
   id           INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -7,3 +7,4 @@ CREATE TABLE Productos (
   precio_venta NUMERIC(18,2),
   activo       BOOLEAN
 );
+*/

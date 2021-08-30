@@ -21,10 +21,10 @@
             <form action="/ejercicio3/buscar" method="post">
                 <div class="row">
                     <div class="from-group col-3">
-                        <input class="form-control" name="nombre" placeholder="Ingrese un codigo o un nombre" required />
+                        <input class="form-control" name="codigoNombre" id="codigoNombre" th:value="${codigoNombre}" placeholder="Ingrese un codigo o un nombre" required />
                     </div>
                     <div class="from-group col">
-                        <button type="submit" value="Buscar" class="btn btn-primary "><i class="fas fa-search"></i>Buscar</button>
+                        <button type="submit" value="Buscar" th:onclick="validar()" class="btn btn-primary "><i class="fas fa-search"></i>Buscar</button>
                         <button type="button" value="Buscar" th:onclick="|nuevo()|" class="btn btn-primary ">Nuevo</button>
                     </div>
                 </div>
@@ -61,12 +61,23 @@
             function confirmar(codigo) {
                 bootbox.confirm({
                     message: "Desea borrarlo?",
-                    callback: function () {
-                        document.location="borrar?codigo="+codigo;
+                    callback: function (res) {
+                        if(res){
+                            document.location="borrar?codigo="+codigo;
+                        }
                     }
                 });
             }
-             
+            
+            function validar(){
+                if($('#codigoNombre').val() == ""){
+                    alert('Se necesita un código o un nombre para buscar.');
+                }else{
+                    
+                    $('form').submit();
+                }
+            }
+    
             function nuevo() {
                   $.ajax({
                     url: "nuevo", //<--Ejecutamos del contra esta url
@@ -83,9 +94,10 @@
                     }
                 })
             }
-            function leerHtmlAjax(aCodigo) {
+            
+            function leerHtmlAjax(aCodigo ) {
                 $.ajax({
-                    url: "edit", //<--Ejecutamos del contra esta url
+                    url: "editar", //<--Ejecutamos del contra esta url
                     data: {//<- Parametros ?id=4
                         //id: pId,
                         codigo: aCodigo,

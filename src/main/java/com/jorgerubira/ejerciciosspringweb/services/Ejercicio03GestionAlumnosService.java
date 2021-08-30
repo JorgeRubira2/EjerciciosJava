@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio03GestionAlumnos
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,6 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
        Optional<Alumno> alumnoGuardar = listaAlumnos.stream()
                .filter(al -> al.getCodigo() == alumno.getCodigo())
                .findFirst();
-       
         if (alumnoGuardar.isPresent()) {
             alumnoGuardar.get().setCodigo(alumno.getCodigo());
             alumnoGuardar.get().setNombre(alumno.getNombre());
@@ -37,6 +37,9 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
             alumnoGuardar.get().setTelefono(alumno.getTelefono());
         } else {
             alumno.setCodigo((long)(Math.random()*999999999));
+            /* Prueba*/
+            /* Fin prueba*/
+
             listaAlumnos.add(alumno);
         }
     }
@@ -53,9 +56,14 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        return listaAlumnos.stream()
-                .filter(alumno -> codigo == alumno.getCodigo())
+        Optional<Alumno> alumno = listaAlumnos.stream()
+                .filter(x -> x.getCodigo() == codigo.longValue())
                 .findFirst();
+        if (alumno.isPresent()) {
+            return alumno;
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override

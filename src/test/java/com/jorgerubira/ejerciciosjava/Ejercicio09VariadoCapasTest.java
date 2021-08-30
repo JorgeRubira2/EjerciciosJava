@@ -98,55 +98,55 @@ public class Ejercicio09VariadoCapasTest {
     @Mock private IComprasRepository icomCaso2=Mockito.mock(IComprasRepository.class);
 
 
-    public Ejercicio09VariadoCapasTest(){
+    //public Ejercicio09VariadoCapasTest(){
         //Mock iperExtenso. Lista larga de personas.
-        Mockito.when(iperExtenso.buscarPersonaEntreFechas(FECHA_DESDE, FECHA_HASTA)).thenReturn(listaPersonasExtensas);
+        //Mockito.when(iperExtenso.buscarPersonaEntreFechas(FECHA_DESDE, FECHA_HASTA)).thenReturn(listaPersonasExtensas);
         //Mockito.when(iperExtenso.buscarPersonaEntreFechas(Mockito.anyVararg(), Mockito.anyVararg())).thenThrow(new Exception("Parametro incorrecto"));
 
         //Mock iper. Lista corta de personas.
-        Mockito.when(iper.buscarPersonasDeUnaCiudad(CIUDAD)).thenReturn(listaPersonas);
+       // Mockito.when(iper.buscarPersonasDeUnaCiudad(CIUDAD)).thenReturn(listaPersonas);
         //Mockito.when(iper.buscarPersonasDeUnaCiudad(Mockito.any(String.class))).thenThrow(new Exception("Parametro incorrecto"));
 
         //Mock para probar rendimiento. streamParallel
-        Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona("Ana")) .thenReturn(getConRetardo(lc1));
-        Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona("Juan")) .thenReturn(getConRetardo(lc2));
-        Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona("Pepe")) .thenReturn(getConRetardo(lc3));
+        //Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona("Ana")) .thenReturn(getConRetardo(lc1));
+        //Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona("Juan")) .thenReturn(getConRetardo(lc2));
+        //Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona("Pepe")) .thenReturn(getConRetardo(lc3));
         //Mockito.when(icomConRetardo.obtenerComprasDeUnaPersona(Mockito.any(String.class))) .thenThrow(new Exception("Parametro incorrecto"));
-        Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas("Ana", FECHA_DESDE, FECHA_HASTA)).thenReturn(getConRetardo(lc1)) ;
-        Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas("Juan", FECHA_DESDE, FECHA_HASTA)).thenReturn(getConRetardo(lc2)) ;
-        Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas("Pepe", FECHA_DESDE, FECHA_HASTA)).thenReturn(getConRetardo(lc3)) ;
+       // Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas("Ana", FECHA_DESDE, FECHA_HASTA)).thenReturn(getConRetardo(lc1)) ;
+       // Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas("Juan", FECHA_DESDE, FECHA_HASTA)).thenReturn(getConRetardo(lc2)) ;
+       // Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas("Pepe", FECHA_DESDE, FECHA_HASTA)).thenReturn(getConRetardo(lc3)) ;
         //Mockito.when(icomConRetardo.obtenerComprasDeUnaPersonaEntreFechas(Mockito.any(String.class), Mockito.any(Date.class), Mockito.any(Date.class))).thenThrow(new Exception("Parametro incorrecto"));
         
         //Mock de pruebas básicas.
-        Mockito.when(icom.obtenerComprasDeUnaPersona("Ana")) .thenReturn(lc1);
-        Mockito.when(icom.obtenerComprasDeUnaPersona("Juan")) .thenReturn(lc2);
-        Mockito.when(icom.obtenerComprasDeUnaPersona("Pepe")) .thenReturn(lc3);
+       // Mockito.when(icom.obtenerComprasDeUnaPersona("Ana")) .thenReturn(lc1);
+       // Mockito.when(icom.obtenerComprasDeUnaPersona("Juan")) .thenReturn(lc2);
+       // Mockito.when(icom.obtenerComprasDeUnaPersona("Pepe")) .thenReturn(lc3);
         //Mockito.when(icom.obtenerComprasDeUnaPersona(Mockito.any(String.class))) .thenThrow(new Exception("Parametro incorrecto"));
-        Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas("Ana", FECHA_DESDE, FECHA_HASTA)).thenReturn(lc1) ;
-        Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas("Juan", FECHA_DESDE, FECHA_HASTA)).thenReturn(lc2) ;
-        Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas("Pepe", FECHA_DESDE, FECHA_HASTA)).thenReturn(lc3) ;
+      //  Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas("Ana", FECHA_DESDE, FECHA_HASTA)).thenReturn(lc1) ;
+       // Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas("Juan", FECHA_DESDE, FECHA_HASTA)).thenReturn(lc2) ;
+      //  Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas("Pepe", FECHA_DESDE, FECHA_HASTA)).thenReturn(lc3) ;
         //Mockito.when(icom.obtenerComprasDeUnaPersonaEntreFechas(Mockito.any(String.class), Mockito.any(Date.class), Mockito.any(Date.class))).thenThrow(new Exception("Parametro incorrecto"));
 
         //Mock de calculo del servicio de la aduana
-        Mockito.when(iadu.calcularPrecioSegunAduanaDeListaDeProductos(lc3)).thenReturn((double)((5+RND)*10));
-        Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(0))).thenReturn(1d); //Alimentación
-        Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(1))).thenReturn(2d); //Informatica
-        Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(2))).thenReturn(4d); //Lujo
-        Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(3))).thenReturn(8d); //Otros
+      //  Mockito.when(iadu.calcularPrecioSegunAduanaDeListaDeProductos(lc3)).thenReturn((double)((5+RND)*10));
+     //   Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(0))).thenReturn(1d); //Alimentación
+     //   Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(1))).thenReturn(2d); //Informatica
+     //   Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(2))).thenReturn(4d); //Lujo
+    //    Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(prod.get(3))).thenReturn(8d); //Otros
         //Mockito.when(iadu.calcularPrecioSegunAduanaDeUnProducto(Mockito.any(Producto.class))).thenThrow(new Exception("Parametro incorrecto"));
         
         //Otra aduana que da otros importes.
-        Mockito.when(iaduCaso2.calcularPrecioSegunAduanaDeListaDeProductos(lc1)).thenReturn(2d);        
-        Mockito.when(iaduCaso2.calcularPrecioSegunAduanaDeListaDeProductos(lc2)).thenReturn(4d);        
-        Mockito.when(iaduCaso2.calcularPrecioSegunAduanaDeListaDeProductos(lc3)).thenReturn(6d);  
+    //    Mockito.when(iaduCaso2.calcularPrecioSegunAduanaDeListaDeProductos(lc1)).thenReturn(2d);        
+   //     Mockito.when(iaduCaso2.calcularPrecioSegunAduanaDeListaDeProductos(lc2)).thenReturn(4d);        
+   //     Mockito.when(iaduCaso2.calcularPrecioSegunAduanaDeListaDeProductos(lc3)).thenReturn(6d);  
 
         //Mock de compra caso 2. No haya muchos elementos para calcularlo más facilmente.
-        Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas("Ana", FECHA_DESDE, FECHA_HASTA)).thenReturn(List.of(compras.get(0),compras.get(1)));
-        Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas("Juan", FECHA_DESDE, FECHA_HASTA)).thenReturn(List.of(compras.get(0),compras.get(2)));
-        Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas("Pepe", FECHA_DESDE, FECHA_HASTA)).thenReturn(List.of(compras.get(1),compras.get(2))) ;
+   //     Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas("Ana", FECHA_DESDE, FECHA_HASTA)).thenReturn(List.of(compras.get(0),compras.get(1)));
+   //     Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas("Juan", FECHA_DESDE, FECHA_HASTA)).thenReturn(List.of(compras.get(0),compras.get(2)));
+   //     Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas("Pepe", FECHA_DESDE, FECHA_HASTA)).thenReturn(List.of(compras.get(1),compras.get(2))) ;
         //Mockito.when(icomCaso2.obtenerComprasDeUnaPersonaEntreFechas(Mockito.any(String.class), Mockito.any(Date.class), Mockito.any(Date.class))).thenThrow(new Exception("Parametro incorrecto"));
 
-    }
+   // }
     
     @Test
     public void testBuscarCiudadesDePersonasNacidasEntreFechas() {
