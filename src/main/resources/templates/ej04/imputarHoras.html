@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej04/layout::layout(~{::body},~{::misscripts})">
 <body>
     <form action="/ej04/imputarHoras" method="post">
         <input type="hidden" name="codigo" th:value="${codigo}">

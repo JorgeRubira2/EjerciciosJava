@@ -1,36 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Kanban</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <style>
-        .colorVerde{
-            background-color: green;
-        }
-        .colorNaranja{
-            background-color: orange
-        }
-        .colorRojo{
-            background-color: red;
-        }
-        .card{
-            margin-top:5px;
-            color: white;
-        }
-        .butns{
-            text-align:center;
-            margin-bottom: 5px;
-        }
-        .borde{
-            border: 1px solid black;
-        }
-    </style>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej04/layout::layout(~{::body},~{::misscripts})">
 <body>
     <div class="container">
-        <a class="btn btn-primary" th:href="@{'/ej04/anadirTarea'}">Nueva tarea</a>
+        <a class="btn btn-primary" th:onclick="|nuevaTarea()|">Nueva tarea</a>
         <div class="row justify-content-center text-center">
             <div class="borde col-3">Story</div>
             <div class="borde col-6">Waiting
@@ -50,9 +23,9 @@
                     <h6 class="card-subtitle" th:text="${tarea.horasTrabajadas} + '/' + ${tarea.horasEstimacion}"></h6>
                     <p class="card-body" th:text="${tarea.descripcion}"></p></br>
                     <div class="butns">
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="asignarPersona(this.getAttribute('data-cod'))"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="imputarHoras(this.getAttribute('data-cod'))"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="editarTarea(this.getAttribute('data-cod'))"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
                         <a class="btn btn-primary btn-sm" th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-right fa-xs' style='color:#ffffff'></i></a>
                     </div>
                 </div>
@@ -66,9 +39,9 @@
                     <p class="card-body" th:text="${tarea.descripcion}"></p></br>
                     <div class="butns">
                         <a class="btn btn-primary btn-sm" th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-left fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="asignarPersona(this.getAttribute('data-cod'))"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="imputarHoras(this.getAttribute('data-cod'))"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="editarTarea(this.getAttribute('data-cod'))"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
                         <a class="btn btn-primary btn-sm" th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-right fa-xs' style='color:#ffffff'></i></a>
                     </div>
                 </div>
@@ -82,9 +55,9 @@
                     <p class="card-body" th:text="${tarea.descripcion}"></p></br>
                     <div class="butns">
                         <a class="btn btn-primary btn-sm" th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-left fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="asignarPersona(this.getAttribute('data-cod'))"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="imputarHoras(this.getAttribute('data-cod'))"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="editarTarea(this.getAttribute('data-cod'))"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
                         <a class="btn btn-primary btn-sm" th:href="@{'/ej04/subirEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-right fa-xs' style='color:#ffffff'></i></a>
                     </div>
                 </div>
@@ -98,9 +71,9 @@
                     <p class="card-body" th:text="${tarea.descripcion}"></p></br>
                     <div class="butns">
                         <a class="btn btn-primary btn-sm" th:href="@{'/ej04/bajarEstado/' + ${tarea.codigo}}"><i class='fas fa-angle-left fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/asignarPersona/' + ${tarea.codigo}}"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/imputarHoras/' + ${tarea.codigo}}"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
-                        <a class="btn btn-primary btn-sm" th:href="@{'/ej04/editarTarea/' + ${tarea.codigo}}"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="asignarPersona(this.getAttribute('data-cod'))"><i class='fas fa-user fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="imputarHoras(this.getAttribute('data-cod'))"><i class='fas fa-clock fa-xs' style='color:#ffffff'></i></a>
+                        <a class="btn btn-primary btn-sm" th:data-cod="${tarea.codigo}" onclick="editarTarea(this.getAttribute('data-cod'))"><i class='fas fa-edit fa-xs' style='color:#ffffff'></i></a>
                     </div>
                 </div>
             </div>
@@ -109,7 +82,48 @@
     </div>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+<misscripts>
+    <script>
+        function nuevaTarea(){
+            $.ajax({
+                url:"anadirTarea",
+                success: function (html){
+                    bootbox.dialog({
+                        message:html
+                    })
+                }
+            })
+        }
+        function asignarPersona(codigo){
+            $.ajax({
+                url:"asignarPersona/" + codigo,
+                success: function(html){
+                    bootbox.dialog({
+                        message: html
+                    })
+                }
+            })
+        }
+        function imputarHoras(codigo){
+            $.ajax({
+                url:"imputarHoras/" + codigo,
+                success: function(html){
+                    bootbox.dialog({
+                        message: html
+                    })
+                }
+            })
+        }
+        function editarTarea(codigo){
+            $.ajax({
+                url:"editarTarea/" + codigo,
+                success: function(html){
+                    bootbox.dialog({
+                        message: html
+                    })
+                }
+            })
+        }
+    </script>
+</misscripts>
 </html>

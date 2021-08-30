@@ -6,7 +6,45 @@
     </head>
     <body>
         <div class="container">
-            <!-- Contenido -->
+            <form th:object="${cliente}">
+                <label>First name</label>
+                <input type="text" th:field="*{name}"/>
+                <label>Last name</label>
+                <input type="text" th:field="*{lastName}"/>
+                <label>Title</label>
+                <input type="text" th:field="*{title}"/>
+                <label>Primary Account</label>
+                <input type="text" th:field="*{primaryAccount}"/>
+                <label>Phone</label>
+                <input type="text" th:field="*{phone}"/>
+                <label>Email</label>
+                <input type="text" th:field="*{email}"/>
+                <label>Description</label>
+                <textarea th:field="*{description}"/>
+                <label>Primary Address</label>
+                <textarea th:field="*{primaryAddress}"/>
+                <label>City</label>
+                <input type="text" th:field="*{city}"/>
+                <label>State</label>
+                <input type="text" th:field="*{state}"/>
+                <label>Country</label>
+                <input type="text" th:field="*{country}"/>
+                <label>Postal Code</label>
+                <input type="text" th:field="*{postalCode}"/>
+            </form>
         </div>
     </body>
 </html>
+
+<!--private String name;-->
+<!--private String lastName;-->
+<!--private String title;-->
+<!--private String description;-->
+<!--private String primaryAccount;-->
+<!--private String phone;-->
+<!--private String email;-->
+<!--private String primaryAddress;-->
+<!--private String city;-->
+<!--private String country;-->
+<!--private String state;-->
+<!--private Integer postalCode;-->

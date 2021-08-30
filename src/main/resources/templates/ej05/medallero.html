@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Medallero</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej05/layout::layout(~{::body},~{::misscripts})">
 <body>
 <h2>Ranking paises</h2>
 <table class="table table-striped">
@@ -16,10 +12,10 @@
         <th>Total</th>
     </tr>
     <tr th:each="m:${rankingPais}">
-        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais})}" th:text="${m.pais}"></a></td>
-        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais}, medalla='Oro')}" th:text="${m.oro}"></a></td>
-        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais}, medalla='Plata')}" th:text="${m.plata}"></a></td>
-        <td> <a class="list-group-item list-group-item-action" th:href="@{/ej05/detalle(pais=${m.pais}, medalla='Bronce')}" th:text="${m.cobre}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'))" th:text="${m.pais}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Oro')" th:text="${m.oro}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Plata')" th:text="${m.plata}"></a></td>
+        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Cobre')" th:text="${m.cobre}"></a></td>
         <td th:text="${m.oro+m.plata+m.cobre}"></td>
     </tr>
 </table>
@@ -41,7 +37,22 @@
     </tr>
 </table>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+<misscripts>
+    <script>
+        function verDetalle(pais, medalla){
+            $.ajax({
+                url:"detalle",
+                data:{
+                    pais: pais,
+                    medalla: medalla
+                },
+                success: function (html){
+                    bootbox.alert({
+                        message: html
+                    })
+                }
+            })
+        }
+    </script>
+</misscripts>
 </html>

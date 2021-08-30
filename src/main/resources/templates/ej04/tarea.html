@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej04/layout::layout(~{::body},~{::misscripts})">
 <body>
 <form th:object="${tarea}" action="/ej04/guardarTarea" method="post">
     <input type="hidden" th:field="*{codigo}">

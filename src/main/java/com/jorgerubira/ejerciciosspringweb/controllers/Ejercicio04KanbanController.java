@@ -58,7 +58,7 @@ public class Ejercicio04KanbanController {
         model.addAttribute("tareasWorking", tareasWorking);
         model.addAttribute("tareasDone", tareasDone);
 
-        return "/ej04/kanban";
+        return "/ej04/kanban2";
     }
 
     @GetMapping("/subirEstado/{codigo}")

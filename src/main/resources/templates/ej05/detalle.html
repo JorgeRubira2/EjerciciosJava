@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalle</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="ej05/layout::layout(~{::body},~{::misscripts})">
 <body>
     <h3 th:text="${titulo}"></h3>
-    <ul th:each="d:${lista}">
-        <li th:text="${d}"></li>
+    <ul class="list-group" th:each="d:${lista}">
+        <li class="list-group-item" th:text="${d}"></li>
     </ul>
 </body>
 </html>
