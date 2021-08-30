@@ -182,10 +182,19 @@
                     }
                 });
             }
-            function venderAjax(pTitulo,pUltimo,pCantidad){
+            function venderAjax(pTitulo,pCantidad,pId){
+                var pUltimo = 0;
+                $("#listaCot td:first-child").each( function( i, remoto ){
+                        if (pTitulo === remoto.textContent){
+                            pUltimo = remoto.nextSibling.textContent;
+                            pUltimo = parseFloat(pUltimo); //convertir a numero porsi
+                        }
+                    });
+                console.log(pId);
                 $.ajax({
                     url:"ejercicio8/vender",
                     data: {
+                        id: pId,
                         titulo: pTitulo,
                         ultimo: pUltimo,
                         cantidad: pCantidad

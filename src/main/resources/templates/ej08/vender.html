@@ -15,20 +15,22 @@
                 <p>Vas a vender acciones del grupo <th:block th:text="${titulo}" /> a un precio de
                     <th:block th:text="${ultimo}" /> la unidad  </p>            
                 <label class="col-4">Cantidad a vender: </label>
-                <input type="number" class="col-2" min="1"  th:attr="max=|${cantidad}|" name="cantidad" id="cantidad"> </input>
+                <input readonly th:value="${cantidad}" />
                 <span class="col-3" id="calcularPrecio"></span> 
                 <input type="submit"  value="Vender" class="btn btn-primary col-12"/>
                 
+                <input type="hidden" id="cantidad" name="cantidad" th:value="${cantidad}" />
                 <input type="hidden" id="titulo" name="titulo" th:value="${titulo}" /> 
-                <input type="hidden" id="ultimo" name="ultimo" th:value="${ultimo}" />  
+                <input type="hidden" id="ultimo" name="ultimo" th:value="${ultimo}" /> 
+                <input type="hidden" id="id" name="id" th:value="${id}" />   
             </form>
         </div>
     </div>
 <script>
-    $("#cantidad").bind('keyup mouseup', function () {
+    $( document ).ready(function() {
         var totalcost= $("#cantidad").val() * $("#ultimo").val(); 
         $("#calcularPrecio").html("Precio total: " +totalcost.toFixed(2));
-    })
+    });
 </script>
 </body>
 </html>

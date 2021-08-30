@@ -32,7 +32,7 @@
                                 <td id="precioVenta"> </td>
                                 <td id="calcularDiferencia" />
                                 <td>
-                                    <button class='btn btn-danger' th:attr="onclick=|venderAjax('${cot.titulo}','${cot.precioInicial}', '${cot.cantidad}')|">Vender</button>
+                                    <button class='btn btn-danger' th:attr="onclick=|venderAjax('${cot.titulo}','${cot.cantidad}', '${cot.id}')|">Vender todo</button>
                                 </td>
                             </th:block>
                         </tr>
@@ -56,7 +56,7 @@
                                 <td th:text="${cot.cantidad}" />
                                 <td th:text="${cot.fechaOperacionInicio}" />
                                 <td th:text="${cot.fechaOperacionFinal}" />
-                                <td th:text="${cot.precioInicial - cot.precioFinal}" />
+                                <td th:text="${#numbers.formatDecimal({(cot.precioFinal - cot.precioInicial) * cot.cantidad}, 1, 'DEFAULT', 2, 'DEFAULT')}" />
                             </tr>
                         </tbody>
                     </table>   

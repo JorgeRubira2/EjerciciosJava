@@ -3,6 +3,8 @@ package com.jorgerubira.ejerciciosspringweb.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,7 +18,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "cotizacion")
 public class Cotiza {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String titulo;
     private String tipoOperacion;
     private Integer cantidad;
@@ -24,5 +27,4 @@ public class Cotiza {
     private Double precioInicial;
     private Date fechaOperacionFinal;
     private Double precioFinal;
-    private Double saldo;
 }
