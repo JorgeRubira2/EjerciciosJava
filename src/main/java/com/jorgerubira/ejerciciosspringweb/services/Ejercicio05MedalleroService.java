@@ -14,12 +14,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
+/**
+ *
+ */
 @Service
-public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService {
-
+public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService{
+    
     private List<Medalla> medallas = new ArrayList<>();
-
-    public Ejercicio05MedalleroService() {
+    
+    public Ejercicio05MedalleroService(){ 
         medallas.add(new Medalla("China", "Peso medio femenino", "Oro", "Lucha", "Li Qian"));
         medallas.add(new Medalla("Gran Bretaña", "Peso medio femenino", "Plata", "Lucha", "Lauren Price"));
         medallas.add(new Medalla("Kenia", "Maratón masculino", "Oro", "Atletismo", "E. Kipchoge"));
@@ -35,45 +38,56 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
 
     @Override
     public void altaMedalla(Medalla medalla) {
-        medallas.add(medalla);
+       medallas.add(medalla);
     }
 
     @Override
     public List<Medalla> getMedallas() {
-
-        return medallas;
+      return medallas;
     }
 
     @Override
     public List<MedallaPais> obtenerRankingPorPais() {
-
         List<String> paises = medallas.stream()
-                .map(x -> x.getPais())
-                .distinct()
-                .collect(Collectors.toList());
+                                      .map(x->x.getPais())
+                                      .distinct()
+                                      .collect(Collectors.toList());
+        
+        List<MedallaPais> paso1 = paises.stream()
+                                      .map(x->new MedallaPais(x,0,0,0))
+                                      .collect(Collectors.toList());
 
-        List<MedallaPais> res = paises.stream()
-                .map(x -> new MedallaPais(
-                x,
-                (int) medallas.stream()
-                        .filter(y -> y.getMedalla().equals("Oro"))
-                        .filter(y -> y.getPais().equals(x))
-                        .count(),
-                (int) medallas.stream()
-                        .filter(y -> y.getMedalla().equals("Plata"))
-                        .filter(y -> y.getPais().equals(x))
-                        .count(),
-                (int) medallas.stream()
-                        .filter(y -> y.getMedalla().equals("Cobres"))
-                        .filter(y -> y.getPais().equals(x))
-                        .count()
-        ))
-                .sorted((x, y) -> (y.getOro() + y.getPlata() + y.getCobre()) - (x.getOro() + x.getPlata() + x.getCobre()))
-                .collect(Collectors.toList());
-
-        return res;
-
-    }
+        paso1.forEach(x->{
+            x.setOro((int)medallas.stream()
+                                  .filter(y->y.getMedalla().equals("Oro"))
+                                  .filter(y->y.getPais().equals(x))
+                                  .count()
+            );
+        });
+        
+        
+        
+        List<MedallaPais> res=paises.stream()
+                                    .map(x-> new MedallaPais(
+                                                x,
+                                                (int)medallas.stream()
+                                                        .filter(y->y.getMedalla().equals("Oro"))
+                                                        .filter(y->y.getPais().equals(x))
+                                                        .count(),
+                                                (int)medallas.stream()
+                                                        .filter(y->y.getMedalla().equals("Plata"))
+                                                        .filter(y->y.getPais().equals(x))
+                                                        .count(),                                                                
+                                                (int)medallas.stream()
+                                                        .filter(y->y.getMedalla().equals("Cobres"))
+                                                        .filter(y->y.getPais().equals(x))
+                                                        .count()
+                                    ))
+                                    .sorted((x,y) -> (y.getOro()+y.getPlata()+y.getCobre()) - (x.getOro()+x.getPlata()+x.getCobre()) )
+                                    .collect(Collectors.toList());
+        
+return res;
+        }
 
     @Override
     public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla) {
@@ -89,5 +103,5 @@ public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService
     public List<MedallaAtleta> obtenerRankingPorAlteta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }
