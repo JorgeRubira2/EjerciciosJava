@@ -3,12 +3,14 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -94,6 +96,55 @@ public class Ejercicio04KanbanController {
         }
         return new RedirectView("kanban");
     }
+    
+    @GetMapping("/subir/{codigo}")
+    public RedirectView subir (@PathVariable String codigo) {
+        Optional<TareaKanban> tarea = service.getTarea(codigo);
+        if (tarea.isPresent()) {
+            String estado = tarea.get().getEstado();
+            try {
+               switch (estado) {
+                   case "Roadmap":
+                       service.cambiarEstado(codigo, estado: "Waiting");
+                       break;
+                    case "Waiting":
+                       service.cambiarEstado(codigo, estado: "Working");
+                       break;   
+                    case "Working":
+                       service.cambiarEstado(codigo, estado: "Done");
+                       break;
+                }
+            } catch (OperacionEnListaException e) {
+                e.printStackTrace();
+            }
+        }
+        return new RedirectView("kanban");
+    }
+    
+    @GetMapping("/bajar/{codigo}")
+    public RedirectView bajar (@PathVariable String codigo) {
+        Optional<TareaKanban> tarea = service.getTarea(codigo);
+        if (tarea.isPresent()) {
+            String estado = tarea.get().getEstado();
+            try {
+               switch (estado) {
+                   case "Done":
+                       service.cambiarEstado(codigo, estado: "Working");
+                       break;
+                    case "Working":
+                       service.cambiarEstado(codigo, estado: "Waiting");
+                       break;   
+                    case "Waiting":
+                       service.cambiarEstado(codigo, estado: "Roadmap");
+                       break;
+                }
+            } catch (OperacionEnListaException e) {
+                e.printStackTrace();
+            }
+        }
+        return new RedirectView("kanban");
+    }
+    
     
     @GetMapping("/formularioKanban")
     public String formulario(Model model, String codigo) {

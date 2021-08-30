@@ -41,7 +41,7 @@
                             <table class="col-roadmap col-4">
                                 <tbody>
                                     <tr th:each="tareaRoadmap: ${Roadmap}">
-                                        <td class="tarjeta" th:classappend="${tareaWaiting.horasEstimacion}">
+                                        <td class="tarjeta">
                                             <span th:text="${tareaRoadmap.horasEstimacion}">Horas estimadas: </span>
                                             <p th:text="${tareaRoadmap.descripcion}">Tarea: </p>
                                         </td>

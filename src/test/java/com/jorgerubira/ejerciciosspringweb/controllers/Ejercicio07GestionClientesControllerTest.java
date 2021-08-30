@@ -88,7 +88,7 @@ public class Ejercicio07GestionClientesControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-        mockMvc.perform(get(new URI("/ejercicio7/ajax/1")))
+        mockMvc.perform(get(new URI("/ejercicio7/delete/1")))
                .andExpect(status().is3xxRedirection())
                .andExpect(view().name("redirect:/ejercicio7"));
         Mockito.verify(repoClientes, Mockito.times(1)).deleteById(1L);

@@ -6,13 +6,19 @@
 package com.jorgerubira.ejerciciosspringweb.services;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Medalla;
+import com.jorgerubira.ejerciciosspringweb.domain.MedallaAtleta;
+import com.jorgerubira.ejerciciosspringweb.domain.MedallaPais;
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio05MedalleroService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
 /**
  *
  */
-public class Ejercicio05MedalleroService {
+@Service
+public class Ejercicio05MedalleroService implements IEjercicio05MedalleroService{
     
     private List<Medalla> medallas = new ArrayList<>();
     
@@ -28,6 +34,74 @@ public class Ejercicio05MedalleroService {
         medallas.add(new Medalla("China", "Clavados masculino", "Oro", "Natacion", "Y. Cao"));
         medallas.add(new Medalla("China", "Clavados masculino", "Plata", "Natacion", "J. Yang"));
         medallas.add(new Medalla("Gran Bretaña", "Clavados masculino", "Cobre", "Natacion", "T. Daley"));
+    }
+
+    @Override
+    public void altaMedalla(Medalla medalla) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Medalla> getMedallas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<MedallaPais> obtenerRankingPorPais() {
+        List<String> paises = medallas.stream()
+                                      .map(x->x.getPais())
+                                      .distinct()
+                                      .collect(Collectors.toList());
+        
+        List<MedallaPais> paso1 = paises.stream()
+                                      .map(x->new MedallaPais(x,0,0,0))
+                                      .collect(Collectors.toList());
+
+        paso1.forEach(x->{
+            x.setOro((int)medallas.stream()
+                                  .filter(y->y.getMedalla().equals("Oro"))
+                                  .filter(y->y.getPais().equals(x))
+                                  .count()
+            );
+        });
+        
+        
+        
+        List<MedallaPais> res=paises.stream()
+                                    .map(x-> new MedallaPais(
+                                                x,
+                                                (int)medallas.stream()
+                                                        .filter(y->y.getMedalla().equals("Oro"))
+                                                        .filter(y->y.getPais().equals(x))
+                                                        .count(),
+                                                (int)medallas.stream()
+                                                        .filter(y->y.getMedalla().equals("Plata"))
+                                                        .filter(y->y.getPais().equals(x))
+                                                        .count(),                                                                
+                                                (int)medallas.stream()
+                                                        .filter(y->y.getMedalla().equals("Cobres"))
+                                                        .filter(y->y.getPais().equals(x))
+                                                        .count()
+                                    ))
+                                    .sorted((x,y) -> (y.getOro()+y.getPlata()+y.getCobre()) - (x.getOro()+x.getPlata()+x.getCobre()) )
+                                    .collect(Collectors.toList());
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String> obtenerDeportesDeUnaMedalla(String pais, String medalla) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String> obtenerDeportesConMedalla(String pais) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<MedallaAtleta> obtenerRankingPorAlteta() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
