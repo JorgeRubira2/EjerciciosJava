@@ -33,6 +33,7 @@ h5{
 					<th>Email y telefono</th>
 					<th>Accion</th>
 				</tr>
+			</thead>
 				<tr th:each="cliente:${clientes}">
 					<td> <a th:text="${cliente.nombre} + ' ' + ${cliente.apellidos}" th:href="@{/ejercicio7/ajax/{id}(id=${cliente.id})}"></a></td>
 					<td th:text="${cliente.cuenta}" />
@@ -46,7 +47,6 @@ h5{
 					th:href="@{/ejercicio7/delete/{id}(id=${cliente.id})}"
 					class="btn btn-danger"><i class="fas fa-times-circle"></i> Borrar</a></td>
 				</tr>
-			</thead>
 		</table>
 	</div>
 </body>
