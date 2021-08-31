@@ -4,12 +4,19 @@ import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    private final String rutaBase="E:\\Curso hiberus java\\Git\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -23,7 +30,13 @@ public class Ejercicio10Ficheros {
      */
     public int contarCuantosEventosHay(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = (rutaBase + "\\" + fichero);
+        try{
+            long num = Files.lines(Paths.get(ruta),Charset.defaultCharset()).count()-1;
+            return (int)num;
+        }catch(Exception e){
+            return 0;
+        }
     }
     
     /**
@@ -34,7 +47,14 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = (rutaBase + "\\" + fichero);
+        try{
+            List<String> res = Files.lines(Paths.get(ruta),Charset.defaultCharset()).filter(x->x.contains("Camino a Mercedes")).collect(Collectors.toList());
+            String res2[] = res.get(0).split(";");
+            return res2[0];
+        }catch(Exception e){
+            return null;
+        }
     }
     
     /**
@@ -45,7 +65,13 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = (rutaBase + "\\" + fichero);
+        try{
+            Files.lines(Paths.get(ruta),Charset.defaultCharset()).filter(x->x.contains(palabra)).collect(Collectors.toList());
+            return 0;
+        }catch(Exception e){
+            return 0;
+        }
     }   
     
     /**
