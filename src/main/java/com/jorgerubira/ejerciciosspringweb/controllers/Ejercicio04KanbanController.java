@@ -99,16 +99,11 @@ public class Ejercicio04KanbanController {
     }
     
     
-    
-    
-    
     @GetMapping("/eliminar/{codigo}")
     public String eliminar (Model modelo, @PathVariable("codigo") String codigo){
         // opcion no contemplada
         return "ej04/kanbanNoBootbox";
     }
-    
-    
     
     
     @GetMapping("/planificar/{codigo}/{plan}")
