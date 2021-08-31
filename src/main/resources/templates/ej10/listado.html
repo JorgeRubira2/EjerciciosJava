@@ -1,0 +1,32 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="/ej10/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <misestilos>
+
+    </misestilos>
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+        <th>
+            <td>
+                <a th:href="@{listado(ruta=${ruta})}"><span th:text="${ruta}"/></a>
+            </td>
+        </th>
+        </thead>
+        <tbody>
+            <tr th:each="ruta:${lista}">
+                <td><a th:if="${ruta.esDirectorio}" th:href="@{listado(ruta=${ruta.ruta} + ${ruta.fichero})}"><span th:text="${ruta.fichero}"/></a>
+                    <span th:if="${ruta.esDirectorio == false}" th:text="${ruta.fichero}"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<misscripts>
+
+</misscripts>
+</html>
