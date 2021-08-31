@@ -1,0 +1,20 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Arbol de directorios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container pt-5 px-5">
+            <h3>Lista de Directorios</h3>
+            <table class="table table-striped mt-5">
+                <tr th:each="fichero:${arbol}">
+                    <td th:if="${fichero.isDirectory}" ><i class="fas fa-folder"><a class="m-1" th:href="@{/ejercicio10/directorios(ruta=${fichero})}" th:text="${fichero.getName}"></a></i></td>
+                </tr>
+            </table>
+        
+        </div>
+    </body>
+</html>
