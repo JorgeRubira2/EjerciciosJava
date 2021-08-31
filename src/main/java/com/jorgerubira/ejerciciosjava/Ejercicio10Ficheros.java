@@ -1,15 +1,20 @@
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
-import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
+import com.jorgerubira.ejerciciosjava.pojo.Persona;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    private final String rutaBase="C:\\Users\\acer\\Documents\\Adrián\\Curso Hiberus\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -23,7 +28,12 @@ public class Ejercicio10Ficheros {
      */
     public int contarCuantosEventosHay(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+        	long numEventos = Files.lines(Paths.get(rutaBase +"\\" + fichero), Charset.forName("ISO-8859-1")).count() -1;
+            return (int) numEventos;
+        }catch (Exception e) {
+        	return 0;
+		}
     }
     
     /**
@@ -34,9 +44,18 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = rutaBase + "\\" + fichero;
+        try{
+        	List<String> lineas=Files.lines(Paths.get(ruta), Charset.forName("ISO-8859-1"))
+        			.filter(x -> x.contains("Camino a Mercedes"))
+        			.collect(Collectors.toList());
+        	String resultado[] = lineas.get(0).split(";");
+        	return resultado[0];//recupera el primer campo que es el Id
+        }catch(Exception e){
+        	return null;
+        }
     }
-    
+
     /**
      * Cuantas cuantas veces aparece una palabra (o texto) en el fichero solicitado.
      * Deberá ser insensible a mayusculas y minusculas
@@ -45,7 +64,21 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = rutaBase + "\\" + fichero;
+        try{
+    		int contar =0;
+        	List<String> lineas=Files.lines(Paths.get(ruta), Charset.forName("ISO-8859-1"))
+        			.filter(x -> x.contains(palabra))
+        			.collect(Collectors.toList());
+        	for(String linea : lineas) {
+        		int index = linea.indexOf(palabra);
+        		if(index != -1)
+        			contar++;
+        	}
+        	return contar;
+        }catch(Exception e){
+        	return 0;
+        }
     }   
     
     /**
