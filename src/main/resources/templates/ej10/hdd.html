@@ -1,0 +1,34 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title th:text="${ubicacion}"></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th><a href="javascript:window.history.back()" >Volver</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <!--<td th:if="${dato.endsWith('/')}" > <a th:href='@{/ejercicio10/hdd/{ruta}(ruta = ${dato})}' th:text="${dato}"></a></td>-->
+                    <!--<td th:text="|${dato.endsWith('/')} ? th:href='@{/ejercicio10/hdd/{ruta}(ruta = ${dato})} : th:text='${dato}' |" ></td> -->
+                    
+                    <tr th:each="dato:${datos}">
+                        
+                        
+                        <td th:if="${dato.endsWith('\')}" > <a th:href='@{/ejercicio10/hdd/(ruta = ${dato})}' th:text="${dato.split('\\')[dato.split('\\').length-1]}"></a></td>
+                        <td th:if="${!dato.endsWith('\')}" > <a th:href='@{/ejercicio10/hdd/(download = ${dato})}' th:text="${dato}"></a></td>
+                        
+                    </tr>
+                 
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>

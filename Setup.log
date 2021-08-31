@@ -1,0 +1,274 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th><a href="javascript:window.history.back()" >Volver</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <!--<td th:if="${dato.endsWith('/')}" > <a th:href='@{/ejercicio10/hdd/{ruta}(ruta = ${dato})}' th:text="${dato}"></a></td>-->
+                    <!--<td th:text="|${dato.endsWith('/')} ? th:href='@{/ejercicio10/hdd/{ruta}(ruta = ${dato})} : th:text='${dato}' |" ></td> -->
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5C$Recycle.Bin%5C'>$Recycle.Bin</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5C$Windows.~WS%5C'>$Windows.~WS</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5C$WinREAgent%5C'>$WinREAgent</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CArchivos%20de%20programa%5C'>Archivos de programa</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CBIOS%5C'>BIOS</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CDocuments%20and%20Settings%5C'>Documents and Settings</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CDrivers%5C'>Drivers</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=DumpStack.log'>DumpStack.log</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=DumpStack.log.tmp'>DumpStack.log.tmp</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CESD%5C'>ESD</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CGradle%5C'>Gradle</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=hiberfil.sys'>hiberfil.sys</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5Cimgs%5C'>imgs</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CIntel%5C'>Intel</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CjocheProject%5C'>jocheProject</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CMSOCache%5C'>MSOCache</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=pagefile.sys'>pagefile.sys</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CPerfLogs%5C'>PerfLogs</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CProgram%20Files%5C'>Program Files</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CProgram%20Files%20(x86)%5C'>Program Files (x86)</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CProgramData%5C'>ProgramData</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CPython38%5C'>Python38</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=qemu.conf'>qemu.conf</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CRecovery%5C'>Recovery</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CRiot%20Games%5C'>Riot Games</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=Setup.log'>Setup.log</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?download=swapfile.sys'>swapfile.sys</a></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CSystem%20Volume%20Information%5C'>System Volume Information</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CUsers%5C'>Users</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5CWindows%5C'>Windows</a></td>
+                        
+                        
+                    </tr>
+                    
+                    <tr>
+                        
+                        
+                        <td > <a href='/ejercicio10/hdd/?ruta=C:%5Cxampp%5C'>xampp</a></td>
+                        
+                        
+                    </tr>
+                 
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
