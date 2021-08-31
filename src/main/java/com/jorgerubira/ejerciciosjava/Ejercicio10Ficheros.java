@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
+    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
      * Se considera un evento si tiene una linea con información.
@@ -19,7 +21,8 @@ public class Ejercicio10Ficheros {
      * Pistas: Cargar el fichero utilizar el método readAllLines y pasarlo por un stream.
      * Ejemplo del fichero: 
      */
-    public int contarCuantosEventosHay(File fichero){
+    public int contarCuantosEventosHay(){
+        String fichero="AgendaDeDeportes.csv";
         throw new RuntimeException("Pendiente de hacer");
     }
     
@@ -29,7 +32,8 @@ public class Ejercicio10Ficheros {
      * Si estuviese ese evento o no encuentra el fichero devolver null.
      * Pistas: Cargar el fichero utilizar el método readAllLines y pasarlo por un stream.
      */
-    public String buscarId(File fichero){
+    public String buscarId(){
+        String fichero="AgendaDeDeportes.csv";
         throw new RuntimeException("Pendiente de hacer");
     }
     
@@ -40,7 +44,7 @@ public class Ejercicio10Ficheros {
      * Pista facil: Cargar el fichero utilizar el método readAllText y pasarlo hacer un split.
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
-    public int contarCoincidencias(File fichero){
+    public int contarCoincidencias(String fichero, String palabra){
         throw new RuntimeException("Pendiente de hacer");
     }   
     
@@ -49,6 +53,7 @@ public class Ejercicio10Ficheros {
      * Si el fichero no se encuentra lanzará un FileNotFoundException.
      */
     public void verificarFormato(File fichero) throws FormatoNoValidoException, FileNotFoundException {
+        //No hacer aún
         throw new RuntimeException("Pendiente de hacer");
     }      
 
@@ -59,7 +64,8 @@ public class Ejercicio10Ficheros {
      * Descartar las líneas que estén en blanco.
      * Si el fichero no se encuentra devolver Empty.
      */
-    public Optional<Double> calcularPromedio(File fichero){
+    public Optional<Double> calcularPromedio(){
+        String fichero = "Evaluaciones.csv";
         throw new RuntimeException("Pendiente de hacer");
     }    
     
@@ -70,7 +76,8 @@ public class Ejercicio10Ficheros {
      * Descartar las líneas que estén en blanco.
      * Si el fichero no lanzar una FileNotFoundException.
      */
-    public List<Persona> cargarPersona(File fichero) throws FileNotFoundException{
+    public List<Persona> cargarPersona() throws FileNotFoundException{
+        String fichero = "ListaPersonas.txt";
         throw new RuntimeException("Pendiente de hacer");
     }      
     
