@@ -1,0 +1,43 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ruta actual
+                            <input readonly class="form-control" th:value="${rutaActual}" />
+                        </th>
+                    </tr>
+                    <tr th:if="${anterior}!=null">
+                        <td><a th:href="|?ruta=${anterior}|" >Volver atras</a></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:if="${error}!=null"><span style="color:red" th:text="${error}"></span></th:block>  
+                    
+                    <tr th:if="${rutas}!=null" th:each="cosas:${rutas}">
+                        <th:block th:if="${cosas.directorio}">
+                            <td><i class="fas fa-folder"></i> <a th:href="|?ruta=${rutaActual}/${cosas.nombre}|" th:name="ruta" th:text="${cosas.nombre}"></a>
+                            </td>
+                        </th:block>
+                        <th:block th:if="${cosas.directorio}==false">
+                            <td><i class="fas fa-file"></i> <a th:download="${cosas.nombre}" th:href="@{|/ejercicio10/files?fichero=${rutaActual}/${cosas.nombre}|}" ><span th:text="${cosas.nombre}"></span></a>
+                            </td>
+                        </th:block>
+                    </tr>
+                </tbody>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    </body>
+</html>
