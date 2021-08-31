@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+    <body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="fichero: ${contenido}">
+                    <td class="nombre">
+                        <a th:if="@{fichero.directorio}" th:text = "${'*'+fichero.nombre}" th:href="@{/ej10/lista(ruta=${fichero.rutaAbsoluta})}"></a>
+                    </td>
+                    <td>
+                        <a href="@{/ej10/lista(ruta=${fichero.rutaParent})}" class="button btn btn-info text-white">Volver</a>
+                    </td>    
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
