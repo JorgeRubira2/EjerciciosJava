@@ -97,7 +97,8 @@ return res;
     @Override
     public List<String> obtenerDeportesConMedalla(String pais) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+          }
 
     @Override
     public List<MedallaAtleta> obtenerRankingPorAlteta() {
