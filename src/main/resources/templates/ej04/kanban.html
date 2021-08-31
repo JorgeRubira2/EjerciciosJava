@@ -6,91 +6,74 @@
     </head>
     <body>
         <div class="container">
-            <div class="col-3">
+            <div class="col-3 pl-0">
                 <a th:onclick="|nueva()|"  class="btn btn-primary far fa-plus-square mt-5">
                     Nueva tarea
                 </a>
             </div>
-
-            <table class="kanban-table mt-5">
-                <thead class="caja-cabecero">
-                    <tr>
-                        <th class="roadmap col-3">Roadmap</th>
-                        <th class="col-3 p-0">
-                            <table class="kanban-table">
-                                <thead>
-                                    <tr>
-                                        <th class="in-progress" colspan="2">
-                                            In Progress
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th class="waiting">Waiting</th>
-                                        <th class="working">Working</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </th>
-                        <th class="done col-3">Done</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <td colspan="4">
-                            <table class="col-roadmap col-4">
-                                <tbody>
-                                    <tr th:each="tareaRoadmap: ${Roadmap}">
-                                        <td class="tarjeta">
-                                            <span th:text="${tareaRoadmap.horasEstimacion}">Horas estimadas: </span>
-                                            <p th:text="${tareaRoadmap.descripcion}">Tarea: </p>
-                                            <a class="btn btn-primary btn-sm" th:href="@{subir/{codigo}(codigo=${codigo})}" />Subir estado tarea
-                                            <a class="btn btn-primary btn-sm" th:href="@{bajar/{codigo}(codigo=${codigo})}" />Bajar estado tarea
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <table class="col-waiting col-2">
-                                <tbody>
-                                    <tr th:each="tareaWaiting: ${Waiting}">
-                                        <td th:classappend="${2*(tareaWaiting.horasTrabajadas) >= tareaWaiting.horasEstimacion} ? red : ${tareaWaiting.horasTrabajadas > tareaWaiting.horasEstimacion} ? orange : green">
-                                            <p th:text="${tareaWaiting.descripcion}"></p>
-                                            <span th:text="${tareaWaiting.horasEstimacion}"></span>
-                                            <span th:text="${tareaWaiting.propietario}"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <table class="col-waiting col-2">
-                                <tbody>
-                                    <tr th:each="tareaWorking: ${Working}">
-                                        <td>
-                                            <p th:text="${tareaWorking.descripcion}"></p>
-                                            <span th:text="${tareaWorking.horasEstimacion}"></span>
-                                            <span th:text="${tareaWorking.propietario}"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <table>
-                                <tbody>
-                                    <tr th:each="tareaDone: ${Done}">
-                                        <td>
-                                            <p th:text="${tareaDone.descripcion}"></p>
-                                            <span th:text="${tareaDone.horasEstimacion}"></span>
-                                            <span th:text="${tareaDone.horasTrabajadas}"></span>
-                                            <span th:text="${tareaDone.propietario}"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            
+            <div class="d-flex align-items-center border border-primary mt-4">
+                <div class="col-3 roadmap">Roadmap</div>
+                <div class="col-6 p-0 d-flex flex-wrap caja-inprogress">
+                    <div class="col-12 p-0 in-progress">In Progress</div>
+                    <div class="col-6 p-0 waiting">Waiting</div>
+                    <div class="col-6 p-0 working">Working</div>
+                </div>
+                <div class="col-3 done">Done</div>
+            </div>
+            <div class="d-flex align-items-center border border-primary border-top-0 pt-3">
+                <div class="col-3 d-flex flex-wrap">
+                    <div class="col-12 mb-3" th:each="tareaRoadmap: ${Roadmap}">
+                        <div class="tarjeta p-3">
+                            <div><span><b>Horas estimadas: </b></span> <span th:text="${tareaRoadmap.horasEstimacion}"></span></div>
+                            <div class="bg-light my-2 px-3 py-2 rounded"><span><b>Tarea: </b><p th:text="${tareaRoadmap.descripcion}"> </p></span></div>
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-secondary btn-sm" th:href="@{subir/{codigo}(codigo=${tareaRoadmap.codigo})}" ><i class="fas fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 p-0 d-flex flex-wrap">
+                    <div class="col-12 mb-3" th:each="tareaWaiting: ${Waiting}">
+                        <div class="tarjeta p-3">
+                            <div><span><b>Horas estimadas: </b></span> <span th:text="${tareaWaiting.horasEstimacion}"></span></div>
+                            <div class="bg-light my-2 px-3 py-2 rounded"><span><b>Tarea: </b><p th:text="${tareaWaiting.descripcion}"> </p></span></div>
+                            <span th:text="${tareaWaiting.propietario}"></span>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-secondary btn-sm" th:href="@{bajar/{codigo}(codigo=${tareaWaiting.codigo})}" ><i class="fas fa-chevron-circle-left"></i></a>
+                                <a class="btn btn-secondary btn-sm" th:href="@{subir/{codigo}(codigo=${tareaWaiting.codigo})}" ><i class="fas fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 d-flex flex-wrap" >
+                    <div class="col-12 mb-3" th:each="tareaWorking: ${Working}">
+                        <div class="tarjeta p-3">
+                            <div><span><b>Horas estimadas: </b></span> <span th:text="${tareaWorking.horasEstimacion}"></span></div>
+                            <div class="bg-light my-2 px-3 py-2 rounded"><span><b>Tarea: </b><p th:text="${tareaWorking.descripcion}"> </p></span></div>
+                            <span th:text="${tareaWorking.propietario}"></span>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-secondary btn-sm" th:href="@{bajar/{codigo}(codigo=${tareaWorking.codigo})}" ><i class="fas fa-chevron-circle-left"></i></a>
+                                <a class="btn btn-secondary btn-sm" th:href="@{subir/{codigo}(codigo=${tareaWorking.codigo})}" ><i class="fas fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 d-flex flex-wrap">
+                    <div class="col-12 mb-3" th:each="tareaDone: ${Done}" >
+                        <div class="tarjeta p-3">
+                            <div><span><b>Horas estimadas: </b></span> <span th:text="${tareaDone.horasEstimacion}"></span></div>
+                            <div class="bg-light my-2 px-3 py-2 rounded"><span><b>Tarea: </b><p th:text="${tareaDone.descripcion}"> </p></span></div>
+                            <div class="d-flex justify-content-start">
+                                <a class="btn btn-secondary btn-sm" th:href="@{bajar/{codigo}(codigo=${tareaDone.codigo})}" ><i class="fas fa-chevron-circle-left"></i></a>
+                            </div>
+                            <span th:text="${tareaDone.horasTrabajadas}"></span>
+                            <span th:text="${tareaDone.propietario}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>

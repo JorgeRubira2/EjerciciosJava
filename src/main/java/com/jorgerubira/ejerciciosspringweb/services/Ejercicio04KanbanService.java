@@ -29,6 +29,17 @@ import org.springframework.stereotype.Service;
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     private List<TareaKanban> listaTareaKanban = new ArrayList<>();
+    
+    public Ejercicio04KanbanService() {
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Menú", null, 3, 0, "Roadmap"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Barra estado", null, 5, 0, "Waiting"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Estilos", null, 6, 0, "Working"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Catálogo", null, 20, 0, "Done"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Página principal", null, 12, 0, "Roadmap"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Scroll", null, 35, 0, "Waiting"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Marcado página", null, 46, 0, "Working"));
+        listaTareaKanban.add(new TareaKanban(UUID.randomUUID().toString(), "Nuevo diseño", null, 100, 0, "Done"));
+    }
 
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
