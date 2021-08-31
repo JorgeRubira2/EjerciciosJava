@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Coche {    
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  //Probar
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //Probar Ok
     private Integer id;
     
     @Column(nullable = false)
@@ -28,5 +28,5 @@ public class Coche {
     
     private String marca;
     private String modelo;
-    private Integer anyoMatriculacion;      //Probar
+    private Integer anyoMatriculacion;      //Probar Ok
 }
