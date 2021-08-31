@@ -12,10 +12,10 @@
         <th>Total</th>
     </tr>
     <tr th:each="m:${rankingPais}">
-        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'))" th:text="${m.pais}"></a></td>
-        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Oro')" th:text="${m.oro}"></a></td>
-        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Plata')" th:text="${m.plata}"></a></td>
-        <td> <a class="list-group-item list-group-item-action" th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Cobre')" th:text="${m.cobre}"></a></td>
+        <td> <a th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'))" th:text="${m.pais}"></a></td>
+        <td> <a th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Oro')" th:text="${m.oro}"></a></td>
+        <td> <a th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Plata')" th:text="${m.plata}"></a></td>
+        <td> <a th:data-pais="${m.pais}" onclick="verDetalle(this.getAttribute('data-pais'), 'Cobre')" th:text="${m.cobre}"></a></td>
         <td th:text="${m.oro+m.plata+m.cobre}"></td>
     </tr>
 </table>
