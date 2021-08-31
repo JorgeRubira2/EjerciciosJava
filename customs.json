@@ -8,8 +8,12 @@
             "context": "div"
         },
         "th:href": {},
+        "th:field": {
+            "context": "input"
+        },
         "th:value": {
             "context": "textarea"
-        }
+        },
+        "value": {}
     }
 }

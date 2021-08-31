@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Mostrar Disco Duro</h1>
+            <br>
+            <form>
+                <input type="text" placeholder="Ruta" th:field="${currentPath}">
+                <input type="submit" value="Enviar Ruta">
+            </form>
+            <br>
+            <div th:each="dirFrag:${frag}">
+               <a th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
+            </div>
+            <div>
+               <a th:text="${currentPath}" th:href="${currentPath}" style="text-decoration: none; font-size: 24px"></a>
+            </div>
+            <br>
+            <table class="table table-striped">
+                <tr th:each="dir:${directorio}">
+                    <td>
+                        <i class="far fa-folder"></i> 
+                        <a th:text="${dir}" th:href="@{/ejercicio10/ver(ruta=${dir})}" style="text-decoration: none"></a>
+                    </td>
+                </tr>
+                <tr th:each="fichero:${ficheros}">
+                    <td>
+                        <i class="far fa-file"></i> 
+                        <a th:text="${fichero}" th:href="@{/ejercicio10/ver(ruta=${fichero})}" style="text-decoration: none"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

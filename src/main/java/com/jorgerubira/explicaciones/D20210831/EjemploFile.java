@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class EjemploFile {
     public static void main(String[] args) {
-        String ruta="D:\\zzzA";
+        String ruta="D:\\";
         File f=new File(ruta);
         if (f.exists()){
             System.out.println("Existe");
