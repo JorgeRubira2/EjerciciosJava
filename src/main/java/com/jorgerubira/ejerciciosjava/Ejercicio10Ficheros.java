@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="C:\\Users\\javia\\Documents\\NetBeansProjects\\EjerciciosJavaRepo\\EjerciciosJava\\src\\main\\resources\\";
+    private final String rutaBase="C:\\Users\\javia\\Documents\\NetBeansProjects\\EjerciciosJavaRepo\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
