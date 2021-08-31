@@ -8,9 +8,9 @@ package com.jorgerubira.ejerciciosspringweb.services;
 import com.jorgerubira.ejerciciosspringweb.domain.Medalla;
 import com.jorgerubira.ejerciciosspringweb.domain.MedallaAtleta;
 import com.jorgerubira.ejerciciosspringweb.domain.MedallaPais;
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio05MedalleroService;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Ejercicio05MedalleroService {
-
+    
     private List<Medalla> medallas = new ArrayList<>();
 
     public Ejercicio05MedalleroService() {
