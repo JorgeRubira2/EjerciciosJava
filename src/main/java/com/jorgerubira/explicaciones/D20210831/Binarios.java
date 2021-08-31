@@ -16,6 +16,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 
 
 class Ruedas implements Serializable{
