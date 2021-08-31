@@ -1,0 +1,25 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <table>
+                <tr th:each="can:${canciones}">
+                    <td th:text="${can.id}"/> 
+                    <td th:text="${can.autor}"/> 
+                    <td th:text="${can.titulo}"/> 
+                </tr>
+            </table>
+            <hr/>
+            <form action="enviarDatos" method="post">
+                <input name="id" placeholder="id"/>
+                <input name="autor" placeholder="autor"/>
+                <input name="titulo" placeholder="titulo"/>
+                <input type="submit" value="Enviar Datos"/>
+            </form>
+        </div>
+    </body>
+</html>

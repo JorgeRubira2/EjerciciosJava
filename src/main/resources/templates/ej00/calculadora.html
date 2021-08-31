@@ -6,7 +6,7 @@
     <body>
         <div class="container pt-5 px-5">
             <h3>Calculadora</h3>
-            <form action="/ejercicio0/sumar" method="post">
+            <form method="post">
                 <div class="row">
                     <div class="from-group col-2">
                         <label >Valor 1</label>
@@ -17,12 +17,17 @@
                         <input class="form-control" type="number" name="valor2" th:value="${valor2}" min="-99999" max="99999"/>
                     </div>     
                     <div class="col-1 pt-4">
-                        <input type="submit" value="Sumar" class="btn btn-primary "/>
+                        <input type="submit" value="Sumar" formaction="/ejercicio0/sumar" class="btn btn-primary "/>
+                        <input type="submit" value="Restar" formaction="/ejercicio0/restar"  class="btn btn-primary "/>
                     </div>   
                     <div class="from-group col-3">
                         <label >Resultado</label>
                         <input class="form-control" type="number" disabled th:value="${resultado}"/>
-                    </div>                      
+                    </div>       
+                    
+                    <a th:href="${'/url/mas?codigo=' + variable + '&id=' + variable2 ">Link</a>
+                    <a th:href="@{/url/mas/{codigo}(codigo=${variable},id=${variable2})}">Link</a>
+                    
                 </div>
             </form>
         </div>
