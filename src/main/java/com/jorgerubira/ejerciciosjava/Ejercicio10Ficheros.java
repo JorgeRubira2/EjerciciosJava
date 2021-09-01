@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,10 +30,10 @@ public class Ejercicio10Ficheros {
    
     public int contarCuantosEventosHay(){
     	 String fichero="AgendaDeDeportes.csv";
-         String ruta = (rutaBase + "\\" + fichero);
+         String ruta = (rutaBase + " " + fichero);
          try{
-             long num = Files.lines(Paths.get(ruta),Charset.defaultCharset()).count()-1;
-             return (int)num;
+             return (int) (Files.lines(Paths.get(ruta),Charset.defaultCharset()).count()-1);
+             
          }catch(Exception e){
              return 0;
          }	
@@ -45,11 +46,16 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
     	 String fichero="AgendaDeDeportes.csv";
-         String ruta = (rutaBase + "\\" + fichero);
+         String ruta = (rutaBase + " " + fichero);
          try{
-             List<String> res = Files.lines(Paths.get(ruta),Charset.defaultCharset()).filter(x->x.contains("Camino a Mercedes")).collect(Collectors.toList());
-             String res2[] = res.get(0).split(";");
-             return res2[0];
+             return ((Collection<String>) Files.lines(Paths.get(ruta),Charset.defaultCharset()))
+            		 .stream()
+            		 .filter(x->x.contains("Camino a Mercedes"))
+            		 .map(x -> x.split(";")[0])
+                     .findFirst()
+                     .get();
+            		 
+            
          }catch(Exception e){
              return null;
          }
