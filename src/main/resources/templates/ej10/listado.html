@@ -5,26 +5,46 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <misestilos>
-
+        <style>
+        #cabecera {
+            background-color: blue;
+            color: white;
+        }
+        .directorio {
+            color: mediumaquamarine;
+            font-weight: 700;
+        }
+        </style>
     </misestilos>
 </head>
 <body>
+    <div class="container">
     <table class="table table-striped">
         <thead>
-        <th>
-            <td>
-                <a th:href="@{listado(ruta=${ruta})}"><span th:text="${ruta}"/></a>
-            </td>
-        </th>
+            <tr>
+                <th  id="cabecera">
+                    <span th:text="${actual}"/>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <span th:if="${ruta != null}">
+                        <a th:href="@{listado(ruta=${ruta})}"> volver <span th:text="${ruta}"/></a>
+                    </span>
+
+                </th>
+            </tr>
         </thead>
         <tbody>
             <tr th:each="ruta:${lista}">
-                <td><a th:if="${ruta.esDirectorio}" th:href="@{listado(ruta=${ruta.ruta} + ${ruta.fichero})}"><span th:text="${ruta.fichero}"/></a>
-                    <span th:if="${ruta.esDirectorio == false}" th:text="${ruta.fichero}"/>
+                <td><a class="directorio" th:if="${ruta.esDirectorio}" th:href="@{listado(ruta=${ruta.ruta + '/' + ruta.fichero})}">Directorio <span th:text="${ruta.fichero}"/></a>
+                    <!--<span th:if="${ruta.esDirectorio == false}" th:text="${ruta.fichero}"/> -->
+                    <a th:if="${ruta.esDirectorio == false}" th:href="@{descarga(fichero=${ruta.ruta + '/' + ruta.fichero},name=${ruta.fichero})}" th:text="${ruta.fichero}"></a>
                 </td>
-            </tr>
+            </tr> 
         </tbody>
     </table>
+    </div>
 </body>
 <misscripts>
 

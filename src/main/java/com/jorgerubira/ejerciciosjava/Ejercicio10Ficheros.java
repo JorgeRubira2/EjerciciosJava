@@ -140,7 +140,7 @@ public class Ejercicio10Ficheros {
         try{
             Stream<String> lista = Files.lines(Path.of(rutaBase+fichero), Charset.defaultCharset());
             salida = lista.skip(1)
-                          .filter(x->x.equals("") == false)
+                          .filter(x-> "".equals(x) == false)
                           .map(x->x.split(";"))
                           .map(x-> new Persona(x[0],x[1]))
                           .collect(Collectors.toList());
