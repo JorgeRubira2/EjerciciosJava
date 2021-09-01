@@ -1,0 +1,26 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="d20210901/layout::layout( ~{::body})">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <input placeholder="filtrar"/><input type="button" class="btn btn-primary btn-sm" value="Filtrar"/><br/>
+            <hr/>
+            <div class="row">
+                <div class="col-2">
+                    <img src="/d20210901/descarga?imagen=1" width="100%" /><br/>
+                    Descripcion 1<br/>
+                    <a href="#">Borrar</a>
+                </div>
+                <div class="col-2">
+                    <img src="/d20210901/descarga?imagen=2" width="100%" /><br/>
+                    Descripcion 2<br/>
+                    <a href="#">Borrar</a>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    </body>
+</html>
