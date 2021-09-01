@@ -5,13 +5,14 @@ import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
     
@@ -47,13 +48,16 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-//        try {
-//            return Files.readAllLines(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1).stream()
-//                    .
-//        } catch (IOException e) {
-//            return null;
-//        }
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+            return (Files.readAllLines(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1).stream()
+                    .filter(x->x.contains("Camino a Mercedes"))
+                    .map(x->x.split(";")[0])
+                    .findFirst())
+                    .get();
+        } catch (IOException e) {
+            return null;
+        }
+//        throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
@@ -64,7 +68,15 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+            String texto = Files.readString(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1);
+            String[] vector = texto.split(palabra);
+            return vector.length;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
+//        throw new RuntimeException("Pendiente de hacer");
     }   
     
     /**
@@ -85,7 +97,17 @@ public class Ejercicio10Ficheros {
      */
     public Optional<Double> calcularPromedio(){
         String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+            return Optional.of(Files.readAllLines(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1)
+                    .stream()
+                    .mapToDouble(x-> Double.parseDouble(x.split(";")[1]))
+                    .average()
+                    .getAsDouble());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+//        throw new RuntimeException("Pendiente de hacer");
     }    
     
     /**
@@ -97,8 +119,21 @@ public class Ejercicio10Ficheros {
      */
     public List<Persona> cargarPersona() throws FileNotFoundException{
         String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
-    }      
+        List<Persona> personas = null;
+        try {
+             personas = Files.readAllLines(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1)
+                    .stream()
+                    .skip(1)
+                    .filter(x->!("").equals(x))
+                    .map(x->x.split(";"))
+                    .map(x->new Persona(x[0], x[1]))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        throw new RuntimeException("Pendiente de hacer");
+        return personas;
+    }
     
 
 }

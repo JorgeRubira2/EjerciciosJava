@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="ej11/layout::layout(~{::body})" xmlns:th="https://www.thymeleaf.org">
+<body>
+    <div class="container">
+        <form >
+            <input type="text" placeholder="Filtrar">
+            <input type="submit" value="Filtrar">
+        </form>
+        </br>
+        <div th:each="imagen:${imagenes}">
+            <div>
+                <img th:src="${imagen.ruta}">
+                <p th:text="${imagen.descripcion}"></p>
+                <a href="#">Borrar</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

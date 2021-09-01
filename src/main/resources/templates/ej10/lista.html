@@ -12,7 +12,10 @@
                 <td><a th:href="@{/ej10/lista(ruta=${padre})}">Volver</a></td>
             </tr>
             <tr th:each="f:${ficheros}">
-                <td><a th:href="@{/ej10/lista(ruta=${f})}" th:text="${f.getName}"></a></td>
+                <td>
+                    <a th:if="${f.isDirectory}" th:href="@{/ej10/lista(ruta=${f})}" th:text="${f.getName}"></a>
+                    <a th:if="${!f.isDirectory}" th:href="@{/ej10/descarga(ruta=${f})}" th:text="${f.getName}"></a>
+                </td>
             </tr>
         </table>
     </div>
