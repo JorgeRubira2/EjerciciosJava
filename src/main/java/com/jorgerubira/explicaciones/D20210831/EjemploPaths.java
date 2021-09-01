@@ -10,7 +10,7 @@ public class EjemploPaths {
     public static void main(String[] args) {
         
         Path p=Path.of("c:\\directo\\.\\d6\\..\\d2\\..\\d3\\d4\\..\\d5");
-        Path p2=p.normalize();
+        Path p2=p.normalize().toAbsolutePath();
         Path p3=Path.of("c:\\directo\\.\\d5\\..\\d3\\..\\d2\\d1\\..\\d5\\fichero.txt");
         Path p4=p.relativize(p3);
         System.out.println(p2);

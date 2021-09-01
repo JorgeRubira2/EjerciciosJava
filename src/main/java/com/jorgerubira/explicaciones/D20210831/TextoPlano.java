@@ -68,6 +68,7 @@ public class TextoPlano {
         }
         
         try{
+            
             Files.lines(Paths.get(ruta))
                  .forEach(x->System.out.println(x));    
         }catch(Exception e){
