@@ -20,14 +20,15 @@ and open the template in the editor.
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="fichero: ${contenido}">
-                    <td class="nombre">
-                        <a th:if="@{fichero.directorio}" th:text = "${'*'+fichero.nombre}" th:href="@{/ej10/lista(ruta=${fichero.rutaAbsoluta})}"></a>
-                    </td>
-                    <td>
-                        <a href="@{/ej10/lista(ruta=${fichero.rutaParent})}" class="button btn btn-info text-white">Volver</a>
-                    </td>    
-                </tr>
+                    <tr th:each="fichero: ${contenido}">
+                        <td>
+                            <a th:if="${fichero.directorio}" th:text = "${'*'+fichero.nombre}" th:href="@{/ej10/lista(ruta=${fichero.rutaAbsoluta})}"></a>
+                            <a th:if="${!fichero.directorio}" th:text="${fichero.nombre}"></a>
+                        </td>  
+                        <td class="nombre">
+                            <a th:if="${ruta!=null}" th:href="@{/ej10/lista(ruta=${ruta})}">VOLVER</a>
+                        </td>
+                    </tr>
             </tbody>
         </table>
     </body>

@@ -13,5 +13,4 @@ public class Fichero implements Serializable{
     private String nombre;
     boolean directorio;
     private String rutaAbsoluta;
-    private String rutaParent;
 }
