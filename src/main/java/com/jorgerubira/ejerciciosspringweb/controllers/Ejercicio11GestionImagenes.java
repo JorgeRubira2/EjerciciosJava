@@ -1,7 +1,6 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
-import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio11GestionImagenes;
 import com.jorgerubira.ejerciciosspringweb.repositories.ImagenesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
