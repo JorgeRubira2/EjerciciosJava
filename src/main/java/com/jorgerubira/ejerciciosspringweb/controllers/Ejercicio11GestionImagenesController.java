@@ -43,7 +43,9 @@ public class Ejercicio11GestionImagenesController {
     public String subir(Model m, MultipartFile fichero, String descripcion){ //, HttpServletResponse response){
         String nombre = fichero.getOriginalFilename();
         String codigo = UUID.randomUUID().toString();
-        String ruta=rutaRecursos + "\\ej11\\" + codigo;
+        String ext = nombre.substring(nombre.lastIndexOf("."), nombre.length());
+        String ruta=rutaRecursos + "\\ej11\\" + codigo + ext;
+        
         File f=new File(ruta);
         f.getParentFile().mkdirs();
 
