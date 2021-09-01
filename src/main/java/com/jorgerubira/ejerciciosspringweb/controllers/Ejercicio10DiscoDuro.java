@@ -32,6 +32,9 @@ public class Ejercicio10DiscoDuro {
                 }
             }
             model.addAttribute("Nombres",nombres);
+           if(path!=null)
+                model.addAttribute("Ruta", f.getParent());
+           
         }
         return "ej10/index";
     }

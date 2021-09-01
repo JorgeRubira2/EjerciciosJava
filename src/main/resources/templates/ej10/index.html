@@ -6,6 +6,9 @@
     </head>
     <body>
         <div class="container">
+            
+            <a th:if="${Ruta!=null}" th:text="BACK" th:href="@{/ejercicio10/archivos(path=${Ruta})}"></a>
+            <hr th:if="${Ruta!=null}"/>
             <div th:each="fichero:${Nombres}">
                 <a th:if="${fichero.directorio}" th:text="${'*'+fichero.nombre}"  th:href="@{/ejercicio10/archivos(path=${fichero.rutaAbsoluta})}"></a>
                 <a th:if="${!fichero.directorio}" th:text="${fichero.nombre}"></a>
