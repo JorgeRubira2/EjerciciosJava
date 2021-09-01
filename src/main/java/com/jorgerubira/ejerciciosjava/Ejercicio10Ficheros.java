@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
     
@@ -30,12 +32,10 @@ public class Ejercicio10Ficheros {
         try{
             long numEventos=Files.lines(Paths.get(rutaBase + fichero), Charset.forName("ISO-8859-1")).count()-1;
             return (int)numEventos;
-        
         }catch (Exception e){
             e.printStackTrace();
             return 0;  
         }
-         
     }
     
     /**
@@ -46,8 +46,13 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-        
-        Files.readAllLines(rutabase, Charset.forName("ISO-8859-1"));
+        try {
+            return Files.lines(Path.of(rutaBase, fichero), Charset.forName("ISO-8859-1")).filter(x->x.contains("Camino a Mercedes"))
+                                                                                         .map(x->x.split(";")[0])
+                                                                                         .findFirst().orElse(""); //Devuelve Optional, ponemos .get(), o para asegurar un .orElse y que devuelva algo, en este caso vacío.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     /**
@@ -59,12 +64,23 @@ public class Ejercicio10Ficheros {
      */
     public int contarCoincidencias(String fichero, String palabra){
         
-        //leer fichero de golpe, split y contar -1
-        String var="clase";
-        String vector[]=var.split("clase");
-        return 0;
-        
-    }   
+        int contador=0;
+        try{
+            palabra=palabra.toLowerCase();
+            String coincidencias=Files.readString(Paths.get(rutaBase + fichero), Charset.forName("ISO-8859-1")).toLowerCase();
+            int posicion=coincidencias.indexOf(palabra);
+            while(posicion>=0){
+                contador++;
+                posicion=coincidencias.indexOf(palabra, posicion+1);
+            }
+                        
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;  
+        }
+        return contador;
+    }
+          
     
     /**
      * Verifica el fichero y si tiene alguna línea no valida lanza una excepción FormatoNoValidoException.
@@ -84,7 +100,19 @@ public class Ejercicio10Ficheros {
      */
     public Optional<Double> calcularPromedio(){
         String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        try{
+            var d=Files.lines(Paths.get(rutaBase + fichero), Charset.forName("ISO-8859-1"))
+                                   .mapToDouble(x->Double.parseDouble(x.split(";")[1]))
+                                   .average();
+            if (d.isPresent()){
+                return Optional.of(d.getAsDouble());
+            }else{
+                return Optional.empty();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return Optional.empty();  
     }    
     
     /**

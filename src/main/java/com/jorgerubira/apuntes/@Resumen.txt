@@ -1,3 +1,4 @@
+Java:
 - Tipo primitivos, Envoltorios, Optional<Envoltorio>. (A veces dan problemas en la conversion Tipo primitivos, Envoltorios).
 - Optional<Envoltorio> -> get(), isPresent(), isEmpty(), orElse(T) "es como el get pero darmo un valor por defecto si no tiene"
 - Parametros.   (Objetos y arrays son referencia, tipo primitivos valor)
@@ -30,8 +31,14 @@
 - Parallel Streams -> Ejecutar un accion concurrente.
 - Exceptions -> try{ } catch(Exception e){ } -> try (Recurso) Autocloseable
              -> throw metodo () throw Exception . El que llama es el que se responabiliza.
-
+- Ficheros: Texto plano: Stream<String> lines(...), List<String> readAllLines(...), String readString(...)   //Writer,Reader
+            Binarios: Cargar el binario para devolverlo en HTTP (Hoy) 
+            GestionFichero: (new File(ruta)).mkdirs()), listFiles, exists, Files.copy, Files.move, Files.delete, Files.deleteIfExists
+            Rutas: normalize()
+            //Binarios (Secundario): OutputStream, InputStream. writeObject,readObject. Serializable. Aplicaciones pequeñas sin cambios y sin base de datos.
+                
 ------------------------------------------------------------------------------------------------------------
+Spring Boot:
 - HTML -> Etiqueta: Input, Div, Span, Select, Button, Form, Table, (UL,OL,LI), A, IMG, (VIDEO,AUDIO), IFRAME, P, (B,I,U), BR, (H1,..H6), HR
           Etiquetas especiales <Head> (No visual), <Script> Javascript, <Style> CSS
           Atributos: id (No se debería repetir), class (darle un formato, varios), Input->(value, type, name (cuadrar nombre con el servidor)), style (utilizar sutilmente), (form -> action, method) (otros, required, readonly, disabled, src)
