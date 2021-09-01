@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="ej11/layout::layout(~{::body})" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" th:replace="ej11/layout::layout(~{::body}, ~{::misscripts})" xmlns:th="https://www.thymeleaf.org">
 <body>
     <div class="container">
-        <form >
-            <input type="text" placeholder="Filtrar">
-            <input type="submit" value="Filtrar">
-        </form>
         </br>
-        <div th:each="imagen:${imagenes}">
-            <div>
-                <img th:src="${imagen.ruta}">
+        <div class="row">
+            <form class="col-4" action="/ej11/imagenes" method="get">
+                <div class="row">
+                    <input type="text" name="cadena" placeholder="Filtrar">
+                    <input class="btn btn-primary" type="submit" value="Filtrar">
+                </div>
+            </form>
+            <a class="btn btn-secondary" th:onclick="|nuevaImagen()|">Nueva imagen</a>
+        </div>
+
+        </br>
+        <div class="row">
+            <div class="col-2" th:each="imagen:${imagenes}">
+                <img th:src="@{/ej11/verImagen(imagen=${imagen.codigo + imagen.nombre})}" width="100%"/>
                 <p th:text="${imagen.descripcion}"></p>
-                <a href="#">Borrar</a>
+                <a class="btn btn-outline-primary" th:href="@{'/ej11/eliminar/'+${imagen.id}}">Borrar</a>
             </div>
         </div>
     </div>
 </body>
+<misscripts>
+    <script>
+        function nuevaImagen(){
+            $.ajax({
+                url: "/ej11/formulario",
+                success: function (html){
+                    bootbox.dialog({
+                        message: html
+                    })
+                }
+            })
+        }
+    </script>
+</misscripts>
 </html>

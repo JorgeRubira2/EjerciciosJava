@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="ej11/layout::layout(~{::body})" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" th:replace="ej11/layout::layout(~{::body}, ~{::misscripts})" xmlns:th="https://www.thymeleaf.org">
 <body>
     <div class="container">
         <form th:object="${imagen}" action="/ej11/subir" method="post" enctype="multipart/form-data">
