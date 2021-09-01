@@ -4,6 +4,8 @@ import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,11 +23,10 @@ public class Ejercicio10Ficheros {
      * Pistas: Cargar el fichero utilizar el método readAllLines y pasarlo por un stream.
      * Ejemplo del fichero: 
      */
+   
     public int contarCuantosEventosHay(){
-        String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+    	
     }
-    
     /**
      * Devuelve del ID del evento llamado 'Camino a Mercedes' del fichero enviado por parámetro
      * Esta información está en un csv. El formato del fichero se puede ver en el fichero com.jorgerubira.resources.AgendaDeDeportes.csv

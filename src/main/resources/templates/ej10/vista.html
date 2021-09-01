@@ -14,17 +14,28 @@ border:2px solid black;
 
 </head>
 <body>
-	<table class="table table-striped">
-		<tr>
-			<th>Archivos</th>
-		</tr>
-		<tr th:each="listado:${Ficheros}">
-			<td th:if="${listado.directory}"><a th:text="${listado.name}" th:href="${verDirectorios(ruta=${listado.absolutePath})}"></a></td>
-	
-		</tr>
-		
-	
-		
-	</table>
+	<div class="container">
+            <table class="table table-striped">
+               
+                <tbody>
+                     
+                    
+                    <tr th:each="ficheroInterno:${ruta}">
+                        <th:block th:if="${ficheroInterno.directorio}">
+                            <td><a th:href="@{vista(ruta=${ficheroInterno.rutaAbs})}" th:name="ruta" th:text="${ficheroInterno.nombre}"></a>
+                            </td>
+                        </th:block>
+                        <th:block th:if="${ficheroInterno.directorio}==false">
+                            <td> <a  th:href="@{vista(ruta=${ficheroInterno.rutaAbs})}" ><span th:text="${ficheroInterno.nombre}"></span></a>
+                            </td>
+                        </th:block>
+                    </tr>
+                </tbody>
+        </div>
+	 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
 </body>
 </html>
