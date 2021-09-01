@@ -16,6 +16,8 @@ border:2px solid black;
 <body>
 	<div class="container">
             <table class="table table-striped">
+              
+              <a th:if="${parent!=null}" th:href="@{vista(ruta=${parent})}" class="btn btn-primary">Volver</a>
                
                 <tbody>
                      

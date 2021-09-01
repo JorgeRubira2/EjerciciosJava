@@ -16,13 +16,17 @@ public class Ejercicio10DiscoDuro {
 	@GetMapping("ej10/vista")
 	
 	public String vista(Model model , String ruta) {
-		if(ruta==null) {
-			ruta="C:\\";
-		}
+		 
+		 if (ruta == null){
+	            ruta = "C:\\";
+	        }
 		 
 		File file= new File(ruta);
+		if(ruta !="C:\\") {
+			model.addAttribute("parent", file.getParent());
+		}
 		ArrayList<Fichero> F = new ArrayList<>();
-		
+		if(file.isDirectory()) {
 			File[] ficherosInternos=file.listFiles();
 			for (File ficheroInterno : ficherosInternos) {
 				try {
@@ -34,8 +38,8 @@ public class Ejercicio10DiscoDuro {
 				
 			}
 			model.addAttribute("ruta",F);
-			model.addAttribute("Ruta", ficherosInternos)
 		
+		}
 		return "ej10/vista";
 	}
 
