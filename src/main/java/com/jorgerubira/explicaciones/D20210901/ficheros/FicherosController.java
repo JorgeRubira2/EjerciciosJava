@@ -55,6 +55,7 @@ public class FicherosController {
         cabeceras.add("Pragma", "no-cache");
         cabeceras.add("Expires", "0");
         
+        
         /*String contentType="application/octet-stream";
         if (ruta.endsWith(".pdf")){
             contentType="application/pdf";
@@ -84,7 +85,7 @@ public class FicherosController {
     
     @PostMapping("/subir")
     public String subir(Model m, MultipartFile fichero){ //, HttpServletResponse response){
-        
+
         if (fichero.getOriginalFilename().toLowerCase().endsWith(".pdf")==false){
             m.addAttribute("error", "Formato incorrecto");
             return "d20210901/formulario";
