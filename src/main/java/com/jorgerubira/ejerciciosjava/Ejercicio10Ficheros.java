@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
 
@@ -28,11 +29,11 @@ public class Ejercicio10Ficheros {
         String fichero = "AgendaDeDeportes.csv";
 
         try {
-           long cuenta = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1")).count()-1;
-                                                                 //Charset.defaultCharset también sirve
-           
-           return (int)cuenta;
-           
+            long cuenta = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1")).count() - 1;
+            //Charset.defaultCharset también sirve
+
+            return (int) cuenta;
+
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -48,19 +49,20 @@ public class Ejercicio10Ficheros {
      * el método readAllLines y pasarlo por un stream.
      */
     public String buscarId() {
-       // String fichero = "AgendaDeDeportes.csv";
-        
-       // try {
-          // String buscaId = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1"))
-                  // .filter(x-> x.contains("Camino a Mercedes"))
-                                                                 
-           
-         //  return buscaId;
-           
-      //  } catch (Exception e) {
-          //  e.printStackTrace();
-      //  }
-      throw new RuntimeException("Pendiente de hacer");
+        String fichero = "AgendaDeDeportes.csv";
+
+        try {
+            String buscaId = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1"))
+                    .filter(x -> x.contains("Camino a Mercedes"))
+                    .map(x -> x.split(";")[0])
+                    .findFirst().get();
+
+            return buscaId;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -72,7 +74,19 @@ public class Ejercicio10Ficheros {
      * más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra) {
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+            Long cuentaPalabras = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1"))
+                    .filter(x -> x.contains(palabra))
+                    .collect(Collectors.counting());
+
+           // return (int)cuentaPalabras;
+           return 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+        // throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -93,7 +107,19 @@ public class Ejercicio10Ficheros {
      */
     public Optional<Double> calcularPromedio() {//Hacer stream, map y sacar promedio
         String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+
+        try {
+            var media = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1"))
+                    .map(x -> new Double(Double.parseDouble(x.split(";")[1])))
+                    .collect(Collectors.summarizingDouble(x -> x));
+
+            return Optional.of(media.getAverage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        //throw new RuntimeException("Pendiente de hacer");
     }
 
     /**
@@ -107,5 +133,4 @@ public class Ejercicio10Ficheros {
         String fichero = "ListaPersonas.txt";
         throw new RuntimeException("Pendiente de hacer");
     }
-
 }
