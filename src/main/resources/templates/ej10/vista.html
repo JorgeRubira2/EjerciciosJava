@@ -33,7 +33,8 @@
             <tr th:each="fichero:${nombres}" id="tabla">                  
                 <td>
                     <a th:if="${fichero.directorio}" th:text="${fichero.getNombre() }" th:href="@{/ejercicio10/listaficheros(ruta=${fichero.getRutaFichero()})}"> </a>  
-                    <a class="text-secondary" th:if="${!fichero.directorio}" th:text="${fichero.getNombre() }" th:href="@{/ejercicio10/listaficheros(ruta=${fichero.getRutaFichero()})}" > </a>  
+                    <a class="text-secondary" th:if="${!fichero.directorio}" th:text="${fichero.getNombre() }" th:href="@{/ejercicio10/download(descargar=${fichero.getRutaFichero()})}" > </a>  
+                 
                 </td>
 
 

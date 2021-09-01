@@ -5,10 +5,7 @@
  */
 package com.jorgerubira.ejerciciosjava;
 
-import com.jorgerubira.ejerciciosjava.pojo.Persona;
-import java.io.File;
-import java.util.List;
-import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,10 +24,10 @@ public class Ejercicio10FicherosTest {
         assertEquals(9, instance.contarCuantosEventosHay());
     }
 
-    @Test
+    @Test 
     public void testBuscarId() {
         Ejercicio10Ficheros instance = new Ejercicio10Ficheros();
-        assertEquals("11320438", instance.buscarId());
+        assertEquals("11320438", instance.buscarId()); 
     }
 
     @Test
@@ -40,7 +37,7 @@ public class Ejercicio10FicherosTest {
         assertEquals(10, result);
     }
 
-
+ 
 
     @Test
     public void testCalcularPromedio() {

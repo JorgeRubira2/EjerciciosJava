@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -82,27 +83,23 @@ public class Ejercicio10Ficheros {
      * Cuantas cuantas veces aparece una palabra (o texto) en el fichero
      * solicitado. Deberá ser insensible a mayusculas y minusculas Si estuviese
      * ese evento o no encuentra el fichero devolver 0. Pista facil: Cargar el
-     * fichero utilizar el método readAllText y pasarlo hacer un split. Pista
-     * más eficiente: En vez de utilizar split ir buscando con indexOf. Solución
-     * más compleja con while.
+     * fichero utilizar el método readString y pasarlo hacer un split. Pista más
+     * eficiente: En vez de utilizar split ir buscando con indexOf. Solución más
+     * compleja con while.
      */
-    public int contarCoincidencias(String fichero, String palabra) throws IOException {
-
-        String ruta =rutaBase + "\\" + fichero ;
+    public int contarCoincidencias(String fichero, String palabra) {
         int contador = 0;
 
         try {
-            String texto = Files.readString(Paths.get(ruta));
-        
-             int palabr = texto.indexOf(palabra);
-             while(palabr != -1){
-                 if(texto.contains(palabra)){
-                 contador++;
-                 }
-             }
-            
-            
-        } catch (Exception e) {
+            String frase = Files.readString(Paths.get(rutaBase + fichero)).toLowerCase();
+            palabra = palabra.toLowerCase();
+            int posicion = frase.indexOf(palabra);
+            while (posicion >= 0) {
+                contador++;
+                posicion = frase.indexOf(palabra, posicion + 1);
+            }
+
+        } catch (IOException e) {
             return 0;
 
         }
@@ -128,7 +125,21 @@ public class Ejercicio10Ficheros {
      */
     public Optional<Double> calcularPromedio() {
         String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+
+        try {
+            OptionalDouble media = Files.lines(Paths.get(rutaBase + fichero))
+                    .mapToDouble(x -> Double.parseDouble(x.split(";")[1]))
+                    .average();
+
+            if (media.isPresent()) {
+                return Optional.of(media.getAsDouble());
+            } else {
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+
     }
 
     /**
@@ -139,8 +150,26 @@ public class Ejercicio10Ficheros {
      * lanzar una FileNotFoundException.
      */
     public List<Persona> cargarPersona() throws FileNotFoundException {
+
         String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
+
+        List<Persona> lista = null;
+        try {
+            List<String> list = Files.lines(Paths.get(rutaBase + fichero))
+                    .skip(1)
+                    .filter(x -> x.length() > 0)
+                    .map(x -> (x.split(";")[0]))
+                    .collect(Collectors.toList());
+
+            lista = list.stream().map(x -> new Persona(x)).collect(Collectors.toList());
+            lista.forEach(System.out::println);
+
+        } catch (IOException ex) {
+            Logger.getLogger(Ejercicio10Ficheros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista;
+
     }
 
 }
