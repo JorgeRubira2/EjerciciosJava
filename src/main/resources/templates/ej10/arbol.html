@@ -9,11 +9,14 @@
     <body>
         <div class="container pt-5 px-5">
             <h3>Lista de Directorios</h3>
+            <i class="fas fa-undo"><a class="m-1" th:href="@{/ejercicio10/volver(ruta=${fichero})}">Volver</a></i>
             <table class="table table-striped mt-5">
                 <tr th:each="fichero:${arbol}">
                     <td th:if="${fichero.isDirectory}" ><i class="fas fa-folder"><a class="m-1" th:href="@{/ejercicio10/directorios(ruta=${fichero})}" th:text="${fichero.getName}"></a></i></td>
+                    <td th:unless="${fichero.isDirectory}"  ><i class="far fa-file-archive"><a class="m-1"  th:href="@{/ejercicio10/descarga(ruta=${fichero})}" th:text="${fichero.getName}"></a></i></td>
                 </tr>
             </table>
+            
         
         </div>
     </body>
