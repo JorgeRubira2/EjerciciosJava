@@ -4,12 +4,15 @@ import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    private final String rutaBase="C:\\Users\\Mohamad\\Documents\\NetBeansProjects\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -23,7 +26,13 @@ public class Ejercicio10Ficheros {
      */
     public int contarCuantosEventosHay(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        try{
+            long num = Files.lines(Paths.get(rutaBase+fichero),Charset.forName("ISO-8859-1"))
+                 .count(); 
+            return (int)(num-1);
+        }catch(Exception e){
+            return 0;
+        }
     }
     
     /**
@@ -34,7 +43,13 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        try{
+//           String[] trozos = Files.lines(Paths.get(rutaBase+fichero),Charset.forName("ISO-8859-1"))
+//                             .map(x->x.split(";"));
+                 
+        }catch(Exception e){
+        }
+     return "";   
     }
     
     /**
