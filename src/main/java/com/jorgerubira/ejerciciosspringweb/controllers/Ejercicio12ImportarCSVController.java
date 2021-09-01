@@ -12,10 +12,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+import static org.apache.http.client.methods.RequestBuilder.delete;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,24 +62,33 @@ public class Ejercicio12ImportarCSVController {
                   .filter(x-> x != null)
                   .filter(x -> "".equals(x) == false)
                   .map(x -> x.split(";"))
-                  .forEach(x -> repoDatoUniversidad.save(new DatoUniversidad(null, 
-                                                                            Integer.parseInt(x[0]), 
-                                                                            x[1],
-                                                                            x[2], 
-                                                                            x[3], 
-                                                                            x[4], 
-                                                                            x[5], 
-                                                                            Integer.parseInt(x[6]), 
-                                                                            Integer.parseInt(x[7]),
-                                                                            Integer.parseInt(x[8]),
-                                                                            Float.parseFloat(x[9]),
-                                                                            Date.valueOf(x[10]))));
-            f.delete();
+                  .forEach(x -> {
+                                    try {
+                                        repoDatoUniversidad.save(new DatoUniversidad(null,
+                                                Integer.parseInt(x[0]),
+                                                x[1],
+                                                x[2],
+                                                x[3],
+                                                x[4],
+                                                x[5],
+                                                Integer.parseInt(x[6]),
+                                                Integer.parseInt(x[7]),
+                                                Integer.parseInt(x[8]),
+                                                Float.parseFloat(x[9]),
+                                                new SimpleDateFormat("dd/MM/yyyy").parse(x[10])));
+                                    } catch (ParseException ex) {
+                                        model.addAttribute("error", "fallo en formateo de fechas " + x[10]);
+                                        Logger.getLogger(Ejercicio12ImportarCSVController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                });
+
+            
             model.addAttribute("mensaje", "fichero correctamente insertado");
         } catch (IOException ex) {
             model.addAttribute("error", "fallo en inserciones");
             Logger.getLogger(Ejercicio12ImportarCSVController.class.getName()).log(Level.SEVERE, null, ex);
-            
+        } finally {
+            f.delete();
         }
         return "ej12/formularioSubida";
     }

@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DatoUniversidad {
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
         private Integer cursoAcademico;
         private String  estudio;
@@ -37,7 +37,7 @@ public class DatoUniversidad {
         private Integer plazasOfertadas;
         private Integer plazasMatriculadas;
         private Integer plazas_solicitadas;
-        private Float   indiceOcupaciondecimal;
+        private Float   indiceOcupacion;
         private Date    fechaActualizacion;
 
 }
