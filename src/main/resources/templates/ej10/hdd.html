@@ -10,7 +10,7 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th><a href="javascript:window.history.back()" >Volver</a></th>
+                        <th th:if="${ubicacion != 'C:\'}"><a href="javascript:window.history.back()" >Volver</a> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,9 +20,9 @@
                     
                     <tr th:each="dato:${datos}">
                         
-                        
+                        <!-- pddría haberme ahorrado tanto código pegado creando una clase 'Fichero' y agregando en el controlador una ruta u otra dedpendiendo si es una carpeta o un archivo -->
                         <td th:if="${dato.endsWith('\')}" > <a th:href='@{/ejercicio10/hdd/(ruta = ${dato})}' th:text="${dato.split('\\')[dato.split('\\').length-1]}"></a></td>
-                        <td th:if="${!dato.endsWith('\')}" > <a th:href='@{/ejercicio10/hdd/(download = ${dato})}' th:text="${dato}"></a></td>
+                        <td th:if="${!dato.endsWith('\')}" > <a th:href='@{/ejercicio10/descarga/(ruta = ${dato}, nombre=${dato.split("\\")[dato.split("\\").length-1]})}' th:text="${dato.split('\\')[dato.split('\\').length-1]}"></a></td>
                         
                     </tr>
                  

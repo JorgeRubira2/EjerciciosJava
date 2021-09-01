@@ -6,14 +6,14 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Ejercicio10MostrarDiscoDuroController {
 
     @GetMapping("/hdd")
-    public String mostrarDiscoDuro(Model model, String ruta, String download) {
+    public String mostrarDiscoDuro(Model model, String ruta) {
         if (ruta == null) {
             ruta = "C://";
         }
@@ -37,7 +37,7 @@ public class Ejercicio10MostrarDiscoDuroController {
             //ArrayList archivos = new ArrayList<>();
             ArrayList archivos = new ArrayList<>();
 
-            model.addAttribute("ubicacion", f.getName());
+            model.addAttribute("ubicacion", f.getPath());
 
             /*for (File fichero : ficheros) {
                 if(fichero.isDirectory()){
@@ -54,7 +54,7 @@ public class Ejercicio10MostrarDiscoDuroController {
                 }
 
                 if (fichero.isFile()) {
-                    archivos.add(fichero.getName());
+                    archivos.add(fichero.getAbsolutePath());
                 }
             }
             model.addAttribute("datos", archivos);
@@ -93,6 +93,35 @@ public class Ejercicio10MostrarDiscoDuroController {
         return ("ej10/hdd");
         //return ("redirect:hdd/{ruta}");
     }
+    
+    @GetMapping("/descarga")
+    public ResponseEntity<Resource>  mostrarFormulario(String ruta, String nombre){
+        //String ruta=rutaRecursos + "\\d20210901\\ejemplo1\\imagen" + imagen +".jpg";
+        HttpHeaders cabeceras=new HttpHeaders();
+        cabeceras.add("Content-Disposition", "attachment; filename="+nombre);
+        cabeceras.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        cabeceras.add("Pragma", "no-cache");
+        cabeceras.add("Expires", "0");
+        
+        /*String contentType="application/octet-stream";
+        if (ruta.endsWith(".pdf")){
+            contentType="application/pdf";
+        }else if (ruta.endsWith(".png")){
+            
+        }*/
+        
+        try{
+            return ResponseEntity.ok()
+                                 .headers(cabeceras)
+                                 .contentLength((new File(ruta)).length())
+                                 .contentType(MediaType.parseMediaType( "application/octet-stream" ))  //Codigo MIME
+                                 .body(new InputStreamResource(new FileInputStream( ruta )) );
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+            return null;
+        }
+        
+    }    
 
     /*@GetMapping("/hdd/{ruta}")
     public String mostrarDirectorio(Model model,String ruta){

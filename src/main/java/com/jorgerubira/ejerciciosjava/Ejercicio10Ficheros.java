@@ -8,10 +8,13 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
     
@@ -50,7 +53,18 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        
+        try {
+            //Texto plano: Stream<String> lines(...), List<String> readAllLines(...), String readString(...)
+            List<String> texto = Files.readAllLines(Paths.get(rutaBase + fichero), Charset.defaultCharset());
+            String texto2 = texto.stream().filter(x->x.contains("Camino a Mercedes")).findAny().get();
+            return texto2.split(";")[0];
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Ejercicio10Ficheros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
     
     /**
@@ -61,7 +75,14 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        try {
+            String texto = Files.readString(Paths.get(rutaBase + fichero));
+            return texto.split(palabra).length;
+        } catch (IOException ex) {
+            Logger.getLogger(Ejercicio10Ficheros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return 0;
     }   
     
     /**
@@ -82,7 +103,23 @@ public class Ejercicio10Ficheros {
      */
     public Optional<Double> calcularPromedio(){
         String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        List<Double> promedio = new ArrayList<>();
+        double result = 0;
+        try {
+          
+            Files.lines(Paths.get(rutaBase + fichero), Charset.defaultCharset()).collect(Collectors.toList()).forEach((t) -> {
+             promedio.add(Double.parseDouble(t.split(";")[1]));
+          });
+            
+            for (Double num : promedio) {
+                result+=num;
+            }
+            return Optional.of(result/promedio.size());
+        } catch (IOException ex) {
+            Logger.getLogger(Ejercicio10Ficheros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Optional.empty();
     }    
     
     /**
@@ -94,7 +131,21 @@ public class Ejercicio10Ficheros {
      */
     public List<Persona> cargarPersona() throws FileNotFoundException{
         String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> lista = new ArrayList<>();
+        try {
+            Files.readAllLines(Paths.get(rutaBase + fichero), Charset.defaultCharset()).stream().skip(1).forEach((t) -> {
+                if(!t.isBlank()){
+                lista.add(new Persona(t.trim().split(";")[0], t.trim().split(";")[1]));
+                }
+            });
+            
+            return lista;
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Ejercicio10Ficheros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }      
     
 
