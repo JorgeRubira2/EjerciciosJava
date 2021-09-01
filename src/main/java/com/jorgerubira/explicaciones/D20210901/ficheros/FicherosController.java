@@ -99,10 +99,11 @@ public class FicherosController {
         }catch(IOException e){
             e.printStackTrace();
             m.addAttribute("error", "Error inesperado");
+             return "redirect:ver";
         }
         
         //response.addCookie(new Cookie("username", "Jovan"));
-        return "d20210901/formulario";
+       
     }
     
 }

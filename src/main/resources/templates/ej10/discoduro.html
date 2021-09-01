@@ -9,29 +9,36 @@
         <div class="container">
             <h1>Mostrar Disco Duro</h1>
             <br>
-            <form>
+           <!-- <form>
                 <input type="text" placeholder="Ruta" th:field="${currentPath}">
                 <input type="submit" value="Enviar Ruta">
-            </form>
+            </form> -->
             <br>
-            <div th:each="dirFrag:${frag}">
-               <a th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
+            <div th:each="dirFrag:${frag}"> 
+               <a th:text="${frag}" th:href="${frag}+' .. '" style="text-decoration: none; font-size: 24px"></a>
+               <span>a</span>
             </div>
             <div>
                <a th:text="${currentPath}" th:href="${currentPath}" style="text-decoration: none; font-size: 24px"></a>
             </div>
             <br>
+            <div th:if="${error != null}">
+                <a th:text="${dir}" th:href="${dir}" style="text-decoration: none; font-size: 24px"></a>
+                </br></br>
+                <span>Error al visualizar el directorio</span>
+            </div>
             <table class="table table-striped">
                 <tr th:each="dir:${directorio}">
                     <td>
-                        <i class="far fa-folder"></i> 
+                        <i class="far fa-folder"></i>  
                         <a th:text="${dir}" th:href="@{/ejercicio10/ver(ruta=${dir})}" style="text-decoration: none"></a>
                     </td>
                 </tr>
                 <tr th:each="fichero:${ficheros}">
                     <td>
-                        <i class="far fa-file"></i> 
-                        <a th:text="${fichero}" th:href="@{/ejercicio10/ver(ruta=${fichero})}" style="text-decoration: none"></a>
+                        <i class="far fa-file"></i>  
+                        <a th:text="${fichero}" th:href="@{/ejercicio10/ver(ruta=${fichero})}" style="text-decoration: none"></a> 
+                        <a th:href="@{/ejercicio10/ver(descargar=${fichero})}"><i class="fas fa-download px-5" style="color:#0d6efd; float: right"></i></a>
                     </td>
                 </tr>
             </table>
