@@ -7,6 +7,7 @@ package com.jorgerubira.ejerciciosjava;
 
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class Ejercicio10FicherosTest {
     }
 
     @Test
-    public void testContarCuantosEventosHay() {
+    public void testContarCuantosEventosHay() throws IOException {
         Ejercicio10Ficheros instance = new Ejercicio10Ficheros();
         assertEquals(9, instance.contarCuantosEventosHay());
     }
