@@ -53,6 +53,7 @@ public class Ejercicio10Ficheros {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "";
     }
     
     /**
@@ -123,9 +124,23 @@ public class Ejercicio10Ficheros {
      * Si el fichero no lanzar una FileNotFoundException.
      */
     public List<Persona> cargarPersona() throws FileNotFoundException{
-        String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
-    }      
-    
-
+        String fichero = "ListaPersonas.txt";     
+        
+        List<Persona> lista=null;
+        
+        try{
+            List<String> listar = Files.lines(Paths.get(rutaBase + fichero))
+                .skip(1) //De este modo saltamos la primera linea, que es la cabecera
+                .filter(x->x.length() > 0) //Así evitamos las líneas en blanco que pueda haber
+                .map(x->x.split(";")[0]) // Mapeamos para convertir y después seleccionamos el valor de tabulación y nos quedamos con la primera columna
+                .collect(Collectors.toList()); //Lo devolvemos como lista que es lo que se nos pide List<Persona>
+                
+            lista=listar.stream().map(x-> new Persona(x)).collect(Collectors.toList()); //Listamos el resultado anterior
+            lista.forEach(System.out::println); //Para cada elemento, lo imprimimos. Esta sintaxis(System.out::println)es como si pusiésemos (x->System.out.println(x))
+        }catch (Exception e){
+            e.printStackTrace();
+             
+        }
+        return lista; 
+    }
 }
