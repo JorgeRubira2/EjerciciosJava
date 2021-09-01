@@ -15,7 +15,7 @@
             </form> -->
             <br>
             <div th:each="dirFrag:${frag}"> 
-               <a th:text="${frag}" th:href="${frag}+' .. '" style="text-decoration: none; font-size: 24px"></a>
+               <a th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
                <span>a</span>
             </div>
             <div>
@@ -31,14 +31,14 @@
                 <tr th:each="dir:${directorio}">
                     <td>
                         <i class="far fa-folder"></i>  
-                        <a th:text="${dir}" th:href="@{/ejercicio10/ver(ruta=${dir})}" style="text-decoration: none"></a>
+                        <a th:text="${dir}" th:href="@{/ejercicio10/ver(ruta=${currentPath+ '/' +dir})}" style="text-decoration: none"></a>
                     </td>
                 </tr>
                 <tr th:each="fichero:${ficheros}">
                     <td>
                         <i class="far fa-file"></i>  
-                        <a th:text="${fichero}" th:href="@{/ejercicio10/ver(ruta=${fichero})}" style="text-decoration: none"></a> 
-                        <a th:href="@{/ejercicio10/ver(descargar=${fichero})}"><i class="fas fa-download px-5" style="color:#0d6efd; float: right"></i></a>
+                        <a th:text="${fichero}" th:href="@{/ejercicio10/ver(ruta=${currentPath+ '/' +fichero})}" style="text-decoration: none"></a> 
+                        <a th:href="@{/ejercicio10/descargar(fichero=${currentPath+ '/' +fichero},nombre=${fichero})}"><i class="fas fa-download px-5" style="color:#0d6efd; float: right"></i></a>
                     </td>
                 </tr>
             </table>

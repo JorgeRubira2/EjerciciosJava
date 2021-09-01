@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="container">
+                <h1>Gestor de Imagenes</h1>
+                <br>
+                <h5>Subir Imagenes</h5><br>
+                <form method="post" action="/ejercicio11/subir">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Descripción"><br>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="inputGroupFile02" placeholder="Imagen">
+                              <label class="custom-file-label" for="inputGroupFile02">Selecciona una imagen</label>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary mb-2" type="submit" value="Subir Imagen">
+                    </div>
+                </form> 
+                <br><hr><br>
+                <form method="post" action="/ejercicio11/filtrar">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Filtro"><br>
+                        <input class="btn btn-primary mb-2" type="submit" value="Filtrar">
+                    </div>
+                </form> 
+                <div th:each="imagen:${imagenes}" class="row">
+                    <div>
+                        <img th:src="${imagen}">
+                        <a th:href="@{/ejercicio10/borrar(ruta=${currentPath+ '/' +img})}">Borrar</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </body>
+</html>
