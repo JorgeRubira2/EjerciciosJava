@@ -47,3 +47,10 @@ create table categorias (
 id int primary key auto_increment,
 categoria varchar(200) not null
 )
+
+create table imagenesSubida (
+id int primary key auto_increment,
+ruta_almacenamiento Varchar(400) not null,
+nombre_original varchar(200) not null,
+descripcion varchar(400)
+);

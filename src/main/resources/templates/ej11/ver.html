@@ -1,0 +1,51 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="/ej11/layout::reemplazo( ~{::body}, ~{::misestilos})">
+    <html>
+        <head>
+            <title>TODO supply a title</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <misestilos>
+
+        </misestilos>
+        <body>
+            <h1>Fotos</h1>
+            <hr>
+            <div class="container">
+                
+                <!--subir -->
+
+
+                <form action="/ejercicio11/subirImagen" method="post" enctype="multipart/form-data" > 
+                    <div class="row">
+                        <div><label for="descripcion">descripcion:  </label> 
+                            <input type ="text" name="descripcion" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="file" name="fichero" required/> 
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Subir Fichero"/> 
+                    </div>
+                </form>
+                
+                <hr>
+                <!-- filtrar -->
+                <form action="/ejercicio11/ver" method="post"> <input type="text" name="descripcion" placeholder="descripcion de las imagenes" > <input type="submit" value="Filtrar"/> </form>
+                
+                <hr>
+                <!--mostrar --> 
+
+                <span th:each="imagen:${imagenes}">
+                    <div class="row">
+                        <img src="${imagen.rutaAlmacenamiento}" > 
+                    </div>
+                    <div class="row">
+                        <span th:text="${imagen.descripcion}"></span><a href="@{borrarImagen(id=imagen.id)}">Borrar</a>
+                    </div>
+                </span>
+            </div>
+        </body>
+    </html>
