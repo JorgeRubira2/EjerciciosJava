@@ -7,45 +7,60 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
         <misestilos>
-
+            <style>
+                .imagen{
+                    border: 2px solid grey;
+                    border-radius: 20%;
+                    height:  200px;
+                    width:   200px;
+                    margin:10%;
+                    padding: 15%;
+                }
+                
+                
+            </style>
         </misestilos>
         <body>
-            <h1>Fotos</h1>
-            <hr>
+
             <div class="container">
-                
+                <h1>Fotos</h1>
+                <hr>
                 <!--subir -->
 
 
                 <form action="/ejercicio11/subirImagen" method="post" enctype="multipart/form-data" > 
                     <div class="row">
-                        <div><label for="descripcion">descripcion:  </label> 
+                        <div><label for="descripcion">Descripcion:  </label> 
                             <input type ="text" name="descripcion" required/>
                         </div>
                     </div>
                     <div class="row">
-                        <input type="file" name="fichero" required/> 
+                        <label for="fichero">Fichero:  </label>
+                        <input  type="file" name="fichero" required/> 
                     </div>
                     <div class="row">
-                        <input type="submit" value="Subir Fichero"/> 
+                        <input class='btn btn-primary' type="submit" value="Subir Fichero"/> 
                     </div>
                 </form>
-                
+
                 <hr>
                 <!-- filtrar -->
-                <form action="/ejercicio11/ver" method="get"> <input type="text" name="descripcion" placeholder="descripcion de las imagenes" > <input type="submit" value="Filtrar"/> </form>
-                
+                <form action="/ejercicio11/ver" method="get"> <input type="text" name="descripcion" placeholder="descripcion de las imagenes" > <input class='btn btn-primary' type="submit" value="Filtrar"/> </form>
+
                 <hr>
                 <!--mostrar --> 
-
-                <span th:each="imagen:${imagenes}">
-                    <div class="row">
-                        <img th:src="${imagen.rutaAlmacenamiento}" > 
-                    </div>
-                    <div class="row">
-                        <span th:text="${imagen.descripcion}"></span><a th:href="@{borrarImagen(id=${imagen.id})}">Borrar</a>
-                    </div>
-                </span>
+                <div class="row">
+                    <span th:each="imagen:${imagenes}">
+                        <div class="col imagen">
+                            <img th:src="${imagen.rutaAlmacenamiento}" > 
+                            <div class="col">
+                                <div th:text="${imagen.descripcion}"></div>
+                                <a th:href="@{borrarImagen(id=${imagen.id})}">Borrar</a>
+                            </div>
+                        </div>
+                         
+                    </span>
+                </div>
             </div>
         </body>
     </html>
