@@ -4,12 +4,16 @@ import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    private final String rutaBase="C:\\Users\\skudo\\Documents\\NetBeansProjects\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -22,8 +26,16 @@ public class Ejercicio10Ficheros {
      * Ejemplo del fichero: 
      */
     public int contarCuantosEventosHay(){
-        String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        String fichero="AgendaDeDeportes.csv"; 
+        try{
+            long numEventos=Files.lines(Paths.get(rutaBase + fichero), Charset.forName("ISO-8859-1")).count()-1;
+            return (int)numEventos;
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;  
+        }
+         
     }
     
     /**
@@ -34,7 +46,8 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        
+        Files.readAllLines(rutabase, Charset.forName("ISO-8859-1"));
     }
     
     /**
@@ -45,7 +58,12 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-        throw new RuntimeException("Pendiente de hacer");
+        
+        //leer fichero de golpe, split y contar -1
+        String var="clase";
+        String vector[]=var.split("clase");
+        return 0;
+        
     }   
     
     /**
