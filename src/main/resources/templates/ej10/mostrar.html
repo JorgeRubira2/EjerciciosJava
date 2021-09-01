@@ -28,7 +28,7 @@
                             </td>
                         </th:block>
                         <th:block th:if="${cosas.directorio}==false">
-                            <td><i class="fas fa-file"></i> <a th:download="${cosas.nombre}" th:href="@{|/ejercicio10/files?fichero=${rutaActual}/${cosas.nombre}|}" ><span th:text="${cosas.nombre}"></span></a>
+                            <td><i class="fas fa-file"></i> <a  th:href="@{|/ejercicio10/files?fichero=${rutaActual}/${cosas.nombre}&nombre=${cosas.nombre}|}" ><span th:text="${cosas.nombre}"></span></a>
                             </td>
                         </th:block>
                     </tr>

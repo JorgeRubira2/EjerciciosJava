@@ -1,22 +1,14 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Fichero;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import static java.lang.Math.log;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,9 +44,10 @@ public class Ejercicio10MostrarDiscoDuroController {
 
         return "/ej10/mostrar";
     }
-    @RequestMapping(value="files", method=RequestMethod.GET)
+    @RequestMapping(value="files", method=RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
-    public FileSystemResource downloadFile(@RequestParam String fichero) {
+    public FileSystemResource downloadFile(HttpServletResponse response, @RequestParam String fichero, @RequestParam String nombre) {
+        response.setHeader("Content-Disposition", "attachment; filename=" + nombre);
         return new FileSystemResource(new File(fichero));
     }
 }
