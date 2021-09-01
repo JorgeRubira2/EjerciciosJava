@@ -22,11 +22,11 @@ and open the template in the editor.
             <tbody>
                     <tr th:each="fichero: ${contenido}">
                         <td>
-                            <a th:if="${fichero.directorio}" th:text = "${'*'+fichero.nombre}" th:href="@{/ej10/lista(ruta=${fichero.rutaAbsoluta})}"></a>
-                            <a th:if="${!fichero.directorio}" th:text="${fichero.nombre}"></a>
+                            <a th:if="${fichero.directorio}" th:text = "${' ' + fichero.nombre}" class="far fa-folder-open" th:href="@{/ej10/lista(ruta=${fichero.rutaAbsoluta})}"></a>
+                            <a th:if="${!fichero.directorio}" th:text="${' ' +  fichero.nombre}" class="fas fa-file text-dark" th:href="@{/descarga(ruta=${fichero.rutaAbsoluta})}"></a>
                         </td>  
                         <td class="nombre">
-                            <a th:if="${ruta!=null}" th:href="@{/ej10/lista(ruta=${ruta})}">VOLVER</a>
+                            <a class="btn btn-primary btn-sm" th:if="${ruta!=null}" th:href="@{/ej10/lista(ruta=${ruta})}">VOLVER</a>
                         </td>
                     </tr>
             </tbody>
