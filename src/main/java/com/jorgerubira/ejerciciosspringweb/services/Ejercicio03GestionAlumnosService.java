@@ -10,43 +10,32 @@ import java.util.OptionalLong;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-
-
 /**
  * Servicio que implementa el interface de gestion de alumnos
  */
 @Service
 public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlumnosService {
 
-
     private List<Alumno> listaAlumnos = new ArrayList<>();
-    
+
     @Override
     public void guardarAlumno(Alumno alumno) {
         if (alumno == null) {
             throw new NullPointerException();
-        } else if (listaAlumnos.stream()
-                .noneMatch(var1 -> var1.getCodigo() == (alumno.getCodigo()))) {
-            
-            OptionalLong ultima = listaAlumnos.stream()
-                    .mapToLong(var1 -> var1.getCodigo())
-                    .max();
+        } else if (listaAlumnos.stream().noneMatch(var1 -> var1.getCodigo() == (alumno.getCodigo()))) {
 
-            if (ultima.isEmpty()){
+            OptionalLong ultima = listaAlumnos.stream().mapToLong(var1 -> var1.getCodigo()).max();
+
+            if (ultima.isEmpty()) {
                 alumno.setCodigo(1);
             } else {
-                alumno.setCodigo(ultima.getAsLong()+1);
+                alumno.setCodigo(ultima.getAsLong() + 1);
             }
-
 
             listaAlumnos.add(alumno);
 
         } else {
-            Alumno aux = listaAlumnos.stream()
-                    .filter(var1 -> var1.getCodigo() == alumno.getCodigo())
-                    .findFirst().get();
+            Alumno aux = listaAlumnos.stream().filter(var1 -> var1.getCodigo() == alumno.getCodigo()).findFirst().get();
 
             aux.setDireccion(alumno.getDireccion());
             aux.setCodigo(alumno.getCodigo());
@@ -58,9 +47,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public void borrarAlumno(Long codigo) {
-        Optional<Alumno> alumno = listaAlumnos.stream()
-                .filter(v1 -> v1.getCodigo() == codigo)
-                .findFirst();
+        Optional<Alumno> alumno = listaAlumnos.stream().filter(v1 -> v1.getCodigo() == codigo).findFirst();
 
         if (alumno.isPresent()) {
             listaAlumnos.remove(alumno.get());
@@ -74,17 +61,13 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
 
     @Override
     public Optional<Alumno> getAlumno(Long codigo) {
-        Optional<Alumno> alumno = listaAlumnos.stream()
-                .filter(v1 -> v1.getCodigo() == codigo)
-                .findFirst();
+        Optional<Alumno> alumno = listaAlumnos.stream().filter(v1 -> v1.getCodigo() == codigo).findFirst();
 
         return alumno;
     }
 
     @Override
     public List<Alumno> getAlumnos(String buscar) {
-        return listaAlumnos.stream()
-                .filter(v1 -> v1.getNombre().equals(buscar))
-                .collect(Collectors.toList());
+        return listaAlumnos.stream().filter(v1 -> v1.getNombre().equals(buscar)).collect(Collectors.toList());
     }
 }

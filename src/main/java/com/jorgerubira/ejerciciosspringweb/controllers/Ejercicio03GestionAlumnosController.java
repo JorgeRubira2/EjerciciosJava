@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/ejercicio3")
 public class Ejercicio03GestionAlumnosController {
 
-    // TODO
     @Autowired
     private IEjercicio03GestionAlumnosService list;
 

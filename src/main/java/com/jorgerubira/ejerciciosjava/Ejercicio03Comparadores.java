@@ -12,7 +12,7 @@ public class Ejercicio03Comparadores {
             return i1.equals(i2);
         } catch (Exception e) {
             return false;
-        }
+}
     }
 
     // Debe devolver true si los dos enteros contienen el mismo valor.
@@ -20,7 +20,7 @@ public class Ejercicio03Comparadores {
     // Si se envia null en cualquiera de ellos devuelve false
     public boolean compararEnteroConLong(Integer i1, Long i2) {
         try {
-            return Long.valueOf(i1).equals(i2);
+return Long.valueOf(i1).equals(i2);
         } catch (Exception e) {
             return false;
         }
@@ -44,7 +44,7 @@ public class Ejercicio03Comparadores {
     public boolean comprobarOptionalConInteger(Optional<Integer> valor1, Integer valor2) {
         try {
             Optional<Integer> op = Optional.of(valor2);
-            return valor1.equals(op);
+return valor1.equals(op);
         } catch (Exception e) {
             return false;
         }

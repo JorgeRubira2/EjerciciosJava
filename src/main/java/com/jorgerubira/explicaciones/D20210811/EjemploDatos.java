@@ -13,6 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EjemploDatos {
     
     public static void main(String[] args) {
-        SpringApplication.run(EjemploDatos.class, args);
+SpringApplication.run(EjemploDatos.class, args);
     }
 }

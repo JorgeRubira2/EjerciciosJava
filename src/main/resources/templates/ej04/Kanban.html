@@ -1,56 +1,304 @@
 <html xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <title>Kanbam</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-        <link rel="stylesheet" type="text/css" href="estilos.css">
-    </head>
-    <body>
-        <table class="table table-bordered" border="1">
-            
-            <tr class="addTask">
-                <td colspan="4"><button class="btn btn-secondary btn-sm">Añadir tarea <i class="fas fa-plus"></i></button></td> <!-- Botón para añadir una nueva tarea-->
-            </tr>
-            
-            <tr class='cambioFuente'> <!-- Fila con los títulos principales-->
-                <th class="table-danger" rowspan="2"> Sin estado</th>
-                <th class="table-active" colspan="2">Trabajo</th>
-                <th class="table-success" rowspan="2" >Terminado</th>
-            </tr>
-            
-            <tr class='cambioFuente'> <!-- Fila con los títulos secundarios de "Trabajo" -->
-                <th class="table-warning">En espera</th>
-                <th class="table-primary">Realizándose</th>
-            </tr>
-            
 
-            <!-- Aquí ya se empiezan a meter los objetos -->
-            <tr class="noBordesTop"> 
+<head>
+    <title>Kanbam</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="/ej04/estilos.css">
 
-                <td> <!-- Columna "Sin Estado" -->
-                    <div>Lorem ipsum dolor sit amet, </div>
-                    <div>Lorem ipsum dolor sit amet, </div>
-                    <div>Lorem ipsum dolor sit amet, </div>
-                </td>
-                
-                <td> <!-- Columna "En Espera" -->
-                    <div>Lorem ipsum dolor sit amet, </div>
-                </td>
-                
-                <td> <!-- Columna "Realizándose" -->
-                    <div>Lorem ipsum dolor sit amet, </div>
-                </td>
-                
-                <td> <!-- Columna "Terminado" -->
-                    <div>Lorem ipsum dolor sit amet, </div>
-                </td>
-                
-            </tr>
-        </table>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-    </body>
+</head>
+
+<body>
+    <table class="table table-bordered" border="1">
+
+        <tr class="addTask">
+            <td colspan="4"><button onClick="mostrarFormularioNuevo()" class="btn btn-secondary btn-sm">Añadir tarea <i
+                        class="fas fa-plus"></i></button>
+            </td> <!-- Botón para añadir una nueva tarea-->
+        </tr>
+
+        <tr class='cambioFuente'>
+            <!-- Fila con los títulos principales-->
+            <th class="table-danger" rowspan="2"> Sin estado</th>
+            <th class="table-active" colspan="2">Trabajo</th>
+            <th class="table-success" rowspan="2">Terminado</th>
+        </tr>
+
+        <tr class='cambioFuente'>
+            <!-- Fila con los títulos secundarios de "Trabajo" -->
+            <th class="table-warning">En espera</th>
+            <th class="table-primary">Realizándose</th>
+        </tr>
+
+
+        <!-- Aquí ya se empiezan a meter los objetos -->
+        <tr class="noBordesTop">
+
+            <td>
+                <!-- Columna "Sin Estado" -->
+                <div th:each="tarea:${Roadmap}" th:class="
+                ${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'divModificado Verde' : 
+                (${tarea.horasTrabajadas < tarea.horasEstimacion*2} ? 'divModificado Naranja' : 'divModificado Rojo')">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${tarea.propietario}"></h5>
+                            <p class="card-text" th:text="${tarea.descripcion}" />
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" th:text=" ' Horas Estimadas: ' +${tarea.horasEstimacion}" />
+                            <li class="list-group-item" th:text=" ' Horas Trabajadas: ' +${tarea.horasTrabajadas}" />
+                        </ul>
+                        <div class="card-body">
+                            <a type="button" th:data="${tarea.codigo}"
+                                th:onclick="mostrarFormularioEditar(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar persona -->
+                            <a type="button" th:data="${tarea.codigo}"
+                                th:onclick="mostrarFormularioAsignarPropietario(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm" id="boton">
+                                <i class="fas fa-user-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar estado -->
+                            <a type="button" th:data="${tarea.codigo}"
+                                th:onclick="mostrarFormularioCambiarEstado(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-calendar-day"></i>
+                            </a>
+
+                            <!-- Botón para imputar horas -->
+                            <a type="button" th:data="${tarea.codigo}"
+                                th:onclick="mostrarFormularioImputarHoras(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-clock"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <!-- Columna "En Espera" -->
+                <div th:each="tarea:${Waiting}" th:class="
+                ${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'divModificado Verde' : 
+                (${tarea.horasTrabajadas < tarea.horasEstimacion*2} ? 'divModificado Naranja' : 'divModificado Rojo')">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${tarea.propietario}"></h5>
+                            <p class="card-text" th:text="${tarea.descripcion}" />
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" th:text=" ' Horas Estimadas: ' +${tarea.horasEstimacion}" />
+                            <li class="list-group-item" th:text=" ' Horas Trabajadas: ' +${tarea.horasTrabajadas}" />
+                        </ul>
+                        <div class="card-body">
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioEditar(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar persona -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioAsignarPropietario(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-user-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar estado -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioCambiarEstado(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-calendar-day"></i>
+                            </a>
+
+                            <!-- Botón para imputar horas -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioImputarHoras(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-clock"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <!-- Columna "Realizándose" -->
+                <div th:each="tarea:${Working}" th:class="
+                ${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'divModificado Verde' : 
+                (${tarea.horasTrabajadas < tarea.horasEstimacion*2} ? 'divModificado Naranja' : 'divModificado Rojo')">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${tarea.propietario}"></h5>
+                            <p class="card-text" th:text="${tarea.descripcion}" />
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" th:text=" ' Horas Estimadas: ' +${tarea.horasEstimacion}" />
+                            <li class="list-group-item" th:text=" ' Horas Trabajadas: ' +${tarea.horasTrabajadas}" />
+                        </ul>
+                        <div class="card-body">
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioEditar(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar persona -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioAsignarPropietario(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-user-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar estado -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioCambiarEstado(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-calendar-day"></i>
+                            </a>
+
+                            <!-- Botón para imputar horas -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioImputarHoras(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-clock"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <!-- Columna "Terminado" -->
+                <div th:each="tarea:${Done}" th:class="
+                ${tarea.horasTrabajadas <= tarea.horasEstimacion} ? 'divModificado Verde' : 
+                (${tarea.horasTrabajadas < tarea.horasEstimacion*2} ? 'divModificado Naranja' : 'divModificado Rojo')">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${tarea.propietario}"></h5>
+                            <p class="card-text" th:text="${tarea.descripcion}" />
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" th:text=" ' Horas Estimadas: ' +${tarea.horasEstimacion}" />
+                            <li class="list-group-item" th:text=" ' Horas Trabajadas: ' +${tarea.horasTrabajadas}" />
+                        </ul>
+                        <div class="card-body">
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioEditar(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar persona -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioAsignarPropietario(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-user-edit"></i>
+                            </a>
+
+                            <!-- Botón para asignar estado -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioCambiarEstado(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-calendar-day"></i>
+                            </a>
+
+                            <!-- Botón para imputar horas -->
+                            <a type="button" th:data="${tarea.codigo}|"
+                                th:onclick="mostrarFormularioImputarHoras(this.getAttribute('data'));"
+                                class="btn btn-secondary btn-sm">
+                                <i class="fas fa-clock"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+    <script>
+        function mostrarFormularioNuevo() {
+            $.ajax({
+                url: "/ejercicio4/formAgregarModificar",
+                data: {},
+                success: function (formularioNuevo) {
+                    bootbox.dialog({
+                        message: formularioNuevo,
+                    });
+                },
+                error: function (err) {
+                    alert("Si la URL esta mal. Codigo 404");
+                },
+            });
+        }
+
+        function mostrarFormularioAsignarPropietario(codigoparam) {
+            $.ajax({
+                url: "/ejercicio4/formAsignarPropietario",
+                data: {
+                    codigo: codigoparam,
+                },
+                success: function (formularioEditar) {
+                    bootbox.dialog({
+                        message: formularioEditar,
+                    });
+                },
+            });
+        }
+
+        function mostrarFormularioImputarHoras(codigoparam) {
+            $.ajax({
+                url: "/ejercicio4/formImputarHoras",
+                data: {
+                    codigo: codigoparam,
+                },
+                success: function (formularioEditar) {
+                    bootbox.dialog({
+                        message: formularioEditar,
+                    });
+                },
+            });
+        }
+
+        function mostrarFormularioCambiarEstado(codigoparam) {
+            $.ajax({
+                url: "/ejercicio4/formCambiarEstado",
+                data: {
+                    codigo: codigoparam,
+                },
+                success: function (formularioEditar) {
+                    bootbox.dialog({
+                        message: formularioEditar,
+                    });
+                },
+            });
+        }
+
+        function mostrarFormularioEditar(codigoparam) {
+            $.ajax({
+                url: "/ejercicio4/formAgregarModificar",
+                data: {
+                    codigo: codigoparam,
+                },
+                success: function (formularioEditar) {
+                    bootbox.dialog({
+                        message: formularioEditar,
+                    });
+                },
+            });
+        }
+    </script>
+</body>
+
 </html>

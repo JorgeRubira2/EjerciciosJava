@@ -1,0 +1,8 @@
+@import url("/ej04/estilos.css");
+
+form input {
+  margin-bottom: 10px;
+}
+form button {
+  width: 100%;
+}
