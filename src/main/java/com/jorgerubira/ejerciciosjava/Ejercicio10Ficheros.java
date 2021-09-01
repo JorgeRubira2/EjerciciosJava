@@ -59,7 +59,7 @@ public class Ejercicio10Ficheros {
      * Cuantas cuantas veces aparece una palabra (o texto) en el fichero solicitado.
      * Deberá ser insensible a mayusculas y minusculas
      * Si estuviese ese evento o no encuentra el fichero devolver 0.
-     * Pista facil: Cargar el fichero utilizar el método readAllText y pasarlo hacer un split.
+     * Pista facil: Cargar el fichero utilizar el método readString y pasarlo hacer un split.
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
