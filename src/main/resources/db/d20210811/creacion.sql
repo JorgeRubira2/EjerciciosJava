@@ -54,3 +54,18 @@ ruta_almacenamiento Varchar(400) not null,
 nombre_original varchar(200) not null,
 descripcion varchar(400)
 );
+
+create table datosuniversidad(
+id int primary key auto_increment,
+curso_academico int,
+estudio varchar(200),
+localidad varchar(200),
+centro varchar(200),
+tipo_centro varchar(200),
+tipo_estudio varchar(200),
+plazas_ofertadas int,
+plazas_matriculadas int,
+plazas_solicitadas int,
+indice_ocupaciondecimal(6,3),
+fecha_actualizacion date
+);
