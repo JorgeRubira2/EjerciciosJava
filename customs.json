@@ -1,5 +1,7 @@
 {
-    "elements": {},
+    "elements": {
+        "div": {}
+    },
     "attributes": {
         "color": {
             "context": "table"

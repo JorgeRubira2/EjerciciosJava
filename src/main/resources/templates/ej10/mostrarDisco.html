@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+   
+    
+    <head>
+        <title>Mostrar Disco Duro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    
+    <body>
+        <h1> 
+            <div> Archivos Disco Duro   
+      
+         </h1>
+        
+            <div class="container">    
+                <div>                             
+                <a th:if="${ruta!=null}" th:href="@{/ejercicio10/lista(ruta=${ruta})}"> Regresar </a>
+                </div>
+             </br>
+             <table class="table table-striped">
+                <tr>
+                    <th>Nombre</th>
+                </tr>                             
+              
+                <tr th:each="archivo:${lista}">                    
+                    <td  th:if="${archivo.isDirectory}" >                        
+                       <!--  <a th:href="${archivo.getAbsolutePath}" th:text="${archivo.getName}"/> -->
+                       <a th:href="@{/ejercicio10/lista(ruta=${archivo.getAbsolutePath})}" th:text="${archivo.getName}" />
+                       
+                    </td>                    
+                    <td th:unless="${archivo.isDirectory}" th:text="${archivo.getName}" />     
+                    
+                    
+                </tr>                           
+                
+               </table>
+           
+        </div>
+        
+    </body>
+</html>
