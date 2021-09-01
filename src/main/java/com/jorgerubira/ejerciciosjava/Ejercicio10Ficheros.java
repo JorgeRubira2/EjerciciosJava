@@ -11,8 +11,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
 
@@ -102,17 +104,22 @@ public class Ejercicio10Ficheros {
     public Optional<Double> calcularPromedio() {
         String fichero = "Evaluaciones.csv";
         List<String> lineas = new ArrayList<>();
-        List<Double> media = new ArrayList<>();
         Optional<Double> result = Optional.ofNullable(null);
         String ruta = rutaBase + fichero;
         File file = new File(ruta);
         if (file.exists()) {
             try {
                 lineas = Files.readAllLines(Paths.get(ruta), Charset.forName("ISO-8859-1"));
+                OptionalDouble od = lineas.stream().filter(x -> x.contains(";")).mapToDouble(x -> {
+                    String[] aux = x.split(";");
+                    return Double.parseDouble(aux[1]);
+                }).average();
+                result = Optional.ofNullable(od.getAsDouble());
+                return result;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             return result;
         }
 
@@ -128,7 +135,25 @@ public class Ejercicio10Ficheros {
      */
     public List<Persona> cargarPersona() throws FileNotFoundException {
         String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
-    }
+        List<String> lineas = new ArrayList<>();
+        List<Persona> result = new ArrayList<>();
+        String ruta = rutaBase + fichero;
+        File file = new File(ruta);
+        if (file.exists()) {
+            try {
+                lineas = Files.readAllLines(Paths.get(ruta), Charset.forName("ISO-8859-1"));
+                lineas.remove(0);
+                result = lineas.stream().filter(x -> x.contains(";")).map(x -> {
+                    String[] aux = x.split(";");
+                    return new Persona(aux[0], aux[1]);
+                }).collect(Collectors.toList());
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        } 
+        return result;
+
+    }
 }
