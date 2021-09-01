@@ -4,12 +4,18 @@ import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    private final String rutaBase="C:\\Users\\aritz\\IdeaProjects\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -23,7 +29,14 @@ public class Ejercicio10Ficheros {
      */
     public int contarCuantosEventosHay(){
         String fichero="AgendaDeDeportes.csv";
-        throw new RuntimeException("Pendiente de hacer");
+
+            try {
+                return (int) (Files.lines(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1).count()-1);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return 0;
+            }
+//        throw new RuntimeException("Pendiente de hacer");
     }
     
     /**
@@ -34,6 +47,12 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
         String fichero="AgendaDeDeportes.csv";
+//        try {
+//            return Files.readAllLines(Paths.get(rutaBase+fichero), StandardCharsets.ISO_8859_1).stream()
+//                    .
+//        } catch (IOException e) {
+//            return null;
+//        }
         throw new RuntimeException("Pendiente de hacer");
     }
     
