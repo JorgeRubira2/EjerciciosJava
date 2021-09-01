@@ -1,33 +1,45 @@
 <html>
-    <head>
-        <title>4. Mostrar 4 imágenes en miniatura que al pulsarlas aparezcan en grande en otra zona de la pantalla</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-        <style>
-            #miniatura{
-                display: inline-block;
-                width: 200px;
-            }
-            #completa{
-                width: 812px;
-            }
-        </style>
-    </head>
-    <body>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script>
-            function seleccionar(param) {
-                $("#completa").attr("src", param);
-            }
-        </script>
-        <div>
-            <img id="miniatura" src="https://fondosmil.com/fondo/2255.jpg" onclick="seleccionar('https://fondosmil.com/fondo/2255.jpg')"/>
-            <img id="miniatura" src="https://www.wallpaperup.com/uploads/wallpapers/2017/04/24/1087069/428f2be34beaf9519e507cc95cbbf9f6-700.jpg" onclick="seleccionar('https://www.wallpaperup.com/uploads/wallpapers/2017/04/24/1087069/428f2be34beaf9519e507cc95cbbf9f6-700.jpg')"/>
-            <img id="miniatura" src="https://fondosmil.com/fondo/2290.jpg" onclick="seleccionar('https://fondosmil.com/fondo/2290.jpg')"/>
-            <img id="miniatura" src="https://fondosmil.com/fondo/9725.jpg" onclick="seleccionar('https://fondosmil.com/fondo/9725.jpg')"/>
-        </div>
-        <div>
-            <img id="completa" src="https://fondosmil.com/fondo/9725.jpg"/>
-        </div>
-    </body>
+
+<head>
+  <title>
+    4. Mostrar 4 imágenes en miniatura que al pulsarlas aparezcan en grande en
+    otra zona de la pantalla
+  </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    #miniatura {
+      display: inline-block;
+      width: 200px;
+    }
+
+    #completa {
+      width: 812px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    function seleccionar(param) {
+      $("#completa").attr("src", param);
+    }
+  </script>
+  <div>
+    <img id="miniatura" src="https://fondosmil.com/fondo/2255.jpg"
+      onclick="seleccionar('https://fondosmil.com/fondo/2255.jpg')" />
+    <img id="miniatura"
+      src="https://www.wallpaperup.com/uploads/wallpapers/2017/04/24/1087069/428f2be34beaf9519e507cc95cbbf9f6-700.jpg"
+      onclick="seleccionar('https://www.wallpaperup.com/uploads/wallpapers/2017/04/24/1087069/428f2be34beaf9519e507cc95cbbf9f6-700.jpg')" />
+    <img id="miniatura" src="https://fondosmil.com/fondo/2290.jpg"
+      onclick="seleccionar('https://fondosmil.com/fondo/2290.jpg')" />
+    <img id="miniatura" src="https://fondosmil.com/fondo/9725.jpg"
+      onclick="seleccionar('https://fondosmil.com/fondo/9725.jpg')" />
+  </div>
+  <div>
+    <img id="completa" src="https://fondosmil.com/fondo/9725.jpg" />
+  </div>
+</body>
+
 </html>
