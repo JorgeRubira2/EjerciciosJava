@@ -65,7 +65,7 @@ public class Ejercicio11GestionImagenesController {
             model.addAttribute("error", "tipo de fichero erroneo");
         }
 
-        String ruta= rutaEjercicio + UUID.randomUUID().toString();
+        String ruta= rutaEjercicio + UUID.randomUUID().toString() + extension;
         
         ImagenSubida imagen = new ImagenSubida(null, ruta, fichero.getOriginalFilename(), descripcion);
         System.out.println("ruta : "+ ruta);
