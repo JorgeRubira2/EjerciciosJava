@@ -111,7 +111,7 @@ public class Ejercicio10Ficheros {
      * Descartar las líneas que estén en blanco.
      * Si el fichero no se encuentra devolver Empty.
      */
-    public double calcularPromedio(){
+    public Optional<Double> calcularPromedio(){
         String fichero = "Evaluaciones.csv";
         double d =0;
         try {
@@ -124,7 +124,7 @@ public class Ejercicio10Ficheros {
             e.printStackTrace();
             System.err.println("fallo en io fichero");
         }
-        return d;
+        return Optional.of(new Double(d));
     }    
     
     /**
