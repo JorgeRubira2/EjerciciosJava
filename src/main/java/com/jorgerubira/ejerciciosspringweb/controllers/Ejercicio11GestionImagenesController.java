@@ -3,6 +3,8 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import com.jorgerubira.ejerciciosspringweb.repositories.ImagenRepository;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -10,6 +12,11 @@ import java.util.UUID;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +36,14 @@ public class Ejercicio11GestionImagenesController {
     private String rutaRecursos;
     
     @GetMapping
-    public String inicio(Model m, String success){
+    public String inicio(Model m, String success, String borrado){
         if(repoImg.findAll().isEmpty()){
             m.addAttribute("imagenes", new Imagen());
         }else{
             m.addAttribute("imagenes", repoImg.findAll());
         }
         m.addAttribute("success", success);
+        m.addAttribute("borrado", borrado);
         return "/ej11/vista";
     }
     
@@ -60,5 +68,41 @@ public class Ejercicio11GestionImagenesController {
             m.addAttribute("error", "Error inesperado");
         }
         return "/ej11/vista";
+    }
+    
+    @GetMapping("/descarga")
+    public ResponseEntity<Resource>  mostrarFormulario(String codigo,String nombre){
+        String ext = nombre.substring(nombre.lastIndexOf("."), nombre.length());
+        String ruta=rutaRecursos + "\\ej11\\" + codigo + ext;
+        
+        HttpHeaders cabeceras=new HttpHeaders();
+        cabeceras.add("Content-Disposition", "attachment; filename="+nombre);
+        cabeceras.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        cabeceras.add("Pragma", "no-cache");
+        cabeceras.add("Expires", "0");
+
+        try{
+            return ResponseEntity.ok()
+                                 .headers(cabeceras)
+                                 .contentLength((new File(ruta)).length())
+                                 .contentType(MediaType.parseMediaType( "application/octet-stream" ))  //Codigo MIME
+                                 .body(new InputStreamResource(new FileInputStream( ruta )) );
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+            return null;
+        }
+        
+    } 
+    @GetMapping("/borrar")
+    public String borrar(Model m, String codigo){
+        Imagen borrar = repoImg.findByCodigo(codigo);
+        String del = "";
+        if (borrar != null){
+            repoImg.delete(borrar);
+            del = "Imagen borrada con exito";
+        }else{
+            del = "Error inesperado";
+        }
+        return "redirect:/ejercicio11?borrado="+del;
     }
 }

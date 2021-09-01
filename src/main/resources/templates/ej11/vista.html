@@ -13,7 +13,7 @@
                     
                     <input class="form-control col-9" placeholder="Descripcion" type="text" name="descripcion" />
                     
-                    Imagen a subir<input class="btn btn-check col-4" type="file" name="fichero" />
+                    Imagen a subir<input required class="btn btn-check col-4" type="file" name="fichero" />
 
                     <input class="btn btn-success col-4" type="submit" value="Subir Fichero"/> 
                 </form>
@@ -30,14 +30,15 @@
             <div class="row">
                 <th:block th:if="${imagenes}!=null">
                     <div th:each="img:${imagenes}" class="card" style="width: 18rem;">
-                        <img class="card-img-top" th:src="${img.ruta}" alt="Card image cap">
+                        <img class="card-img-top" th:src="|/ejercicio11/descarga?codigo=${img.codigo}&nombre=${img.nombre}|" alt="Card image cap">
                         <div class="card-body">
                           <h5 th:text="${img.nombre}" class="card-title"></h5>
                           <p th:text="${img.descripcion}" class="card-text"></p>
-                          <a href="#" class="btn btn-primary">Borrar</a>
+                          <a th:href="|/ejercicio11/borrar?codigo=${img.codigo}|" class="btn btn-primary">Borrar</a>
                         </div>
                       </div>
                 </th:block>
+                <div style="color: red" th:if="${borrado!=null}" th:text="${borrado}"></div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
