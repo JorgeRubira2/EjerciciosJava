@@ -5,6 +5,7 @@ import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,6 +13,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Ejercicio10Ficheros {
@@ -66,10 +69,17 @@ public class Ejercicio10Ficheros {
      */
     public int contarCoincidencias(String fichero, String palabra){
         String ruta = (rutaBase + "\\" + fichero);
+        int c = 0;
+        int pos = 0;
         try{
-            Files.lines(Paths.get(ruta),Charset.defaultCharset()).filter(x->x.contains(palabra)).collect(Collectors.toList());
-            return 0;
+            String texto = Files.readString(Paths.get(ruta));
+            while (pos != -1) {   
+                   c++;    
+                   pos = texto.indexOf(palabra, pos + 1); 
+            }
+            return c;
         }catch(Exception e){
+            e.printStackTrace();
             return 0;
         }
     }   
@@ -92,7 +102,21 @@ public class Ejercicio10Ficheros {
      */
     public Optional<Double> calcularPromedio(){
         String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = (rutaBase + "\\" + fichero);
+        Optional<Double> notas = Optional.empty();
+        try{
+            String res = Files.readString(Paths.get(ruta));
+            String res2[] = res.split("[\n;]");
+            int cant = res2.length/2;
+            Double total = 0d;
+            for (int i = 1; i < res2.length; i+=2) {
+                total = total + Double.parseDouble(res2[i]);
+            }
+            notas = notas.of(total/cant);
+            return notas;
+        }catch(Exception e){
+            return null;
+        }
     }    
     
     /**
@@ -104,8 +128,21 @@ public class Ejercicio10Ficheros {
      */
     public List<Persona> cargarPersona() throws FileNotFoundException{
         String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
+        String ruta = (rutaBase + "\\" + fichero);
+        List<Persona> personas = new ArrayList<>();
+        try{
+            String res = Files.readString(Paths.get(ruta));
+            res = res.trim();
+            String res2[] = res.split("[;\n]");
+            for (int i = 2; i <= res2.length-1; i+=2) {
+                personas.add(new Persona(res2[i],res2[i+1]));
+            }
+            System.out.println(personas.size());
+            return personas;
+        }catch(FileNotFoundException e){
+            return null;
+        } catch (IOException ex) {
+           return null;
+        }
     }      
-    
-
 }

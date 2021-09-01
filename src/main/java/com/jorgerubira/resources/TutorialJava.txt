@@ -43,3 +43,4 @@ En esta técnica, todos los objetos tienen su ciclo de vida separado. Sin embarg
 
 Una composición es una forma especializada de Agregación. También se llama relación de “muerte”. Los objetos secundarios no tienen su ciclo de vida así que cuando el objeto primario elimina todos los objetos secundarios también se eliminarán automáticamente. Para eso, tomemos un ejemplo de Casa y habitaciones. Cualquier casa puede tener varias habitaciones. Una habitación no puede formar parte de dos casas diferentes. Por lo tanto, si elimina la sala de la casa también se eliminará.
 
+
