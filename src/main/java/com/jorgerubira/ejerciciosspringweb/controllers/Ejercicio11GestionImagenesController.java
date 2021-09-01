@@ -30,8 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/ejercicio11")
 public class Ejercicio11GestionImagenesController {
     
-    @Value("${carpetas.recursos.hiberus}")
-    private String rutaBase;  
+   // @Value("${carpetas.recursos.hiberus}")
+    private String rutaBase="C:\\zzCursoHiberus";  
 
     private String rutaEjercicio = rutaBase +"\\ejercicio11\\";
     

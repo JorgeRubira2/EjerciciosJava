@@ -40,7 +40,7 @@
 
                 <span th:each="imagen:${imagenes}">
                     <div class="row">
-                        <img src="${imagen.rutaAlmacenamiento}" > 
+                        <img th:src="${imagen.rutaAlmacenamiento}" > 
                     </div>
                     <div class="row">
                         <span th:text="${imagen.descripcion}"></span><a th:href="@{borrarImagen(id=${imagen.id})}">Borrar</a>
