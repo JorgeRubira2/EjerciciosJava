@@ -45,7 +45,7 @@ public class Ejercicio10FicherosTest {
     @Test
     public void testCalcularPromedio() {
         Ejercicio10Ficheros instance = new Ejercicio10Ficheros();
-        assertEquals(7.5, instance.calcularPromedio());
+        assertEquals(7.5, instance.calcularPromedio().get());
     }
 
     @Test
