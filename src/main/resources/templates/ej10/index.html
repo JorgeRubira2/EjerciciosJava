@@ -7,8 +7,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     </head>
     <body>
-        <div class="container ">
-            <a th:href="@{mostrarDirectorios(ruta=${Parent})}" class="btn btn-primary mt-4" >Ir atrás</a>
+        <div class="container">
+        <h1>Tu disco duro</h1>
+        </div>
+        <div class="container">
+            <a th:if="${Parent!=null}" th:href="@{mostrarDirectorios(ruta=${Parent})}" class="btn btn-primary mt-4" ><i class="fas fa-undo"></i> Ir atrás</a>
         </div>
         <div class="container">
             <!-- Tabla de alumnos-->    
@@ -18,8 +21,8 @@
                         <th>Nombre</th>
                     </tr>
                     <tr th:each="listado:${Ficheros}">
-                        <td th:if="${listado.directory}"><a th:text="${listado.name}" th:href="@{mostrarDirectorios(ruta=${listado.absolutePath})}"></a></td>
-                        <td th:if="${listado.directory==false}"><a th:text="${listado.name}" th:href="@{mostrarDirectorios(ruta=${listado.absolutePath})}"></a></td>
+                        <td th:if="${listado.directory}"><i class="fas fa-folder" style="color:violet"></i> <a th:text="${listado.name}" th:href="@{mostrarDirectorios(ruta=${listado.absolutePath})}"></a></td>
+                        <td th:if="${listado.directory==false}"><i class="fas fa-file" style="color:green"></i> <a th:text="${listado.name}" th:href="@{descarga(ruta=${listado.absolutePath})}"></i></a></td>
                     </tr>
    
                 </table>
