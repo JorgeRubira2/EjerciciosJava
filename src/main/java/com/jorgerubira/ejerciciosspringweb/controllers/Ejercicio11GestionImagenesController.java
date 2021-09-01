@@ -68,7 +68,7 @@ public class Ejercicio11GestionImagenesController {
         String ruta= rutaEjercicio + UUID.randomUUID().toString();
         
         ImagenSubida imagen = new ImagenSubida(null, ruta, fichero.getOriginalFilename(), descripcion);
-        
+        System.out.println("ruta : "+ ruta);
         File f=new File(ruta);
         f.getParentFile().mkdirs();
         try{

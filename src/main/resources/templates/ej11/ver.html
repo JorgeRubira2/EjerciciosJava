@@ -43,7 +43,7 @@
                         <img src="${imagen.rutaAlmacenamiento}" > 
                     </div>
                     <div class="row">
-                        <span th:text="${imagen.descripcion}"></span><a href="@{borrarImagen(id=imagen.id)}">Borrar</a>
+                        <span th:text="${imagen.descripcion}"></span><a th:href="@{borrarImagen(id=${imagen.id})}">Borrar</a>
                     </div>
                 </span>
             </div>
