@@ -11,9 +11,8 @@
                 .imagen{
                     border: 2px solid grey;
                     border-radius: 20%;
-                    height:  200px;
                     width:   200px;
-                    margin:10%;
+                    margin:  10%;
                     padding: 15%;
                 }
                 
@@ -52,7 +51,7 @@
                 <div class="row">
                     <span th:each="imagen:${imagenes}">
                         <div class="col imagen">
-                            <img th:src="${imagen.rutaAlmacenamiento}" > 
+                            <img th:src="@{descarga(ruta=${imagen.rutaAlmacenamiento})}" height="100px" width="150px" /> 
                             <div class="col">
                                 <div th:text="${imagen.descripcion}"></div>
                                 <a th:href="@{borrarImagen(id=${imagen.id})}">Borrar</a>
