@@ -43,38 +43,34 @@ public class Ejercicio12LeerCsv {
     public String inicio() {
         return "/ej12/inicio";
     }
-    
+
     @PostMapping("/guardar")
     public String guardar(Model m, MultipartFile csv) {
-        List<String> result=new ArrayList<>();
+        List<String> result = new ArrayList<>();
         try {
-            InputStream aux=csv.getInputStream();
+            InputStream aux = csv.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(aux, "UTF-8"));
             String linea;
-            String s="";
-            while( (linea = br.readLine()) != null ){
-                s=s+linea+"\n";    
+            String s = "";
+            while ((linea = br.readLine()) != null) {
+                s = s + linea + "\n";
             }
-            String []sVector=s.split("\n");
-            
-            result=Arrays.asList(sVector);
-            System.out.println("vector list "+result.get(0));
-            result.remove(0);
-            System.out.println("vector list "+result.get(0));
-        result.stream().filter(x->x.contains(";")).forEach(x->{
-            String[] objeto=x.split(";");
+            String[] sVector = s.split("\n");
+            result = Arrays.asList(sVector);
 
-                try {
-                    service.save(new Universidad(null,objeto[0],objeto[1],objeto[2],objeto[3],objeto[4],objeto[5],Integer.parseInt(objeto[6]),Integer.parseInt(objeto[7]),Integer.parseInt(objeto[8]),Double.parseDouble(objeto[9]),new SimpleDateFormat("dd/MM/yyyy").parse(objeto[10])));
-                } catch (ParseException ex) {
-                    Logger.getLogger(Ejercicio12LeerCsv.class.getName()).log(Level.SEVERE, null, ex);
-                }
-           
-        });
         } catch (IOException ex) {
             Logger.getLogger(Ejercicio12LeerCsv.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //no me deja hacer el result.remove(0) null pointer exception no entiendo por qué lo he filtrado por filtrar así pero no es lo mejor
+        result.stream().filter(x -> x.contains(";") && !x.contains("CURSO_ACADEMICO"))
+                .forEach(x -> {
+            String[] objeto = x.split(";");
+            try {
+                service.save(new Universidad(null, objeto[0], objeto[1], objeto[2], objeto[3], objeto[4], objeto[5], Integer.parseInt(objeto[6]), Integer.parseInt(objeto[7]), Integer.parseInt(objeto[8]), Double.parseDouble(objeto[9]), new SimpleDateFormat("dd/MM/yyyy").parse(objeto[10])));
+            } catch (ParseException ex) {
+                Logger.getLogger(Ejercicio12LeerCsv.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         m.addAttribute("universidad", service.findAll());
         return "/ej12/tabla";
     }
