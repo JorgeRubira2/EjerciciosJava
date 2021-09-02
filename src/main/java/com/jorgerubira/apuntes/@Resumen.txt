@@ -36,6 +36,10 @@ Java:
             GestionFichero: (new File(ruta)).mkdirs()), listFiles, exists, Files.copy, Files.move, Files.delete, Files.deleteIfExists
             Rutas: normalize()
             //Binarios (Secundario): OutputStream, InputStream. writeObject,readObject. Serializable. Aplicaciones pequeñas sin cambios y sin base de datos.
+
+
+
+- Anotaciones (Secundario). Algoritmo por reflexion. Metaanotacion->(Retention->Cuando se ejecutan, Target->Que elementos)
                 
 ------------------------------------------------------------------------------------------------------------
 Spring Boot:
@@ -160,3 +164,11 @@ Spring Boot:
               -> Entity (Un Entity por cada tabla), @Id (@GeneratedValue-> ), @Table, @Column
               -> H2 Base de datos Java (Pruebas)
 
+- Subir y descargar ficheros: Subir-> Se almacenan (Carpeta, Base de datos). Carpeta->Recomendacion->Nombre sea aleatorio
+                                      <form ...  enctype="multipart/form-data">
+                                           <input type="file" name="parametro" /> Tipo fichero
+                                      parametro que vamos a recibir -> MultipartFile parametro
+                              Download -> devolver ResponseEntity<Resource> 
+                                       -> tipo MIME. image/png para imagenes
+                                                     application/pdf para pdfs
+                                                     application/octet-stream generico -> descarga
