@@ -1,0 +1,22 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Subir CSV</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+           <form action="/ejercicio12/subirCSV" method="post" enctype="multipart/form-data" >
+                Fichero <input type="file" name="fichero" accept=".csv" /><br/><br/>
+                <input type="submit" value="Subir Fichero"/> 
+            </form>
+            <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
+            <div style="color: green" th:if="${success!=null}" th:text="${success}"></div>
+
+           
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+    </body>
+</html>
