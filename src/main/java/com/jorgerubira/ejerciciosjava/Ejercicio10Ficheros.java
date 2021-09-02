@@ -137,12 +137,25 @@ public class Ejercicio10Ficheros {
      * lanzar una FileNotFoundException.
      */
     public List<Persona> cargarPersona() throws FileNotFoundException {
-        
         String fichero = "ListaPersonas.txt";
-        
-        // Files.lines(Paths.get(rutaBase + fichero), Charset.defaultCharset())
-        throw new RuntimeException("Pendiente de hacer");
-       
+        List<String> personas = null;
+        List<Persona> persona = null;
+
+        try {
+            personas = Files.readAllLines(Paths.get(rutaBase + fichero), Charset.defaultCharset())
+                    .stream()
+                    .skip(1)
+                    .filter(x -> x.length() > 0)
+                    .map(x -> (x.split(";")[0]))
+                    .collect(Collectors.toList());
+
+            persona = personas.stream()
+                    .map(x -> new Persona(x)).collect(Collectors.toList());
+        } catch (Exception e) {
+
+        }
+        return persona;
+        // throw new RuntimeException("Pendiente de hacer");
     }
 
 }
