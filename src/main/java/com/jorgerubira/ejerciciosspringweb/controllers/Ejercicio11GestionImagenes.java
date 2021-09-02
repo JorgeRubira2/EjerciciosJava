@@ -91,4 +91,15 @@ public class Ejercicio11GestionImagenes {
         repoImg.deleteById(id);
         return "redirect:gestor";
     }
+    
+    @PostMapping("/filtrar")
+    public String filtrar(Model model, String descripcion){
+        List<Imagen> img = repoImg.findByDescripcionContains(descripcion);
+        if (!img.isEmpty()) {
+            model.addAttribute("imagenes",  img);
+        } else {
+            model.addAttribute("error",  "No hay ninguna imagen con esa descripción");
+        }
+        return "ej11/gestionimagenes";
+    }
 }
