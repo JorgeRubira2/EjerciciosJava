@@ -115,7 +115,7 @@ public class Ejercicio10Ficheros {
             notas = notas.of(total/cant);
             return notas;
         }catch(Exception e){
-            return null;
+            return notas;
         }
     }    
     
