@@ -2,12 +2,15 @@ package com.jorgerubira.ejerciciosjava;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
@@ -64,21 +67,20 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-        String ruta = rutaBase + "\\" + fichero;
-        try{
+    	String ruta = rutaBase + "\\" + fichero;
+    	try{
     		int contar =0;
-        	List<String> lineas=Files.lines(Paths.get(ruta), Charset.forName("ISO-8859-1"))
-        			.filter(x -> x.contains(palabra))
-        			.collect(Collectors.toList());
-        	for(String linea : lineas) {
-        		int index = linea.indexOf(palabra);
-        		if(index != -1)
-        			contar++;
-        	}
-        	return contar;
-        }catch(Exception e){
-        	return 0;
-        }
+    		palabra = palabra.toLowerCase();//paso a minusuclas para comparar
+    		String coincidencia=Files.readString(Paths.get(ruta), Charset.forName("ISO-8859-1")).toLowerCase();//lee las palabras y las pasa a minusculas
+    		int posicion=coincidencia.indexOf(palabra);
+    		while(posicion>=0){
+    			contar++;
+    			posicion=coincidencia.indexOf(palabra,posicion+1);
+    		}
+    		return contar;
+    	}catch(Exception e){
+    		return 0;
+    	}
     }   
     
     /**
@@ -98,10 +100,22 @@ public class Ejercicio10Ficheros {
      * Si el fichero no se encuentra devolver Empty.
      */
     public Optional<Double> calcularPromedio(){
-        String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+    	String fichero = "Evaluaciones.csv";
+    	String ruta = rutaBase + "\\" + fichero;
+    	try{
+    		OptionalDouble  promedio = Files.lines(Paths.get(ruta), Charset.forName("ISO-8859-1"))
+    				.mapToDouble(x->Double.parseDouble(x.split(";")[1]))
+    				.average();
+    		if(promedio.isPresent())
+    			return Optional.of(promedio.getAsDouble());
+    		else
+    			return Optional.empty();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    		return Optional.empty();
+    	}
     }    
-    
+
     /**
      * Realiza una lectura de un csv que tiene el formato "Nombre;Ciudad" como por ejemplo "Ana;Zaragoza"
      * y devuelve una lista de personas con los elementos que hay en el fichero.
@@ -110,9 +124,21 @@ public class Ejercicio10Ficheros {
      * Si el fichero no lanzar una FileNotFoundException.
      */
     public List<Persona> cargarPersona() throws FileNotFoundException{
-        String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
+    	String fichero = "ListaPersonas.txt";
+    	String ruta = rutaBase + "\\" + fichero;
+    	try{
+    		Stream<String> lista=Files.lines(Paths.get(ruta),Charset.forName("ISO-8859-1"));
+    		return lista.skip(1)//quita cabecera
+    				.filter(x->"".equals(x)==false)//quita las lineas que estan en blanco
+    				.map(x->x.split(";"))
+    				.map(x->new Persona(x[0],x[1]))// nombre; ciudad
+    				.collect(Collectors.toList());
+    	}catch(IOException e){
+    		e.printStackTrace();
+    		return null;
+    	}
+
     }      
-    
+
 
 }
