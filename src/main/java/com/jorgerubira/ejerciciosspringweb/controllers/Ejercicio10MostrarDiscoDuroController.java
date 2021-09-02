@@ -43,27 +43,19 @@ public class Ejercicio10MostrarDiscoDuroController {
                         try{
                             if (ficheroInterno.isDirectory()){
                                 directorios.add(ficheroInterno.getName());
-                                //ficheroInterno.getName()
                             }else{
                                 ficheros.add(ficheroInterno.getName());
-                                //ficheroInterno.getName()
                             }
 
                             path = ficheroInterno.getParent();
-                            path.replaceAll("\\\\\\\\\\\\\\\\", "/");
-                            dirFrag = path.split("/");
-                            //dirFrag = path.split(File.separator.replaceAll("\\", "\\\\"));
-                            System.out.println(dirFrag.length);
-                            for(int i= 0; i< dirFrag.length;i++){
-                                System.out.println("\n"+dirFrag[i]);
-                            }
+                            path = path.replaceAll("\\\\", "/");  
+                            dirFrag = path.split("/"); 
                         }catch(Exception e){}
                     } 
                 }catch(NullPointerException e){
                    model.addAttribute("error","Error al cargar la URL");
                    model.addAttribute("dir",ruta);
-                }
-                
+                }    
         }else{
             System.out.println("No existe");
         }

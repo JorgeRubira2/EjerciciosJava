@@ -9,17 +9,13 @@
         <div class="container">
             <h1>Mostrar Disco Duro</h1>
             <br>
-           <!-- <form>
-                <input type="text" placeholder="Ruta" th:field="${currentPath}">
-                <input type="submit" value="Enviar Ruta">
-            </form> -->
+            <span th:each="frag:${dirFrag}"> 
+                <a th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
+                 <i class="fas fa-chevron-right"></i> 
+            </span>
             <br>
-            <div th:each="dirFrag:${frag}"> 
-               <a th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
-               <span>a</span>
-            </div>
             <div>
-               <a th:text="${currentPath}" th:href="${currentPath}" style="text-decoration: none; font-size: 24px"></a>
+               <a th:text="${currentPath}" th:href="${currentPath}" style="text-decoration: none; font-size: 12px"></a>
             </div>
             <br>
             <div th:if="${error != null}">
