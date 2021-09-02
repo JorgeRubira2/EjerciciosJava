@@ -99,7 +99,7 @@ public class Ejercicio06Lambdas {
      * laboral: Mayor o igual que 16 y menor que 64
      */
     public Predicate<Persona> esEnEdadLaboral() {
-        
+
         return a -> a.getEdad() >= 16 && a.getEdad() < 64;
     }
 
@@ -139,7 +139,7 @@ public class Ejercicio06Lambdas {
      * Crear una función Consumer que incremente la edad de las personas en 1
      */
     public Consumer<Persona> incrementarEdad() {
-        
+
         return a -> a.setEdad(a.getEdad() + 1);
     }
 
@@ -202,7 +202,17 @@ public class Ejercicio06Lambdas {
      * será equivalente a 0 unidades.
      */
     public IComparadorPersonaCompra miCompraEsMayorQueOtra() {
-        throw new RuntimeException("Pendiente de hacer");
+        return (a, b) -> {
+
+            if (b.isEmpty()) {
+                b = Optional.of(new Compra(0, false));
+            }
+
+            if (a.getCesta().isEmpty()) {
+                a.setCesta(new Compra(0, false));
+            }
+            return a.getCesta().get().getTotalArticulos() > b.get().getTotalArticulos();
+        };
     }
 
     /**
@@ -211,7 +221,16 @@ public class Ejercicio06Lambdas {
      * unidades.
      */
     public IComparadorPersonaCompra igualNumeroDeUnidades() {
-        throw new RuntimeException("Pendiente de hacer");
-    }
+        return (a, b) -> {
 
+            if (b.isEmpty()) {
+                b = Optional.of(new Compra(0, false));
+            }
+
+            if (a.getCesta().isEmpty()) {
+                a.setCesta(new Compra(0, false));
+            }
+            return a.getCesta().get().getTotalArticulos() == b.get().getTotalArticulos();
+        };
+    }
 }
