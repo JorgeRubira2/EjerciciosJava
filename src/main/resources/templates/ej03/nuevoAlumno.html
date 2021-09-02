@@ -21,19 +21,19 @@ and open the template in the editor.
         <div id="intro-alumnos" class="container col-5">
             <form action="/ejercicio3/guardar" th:object="${alumno}" method="post">
                 <div class="row">
-                    <div class="from-group col-12 mt-4">
+                    <div class="form-group-group col-12 mt-4">
                         <label>Codigo</label>
                         <input readonly class="form-control" type="text" placeholder="" th:field="*{codigo}"/>
                     </div>
-                    <div class="from-group col-12 mt-4">
+                    <div class="form-group col-12 mt-4">
                         <label>Nombre</label>
                         <input class="form-control" type="text" placeholder="Ingrese el nombre del alumno" th:field="*{nombre}" />
                     </div>
-                    <div class="from-group col-12 mt-4">
+                    <div class="form-group col-12 mt-4">
                         <label>Teléfono</label>
                         <input class="form-control" type="number" placeholder="Ingrese el teléfono del alumno" th:field="*{telefono}" />
                     </div>
-                    <div class="from-group col-12 mt-4">
+                    <div class="form-group col-12 mt-4">
                         <label>Dirección</label>
                         <input class="form-control" type="text" placeholder="Ingrese la dirección del alumno" th:field="*{direccion}" />
                     </div>
