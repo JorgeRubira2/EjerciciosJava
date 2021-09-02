@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Ejercicio07StreamsNivelDificil {
@@ -17,14 +18,18 @@ public class Ejercicio07StreamsNivelDificil {
      * Debe devolver las personas que tengan al menos dos de los tres tipos de estudios.
      */
     public Set<Persona> personaEnDosGrupos(Set<Persona> personasGradoMedio, Set<Persona> personasUniversidad, Set<Persona> personasCertificado){
-        /*Set<Persona> dosEstudios =new HashSet<>();
-        dosEstudios.addAll(personasGradoMedio);
-        dosEstudios.addAll(personasUniversidad);
-        dosEstudios.addAll(personasCertificado);
-        dosEstudios.stream().forEach(x->{
-            if(personasGradoMedio.contains(x.getNombre()) == false && )
-        })*/
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> todos =new ArrayList<>();
+        todos.addAll(personasGradoMedio);
+        todos.addAll(personasUniversidad);
+        todos.addAll(personasCertificado);
+        Set<Persona> dosEstudios= todos.stream()
+                                    .collect(Collectors.groupingBy(x->x.getNombre()))
+                                    .entrySet()
+                                    .stream()
+                                    .filter(x->x.getValue().size()>=2)
+                                    .map(x->x.getValue().get(0))
+                                    .collect(Collectors.toSet());
+        return dosEstudios;
     }
     /**
      * Realización de una compra conjunta. Se ha realizado una compra conjunta y se debe distribuir los articulos entre las personas que llegan a la lista.
@@ -33,7 +38,14 @@ public class Ejercicio07StreamsNivelDificil {
      * Si la persona en el mapa no se le dará ningún artículo y se le pondrá la compra a Empty
      */
     public void repartoDeCompraPersona(Compra compraConjunta, List<Persona> personasARepartirLaCompra, Map<String,Integer> porcentajes){
-        throw new RuntimeException("Pendiente de hacer");
+        porcentajes.entrySet().stream()
+                .forEach(por->{
+                    personasARepartirLaCompra.stream()
+                            .forEach(p->{
+                                if(p.getNombre().equals(por.getKey()))
+                                    p.setCesta(new Compra((compraConjunta.getTotalArticulos()*por.getValue()/100),true));
+                            });
+                });
     }    
 
     /**
@@ -42,7 +54,11 @@ public class Ejercicio07StreamsNivelDificil {
      * Hacer con un stream.
      */
     public List<Persona> generadorDePersonasAlAzar(int totalPersonas, List<String> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> perAz=new ArrayList<>();
+        Collections.nCopies(totalPersonas, new Persona(""))
+                .stream()
+                .forEach(x->perAz.add(new Persona(nombres.get((int)Math.random()*nombres.size()))));
+        return perAz;
     }
 
     
@@ -52,7 +68,19 @@ public class Ejercicio07StreamsNivelDificil {
      * Pair esta creado en el código pero existe una librería llamada Javatuples que funciona igual
      */
     public Pair<List<Persona>,List<Persona>> obtenerTuplaPorEdad(List<Persona> nombres, Set<String> descartes){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> menor=new ArrayList<>();
+        List<Persona> mayor=new ArrayList<>();
+        
+        nombres.stream()
+                .filter(x->x.getEdad()<18)
+                .filter(x->!descartes.contains(x.getNombre()))
+                .forEach(x->menor.add(new Persona(x.getNombre())));
+        nombres.stream()
+                .filter(x->x.getEdad()>=18)
+                .filter(x->!descartes.contains(x.getNombre()))
+                .forEach(x->mayor.add(new Persona(x.getNombre())));
+        Pair<List<Persona>,List<Persona>> tupla=new Pair<>(menor,mayor);
+        return tupla;
     }    
     
     /**
@@ -62,14 +90,31 @@ public class Ejercicio07StreamsNivelDificil {
      * Devolver la información ordenada por Nombre
      */
     public List<Persona> devolverDeQuePersonasCorrespondenLasCompras(List<Persona> nombres, Set<Compra> descartes){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> per=new ArrayList<>();
+        nombres.stream()
+                .filter(x-> x.getCesta().isPresent())
+                .sorted((x,y) -> x.getNombre().compareTo(y.getNombre()))
+                .forEach(x-> {
+                    if(descartes.contains(x.getCesta().get()))
+                        per.add(x);
+                });
+        return per;
     }
 
     /*
      * Devolver una lista de personas pero en caso de tener menos de 5 productos dejar la compra a empty.
      */
     public List<Persona> eliminarCompraDePersonas(List<Persona> nombres){
-        throw new RuntimeException("Pendiente de hacer");
+        List<Persona> compra=new ArrayList<>();
+        nombres.stream()
+                .forEach(x->{
+                    if(x.getCesta().isPresent() && x.getCesta().get().getTotalArticulos()<5)
+                        x.setCesta(null);
+                    else if(!x.getCesta().isPresent())
+                        x.setCesta(null);
+                    compra.add(x);
+                });
+        return compra;
     }
 
     /*

@@ -1,0 +1,19 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="d20210901/layout::layout( ~{::body})">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <div class="container">
+            <form action="/d20210901/subirMultiple" method="post" enctype="multipart/form-data"  >
+                Fichero <input type="file" name="fichero" accept=".pdf" multiple/><br/><br/>
+                <input type="submit" value="Subir Fichero"/> 
+            </form>
+            <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
+            <div style="color: green" th:if="${success!=null}" th:text="${success}"></div>
+        </div>
+        
+    </body>
+</html>

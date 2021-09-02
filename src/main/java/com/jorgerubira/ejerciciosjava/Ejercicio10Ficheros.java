@@ -4,10 +4,19 @@ import com.jorgerubira.ejerciciosjava.excepciones.FormatoNoValidoException;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ejercicio10Ficheros {
+    
+    private final String rutaBase="C:\\Users\\Usuario\\Documents\\NetBeansProjects\\EjerciciosJava-master\\src\\main\\java\\com\\jorgerubira\\resources\\";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -19,8 +28,15 @@ public class Ejercicio10Ficheros {
      * Pistas: Cargar el fichero utilizar el método readAllLines y pasarlo por un stream.
      * Ejemplo del fichero: 
      */
-    public int contarCuantosEventosHay(File fichero){
-        throw new RuntimeException("Pendiente de hacer");
+    public int contarCuantosEventosHay(){
+        String fichero="AgendaDeDeportes.csv";
+        try{
+            long event=Files.lines(Path.of(rutaBase+fichero), Charset.forName("ISO-8859-1")).count()-1;
+            return (int)event;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
     
     /**
@@ -29,19 +45,43 @@ public class Ejercicio10Ficheros {
      * Si estuviese ese evento o no encuentra el fichero devolver null.
      * Pistas: Cargar el fichero utilizar el método readAllLines y pasarlo por un stream.
      */
-    public String buscarId(File fichero){
-        throw new RuntimeException("Pendiente de hacer");
+    public String buscarId(){
+        String fichero="AgendaDeDeportes.csv";
+        try{
+            List<String> id= Files.lines(Paths.get(rutaBase+fichero), Charset.forName("ISO-8859-1"))
+                            .map(x->x.split(";"))
+                            .filter(x->x[1].equals("\"Camino a Mercedes\""))
+                            .map(x->x[0])
+                            .collect(Collectors.toList());
+            return id.get(0);
+        }catch(Exception e){
+            e.printStackTrace();
+            return "No se ha encontrado";
+        }
     }
     
     /**
      * Cuantas cuantas veces aparece una palabra (o texto) en el fichero solicitado.
      * Deberá ser insensible a mayusculas y minusculas
      * Si estuviese ese evento o no encuentra el fichero devolver 0.
-     * Pista facil: Cargar el fichero utilizar el método readAllText y pasarlo hacer un split.
+     * Pista facil: Cargar el fichero utilizar el método readString y pasarlo hacer un split.
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
-    public int contarCoincidencias(File fichero){
-        throw new RuntimeException("Pendiente de hacer");
+    public int contarCoincidencias(String fichero, String palabra){
+        int c=0;
+        try{
+            palabra=palabra.toLowerCase();
+            String coin=Files.readString(Paths.get(rutaBase+fichero), Charset.forName("ISO-8859-1")).toLowerCase();
+            int pos=coin.indexOf(palabra);
+            while(pos>=0){
+                c++;
+                pos=coin.indexOf(palabra,pos+1);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+        return c;
     }   
     
     /**
@@ -49,6 +89,7 @@ public class Ejercicio10Ficheros {
      * Si el fichero no se encuentra lanzará un FileNotFoundException.
      */
     public void verificarFormato(File fichero) throws FormatoNoValidoException, FileNotFoundException {
+        //No hacer aún
         throw new RuntimeException("Pendiente de hacer");
     }      
 
@@ -59,8 +100,20 @@ public class Ejercicio10Ficheros {
      * Descartar las líneas que estén en blanco.
      * Si el fichero no se encuentra devolver Empty.
      */
-    public Optional<Double> calcularPromedio(File fichero){
-        throw new RuntimeException("Pendiente de hacer");
+    public Optional<Double> calcularPromedio(){
+        String fichero = "Evaluaciones.csv";
+        try{
+            var d=Files.lines(Paths.get(rutaBase+fichero), Charset.forName("ISO-8859-1"))
+                        .mapToDouble(x->Double.parseDouble(x.split(";")[1]))
+                        .average();
+            if(d.isPresent())
+                return Optional.of(d.getAsDouble());
+            else
+                return Optional.empty();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }    
     
     /**
@@ -70,8 +123,20 @@ public class Ejercicio10Ficheros {
      * Descartar las líneas que estén en blanco.
      * Si el fichero no lanzar una FileNotFoundException.
      */
-    public List<Persona> cargarPersona(File fichero) throws FileNotFoundException{
-        throw new RuntimeException("Pendiente de hacer");
+    public List<Persona> cargarPersona() throws FileNotFoundException{
+        String fichero = "ListaPersonas.txt";
+        List<Persona> lisP=null;
+        try{
+            Stream<String> lista=Files.lines(Paths.get(rutaBase+fichero),Charset.forName("ISO-8859-1"));
+            lisP=lista.skip(1)
+                        .filter(x->"".equals(x)==false)
+                        .map(x->x.split(";"))
+                        .map(x->new Persona(x[0],x[1]))
+                        .collect(Collectors.toList());
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return lisP;
     }      
     
 

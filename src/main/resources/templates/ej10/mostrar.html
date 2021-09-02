@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <th th:text="${ruta}"></th>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <span th:text="${acF}"/>
+                    </th>
+                </tr>    
+                <tr>
+                    <th>
+                        <span th:if="${ruta!=null}">
+                            <a th:href="@{mostrar(ruta=${ruta})}">Volver<span th:text="${ruta}"/></a>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ruta:${lista}">
+                    <td>
+                        <a th:if="${ruta.esDirectorio}" th:href="@{mostrar(ruta=${ruta.ruta + ruta.fichero})}" th:text="${ruta.fichero}"><span th:text="${ruta.fichero}"/></a>
+                        <a th:if="${ruta.esDirectorio == false}" th:href="@{descarga(fichero=${ruta.ruta + ruta.fichero})}" th:text="${ruta.fichero}"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="d20210810/layout::layout( cuerpo=~{::body}, javascript=~{::misscripts} )">
+    <head>
+        <title>Titulo</title> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <div class="container">
+            <table class="table table-striped">
+                <tr th:each="per:${personas}"> 
+                    <td th:text="${per.id}"/>
+                    <td th:text="${per.nombre}"/>
+                    <td th:text="${per.apellido1}"/>
+                    <td th:text="${per.direccion}"/>
+                    <td> 
+                        <input type="button" th:onclick="|leerHtmlAjax(${per.id})|" value="Editar"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <misscripts>
+        <script>
+            function leerHtmlAjax(pId){
+                $.ajax({
+                    url:"formulario",   //<--Ejecutamos del contra esta url
+                    data:{              //<- Parametros ?id=4
+                        id: pId,
+                        //nombre: 'Ana',
+                        //wrw: 'rwr',
+                    },
+                    success: function(pHtml){    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message:pHtml
+                        })
+                    },
+                    error: function (err){
+                        alert('Si la URL esta mal. Codigo 404')
+                    }
+                })
+            }
+        </script>
+    </misscripts>    
+</html>

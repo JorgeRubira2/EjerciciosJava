@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class Ejercicio00PruebaDeTestBasicaTest {
+    
+    public Ejercicio00PruebaDeTestBasicaTest() {
+    }
 
-    @Test                 
+    @Test
     public void testSumar() {
         Ejercicio00PruebaDeTestBasica instance = new Ejercicio00PruebaDeTestBasica();
         assertEquals(10, instance.sumar(6, 4));

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Listado de alumnos</h2>
+            <form action="/ejercicio3/mostrar" method="post">
+                <input type="text" placeholder="Ingrese un código o nombre" name="buscador"/>
+                <a th:href="${'/ejercicio3/buscar'}"><button class="btn btn-primary ">Buscar</button></a>
+                <input type="button" value="Nuevo" onclick="nuevo()"/>
+            </form>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr th:each="alu:${listaAlumnos}">
+                    <td th:text="${alu.codigo}"></td>
+                    <td th:text="${alu.nombre}"></td>
+                    <td th:text="${alu.tlf}"></td>
+                    <td th:text="${alu.dir}"></td>
+                    <td>
+                        <a th:href="${'/ejercicio3/borrar?codigo='+ alu.codigo}">Eliminar</a>
+                        <a th:href="${'/ejercicio3/editar?codigo='+ alu.codigo}">Editar</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script>
+            function nuevo(){
+                $("form").attr("action", "/ejercicio03/nuevo").submit();
+            }
+        </script>
+    </body>
+</html>
