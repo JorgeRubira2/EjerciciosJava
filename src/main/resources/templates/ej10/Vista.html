@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="/ej10/estilos.css">
+    <title>Ficheros</title>
+</head>
+
+<body>
+    <div class="container">
+        <a th:href="@{/ejercicio10}" class="btn btn-outline-primary">Volver a inicio</a>
+        <table class="table table-striped">
+            <tr>
+                <th class="text-white bg-dark">Directorios</th>
+            </tr>
+            <tr th:each="dir:${directorios}">
+                <td>
+                    <a th:if="${dir.directorio}" th:href="@{/ejercicio10/(ruta=${dir.ruta})}" th:text="${dir.nombre}" />
+                    <a th:if="${dir.directorio==false}" th:href="@{/ejercicio10/descargar(ruta=${dir.ruta})}"
+                        th:text="${dir.nombre}" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+</body>
+
+</html>
