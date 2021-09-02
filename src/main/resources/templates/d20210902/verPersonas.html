@@ -1,0 +1,29 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div th:each="persona:${personas}">
+                <span th:text="${persona.nombre}"/> -
+                <span th:text="${persona.apellidos}"/><br/>
+                <div th:each="telefono:${persona.telefonos}">
+                    <span th:text="${telefono.numero}"/><br/>
+                </div>
+                <hr/>
+            </div>
+            
+            <input type="button" value="Nueva persona"/>
+            <!-- Contenido -->
+            <hr/>
+            <form >
+                Nombre <input ><br/>
+                Apellidos <input ><br/>
+                <input type="button" value="Guardar"/>
+            </form>
+            
+        </div>
+    </body>
+</html>
