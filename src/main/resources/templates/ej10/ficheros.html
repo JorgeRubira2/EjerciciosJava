@@ -21,7 +21,9 @@
                 <th>Disco C</th>
             </tr>
             <tr th:each='fichero : ${directorios}'>
-                <td><a th:text='${fichero}' th:href="@{/ejercicio10/ver(ruta=${fichero.absolutePath})}"></td></a>
+                <td><a th:text='${fichero}' th:if="${fichero.isDirectory}" th:href="@{/ejercicio10/ver(ruta=${fichero.absolutePath})}" class="far fa-folder"></a>
+                    <a th:text='${fichero}' th:if="${!fichero.isDirectory}" th:href="@{/ejercicio10/descarga(ruta=${fichero.absolutePath})}" class="fas fa-file"></a>
+                </td>
             </tr>
         </table>
     </body>

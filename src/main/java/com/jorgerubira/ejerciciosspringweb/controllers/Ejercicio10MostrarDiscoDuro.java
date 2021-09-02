@@ -41,8 +41,7 @@ public class Ejercicio10MostrarDiscoDuro {
     }
     
     @GetMapping("/descarga")
-    public ResponseEntity<Resource> descargaFichero(Model model, String ruta){
-        
+    public ResponseEntity<Resource> descargaFichero(String ruta){
         File file = new File(ruta);
        
         HttpHeaders cabeceras=new HttpHeaders();
@@ -56,7 +55,7 @@ public class Ejercicio10MostrarDiscoDuro {
                                  .headers(cabeceras)
                                  .contentLength((new File(ruta)).length())
                                  .contentType(MediaType.parseMediaType( "application/octet-stream" ))  //Codigo MIME
-                                 .body(new InputStreamResource(new FileInputStream( ruta )) );
+                                 .body(new InputStreamResource(new FileInputStream(ruta)));
         }catch(FileNotFoundException e){
             e.printStackTrace();
             return null;

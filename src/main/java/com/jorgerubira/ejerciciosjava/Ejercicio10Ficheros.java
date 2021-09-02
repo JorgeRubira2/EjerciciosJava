@@ -74,19 +74,26 @@ public class Ejercicio10Ficheros {
      * más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra) {
-        try {
-            Long cuentaPalabras = Files.lines(Path.of(rutaBase + fichero), Charset.forName("ISO-8859-1"))
-                    .filter(x -> x.contains(palabra))
-                    .collect(Collectors.counting());
+        int contador = 0;
+        palabra = palabra.toLowerCase();
 
-           // return (int)cuentaPalabras;
-           return 0;
+        try {
+            String cuentaPalabras = Files.readString(Paths.get(rutaBase + fichero)).toLowerCase();
+
+            int palabras = cuentaPalabras.indexOf(palabra);
+
+            while (palabras >= 0) {
+
+                contador++;
+                palabras = cuentaPalabras.indexOf(palabra, palabras + 1);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
+
         }
-        // throw new RuntimeException("Pendiente de hacer");
+        return contador;
     }
 
     /**
@@ -117,7 +124,7 @@ public class Ejercicio10Ficheros {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return Optional.empty();
         }
         //throw new RuntimeException("Pendiente de hacer");
     }
@@ -131,6 +138,24 @@ public class Ejercicio10Ficheros {
      */
     public List<Persona> cargarPersona() throws FileNotFoundException {
         String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
+
+        List<Persona> personas = null;
+
+        try {
+            List<String> elementosFichero = Files.lines(Paths.get(rutaBase + fichero), Charset.forName("ISO-8859-1"))
+                    .skip(1)
+                    .filter(x -> x.length() > 0)
+                    .collect(Collectors.toList());
+
+            personas = elementosFichero.stream()
+                    .map(x -> new Persona(x))
+                    .collect(Collectors.toList());
+
+            personas.forEach(System.out::println);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return personas;
     }
 }
