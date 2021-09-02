@@ -7,6 +7,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">       
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        
+        <style>
+          
+            #identicador{
+                background-color: beige;
+            }  
+                  
+            .miestilo{ 
+                color: red;
+               
+            }
+
+            }
+        </style>
+    
     </head>
     
     <body>
@@ -17,7 +35,7 @@
         
             <div class="container">    
                 <div>                             
-                <a th:if="${ruta!=null}" th:href="@{/ejercicio10/lista(ruta=${ruta})}"> Regresar </a>
+                <a class="btn btn-primary btn-sm" th:if="${ruta!=null}" th:href="@{/ejercicio10/lista(ruta=${ruta})}" > Regresar </a>
                 </div>
              </br>
              <table class="table table-striped">
@@ -25,17 +43,24 @@
                     <th>Nombre</th>
                 </tr>                             
               
-                <tr th:each="archivo:${lista}">                    
+                <tr th:each="archivo:${lista}"> 
+                    
+                  
                     <td  th:if="${archivo.isDirectory}" >                        
                        <!--  <a th:href="${archivo.getAbsolutePath}" th:text="${archivo.getName}"/> -->
+                       <i class="material-icons">folder</i>
+                       
                        <a th:href="@{/ejercicio10/lista(ruta=${archivo.getAbsolutePath})}" th:text="${archivo.getName}" />
                        
-                    </td>                    
-                    <td th:unless="${archivo.isDirectory}" th:text="${archivo.getName}" />     
-                    
-                    
+                    </td>   
+                    <td th:unless="${archivo.isDirectory}"  >
+                       <i class="material-icons">file_download</i>
+                       <a class="miestilo" th:href="@{/ejercicio10/descarga(ruta=${archivo.getAbsolutePath})}" th:text="${archivo.getName}"  />   
+                                
+                    </td>
+                    <!-- comment   <td th:unless="${archivo.isDirectory}" th:text="${archivo.getName}" /> -->    
                 </tr>                           
-                
+               
                </table>
            
         </div>
