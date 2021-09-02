@@ -7,8 +7,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,9 +41,12 @@ public class Ejercicio11GestionImagenesController {
     private String rutaRecursos;
     
     @GetMapping
-    public String inicio(Model m, String success, String borrado){
+    public String inicio(Model m, String success, String borrado, String filtrar){
         if(repoImg.findAll().isEmpty()){
-            m.addAttribute("imagenes", new Imagen());
+            m.addAttribute("imagenes", null);
+        }else if (filtrar!=null){
+            List<Imagen> filtradas = repoImg.findAll().stream().filter(x->x.getDescripcion().contains(filtrar)).collect(Collectors.toList());
+            m.addAttribute("imagenes",filtradas);
         }else{
             m.addAttribute("imagenes", repoImg.findAll());
         }
@@ -97,12 +105,16 @@ public class Ejercicio11GestionImagenesController {
     public String borrar(Model m, String codigo){
         Imagen borrar = repoImg.findByCodigo(codigo);
         String del = "";
-        if (borrar != null){
-            repoImg.delete(borrar);
-            del = "Imagen borrada con exito";
-        }else{
+        try {
+            Files.deleteIfExists(Paths.get(borrar.getRuta()));  
+            if (borrar != null){
+                repoImg.delete(borrar);
+                del = "Imagen borrada con exito";
+            }
+        } catch (IOException ex) {
             del = "Error inesperado";
         }
         return "redirect:/ejercicio11?borrado="+del;
     }
+    
 }
