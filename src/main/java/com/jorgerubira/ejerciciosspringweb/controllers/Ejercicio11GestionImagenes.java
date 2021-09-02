@@ -1,6 +1,8 @@
 
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
+import com.jorgerubira.ejerciciosspringweb.repositories.ImagenesRepository;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -26,98 +30,46 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/ejercicio11")
 public class Ejercicio11GestionImagenes {
     
+    @Autowired
+    private ImagenesRepository repoImg;
+    
     @Value("${carpetas.recursos.hiberus}")
-    private String rutaRecursos;
+    private String rutaRecursos; 
     
     @GetMapping("/gestor")
-    public String gestion(){
-    
+    public String gestor(Model m){
+        m.addAttribute("imagenes", repoImg.findAll());
         return "ej11/gestionimagenes";
     }
     
     @PostMapping("/subir")
-    public String subir(Model m, MultipartFile fichero){ //, HttpServletResponse response){
+    public String subir(Model m, MultipartFile fichero, String descripcion){
         
-        if (fichero.getOriginalFilename().toLowerCase().endsWith(".jpg")==false){
-            m.addAttribute("error", "Formato incorrecto");
-            return "d20210901/formulario";
-        }
-        //UUID.randomUUID().toString();
-        String ruta=rutaRecursos + "\\d20210901\\ejemplo1\\" + fichero.getOriginalFilename();
-        File f=new File(ruta);
+        String nombreOriginal = fichero.getOriginalFilename();
+        String nombreRandom = UUID.randomUUID().toString()+".jpg";
+        nombreRandom = nombreRandom.replace("-","");
+        
+        String ruta = rutaRecursos + "\\d20210901\\ejemplo1\\" + nombreRandom;
+        File f = new File(ruta);
         f.getParentFile().mkdirs();
         try{
             Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);    
-            return "redirect:ver?success=Fichero subido";
         }catch(IOException e){
             e.printStackTrace();
             m.addAttribute("error", "Error inesperado");
-             return "redirect:ver";
-        }
+        }    
+        repoImg.save(new Imagen(null, descripcion, ruta, nombreOriginal));
         
-        //response.addCookie(new Cookie("username", "Jovan"));
-       
-    }
-    
-    
-    
-    
-    @GetMapping("/ver")
-    public String ver(Model model, String ruta){
-        String path="";
-        String[] dirFrag = null;
-        List<String> ficheros = new ArrayList();
-        List<String> directorios = new ArrayList();
-        if(ruta == null){
-            //ruta="D:\\pruebas ficheros";
-            ruta="C:\\";
-        }
-        System.out.println(ruta);
-        File f=new File(ruta);
-        if (f.exists()){
-                File []ficherosInternos=f.listFiles();
-                try{
-                    for (File ficheroInterno : ficherosInternos) {
-                        try{
-                            if (ficheroInterno.isDirectory()){
-                                directorios.add(ficheroInterno.getName());
-                                //ficheroInterno.getName()
-                            }else{
-                                ficheros.add(ficheroInterno.getName());
-                                //ficheroInterno.getName()
-                            }
-
-                            path = ficheroInterno.getParent();
-                            path.replaceAll("\\\\\\\\\\\\\\\\", "/");
-                            dirFrag = path.split("/");
-                            //dirFrag = path.split(File.separator.replaceAll("\\", "\\\\"));
-                            System.out.println(dirFrag.length);
-                            for(int i= 0; i< dirFrag.length;i++){
-                                System.out.println("\n"+dirFrag[i]);
-                            }
-                        }catch(Exception e){}
-                    } 
-                }catch(NullPointerException e){
-                   model.addAttribute("error","Error al cargar la URL");
-                   model.addAttribute("dir",ruta);
-                }
-                
-        }else{
-            System.out.println("No existe");
-        }
-        
-        model.addAttribute("ficheros",ficheros);
-        model.addAttribute("directorio",directorios);
-        model.addAttribute("currentPath",path);
-        model.addAttribute("dirFrag",dirFrag);
-        return "ej10/discoduro";
+        return "redirect:gestor";
     }
     
     @GetMapping("/descargar")
-    public ResponseEntity<Resource> descargar(String fichero, String nombre){
+    public ResponseEntity<Resource> mostrarImg(String ruta){
+        
+        //String ruta = rutaRecursos + "\\d20210901\\ejemplo1\\";
         
         HttpHeaders cabeceras=new HttpHeaders();
-        cabeceras.add("Content-Disposition", "attachment; filename="+nombre);
+        cabeceras.add("Content-Disposition", "attachment;");
         cabeceras.add("Cache-Control", "no-cache, no-store, must-revalidate");
         cabeceras.add("Pragma", "no-cache");
         cabeceras.add("Expires", "0");
@@ -125,13 +77,18 @@ public class Ejercicio11GestionImagenes {
         try{
             return ResponseEntity.ok()
                                  .headers(cabeceras)
-                                 .contentLength((new File(fichero)).length())
-                                 .contentType(MediaType.parseMediaType( "application/octet-stream" ))  
-                                 .body(new InputStreamResource(new FileInputStream( fichero )) );
+                                 .contentLength((new File(ruta)).length())
+                                 .contentType(MediaType.parseMediaType( "application/octet-stream" ))
+                                 .body(new InputStreamResource(new FileInputStream( ruta )) );
         }catch(FileNotFoundException e){
             e.printStackTrace();
             return null;
         }
-        
     }    
+    
+    @GetMapping("/borrar")
+    public String borrar(int id){
+        repoImg.deleteById(id);
+        return "redirect:gestor";
+    }
 }
