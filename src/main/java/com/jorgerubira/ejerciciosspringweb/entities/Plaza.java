@@ -28,6 +28,6 @@ public class Plaza {
     private Integer plazasMatriculadas;
     private Integer plazasSolicitadas;
     private Double indiceOcupacion;
-    private String fechaActualizacion;
+    private Date fechaActualizacion;
 
 }

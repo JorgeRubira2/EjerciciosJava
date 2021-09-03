@@ -16,8 +16,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +52,7 @@ public class Ejercicio12ImportarCSV {
                     .skip(1)
                     .map(x->x.split(";"))
                     .map(x-> new Plaza(null, Integer.valueOf(x[0]), x[1], x[2],x[3],x[4],x[5],
-                            Integer.valueOf(x[6]),Integer.valueOf(x[7]),Integer.valueOf(x[8]),Double.valueOf(x[9]),x[10]))
+                            Integer.valueOf(x[6]),Integer.valueOf(x[7]),Integer.valueOf(x[8]),Double.valueOf(x[9]),parsearFecha(x[10])))
                     .forEach(p-> repositorio.save(p));
             Files.deleteIfExists(f.toPath());
         } catch (IOException e) {
@@ -74,12 +77,23 @@ public class Ejercicio12ImportarCSV {
             records.stream()
                     .skip(1)
                     .map(x-> new Plaza(null, Integer.valueOf(x.get(0)), x.get(1), x.get(2), x.get(3), x.get(4), x.get(5),
-                            Integer.valueOf(x.get(6)),Integer.valueOf(x.get(7)),Integer.valueOf(x.get(8)),Double.valueOf(x.get(9)), x.get(10)))
+                            Integer.valueOf(x.get(6)),Integer.valueOf(x.get(7)),Integer.valueOf(x.get(8)),Double.valueOf(x.get(9)), parsearFecha(x.get(10))))
                     .forEach(p-> repositorio.save(p));
         } catch (IOException e) {
             e.printStackTrace();
             return "Fallo";
         }
         return "OK";
+    }
+
+    private Date parsearFecha(String fecha){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaConvertida = new Date();
+        try {
+            fechaConvertida = format.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fechaConvertida;
     }
 }
