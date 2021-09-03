@@ -7,6 +7,9 @@
         "th:if": {
             "context": "span"
         },
+        "th:object": {
+            "context": "form"
+        },
         "th:src": {},
         "th:each": {
             "context": "div"
