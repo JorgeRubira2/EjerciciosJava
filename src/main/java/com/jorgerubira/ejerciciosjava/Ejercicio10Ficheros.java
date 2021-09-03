@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.jorgerubira.ejerciciosjava.pojo.Persona;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="C:\\Users\\manol\\git\\EjerciciosJavaMaster\\src\\main\\resources";
+    private final String rutaBase="C:\\Users\\manol\\git\\EjerciciosJavaMaster\\src\\main\\java\\com\\jorgerubira\\resources";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -29,15 +30,15 @@ public class Ejercicio10Ficheros {
      */
    
     public int contarCuantosEventosHay(){
+
     	 String fichero="AgendaDeDeportes.csv";
-         String ruta = (rutaBase + "\\ " + fichero);
          try{
-             return (int) (Files.lines(Paths.get(ruta),Charset.defaultCharset()).count()-1);
-             
+             long num = Files.lines(Paths.get(rutaBase+"\\"+fichero),Charset.defaultCharset()).count();
+             return (int)(num-1);
          }catch(Exception e){
              return 0;
-         }	
-    }
+         }
+     }
     /**
      * Devuelve del ID del evento llamado 'Camino a Mercedes' del fichero enviado por parámetro
      * Esta información está en un csv. El formato del fichero se puede ver en el fichero com.jorgerubira.resources.AgendaDeDeportes.csv
@@ -46,18 +47,16 @@ public class Ejercicio10Ficheros {
      */
     public String buscarId(){
     	 String fichero="AgendaDeDeportes.csv";
-         String ruta = (rutaBase + " " + fichero);
-         try{
-             return ((Collection<String>) Files.lines(Paths.get(ruta),Charset.defaultCharset()))
-            		 .stream()
+         
+    	 try{
+             List<String> resultado = Files.lines(Paths.get(rutaBase+"\\"+fichero),Charset.defaultCharset())
             		 .filter(x->x.contains("Camino a Mercedes"))
-            		 .map(x -> x.split(";")[0])
-                     .findFirst()
-                     .get();
-            		 
-            
+            		 .collect(Collectors.toList());
+             String Resultado[] = resultado.get(0).split(";");
+             return Resultado[0];
          }catch(Exception e){
              return null;
+             
          }
     }
     
@@ -69,17 +68,21 @@ public class Ejercicio10Ficheros {
      * Pista más eficiente: En vez de utilizar split ir buscando con indexOf. Solución más compleja con while.
      */
     public int contarCoincidencias(String fichero, String palabra){
-    	 String ruta = (rutaBase + "\\" + fichero);
-         try{
-             Files.lines(Paths.get(ruta),
-             Charset.defaultCharset())
-             .filter(x->x.contains(palabra))
-             .collect(Collectors.toList());
-             return 0;
-         }catch(Exception e){
-             return 0;
-         }
-    }   
+    	   int contador = 0;
+           try {
+               palabra = palabra.toLowerCase();
+               String coincidencias = Files.readString(Paths.get(rutaBase+"\\"+fichero)).toLowerCase();
+               int posicion = coincidencias.indexOf(palabra);
+
+               while (posicion >= 0) {
+                   contador++;
+                   posicion = coincidencias.indexOf(palabra, posicion + 1);
+               }
+           } catch (Exception e) {
+              
+           }
+           return contador;
+       } 
     
     /**
      * Verifica el fichero y si tiene alguna línea no valida lanza una excepción FormatoNoValidoException.
@@ -98,8 +101,19 @@ public class Ejercicio10Ficheros {
      * Si el fichero no se encuentra devolver Empty.
      */
     public Optional<Double> calcularPromedio(){
-        String fichero = "Evaluaciones.csv";
-        throw new RuntimeException("Pendiente de hacer");
+    	String fichero = "Evaluaciones.csv";
+
+        try {
+            var notas = Files.lines(Paths.get(rutaBase+"\\"+fichero), Charset.defaultCharset())
+                    .map(x -> new Double(Double.parseDouble(x.split(";")[1])))
+                    .collect(Collectors.summarizingDouble(x -> x));
+
+            return Optional.of(notas.getAverage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }    
     
     /**
@@ -110,9 +124,20 @@ public class Ejercicio10Ficheros {
      * Si el fichero no lanzar una FileNotFoundException.
      */
     public List<Persona> cargarPersona() throws FileNotFoundException{
-        String fichero = "ListaPersonas.txt";
-        throw new RuntimeException("Pendiente de hacer");
-    }      
+    	String fichero = "ListaPersonas.txt";
+        try {
+            List<Persona> list = Files.lines(Paths.get(rutaBase+"\\"+fichero))
+                    .skip(1)
+                    .filter(x->x.length()>0)
+                    .map(x->new Persona(x.split(";")[0],x.split(";")[1]))
+                    .collect(Collectors.toList()); 
+            return list;
+        }catch (Exception ex) {
+            return null;
+        }
+    }
+         
     
+
 
 }
