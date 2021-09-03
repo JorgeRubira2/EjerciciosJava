@@ -48,7 +48,7 @@ public class Ejercicio10DiscoDuro {
 		}
 		return "ej10/vista";
 	}
-	@GetMapping("/descargar")
+	@GetMapping("ej10/descargar")
     public ResponseEntity<Resource> descarga(String ruta) {
         File archivo = new File(ruta);
         HttpHeaders cabeceras = new HttpHeaders();

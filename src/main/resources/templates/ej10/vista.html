@@ -29,7 +29,9 @@ border:2px solid black;
                         </th:block>
                         <th:block th:if="${ficheroInterno.directorio}==false">
                             <td> <a  th:href="@{vista(ruta=${ficheroInterno.rutaAbs})}" ><span th:text="${ficheroInterno.nombre}"></span></a>
+                                 <a th:href="@{descargar(ruta=${ficheroInterno.rutaAbs})}" class="btn btn-primary">Descargar</a>
                             </td>
+                            
                         </th:block>
                     </tr>
                 </tbody>

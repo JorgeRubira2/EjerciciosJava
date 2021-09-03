@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class Ejercicio10Ficheros {
     
-    private final String rutaBase="D:\\zPruebas\\EjerciciosJava\\src\\main\\java\\com\\jorgerubira\\resources\\";
+    private final String rutaBase="C:\\Users\\manol\\git\\EjerciciosJavaMaster\\src\\main\\resources";
     
     /**
      * Abre el fichero recibido y cuenta cuantos eventos hay. 
@@ -30,7 +30,7 @@ public class Ejercicio10Ficheros {
    
     public int contarCuantosEventosHay(){
     	 String fichero="AgendaDeDeportes.csv";
-         String ruta = (rutaBase + " " + fichero);
+         String ruta = (rutaBase + "\\ " + fichero);
          try{
              return (int) (Files.lines(Paths.get(ruta),Charset.defaultCharset()).count()-1);
              
@@ -72,7 +72,8 @@ public class Ejercicio10Ficheros {
     	 String ruta = (rutaBase + "\\" + fichero);
          try{
              Files.lines(Paths.get(ruta),
-             Charset.defaultCharset()).filter(x->x.contains(palabra))
+             Charset.defaultCharset())
+             .filter(x->x.contains(palabra))
              .collect(Collectors.toList());
              return 0;
          }catch(Exception e){
