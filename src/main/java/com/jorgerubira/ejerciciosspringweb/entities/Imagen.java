@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Entity
@@ -27,6 +28,7 @@ public class Imagen {
     @Column(nullable=false)
     private String  url;
     private String  descripcion;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date    fechaHoraFichero;
     private String  tipoImagen;
     private String  orientacion;

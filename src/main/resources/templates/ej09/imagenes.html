@@ -1,20 +1,176 @@
 <html xmlns:th="https://www.thymeleaf.org"
-      th:replace="/ej07/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
+      th:replace="/ej09/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <misestilos>
-        
+        <style>
+            label {
+                font-weight: bolder;
+            }
+            input[type="radio"] {
+                opacity: 0.01;
+                z-index: 100;
+                width: 0;
+            }
+
+            option {
+                background-color: grey;
+                color: white;
+            }
+            
+            img{
+                width: 300px;
+                height: 200px;
+                margin: 4px;
+                
+            }
+
+        </style>
     </misestilos>
 
-    </head>
+</head>
 
-    <body>
-        
-    </body>
+<body>
+    <!-- desplegar formularios de categoria y imagen en persiana  --> 
+    <h1>Imagenes</h1>
+    <hr>
 
-    <misscripts>
-        
-    </misscripts>
+    <div class= "container-fluid" >
+        <div class="row">
+            <div class="col-3">
+                    <input class="btn btn-light" type="button" id="botonDespliequeAltaImagen" value="Mostrar Alta Imagen"/>
+                <div id="altaImagen">
+                <form th:object="${imagen}" method="post" action="/ejercicio09/altaImagen">
+                    <h3 >Alta Imagen</h3>
+                    <div>
+                        <label for="url">url :</label>
+                        <input type="text" th:field="*{url}" required/>
+                    </div>
+                    <div>
+                        <label for="descripcion">descripcion :</label>
+                        <input type="text" th:field="*{descripcion}" required/>
+                    </div>
+                    <div>
+                        <label for="fechaHoraFichero">Fecha y hora :</label>
+                        <input type="date" th:field="*{fechaHoraFichero}"/>
+                    </div>
+                    <div >
+                        <label for="tipoImagen">tipo Imagen  </label>
+                        <br/>
+                        <div th:each="tipoImg:${listaTipoImagen}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="tipoImagen" th:value="${tipoImg}" th:text="${tipoImg}"/>
+                            </label>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div >
+                        <label for="orientacion">tipo Orientacion  </label>
+                        <br/>
+                        <div th:each="tipoOri:${listaOrientacion}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="orientacion" th:value="${tipoOri}" th:text="${tipoOri}"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="contenido">tipo Contenido  </label>
+                        <br/>
+                        <div th:each="tipoCont:${listaContenido}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="contenido" th:value="${tipoCont}" th:text="${tipoCont}"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="uso">tipo Uso </label>
+                        <br/>
+                        <div th:each="tipoUso:${listaUso}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="uso" th:value="${tipoUso}" th:text="${tipoUso}"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="uso">Categoria </label>
+                        <br/>
+                        <select name="categoria">
+                            <option  value="" >--ninguna--</option>
+                            <option  value="" >otra</option>
+                            <option th:each="tipoCategoria:${listaCategorias}" th:value="${tipoCategoria.categoria}" th:text="${tipoCategoria.categoria}">
+                            </option>
+                        </select>
+                    </div>
+                    <br>
+                    <input class="btn btn-secondary btn-sm" type="submit" id="enviarImagen" value="Enviar"/>
+                </form>
+            </div>
+            <hr>
+            <!-- Formulario categoria -->
+            <input class="btn btn-light" type="button" id="botonDespliequeAltaCategoria" value="Mostrar Alta Categoria"/>
+            <div class="container-fluid" id="altaCategoria" >
+
+                <h3>Alta Categoria</h3>
+                <form th:object="${categoria}" method="post" action="/ejercicio09/altaCategoria">
+                    <div>
+                        <label for="categoria">categoria :</label>
+                        <input type="text" th:field="*{categoria}" required/>
+                    </div>
+                    <input class="btn btn-secondary btn-sm" type="submit" value="Enviar" id="enviarCategoria"/>
+                </form>
+            </div>
+        </div>
+        <div class="col-9">
+            <img th:each="imagen:${listaImagenes}" th:src="${imagen.url}" width="300px" height="200px" >
+        </div>
+    </div>
+</body>
+
+<misscripts>
+    <script>
+        $(document).ready(function () {   //Al cargar TODO el documento
+            $("#altaImagen").slideUp(0);  //Al principio
+            $("#altaCategoria").slideUp(0);
+        });
+        $("#botonDespliequeAltaImagen").on("click", function () {
+            var tiempo = 2000;
+            if ($("#botonDespliequeAltaImagen").val() == "Mostrar Alta Imagen") {
+                $("#altaImagen").slideUp(0).slideDown(tiempo, function () {
+                    $("#botonDespliequeAltaImagen").val("Ocultar Alta Imagen");
+                });
+            } else {
+                $("#altaImagen").slideUp(tiempo, function () {
+                    $("#botonDespliequeAltaImagen").val("Mostrar Alta Imagen");
+                });
+                //  setTimeout(function(){ $("#altaImagen").attr("style", "display:none"); }, 5000 );
+
+            }
+
+        }
+        );
+
+        $("#botonDespliequeAltaCategoria").on("click", function () {
+            var tiempo = 1000;
+            if ($("#botonDespliequeAltaCategoria").val() == "Mostrar Alta Categoria") {
+                $("#altaCategoria").slideUp(0).slideDown(tiempo, function () {
+                    $("#botonDespliequeAltaCategoria").val("Ocultar Alta Categoria");
+                });
+            } else {
+                $("#altaCategoria").slideUp(tiempo, function () {
+                    $("#botonDespliequeAltaCategoria").val("Mostrar Alta Categoria");
+                });
+                //  setTimeout(function(){ $("#altaImagen").attr("style", "display:none"); }, 5000 );
+
+            }
+
+        }
+        );
+
+    </script>
+</misscripts>
 </html>

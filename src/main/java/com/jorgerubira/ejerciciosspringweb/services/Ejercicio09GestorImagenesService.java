@@ -5,7 +5,7 @@
  */
 package com.jorgerubira.ejerciciosspringweb.services;
 
-import com.jorgerubira.ejerciciosspringweb.entities.Categoria;
+import com.jorgerubira.ejerciciosspringweb.entities.CategoriaEntity;
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio09GestorImagenesCategoriasService;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio09GestorImagenesImagenService;
@@ -29,7 +29,8 @@ public class Ejercicio09GestorImagenesService implements IEjercicio09GestorImage
     private CategoriasRepository repoCategorias;
     
     @Override
-    public void altaCategoria(Categoria c) {
+    public void altaCategoria(CategoriaEntity c) {
+
         repoCategorias.save(c);
     }
 
@@ -40,7 +41,8 @@ public class Ejercicio09GestorImagenesService implements IEjercicio09GestorImage
 
     @Override
     public void altaImagen(Imagen img) {
-        if (repoCategorias.findByCategoria(img.getCategoria()).isPresent()){
+        System.out.println("Categoria alta imagen :"+ img.getCategoria());
+        if ( (repoCategorias.findByCategoria(img.getCategoria())).isPresent()){
             repoImagenes.save(img);
         }
         else {
@@ -49,7 +51,7 @@ public class Ejercicio09GestorImagenesService implements IEjercicio09GestorImage
     }
 
     @Override
-    public List<Categoria> obtenerCategorias() {
+    public List<CategoriaEntity> obtenerCategorias() {
         return repoCategorias.findAll();
     }
 

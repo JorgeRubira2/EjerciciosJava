@@ -5,7 +5,7 @@
  */
 package com.jorgerubira.ejerciciosspringweb.interfaces;
 
-import com.jorgerubira.ejerciciosspringweb.entities.Categoria;
+import com.jorgerubira.ejerciciosspringweb.entities.CategoriaEntity;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  * @author janus
  */
 public interface IEjercicio09GestorImagenesCategoriasService {
-    void altaCategoria(Categoria c);
-    List<Categoria> obtenerCategorias();
+    void altaCategoria(CategoriaEntity c);
+    List<CategoriaEntity> obtenerCategorias();
 
 }

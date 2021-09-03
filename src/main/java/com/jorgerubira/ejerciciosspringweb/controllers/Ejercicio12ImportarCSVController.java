@@ -17,9 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
-import static org.apache.http.client.methods.RequestBuilder.delete;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,10 +37,10 @@ public class Ejercicio12ImportarCSVController {
     @Autowired
     private DatoUniversidadRepository repoDatoUniversidad;
     
-    // @Value("${carpetas.recursos.hiberus}")
-    private String rutaBase="C:\\zzCursoHiberus";  
+    @Value("${carpetas.recursos.hiberus}")
+    private String rutaBase;//="C:\\zzCursoHiberus";  
 
-    private String rutaEjercicio = rutaBase +"\\ejercicio12\\";
+    
     
     @GetMapping("/tratarDatos")
     public String tratar(){
@@ -50,6 +50,7 @@ public class Ejercicio12ImportarCSVController {
     
     @PostMapping("/tratarDatos")
     public String tratamientoCSV(Model model, MultipartFile fichero){
+        String rutaEjercicio = rutaBase +"\\ejercicio12\\";
         
         String ruta = rutaEjercicio + fichero.getOriginalFilename();
         File f = new  File(ruta);  
