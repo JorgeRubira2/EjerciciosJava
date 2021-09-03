@@ -1,5 +1,7 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
+import com.jorgerubira.ejerciciosspringweb.repositories.GestionImagenesRepository;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -24,6 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/ej11")
 public class Ejercicio11GestionImagenes {
     
+    @Autowired(required = false)
+    private GestionImagenesRepository repositorio;
+    
     @Value("${carpetas.recursos.hiberus}")
     private String rutaRecursos;
 
@@ -34,8 +40,8 @@ public class Ejercicio11GestionImagenes {
     }
     
     @GetMapping("/verImagen")
-    public String mostrarImagen(Model m, String success){
-        m.addAttribute("success", success);
+    public String mostrarImagen(Model m){
+        m.addAttribute("imagen", repositorio.findAll());
         return "ej11/verImagen";
     }    
 
@@ -67,7 +73,7 @@ public class Ejercicio11GestionImagenes {
     }    
     
     @PostMapping("/subir")
-    public String subir(Model m, MultipartFile fichero){ //, HttpServletResponse response){
+    public String subir(Model m, MultipartFile fichero, Imagen imagen){ //, HttpServletResponse response){
         
         if (fichero.getOriginalFilename().toLowerCase().endsWith(".jpg")==false){
             m.addAttribute("error", "Formato incorrecto");
@@ -82,6 +88,11 @@ public class Ejercicio11GestionImagenes {
         try{
             Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);    
             return "redirect:ver?success=Fichero subido";
+            //imagen.setruta(nombre);
+            //imagen.setNombre(fichero.getOriginalFilename());
+            
+            //repositorio.save(imagen);
+            
         }catch(IOException e){
             e.printStackTrace();
             m.addAttribute("error", "Error inesperado");
