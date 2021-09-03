@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.jorgerubira.explicaciones.D20210901.ficheros;
 
 import java.io.File;
@@ -55,6 +51,7 @@ public class FicherosController {
         cabeceras.add("Pragma", "no-cache");
         cabeceras.add("Expires", "0");
         
+        
         /*String contentType="application/octet-stream";
         if (ruta.endsWith(".pdf")){
             contentType="application/pdf";
@@ -84,7 +81,7 @@ public class FicherosController {
     
     @PostMapping("/subir")
     public String subir(Model m, MultipartFile fichero){ //, HttpServletResponse response){
-        
+
         if (fichero.getOriginalFilename().toLowerCase().endsWith(".pdf")==false){
             m.addAttribute("error", "Formato incorrecto");
             return "d20210901/formulario";
@@ -104,5 +101,28 @@ public class FicherosController {
         //response.addCookie(new Cookie("username", "Jovan"));
         return "d20210901/formulario";
     }
+    
+    @GetMapping("/verMultiple")
+    public String mostrarFormulario2(Model m){
+        return "d20210901/formularioMultiple";
+    }    
+    
+    @PostMapping("/subirMultiple")
+    public String subirMultiple(Model m, MultipartFile[] fichero){ //, HttpServletResponse response){
+        for (MultipartFile fic : fichero) {
+            //UUID.randomUUID().toString();
+            String ruta=rutaRecursos + "\\d20210901\\ejemplo1\\" + fic.getOriginalFilename();
+            File f=new File(ruta);
+            f.getParentFile().mkdirs();
+            try{
+                Files.copy(fic.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);    
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        //response.addCookie(new Cookie("username", "Jovan"));
+        return "d20210901/formularioMultiple";
+    }
+
     
 }
