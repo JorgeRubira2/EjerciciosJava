@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data  
 @NoArgsConstructor
@@ -28,11 +29,13 @@ public class FacturaEncabezado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @DateTimeFormat (pattern="yyyy-MM-dd")
     private Date fecha;
     private String nombre; 
     private String direccion; 
     private String ciudad;
     private String nif;
+    private Double total;
     
     @OneToMany(mappedBy = "encabezado")
     private List<FacturaLinea> linea;
