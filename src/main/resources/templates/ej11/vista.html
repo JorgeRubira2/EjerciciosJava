@@ -14,20 +14,36 @@
     </head> 
     <body>
 
-      <div class="container">
-            <form action="/preparado/subir" method="post" enctype="multipart/form-data">
+        <div class="container">
+            <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data">
                 <label>Descripcion : </label>
                 <input type="text" name="descripcion"/> <br> <br>
-                
-                 <label>Fichero : </label>
+
+                <label>Fichero : </label>
                 <input type="file" name="fichero"/><br> <br>
-                
+
                 <button type="submit" class="btn btn-primary">Subir fichero</button>
             </form>
+
+
+            <br>
+            <h1>IMAGENES</h1>
+
+
+            <input type="text" name="filtrar" placeholder="Filtrar"/>
+            <input class="btn btn-primary" type="submit" name="buscar" value="Buscar">
+
+            <br>     
+            <br> 
+          
+            <img th:src="${'/ejercicio11/download?aleatorio='}" />
+            
+         
+
         </div>
         <hr/>
 
-        
+
 
     </body>
     <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
