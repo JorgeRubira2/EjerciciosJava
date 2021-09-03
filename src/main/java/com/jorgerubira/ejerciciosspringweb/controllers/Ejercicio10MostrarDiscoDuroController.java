@@ -51,6 +51,14 @@ public class Ejercicio10MostrarDiscoDuroController {
                             dirFrag = path.split("/"); 
 
                             
+                            for (int i = 0; i < dirFrag.length; i++) {
+                                if(i == 0){
+                                    urlFrag[i] = dirFrag[i]+"//";    
+                                }else{
+                                    urlFrag[i] = urlFrag[i-1] + "/" + dirFrag[i];
+                                }
+                                System.out.println(urlFrag[i]);
+                            }
 
                         }catch(Exception e){
                             e.printStackTrace();
