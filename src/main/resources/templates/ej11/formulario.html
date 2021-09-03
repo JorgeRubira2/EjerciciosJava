@@ -14,24 +14,17 @@
             input{
                 margin: 5px;
             }
-            .form-control{
-                width: 500px;
-            }
-            .btn-primary{
-                margin: 5px;
-                margin-left: 15px;
-            }
 
         </style>
     </head>
-
     <body>
-        <label>Descripción</label>
-        <input class="form-control" type="text"/>
+        <form action="/ej11/subir" method="post" th:object="${imagen}" enctype="multipart/form-data">
+            <label>Descripción</label>
+            <input type="text" placeholder="Descripción para el archivo" th:field="*{descripcion}"/><br> 
 
-        <label>Fichero</label>
-        <button type="button" class="btn btn-secondary ">Seleccionar archivo</button><br>
-        
-        <button type="button" class="btn btn-primary ">Subir fichero</button>
+            <label>Fichero</label>
+            <input type="file" name="fichero"></input><br> 
+            <input type="submit" value="Subir fichero" class="btn-success"></input>
+        </form>
     </body>
 </html>
