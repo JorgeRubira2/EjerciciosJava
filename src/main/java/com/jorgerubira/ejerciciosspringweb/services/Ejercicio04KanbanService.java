@@ -3,14 +3,19 @@ package com.jorgerubira.ejerciciosspringweb.services;
 import com.jorgerubira.ejerciciosspringweb.domain.TareaKanban;
 import com.jorgerubira.ejerciciosspringweb.exceptions.OperacionEnListaException;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio04KanbanService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 
 /**
  * Implementa la interface IEjercicio04KanbanService
  */
+@Service
 public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
+    
+    private List<TareaKanban> lista=new ArrayList<>();
 
     @Override
     public void crearTarea(String descripcion, Integer horasEstimacion) {
@@ -39,12 +44,14 @@ public class Ejercicio04KanbanService implements IEjercicio04KanbanService {
 
     @Override
     public List<TareaKanban> getTareas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lista;
     }
 
     @Override
     public Optional<TareaKanban> getTarea(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lista.stream()
+                .filter(x->x.getCodigo().equals(codigo))
+                .findFirst();
     }
     
 }
