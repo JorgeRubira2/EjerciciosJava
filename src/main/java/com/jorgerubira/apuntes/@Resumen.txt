@@ -37,9 +37,10 @@ Java:
             Rutas: normalize()
             //Binarios (Secundario): OutputStream, InputStream. writeObject,readObject. Serializable. Aplicaciones pequeñas sin cambios y sin base de datos.
 
+- Anotaciones (Secundario). Algoritmo por reflexion. Meta-anotacion->(Retention->Cuando se ejecutan, Target->Que elementos)
 
-
-- Anotaciones (Secundario). Algoritmo por reflexion. Metaanotacion->(Retention->Cuando se ejecutan, Target->Que elementos)
+- Concurrencia: ExecutorService (interface) -> Executors.new......
+                Planificar la ejecucion. ScheduledExecutorService -> Nos permitir planificar cuando lo queremos ejecutar.
                 
 ------------------------------------------------------------------------------------------------------------
 Spring Boot:
@@ -172,3 +173,6 @@ Spring Boot:
                                        -> tipo MIME. image/png para imagenes
                                                      application/pdf para pdfs
                                                      application/octet-stream generico -> descarga
+
+- ManyToOne, OneToMany: El id siempre va en el Many, @JoinColumn (indicar el nombre del Id), CREATE TABLE  -> Foreign Key
+                        Tipo de carga: EAGER->Carga temprana (ManyToOne), LAZY->Carga perezosa (OneToMany), fetch
