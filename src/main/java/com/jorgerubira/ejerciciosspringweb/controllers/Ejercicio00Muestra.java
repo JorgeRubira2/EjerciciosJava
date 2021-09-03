@@ -1,6 +1,5 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
-import com.jorgerubira.ejerciciosspringweb.domain.Alumno;
 import com.jorgerubira.ejerciciosspringweb.entities.Producto;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio02CalculadoraService;
 import java.util.ArrayList;
@@ -14,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.jorgerubira.ejerciciosspringweb.repositories.ProductoCrudRepository;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.view.RedirectView;
-
 
 @Controller
 @RequestMapping("/ejercicio0")

@@ -1,0 +1,50 @@
+.divModificado {
+  /* Se referencia a todos los div */
+  margin-bottom: 5px;
+  padding: 5px;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  border-radius: 7px;
+  background-color: #e4e4e4;
+}
+.rojo {
+  background-color: #df0000;
+}
+
+.naranja {
+  background-color: #e67a00;
+}
+
+.Verde {
+  background-color: #01be01;
+}
+
+.noBordesTop td {
+  /* Se referencia a todos los <td> que antes estén dentro de un <tr> con la clase noBorderTop */
+  border-top: 0px;
+}
+table {
+  /* Se referencia a toda la tabla */
+  text-align: center;
+}
+.addTask td {
+  /*Se referencia a todos los <td> que antes estén dentro de un objeto con la clase addTask */
+  text-align: center;
+}
+.cambioFuente {
+  /* Se referencia a todos los objetos que tenga la clase cambioFuente */
+  font-family: Candara;
+  font-weight: bold;
+}
+.cambioFuente th {
+  /* Se referencia a todos los <th> que antes estén dentro de un objeto con la clase cambioFuente */
+  vertical-align: middle;
+  width: 600px;
+}
+button {
+  margin-bottom: 5px;
+}
+a {
+  margin-bottom: 5px;
+}
