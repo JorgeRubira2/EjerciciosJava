@@ -20,5 +20,4 @@ public class CategoriaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String estilo;
-    private String categoria;
 }

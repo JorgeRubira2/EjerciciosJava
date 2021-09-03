@@ -1,10 +1,13 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
-import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen9;
 import com.jorgerubira.ejerciciosspringweb.repositories.CategoriasRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.Imagen9Repository;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/ejercicio09")
@@ -32,7 +34,7 @@ public class Ejercicio09GestorImagenesController {
     private String rutaRecursos;
     
     @GetMapping
-    public String inicio(Model m, String success, String borrado, String filtrar){
+    public String inicio(Model m, String success, String error, String filtrar){
         if(repoImg.findAll().isEmpty()){
             m.addAttribute("imagenes", null);
         }else if (filtrar!=null){
@@ -41,14 +43,26 @@ public class Ejercicio09GestorImagenesController {
         }else{
             m.addAttribute("imagenes", repoImg.findAll());
         }
+        if(repoCat.findAll().isEmpty()){
+            m.addAttribute("categorias", null);
+        }else{
+            m.addAttribute("categorias",repoCat.findAll());
+        }
         m.addAttribute("success", success);
-        m.addAttribute("borrado", borrado);
         return "/ej09/vista";
     }
     
     @PostMapping("/subir")
     public String subir(Model m, Imagen9 img){ //, HttpServletResponse response){
+        try {
+            URL url = new URL(img.getUrl());
+            
+            m.addAttribute("success", "Imagen subida con exito");
+        } catch (MalformedURLException ex) {
+            m.addAttribute("error", "Enlace no valido");
+        }
+    
         
-        return "/ej09/vista";
+        return "/ej09/vista" ;
     }
 }
