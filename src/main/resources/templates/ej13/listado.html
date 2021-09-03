@@ -1,0 +1,31 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <a class="btn btn-outline-primary" href="altaFactura" >Nueva Factura</a>
+            <table>
+                <tr>
+                    <th>Nº Factura</th>
+                    <th>Nombre de la empresa</th>
+                    <th>Fecha de la Factura</th>
+                </tr>
+                <tr th:each="factura : ${facturas}">
+                    <td th:text="${factura.id}"></td>
+                    <td th:text="${factura.nombre}"></td>
+                    <td th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <!-- <a th:href="@{editarPersona(id=${per.id})}">Ver Detalles de la Factura</a> -->
+                        <a>Ver Detalles de la Factura</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+    </body>
+</html>
