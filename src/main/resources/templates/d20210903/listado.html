@@ -1,0 +1,27 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <a href="altaPersona" >Nueva Persona</a>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                </tr>
+                <tr th:each="per : ${personas}">
+                    <td th:text="${per.nombre}"></td>
+                    <td th:text="${per.apellidos}"></td>
+                    <td th:text="${#dates.format(per.fechaNacimiento, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a th:href="@{editarPersona(id=${per.id})}">Editar</a>
+                        <a th:href="@{borrarPersona(id=${per.id})}">Borrar</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
