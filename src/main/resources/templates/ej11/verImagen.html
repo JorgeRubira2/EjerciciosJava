@@ -1,0 +1,28 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="ej11/layout::layout( ~{::body})">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container d-flex justify-content-center mt-5">
+            
+            <input class="placeholder col-7" placeholder="Indica el nombre de la imagen o parte de su descripción para buscarla"/>
+            <input type="button" class="btn btn-primary btn-sm ml-3 p-1" value="Filtrar"/><br/>
+            
+            <div class="row">
+                <div class="col-2">
+                    <span th:each="imagen:${imagenes}">
+                        <div class="col imagen">
+                            <img th:src="@(/ej11/descarga(ruta=imagen.ruta))" /><br/>
+                            <div class="col">
+                                <div th:text="${imagen.descripcion}"></div>
+                                <a th:href="@{borrarImagen{id=${imagen.id}}}">Borrar</a>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
