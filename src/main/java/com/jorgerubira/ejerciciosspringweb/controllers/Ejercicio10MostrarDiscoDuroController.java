@@ -28,13 +28,12 @@ public class Ejercicio10MostrarDiscoDuroController {
     public String gestion(Model model, String ruta){
         String path="";
         String[] dirFrag = null;
+        String[] urlFrag = {""};
         List<String> ficheros = new ArrayList();
         List<String> directorios = new ArrayList();
         if(ruta == null){
-            //ruta="D:\\pruebas ficheros";
             ruta="C:\\";
         }
-        System.out.println(ruta);
         File f=new File(ruta);
         if (f.exists()){
                 File []ficherosInternos=f.listFiles();
@@ -50,7 +49,12 @@ public class Ejercicio10MostrarDiscoDuroController {
                             path = ficheroInterno.getParent();
                             path = path.replaceAll("\\\\", "/");  
                             dirFrag = path.split("/"); 
-                        }catch(Exception e){}
+
+                            
+
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
                     } 
                 }catch(NullPointerException e){
                    model.addAttribute("error","Error al cargar la URL");
@@ -64,6 +68,7 @@ public class Ejercicio10MostrarDiscoDuroController {
         model.addAttribute("directorio",directorios);
         model.addAttribute("currentPath",path);
         model.addAttribute("dirFrag",dirFrag);
+        model.addAttribute("urlFrag",urlFrag);
         return "ej10/discoduro";
     }
     

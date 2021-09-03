@@ -9,11 +9,16 @@
         <div class="container">
             <h1>Mostrar Disco Duro</h1>
             <br>
-            <span th:each="frag:${dirFrag}"> 
-                <a th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
-                 <i class="fas fa-chevron-right"></i> 
+            <span th:each="frag,iter:${dirFrag}"> 
+              <!--  <a th:if="${iter.size != iter.count}" th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
+                <i th:if="${iter.size != iter.count}" class="fas fa-chevron-right"></i> 
+                <a th:if="${iter.size == 1 && iter.count == 1}" th:text="C" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
+                <i th:if="${iter.size == 1 && iter.count == 1}" class="fas fa-chevron-right"></i>  -->
+              
+                <a th:text="${frag}" th:href="@{/ejercicio10/ver(ruta=${urlFrag})}" style="text-decoration: none; font-size: 24px"></a>
+                <i class="fas fa-chevron-right"></i> 
             </span>
-            <br>
+            <br><br>
             <div>
                <a th:text="${currentPath}" th:href="${currentPath}" style="text-decoration: none; font-size: 12px"></a>
             </div>
