@@ -1,0 +1,27 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="d20210901/layout::layout( ~{::body})">
+    <head>
+        <title>Galeria de imagenes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row>">
+                <input class="col-4 m-1" placeholder="Filtrar"/>
+                <input type="button" class="btn btn-primary m-1" value="Filtrar"/>
+            </div>
+            <div  th:each="img:${imagenes}">
+                <div class="row" >
+                    <img class="rounded  float-left m-5" th:src="${'/ejercicio11/descarga?aleatorio='+img.aleatorio}" width="400px" height="300px" /> 
+                </div>
+                <div >
+                    <input type="button" class="btn btn-success" value="Descargar" />
+                    <input type="button" class="btn btn-danger" value="Borrar" />
+                </div>
+                    
+            </div>    
+                
+            
+        </div>
+    </body>
+</html>

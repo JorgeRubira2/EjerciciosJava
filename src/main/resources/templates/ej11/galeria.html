@@ -1,0 +1,32 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Galeria de imagenes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="row m-2">
+        <h1>Galeria de imagenes</h1>
+        </div>
+        <div class="row">
+        <div class="container m-2">
+            <div class="row">             
+
+                <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data" >
+                    Descripcion:<input class="m-1" name="descripcion" placeholder="Descripcion" required />
+                    Fichero <input  class="m-1" type="file" name="fichero" accept=".jpg" /><br/><br/>
+                    <button type="submit" class="btn btn-primary" value="Subir Fichero">Subir Archivo </button>
+                </form>
+                <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
+                <div style="color: green" th:if="${success!=null}" th:text="${success}"></div> 
+            </div>
+            
+            </div>
+            
+            </div>
+        </div>
+
+    </body>
+</html>
