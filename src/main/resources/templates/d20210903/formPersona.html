@@ -1,0 +1,33 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <form action="guardarPersona" method="post" th:object="${persona}">
+                <input type="hidden" th:field="*{id}" />
+                Nombre: <input th:field="*{nombre}" /><br/>
+                Apellidos: <input th:field="*{apellidos}" /><br/>
+                Fecha Nacimiento: <input type="date" th:field="*{fechaNacimiento}" /><br/>
+                <button type="submit">Guardar</button>
+            </form>
+            <hr/>
+            <div th:if="${persona.id>0}">
+                <h5>Telefono</h5>
+                <a th:href="@{altaTelefono(idPersona=${persona.id})}">Alta Telefono</a>
+                <table>
+                    <tr th:each="tele : ${persona.telefonos}">
+                        <td th:text="${tele.numero}"></td>
+                        <td>
+                            <a th:href="@{editarTelefono(id=${tele.id})}">Editar</a>
+                            <a th:href="@{borrarTelefono(id=${tele.id})}">Borrar</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </body>
+</html>
