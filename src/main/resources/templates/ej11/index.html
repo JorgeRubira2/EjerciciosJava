@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Subir y borrar imágenes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            .container{
+                margin-top:10px;
+            }
+            #formFileMultiple {
+                margin:10px auto;
+            }
+            .imagenes{
+                margin: 10px 0;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container col-6">
+            <form class="col-12" action="/ejercicio11/subir" method="post" enctype="multipart/form-data" >
+                <div class="form-floating">
+                
+                    <input class="form-control" placeholder="Añade una descripción:" type="text" name="descripcion"></input>
+                    <label for="floatingInputValue"><b>Añade una descripción:</b></label>   
+                
+                </div>
+            </form>
+            <input class="form-control mb-3" type="file" id="formFileMultiple" multiple>
+            <input class="btn btn-success col-2" type="submit" value="Subir Fichero"/> 
+            
+            <div style="color:green" th:if="${success!=null}" th:text="${success}"></div>
+            <div style="color:red" th:if="${error!=null}" th:text="${error}"></div>
+            <h1>Fotos</h1>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control filtrar" placeholder="Escribe un nombre" id="filto" th:value="${filtrar}" required/>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary" id="filtrar">Filtrar</button>
+                </div>
+            </div>
+            <!--<div class="card imagenes" style="width: 18rem;">
+                <img src="https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <a class="btn btn-primary" th:if="${borrado!=null}" th:text="${borrado}">Borrar</a>
+                </div>
+            </div>-->
+            <div class="card imagenes" style="width: 18rem;">
+                <img src="https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <a class="btn btn-primary" th:if="${borrado!=null}" th:text="${borrado}">Borrar</a>
+                </div>
+            </div>
+            
+            
+                        <div class="row">
+                <th:block th:if="${imagenes}!=null">
+                    <div th:each="img:${imagenes}" class="card" style="width: 18rem;">
+                        <img class="card-img-top" th:src="|/ejercicio11/descarga?codigo=${img.codigo}&nombre=${img.nombre}|" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 th:text="${img.nombre}" class="card-title"></h5>
+                          <p th:text="${img.descripcion}" class="card-text"></p>
+                          <a th:href="|/ejercicio11/borrar?codigo=${img.codigo}|" class="btn btn-primary">Borrar</a>
+                        </div>
+                      </div>
+                </th:block>
+            </div>
+        </div>
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    </body>
+</html>
