@@ -1,0 +1,119 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Titulo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        .bootbox-body form{
+            width:100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
+        <div style="color: green" th:if="${success!=null}" th:text="${success}"></div>
+
+        <hr />
+        <h1>Fotos</h1>
+        <div class="row">
+            <input type="text" class="form-control col-5" id="filtro" />
+            <button id="filtrar" class="btn btn-info col-3">Filtro</button>
+            <button onclick="addImg()" class="btn btn-primary col-3" id="subir">Subir imagen</button>
+        </div>
+        <div class="row">
+            <th:block th:if="${imagenes}!=null">
+                <div th:each="img:${imagenes}" class="card" style="width: 18rem;">
+                    <img class="card-img-top" th:src="|${img.url}|" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 th:text="${img.uso}" class="card-title"></h5>
+                        <p th:text="${img.descripcion}" class="card-text"></p>
+                        <a th:href="|/ejercicio09/borrar?codigo=${img.id}|" class="btn btn-primary">Borrar</a>
+                    </div>
+                </div>
+            </th:block>
+            <div style="color: red" th:if="${borrado!=null}" th:text="${borrado}"></div>
+        </div>
+    </div>
+
+    <div id="miformulario" style="display:none" class="row justify-content-center">
+        <form action="/ejercicio09/subir" method="post">
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="url">Url de la imagen</label>
+                    <input required class="form-control" type="text" name="url" />
+                </div>
+                <div class="col-6">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label for="tipoImagen">Tipo de imagen</label>
+                    <select class="form-control" name="tipoImagen">
+                        <option selected>Foto</option>
+                        <option>Vector</option>
+                        <option>Ilustracion</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="orientacion">Orientacion</label>
+                    <select class="form-control" name="orientacion">
+                        <option selected>Horizontal</option>
+                        <option>Vertical</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <th:block th:if="${categorias!=null}">
+                        <label for="categoria">Categoria</label>
+                        <select class="form-control" name="categoria">
+                            <option th:each="cat:${categorias}" th:text="${cat.estilo}">
+                        </select>
+                    </th:block>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-6">
+                    <label for="uso">Uso</label>
+                    <select class="form-control" name="uso">
+                        <option selected>Uso comercial</option>
+                        <option>Uso no comercial</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <input class="btn btn-success" type="submit" value="Subir imagen" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#filtrar").on('click', function () {
+                var href = $("#filtro").val();
+                console.log(href);
+                location.href = "/ejercicio09?filtrar=" + href;
+            })
+        });
+        function addImg() {
+            bootbox.dialog({
+                title: "Añadir imagen",
+                size: 'large',
+                message: $('#miformulario').html(),
+            });
+        };
+    </script>
+</body>
+
+</html>
