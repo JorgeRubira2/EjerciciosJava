@@ -8,27 +8,13 @@
     <body>
         <div class="container">
             <h1>Mostrar Disco Duro</h1>
-            <br><!--
-            <span th:each="frag,iter:${dirFrag}"> 
-              <!--  <a th:if="${iter.size != iter.count}" th:text="${frag}" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
-                <i th:if="${iter.size != iter.count}" class="fas fa-chevron-right"></i> 
-                <a th:if="${iter.size == 1 && iter.count == 1}" th:text="C" th:href="${frag}" style="text-decoration: none; font-size: 24px"></a>
-                <i th:if="${iter.size == 1 && iter.count == 1}" class="fas fa-chevron-right"></i>  -->
-             <!--
-                <a th:text="${frag}" th:href="@{/ejercicio10/ver(ruta=${frag})}" style="text-decoration: none; font-size: 24px"></a>
-                <i class="fas fa-chevron-right"></i> 
-                
-            </span> -->
+            <br>
             <div>
                 <span th:each="df,i:${dirFrag}"> 
                     <span th:each="uf,j:${urlFrag}"> 
                         <a th:if="${i.count == j.count}" th:text="${df}" th:href="@{/ejercicio10/ver(ruta=${uf})}" style="text-decoration: none; font-size: 24px"></a>
                         <i th:if="${i.count == j.count}" class="fas fa-chevron-right"></i> 
-                    </span><!--  
-                    <span th:each="uf,j:${urlFrag}"> 
-                        <a th:href="@{/ejercicio10/ver(ruta=${uf})}" style="text-decoration: none; font-size: 24px"></a>
-                        <i class="fas fa-chevron-right"></i> 
-                    </span>comment -->
+                    </span>
                 </span>
             </div>
             
