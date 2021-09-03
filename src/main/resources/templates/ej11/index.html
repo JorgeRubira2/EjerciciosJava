@@ -16,17 +16,16 @@
                 <input type="email" class="form-control" style="text-align: center;" id="exampleFormControlInput1" placeholder="Introduce aquí una descripción">
             </div>
             <div class="col-12 mt-4">
-            <form action="/ej11/subir" method="post" enctype="multipart/form-data" >
-                <h5>Fichero</h5>
-                <input type="file" name="fichero" accept=".jpg" /><br/><br/>
-                <input class="btn btn-success" type="submit" value="Subir Fichero"/>
-                <input class="btn btn-danger" type="submit" value="Borrar Fichero"/>
-            </form>
+                <form action="/ej11/subir" method="post" enctype="multipart/form-data" >
+                    <h5>Fichero</h5>
+                    <input type="file" name="fichero" accept=".jpg" /><br/><br/>
+                    <input class="btn btn-success" type="submit" value="Subir Fichero"/>
+                    <input class="btn btn-danger" type="submit" value="Borrar Fichero"/>
+                </form>
             </div>
         </div>
         <div style='color: red; text-align:center' th:if="${error!=null}" th:text="${error}"></div>
         <div style='color: green; text-align:center' th:if="${success!=null}" th:text="${success}"></div>
-    </div>
 
     <!-- Scripts JQuery, Bootstrap, Fontawesome -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>

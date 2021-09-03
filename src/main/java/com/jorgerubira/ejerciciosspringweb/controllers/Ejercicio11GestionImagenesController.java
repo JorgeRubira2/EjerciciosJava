@@ -43,6 +43,29 @@ public class Ejercicio11GestionImagenesController {
         public String mostrarImagen(String success) {
             return "ej11/index";
         }
+        
+        @PostMapping("/subir")
+        public String subir(Model m, MultipartFile fichero) { //, HttpServletResponse response){
+
+            if (fichero.getOriginalFilename().toLowerCase().endsWith(".jpg") == false) {
+                m.addAttribute("error", "Formato incorrecto");
+                return "ej11/index";
+            }
+            String idRandom = UUID.randomUUID().toString();
+            String ruta = rutaRecursos + "\\ej11\\imagenes\\" + idRandom;
+            File f = new File(ruta);
+            f.getParentFile().mkdirs();
+            try {
+                Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                
+                return "redirect:ver?success=Fichero subido";
+            } catch (IOException e) {
+                e.printStackTrace();
+                m.addAttribute("error", "Error inesperado");
+            }
+
+            return "redirect:index";
+        }
 
         @GetMapping("/descarga")
         public ResponseEntity<Resource> mostrarFormulario(int imagen) {
@@ -72,27 +95,5 @@ public class Ejercicio11GestionImagenesController {
             return "ej11/index";
         }
 
-        @PostMapping("/subir")
-        public String subir(Model m, MultipartFile fichero) { //, HttpServletResponse response){
-
-            if (fichero.getOriginalFilename().toLowerCase().endsWith(".pdf") == false) {
-                m.addAttribute("error", "Formato incorrecto");
-                return "ej11/index";
-            }
-            String idRandom = UUID.randomUUID().toString();
-            String ruta = rutaRecursos + "\\ej11\\imagenes\\" + idRandom;
-            File f = new File(ruta);
-            f.getParentFile().mkdirs();
-            try {
-                Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                return "redirect:ver?success=Fichero subido";
-            } catch (IOException e) {
-                e.printStackTrace();
-                m.addAttribute("error", "Error inesperado");
-            }
-
-            //response.addCookie(new Cookie("username", "Jovan"));
-            return "ej11/index";
-        }
     }
 }
