@@ -1,7 +1,6 @@
 
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
-import com.jorgerubira.ejerciciosspringweb.domain.Url;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -58,7 +57,7 @@ public class Ejercicio10MostrarDiscoDuroController {
                     urlFrag = new String[dirFrag.length];
                     for (int i = 0; i < dirFrag.length; i++) {
                         if(i == 0){
-                            urlFrag[i] = dirFrag[i];    
+                            urlFrag[i] = dirFrag[i]+ "/";    
                         }else if(i != 0){
                             urlFrag[i] = urlFrag[i-1] + "/" + dirFrag[i];
                         }
@@ -72,21 +71,10 @@ public class Ejercicio10MostrarDiscoDuroController {
             System.out.println("No existe");
         }
         
-        System.out.println("dirFrag");
-        for (String string : dirFrag) {
-            System.out.println(string);
-        }
-        
-        System.out.println("urlFrag");
-        for (String string : urlFrag) {
-            System.out.println(string);
-        } 
-        
         model.addAttribute("ficheros",ficheros);
         model.addAttribute("directorio",directorios);
         model.addAttribute("currentPath",path);
         model.addAttribute("dirFrag",dirFrag);
-        //Url url = new Url(dirFrag, urlFrag);
         model.addAttribute("urlFrag",urlFrag); 
         return "ej10/discoduro";
     }
