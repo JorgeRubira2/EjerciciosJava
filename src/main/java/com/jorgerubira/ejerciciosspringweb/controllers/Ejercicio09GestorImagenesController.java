@@ -34,10 +34,13 @@ public class Ejercicio09GestorImagenesController {
     @Autowired
     private Ejercicio09GestorImagenesService serviceImagen;
 
+    public static String MASANTIGUAS = "Más Antiguas";
+    public static String MASRECIENTES = "Más Recientes";
     private List<String> tipoImagen = List.of("Foco", "Vector", "Ilustracion");
     private List<String> orientacion = List.of("Horizontal", "Vertical");
     private List<String> contenido = List.of("Con Personas", "Sin Personas");
     private List<String> uso = List.of("Comercial", "No Comercial");
+    private List<String> orden = List.of(MASANTIGUAS, MASRECIENTES);
 
 //    @InitBinder
 //    public void initBinder(WebDataBinder binder) {
@@ -55,30 +58,42 @@ public class Ejercicio09GestorImagenesController {
 
     @PostMapping("/altaCategoria")
     public String altaCategoria(CategoriaEntity cat) {
-        System.out.println("categoria: " + cat.getCategoria() + "  id :" + cat.getId());
         serviceImagen.altaCategoria(cat);
         return "redirect:/ejercicio09/imagenes";
     }
+    
+    @PostMapping("/consultaImagenes")
+    public String consultaImagenes(Model model, Imagen img, CategoriaEntity cat, String ordenEleg) {
+        System.out.println("imagen en consulta" + img +" categoria "+ cat +" orden " + ordenEleg );
+        model.addAttribute("ordenEleg",ordenEleg);
+        model.addAttribute(img);
+        model.addAttribute(cat);
+        return "forward:/ejercicio09/imagenes";
+    }
 
     @RequestMapping(value = "/imagenes", method = {RequestMethod.GET,RequestMethod.POST})
-    public String imagenesInsert(Model model, Imagen img, CategoriaEntity cat) {
-        System.out.println("imagen " + img);
-        if (img.getId() == null) {
+    public String imagenes(Model model, Imagen img, CategoriaEntity cat, String ordenEleg) {
+        System.out.println("imagen en imagenes" + img +" categoria "+ cat +" orden " + ordenEleg );
+        if (img == null) {
             img = new Imagen();
         } else {
         }
-        if (cat.getId() == null) {
+        if (cat == null) {
             cat = new CategoriaEntity();
         }
-
+        if (ordenEleg== null){
+            ordenEleg=MASRECIENTES;
+        }
+        
         model.addAttribute("listaTipoImagen", tipoImagen);
         model.addAttribute("listaOrientacion", orientacion);
         model.addAttribute("listaContenido", contenido);
         model.addAttribute("listaUso", uso);
+        model.addAttribute("listaOrden",orden);
         model.addAttribute("imagen", img);
         model.addAttribute("categoria", cat);
         model.addAttribute("listaCategorias", serviceImagen.obtenerCategorias());
-        model.addAttribute("listaImagenes", serviceImagen.filtrarImagenes(img));
+        model.addAttribute("listaImagenes", serviceImagen.filtrarImagenes(img,ordenEleg));
         return "ej09/imagenes";
     }
 }

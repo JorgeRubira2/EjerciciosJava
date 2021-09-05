@@ -27,6 +27,9 @@
                 
             }
 
+            #consulta{
+                display: flex;
+            }
         </style>
     </misestilos>
 
@@ -34,13 +37,15 @@
 
 <body>
     <!-- desplegar formularios de categoria y imagen en persiana  --> 
-    <h1>Imagenes</h1>
-    <hr>
+
+    
 
     <div class= "container-fluid" >
         <div class="row">
             <div class="col-3">
-                    <input class="btn btn-light" type="button" id="botonDespliequeAltaImagen" value="Mostrar Alta Imagen"/>
+                <h1>Imagenes</h1>
+                <hr>
+                <input class="btn btn-light" type="button" id="botonDespliequeAltaImagen" value="Mostrar Alta Imagen"/>
                 <div id="altaImagen">
                 <form th:object="${imagen}" method="post" action="/ejercicio09/altaImagen">
                     <h3 >Alta Imagen</h3>
@@ -99,13 +104,12 @@
                     <div >
                         <label for="uso">Categoria </label>
                         <br/>
-                        <select name="categoria">
-                            <option  value="" >--ninguna--</option>
-                            <option  value="" >otra</option>
+                        <select name="categoria" required="">
                             <option th:each="tipoCategoria:${listaCategorias}" th:value="${tipoCategoria.categoria}" th:text="${tipoCategoria.categoria}">
                             </option>
                         </select>
                     </div>
+                    <input type="hidden" name="ordenEleg" th:value="${ordenEleg}"/>
                     <br>
                     <input class="btn btn-secondary btn-sm" type="submit" id="enviarImagen" value="Enviar"/>
                 </form>
@@ -125,7 +129,84 @@
                 </form>
             </div>
         </div>
+            <!-- Formulario consulta --> 
         <div class="col-9">
+                <div >
+                    <h3 >Consulta Imagen</h3>
+                <form th:object="${imagen}" method="post" action="/ejercicio09/consultaImagenes"  >
+                    
+                    
+                    
+                    <div>
+                        <label for="descripcion">descripcion :</label>
+                        <input type="text" th:field="*{descripcion}" />
+                    </div>
+                    <div id="consulta">
+                    <div >
+                        <label for="tipoImagen">tipo Imagen  </label>
+                        <br/>
+                        <div th:each="tipoImg:${listaTipoImagen}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="tipoImagen" th:value="${tipoImg}" th:text="${tipoImg}"/>
+                            </label>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div >
+                        <label for="orientacion">tipo Orientacion  </label>
+                        <br/>
+                        <div th:each="tipoOri:${listaOrientacion}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="orientacion" th:value="${tipoOri}" th:text="${tipoOri}"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="contenido">tipo Contenido  </label>
+                        <br/>
+                        <div th:each="tipoCont:${listaContenido}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="contenido" th:value="${tipoCont}" th:text="${tipoCont}"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="uso">tipo Uso </label>
+                        <br/>
+                        <div th:each="tipoUso:${listaUso}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="uso" th:value="${tipoUso}" th:text="${tipoUso}"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="ordenEleg">tipo Uso </label>
+                        <br/>
+                        <div th:each="tipoOrden:${listaOrden}" class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light">
+                                <input type="radio" th:name="ordenEleg" th:value="${tipoOrden}" th:text="${tipoOrden}"/>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    
+                    <div >
+                        <label for="uso">Categoria </label>
+                        <br/>
+                        <select name="categoria">
+                            <option  value="" >--ninguna--</option>
+                            <option th:each="tipoCategoria:${listaCategorias}" th:value="${tipoCategoria.categoria}" th:text="${tipoCategoria.categoria}">
+                            </option>
+                        </select>
+                    </div>
+                    </div>
+                    <br>
+                    <input class="btn btn-secondary btn-sm" type="submit" id="consultarImagen" value="Solicitar Consulta"/>
+                </form>
+            </div>    
             <img th:each="imagen:${listaImagenes}" th:src="${imagen.url}" width="300px" height="200px" >
         </div>
     </div>

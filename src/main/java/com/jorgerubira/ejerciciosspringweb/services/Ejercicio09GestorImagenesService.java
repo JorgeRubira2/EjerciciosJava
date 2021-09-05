@@ -5,12 +5,15 @@
  */
 package com.jorgerubira.ejerciciosspringweb.services;
 
+import com.jorgerubira.ejerciciosspringweb.controllers.Ejercicio09GestorImagenesController;
 import com.jorgerubira.ejerciciosspringweb.entities.CategoriaEntity;
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio09GestorImagenesCategoriasService;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio09GestorImagenesImagenService;
 import com.jorgerubira.ejerciciosspringweb.repositories.CategoriasRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.ImagenesRepository;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,15 +60,26 @@ public class Ejercicio09GestorImagenesService implements IEjercicio09GestorImage
 
 
     // pasamos un elemento de tipo imagen con los filtros cargados 
-    public List<Imagen> filtrarImagenes(Imagen img) { //tipo, orientacion categoria y uso
+    public List<Imagen> filtrarImagenes(Imagen img,String orden) { //tipo, orientacion categoria y uso
+        System.out.println("imagen :" + img.toString() + "  orden :" +orden);
         return this.obtenerImagenes().parallelStream()
+                              .filter(x-> img.getDescripcion()==  null || img.getDescripcion().isEmpty() ||  x.getDescripcion().equals(img.getDescripcion()))
                               .filter(x-> img.getTipoImagen() ==  null || img.getTipoImagen().isEmpty() ||  x.getTipoImagen().equals(img.getTipoImagen()))
                               .filter(x-> img.getOrientacion() ==  null || img.getOrientacion().isEmpty() || x.getOrientacion().equals(img.getOrientacion()))
                               .filter(x-> img.getCategoria() == null || img.getCategoria().isEmpty() || x.getCategoria().equals(x.getCategoria()))
                               .filter(x-> img.getUso() == null || img.getUso().isEmpty() || x.getUso().equals(x.getUso()))
+                              .sorted((x,y)-> {
+                                            if(Ejercicio09GestorImagenesController.MASRECIENTES.equals(orden)){
+                                                return(int)x.getFechaHoraFichero().getTime() - (int)y.getFechaHoraFichero().getTime(); 
+                                                        }
+                                            else {
+                                                return(int)y.getFechaHoraFichero().getTime() - (int)x.getFechaHoraFichero().getTime(); 
+                                            }
+                              } )
                               .collect(Collectors.toList());
     }
 
+    
 
     
 
