@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Imagen9 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String url;
     private String descripcion;
     private Date fechaHoraFichero;

@@ -24,7 +24,8 @@
         <div class="row">
             <input type="text" class="form-control col-5" id="filtro" />
             <button id="filtrar" class="btn btn-info col-3">Filtro</button>
-            <button onclick="addImg()" class="btn btn-primary col-3" id="subir">Subir imagen</button>
+            <button onclick="addImg()" class="btn btn-primary col-2" id="subir">Subir imagen</button>
+            <button onclick="addCat()" id="cat" class="btn btn-info col-2">Agregar categoria</button>
         </div>
         <div class="row">
             <th:block th:if="${imagenes}!=null">
@@ -37,7 +38,6 @@
                     </div>
                 </div>
             </th:block>
-            <div style="color: red" th:if="${borrado!=null}" th:text="${borrado}"></div>
         </div>
     </div>
 
@@ -93,6 +93,20 @@
         </form>
     </div>
 
+    <div id="categoria" style="display:none" class="row justify-content-center">
+        <form action="/ejercicio09/categoria" method="post">
+            <div class="form-group row">
+                <div class="col-6">
+                    <label for="url">Categoria a añadir</label>
+                    <input required class="form-control" type="text" name="estilo" />
+                </div>
+                <div class="col-6">
+                    <input class="btn btn-success" type="submit" value="Registrar categoria" />
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
@@ -111,6 +125,12 @@
                 title: "Añadir imagen",
                 size: 'large',
                 message: $('#miformulario').html(),
+            });
+        };
+        function addCat() {
+            bootbox.dialog({
+                title: "Añadir categoria",
+                message: $('#categoria').html(),
             });
         };
     </script>
