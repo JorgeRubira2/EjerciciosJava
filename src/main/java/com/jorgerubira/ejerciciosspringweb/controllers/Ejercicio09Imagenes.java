@@ -1,5 +1,7 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,26 +31,29 @@ public class Ejercicio09Imagenes {
 	}
 	
 	
-//para acceder al formulario vacio
-//	@GetMapping("/formulario")
-//	public String read(Model m){
-//		m.addAttribute("imagen", new Imagen());
-//		return "ej09/formulario";
-//	}
+	@GetMapping("/formulario")
+	public String read(Model m){
+		m.addAttribute("imagen", new Imagen());
+		return "ej09/formulario";
+	}
 	
-	//Estoy probando para acceder al formulario (crear y editar) con un solo metodo
-	@GetMapping("/formulario/{id}")
+	@GetMapping("{id}")
 	public String read(Model m, @PathVariable Integer id){
-		if(id == null) {
-			m.addAttribute("imagen", new Imagen());//para crear
-		}else
-			m.addAttribute("imagen", imgRepository.findById(id));//para editar
+		m.addAttribute("imagen", imgRepository.findById(id));
 		return "ej09/formulario";
 	}
 	
 	@PostMapping("/save")
 	public String save(Model m, Imagen img){
+		img.setFechaHoraFichero(new Date());
 		imgRepository.save(img);
 		return "redirect:/ejercicio9";
-	}   
+	}
+
+	@GetMapping("/delete/{id}")
+	public String delete(Model m, @PathVariable Integer id){
+		imgRepository.deleteById(id);
+		return "redirect:/ejercicio9";
+	}    
+
 }

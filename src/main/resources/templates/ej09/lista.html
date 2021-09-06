@@ -6,6 +6,13 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <title>Lista de imagenes</title>
 </head>
+<style>
+img{
+	width:200px;
+	height:200px;
+}
+
+</style>
 <body>
 <div class="container">
 	<h5 th:if="${imagenes.size() == 0}" class="offset-4">No hay imagenes para mostrar</h5>
@@ -13,7 +20,7 @@
 		<table th:if="${imagenes.size() > 0}">
 				<tr th:each="imagen:${imagenes}">
 					<td>
-						<a th:href="@{/ejercicio9/formulario/{id}(id=${imagen.id})}">
+						<a th:href="@{/ejercicio9/{id}(id=${imagen.id})}">
 							<img alt="Esta imagen no se puede mostrar"  th:src="${imagen.url}"/>
 						</a>
 					</td>

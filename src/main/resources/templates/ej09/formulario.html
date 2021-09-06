@@ -17,9 +17,9 @@
 					<input type="text" class="form-control"
 						th:field="*{id}" hidden>
 				</div>
-				<div th:if="${imagen.id >= 0}">
+				<div th:if="${id > 0}">
 					<input type="date" class="form-control"
-						th:field="*{fechaHoraFichero}" readonly>
+						th:field="*{fechaHoraFichero}" th:text="${fechaHoraFichero}" disabled>
 				</div>
 				<div class="form-group col-md-6">
 					<label>URL:</label> <input type="url" class="form-control"
@@ -28,9 +28,9 @@
 				<div class="form-group col-md-6">
 					<label>Tipo de imagen:</label>
 					<select th:field="*{tipoImagen}">
-  						<option th:value="Foto" th:text="Foto"></option>
-  						<option th:value="Vector" th:text="Vector"></option>
-  						<option th:value="Ilustracion" th:text="Ilustracion"></option>
+  						<option value="Foto">Foto</option>
+  						<option value="Vector">Vector</option>
+  						<option value="Ilustracion">Ilustracion</option>
 					</select>
 				</div>
 			</div>
@@ -38,15 +38,15 @@
 				<div class="form-group col-md-6">
 					<label>Orientacion:</label>
 					 <select th:field="*{orientacion}">
-  						<option th:value="Horizontal" th:text="Horizontal"></option>
-  						<option th:value="Vertical" th:text="Vertical"></option>
+  						<option value="Horizontal">Horizontal</option>
+  						<option value="Vertical">Vertical</option>
 					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label>Contenido:</label>					 
 					<select th:field="*{contenido}">
-  						<option th:value="Con Personas" th:text="Con Personas"></option>
-  						<option th:value="Sin Personas" th:text="Sin Personas"></option>
+  						<option value="Con personas">Con personas</option>
+  						<option value="Sin personas">Sin personas</option>
 					</select>
 				</div>
 			</div>
@@ -54,17 +54,17 @@
 				<div class="form-group col-md-6">
 					<label>Categoria:</label> 					 
 					<select th:field="*{categoria}">
-  						<option th:value="Paisajismo" th:text="Paisajismo"></option>
-  						<option th:value="Foto personal" th:text="Foto personal"></option>
-  						<option th:value="Captura de pantalla" th:text="Captura de pantalla"></option>
-  						<option th:value="Caricatura" th:text="Caricatura"></option>
+  						<option value="Paisajismo">Paisajismo</option>
+  						<option value="Foto personal">Foto personal</option>
+  						<option value="Captura de pantalla">Captura de pantalla</option>
+  						<option value="Caricatura">Caricatura</option>
 					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label>Uso:</label> 					 
 					<select th:field="*{uso}">
-  						<option th:value="Uso comercial" th:text="Uso comercial"></option>
-  						<option th:value="Uso no comercial" th:text="Uso no comercial"></option>
+  						<option value="Uso comercial">Uso comercial</option>
+  						<option value="Uso no comercial">Uso no comercial</option>
 					</select>
 				</div>
 			</div>
@@ -79,6 +79,8 @@
 			</br>	
 
 			<button type="submit" class="btn btn-primary">Agregar imagen</button>
+			<a th:if="${id > 0}" th:href="@{/ejercicio9/delete/{id}(id=${id})}"
+				class="btn btn-danger">Borrar</a>
 			<a class="btn btn-secondary" th:href="@{http://localhost:8090/ejercicio9}">Cancelar</a>
 		</form>
 	</div>
