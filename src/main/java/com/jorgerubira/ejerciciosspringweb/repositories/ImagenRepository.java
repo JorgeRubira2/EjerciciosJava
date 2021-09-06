@@ -13,5 +13,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ImagenRepository extends JpaRepository<Imagen, Long>{
     
-    List<Imagen> findByDescripcion(String descripcion);
 }

@@ -8,19 +8,26 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" referrerpolicy="no-referrer" />
 
         <style>
+            h1{
+                margin: 10px;
+                margin-bottom: 30px;
+                color: green;
+            }
             label{
-                margin: 5px;
+                margin: 10px;
             }
             input{
-                margin: 5px;
+                margin: 10px;
             }
 
         </style>
     </head>
     <body>
-        <form action="/ej11/subir" method="post" th:object="${imagen}" enctype="multipart/form-data">
+        
+        <h1>Gestión de Imágenes</h1>
+        <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data">
             <label>Descripción</label>
-            <input type="text" placeholder="Descripción para el archivo" th:field="*{descripcion}"/><br> 
+            <input type="text" placeholder="Descripción para el archivo"/><br> 
 
             <label>Fichero</label>
             <input type="file" name="fichero"></input><br> 
