@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedallaPais {
-    private String pais;
-    private int oro;
-    private int plata;
-    private int cobre;
+	public String pais;
+	public int oro;
+	public int plata;
+	public int cobre;
 }

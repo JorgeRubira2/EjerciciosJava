@@ -44,6 +44,13 @@ public class Ejercicio04KanbanController {
 	        
 	        return"ej04/vistaKanban";
 	    }
+	 @GetMapping ("/leer")
+	    @ResponseBody
+	    public TareaKanban leerKanban(String codigo){
+	        
+	          return Kanban.getTarea(codigo).get();
+	   
+	    }
 	 @PostMapping("/nuevaTarea") 
 	    public String nuevaTarea(Model model, String descripcion, Integer horasEstimacion) {
 	        model.addAttribute("horasEstimacion", horasEstimacion);
@@ -53,10 +60,10 @@ public class Ejercicio04KanbanController {
 	        return "redirect:lista";
 	    }
 	 @PostMapping("/nuevaPersona") 
-	    public String nuevaPersona(Model model, String codigo, String propietario) {
+	    public String nuevaPersona(Model model, String codigo, String persona) {
 	    
 	            try {
-					Kanban.asignarPersona(codigo, propietario);
+					Kanban.asignarPersona(codigo, persona);
 				} catch (OperacionEnListaException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -65,10 +72,10 @@ public class Ejercicio04KanbanController {
 	        return "redirect:lista";
 	    }
 	 @PostMapping("/masHoras")
-	    public String imputarHoras(Model model, String codigo2, int horas) {
+	    public String imputarHoras(Model model, String codigo, Integer horasTrabajadas) {
 	        try {
 
-	            Kanban.imputarHorasTrabajadas(codigo2, horas);
+	            Kanban.imputarHorasTrabajadas(codigo, horasTrabajadas);
 	        } catch (OperacionEnListaException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,23 +83,7 @@ public class Ejercicio04KanbanController {
 
 	        return "redirect:lista";
 	    }
-	 @GetMapping("/modificar")
-	    public String modificarTarea(Model model, String codigo) {
-	        Optional<TareaKanban> tarea = Kanban.getTarea(codigo);
-	        if (tarea.isPresent()) {
-	            if ("Roadmap".equals(tarea.get().getEstado())) {
-	                tarea.get().setEstado("Waiting");
-	                
-	            } else if ("Working".equals(tarea.get().getEstado())) {
-	                tarea.get().setEstado("Done");
-	                
-	            } else if ("Waiting".equals(tarea.get().getEstado())) {
-	                tarea.get().setEstado("Working");
-	            }
-	        }
-
-	        return "redirect:lista";
-	    }
+	 
 	 @PostMapping("/modificarTarea") 
 	    public String modificarTarea(Model model, String codigo3, String descripcion2, Integer horasEstimacion2) {
 
@@ -105,6 +96,17 @@ public class Ejercicio04KanbanController {
 
 	        return "redirect:lista";
 	    }
+	 @GetMapping("/cambiarEstado")
+     public String cambiarEstado (Model model, String codigo, String estado){
+         
+        try {
+            Kanban.cambiarEstado(codigo, estado);
+        } catch (OperacionEnListaException ex) {
+        	// TODO Auto-generated catch block
+        }
+         
+          return "redirect:lista";
+     }
 
 	}
 	 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+     <title>Medallero Olímpico</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/vapor/bootstrap.min.css" />
+		<style>
+		.columna{
+                text-align: center;
+            }
+            .oro{
+                color: gold;
+            }
+            .plata{
+                color: silver;
+            }
+            .bronce{
+                color: bronze;
+            }
+		</style>
+    </head>
+    <body>
+        <div>
+         <div class="container">
+                <div class="row header m-2">
+                    <div class="col-10">
+                        <h4 class="display-6">MEDALLERO OLIMPICO</h4>
+                    </div>
+                </div>  
+            </div> 
+        </div>
+        <div class="container">
+            
+            <table class="table table-responsive table-striped table-hover" >
+                <thead>
+                     <a th:href="@{/medallero/rankingAtletas}" class= "btn btn-primary">Ver Ranking por Atletas </a>
+                    <tr>
+                        <th> ** </th>
+                        <th> Pais</th>
+                        <th class="columna"> <i class="fal fa-medal oro"></i> </th>
+                        <th class="columna" > <i class="fal fa-medal plata"></i></th>
+                        <th class="columna"> <i class="fal fa-medal bronce"></i></th>
+                        <th class="columna" > Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="med,iter:${medallero}" >
+                        <td th:text="${iter.index}"> </td>
+                        <td> <a th:href="@{/medallero/deportistasConMedalla}" th:text="${med.pais}"></a></td>
+                        <td class="centrar"> <a th:href="@{/medallero/deporteUnaMedalla(pais=${med.pais}, medalla='oro')}" th:text="${med.oro}"></a></td>
+                        <td class="centrar"> <a th:href="@{/medallero/deporteUnaMedalla(pais=${med.pais}, medalla='plata')}" th:text="${med.plata}"></a></td>
+                        <td class="centrar"> <a th:href="@{/medallero/deporteUnaMedalla(pais=${med.pais}, medalla='bronce')}" th:text="${med.bronce}"></a></td>
+                        <td class="centrar"> <a th:href="@{/medallero/deporteConMedalla(pais=${med.pais})}" th:text="${med.oro+med.plata+med.bronce}"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>
+    </body>
+</html>
