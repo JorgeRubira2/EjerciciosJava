@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
@@ -7,6 +7,81 @@
 <title>Insertar imagen</title>
 </head>
 <body>
+<div class="container">
+	
+		<h3>Insertar imagen</h3>
+		<form action="save" id="formulario" method="post"
+			th:object="${imagen}" class="form-group">
+			<div class="form-row">
+				<div>
+					<input type="text" class="form-control"
+						th:field="*{id}" hidden>
+				</div>
+				<div th:if="${imagen.id >= 0}">
+					<input type="date" class="form-control"
+						th:field="*{fechaHoraFichero}" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label>URL:</label> <input type="url" class="form-control"
+						th:field="*{url}">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Tipo de imagen:</label>
+					<select th:field="*{tipoImagen}">
+  						<option th:value="Foto" th:text="Foto"></option>
+  						<option th:value="Vector" th:text="Vector"></option>
+  						<option th:value="Ilustracion" th:text="Ilustracion"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Orientacion:</label>
+					 <select th:field="*{orientacion}">
+  						<option th:value="Horizontal" th:text="Horizontal"></option>
+  						<option th:value="Vertical" th:text="Vertical"></option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Contenido:</label>					 
+					<select th:field="*{contenido}">
+  						<option th:value="Con Personas" th:text="Con Personas"></option>
+  						<option th:value="Sin Personas" th:text="Sin Personas"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Categoria:</label> 					 
+					<select th:field="*{categoria}">
+  						<option th:value="Paisajismo" th:text="Paisajismo"></option>
+  						<option th:value="Foto personal" th:text="Foto personal"></option>
+  						<option th:value="Captura de pantalla" th:text="Captura de pantalla"></option>
+  						<option th:value="Caricatura" th:text="Caricatura"></option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Uso:</label> 					 
+					<select th:field="*{uso}">
+  						<option th:value="Uso comercial" th:text="Uso comercial"></option>
+  						<option th:value="Uso no comercial" th:text="Uso no comercial"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label style="display: flex; flex-direction: column;">Descripcion:</label>
+					<textarea class="form-control" form="formulario"
+					th:field="*{descripcion}" rows="4"></textarea>
+				</div>
+			</div>
+
+			</br>	
+
+			<button type="submit" class="btn btn-primary">Agregar imagen</button>
+			<a class="btn btn-secondary" th:href="@{http://localhost:8090/ejercicio9}">Cancelar</a>
+		</form>
+	</div>
 
 </body>
 </html>
