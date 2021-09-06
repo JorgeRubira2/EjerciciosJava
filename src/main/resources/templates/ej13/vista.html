@@ -1,0 +1,29 @@
+<html xmlns:th="https://www.thymeleaf.org"
+        th:replace="ej13/layout::plantilla( ~{::body})">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+            <!-- Contenido -->
+            <a class="btn btn-primary" href="/ejercicio13/altaFactura" >Nueva Factura</a>
+            <th:block th:if="${facturas}!=null">
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                    </tr>
+                    <tr th:each="fac : ${facturas}">
+                        <td th:text="${fac.nombre}"></td>
+                        <td th:text="${fac.nif}"></td>
+                        <td th:text="${#dates.format(fac.fecha, 'dd/MM/yyyy')}"></td>
+                        <td>
+                            <a th:href="@{editarFactura(id=${fac.idFactura})}">Editar</a>
+                            <a th:href="@{borrarFactura(id=${fac.idFactura})}">Borrar</a>
+                        </td>
+                    </tr>
+                </table>
+            </th:block>
+    </body>
+</html>

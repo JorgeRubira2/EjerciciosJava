@@ -1,20 +1,14 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.entities.CategoriaEntity;
-import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen9;
 import com.jorgerubira.ejerciciosspringweb.repositories.CategoriasRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.Imagen9Repository;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

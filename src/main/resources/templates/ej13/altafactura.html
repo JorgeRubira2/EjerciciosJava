@@ -1,0 +1,61 @@
+<html xmlns:th="https://www.thymeleaf.org"
+        th:replace="ej13/layout::plantilla( ~{::body})">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="registroFacturas" class="row justify-content-center">
+            <form action="/ejercicio13/guardarFactura" th:object="${factura}" method="post">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label for="url">Nº de Factura</label>
+                        <input readonly th:field="*{idFactura}" class="form-control" type="text" />
+                    </div>
+                    <div class="col-6">
+                        <label for="fecha">Fecha</label>
+                        <input th:value="${#dates.format(factura.fecha, 'dd/MM/yyyy')}" name="fecha" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label for="tipoImagen">Tipo de imagen</label>
+                        <select class="form-control" name="tipoImagen">
+                            <option selected>Foto</option>
+                            <option>Vector</option>
+                            <option>Ilustracion</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="orientacion">Orientacion</label>
+                        <select class="form-control" name="orientacion">
+                            <option selected>Horizontal</option>
+                            <option>Vertical</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <th:block th:if="${categorias!=null}">
+                            <label for="categoria">Categoria</label>
+                            <select class="form-control" name="categoria">
+                                <option th:each="cat:${categorias}" th:text="${cat.estilo}">
+                            </select>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label for="uso">Uso</label>
+                        <select class="form-control" name="uso">
+                            <option selected>Uso comercial</option>
+                            <option>Uso no comercial</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <input class="btn btn-success" type="submit" value="Subir imagen" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
