@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <form th:object="${factura}" action="/ej13/guardarFactura" method="post">
+            <input type="hidden" th:field="*{id}">
+            Numero de factura:<input type="number" th:field="*{numero}"/>
+            Fecha:<input type="date" th:field="*{fecha}"/>
+            Nombre:<input type="text" th:field="*{empresa}"/>
+            Dirección:<input type="text" th:field="*{direccion}"/>
+            NIF:<input type="text" th:field="*{nif}"/>
+            <input type="submit" value="Guardar"/>
+        </form>
+        <a th:href="@{/ej13/editarDetalle(idFactura=${factura.id})}">Añadir detalle</a>
+        <table>
+            <tr>
+                <th>Descripción</th>
+                <th>Importe</th>
+            </tr>
+            <tr th:each="detalle:${factura.detalles}">
+                <td th:text="${detalle.descripcion}"></td>
+                <td th:text="${detalle.importe}"></td>
+                <td>
+                    <a th:href="@{/ej13/editarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Editar</a>
+                    <a th:href="@{/ej13/borrarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Borrar</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

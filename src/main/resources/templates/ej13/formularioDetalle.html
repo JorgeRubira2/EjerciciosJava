@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:object="${detalle}" action="/ej13/guardarDetalle"  method="post">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" name="idFactura" th:value="*{factura.id}">
+        <input type="text" placeholder="Descripción" th:field="*{descripcion}">
+        <label>Importe:</label>
+        <input type="number" step="any" th:field="*{importe}">
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
