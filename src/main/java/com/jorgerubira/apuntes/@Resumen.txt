@@ -41,7 +41,12 @@ Java:
 
 - Concurrencia: ExecutorService (interface) -> Executors.new......
                 Planificar la ejecucion. ScheduledExecutorService -> Nos permitir planificar cuando lo queremos ejecutar.
-                
+
+
+- JDBC. jdbc:nombreBD:cadena
+        para parametros SQL -> utilizar ? (PreparedStatement). Nunca concatenar. (SQL Inyection)
+        Select * from Tabla where campo = '" + variable.replaceAll("'", "''") + "'"  (Ñapa)
+
 ------------------------------------------------------------------------------------------------------------
 Spring Boot:
 - HTML -> Etiqueta: Input, Div, Span, Select, Button, Form, Table, (UL,OL,LI), A, IMG, (VIDEO,AUDIO), IFRAME, P, (B,I,U), BR, (H1,..H6), HR
@@ -176,3 +181,7 @@ Spring Boot:
 
 - ManyToOne, OneToMany: El id siempre va en el Many, @JoinColumn (indicar el nombre del Id), CREATE TABLE  -> Foreign Key
                         Tipo de carga: EAGER->Carga temprana (ManyToOne), LAZY->Carga perezosa (OneToMany), fetch
+
+- CRUD Multitabla: Las lineas (varios) dejar añadir cuando ya el tenemos el registro. Añadir lineas de una en una. A nivel Web es complicado guardar todo a la vez.
+
+        
