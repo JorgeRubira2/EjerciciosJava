@@ -69,3 +69,22 @@ plazas_solicitadas int,
 indice_ocupaciondecimal(6,3),
 fecha_actualizacion date
 );
+
+
+create table facturas (
+id int primary key auto_increment,
+id_factura int,
+nombre_empresa varchar(400),
+direccion varchar(1000),
+total_final decimal(13,2)
+
+);
+
+
+create table facturasLineas (
+id int primary key auto_increment,
+id_facturas int,
+cantidad int,
+descripcion varchar(400),
+importe decimal(13,2),
+);
