@@ -25,7 +25,30 @@ public class Ejercicio13FacturaService implements IEjercicio13Factura {
         }else{
             total=encabezado.getTotal();
         }
+        if(linea.getCantidad()==null){
+            linea.setCantidad(0);
+        }
+        if(linea.getImporte()==null){
+            linea.setImporte(0.0);
+        }
         total+=linea.getCantidad()*linea.getImporte();
+        return total;
+    }
+    @Override
+    public Double totalResto(FacturaEncabezado encabezado, FacturaLinea linea) {
+        Double total;
+        if(encabezado.getTotal()==null){
+            total=0.0;
+        }else{
+            total=encabezado.getTotal();
+        }
+        if(linea.getCantidad()==null){
+            linea.setCantidad(0);
+        }
+        if(linea.getImporte()==null){
+            linea.setImporte(0.0);
+        }
+        total-=linea.getCantidad()*linea.getImporte();
         return total;
     }
     

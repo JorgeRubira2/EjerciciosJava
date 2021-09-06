@@ -15,4 +15,5 @@ import com.jorgerubira.ejerciciosspringweb.entities.FacturaLinea;
 public interface IEjercicio13Factura {
     
     public Double total(FacturaEncabezado encabezado,FacturaLinea linea);
-}
+    public Double totalResto(FacturaEncabezado encabezado, FacturaLinea linea);
+} 

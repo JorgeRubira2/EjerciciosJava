@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -55,12 +56,7 @@ public class Ejercicio13CRUDFacturas {
     public String guardarLinea(FacturaLinea linea, Integer idEncabezado){
         FacturaEncabezado encabezado=encaService.findById(idEncabezado).get();
         linea.setEncabezado(encabezado);
-        if(linea.getCantidad()==null){
-            linea.setCantidad(0);
-        }
-        if(linea.getImporte()==null){
-            linea.setImporte(0.0);
-        }
+        
         listaService.save(linea);
         encabezado.setTotal(serviceFactura.total(encabezado, linea));
         encaService.save(encabezado);
@@ -70,5 +66,26 @@ public class Ejercicio13CRUDFacturas {
     public String borrar(Integer id){
         encaService.deleteById(id);
         return "redirect:/ej13";
+    }
+    
+    @PostMapping("/editarLinea")
+    @ResponseBody
+    public FacturaLinea editarLinea(Integer id, Integer idEncabezado){
+        FacturaLinea result=listaService.findById(id).get();
+        FacturaEncabezado aux=encaService.findById(idEncabezado).get();
+        aux.setTotal(serviceFactura.totalResto(aux, result));
+        encaService.save(aux);
+        result.setEncabezado(null);
+        return result;
+    }
+    
+    @GetMapping("/borrarLinea")
+    public String borrarLinea(Integer id, Integer idEncabezado){
+        FacturaLinea result=listaService.findById(id).get();
+        FacturaEncabezado aux=encaService.findById(idEncabezado).get();
+        aux.setTotal(serviceFactura.totalResto(aux, result));
+        encaService.save(aux);
+        listaService.deleteById(id);
+        return "redirect:/ej13?id_encabezado="+idEncabezado;
     }
 }

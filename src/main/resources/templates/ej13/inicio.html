@@ -16,15 +16,19 @@
     <body>
         <div class="container">
             <header>
-                <h1>Ingreso de Facturas 
-                    <a href="/ej13" class="btn btn-secondary">Nueva empresa</a>
-                    
-                
-                </h1> 
-                Seleccionar factura<select id="elegirFactura" >
-                        <option></option>
-                        <option th:each="liId:${listaId}" th:value="${liId}" th:text="${liId}"></option>
-                    </select>
+                <div class="row">
+                    <div class="col-6">
+                        <h1>Ingreso de Facturas 
+                            <a href="/ej13" class="btn btn-secondary">Nueva empresa</a>  
+                        </h1> 
+                    </div>
+                    <div class="col-4">
+                        <select id="elegirFactura" class="custom-select custom-select-sm">
+                            <option value="">Seleccionar factura:</option>
+                            <option th:each="liId:${listaId}" th:value="${liId}" th:text="${liId}"></option>
+                        </select>
+                    </div>
+                </div>
             </header>
 
             <form action="/ej13/guardarCabe" method="post" th:object="${encabezado}">
@@ -71,11 +75,11 @@
                     </div>
                 </div>
             </form>
-            
+
             <hr/>
-            
+
             <div th:if="${encabezado.id}!=null">
-                
+
                 <div>
                     <a onclick="lineaN()" class="btn btn-secondary"><i class="fas fa-plus-square"></i>&nbsp; línea</a>
                 </div>
@@ -89,6 +93,8 @@
                             <th class="text-center" style="width:10%">CANT.</th>
                             <th class="text-center">DESCRIPCIÓN</th>
                             <th class="text-center" style="width:15%">IMPORTE</th>
+                            <th class="text-center" style="width:10%">EDITAR</th>
+                            <th class="text-center" style="width:10%">BORRAR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,9 +102,11 @@
                             <td th:text="${l.cantidad}" class="text-right"></td>
                             <td th:text="${l.descripcion}" class="text-center"></td>
                             <td th:text="${l.importe}" class="text-right"></td>
+                            <td class="text-center"><a th:attr="onclick=|editarLinea(${l.id},${encabezado.id})|" class='btn btn-secondary'>Editar</a></td>
+                            <td class="text-center"><a th:attr="onclick=|borrarLinea(${l.id},${encabezado.id})|" class='btn btn-dark'>Borrar</a></td>
                         </tr>
                     </tbody>
-                    
+
                 </table>
 
             </div>
@@ -109,6 +117,7 @@
             <form action="/ej13/lineaNueva" method="post">
                 <div class="row">                   
                     <input type="hidden" name="idEncabezado" th:value="${encabezado.id}"/>
+                    <input type="hidden" name="id" />
                     <div class="col-4">
                         <label class="form-label" for="cantidad">Cantidad</label>
                         <input class="form-control" type="number" step="1" min="0" name="cantidad"/>
@@ -124,41 +133,66 @@
                     </div>   
                 </div>
                 <br/>
-                <input type="submit" value="Nueva linea" class="btn btn-primary"/>
+                <input type="submit" value="Guardar" class="btn btn-primary"/>
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>   
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script> 
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $("#elegirFactura").change(cambiar);
-                
+
             });
             function lineaN() {
                 bootbox.dialog({
                     title: 'Nueva Linea',
-                    size:'large',
+                    size: 'large',
                     message: $("#nuevaLinea").html()
                 });
             }
-            function borrar(pID){
+            function borrar(pID) {
                 bootbox.confirm({
                     size: 'small',
                     message: '¿Estás seguro de borrar el registro?',
-                    callback: function(result){
-                        if(result){
-                            window.location.href="/ej13/borrar?id="+pID;
+                    callback: function (result) {
+                        if (result) {
+                            window.location.href = "/ej13/borrar?id=" + pID;
                         }
                     }
                 });
             }
-            function editar(){
+            function editar() {
                 $(".encaEditable").removeAttr("disabled");
             }
-            function cambiar(){
+            function cambiar() {
+
+                window.location.href = "/ej13?id_encabezado=" + $(this).val();
+            }
+            function editarLinea(idLinea, idEncabezado) {
                 
-                window.location.href="/ej13?id_encabezado="+$(this).val();
+                $.post("/ej13/editarLinea", {
+                    id: idLinea,
+                    idEncabezado:idEncabezado
+                }, function (pJson) {
+                    bootbox.dialog({
+                        title: 'Editar linea',
+                        message: "<div id='formBB'>" + $('#nuevaLinea').html() + "</div>"
+                    });
+                    $('#formBB form').deserialize(pJson);
+                });
+            }
+            function borrarLinea(idLinea, idEncabezado) {
+                bootbox.confirm({
+                    size: 'small',
+                    message: '¿Estás seguro de borrar el registro?',
+                    callback: function (result) {
+                        if (result) {
+                            window.location.href = "/ej13/borrarLinea?id=" + idLinea+"&idEncabezado="+idEncabezado;
+                        }
+                    }
+                });
             }
         </script>
 
