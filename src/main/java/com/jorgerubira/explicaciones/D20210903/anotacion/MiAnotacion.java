@@ -7,6 +7,7 @@ package com.jorgerubira.explicaciones.D20210903.anotacion;
 
 import com.jorgerubira.explicaciones.D20210902.relaciones.entities.Telefono;
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
