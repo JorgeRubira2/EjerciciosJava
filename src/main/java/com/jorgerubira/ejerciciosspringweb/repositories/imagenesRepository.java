@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Aran
  */
-public interface imagenesRepository extends JpaRepository<Imagenes, Long> {
+public interface imagenesRepository extends JpaRepository<Imagenes, Integer> {
     
 }

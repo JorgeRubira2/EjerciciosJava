@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -29,8 +30,9 @@ public class ejercicio11imagenesController {
 
     @Autowired(required = false)   //Con required = false no es obligatorio que esté el repository
     private imagenesRepository repoImagenes;
+    @Value("${carpetas.recursos.hiberus}")
 
-    private String rutaRecursos = "C:\\zzHiberus";
+    private String rutaRecursos;
 
     @GetMapping("/mostrarTodo")
     public String mostrarTodo(Model m) {
@@ -42,13 +44,12 @@ public class ejercicio11imagenesController {
     }
 
     @PostMapping("/subir")
-    public String subir(Model m, MultipartFile fichero, Imagenes imagen) {
+    public String subir(Model m, MultipartFile fichero, Imagenes imagen, String descripcion) {
 
         /*  if (fichero.getOriginalFilename().toLowerCase().endsWith(".pdf")==false){
             m.addAttribute("error", "Formato incorrecto");
             return "ej11/imagenes";
         }*/
-        //UUID.randomUUID().toString();
         String nAleatorio = UUID.randomUUID().toString() + ".jpg";
         String ruta = rutaRecursos + "\\ej11\\imagenes\\" + nAleatorio;
         File f = new File(ruta);
@@ -57,31 +58,27 @@ public class ejercicio11imagenesController {
 
             Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-            try {
-                imagen.setRuta(nAleatorio); //añadimos a bd
-                imagen.setNombre(fichero.getOriginalFilename());
-                repoImagenes.save(imagen);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            imagen.setRuta(nAleatorio); //añadimos a bd
+            imagen.setNombre(fichero.getOriginalFilename());
+            imagen.setDescripcion(descripcion);
+            repoImagenes.save(imagen);
 
-            // return "redirect:ver?success=Fichero subido";
+            // return "redirect:mostrarTodo?success=Fichero subido";
         } catch (IOException e) {
             e.printStackTrace();
             //m.addAttribute("error", "Error inesperado");
         }
 
-        //response.addCookie(new Cookie("username", "Jovan"));
         return "redirect:/gestorImagenes/mostrarTodo";
     }
 
     @GetMapping("/descargar")
-    public ResponseEntity<Resource> mostrarImagen(String nombre) {
+    public ResponseEntity<Resource> mostrarImagen(String nAleatorio, String descripcion) {
 
-        String ruta = rutaRecursos + "\\ej11\\imagenes\\";
+        String ruta = rutaRecursos + "\\ej11\\imagenes\\" + nAleatorio;
 
         HttpHeaders cabeceras = new HttpHeaders();
-        cabeceras.add("Content-Disposition", "attachment; filename= " + nombre);
+        cabeceras.add("Content-Disposition", "attachment; filename=" + nAleatorio);
         cabeceras.add("Cache-Control", "no-cache, no-store, must-revalidate");
         cabeceras.add("Pragma", "no-cache");
         cabeceras.add("Expires", "0");
@@ -97,5 +94,35 @@ public class ejercicio11imagenesController {
             return null;
         }
 
+    }
+    
+     @GetMapping("/borrar")
+    public ResponseEntity<Resource> borrar(String nAleatorio) {
+
+     
+        /*
+        
+        String ruta = rutaRecursos + "\\ej11\\imagenes\\" + nAleatorio;
+        
+        
+       
+
+        HttpHeaders cabeceras = new HttpHeaders();
+        cabeceras.add("Content-Disposition", "attachment; filename=" + nAleatorio);
+        cabeceras.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        cabeceras.add("Pragma", "no-cache");
+        cabeceras.add("Expires", "0");
+
+        try {
+            return ResponseEntity.ok()
+                    .headers(cabeceras)
+                    .contentLength((new File(ruta)).length())
+                    .contentType(MediaType.parseMediaType("application/octet-stream")) //Codigo MIME
+                    .body(new InputStreamResource(new FileInputStream(ruta)));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }*/
+return null;
     }
 }

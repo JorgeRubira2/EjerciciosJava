@@ -9,8 +9,6 @@
             .fas{
                 color:purple;
             }
-
-
         </style>
     </head>
     <body> 
@@ -23,7 +21,7 @@
                 <div class="col-4 mt-4">
                     <div class="input-group col-2">
                         <div class="input-group-text"><i class="fas fa-search"></i></div>
-                        <input type="text"  name="imagen" placeholder="Buscar imagen" class="form-control"  />
+                        <input type="text" name="imagen" placeholder="Buscar imagen" class="form-control"  />
                     </div>
                 </div>
                 <div class="col-1 mt-4">
@@ -39,26 +37,29 @@
                         <label for="descripción" class="col-form-label">Descripción</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" thclass="form-control" placeholder="Inserte una descripción"> 
+                        <input class="form-control" name="descripcion" value="descripcion" placeholder="Inserte una descripción"> 
                     </div>
                     <div class="col-4">
                         <div class="input-group">
-                            <input type="file" name="fichero" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <input type="submit" class="btn btn-outline-primary" value="Enviar" id="inputGroupFileAddon04">
+                            <input type="file" name="fichero" class="form-control" >
+                            <input type="submit" class="btn btn-outline-primary" value="Enviar" >
                         </div>
                     </div>
                 </div>
             </form>
 
-            
-            
-            <div class="row mt-5 "> <!--th:each-->
+
+
+            <div class="row mt-5"> <!--th:each-->
                 <div th:each="img:${imagenes}" class="col-3">
                     <div class="card ">
-                        <img th:src="@{/gestorImagenes/descargar(nombre = ${img.nombre})}" width="100%" class="card-img-top"/>
+
+                        <img th:src="@{/gestorImagenes/descargar(nAleatorio=${img.ruta}, descripcion=${img.descripcion})}" th:alt="${img.nombre}" width="100%" class="card-img-top"/>
+
                         <div class="card-body">
-                            <h5 class="card-title">Descripción</h5>
-                            <p class="card-text">This is a wider card with supporting tt. </p>
+                            <h5 th:text="${img.nombre}" class="card-title"></h5>
+                            <p th:text="${img.descripcion}" class="card-text"> </p>
+
                         </div>
                     </div>
                 </div>
