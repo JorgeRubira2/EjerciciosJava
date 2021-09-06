@@ -12,13 +12,53 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <form action="/ejercicio13/verFacturas" method="Post" th:object="{factura}">
-                <input type="text" th:field="idFactura"/>
-                <input 
-                
+            <form method="post" th:object="{factura}">
+                <input type="button" value="Alta factura" formaction="/ejercicio13/altaFactura"/>
+                <input type="button" value="Baja factura" formaction="/ejercicio13/eliminarFactura"/>
+                <input type="button" value="Modifica factura" formaction="/ejercicio13/altaFactura"/>
+                <div>
+                    <label for="idFactura"></label>
+                    <input type="text" th:field="*{idFactura}"/>
+                </div>
+                <div>
+                    <label for="nombreEmpresa"></label>
+                    <input type="text" th:field="*{nombreEmpresa}"/>
+                </div>
+                <div>
+                    <label for="direccion"></label>
+                    <input type="text" th:field="*{direccion}"/>
+                </div>
             </form>
-            
+            <div th:each="facturaLinea:*{listaFacturaLinea}">
+                <form method="post">
+                    <div>
+                        <label for="facturaLinea.cantidad"></label>
+                        <input type="text" th:field="*{facturaLinea.cantidad}"/>
+                    </div>
+                    <div>
+                        <label for="facturaLinea.descripcion"></label>
+                        <input type="text" th:field="*{facturaLinea.descripcion}"/>
+                    </div>
+                    <div>
+                        <label for="facturaLinea.importe"></label>
+                        <input type="text" th:field="*{facturaLinea.importe}"/>
+                    </div>
+                    <div>
+                        <input type="button" value="Baja Linea" formaction="/ejercicio13/altaLinea"/>
+                    </div>
+                    <div>
+                        <input type="button" value="Modifica linea" formaction="/ejercicio13/altaLinea"/>
+                    </div>
+                </form>
+
+                <input type="button" value="Alta linea" formaction="/ejercicio13/altaLinea"/>
+
+
+            </div>
+
+
+
         </div>
-            
+
     </body>
 </html>
