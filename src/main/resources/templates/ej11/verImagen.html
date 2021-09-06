@@ -15,22 +15,26 @@
     <body>
 
         <div class="container">
-            <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data">
-                <label>Descripcion : </label>
-                <input type="text" name="descripcion" required/> <br> <br>
 
-                <label>Fichero : </label>
-                <input type="file" name="fichero"/><br> <br>
-
-                <button type="submit" class="btn btn-primary">Subir fichero</button>
-            </form>
-             
             <br>
+            <h1>IMAGENES</h1>
 
-            <a  class="btn btn-primary" href="/ejercicio11/verImagenes">Galeria de imagenes</a>
-           
-            
-         
+
+            <input type="text" name="filtrar" placeholder="Filtrar"/>
+            <input class="btn btn-primary" type="submit" name="buscar" value="Buscar">
+
+            <br>     
+            <br> 
+
+            <div th:each="img:${imagenes}" >
+
+                <img th:src="@{/ejercicio11/download(imagen=${img.nombre})}" style="width: 200px; height: 200px" /> <br>
+                <p th:text="${img.descripcion}"></p>
+
+                <a th:href="@{/ejercicio11/borrar(id=${img.id})}" class="btn btn-primary">Borrar</a>
+
+
+            </div>
 
         </div>
         <hr/>

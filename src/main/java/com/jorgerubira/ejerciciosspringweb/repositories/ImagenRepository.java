@@ -6,14 +6,10 @@
 package com.jorgerubira.ejerciciosspringweb.repositories;
 
 import com.jorgerubira.ejerciciosspringweb.domain.Imagen;
-import com.jorgerubira.ejerciciosspringweb.entities.Producto;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
-/**
- *
- * @author Aineto
- */
 public interface ImagenRepository extends CrudRepository<Imagen, Integer> {
     
+    public Imagen findByRuta(String id);
+     
 }

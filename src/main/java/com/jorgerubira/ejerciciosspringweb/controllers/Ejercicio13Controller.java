@@ -6,14 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -28,53 +23,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("/ejercicio11")
-public class Ejercicio11Controller {
+@RequestMapping("/ejercicio13")
+public class Ejercicio13Controller {
 
     @Value("${carpetas.recursos.hiberus}")
     private String rutaBase;
 
-    @Autowired
     private ImagenRepository repositorio;
 
-    @GetMapping("/pagina")
+    @GetMapping("/facturas")
     public String o() {
-        return "ej11/vista.html";
+        return "ej13/facturas.html";
     }
-
-    @GetMapping("/verImagenes")
-    public String verImagenes(Model model) {
-        model.addAttribute("imagenes", repositorio.findAll());
-        return "ej11/verImagen.html";
-    }
-
+/*
     @GetMapping("/download")
-    public ResponseEntity<Resource> mostrarImagen(String imagen) throws IOException {
-        String descargar = rutaBase + "ej11\\" + imagen;
+    public ResponseEntity<Resource> d() throws IOException {
+        String descargar = "d:\\zzzzSubirFicheros\\Enumerador.java";
         File file = new File(descargar);
 
         HttpHeaders header = new HttpHeaders();
-        header.add("Content-Disposition", "attachment;");
+        header.add("Content-Disposition", "attachment; filename=Enumerador.java");
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
         header.add("Pragma", "no-cache");
         header.add("Expires", "0");
 
-        try {
-
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(descargar));
-            return ResponseEntity.ok()
-                    .headers(header)
-                    .contentLength(file.length())
-                    .contentType(MediaType.parseMediaType("application/octet-stream"))
-                    .body(resource);
-        } catch (Exception e) {
+        //try{
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(descargar));
+        return ResponseEntity.ok()
+                .headers(header)
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
+        /*}catch(Exception e){
             e.printStackTrace();
             return null;
         }
     }
 
     @PostMapping("/subir")
-    public String s(MultipartFile fichero, Imagen img) {
+    public String s(MultipartFile fichero, Imagen img, String descripcion) {
         String nombre = UUID.randomUUID().toString();
         String subir = rutaBase + "ej11\\" + nombre + ".jpg";
         File f = new File(subir);
@@ -84,7 +71,8 @@ public class Ejercicio11Controller {
             Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
             img.setRuta(subir);
-            img.setNombre(nombre + ".jpg");
+            img.setNombre(fichero.getOriginalFilename());
+            img.setDescripcion(descripcion);
 
             repositorio.save(img);
 
@@ -93,22 +81,5 @@ public class Ejercicio11Controller {
         }
         return "redirect:pagina";
     }
-
-    @GetMapping("/borrar")
-    public String borrar(Integer id) {
-        Optional<Imagen> img = repositorio.findById(id);
-        if (img.isPresent()) {
-            repositorio.delete(img.get());
-        }
-      
-        String rutarchivo = rutaBase + "ej11\\" + img.get().getNombre();
-        try {
-            Files.delete(Path.of(rutarchivo));
-        } catch (IOException ex) {
-            Logger.getLogger(Ejercicio11Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "redirect:verImagenes"; 
-        
-    }
-
-}
+*/
+} 
