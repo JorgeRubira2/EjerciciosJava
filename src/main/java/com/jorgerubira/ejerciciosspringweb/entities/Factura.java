@@ -41,7 +41,7 @@ public class Factura {
     private Date fecha;   //yyyy-MM-dd
     
     @OneToMany(mappedBy = "factura")    //Por defecto es carga pereza. Carga temprana -> fetch = FetchType.EAGER
-    private List<DetallesFactura> facturas;
+    private List<DetallesFactura> detallesFactura;
     
     
 }

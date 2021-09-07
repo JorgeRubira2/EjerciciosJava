@@ -25,7 +25,7 @@
                     <td th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></td>
                     <td>
                         <!-- <a th:href="@{editarPersona(id=${per.id})}">Ver Detalles de la Factura</a> -->
-                        <a>Ver Detalles de la Factura</a>
+                        <a th:href="@{detalles(factura=${factura.id})}">Ver Detalles de la Factura</a>
                     </td>
                 </tr>
             </table>

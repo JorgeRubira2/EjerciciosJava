@@ -20,6 +20,6 @@ CREATE TABLE Factura(
 CREATE TABLE DetallesFactura(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	descripcion VARCHAR(200),
-	importe DOUBLE
-	
+	importe DOUBLE,
+	id_factura INT REFERENCES Factura(id)	
 );
