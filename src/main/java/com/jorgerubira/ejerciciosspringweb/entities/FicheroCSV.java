@@ -1,6 +1,7 @@
 
 package com.jorgerubira.ejerciciosspringweb.entities;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,8 +27,9 @@ public class FicheroCSV {
     private String centro;
     private String tipoCentro;
     private String tipoEstudio;
-    private String plazasOferidas;
-    private String plazasMatriculadas;
-    private String indiceOcupacion;
-    private String fechaActualizacion;
+    private Integer plazasOferidas;
+    private Integer plazasMatriculadas;
+    private Integer plazasSolicitadas;
+    private Double indiceOcupacion;
+    private Date fechaActualizacion; 
 }

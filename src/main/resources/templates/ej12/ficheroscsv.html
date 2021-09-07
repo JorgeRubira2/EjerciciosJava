@@ -18,7 +18,6 @@
                 <h5>Solicitud de Plazas en Carreras de la Universidad</h5><br>
                 <form action="/ejercicio12/subir" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input class="form-control col-2" type="text" name="descripcion" placeholder="Descripción"><br>
                         <div class="input-group mb-3">
                             <div class="custom-file">
                               <input  type="file" name="fichero" required/> 
@@ -29,6 +28,7 @@
                 </form> 
             </div>
             <br>
+            <div th:if="${estado != null}" th:text="${estado}"></div>
         </div>
     </body>
 </html>
