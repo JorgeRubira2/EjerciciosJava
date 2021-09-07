@@ -19,19 +19,38 @@
             input{
                 margin: 10px;
             }
-
+            img{
+                width: 150px;
+                height: 150px;
+                margin-left: 100px;
+            }
+            p{
+                margin: 10px;
+                margin-bottom: 30px;
+                color: red;
+            }
         </style>
     </head>
     <body>
-        
+
         <h1>Gestión de Imágenes</h1>
         <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data">
             <label>Descripción</label>
-            <input type="text" placeholder="Descripción para el archivo"/><br> 
+            <input type="text" placeholder="Descripción para el archivo" name="desc"/><br> 
 
             <label>Fichero</label>
             <input type="file" name="fichero"></input><br> 
             <input type="submit" value="Subir fichero" class="btn-success"></input>
         </form>
+
+        <div class="row">
+            <div class="col-2" th:each="imagen:${imagenes}" >
+                <img th:src="@{/ejercicio11/descarga(id=${imagen.id})}" /><br/>
+                <div class="card-body">
+                  <!--  <h6 th:text="${imagen.nombreFichero}" class="card-title"></h6>-->
+                </div>
+            </div>
+        </div>
+        <br><p>*Botón derecho para descargar las fotos</p>
     </body>
 </html>

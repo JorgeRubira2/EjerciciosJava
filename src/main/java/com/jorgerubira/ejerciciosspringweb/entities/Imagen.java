@@ -13,14 +13,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "imagenes")
+@Entity(name = "imagenes") 
 public class Imagen {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descripcion;
-    private String codigo;
+    private String ruta;
     @Column(name = "nombre_fichero")
     private String nombreFichero;
+
+    public void get() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

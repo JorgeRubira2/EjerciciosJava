@@ -36,43 +36,43 @@ public class Ejercicio11GestionImagenes {
 
     @Value("${carpetas.recursos.hiberus}")
     private String rutaRecursos;
-
     
-    @GetMapping("/ver")
-    public String verFormulario(Model model, String success) {
-        model.addAttribute("success", success);
-        return "ej11/formulario";
+    
+    @GetMapping("ver")
+    public String verImagenes(Model model){
+        model.addAttribute("imagenes", imagenRepo.findAll());
+        
+        return "ej11/imagenes";
     }
 
-    
     @PostMapping("/subir")
     public String subirFichero(Model model, MultipartFile fichero, Imagen imagen) {
         String nombre = UUID.randomUUID().toString();
-        String ruta = rutaRecursos + "\\ejercicio11\\imagenes\\" + nombre;
+        String ruta = rutaRecursos + "\\ej11\\imagenes\\" + nombre;
+        String desc = imagen.getDescripcion();
 
-        File file = new File(ruta);
-        file.getParentFile().mkdirs();
+        File f = new File(ruta);
+        f.getParentFile().mkdirs();
 
         try {
-            Files.copy(fichero.getInputStream(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            return "redirect:ver";
+            Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+          
+            imagen.setDescripcion(desc);
+            imagen.setRuta(nombre);
+            imagen.setNombreFichero(fichero.getOriginalFilename());
+            imagenRepo.save(imagen);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return "/ej11/formulario";
+        return "redirect:ver";
     }
 
-    @GetMapping("/verImagen")
-    public String verImagen(Model model) {
-        model.addAttribute("imagen", imagenRepo.findAll());
-
-        return "ej11/imagen";
-    }
-
+    
     @GetMapping("/descarga")
-    public ResponseEntity<Resource> mostrarFormulario(int imagen) {
-        String ruta = rutaRecursos + "\\ej11\\imagenes\\imagen" + imagen;
+    public ResponseEntity<Resource> mostrar(Long id) {
+        Imagen img = imagenRepo.findById(id).get();
+        String ruta = rutaRecursos + "\\ej11\\imagenes\\" + img.getRuta();
 
         HttpHeaders cabeceras = new HttpHeaders();
         cabeceras.add("Content-Disposition", "attachment; filename=" + UUID.randomUUID().toString());
@@ -90,10 +90,5 @@ public class Ejercicio11GestionImagenes {
             e.printStackTrace();
             return null;
         }
-    }
-
-    @PostMapping("/ver")
-    public String mostrarFormulario2() {
-        return "ej11/formulario";
     }
 }
