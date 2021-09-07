@@ -15,22 +15,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name ="imagenes")
-public class Imagen {
+@Table(name = "facturas")
+public class Factura {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String url;
-    private String descripcion;
+    private long id;
+    private Integer numero;
+    private String empresa;
+    private String direccion;
+    private String dni;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaHoraFichero;
-    private String tipoImagen;
-    private String orientacion;
-    private String contenido;
-    private String categoria;
-    private String uso;
+    private Date fecha;
+    private double total;
 }
