@@ -124,7 +124,7 @@ public class Ejercicio04Colecciones {
      * para ver que persona va a salir pero sin sacarla utilizar peek
      */
     public void entrarPersonaALaCola(Queue<Persona> colaPersonas, Persona personaNueva) {
-        if(colaPersonas.peek()==null||colaPersonas.peek().getCesta().isEmpty()|| colaPersonas.peek().getCesta().get().getTotalArticulos()<5){
+        if (colaPersonas.peek() == null || colaPersonas.peek().getCesta().isEmpty() || colaPersonas.peek().getCesta().get().getTotalArticulos() < 5) {
             colaPersonas.add(personaNueva);
         }
     }
@@ -136,13 +136,12 @@ public class Ejercicio04Colecciones {
      */
     public List<Integer> generarLista(int valores[]) {
         Integer[] aux = new Integer[valores.length];
-        
-  
-        for(int i= 0; i<aux.length;i++){
-            aux[i]=valores[i];
+
+        for (int i = 0; i < aux.length; i++) {
+            aux[i] = valores[i];
         }
-        List<Integer> a =(Arrays.asList(aux));
-        
+        List<Integer> a = (Arrays.asList(aux));
+
         return a;
     }
 
@@ -151,13 +150,13 @@ public class Ejercicio04Colecciones {
      * falta verificar si valen nulo.
      */
     public ArrayList<Integer> generarArrayList(int valores[]) {
-       Integer[] aux = new Integer[valores.length];
-       
-        for(int i= 0; i<aux.length;i++){
-            aux[i]=valores[i];
+        Integer[] aux = new Integer[valores.length];
+
+        for (int i = 0; i < aux.length; i++) {
+            aux[i] = valores[i];
         }
-        ArrayList<Integer> a =new ArrayList(Arrays.asList(aux));
-        
+        ArrayList<Integer> a = new ArrayList(Arrays.asList(aux));
+
         return a;
     }
 
@@ -167,7 +166,13 @@ public class Ejercicio04Colecciones {
      * mineral y orgánico. No hace falta verificar si valen nulo.
      */
     public String catalogar(String objeto, Set<String> minerales, Set<String> organico) {
-        throw new RuntimeException("Pendiente de hacer");
+        if (minerales.contains(objeto)) {
+            return "Mineral";
+        }
+        if (organico.contains(objeto)) {
+            return "Organico";
+        }
+        return "";
     }
 
     /**
@@ -176,7 +181,13 @@ public class Ejercicio04Colecciones {
      * interseccion utilizar retainAll.
      */
     public Set<String> coincidencias(Set<String> frutas, Set<String> colores) {
-        throw new RuntimeException("Pendiente de hacer");
+        if (colores.size() > frutas.size()) {
+            colores.retainAll(frutas);
+            return colores;
+        } else {
+            frutas.retainAll(colores);
+            return frutas;
+        }
     }
 
     /**
@@ -186,7 +197,11 @@ public class Ejercicio04Colecciones {
      * sacado >=5 No hace falta verificar si valen nulo.
      */
     public List<String> aprobados(Map<String, Integer> notas) {
-        throw new RuntimeException("Pendiente de hacer");
+        List<String> aux = new ArrayList<>();   
+        notas.keySet().stream().filter(nom -> (notas.get(nom)>=5)).forEachOrdered(nom -> {
+            aux.add(nom);
+        });
+        return aux;
     }
 
     /**
