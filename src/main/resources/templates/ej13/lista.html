@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" th:replace="ej11/layout::layout(~{::body}, ~{::misscripts})" xmlns:th="https://www.thymeleaf.org">
 <body>
-    <div class="Container">
-        <a href="/ej13/editarFactura">Nueva factura</a>
-        <table>
+    <div class="container">
+        <a class="btn btn-secondary" href="/ej13/editarFactura">Nueva factura</a>
+        <table class="table table-striped">
             <tr>
                 <th>Empresa</th>
                 <th>NIF</th>
@@ -18,8 +14,8 @@
                 <td th:text="${factura.nif}"></td>
                 <td th:text="${factura.total}"></td>
                 <td>
-                    <a th:href="@{/ej13/editarFactura(idFactura=${factura.id})}">Editar</a>
-                    <a th:href="@{/ej13/borrarFactura(idFactura=${factura.id})}">Borrar</a>
+                    <a class="btn btn-warning" th:href="@{/ej13/editarFactura(idFactura=${factura.id})}">Editar</a>
+                    <a class="btn btn-danger" th:href="@{/ej13/borrarFactura(idFactura=${factura.id})}">Borrar</a>
                 </td>
             </tr>
         </table>

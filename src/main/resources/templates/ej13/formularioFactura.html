@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" th:replace="ej11/layout::layout(~{::body}, ~{::misscripts})" xmlns:th="https://www.thymeleaf.org">
 <body>
     <div class="container">
         <form th:object="${factura}" action="/ej13/guardarFactura" method="post">
-            <input type="hidden" th:field="*{id}">
-            Numero de factura:<input type="number" th:field="*{numero}"/>
-            Fecha:<input type="date" th:field="*{fecha}"/>
-            Nombre:<input type="text" th:field="*{empresa}"/>
-            Dirección:<input type="text" th:field="*{direccion}"/>
-            NIF:<input type="text" th:field="*{nif}"/>
-            <input type="submit" value="Guardar"/>
+            <div class="form-row">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group col">
+                    <label>Numero de factura:</label>
+                    <input class="form-control" type="number" th:field="*{numero}"/>
+                </div>
+                <div class="form-group col">
+                    <label>Fecha:</label>
+                    <input class="form-control" type="date" th:field="*{fecha}"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Nombre:</label>
+                    <input class="form-control" type="text" th:field="*{empresa}"/>
+                </div>
+                <div class="form-group col">
+                    <label>NIF:</label>
+                    <input class="form-control" type="text" th:field="*{nif}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Dirección:</label>
+                <input  class="form-control" type="text" th:field="*{direccion}"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Guardar"/>
         </form>
-        <a th:href="@{/ej13/editarDetalle(idFactura=${factura.id})}">Añadir detalle</a>
-        <table>
+        <a class="btn btn-secondary" th:onclick="|editarDetalle(${factura.id})|">Añadir detalle</a>
+        <table class="table table-striped">
             <tr>
                 <th>Descripción</th>
                 <th>Importe</th>
@@ -25,11 +40,31 @@
                 <td th:text="${detalle.descripcion}"></td>
                 <td th:text="${detalle.importe}"></td>
                 <td>
-                    <a th:href="@{/ej13/editarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Editar</a>
-                    <a th:href="@{/ej13/borrarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Borrar</a>
+                    <a class="btn btn-warning" th:onclick="|editarDetalle(${factura.id},${detalle.id})|">Editar</a>
+                    <a class="btn btn-danger" th:href="@{/ej13/borrarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Borrar</a>
                 </td>
             </tr>
         </table>
+        <p><b>Total:</b><span th:text="${factura.total}"></span></p>
+        <a class="btn btn-outline-primary" href="/ej13/listado">Volver</a>
     </div>
 </body>
+<misscripts>
+    <script>
+        function editarDetalle(idFactura, idDetalle){
+            $.ajax({
+                url:"editarDetalle",
+                data:{
+                    idFactura: idFactura,
+                    idDetalle: idDetalle
+                },
+                success: function (html){
+                    bootbox.dialog({
+                        message: html
+                    })
+                }
+            })
+        }
+    </script>
+</misscripts>
 </html>

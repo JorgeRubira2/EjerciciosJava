@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" th:replace="ej11/layout::layout(~{::body}, ~{::misscripts})" xmlns:th="https://www.thymeleaf.org">
 <body>
     <form th:object="${detalle}" action="/ej13/guardarDetalle"  method="post">
         <input type="hidden" th:field="*{id}">
         <input type="hidden" name="idFactura" th:value="*{factura.id}">
-        <input type="text" placeholder="Descripción" th:field="*{descripcion}">
-        <label>Importe:</label>
-        <input type="number" step="any" th:field="*{importe}">
-        <input type="submit" value="Guardar">
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Descripción" th:field="*{descripcion}">
+        </div>
+        <div class="form-group">
+            <label>Importe:</label>
+            <input class="form-control" type="number" step="any" th:field="*{importe}">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Guardar">
     </form>
 </body>
 </html>

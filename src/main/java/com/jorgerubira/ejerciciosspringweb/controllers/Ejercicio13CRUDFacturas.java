@@ -2,6 +2,7 @@ package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.entities.Detalle;
 import com.jorgerubira.ejerciciosspringweb.entities.Factura;
+import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio13CRUDFacturasService;
 import com.jorgerubira.ejerciciosspringweb.repositories.DetalleRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class Ejercicio13CRUDFacturas {
     @Autowired
     DetalleRepository detRep;
 
+    @Autowired
+    IEjercicio13CRUDFacturasService servicio;
+
     @GetMapping("/listado")
     public String verListado(Model m){
         m.addAttribute("facturas", fraRep.findAll());
@@ -42,6 +46,7 @@ public class Ejercicio13CRUDFacturas {
     @PostMapping("/guardarFactura")
     public String guardarFactura(Factura factura){
         fraRep.save(factura);
+        servicio.calcularTotal(factura.getId());
         return "redirect:listado";
     }
 
@@ -59,24 +64,26 @@ public class Ejercicio13CRUDFacturas {
 
     @PostMapping("/guardarDetalle")
     public String guardarDetalle(Detalle detalle, long idFactura){
-        detalle.setFactura(fraRep.findById(idFactura).get());
+        Factura fra = fraRep.findById(idFactura).get();
+        detalle.setFactura(fra);
         detRep.save(detalle);
+        servicio.calcularTotal(idFactura);
         return "redirect:editarFactura?idFactura=" + idFactura;
     }
 
     @GetMapping("/borrarDetalle")
     public String borrarDetalle(long idFactura, long idDetalle){
         detRep.deleteById(idDetalle);
+        servicio.calcularTotal(idFactura);
         return "redirect:editarFactura?idFactura=" + idFactura;
     }
 
     @GetMapping("/borrarFactura")
     public String borrarFactura(long idFactura){
-        List<Detalle> detalles = detRep.findByFactura(fraRep.findById(idFactura).get());
-        detalles.stream()
+        detRep.findByFactura(fraRep.findById(idFactura).get())
+                .stream()
                 .forEach(d->detRep.deleteById(d.getId()));
         fraRep.deleteById(idFactura);
         return "redirect:listado";
     }
-
 }
