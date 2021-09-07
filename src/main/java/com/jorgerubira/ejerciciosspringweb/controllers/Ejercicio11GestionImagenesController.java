@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,13 @@ public class Ejercicio11GestionImagenesController {
     
         return "redirect:vista";
     }
+	 @PostMapping("/filtrar")
+	    public String filtrar(Model model, String descripcion) {
+	        List<Imagen> lista=imagenRepository.findByDescripcion(descripcion);
+	        model.addAttribute("imagenes", lista);
+	        return "redirect:vista";
+	        
+	    }
 	
 
     
