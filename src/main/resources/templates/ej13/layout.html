@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-       th:fragment="reemplazo( cuerpo ,estilos)">
+       th:fragment="reemplazo( cuerpo ,estilos,scripts)">
     
     
     <head>
@@ -20,6 +20,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-    
+    <th:block th:include="${scripts}"/>
 
 </html>

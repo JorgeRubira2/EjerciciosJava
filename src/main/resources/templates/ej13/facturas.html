@@ -4,11 +4,15 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/ej13/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
     <head>
         <title>Visualizacion de facturas</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <misestilos>
+        
+    </misestilos>
     </head>
     <body>
         <div th:object="${factura}">
@@ -69,4 +73,7 @@ and open the template in the editor.
         </div>
 
     </body>
+    <misscripts>
+        
+    </misscripts>
 </html>

@@ -4,11 +4,15 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/ej13/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <misestilos>
+        
+    </misestilos>
     </head>
     <body>
         <form><input type="submit" value="Alta factura" formaction="/ejercicio13/factura" formmethod="post"/> </form>
@@ -33,4 +37,7 @@ and open the template in the editor.
         </tr>       
     </table>
 </body>
+<misscripts>
+    
+</misscripts>
 </html>
