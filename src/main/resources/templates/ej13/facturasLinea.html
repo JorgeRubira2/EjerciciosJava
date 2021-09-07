@@ -11,28 +11,43 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <misestilos>
-        
+        <style>
+           
+            .longitud-30{
+                width: 30%;
+            }
+           
+            label {
+                font-weight: 700;
+                font-size: larger;
+            }
+            .longitud-30{
+                width: 30%;
+            }
+        </style>
     </misestilos>
     </head>
     <body>
+        <h1>Detalle Linea de Factura</h1>
+    <hr>
                 <form method="post" th:object="${facturaLinea}">
                     <input type="hidden" th:field="*{id}"/>
                     <input type="hidden" th:name="facturasId" th:value="${factura.id}"/>
                     <div>
-                        <label for="cantidad">Cantidad</label>
-                        <input type="number" th:field="*{cantidad}" />
+                        <label class="ml-3 mt-1 longitud-30" for="cantidad">Cantidad</label>
+                        <input class="ml-3 mt-1 longitud-30" type="number" th:field="*{cantidad}" />
                     </div>
                     <div>
-                        <label for="descripcion">Descripcion</label>
-                        <input type="text" th:field="*{descripcion}"/>
+                        <label class="ml-3 mt-1 longitud-30" for="descripcion">Descripcion</label>
+                        <input class="ml-3 mt-1 longitud-30" type="text" th:field="*{descripcion}"/>
                     </div>
                     <div>
-                        <label for="importe">importe</label>
-                        <input type="text" th:field="*{importe}"/>
+                        <label class="ml-3 mt-1 longitud-30" for="importe">importe</label>
+                        <input class="ml-3 mt-1 longitud-30" type="text" th:field="*{importe}"/>
                     </div>
                     <div>
-                        <input type="submit" value="Confirmar Linea" formaction="/ejercicio13/guardarLinea"/>
-                        <input type="submit" value="Volver" formaction="/ejercicio13/volverLinea"/>
+                        <input type="submit" value="Confirmar Linea" formaction="/ejercicio13/guardarLinea" class="btn btn-dark ml-4"/>
+                        <input type="submit" value="Volver" formaction="/ejercicio13/volverLinea" class="btn btn-dark ml-4"/>
                     </div>
                 </form>
     </body>

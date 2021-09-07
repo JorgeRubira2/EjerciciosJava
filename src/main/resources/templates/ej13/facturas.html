@@ -7,73 +7,102 @@ and open the template in the editor.
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="/ej13/layout::reemplazo( ~{::body}, ~{::misscripts}, ~{::misestilos})">
     <head>
-        <title>Visualizacion de facturas</title>
+        <title>Facturas</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <misestilos>
-        
+        <style>
+            .longitud {
+                width: 15%;
+            }
+            .longitud-30{
+                width: 30%;
+            }
+            .totalFinal{
+                width: 80%;
+                text-align: right
+            }
+            label {
+                font-weight: 700;
+                font-size: larger;
+            }
+        </style>
     </misestilos>
-    </head>
-    <body>
-        <div th:object="${factura}">
-            <form method="post" >
-                <input type="submit" value="Ver todas Facturas" formaction="/ejercicio13/consultaFacturas"/>
-                <input type="submit" value="Baja factura" formaction="/ejercicio13/eliminarFactura"/>
-                <input type="submit" value="Confirmar factura" formaction="/ejercicio13/altaFactura"/>
-                <input type="text" readonly="" th:field="*{id}"/>
-                <div>
-                    <label for="idFactura">Identificador Factura:</label>
-                    <input type="text" th:field="*{idFactura}"/>
-                </div>
-                <div>
-                    <label for="nombreEmpresa">Empresa: </label>
-                    <input type="text" th:field="*{nombreEmpresa}"/>
-                </div>
-                <div>
-                    <label for="direccion">Direccion: </label>
-                    <input type="text" th:field="*{direccion}"/>
-                </div>
-                <span th:if='${ idFactura == null || "".equals(idFactura) == false  }'> <input type="submit" value="Alta linea" formaction="/ejercicio13/altaFacturaLinea"/> </span>
-            </form>
-
-            <div th:each="facturaL:${factura.listaFacturaLineas}"> <!-- facturaLinea-->
-                <form method="post">
-                    <input type="text" readonly="" name="id" th:value="${facturaL.id}"/>
-                    <input type="text" readonly="" name="facturasId" th:value="${facturaL.facturasId}"/>
-                    <div>
-                        <label for="cantidad"></label>
-                        <input type="text" name="cantidad" th:value="${facturaL.cantidad}"/>
-                    </div>
-                    <div>
-                        <label for="descripcion"></label>
-                        <input type="text" name="descripcion" th:value="${facturaL.descripcion}"/>
-                    </div>
-                    <div>
-                        <label for="importe"></label>
-                        <input type="text" name="importe" th:value="${facturaL.importe}"/>
-                    </div>
-                    <div>
-                        <input type="submit" value="Baja Linea" formaction="/ejercicio13/bajaLinea"/>
-                    </div>
-                    <div>
-                        <input type="submit" value="Modifica linea" formaction="/ejercicio13/modificaLinea"/>
-                    </div>
-                </form>
-
-
-
-
+</head>
+<body>
+    <h1>Detalle Facturas</h1>
+    <hr>
+    <div th:object="${factura}" class="container">
+        <form method="post" >
+            <input type="submit" value="Ver todas Facturas" formaction="/ejercicio13/consultaFacturas" class="btn btn-dark ml-4"/>
+            <input type="submit" value="Baja factura" formaction="/ejercicio13/eliminarFactura" class="btn btn-dark ml-4"/>
+            <input type="submit" value="Confirmar factura" formaction="/ejercicio13/altaFactura" class="btn btn-dark ml-4"/>
+            <div class="row ml-3">
+                <label class="ml-3 mt-1 longitud-30" for="id"> Identificador base de datos: </label>
+                <input class="ml-3 mt-1 longitud-30" type="text" readonly="" th:field="*{id}"/>
             </div>
-
-            <div>
-                <label for="totalFinal">Total Final</label>
-                <input type="text" th:field="*{totalFinal}"/>
+            <div class="row ml-3">
+                <label class="ml-3 mt-1 longitud-30" for="idFactura">Identificador Factura: </label>
+                <input class="ml-3 mt-1 longitud-30" type="text" th:field="*{idFactura}"/>
             </div>
+            <div class="row ml-3">
+                <label class="ml-3 mt-1 longitud-30" for="nombreEmpresa">Empresa: </label>
+                <input class="ml-3 mt-1 longitud-30" type="text" th:field="*{nombreEmpresa}"/>
+            </div>
+            <div class="row ml-3">
+                <label class="ml-3 mt-1 longitud-30" for="direccion">Direccion: </label>
+                <input class="ml-3 mt-1 longitud-30" type="text" th:field="*{direccion}"/>
+            </div>
+            <span th:if='${ idFactura == null || "".equals(idFactura) == false  }'> 
+                <input type="submit" value="Alta linea" formaction="/ejercicio13/altaFacturaLinea" class="btn btn-dark ml-4"/> 
+            </span>
+        </form>
+        <span th:if='${ idFactura == null || "".equals(idFactura) == false  }'>
+            <div class="container" style="display: inline">
+                <!-- facturaLinea-->
+                <div class="row">
+                    <div class="mb-2 longitud"><label for="id">id BD</label></div>
+                    <div class="mb-2 longitud"><label for="facturasId">id Relacionado</label></div>
+                    <div class="mb-2 longitud"><label for="cantidad">Cantidad</label></div>
+                    <div class="mb-2 longitud"><label for="descripcion">descripcion</label></div>
+                    <div class="mb-2 longitud"><label for="importe">importe</label></div>
+                </div>
+                <div th:each="facturaL:${factura.listaFacturaLineas}" class="row"> 
+                    <form method="post" class="form-inline">
+                        <div class="mb-2 longitud"><input type="text" readonly="" name="id" th:value="${facturaL.id}"/></div>
+                        <div class="mb-2 longitud"><input type="text" readonly="" name="facturasId" th:value="${facturaL.facturasId}"/></div>
+                        <div class="mb-2 longitud">
+                            
+                            <input type="text" readonly="" name="cantidad" th:value="${facturaL.cantidad}"/>
+                        </div>
+                        <div class="mb-2 longitud">
+                            
+                            <input type="text" readonly="" name="descripcion" th:value="${facturaL.descripcion}"/>
+                        </div>
+                        <div class="mb-2 longitud">
+                            
+                            <input type="text" readonly="" name="importe" th:value="${facturaL.importe}"/>
+                        </div>
+                        <div class="mb-2">
+                            <input type="submit" value="Baja Linea" formaction="/ejercicio13/bajaLinea" class="btn btn-dark ml-4"/>
+                        </div>
+                        <div class="mb-2">
+                            <input type="submit" value="Modifica linea" formaction="/ejercicio13/modificaLinea" class="btn btn-dark ml-4"/>
+                        </div>
+                    </form>
 
+                </div>
+            </div>
+        </span>
+        <div class="totalFinal">
+            <label for="totalFinal">Total Final</label>
+            <input type="text" th:field="*{totalFinal}" />
         </div>
 
-    </body>
-    <misscripts>
-        
-    </misscripts>
+    </div>
+
+</body>
+<misscripts>
+
+</misscripts>
 </html>
