@@ -81,10 +81,11 @@ total_final decimal(13,2)
 );
 
 
-create table facturasLineas (
+create table facturas_lineas (
 id int primary key auto_increment,
 id_facturas int,
 cantidad int,
 descripcion varchar(400),
 importe decimal(13,2),
+foreign key (id_facturas) references facturas(id)
 );

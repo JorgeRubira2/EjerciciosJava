@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form><input type="submit" value="Alta factura" formaction="/ejercicio13/factura" formmethod="post"/> </form>
+        <table>
+            <tr>
+                <td text="Id"></td>
+                <td text="Identificador Factura"></td>
+                <td text="Empresa"></td>
+                <td text="Direccion"></td>
+
+            </tr>
+            <tr th:each="factura:${facturas}">
+                <td th:text="${factura.id}"/>
+                <td th:text="${factura.idFactura}"/>
+                <td th:text="${factura.nombreEmpresa}"/>
+                <td th:text="${factura.direccion}"/>
+            <form>
+                <input type="hidden" name="id" th:value="*{factura.id}"/>
+                <td> <input type="submit" formaction="eliminarFactura" formmethod="post" value="Eliminar"/> </td>
+                <td> <input type="submit" formaction="factura" formmethod="post" value="Consultar detalle"/> </td>
+            </form>    
+        </tr>       
+    </table>
+</body>
+</html>

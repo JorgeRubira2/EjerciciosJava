@@ -4,59 +4,67 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Visualizacion de facturas</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>
-            <form method="post" th:object="{factura}">
-                <input type="button" value="Alta factura" formaction="/ejercicio13/altaFactura"/>
-                <input type="button" value="Baja factura" formaction="/ejercicio13/eliminarFactura"/>
-                <input type="button" value="Modifica factura" formaction="/ejercicio13/altaFactura"/>
+        <div th:object="${factura}">
+            <form method="post" >
+                <input type="submit" value="Ver todas Facturas" formaction="/ejercicio13/consultaFacturas"/>
+                <input type="submit" value="Baja factura" formaction="/ejercicio13/eliminarFactura"/>
+                <input type="submit" value="Confirmar factura" formaction="/ejercicio13/altaFactura"/>
+                <input type="text" readonly="" th:field="*{id}"/>
                 <div>
-                    <label for="idFactura"></label>
+                    <label for="idFactura">Identificador Factura:</label>
                     <input type="text" th:field="*{idFactura}"/>
                 </div>
                 <div>
-                    <label for="nombreEmpresa"></label>
+                    <label for="nombreEmpresa">Empresa: </label>
                     <input type="text" th:field="*{nombreEmpresa}"/>
                 </div>
                 <div>
-                    <label for="direccion"></label>
+                    <label for="direccion">Direccion: </label>
                     <input type="text" th:field="*{direccion}"/>
                 </div>
+                <span th:if='${ idFactura == null || "".equals(idFactura) == false  }'> <input type="submit" value="Alta linea" formaction="/ejercicio13/altaFacturaLinea"/> </span>
             </form>
-            <div th:each="facturaLinea:*{listaFacturaLinea}">
+
+            <div th:each="facturaL:${factura.listaFacturaLineas}"> <!-- facturaLinea-->
                 <form method="post">
+                    <input type="text" readonly="" name="id" th:value="${facturaL.id}"/>
+                    <input type="text" readonly="" name="facturasId" th:value="${facturaL.facturasId}"/>
                     <div>
-                        <label for="facturaLinea.cantidad"></label>
-                        <input type="text" th:field="*{facturaLinea.cantidad}"/>
+                        <label for="cantidad"></label>
+                        <input type="text" name="cantidad" th:value="${facturaL.cantidad}"/>
                     </div>
                     <div>
-                        <label for="facturaLinea.descripcion"></label>
-                        <input type="text" th:field="*{facturaLinea.descripcion}"/>
+                        <label for="descripcion"></label>
+                        <input type="text" name="descripcion" th:value="${facturaL.descripcion}"/>
                     </div>
                     <div>
-                        <label for="facturaLinea.importe"></label>
-                        <input type="text" th:field="*{facturaLinea.importe}"/>
+                        <label for="importe"></label>
+                        <input type="text" name="importe" th:value="${facturaL.importe}"/>
                     </div>
                     <div>
-                        <input type="button" value="Baja Linea" formaction="/ejercicio13/altaLinea"/>
+                        <input type="submit" value="Baja Linea" formaction="/ejercicio13/bajaLinea"/>
                     </div>
                     <div>
-                        <input type="button" value="Modifica linea" formaction="/ejercicio13/altaLinea"/>
+                        <input type="submit" value="Modifica linea" formaction="/ejercicio13/modificaLinea"/>
                     </div>
                 </form>
 
-                <input type="button" value="Alta linea" formaction="/ejercicio13/altaLinea"/>
+
 
 
             </div>
 
-
+            <div>
+                <label for="totalFinal">Total Final</label>
+                <input type="text" th:field="*{totalFinal}"/>
+            </div>
 
         </div>
 
