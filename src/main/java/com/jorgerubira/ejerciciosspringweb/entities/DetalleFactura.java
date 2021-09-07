@@ -27,5 +27,5 @@ public class DetalleFactura {
     
     @ManyToOne              //Por defect EAGER -> (fetch = FetchType.LAZY) Carga perezosa
     @JoinColumn(name = "id_factura")
-    private Factura idFactura;
+    private Factura factura;
 }

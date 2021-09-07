@@ -24,6 +24,7 @@ public class Factura {
     private Integer idFactura;
     private Date fecha;
     private String nombre;
+    private String direccion;
     private String nif;
     private Double totalFinal;
     

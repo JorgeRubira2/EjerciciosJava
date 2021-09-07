@@ -6,21 +6,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-            <!-- Contenido -->
+            <!-- Contenido --><br />
             <a class="btn btn-primary" href="/ejercicio13/altaFactura" >Nueva Factura</a>
+            <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
+            <div style="color: green" th:if="${success!=null}" th:text="${success}"></div>
+            <hr />
             <th:block th:if="${facturas}!=null">
-                <table>
+                <table class="table table-striped">
                     <tr>
                         <th>Nombre</th>
-                        <th>Apellidos</th>
+                        <th>Nif</th>
+                        <th>Fecha</th>
                     </tr>
                     <tr th:each="fac : ${facturas}">
                         <td th:text="${fac.nombre}"></td>
                         <td th:text="${fac.nif}"></td>
                         <td th:text="${#dates.format(fac.fecha, 'dd/MM/yyyy')}"></td>
                         <td>
-                            <a th:href="@{editarFactura(id=${fac.idFactura})}">Editar</a>
-                            <a th:href="@{borrarFactura(id=${fac.idFactura})}">Borrar</a>
+                            <a class="btn btn-info" th:href="@{/ejercicio13/editarFactura(id=${fac.idFactura})}">Editar</a>
+                            <a class="btn btn-danger" th:href="@{/ejercicio13/borrarFactura(id=${fac.idFactura})}">Borrar</a>
                         </td>
                     </tr>
                 </table>
