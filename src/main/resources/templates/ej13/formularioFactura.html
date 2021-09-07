@@ -30,22 +30,24 @@
             </div>
             <input class="btn btn-primary" type="submit" value="Guardar"/>
         </form>
-        <a class="btn btn-secondary" th:onclick="|editarDetalle(${factura.id})|">Añadir detalle</a>
-        <table class="table table-striped">
-            <tr>
-                <th>Descripción</th>
-                <th>Importe</th>
-            </tr>
-            <tr th:each="detalle:${factura.detalles}">
-                <td th:text="${detalle.descripcion}"></td>
-                <td th:text="${detalle.importe}"></td>
-                <td>
-                    <a class="btn btn-warning" th:onclick="|editarDetalle(${factura.id},${detalle.id})|">Editar</a>
-                    <a class="btn btn-danger" th:href="@{/ej13/borrarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Borrar</a>
-                </td>
-            </tr>
-        </table>
-        <p><b>Total:</b><span th:text="${factura.total}"></span></p>
+        <div th:if="${factura.id>0}">
+            <a class="btn btn-secondary" th:onclick="|editarDetalle(${factura.id})|">Añadir detalle</a>
+            <table class="table table-striped">
+                <tr>
+                    <th>Descripción</th>
+                    <th>Importe</th>
+                </tr>
+                <tr th:each="detalle:${factura.detalles}">
+                    <td th:text="${detalle.descripcion}"></td>
+                    <td th:text="${detalle.importe}"></td>
+                    <td>
+                        <a class="btn btn-warning" th:onclick="|editarDetalle(${factura.id},${detalle.id})|">Editar</a>
+                        <a class="btn btn-danger" th:href="@{/ej13/borrarDetalle(idFactura=${factura.id},idDetalle=${detalle.id})}">Borrar</a>
+                    </td>
+                </tr>
+            </table>
+            <p><b>Total:</b><span th:text="${factura.total}"></span></p>
+        </div>
         <a class="btn btn-outline-primary" href="/ej13/listado">Volver</a>
     </div>
 </body>
