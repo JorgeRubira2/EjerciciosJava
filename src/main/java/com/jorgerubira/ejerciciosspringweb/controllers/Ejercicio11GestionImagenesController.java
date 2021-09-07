@@ -56,6 +56,7 @@ public class Ejercicio11GestionImagenesController {
 			
 			imagen.setRuta(nombre); 
             imagen.setNombre(fichero.getOriginalFilename());
+            imagen.setDescripcion(descripcion);
             imagenRepository.save(imagen);
             
 		} catch (IOException e) {
