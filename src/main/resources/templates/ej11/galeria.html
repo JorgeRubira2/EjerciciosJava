@@ -15,6 +15,7 @@
                     Descripcion:<input class="m-1" name="descripcion" placeholder="Descripcion" required />
                     Fichero <input  class="m-1" type="file" name="fichero" accept=".jpg" /><br/><br/>
                     <button type="submit" class="btn btn-primary" value="Subir Fichero">Subir Archivo </button>
+                    <a type="button" class="btn btn-success" href="/ejercicio11/verImagenes" >Tu Galeria</a>
                 </form>
                 <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
                 <div style="color: green" th:if="${success!=null}" th:text="${success}"></div> 
