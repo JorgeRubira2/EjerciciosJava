@@ -21,11 +21,12 @@
        <div class="container">
           <h1> 
              <div style="color: red;"  >
-            Imagenes  
+            Galería de Imágenes  
             </div>
         </h1> 
            
-            <br>             
+           <br>      
+           <div class="row">
               <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data" >
                 Descripcion <input type="text" value="" name="descripcion" />
                 <br>
@@ -35,12 +36,12 @@
                  <br>
                  <div class="container">
                     <div "col-2">  
-                        <input type="submit" class="btn-md" value="Subir Fichero "/> 
+                        <input type="submit" class="btn-primary" value="Subir Fichero "/> 
                          <hr>
                     </div>
                   </div>
               </form>
-            
+           </div>
             <!-- comment
             <spam>
                 
@@ -48,6 +49,7 @@
                                 
             </spam>
              -->
+             <div class='row'>
             <form action="/ejercicio11/filtrar" id="form" name="form" method="post"> 
                                       
                 <input type='text' id="descripcion" name="descripcion" class="col-2" placeholder="Filtrar"/> 
@@ -55,11 +57,14 @@
                     
             </form>  
                     
-                        
+           </div>             
             <div class="row">
-                <div th:each="imagen:${lista}" class="col-2">                    
+             
+                <div th:each="imagen:${lista}" class="col-lg-3 col-md-4 col-xs-6 thumb">                    
                  <!--<img src="@{${imagen.Nombre()}" width="100%" /><br/>   -->
-                 <img th:src="@{/ejercicio11/descarga(imagen=${imagen.Nombre})}" width="100%"/> <br/>
+                 
+                 <img th:src="@{/ejercicio11/descarga(imagen=${imagen.Nombre})}"   class="img-thumbnail" alt=""/>
+                 
                  <div th:text="${imagen.Descripcion}" />
                              
                  <a th:href="@{/ejercicio11/eliminar(codigo=${imagen.id})}" class="btn-primary btn-md"  value='Eliminar'>  Eliminar
@@ -68,8 +73,6 @@
                                 
             </div>
             <hr/>
-        
-        
         </div>                          
     </body>
 </html>
