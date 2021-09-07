@@ -76,7 +76,6 @@ public class FicherosController {
         
     }    
 
-
     
     @PostMapping("/ver")
     public String mostrarFormulario2(){
@@ -120,6 +119,7 @@ public class FicherosController {
             f.getParentFile().mkdirs();
             try{
                 Files.copy(fic.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);    
+               
             }catch(IOException e){
                 e.printStackTrace();
             }
