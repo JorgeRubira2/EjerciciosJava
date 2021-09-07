@@ -1,0 +1,17 @@
+<html xmlns:th="https://www.thymeleaf.org" th:replace="ej11/layout::layout( ~{::body})">
+    <head>
+        <title>Galeria de imagenes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="col justify-content-center" th:object="${imagen}">
+            <div class="m-2">
+                 <a class="btn btn-primary stretched-link" href="/ejercicio11/verImagenes">Galeria</a>
+                <img class="rounded m-1" th:src="${'/ejercicio11/descarga?aleatorio='+imagen.aleatorio}" width="800px" height="700px" />
+            </div>
+        </div>
+        
+
+    </body>
+</html>

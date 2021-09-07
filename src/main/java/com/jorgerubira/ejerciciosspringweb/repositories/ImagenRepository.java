@@ -7,12 +7,14 @@ package com.jorgerubira.ejerciciosspringweb.repositories;
 
 
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Mohamad
  */
-public interface ImagenRepository extends CrudRepository<Imagen,Integer> {
-    
+public interface ImagenRepository extends JpaRepository<Imagen,Integer> {
+    public List<Imagen> findByDescripcionContaining(String descripcion);
 }

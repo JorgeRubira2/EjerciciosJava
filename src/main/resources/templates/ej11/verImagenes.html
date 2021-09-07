@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org" th:replace="d20210901/layout::layout( ~{::body})">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="ej11/layout::layout( ~{::body})">
     <head>
         <title>Galeria de imagenes</title>
         <meta charset="UTF-8">
@@ -6,22 +6,24 @@
     </head>
     <body>
         <div class="container">
-            <div class="row>">
-                <input class="col-4 m-1" placeholder="Filtrar"/>
-                <input type="button" class="btn btn-primary m-1" value="Filtrar"/>
+            <form action="/ejercicio11/buscar" method="post">
+                <div class="row">
+                    <input class="col-4 m-1" placeholder="Filtrar" name="descripcion"/>
+                    <button  type="submit" class="btn btn-primary m-1" >Filtrar</button>
+                    <a  type="button" class="btn btn-dark m-1" href="/ejercicio11/galeria" >Volver</a>
+                </div>
+            </form>        
+            <div th:each="img:${imagenes}" class="col-4  d-inline float-left">
+                    <img class="rounded m-1" th:src="${'/ejercicio11/descarga?aleatorio='+img.aleatorio}" width="300px" height="200px" />
+                    <a type="button" class="btn btn-primary btn-sm" th:href="${'/ejercicio11/abrir?Id='+ img.Id}" >Abrir</a>
+                    <a type="button" class="btn btn-success btn-sm" th:href="${'/ejercicio11/descarga?aleatorio='+ img.aleatorio}" >Descargar</a>
+                    <a type="button" class="btn btn-danger btn-sm" th:href="${'/ejercicio11/eliminar?Id='+ img.Id}">Borrar</a>                  
             </div>
-            <div  th:each="img:${imagenes}">
-                <div class="row" >
-                    <img class="rounded  float-left m-5" th:src="${'/ejercicio11/descarga?aleatorio='+img.aleatorio}" width="400px" height="300px" /> 
-                </div>
-                <div >
-                    <input type="button" class="btn btn-success" value="Descargar" />
-                    <input type="button" class="btn btn-danger" value="Borrar" />
-                </div>
-                    
-            </div>    
-                
-            
-        </div>
+        </div>   
+        <script>
+            function ventana(ruta){
+              window.open(ruta,"_blank","Width=550,Height=400,scrollbars=no, resizable=no");
+            }
+        </script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="ej11/layout::layout( ~{::body})">
     <head>
         <title>Galeria de imagenes</title>
         <meta charset="UTF-8">
@@ -7,11 +7,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     </head>
     <body>
-        <div class="row m-2">
-        <h1>Galeria de imagenes</h1>
-        </div>
-        <div class="row">
-        <div class="container m-2">
+
+        <div class=" m-2">
             <div class="row">             
 
                 <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data" >
@@ -22,11 +19,6 @@
                 <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
                 <div style="color: green" th:if="${success!=null}" th:text="${success}"></div> 
             </div>
-            
-            </div>
-            
-            </div>
         </div>
-
     </body>
 </html>
