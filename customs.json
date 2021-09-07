@@ -1,10 +1,20 @@
 {
     "elements": {
-        "div": {}
+        "div": {
+            "attributes": {
+                "th:each": {}
+            }
+        }
     },
     "attributes": {
         "color": {
             "context": "table"
+        },
+        "th:src": {
+            "context": "img"
+        },
+        "th:href": {
+            "context": "a"
         }
     }
 }

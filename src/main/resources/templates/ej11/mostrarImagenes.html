@@ -17,14 +17,17 @@
      </head>
     
     <body>
-        <div class="container">
-        <h1> 
+        
+       <div class="container">
+          <h1> 
+             <div style="color: red;"  >
             Imagenes  
+            </div>
         </h1> 
+           
             <br>             
               <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data" >
-                      
-                  Descripcion <input type="text" value="" name="descripcion" />
+                Descripcion <input type="text" value="" name="descripcion" />
                 <br>
                 <br>
                  Archivo <input type="file" class="btn-md" name="archivo" accept="image/*"/>
@@ -34,23 +37,35 @@
                     <div "col-2">  
                         <input type="submit" class="btn-md" value="Subir Fichero "/> 
                          <hr>
-
                     </div>
                   </div>
-            </form>
-            <div class="row">
-                <div th:each="imagen:${lista}" class="col-2">
+              </form>
+            
+            <!-- comment
+            <spam>
+                
+                <a th:href="@{/ejercicio11/filtrar}"  class="btn-primary btn-md"  value='Filtrar' /> 
+                                
+            </spam>
+             -->
+            <form action="/ejercicio11/filtrar" id="form" name="form" method="post"> 
+                                      
+                <input type='text' id="descripcion" name="descripcion" class="col-2" placeholder="Filtrar"/> 
+                    <input type="submit" value="Filtrar"  class="btn btn-primary"  />
                     
+            </form>  
+                    
+                        
+            <div class="row">
+                <div th:each="imagen:${lista}" class="col-2">                    
                  <!--<img src="@{${imagen.Nombre()}" width="100%" /><br/>   -->
                  <img th:src="@{/ejercicio11/descarga(imagen=${imagen.Nombre})}" width="100%"/> <br/>
                  <div th:text="${imagen.Descripcion}" />
-           
-                   
+                             
                  <a th:href="@{/ejercicio11/eliminar(codigo=${imagen.id})}" class="btn-primary btn-md"  value='Eliminar'>  Eliminar
                   </a>
                 </div>      
-                
-                
+                                
             </div>
             <hr/>
         

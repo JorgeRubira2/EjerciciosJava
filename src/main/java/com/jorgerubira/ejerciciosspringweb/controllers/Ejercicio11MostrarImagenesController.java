@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -76,13 +77,13 @@ public class Ejercicio11MostrarImagenesController {
     public String subirImagenes(Model model, MultipartFile archivo, String descripcion){         
 
         Imagen imagen = new Imagen();
-        long codigo=(int)(Math.random()*999999);
-         
-        String strCodigo = Long.toString(codigo);
-        imagen.setNombre(strCodigo + archivo.getOriginalFilename());
+        String codigo1 = UUID.randomUUID().toString();
         
+        imagen.setNombre (codigo1);
         imagen.setDescripcion(descripcion);
-        String subir= rutaRecursos + "\\ej11\\"  + strCodigo + archivo.getOriginalFilename();
+       
+       
+        String subir= rutaRecursos + "\\ej11\\"  + codigo1;
         File f=new File(subir);
         f.getParentFile().mkdirs();
         try{
@@ -94,9 +95,7 @@ public class Ejercicio11MostrarImagenesController {
         lista.save(imagen);
         
         return "redirect:lista";
-       // return "ej11/mostrarImagenes";
         
-                   
         }
     
         @GetMapping("/eliminar")
@@ -110,8 +109,13 @@ public class Ejercicio11MostrarImagenesController {
         }
     
     
+         @PostMapping("/filtrar")
+         public String filtrar(Model model, String descripcion){
+             model.addAttribute("lista", lista.findByDescripcionContaining(descripcion));
+             return "ej11/mostrarImagenes";
+          
+        }
     }
     
     
      
-}

@@ -28,8 +28,11 @@ public class Imagen {
     private Integer id;
        
     @NotNull
-    private String Descripcion ;
+    private String descripcion ;
     
     @NotNull
-    private String Nombre;
+    private String nombre;
+    
+    
+    
 }
