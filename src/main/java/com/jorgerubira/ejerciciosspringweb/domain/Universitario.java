@@ -8,6 +8,7 @@ package com.jorgerubira.ejerciciosspringweb.domain;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,9 +20,10 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Universitario {
 
-   @Id
-   private int id;
-   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private int cursoAcademico;
     private String estudio;
     private String localidad;
@@ -31,7 +33,7 @@ public class Universitario {
     private int plazasOfertadas;
     private int plazasMatriculadas;
     private int plazasSolicitadas;
-    private int indiceOcupacion;
+    private double indiceOcupacion;
     private Date fechaActualizacion;
 
 }
