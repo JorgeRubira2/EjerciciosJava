@@ -23,8 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/ejercicio12")
 public class Ejercicio12Controller {
 
@@ -38,21 +39,32 @@ public class Ejercicio12Controller {
         return "ej11/vista.html";
     }
 
-    @GetMapping("/leer")
-    @RequestMapping
-    public void leerCSV() {
-        String fichero = "DatosUniversidad.csv";
-
+    public Date parsearFecha(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha = null;
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            fecha = format.parse(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(Ejercicio12Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-            List<Universitario> list = Files.lines(Paths.get(rutaBase + fichero))
+        return fecha;
+
+    }
+
+    @GetMapping("/leer")
+    public List<Universitario> leerCSV() {
+        String fichero = "DatosUniversidad.csv";
+        List<Universitario> list = null;
+        try {
+
+            list = Files.lines(Paths.get(rutaBase + fichero))
                     .skip(1)
-                    .map(x -> new Universitario(1, (Integer.parseInt(x.split(";")[0])), x.split(";")[1],
-                    x.split(";")[2], x.split(";")[3], x.split(";")[4], x.split(";")[5], Integer.parseInt(x.split(";")[6]),
-                    Integer.parseInt(x.split(";")[7]), Integer.parseInt(x.split(";")[8]), Double.parseDouble(x.split(";")[9]),
-                    new Date(2020 - 05 - 02))/*
-                    format.parse(x.split(";")[10]))*/)
+                    .map(x
+                            -> new Universitario((Integer.parseInt(x.split(";")[0])), x.split(";")[1],
+                            x.split(";")[2], x.split(";")[3], x.split(";")[4], x.split(";")[5], Integer.parseInt(x.split(";")[6]),
+                            Integer.parseInt(x.split(";")[7]), Integer.parseInt(x.split(";")[8]), Double.parseDouble(x.split(";")[9]),
+                            parsearFecha(x.split(";")[10])))
                     .collect(Collectors.toList());
 
             list.stream().forEach(x -> universitarioRepository.save(x));
@@ -60,7 +72,7 @@ public class Ejercicio12Controller {
         } catch (Exception ex) {
             Logger.getLogger(Ejercicio10Ficheros.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return list;
     }
 
 }

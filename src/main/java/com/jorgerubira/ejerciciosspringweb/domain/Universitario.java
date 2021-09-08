@@ -36,4 +36,23 @@ public class Universitario {
     private double indiceOcupacion;
     private Date fechaActualizacion;
 
+    public Universitario(int cursoAcademico, String estudio, String localidad, String centro, String tipoCentro, String tipoEstudio, int plazasOfertadas, int plazasMatriculadas, int plazasSolicitadas, double indiceOcupacion, Date fechaActualizacion) {
+        this.cursoAcademico = cursoAcademico;
+        this.estudio = estudio;
+        this.localidad = localidad;
+        this.centro = centro;
+        this.tipoCentro = tipoCentro;
+        this.tipoEstudio = tipoEstudio;
+        this.plazasOfertadas = plazasOfertadas;
+        this.plazasMatriculadas = plazasMatriculadas;
+        this.plazasSolicitadas = plazasSolicitadas;
+        this.indiceOcupacion = indiceOcupacion;
+        this.fechaActualizacion = fechaActualizacion;
+    }
+    
+    
+    
+    
+    
+
 }
