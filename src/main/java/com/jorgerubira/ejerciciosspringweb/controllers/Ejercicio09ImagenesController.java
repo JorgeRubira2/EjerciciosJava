@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Controller
 @RequestMapping("/ejercicio9")
-public class Ejercicio09Imagenes {
+public class Ejercicio09ImagenesController {
 
 
 	@Setter   //Crear el set de repositorio para el test de unidad

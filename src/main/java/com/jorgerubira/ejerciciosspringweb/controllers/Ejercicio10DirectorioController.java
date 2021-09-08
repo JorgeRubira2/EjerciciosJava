@@ -13,7 +13,7 @@ import com.jorgerubira.ejerciciosspringweb.domain.Fichero;
 
 @Controller
 @RequestMapping("/ejercicio10")
-public class Ejercicio10Directorio {
+public class Ejercicio10DirectorioController {
 
     @Value("${carpetas.recursos.hiberus}")
     private String rutaRecursos;
