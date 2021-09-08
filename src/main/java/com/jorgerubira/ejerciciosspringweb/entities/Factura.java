@@ -4,6 +4,7 @@ package com.jorgerubira.ejerciciosspringweb.entities;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +29,6 @@ public class Factura {
     private String nif;
     private Double totalFinal;
     
-    @OneToMany(mappedBy = "idDetalle")    //Por defecto es carga pereza. Carga temprana -> fetch = FetchType.EAGER
+    @OneToMany(mappedBy = "factura")    //Por defecto es carga pereza. Carga temprana -> fetch = FetchType.EAGER 
     private List<DetalleFactura> facturas;
 }
