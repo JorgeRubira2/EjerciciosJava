@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,9 +40,12 @@ public class Ejercicio11GestionImagenesController {
 	private String rutaRecursos;
 	
 	@GetMapping("/vista")
-    public String vista(Model model) {
-
-        model.addAttribute("imagenes", imagenRepository.findAll());
+    public String vista(Model model,String descripcion) {
+		  if (descripcion == null) {
+	            model.addAttribute("imagenes", imagenRepository.findAll());
+	        } else {
+	            model.addAttribute("imagenes", imagenRepository.findByDescripcionContaining(descripcion));
+	        }
 
         return "ej11/vista";
 
@@ -104,13 +108,7 @@ public class Ejercicio11GestionImagenesController {
     
         return "redirect:vista";
     }
-	 @PostMapping("/filtrar")
-	    public String filtrar(Model model, String descripcion) {
-	        List<Imagen> lista=imagenRepository.findByDescripcion(descripcion);
-	        model.addAttribute("imagenes", lista);
-	        return "redirect:vista";
-	        
-	    }
+	 
 	
 
     
