@@ -45,7 +45,6 @@ public class Ejercicio11GestionImagenes {
     @GetMapping("/filtrar")
     public String filtrar(Model model, String descripcion) {
 
-        model.addAttribute("imagen", new Imagen());
         model.addAttribute("imagenes", repositorioImg.findByDescripcion(descripcion));
 
         return "/ej11/imagenes";
