@@ -1,6 +1,8 @@
 package com.jorgerubira.ejerciciosspringweb.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -14,9 +16,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity  
 public class Imagenes {
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private Integer id;
             
     private String codigo;
     private String descripcion;
