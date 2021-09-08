@@ -6,69 +6,76 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     </head>
     <body class="">
-       <!-- <div class="container">
-            <table class="table table-bordered table-striped text-center">
-                <tr class="table-info">
-                    <th>Nº Factura</th>
-                    <th>Nombre de la empresa</th>
-                    <th>Dirección de la empresa</th>
-                    <th>NIF de la empresa</th>
-                    <th>Fecha de la Factura</th>
-                    <th>Acciones</th>
-                </tr>
-                <tr>
-                    <td th:text="${factura.id}"></td>
-                    <td th:text="${factura.nombre}"></td>
-                    <td th:text="${factura.direccion}"></td>
-                    <td th:text="${factura.nif}"></td>
-                    <td th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></td>
-                    <td>
-                        <!-- <a th:href="@{editarPersona(id=${per.id})}">Ver Detalles de la Factura</a> 
-                        <a th:href="@{detalles(factura=${factura.id})}">Ver Detalles de la Factura</a>--><!--
-                    </td>
-                </tr>
-                <tr th:each="det : ${factura.detallesFactura}">
-                    <td th:text="${det.descripcion}"></td>
-                    <td th:text="${det.importe}"></td>
-                </tr>
-            </table>
+        <!-- <div class="container">
+             <table class="table table-bordered table-striped text-center">
+                 <tr class="table-info">
+                     <th>Nº Factura</th>
+                     <th>Nombre de la empresa</th>
+                     <th>Dirección de la empresa</th>
+                     <th>NIF de la empresa</th>
+                     <th>Fecha de la Factura</th>
+                     <th>Acciones</th>
+                 </tr>
+                 <tr>
+                     <td th:text="${factura.id}"></td>
+                     <td th:text="${factura.nombre}"></td>
+                     <td th:text="${factura.direccion}"></td>
+                     <td th:text="${factura.nif}"></td>
+                     <td th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></td>
+                     <td>
+        <!-- <a th:href="@{editarPersona(id=${per.id})}">Ver Detalles de la Factura</a> 
+        <a th:href="@{detalles(factura=${factura.id})}">Ver Detalles de la Factura</a>--><!--
+    </td>
+</tr>
+<tr th:each="det : ${factura.detallesFactura}">
+    <td th:text="${det.descripcion}"></td>
+    <td th:text="${det.importe}"></td>
+</tr>
+</table>
 
-        </div> -->
+</div> -->
 
 
 
         <div class="container">
-             <a class=" my-3 py-4 btn btn-outline-info w-100" href="facturas" >Volver al listado de Facturas</a>
+            <a class=" my-3 py-4 btn btn-outline-info w-100" href="facturas" >Volver al listado de Facturas</a>
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-right">Fecha de la factura : 
-                    <strong th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></strong> </h3>
+                        <strong th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></strong> </h3>
                     <h3 class="float-left">Factura de la empresa: <strong th:text="${factura.nombre}"> </strong ></h3>
 
                 </div>
                 <div class="card-body">
-                    <div class="row mb-4">
+                    <div class="row ">
                         <div class="col-sm-8 ">
-                            <div>
+                            <div class="form-row my-3">
                                 <label class="col-form-label">Nº de factura:</label>
-                                <input th:value="${factura.id}" class="form-control" type="number">
+                                <div class="col">
+                                    <input th:value="${factura.id}" class="form-control" type="number">
+                                </div>
+                                <label class="col-form-label ml-3">Fecha:</label>
+                                <div class="col">
+                                    <input th:value="${#dates.format(factura.fecha, 'yyyy-MM-dd')}" class="form-control" type="date">
+                                </div>
                             </div>
-                            <div >
-                                <label class="col-form-label">Fecha:</label>
-                                <input th:value="${#dates.format(factura.fecha, 'yyyy-MM-dd')}" class="form-control" type="date">
-                            </div>
-                            <div >
+                            <div class="form-row my-3">
                                 <label class="col-form-label">Nombre:</label>
-                                <input th:value="${factura.nombre}" class="form-control" type="text">
+                                <div class="col">
+                                    <input th:value="${factura.nombre}" class="form-control" type="text">
+                                </div>
                             </div>
-                            <div >
+                            <div class="form-row my-3">
                                 <label class="col-form-label">Dirección:</label>
+                                <div class="col">
                                 <input th:value="${factura.direccion}" class="form-control" type="text">
-                            </div>
-                            <div >
+                                </div>
+                            
                                 <label class="col-form-label">NIT:</label>
-                                <input th:value="${factura.nif}" class="form-control" type="text">
-                            </div>
+                                <div class="col">
+                                <input th:value="${factura.nif}" class="form-control" type="text"> 
+                                </div>
+                           </div>
                         </div>
 
                         <div class="col-sm-4">
@@ -90,24 +97,52 @@
 
             </div>
 
+            
+            
+            <div class='card ' >
+                <form class="form-row card-header" action="nuevosDetalles" method="post" th:object="${detalle}">
+                    
+                <input type="hidden" name="idFactura" th:value="*{factura.id}"/>
+                         <input type="hidden"  th:field="*{id}"/>                       
+                                <label class="col-form-label">Descripción</label>
+                                <div class="col mr-3">
+                                <input class="form-control" th:field="*{descripcion}"/>
+                                </div>
+                            
+                                <label class="col-form-label">Importe: </label>
+                                <div class="col">
+                                <input class="form-control" type="number" step=".01" th:field="*{importe}"/>
+                
+                                </div>
+                                <div class='col '><button class='btn btn-success  float-right' type="submit">Añadir nueva factura</button></div>
+                                </form>
+                           </div>
+          
+            
+            
 
             <div class="table-responsive-sm">
                 <table class="table table-striped text-center table-bordered">
                     <thead>
                         <tr class="">
-                            <th class="center">Cantidad</th>
+                            <th class="left">Acciones</th>
+                            <th class="center">Número</th>
                             <th>Descripcion</th>
                             <th class="right">Importe</th>
                         </tr>
                     </thead>
                     <tbody>
-                         <tr th:each="det,cont : ${factura.detallesFactura}">
-                    <td class="center" th:text="${cont.index+1}"></td>
-                    <td class="left strong" th:text="${det.descripcion}"></td>
-                    <td class="right" th:text="${det.importe}"></td>
-                </tr>
-                        
+                        <tr th:each="det,cont : ${factura.detallesFactura}">
+                            <td class="left" > <a class="btn btn-warning" th:href="@{detalles(factura=${factura.id},idDetalle=${det.id})}">Editar</a>
+                        <a class="btn btn-danger" th:href="@{borrarDetalleFactura(idFactura=${factura.id},idDetalle=${det.id})}">Borrar</a></td>
+                            
+                            <td class="center" th:text="${cont.index+1}"></td>
+                            <td class="left strong" th:text="${det.descripcion}"></td>
+                            <td class="right" th:text="${det.importe}+'€'"></td>
+                        </tr>
+
                     </tbody>
+                    
                 </table>
             </div>
             <div class="row">
@@ -120,7 +155,7 @@
                                     <strong>Total</strong>
                                 </td>
                                 <td class="right text-center">
-                                    <strong th:text="${importeTotal}"></strong>
+                                    <strong th:text="${importeTotal}+'€'"></strong>
                                 </td>
                             </tr>
                         </tbody>

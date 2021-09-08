@@ -5,6 +5,7 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.entities.DetallesFactura;
 import com.jorgerubira.ejerciciosspringweb.entities.Factura;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio13DetallesFacturaRepository;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio13FacturaRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -36,10 +38,18 @@ public class Ejercicio13CRUDFacturasController {
     }
     
     @GetMapping("/detalles")
-    public String verDetallesFacturas(Model model, int factura){
-        //DetallesFactura detalle = new DetallesFactura();
-        //detalle.setFactura(repFact.findById(factura).get());
+    public String verDetallesFacturas(Model model, int factura, Integer idDetalle){
+        DetallesFactura detalle = new DetallesFactura();
+        detalle.setFactura(repFact.findById(factura).get()); 
+        
+        
         Factura detFact = repFact.findById(factura).get();
+        if (idDetalle!=null){
+            model.addAttribute("detalle", detFact.getDetallesFactura().stream().filter(x->x.getId().equals(idDetalle)).findFirst().get() );
+        }else{
+            model.addAttribute("detalle", detalle);
+        }
+
         model.addAttribute("factura", detFact);
         model.addAttribute("importeTotal", detFact.getDetallesFactura().stream().collect(Collectors.summingDouble((value) -> {
             return value.getImporte(); //To change body of generated lambdas, choose Tools | Templates.
@@ -47,5 +57,26 @@ public class Ejercicio13CRUDFacturasController {
         //model.addAttribute("detalleFactura", repDetFact.findById(factura));
         return "ej13/detalleFactura";
     }
+    
+    
+    @PostMapping("/nuevosDetalles")
+    public String nuevosDetalles(Model m,DetallesFactura detFact, int idFactura){
+        /*DetallesFactura fact=new DetallesFactura();
+        fact.setFactura(repFact.findById(idFactura).get());
+        m.addAttribute("detalles", fact);
+        return "ej13/detalleFactura";*/
+        detFact.setFactura(repFact.findById(idFactura).get());
+        repDetFact.save(detFact);
+
+        return "redirect:detalles?factura=" + idFactura;
+    } 
+    
+    
+    @GetMapping("/borrarDetalleFactura")
+    public String borrarDetalleFactura(Model m, int idDetalle, int idFactura){
+        repDetFact.deleteById(idDetalle);
+        return "redirect:detalles?factura=" + idFactura;
+    }
+    
     
 }
