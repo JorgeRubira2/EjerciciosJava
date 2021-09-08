@@ -9,9 +9,9 @@
         <div class="container">
             <form action="/ej11/subir" method="post" enctype="multipart/form-data" >
                 <label class="form-label">Descripción</label>
-                <input class="form-control" placeholder="Ingrese una descripción" /><br/><br/>
+                <input class="form-control" name="descripcion" placeholder="Ingrese una descripción" /><br/><br/>
                 <label class="form-label">Fichero</label>
-                <input type="file" name="fichero" accept=".pdf"/><br/><br/>
+                <input type="file" name="fichero" accept=".jpg"/><br/><br/>
                 <input type="submit" value="Subir Fichero" class="btn btn-primary far fa-save"/> 
             </form>
             <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>

@@ -3,26 +3,52 @@
         <title>Titulo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
     <body>
-        <div class="container d-flex justify-content-center mt-5">
-            
-            <input class="placeholder col-7" placeholder="Indica el nombre de la imagen o parte de su descripción para buscarla"/>
-            <input type="button" class="btn btn-primary btn-sm ml-3 p-1" value="Filtrar"/><br/>
-            
-            <div class="row">
-                <div class="col-2">
-                    <span th:each="imagen:${imagenes}">
-                        <div class="col imagen">
-                            <img th:src="@(/ej11/descarga(ruta=imagen.ruta))" /><br/>
-                            <div class="col">
-                                <div th:text="${imagen.descripcion}"></div>
-                                <a th:href="@{borrarImagen{id=${imagen.id}}}">Borrar</a>
-                            </div>
-                        </div>
-                    </span>
+        <!--<div class="container d-flex flex-wrap justify-content-center mt-5">  
+            <div class="col-12 d-flex justify-content-center mb-5">
+                <input id="buscar" class="placeholder col-7" placeholder="Indica el nombre de la imagen o parte de su descripción para buscarla"/>
+                <button type="submit" th:onclick="|filtrar()|" class="btn btn-primary btn-sm fas fa-filter ml-3 p-3" value="Filtrar">Filtrar</button><br/> 
+            </div> 
+        </div> -->
+        
+        <form action="/ej11/filtrarImagen" method="post">
+            <div class="container d-flex flex-wrap justify-content-center mt-5">
+                <div class="col-12 d-flex justify-content-center mb-5">
+                    <input class="placeholder col-7" name="descripcion" placeholder="Indica el nombre de la imagen o parte de su descripción para buscarla"/>
+                    <button type="submit" value="Filtrar" class="btn btn-primary btn-sm fas fa-filter ml-3 p-3" >Filtrar</button><br/> 
+                </div>
+            </div>
+        </form>
+        
+        <div class="container d-flex flex-wrap">
+            <div class="col-4 imagen mb-4" th:each="imagen:${imagenes}">
+                <img th:src="${'/ej11/descarga?nombre=' + imagen.aleatorio}" width="300px" height="200px"/><br/>
+                <div>
+                    <span th:text="${imagen.descripcion}"></span><br/>
+                    <a th:href="@{borrarImagen(aleatorio=${imagen.aleatorio})}" class="btn btn-primary p-2 mt-2 far fa-trash-alt"><i class="ml-1">Borrar</i></a>
                 </div>
             </div>
         </div>
+             
+        <!--<script>
+            function filtrar() {
+                $.ajax({
+                    url: "/ej11/filtrarImagen", //<--Ejecutamos del controlador esta url
+                    data: {//<- Parametros ?id=4
+                        descripcion: $("#buscar").val(),
+                    },
+                    success: function (html) {    //<- Nos devuelven la respuesta. 
+                        bootbox.dialog({
+                            message: html
+                        })
+                    },
+                    error: function (err) {
+                        alert('La URL está mal. Código 404')
+                    }
+                });
+            }
+        </script>-->
     </body>
 </html>
