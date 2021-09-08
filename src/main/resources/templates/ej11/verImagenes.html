@@ -14,16 +14,12 @@
                 </div>
             </form>        
             <div th:each="img:${imagenes}" class="col-4  d-inline float-left">
-                    <img class="rounded m-1" th:src="${'/ejercicio11/descarga?aleatorio='+img.aleatorio}" width="300px" height="200px" />
-                    <a type="button" class="btn btn-primary btn-sm" th:href="${'/ejercicio11/abrir?Id='+ img.Id}" >Abrir</a>
-                    <a type="button" class="btn btn-success btn-sm" th:href="${'/ejercicio11/descarga?aleatorio='+ img.aleatorio}" >Descargar</a>
+                <img class="rounded m-1" th:src="${'/ejercicio11/descarga?aleatorio='+img.aleatorio}" width="300px" height="200px" onclick="verImagen(this)" />
+                    <!--<a type="button" class="btn btn-primary btn-sm" th:href="${'/ejercicio11/abrir?Id='+ img.Id}" >Abrir</a>
+                    <a type="button" class="btn btn-success btn-sm" th:href="${'/ejercicio11/descarga?aleatorio='+ img.aleatorio}" >Descargar</a>-->
                     <a type="button" class="btn btn-danger btn-sm" th:href="${'/ejercicio11/eliminar?Id='+ img.Id}">Borrar</a>                  
             </div>
         </div>   
-        <script>
-            function ventana(ruta){
-              window.open(ruta,"_blank","Width=550,Height=400,scrollbars=no, resizable=no");
-            }
-        </script>
+        
     </body>
 </html>

@@ -17,7 +17,23 @@
             <script src="https://code.jquery.com/jquery-3.6.0.js" ></script>    
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>        
+            <script src="https://cdn.jsdelivr.net/npm/jquery-deserialize@2.0.0-rc1/src/jquery.deserialize.min.js"></script>  
+            <script>
+            function verImagen(imagen){
+                bootbox.dialog({
+                    message:$("<img>").attr('src', $(imagen).attr('src')).attr('width', '100%').attr('style','border-radius:5px'),
+                    size:'large',
+                    centerVertical: true,
+                    closeButton: false,
+                    buttons: {
+                        cancel:{
+                            className: "btn btn-danger",
+                            label: "Cerrar",
+                            }}
+                   
+                });
+            }
+        </script>
         </div>   
     </body>
 </html>
