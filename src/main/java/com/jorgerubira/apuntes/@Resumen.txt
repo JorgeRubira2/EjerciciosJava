@@ -47,8 +47,11 @@ Java:
         para parametros SQL -> utilizar ? (PreparedStatement). Nunca concatenar. (SQL Inyection)
         Select * from Tabla where campo = '" + variable.replaceAll("'", "''") + "'"  (Ñapa)
 
+- Maven -> Gestion dependencias -> Permite crear modulos.
+- Modulos -> (Poco importante). module-info.java (raiz). exports packages, requires Modulo, provides Interface with Servicio, uses Servicio, opens package (reflexion).
+
 ------------------------------------------------------------------------------------------------------------
-Spring Boot:
+Spring Boot: (MVC)
 - HTML -> Etiqueta: Input, Div, Span, Select, Button, Form, Table, (UL,OL,LI), A, IMG, (VIDEO,AUDIO), IFRAME, P, (B,I,U), BR, (H1,..H6), HR
           Etiquetas especiales <Head> (No visual), <Script> Javascript, <Style> CSS
           Atributos: id (No se debería repetir), class (darle un formato, varios), Input->(value, type, name (cuadrar nombre con el servidor)), style (utilizar sutilmente), (form -> action, method) (otros, required, readonly, disabled, src)
@@ -184,4 +187,29 @@ Spring Boot:
 
 - CRUD Multitabla: Las lineas (varios) dejar añadir cuando ya el tenemos el registro. Añadir lineas de una en una. A nivel Web es complicado guardar todo a la vez.
 
-        
+------------------------------------------------------------------------------------------------------------
+Spring Cloud: (Microservicio)
+- Microservicio: No tenemos una aplicacion, tenemos varias mas pequeñas que pueden replicarse en otro PCs.
+- OpenFeign: Llamar a microservicios (o incluso APIs externo)
+          @FeignClient interface @RequestMapping, @GetMapping. @PostMapping (No hace falta nada de codigo)
+
+- Eureka: Servidor para saber donde estan los microservicios funcionando. Puerto. 8761
+          Clientes: @EnableEurekaClient
+          En los clientes no accedemos con IP:Puerto. Ahora tienen un nombre del microservicio.
+          application.properties
+             spring.application.name=microservicio2
+             eureka.instance.instance-id=${spring.application.name}:${random.value}
+             #Optativo si esta en el mismo ordenador.
+             eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
+- Gateway: Determinar que cosas podemos hacer desde el exterior. Delimitar el acceso.
+           Poder llamar a los microservicio con un puerto facil de conocer.
+
+
+- Standard de llamadas: GET, POST, PUT, DELETE
+            http://localhost/telefono    GET    //Lee todos los telefonos
+            http://localhost/telefono/2  GET    //Lee un telefono
+            http://localhost/telefono/propietario/Ana  GET    //Lee un telefono con propietario = 'Ana'
+            http://localhost/telefono    POST   //Inserta un telefono
+            http://localhost/telefono    PUT    //modificar un telefono
+            http://localhost/telefono/1  DELETE //borrar un telefono
