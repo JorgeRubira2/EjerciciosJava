@@ -1,3 +1,5 @@
 /target/
 /nbproject/
 
+/src/main/modulos/HiberusModulos/HiberusProject/HiberusProjectClientes/target/
+/src/main/modulos/HiberusModulos/HiberusProject/HiberusProjectFacturacion/target/

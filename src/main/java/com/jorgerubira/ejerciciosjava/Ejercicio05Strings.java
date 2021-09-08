@@ -90,10 +90,17 @@ public class Ejercicio05Strings {
      */
     public int contarPalabras(String texto) {
         String[] result;
-     
-        texto=texto.replaceAll("(  ).,"," ");
-        
-        result=texto.split(" ");
+        //texto=texto.replaceAll(" ", ".");
+        texto=texto.replace(".",";");
+        texto=texto.replace(",",";");
+        while(texto.contains("  ")){
+            texto=texto.replace("  "," ");
+        }
+        texto=texto.replace(" ",";");
+        while(texto.contains(";;")){
+            texto=texto.replace(";;",";");
+        }
+        result=texto.split(";");
         return result.length;
         //throw new RuntimeException("Pendiente de hacer");
     }
@@ -104,8 +111,14 @@ public class Ejercicio05Strings {
      * algunos textos, con \r\n.
      */
     public int contarLineas(String texto) {
+        int auxInt=0;
         String[]aux=texto.split("\n");
-        return aux.length;
+        for(String elemento:aux){
+            if(elemento.isBlank()){
+                auxInt++;
+            }
+        }
+        return aux.length-auxInt;
         //throw new RuntimeException("Pendiente de hacer");
     }
 
