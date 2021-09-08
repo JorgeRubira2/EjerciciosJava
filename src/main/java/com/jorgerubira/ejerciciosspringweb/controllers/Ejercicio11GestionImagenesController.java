@@ -44,7 +44,7 @@ public class Ejercicio11GestionImagenesController {
 		  if (descripcion == null) {
 	            model.addAttribute("imagenes", imagenRepository.findAll());
 	        } else {
-	            model.addAttribute("imagenes", imagenRepository.findByDescripcionContaining(descripcion));
+	            model.addAttribute("imagenes", imagenRepository.findByDescripcion(descripcion));
 	        }
 
         return "ej11/vista";
