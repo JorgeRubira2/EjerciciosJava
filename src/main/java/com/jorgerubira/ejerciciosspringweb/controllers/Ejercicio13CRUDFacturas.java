@@ -5,7 +5,7 @@ import com.jorgerubira.ejerciciosspringweb.entities.Factura;
 import com.jorgerubira.ejerciciosspringweb.entities.FacturaDetalle;
 import com.jorgerubira.ejerciciosspringweb.repositories.FacturaDetalleRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.FacturaRepository;
-import com.jorgerubira.explicaciones.D20210903.crud.entities.PersonaDia3;
+import com.jorgerubira.ejerciciosspringweb.services.Ejercicio13DetalleService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,9 @@ public class Ejercicio13CRUDFacturas {
     @Autowired
     FacturaDetalleRepository detalleRepo;
     
+    @Autowired
+    Ejercicio13DetalleService detalleService;
+    
     @GetMapping("/vista")
     public String vista(Model m){
         m.addAttribute("facturas",factRepo.findAll());
@@ -41,6 +44,7 @@ public class Ejercicio13CRUDFacturas {
         factDetal.setFactura(factRepo.findById(id).get());
         detalleRepo.save(factDetal);
         
+        detalleService.calcularTotal(factDetal);
         //m.addAttribute("persona", new FacturaDetalle());
         return "redirect:modificarFactura?id="+id;
     }
@@ -59,8 +63,6 @@ public class Ejercicio13CRUDFacturas {
         Optional<FacturaDetalle> detalles = detalleRepo.findById(id);
         if(detalles.isPresent()){
             m.addAttribute("detalles", detalles.get());
-        }else{
-           // m.addAttribute("detalles", ""); 
         }
         //m.addAttribute("detalles", detalleRepo.findById(id).get());
         return "/ej13/modificarDetalles";
