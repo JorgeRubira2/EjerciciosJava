@@ -1,0 +1,18 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <form action="/ejercicio13/guardarDetalle" method="post" th:object="${detalles}">
+                <input name="id" placeholder="Numero de Factura" th:field="*{id}" hidden>
+                <input name="cantidad" placeholder="Cantidad" th:field="*{cantidad}" hidden>
+                <input name="descripcion" placeholder="Descripcion" th:field="*{descripcion}">
+                <input name="importe" placeholder="Importe" th:field="*{importe}">
+                <input name="facturaid"th:field="*{factura.id}" hidden>
+                <input type="submit" value="Modificar">
+            </form>
+    </body>
+</html>

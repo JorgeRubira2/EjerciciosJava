@@ -6,7 +6,25 @@
     </head>
     <body>
         <div class="container">
-            <!-- Contenido -->
-        </div>
+            <form action="/ejercicio13/guardarPersona" method="post" th:object="${factura}">
+                <input name="id" placeholder="Numero de Factura" th:field="*{id}" hidden>
+                <input name="numFactura" placeholder="Numero de Factura" th:field="*{numFactura}" hidden>
+                <input type="date" name="fecha" th:field="*{fecha}">
+                <input name="nombre" placeholder="Nombre" th:field="*{nombre}">
+                <input name="direccion" placeholder="Direccion" th:field="*{direccion}">
+                <input name="nif" placeholder="NIF" th:field="*{nif}">
+                <input type="submit" value="Modificar">
+            </form>
+            <div th:if="${factura.id>0}">
+                <h3>Detalles</h3>
+                <a class="btn btn-outline-primary mt-5" th:href="@{modificarDetalles(id=${factura.id})}">Añadir Detalle</a>
+                <table>
+                    <tr th:each="fact:${factura.detalle}">
+                        <td th:text="${fact.cantidad}"></td>
+                        <td th:text="${fact.descripcion}"></td>
+                        <td th:text="${fact.importe}"></td>                        
+                    </tr>
+                </table>
+            </div>
     </body>
 </html>

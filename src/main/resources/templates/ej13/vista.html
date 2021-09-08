@@ -1,0 +1,25 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <a class="btn btn-primary mt-5" href="add">Añadir Factura</a>
+        <div class="">
+            <div th:each="fact:${facturas}" class="card" style="width:400px">
+                <div class="card-body">
+                  <h4 class="card-title"><span th:text="${fact.nombre}"></span></h4>
+                  <h5 class="card-title"><span th:text="${fact.numFactura}"></span></h4>
+                  <p class="card-text">
+                    <span th:text="${#dates.format(fact.fecha, 'dd/MM/yyyy')}"></span>
+                    <span th:text="${fact.direccion}"></span>
+                    <span th:text="${fact.nif}"></span>
+                  </p>
+                </div>
+                <a class="btn btn-outline-primary mt-5" th:href="@{modificarFactura(id=${fact.id})}">Modificar</a>
+            </div> 
+        </div>
+    </body>
+</html>
