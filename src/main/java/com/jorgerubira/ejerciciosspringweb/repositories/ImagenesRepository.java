@@ -6,6 +6,7 @@
 package com.jorgerubira.ejerciciosspringweb.repositories;
 
 import com.jorgerubira.ejerciciosspringweb.entities.Imagenes;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,6 +15,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ImagenesRepository extends JpaRepository<Imagenes, Integer> {
     
+    //Buscar por código
     public Imagenes findByCodigo(String codigo);
+    
+    public List<Imagenes> findByDescripcionContaining(String descripcion);
     
 }

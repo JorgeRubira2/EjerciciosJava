@@ -24,7 +24,6 @@
                         <td th:if="${listado.directory}"><i class="fas fa-folder" style="color:violet"></i> <a th:text="${listado.name}" th:href="@{mostrarDirectorios(ruta=${listado.absolutePath})}"></a></td>
                         <td th:if="${listado.directory==false}"><i class="fas fa-file" style="color:green"></i> <a th:text="${listado.name}" th:href="@{descarga(ruta=${listado.absolutePath})}"></i></a></td>
                     </tr>
-   
                 </table>
             </div>
         </div>
