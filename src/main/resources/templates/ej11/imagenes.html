@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
         <title>Gestión de Imágenes</title>
@@ -29,6 +30,9 @@
                 margin-bottom: 30px;
                 color: red;
             }
+            a{
+                margin-left: 130px;
+            }
         </style>
     </head>
     <body>
@@ -47,7 +51,7 @@
             <div class="col-2" th:each="imagen:${imagenes}" >
                 <img th:src="@{/ejercicio11/descarga(id=${imagen.id})}" /><br/>
                 <div class="card-body">
-                  <!--  <h6 th:text="${imagen.nombreFichero}" class="card-title"></h6>-->
+                    <a th:href="@{/ejercicio11/borrar/{id} (id=${imagen.id})}">Borrar</a>
                 </div>
             </div>
         </div>

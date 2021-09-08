@@ -7,8 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -19,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,12 +40,11 @@ public class Ejercicio11GestionImagenes {
 
     @Value("${carpetas.recursos.hiberus}")
     private String rutaRecursos;
-    
-    
+
     @GetMapping("ver")
-    public String verImagenes(Model model){
+    public String verImagenes(Model model) {
         model.addAttribute("imagenes", imagenRepo.findAll());
-        
+
         return "ej11/imagenes";
     }
 
@@ -56,19 +59,18 @@ public class Ejercicio11GestionImagenes {
 
         try {
             Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
-          
+
             imagen.setDescripcion(desc);
             imagen.setRuta(nombre);
             imagen.setNombreFichero(fichero.getOriginalFilename());
             imagenRepo.save(imagen);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return "redirect:ver";
     }
 
-    
     @GetMapping("/descarga")
     public ResponseEntity<Resource> mostrar(Long id) {
         Imagen img = imagenRepo.findById(id).get();
@@ -90,5 +92,20 @@ public class Ejercicio11GestionImagenes {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @GetMapping("/borrar/{id}")
+    public String borrar(@PathVariable Long id) {
+        Imagen image = imagenRepo.findById(id).get();
+
+        try {
+            Files.delete(Path.of(image.getRuta()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        imagenRepo.delete(image);
+
+        return "redirect:/ejercicio11/ver";
     }
 }
