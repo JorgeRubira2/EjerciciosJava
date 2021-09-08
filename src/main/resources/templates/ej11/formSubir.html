@@ -1,7 +1,6 @@
-<head>
-    <title>Subir imagen</title>
-    <meta charset="UTF-8">
+<html xmlns:th="https://www.thymeleaf.org">
 
+<head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="/ej11/formEstilos.css">
@@ -10,14 +9,12 @@
 <body>
 
     <div class="container">
-        <form>
-            <input class="form-control" type="text" placeholder="Descripcion">
+        <form th:object="${imagenes}" action="/ejercicio11/subirImagen" method="post" enctype="multipart/form-data">
+            <input class="form-control" type="text" th:field="*{descripcion}" placeholder="Descripcion">
             <input class="form-control-file" id="fichero" type="file" name="fichero" accept="image/*"
                 onclick="Desactivar()" />
-            <button id="subir" class="btn btn-outline-primary" disabled="disabled">Subir</button>
+            <button id="subir" class="btn btn-outline-primary" disabled="disabled" style="width: 100%">Subir</button>
         </form>
-        <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
-        <div style="color: green" th:if="${success!=null}" th:text="${success}"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>

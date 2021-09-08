@@ -30,103 +30,97 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/d20210901")
 public class FicherosController {
-    
+
     @Value("${carpetas.recursos.hiberus}")
     private String rutaRecursos;
 
     @GetMapping("/ver")
-    public String mostrarFormulario(Model m, String success){
+    public String mostrarFormulario(Model m, String success) {
         m.addAttribute("success", success);
         return "d20210901/formulario";
     }
-    
+
     @GetMapping("/verImagen")
-    public String mostrarImagen(String success){
+    public String mostrarImagen(String success) {
         return "d20210901/verImagen";
-    }    
+    }
 
     @GetMapping("/descarga")
-    public ResponseEntity<Resource>  mostrarFormulario(int imagen){
-        String ruta=rutaRecursos + "\\d20210901\\ejemplo1\\imagen" + imagen +".jpg";
-        
-        HttpHeaders cabeceras=new HttpHeaders();
+    public ResponseEntity<Resource> mostrarFormulario(int imagen) {
+        String ruta = rutaRecursos + "\\d20210901\\ejemplo1\\imagen" + imagen + ".jpg";
+
+        HttpHeaders cabeceras = new HttpHeaders();
         cabeceras.add("Content-Disposition", "attachment; filename=imagen.jpg");
         cabeceras.add("Cache-Control", "no-cache, no-store, must-revalidate");
         cabeceras.add("Pragma", "no-cache");
         cabeceras.add("Expires", "0");
-        
-        
-        /*String contentType="application/octet-stream";
-        if (ruta.endsWith(".pdf")){
-            contentType="application/pdf";
-        }else if (ruta.endsWith(".png")){
-            
-        }*/
-        
-        try{
-            return ResponseEntity.ok()
-                                 .headers(cabeceras)
-                                 .contentLength((new File(ruta)).length())
-                                 .contentType(MediaType.parseMediaType( "application/octet-stream" ))  //Codigo MIME
-                                 .body(new InputStreamResource(new FileInputStream( ruta )) );
-        }catch(FileNotFoundException e){
+
+        /*
+         * String contentType="application/octet-stream"; if (ruta.endsWith(".pdf")){
+         * contentType="application/pdf"; }else if (ruta.endsWith(".png")){
+         * 
+         * }
+         */
+
+        try {
+            return ResponseEntity.ok().headers(cabeceras).contentLength((new File(ruta)).length())
+                    .contentType(MediaType.parseMediaType("application/octet-stream")) // Codigo MIME
+                    .body(new InputStreamResource(new FileInputStream(ruta)));
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
         }
-        
-    }    
 
+    }
 
-    
     @PostMapping("/ver")
-    public String mostrarFormulario2(){
+    public String mostrarFormulario2() {
         return "d20210901/formulario";
-    }    
-    
-    @PostMapping("/subir")
-    public String subir(Model m, MultipartFile fichero){ //, HttpServletResponse response){
+    }
 
-        if (fichero.getOriginalFilename().toLowerCase().endsWith(".pdf")==false){
+    @PostMapping("/subir")
+    public String subir(Model m, MultipartFile fichero) { // , HttpServletResponse response){
+
+        if (fichero.getOriginalFilename().toLowerCase().endsWith(".pdf") == false) {
             m.addAttribute("error", "Formato incorrecto");
             return "d20210901/formulario";
         }
-        //UUID.randomUUID().toString();
-        String ruta=rutaRecursos + "\\d20210901\\ejemplo1\\" + fichero.getOriginalFilename();
-        File f=new File(ruta);
+        // UUID.randomUUID().toString();
+        String ruta = rutaRecursos + "\\d20210901\\ejemplo1\\" + fichero.getOriginalFilename();
+        File f = new File(ruta);
         f.getParentFile().mkdirs();
-        try{
-            Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);    
+        try {
+            Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
             return "redirect:ver?success=Fichero subido";
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             m.addAttribute("error", "Error inesperado");
         }
-        
-        //response.addCookie(new Cookie("username", "Jovan"));
+
+        // response.addCookie(new Cookie("username", "Jovan"));
         return "d20210901/formulario";
     }
-    
+
     @GetMapping("/verMultiple")
-    public String mostrarFormulario2(Model m){
-        return "d20210901/formularioMultiple";
-    }    
-    
-    @PostMapping("/subirMultiple")
-    public String subirMultiple(Model m, MultipartFile[] fichero){ //, HttpServletResponse response){
-        for (MultipartFile fic : fichero) {
-            //UUID.randomUUID().toString();
-            String ruta=rutaRecursos + "\\d20210901\\ejemplo1\\" + fic.getOriginalFilename();
-            File f=new File(ruta);
-            f.getParentFile().mkdirs();
-            try{
-                Files.copy(fic.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);    
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-        }
-        //response.addCookie(new Cookie("username", "Jovan"));
+    public String mostrarFormulario2(Model m) {
         return "d20210901/formularioMultiple";
     }
 
-    
+    @PostMapping("/subirMultiple")
+    public String subirMultiple(Model m, MultipartFile[] fichero) { // , HttpServletResponse response){
+        for (MultipartFile fic : fichero) {
+            // UUID.randomUUID().toString();
+            String ruta = rutaRecursos + "\\d20210901\\ejemplo1\\" + fic.getOriginalFilename();
+            File f = new File(ruta);
+            f.getParentFile().mkdirs();
+            try {
+                Files.copy(fic.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // response.addCookie(new Cookie("username", "Jovan"));
+        return "d20210901/formularioMultiple";
+    }
+
 }
