@@ -1,0 +1,24 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:include="ej11/layout/plantilla::head">
+    </head>
+    <body> 
+        <div th:include="ej11/layout/plantilla::cuerpo">
+        </div>
+        
+        <div class="row m-4"> 
+            <div th:each="img:${imagenes}" class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img th:src="@{/gestorImagenes/descargar(nAleatorio=${img.ruta}, descripcion=${img.descripcion})}" th:alt="${img.nombre}" width="100%" class="card-img-top"/>
+                    <div class="card-body">
+                        <h5 th:text="${img.nombre}" class="card-title"></h5>
+                        <p th:text="${img.descripcion}" class="card-text"> </p>
+                        <a th:href="@{/gestorImagenes/borrar(nAleatorio=${img.ruta})}" class="btn btn-outline-primary"> Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:include="ej11/layout/plantilla::scripts">
+        </div>
+
+    </body>
+</html>
