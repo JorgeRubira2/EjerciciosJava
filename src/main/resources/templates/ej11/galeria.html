@@ -14,8 +14,8 @@
                 <form action="/ejercicio11/subir" method="post" enctype="multipart/form-data" >
                     <span class="m-1">Descripcion</span><input class="m-1" name="descripcion" placeholder="Descripcion" required />
                     <span class="m-1">Fichero</span> <input  class="m-1" type="file" name="fichero" accept=".jpg" /><br/><br/>
-                    <button type="submit" class="btn btn-primary" value="Subir Fichero">Subir Archivo </button>
-                    <a type="button" class="btn btn-success" href="/ejercicio11/verImagenes" >Tu Galeria</a>
+                    <button type="submit" class="btn btn-dark" value="Subir Fichero"><i class="fas fa-arrow-circle-up"><span style="margin-left: 5px">Subir Archivo</span></i> </button>
+                    <a type="button" class="btn btn-secondary" href="/ejercicio11/verImagenes" ><i class="fas fa-book-open"><span style="margin-left: 5px">Tu Galeria</span></i></a>
                 </form>
                 <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
                 <div style="color: green" th:if="${success!=null}" th:text="${success}"></div> 
