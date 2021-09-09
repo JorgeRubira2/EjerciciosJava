@@ -6,7 +6,7 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
-import com.jorgerubira.ejerciciosspringweb.repositories.ImagenesCrudRepositry;
+import com.jorgerubira.ejerciciosspringweb.repositories.ImagenesCrudRepository;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,7 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Ejercicio11MostrarImagenesController {
     
     @Autowired
-    private ImagenesCrudRepositry lista;
+    private ImagenesCrudRepository lista;
     
     @Value("${carpetas.recursos.hiberus}")
     private String rutaRecursos;
@@ -111,9 +111,11 @@ public class Ejercicio11MostrarImagenesController {
     
          @PostMapping("/filtrar")
          public String filtrar(Model model, String descripcion){
+           
              model.addAttribute("lista", lista.findByDescripcionContaining(descripcion));
              return "ej11/mostrarImagenes";
-          
+            
+            
         }
     }
     

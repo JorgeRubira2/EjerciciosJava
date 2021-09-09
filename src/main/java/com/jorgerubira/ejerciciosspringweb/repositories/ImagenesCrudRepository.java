@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 package com.jorgerubira.ejerciciosspringweb.repositories;
-
-
 import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository; 
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ImagenesCrudRepositry extends JpaRepository<Imagen, Integer>{
+/**
+ *
+ * @author Christian
+ */
+public interface ImagenesCrudRepository extends JpaRepository<Imagen, Integer>{
     
     
- public List<Imagen> findByDescripcionContaining(String descripcion);
+     public List<Imagen> findByDescripcionContaining(String descripcion);
 }
