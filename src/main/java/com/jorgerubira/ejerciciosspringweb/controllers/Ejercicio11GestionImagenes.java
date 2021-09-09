@@ -27,11 +27,18 @@ import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 /**
- * TODO:
+ * TODO: Ejercicio terminado
+ * 
  * Se muestran las imágenes en la vista principal
+ * 
  * Se pueden filtrar las imágenes poniendo su descripción
- * Con el botón de "Subir imagen" es posible subir una nueva imagen con un nombre aleatorio
- * Solo se puede subir la imagen si se ha seleccionado, si no el botón está deshabilitado
+ * 
+ * Con el botón de "Subir imagen" es posible subir una nueva imagen con un
+ * nombre aleatorio
+ * 
+ * Solo se puede subir la imagen si se ha seleccionado, si no el botón está
+ * deshabilitado
+ * 
  * Con el botón "Borrar imagen" es posible borrar la imagen de la base de datos
  */
 
@@ -45,14 +52,14 @@ public class Ejercicio11GestionImagenes {
     @Autowired
     private ImagenRepository repositorioImg;
 
-    //Con este método visualizamos todo el html de las imágenes con sus cuadros
+    // Con este método visualizamos todo el html de las imágenes con sus cuadros
     @GetMapping("")
     public String verTodo(Model model, String descripcion) {
         model.addAttribute("imagenes", repositorioImg.findAll());
         return "/ej11/imagenes";
     }
 
-    //Con este método vemos las imágenes filtradas por descripción
+    // Con este método vemos las imágenes filtradas por descripción
     @GetMapping("/filtrar")
     public String filtrar(Model model, String descripcion) {
 
@@ -61,14 +68,15 @@ public class Ejercicio11GestionImagenes {
         return "/ej11/imagenes";
     }
 
-    //Con este método vemos el formulario para subir la imagen a la base de datos
+    // Con este método vemos el formulario para subir la imagen a la base de datos
     @GetMapping("/formularioSubida")
     public String subirImagenFormulario(Model model) {
         model.addAttribute("imagenes", new Imagen());
         return "/ej11/formSubir";
     }
 
-    //Con este método se envía la imagen a la base de datos con su respectivo nombre y ruta
+    // Con este método se envía la imagen a la base de datos con su respectivo
+    // nombre y ruta
     @PostMapping("/subirImagen")
     public String subirImagen(Model model, MultipartFile fichero, Imagen img) {
         img.setNombre(UUID.randomUUID().toString() + fichero.getOriginalFilename());
@@ -85,7 +93,8 @@ public class Ejercicio11GestionImagenes {
         return "redirect:/ejercicio11";
     }
 
-    //Con este método hacemos que la imagen pueda ser visualizada en la página principal
+    // Con este método hacemos que la imagen pueda ser visualizada en la página
+    // principal
     @GetMapping("/visualizarImagen")
     public ResponseEntity<Resource> mostrarImagen(String nombre) {
 
@@ -108,7 +117,7 @@ public class Ejercicio11GestionImagenes {
 
     }
 
-    //Con este método borramos la imagen del id seleccionado
+    // Con este método borramos la imagen del id seleccionado
     @GetMapping("/borrar/{id}")
     public String eliminarImagen(@PathVariable Long id) {
         Imagen imagen = repositorioImg.findById(id).get();
