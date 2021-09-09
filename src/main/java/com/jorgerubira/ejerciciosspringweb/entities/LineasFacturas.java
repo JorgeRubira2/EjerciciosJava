@@ -5,13 +5,16 @@
  */
 package com.jorgerubira.ejerciciosspringweb.entities;
 
+import com.jorgerubira.explicaciones.D20210902.relaciones.entities.Persona;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,23 +23,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Plaza")
-public class Plaza {
+@Table(name = "lineas_facturas")
+public class LineasFacturas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Integer cursoAcademico;
-    private String estudio;
-    private String localidad;
-    private String centro;
-    private String tipoCentro;
-    private String tipoEstudio;
-    private Integer plazasOfertadas;
-    private Integer plazasMatriculadas;
-    private Integer plazasSolicitadas;
-    private Double indiceOcupacion;
-    //@Temporal(javax.persistence.TemporalType.DATE) preguntar
-    private Date fechaActualizacion;
 
+    private Integer id;
+    //private Integer idFactura;
+    private Integer cantidad;
+    private String descripcion;
+    private Double importe;
+
+    
+     @ManyToOne        
+    @JoinColumn(name = "id_factura")
+    private Facturas factura;
 }
