@@ -1,5 +1,7 @@
 package com.jorgerubira.ejerciciosspringweb.entities;
 
+
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,16 +13,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table(name = "DatosAcademicos")
+@Table(name = "solicitudes_csv")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity  
 public class Csv {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+    
+    @Id        
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
-            
-    private String codigo;
-    private String descripcion;
+    
+    private Integer curso_academico;
+    
+    @NotNull           
+    private String estudio;
+   
+    private String localidad;
+    private String centro;
+    private String tipoCentro;
+    private String tipoEstudio;
+    private Integer plazasOfertadas;
+    private Integer plazasMatriculadas;
+    private Integer plazasSolicitadas;
+    private Float indiceOcupacion;
+    
+    private Date fechaActualizacion;
     
 }
