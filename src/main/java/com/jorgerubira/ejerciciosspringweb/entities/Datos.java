@@ -1,5 +1,7 @@
 package com.jorgerubira.ejerciciosspringweb.entities;
 
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,18 +21,19 @@ import lombok.NoArgsConstructor;
 public class Datos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    private int id;
+    
     
     @NotNull
-    private int CURSO_ACADEMICO;
-    private String ESTUDIO;
-    private String LOCALIDAD;
-    private String CENTRO;
-    private String TIPO_CENTRO;
-    private String TIPO_ESTUDIO;
-    private int PLAZAS_OFERTADAS;
-    private int PLAZAS_MATRICULADAS;
-    private int PLAZAS_SOLICITADAS;
-    private double INDICE_OCUPACION;
-    //private date FECHA_ACTUALIZACION;
+    private int curso_academico;
+    private String estudio;
+    private String localidad;
+    private String centro;
+    private String tipo_centro;
+    private String tipo_estudio;
+    private int plazas_ofertadas;
+    private int plazas_matriculadas;
+    private int plazas_solicitadas;
+    private double indice_ocupacion;
+    private Date fecha_actualizacion;
 }

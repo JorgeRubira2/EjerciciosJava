@@ -6,7 +6,15 @@
     </head>
     <body>
         <div class="container">
-            <!-- Contenido -->
+
+            <form action="/ej12/importarDatos" method="post" enctype="multipart/form-data" >
+                <label class="form-label">Adjunta un fichero</label><br/><br/>
+                <input type="file" name="fichero" accept=".csv"/><br/><br/>
+                <input type="submit" value="Subir Fichero" class="btn btn-primary far fa-save"/> 
+            </form>
+            <div style="color: red" th:if="${error!=null}" th:text="${error}"></div>
+            <div style="color: green" th:if="${success!=null}" th:text="${success}"></div>
         </div>
+
     </body>
 </html>
