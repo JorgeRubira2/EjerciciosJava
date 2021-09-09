@@ -49,6 +49,9 @@ Java:
 
 - Maven -> Gestion dependencias -> Permite crear modulos.
 - Modulos -> (Poco importante). module-info.java (raiz). exports packages, requires Modulo, provides Interface with Servicio, uses Servicio, opens package (reflexion).
+- ModelMapper -> Copiar atributos de una clase a otro.
+                 ClaseDesitno nuevoObjeto=mapper.map(obj, ClaseDestino.class)
+                 stream().map(x->mapper.map(x, ClaseDestino.class)
 
 ------------------------------------------------------------------------------------------------------------
 Spring Boot: (MVC)
@@ -213,3 +216,5 @@ Spring Cloud: (Microservicio)
             http://localhost/telefono    POST   //Inserta un telefono
             http://localhost/telefono    PUT    //modificar un telefono
             http://localhost/telefono/1  DELETE //borrar un telefono
+
+- ClaseDto. Dto (Data Transfer Object) tipo de clase set get. Para enviar datos o para recibir datos. 
