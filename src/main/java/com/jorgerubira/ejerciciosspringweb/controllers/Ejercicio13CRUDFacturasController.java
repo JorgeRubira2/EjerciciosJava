@@ -9,6 +9,7 @@ import com.jorgerubira.ejerciciosspringweb.entities.DetallesFactura;
 import com.jorgerubira.ejerciciosspringweb.entities.Factura;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio13DetallesFacturaRepository;
 import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio13FacturaRepository;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,21 +38,45 @@ public class Ejercicio13CRUDFacturasController {
         return "ej13/listado";
     }
     
+    @GetMapping("/altaFactura")
+    public String altaFactura(Model m){
+        m.addAttribute("factura", new Factura());
+        return "ej13/detalleFactura";
+    }
+    
+    @GetMapping("/borrarFactura")
+    public String borrarFactura(Model m, int id){
+        repFact.deleteById(id);
+        return "redirect:facturas";
+    }
+    
+    @PostMapping("/guardarFactura")
+    public String guardarFacatura(Model m, Factura fact){
+        repFact.save(fact);
+        //m.addAttribute("personas", repoPer.findAll());
+        return "redirect:facturas";
+    }  
+    
+    
+    
     @GetMapping("/detalles")
     public String verDetallesFacturas(Model model, int factura, Integer idDetalle){
         DetallesFactura detalle = new DetallesFactura();
         detalle.setFactura(repFact.findById(factura).get()); 
         
         
-        Factura detFact = repFact.findById(factura).get();
+        Optional<Factura> detFact = repFact.findById(factura);
         if (idDetalle!=null){
-            model.addAttribute("detalle", detFact.getDetallesFactura().stream().filter(x->x.getId().equals(idDetalle)).findFirst().get() );
+            model.addAttribute("detalle", detFact.get().getDetallesFactura().stream().filter(x->x.getId().equals(idDetalle)).findFirst().get() );
         }else{
             model.addAttribute("detalle", detalle);
         }
 
-        model.addAttribute("factura", detFact);
-        model.addAttribute("importeTotal", detFact.getDetallesFactura().stream().collect(Collectors.summingDouble((value) -> {
+        if(detFact.isPresent()){
+            model.addAttribute("factura", detFact.get());
+        }
+        //model.addAttribute("factura", detFact);
+        model.addAttribute("importeTotal", detFact.get().getDetallesFactura().stream().collect(Collectors.summingDouble((value) -> {
             return value.getImporte(); //To change body of generated lambdas, choose Tools | Templates.
         })));
         //model.addAttribute("detalleFactura", repDetFact.findById(factura));

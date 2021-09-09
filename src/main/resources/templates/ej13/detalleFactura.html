@@ -42,38 +42,40 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-right">Fecha de la factura : 
-                        <strong th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></strong> </h3>
-                    <h3 class="float-left">Factura de la empresa: <strong th:text="${factura.nombre}"> </strong ></h3>
+                        <strong th:if="${factura.fecha != null}" th:text="${#dates.format(factura.fecha, 'dd/MM/yyyy')}"></strong> </h3>
+                    <h3 class="float-left">Factura de la empresa: <strong th:if="${factura.nombre != null}" th:text="${factura.nombre}"> </strong ></h3>
 
                 </div>
                 <div class="card-body">
                     <div class="row ">
                         <div class="col-sm-8 ">
+                            <form  action="guardarFactura" method="post" th:object="${factura}">
+                                <input type="hidden" th:field="*{id}" />
                             <div class="form-row my-3">
                                 <label class="col-form-label">Nº de factura:</label>
                                 <div class="col">
-                                    <input th:value="${factura.id}" class="form-control" type="number">
+                                    <input readonly th:value="${factura.id}" class="form-control" type="number">
                                 </div>
                                 <label class="col-form-label ml-3">Fecha:</label>
                                 <div class="col">
-                                    <input th:value="${#dates.format(factura.fecha, 'yyyy-MM-dd')}" class="form-control" type="date">
+                                    <input th:field="*{fecha}"  class="form-control" type="date">
                                 </div>
                             </div>
                             <div class="form-row my-3">
                                 <label class="col-form-label">Nombre:</label>
                                 <div class="col">
-                                    <input th:value="${factura.nombre}" class="form-control" type="text">
+                                    <input th:field="*{nombre}" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="form-row my-3">
                                 <label class="col-form-label">Dirección:</label>
                                 <div class="col">
-                                <input th:value="${factura.direccion}" class="form-control" type="text">
+                                <input th:field="*{direccion}" class="form-control" type="text">
                                 </div>
                             
                                 <label class="col-form-label">NIT:</label>
                                 <div class="col">
-                                <input th:value="${factura.nif}" class="form-control" type="text"> 
+                                <input th:field="*{nif}" class="form-control" type="text"> 
                                 </div>
                            </div>
                         </div>
@@ -81,11 +83,12 @@
                         <div class="col-sm-4">
 
                             <div class="col-form-label h-50 w-100 ml-auto">
-                                <button class="btn btn-primary h-100 w-100">Grabar factura</button>
-                            </div>
-                            <div class="col-form-label h-50 w-100 ml-auto">
-                                <button class="btn btn-danger h-100 w-100">Borrar factura</button>
-                            </div>
+                                <button class="btn btn-primary h-100 w-100"  type="submit">Grabar factura</button>
+                            </div></form>
+                            <div class="col-form-label h-50 w-100 ml-auto ">
+                                <a th:href="@{borrarFactura(id=${factura.id})}"><button class="btn btn-danger h-100 w-100"> Borrar factura</button></a>
+                            </div></form>
+                            
                         </div>
                     </div>
 
@@ -100,7 +103,7 @@
             
             
             <div class='card ' >
-                <form class="form-row card-header" action="nuevosDetalles" method="post" th:object="${detalle}">
+                <form th:if="${factura.id>0}" class="form-row card-header" action="nuevosDetalles" method="post" th:object="${detalle}">
                     
                 <input type="hidden" name="idFactura" th:value="*{factura.id}"/>
                          <input type="hidden"  th:field="*{id}"/>                       
