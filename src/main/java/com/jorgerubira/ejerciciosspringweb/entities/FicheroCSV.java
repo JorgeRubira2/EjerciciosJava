@@ -27,7 +27,7 @@ public class FicheroCSV {
     private String centro;
     private String tipoCentro;
     private String tipoEstudio;
-    private Integer plazasOferidas;
+    private Integer plazasOfertadas;
     private Integer plazasMatriculadas;
     private Integer plazasSolicitadas;
     private Double indiceOcupacion;

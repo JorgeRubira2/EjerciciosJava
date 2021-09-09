@@ -6,13 +6,13 @@
     </head>
     <body>
         <div class="container">
-            <form action="/ejercicio13/guardarDetalle" method="post" th:object="${detalles}">
+            <form action="guardarDetalle" method="post" th:object="${detalles}">
                 <input name="id" placeholder="Numero de Factura" th:field="*{id}" hidden>
-                <input name="cantidad" placeholder="Cantidad" th:field="*{cantidad}" hidden>
+                <input name="cantidad" placeholder="Cantidad" th:field="*{cantidad}">
                 <input name="descripcion" placeholder="Descripcion" th:field="*{descripcion}">
                 <input name="importe" placeholder="Importe" th:field="*{importe}">
                 <input name="facturaid"th:field="*{factura.id}" hidden>
-                <input type="submit" value="Modificar">
+                <input type="submit" value="Guardar">
             </form>
     </body>
 </html>

@@ -3,26 +3,33 @@
         <title>Titulo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
-            <form action="/ejercicio13/guardarPersona" method="post" th:object="${factura}">
+            <h1>Factura</h1>
+            <form action="guardarFactura" method="post" th:object="${factura}">
                 <input name="id" placeholder="Numero de Factura" th:field="*{id}" hidden>
-                <input name="numFactura" placeholder="Numero de Factura" th:field="*{numFactura}" hidden>
-                <input type="date" name="fecha" th:field="*{fecha}">
+                <div>
+                    <input name="numFactura" placeholder="Numero de Factura" th:field="*{numFactura}">
+                    <input type="date" name="fecha" th:field="*{fecha}">
+                </div>
                 <input name="nombre" placeholder="Nombre" th:field="*{nombre}">
-                <input name="direccion" placeholder="Direccion" th:field="*{direccion}">
-                <input name="nif" placeholder="NIF" th:field="*{nif}">
-                <input type="submit" value="Modificar">
+                <div>
+                    <input name="direccion" placeholder="Direccion" th:field="*{direccion}">
+                    <input name="nif" placeholder="NIF" th:field="*{nif}">
+                </div>
+                <input type="submit" value="Guardar">
             </form>
             <div th:if="${factura.id>0}">
                 <h3>Detalles</h3>
-                <a class="btn btn-outline-primary mt-5" th:href="@{modificarDetalles(id=${factura.id})}">Añadir Detalle</a>
+                <a class="btn btn-outline-primary mt-5" th:href="@{nuevoDetalle(idFactura=${factura.id})}">Añadir Detalle</a>
                 <table>
                     <tr th:each="fact:${factura.detalle}">
                         <td th:text="${fact.cantidad}"></td>
                         <td th:text="${fact.descripcion}"></td>
                         <td th:text="${fact.importe}"></td>                        
+                        <td><a class="btn btn-outline-primary mt-5" th:href="@{nuevoDetalle(idFactura=${fact.id})}">Editar</a></td>
                     </tr>
                 </table>
             </div>

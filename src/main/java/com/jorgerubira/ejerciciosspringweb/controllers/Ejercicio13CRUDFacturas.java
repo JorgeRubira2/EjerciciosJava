@@ -6,6 +6,7 @@ import com.jorgerubira.ejerciciosspringweb.entities.FacturaDetalle;
 import com.jorgerubira.ejerciciosspringweb.repositories.FacturaDetalleRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.FacturaRepository;
 import com.jorgerubira.ejerciciosspringweb.services.Ejercicio13DetalleService;
+import com.jorgerubira.explicaciones.D20210903.crud.entities.TelefonoDia3;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,8 +34,22 @@ public class Ejercicio13CRUDFacturas {
         return "/ej13/vista"; 
     }
     
-    @PostMapping("/guardarPersona")
-    public String guardarPersonas(Model m, Factura factura){
+    @GetMapping("/add")
+    public String add(Model m){
+        m.addAttribute("factura",new Factura());
+        return "/ej13/factura"; 
+    }
+    
+    @GetMapping("/nuevoDetalle")
+    public String altaTelefono(Model m, int idFactura){
+        FacturaDetalle facturaDetalle = new FacturaDetalle();
+        facturaDetalle.setFactura(factRepo.findById(idFactura).get());
+        m.addAttribute("detalles", facturaDetalle); 
+        return "/ej13/modificarDetalles";
+    } 
+    
+    @PostMapping("/guardarFactura")
+    public String guardarFactura(Model m, Factura factura){
         factRepo.save(factura);
         return "redirect:vista";
     }
@@ -44,7 +59,7 @@ public class Ejercicio13CRUDFacturas {
         factDetal.setFactura(factRepo.findById(id).get());
         detalleRepo.save(factDetal);
         
-        detalleService.calcularTotal(factDetal);
+        //detalleService.calcularTotal(factDetal);
         //m.addAttribute("persona", new FacturaDetalle());
         return "redirect:modificarFactura?id="+id;
     }
