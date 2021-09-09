@@ -36,4 +36,8 @@ public class LineaFactura {
     @ManyToOne()
     @JoinColumn(name = "id_factura")
     private Factura factura;
+  
+    
+    
+    
 }

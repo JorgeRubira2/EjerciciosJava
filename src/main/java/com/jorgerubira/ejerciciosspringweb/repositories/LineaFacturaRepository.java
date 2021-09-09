@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package com.jorgerubira.ejerciciosspringweb.repositories;
-import com.jorgerubira.ejerciciosspringweb.domain.Factura;
+import com.jorgerubira.ejerciciosspringweb.domain.LineaFactura;
 import org.springframework.data.repository.CrudRepository;
 
-public interface FacturaRepository extends CrudRepository<Factura, Integer> {
+public interface LineaFacturaRepository extends CrudRepository<LineaFactura, Integer> {
 
-  public int findByNumeroFactura(String numFactura);
+  
 
 }
