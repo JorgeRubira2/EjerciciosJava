@@ -1,11 +1,14 @@
 package com.jorgerubira.ejerciciosspringweb.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,4 +34,6 @@ public class Factura {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
     private double total;
+    @OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
+    private List<FacturaLineas> listaLineas;
 }
