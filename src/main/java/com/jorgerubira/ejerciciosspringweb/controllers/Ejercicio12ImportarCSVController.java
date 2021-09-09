@@ -1,6 +1,5 @@
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
-import com.jorgerubira.ejerciciosspringweb.entities.Imagen;
 import com.jorgerubira.ejerciciosspringweb.entities.Solicitud;
 import com.jorgerubira.ejerciciosspringweb.repositories.SolicitudRepository;
 import java.io.File;
@@ -10,12 +9,6 @@ import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -32,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 @RequestMapping("/ejercicio12")
-public class Ejercicio12ImportarCSV {
+public class Ejercicio12ImportarCSVController {
 
     @Autowired
     private SolicitudRepository soliRepo;
@@ -45,7 +38,6 @@ public class Ejercicio12ImportarCSV {
         return "ej12/csv";
     }
 
-    //...............................................COMPROBAR FALLOS.........................................
     @ResponseBody
     @PostMapping("/subir")
     public String subirCSV(Model model, MultipartFile fichero) {
@@ -57,9 +49,10 @@ public class Ejercicio12ImportarCSV {
         try {
             Files.copy(fichero.getInputStream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
             Files.lines(f.toPath())
+                    .skip(1)
                     .map(x -> {
                         String[] campos = x.split(";");
-
+                        
                         Solicitud sol = new Solicitud(
                                 null,
                                 campos[0],
@@ -80,10 +73,11 @@ public class Ejercicio12ImportarCSV {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "ej12/csv";
+        return "Fichero subido";
     }
+
     
-    private Date convertirFecha(String fecha){
+    private Date convertirFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date convertir = null;
         try {

@@ -11,7 +11,7 @@ import com.jorgerubira.ejerciciosspringweb.interfaces.IEjercicio08MercadoContinu
 
 @Controller
 @RequestMapping("/ejercicio8")
-public class Ejercicio08MercadoContinuo {
+public class Ejercicio08MercadoContinuoController {
     
     @Autowired
     private IEjercicio08MercadoContinuoService mercadoContinuo;

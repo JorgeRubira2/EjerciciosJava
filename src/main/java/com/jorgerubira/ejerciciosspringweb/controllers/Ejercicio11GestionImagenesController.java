@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 @RequestMapping("/ejercicio11")
-public class Ejercicio11GestionImagenes {
+public class Ejercicio11GestionImagenesController {
 
     @Autowired
     private ImagenRepository imagenRepo;

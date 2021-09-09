@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/ejercicio10")
-public class Ejercicio10MostrarDiscoDuro {
+public class Ejercicio10MostrarDiscoDuroController {
 
     @GetMapping("/ver")
     public String verDirectorios(Model model, String ruta) {
