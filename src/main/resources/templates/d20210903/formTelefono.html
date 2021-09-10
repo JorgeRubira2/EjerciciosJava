@@ -1,0 +1,17 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <form action="guardarTelefono" method="post" th:object="${telefono}">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" name="idPersona" th:value="*{persona.id}"/>
+                Numero: <input th:field="*{numero}"/><br/>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </body>
+</html>

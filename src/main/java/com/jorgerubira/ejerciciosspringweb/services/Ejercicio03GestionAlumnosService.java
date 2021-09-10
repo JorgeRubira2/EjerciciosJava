@@ -19,7 +19,7 @@ public class Ejercicio03GestionAlumnosService implements IEjercicio03GestionAlum
     
     @Override
     public void guardarAlumno(Alumno alumno) {
-        Optional<Alumno> opt= alumnos.stream().filter(x->alumno.getCodigo() == x.getCodigo()).findFirst();
+        var opt= alumnos.stream().filter(x->alumno.getCodigo() == x.getCodigo()).findFirst();
         long numCod= (long)(Math.random()*9999);
         if(opt.isPresent()){
             opt.get().setNombre(alumno.getNombre());

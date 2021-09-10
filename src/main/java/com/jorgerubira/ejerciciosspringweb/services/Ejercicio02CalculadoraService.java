@@ -16,17 +16,17 @@ public class Ejercicio02CalculadoraService implements IEjercicio02CalculadoraSer
 
     @Override
     public Integer restar(Integer a, Integer b) {
-        return a-b; //To change body of generated methods, choose Tools | Templates.
+        return a-b;
     }
 
     @Override
     public Integer multiplicar(Integer a, Integer b) {
-        return a*b; //To change body of generated methods, choose Tools | Templates.
+        return a*b;
     }
 
     @Override
     public Integer dividir(Integer a, Integer b) {
-        return a/b; //To change body of generated methods, choose Tools | Templates.
+        return a/b;
     }
     
 }

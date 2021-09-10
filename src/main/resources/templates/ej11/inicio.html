@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <a id="imagen">Subir imagen</a>
+            <form action="/ej11/subir" method="post" enctype="multipart/form-data">
+                <label>Imagen</label>
+                <input type="file" name="img" accept="image/*"/>
+                <label>Descripcion</label>
+                <input type="text" name="des"/>
+                <br>
+                <input type="submit" value="Guardar"/>
+            </form>
+            <form action="/ej11/inicio" method="get">
+                <input type="text" name="des" placeholder="Descripcion de imagenes">
+            </form>
+            <span th:each="imag:${imagen}">
+                <div>
+                    <img th:src="@{descarga(ruta=${imag.rutaA})}"/>
+                    <div>
+                        <div th:text="${imag.des}"></div>
+                        <a th:href="@{borrar(i=${imag.i})}">Borrar</a>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </body>
+</html>

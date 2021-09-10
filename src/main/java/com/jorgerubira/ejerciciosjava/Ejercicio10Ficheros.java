@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ejercicio10Ficheros {
-    
     private final String rutaBase="C:\\Users\\Usuario\\Documents\\NetBeansProjects\\EjerciciosJava-master\\src\\main\\java\\com\\jorgerubira\\resources\\";
     
     /**
