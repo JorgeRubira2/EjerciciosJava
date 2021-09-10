@@ -56,7 +56,7 @@ public class Ejercicio12ImportarCSV {
 	@PostMapping("/subir")
 	public String subir (Model model,MultipartFile archivo) {
 		
-		String ruta = rutaRecursos+"\\ejercicio12\\"+archivo.getOriginalFilename();
+		String ruta = rutaRecursos +"\\ejercicio12\\Csv"+ archivo.getOriginalFilename();
 		String mensaje = null;
 		File file = new File(ruta);
 		file.getParentFile().mkdirs();
@@ -78,7 +78,7 @@ public class Ejercicio12ImportarCSV {
 				Double.parseDouble(x[9]),
 				convertirStringADate(x[10])))
 			.forEach(x->univRepo.save(x));
-			mensaje = "Fichero subido con exito";
+			mensaje = "Archivo subido con exito";
 
 		} catch (Exception e) {
 			e.printStackTrace();
