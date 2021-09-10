@@ -1,0 +1,36 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Titulo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="d-flex flex-wrap w-75 mx-auto border border-dark border-top-0">
+                <div class="d-flex w-100 bg-light py-3 mb-4 text-center border-bottom border-dark">
+                    <h5 class="col-1">
+                        CANT.
+                    </h5>
+                    <h5 class="col-8">
+                        DESCRIPCION
+                    </h5>
+                    <h5 class="col-3">
+                        IMPORTE
+                    </h5>
+                </div>
+            </div>
+            <div class="w-100 mb-4 flex w-100">
+                <form action="guardarLineas" method="post" th:object="${Lineas}" class="w-100 mb-4 flex w-100">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" name="id_factura" th:value="*{Facturas.id}"/>
+                    Total: <input th:field="*{totalLineas}"/><br/>
+                    <div class="flex col-6 mx-auto">
+                        <button type="submit" class="btn btn-info w-100">Borrar línea</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

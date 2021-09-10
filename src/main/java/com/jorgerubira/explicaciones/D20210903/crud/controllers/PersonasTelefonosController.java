@@ -46,7 +46,6 @@ public class PersonasTelefonosController {
         m.addAttribute("telefono", telefono);
         return "d20210903/formTelefono";
     }    
-
     
     @GetMapping("/editarPersona")
     public String editarPersonas(Model m, int id){
@@ -84,7 +83,6 @@ public class PersonasTelefonosController {
         //m.addAttribute("personas", repoPer.findAll());
         return "redirect:editarPersona?id=" + idPersona;
     }    
-    
 
     @GetMapping("/borrarPersona")
     public String borrarPersona(Model m, int id){
@@ -100,6 +98,5 @@ public class PersonasTelefonosController {
         telefonoService.calcularTotalTelefonos(idPersona);
         return "redirect:editarPersona?id=" + idPersona;
     }    
-
     
 }
