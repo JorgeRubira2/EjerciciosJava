@@ -1,4 +1,4 @@
-package com.jorgerubira.ejerciciosspringweb.controllers;
+/*package com.jorgerubira.ejerciciosspringweb.controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -67,6 +67,7 @@ public class Ejercicio13CRUDFacturas {
             //  3-.map de nuevo para convertir a objeto de la clase Csv creada
             //      3.1-null para el identificador (lo rellenará solo). Despues convertimos el texto a su correspondiente formato para cada campo
             */
+/*
             Files.lines(f.toPath()).skip(1)
                                    .map(x->x.split(";"))
                                    .map(x->new Csv(
@@ -92,3 +93,4 @@ public class Ejercicio13CRUDFacturas {
     }
 
 }
+*/
