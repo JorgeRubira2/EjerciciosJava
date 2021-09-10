@@ -5,6 +5,7 @@
  */
 package com.jorgerubira.ejerciciosspringweb.controllers;
 
+import com.jorgerubira.ejerciciosspringweb.entities.Facturas;
 import com.jorgerubira.ejerciciosspringweb.repositories.FacturasRepository;
 import com.jorgerubira.ejerciciosspringweb.repositories.LineasFacturasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class Ejercicio13FacturaController {
      
      @GetMapping
     
-     public String verFactura(Model m){
-         m.addAttribute("facturas",repoFactura.findAll());
+     public String verFactura(Model m, Integer id){
+         m.addAttribute("facturas",repoFactura.findById(id).get());
         
          return "ej13/verFactura";
      }
@@ -39,8 +40,19 @@ public class Ejercicio13FacturaController {
      public String verUnaFactura(Model m, Integer id){
          m.addAttribute("facturas",repoFactura.findById(id).get());
         
-         return "ej13/verFactura";
+        return "ej13/verFactura";
      }
+     
+     
+     @PostMapping("/guardar")
+    
+     public String guardar(Model m, Facturas factura){
+         
+         repoFactura.save(factura);
+        
+        return "ej13/verFactura";
+     }
+     
      
     
      
