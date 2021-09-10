@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Crear factura</title>
 </head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <body>
-
+    <div class="container">
+            <form action="guardarFactura" method="post" th:object="${factura}">
+                <input type="hidden" th:field="*{id}" />
+                Numero: <input th:field="*{numero}" /><br/>
+                Empresa: <input th:field="*{empresa}" /><br/>
+                Direccion: <input th:field="*{direccion}" /><br/>
+                Dni: <input th:field="*{dni}" /><br/>
+                Fecha: <input type="date" th:field="*{fecha}" /><br/>
+                <button type="submit">Guardar</button>
+            </form>
+            <hr/>
+            <div th:if="${factura.id>0}">
+                <h5>Detalles</h5>
+                <a th:href="@{guardarLinea(idFactura=${factura.id})}">Anadir linea</a>
+                <table>
+                    <tr th:each="linea : ${factura.listaLineas}">
+                        <td th:text="${linea.cantidad}"></td>
+                        <td th:text="${linea.importe}"></td>
+                        <td>
+                            <a th:href="@{/ejercicio13/linea/{id}(id=${cliente.id})}">Editar</a>
+                            <a th:href="@{/ejercicio13/deleteLinea/{id}(id=${cliente.id})}">Borrar</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
 </body>
 </html>
