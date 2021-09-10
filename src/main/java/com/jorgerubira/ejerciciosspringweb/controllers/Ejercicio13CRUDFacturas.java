@@ -83,4 +83,22 @@ public class Ejercicio13CRUDFacturas {
         return "/ej13/modificarDetalles";
     }
     
+    @GetMapping("/borrarFactura")
+    public String borrarFactura(Model m, int id){
+        factRepo.deleteById(id);
+        return "redirect:vista";
+    }
+    
+    @GetMapping("/borrarDetalles")
+    public String borrarDetalles(Model m, int id){
+        Optional<FacturaDetalle> facturaDetalle = detalleRepo.findById(id);
+        if (facturaDetalle.isPresent()) {
+            int idFact = facturaDetalle.get().getFactura().getId();
+            detalleRepo.deleteById(idFact);
+            return "redirect:modificarFactura?id="+id;
+        }else{
+            return "redirect:modificarFactura?id="+id;
+        }
+    }
+    
 }

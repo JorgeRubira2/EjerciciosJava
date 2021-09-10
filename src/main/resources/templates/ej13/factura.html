@@ -29,7 +29,8 @@
                         <td th:text="${fact.cantidad}"></td>
                         <td th:text="${fact.descripcion}"></td>
                         <td th:text="${fact.importe}"></td>                        
-                        <td><a class="btn btn-outline-primary mt-5" th:href="@{nuevoDetalle(idFactura=${fact.id})}">Editar</a></td>
+                        <td><a class="btn btn-outline-primary mt-5" th:href="@{modificarDetalles(id=${fact.id})}">Editar</a></td>
+                        <td><a class="btn btn-outline-primary mt-5" th:href="@{borrarDetalles(id=${fact.id})}">Borrar</a></td>
                     </tr>
                 </table>
             </div>
