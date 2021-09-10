@@ -37,13 +37,14 @@ Java:
             Rutas: normalize()
             //Binarios (Secundario): OutputStream, InputStream. writeObject,readObject. Serializable. Aplicaciones pequeñas sin cambios y sin base de datos.
 
-- Anotaciones (Secundario). Algoritmo por reflexion. Meta-anotacion->(Retention->Cuando se ejecutan, Target->Que elementos)
+- Anotaciones (Crear nuevas es secundario). Algoritmo por reflexion. Meta-anotacion->(Retention->Cuando se ejecutan, Target->Que elementos)
 
-- Concurrencia: ExecutorService (interface) -> Executors.new......
+- Concurrencia: (Semipoco importante)
+                ExecutorService (interface) -> Executors.new......
                 Planificar la ejecucion. ScheduledExecutorService -> Nos permitir planificar cuando lo queremos ejecutar.
 
 
-- JDBC. jdbc:nombreBD:cadena
+- JDBC. jdbc:nombreBD:cadena (Poco importante)
         para parametros SQL -> utilizar ? (PreparedStatement). Nunca concatenar. (SQL Inyection)
         Select * from Tabla where campo = '" + variable.replaceAll("'", "''") + "'"  (Ñapa)
 
@@ -189,7 +190,12 @@ Spring Boot: (MVC)
                         Tipo de carga: EAGER->Carga temprana (ManyToOne), LAZY->Carga perezosa (OneToMany), fetch
 
 - CRUD Multitabla: Las lineas (varios) dejar añadir cuando ya el tenemos el registro. Añadir lineas de una en una. A nivel Web es complicado guardar todo a la vez.
-
+- Spring Security: Configuracion -> @Configuration y @EnableWebSecurity extends WebSecurityConfigurerAdapter
+                   Usuarios -> Roles (Rutas se configuran a nivel de Rol)
+                   @Service -> interface UserDetailsService -> UserDetail (campos minimos a devolver nombre,password,roles) acceder a los datos. Estos roles deben tener el prefijo ROLE_ (ROLE_Administrador, ROLE_Usuario)
+                   Su propia ventana login. Las Urls por defecto son /login /logout 
+                   SecurityContextHolder.getContext().getAuthentication() -> La información del usuario que está validado.
+                   
 ------------------------------------------------------------------------------------------------------------
 Spring Cloud: (Microservicio)
 - Microservicio: No tenemos una aplicacion, tenemos varias mas pequeñas que pueden replicarse en otro PCs.
