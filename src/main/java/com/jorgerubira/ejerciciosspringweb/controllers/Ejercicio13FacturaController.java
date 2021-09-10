@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -22,16 +23,26 @@ public class Ejercicio13FacturaController {
      @Autowired
      private LineasFacturasRepository repoLineas;
      
+    
+     
      @GetMapping
     
      public String verFactura(Model m){
          m.addAttribute("facturas",repoFactura.findAll());
         
-       
-         
-      
-         return "ej13/factura";
+         return "ej13/verFactura";
      }
+     
+     
+      @PostMapping("/buscar")
+    
+     public String verUnaFactura(Model m, Integer id){
+         m.addAttribute("facturas",repoFactura.findById(id).get());
+        
+         return "ej13/verFactura";
+     }
+     
+    
      
      
      

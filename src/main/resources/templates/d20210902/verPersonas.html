@@ -9,6 +9,9 @@
             <div th:each="persona:${personas}">
                 <span th:text="${persona.nombre}"/> -
                 <span th:text="${persona.apellidos}"/><br/>
+                
+                
+                
                 <div th:each="telefono:${persona.telefonos}">
                     <span th:text="${telefono.numero}"/><br/>
                 </div>
