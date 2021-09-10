@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,23 +20,26 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity 
+@Table(name="lineafactura")
 public class LineaFactura {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
  
-    private Integer cantidad;
+    private int cantidad;
     private String descripcion;
     private double importe;
     
-    
+     
      
      
     @ManyToOne()
     @JoinColumn(name = "id_factura")
     private Factura factura;
+
+
   
     
     

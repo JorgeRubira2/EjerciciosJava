@@ -91,8 +91,8 @@ public class Ejercicio13Controller {
         try {
             Optional<Factura> f = facturaRepository.findById(id);
             if (f.isPresent()) {
-                model.addAttribute("factura", f);
-                model.addAttribute("listaLineas", lineaFacturaRepository.findById(id));
+                model.addAttribute("factura", f.get()); 
+                
             }
 
         } catch (Exception e) {
@@ -101,21 +101,19 @@ public class Ejercicio13Controller {
         return "ej13/editarFactura.html";
     }
 
-    @PostMapping("altalinea")
+    @PostMapping("/altalinea")
     private String altaLinea(int id, int cantidad, String descripcion, int importe, Model model) {
         try {
             Optional<Factura> factura = facturaRepository.findById(id);
             if (factura.isPresent()) {
-                LineaFactura lineaFactura = new LineaFactura((int)id, cantidad, descripcion, importe, factura.get());
-
+                LineaFactura lineaFactura = new LineaFactura(null,cantidad, descripcion, importe, factura.get());
                 lineaFacturaRepository.save(lineaFactura);
-            }
+            } 
         } catch (Exception e) {
-            model.addAttribute("error", "Ha ocurrido un error al insertar");
-
+            e.printStackTrace();
         }
 
-        return "ej13/editarFactura.html"; 
+        return "redirect:modificar?id="+id;
     }
 
 }
