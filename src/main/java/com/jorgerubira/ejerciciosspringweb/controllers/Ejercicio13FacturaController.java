@@ -28,8 +28,8 @@ public class Ejercicio13FacturaController {
      
      @GetMapping
     
-     public String verFactura(Model m, Integer id){
-         m.addAttribute("facturas",repoFactura.findById(id).get());
+     public String verFactura(Model m){
+         m.addAttribute("facturas",repoFactura.findById(1).get());
         
          return "ej13/verFactura";
      }
