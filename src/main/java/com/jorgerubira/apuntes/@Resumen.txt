@@ -224,3 +224,4 @@ Spring Cloud: (Microservicio)
             http://localhost/telefono/1  DELETE //borrar un telefono
 
 - ClaseDto. Dto (Data Transfer Object) tipo de clase set get. Para enviar datos o para recibir datos. 
+ 
