@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "facturas")
+@Table(name = "factura")
 public class Factura {
 
     @Id
@@ -35,7 +35,7 @@ public class Factura {
     private String nif;
     private Double total;
 
-    @OneToMany(mappedBy = "facturas")
+    @OneToMany(mappedBy = "factura")
     private List<DetalleFactura> lineasFactura;
 
 }
