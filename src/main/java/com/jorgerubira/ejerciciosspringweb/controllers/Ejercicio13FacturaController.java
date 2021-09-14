@@ -15,48 +15,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
- @Controller
+@Controller
 @RequestMapping("/factura")
 public class Ejercicio13FacturaController {
-     @Autowired
-     private FacturasRepository repoFactura;
-     @Autowired
-     private LineasFacturasRepository repoLineas;
-     
-    
-     
-     @GetMapping
-    
-     public String verFactura(Model m){
-         m.addAttribute("facturas",repoFactura.findById(1).get());
-        
-         return "ej13/verFactura";
-     }
-     
-     
-      @PostMapping("/buscar")
-    
-     public String verUnaFactura(Model m, Integer id){
-         m.addAttribute("facturas",repoFactura.findById(id).get());
-        
+
+    @Autowired
+    private FacturasRepository repoFactura;
+    @Autowired
+    private LineasFacturasRepository repoLineas;
+
+    @GetMapping
+
+    public String verFactura(Model m) {
+
+        return "ej13/altarFactura";
+    }
+
+    @PostMapping("/buscar")
+
+    public String verUnaFactura(Model m, Integer id) {
+        m.addAttribute("facturas", repoFactura.findById(id).get());
+
         return "ej13/verFactura";
-     }
-     
-     
-     @PostMapping("/guardar")
-    
-     public String guardar(Model m, Facturas factura){
-         
-         repoFactura.save(factura);
-        
+    }
+
+    @PostMapping("/guardar")
+
+    public String guardar(Model m, Facturas factura) {
+
+        repoFactura.save(factura);
+
         return "ej13/verFactura";
-     }
-     
-     
-    
-     
-     
-     
-    
+    }
+
 }
